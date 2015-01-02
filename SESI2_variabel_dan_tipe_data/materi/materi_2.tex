@@ -1,0 +1,378 @@
+\documentclass{beamer}
+\usepackage{graphics}
+\usepackage{multirow}
+\usepackage{tabto}
+
+\usepackage{listings}
+\usepackage{color}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+  language=pascal,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+}
+
+\title{Variabel dan Tipe Data}
+\author{Tim Olimpiade Komputer Indonesia}
+
+\begin{document}
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+\begin{frame}
+\frametitle{Pendahuluan}
+Melalui dokumen ini, kalian akan:
+\begin{itemize}
+	\item Mengenal konsep variabel.
+	\item Mempelajari berbagai tipe data.
+	\item Mempelajari cara deklarasi variabel.
+	\item Mengenal operasi assignment.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Kilas Balik}
+\begin{itemize}
+	\item Mari kita lihat kembali program halo.pas.
+	\begin{lstlisting}
+	begin
+	    writeln('Halo Dunia!');
+	end.
+	\end{lstlisting}
+	\item Pada program tersebut, terdapat kata kunci "begin" dan "end" yang diakhiri dengan titik. Kedua kata kunci tersebut membentuk sesuatu yang disebut dengan blok program utama.
+	\item Ketika halo.pas dieksekusi, seluruh perintah yang dituliskan dalam blok program utama akan dieksekusi secara sekuensial (berurutan).
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Baris Perintah Program}
+\begin{itemize}
+	\item Pada halo.pas, satu-satunya perintah yang ada adalah writeln('Halo Dunia!');
+	\item Pada Pascal, writeln(x) merupakan fungsi untuk mencetak x ke layar, apapun isi dari x. Untuk halo.pas, x = 'Halo Dunia!';
+	yang artinya mencetak tulisan yang ada di dalam writeln ke layar.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Pengenalan Variabel}
+\begin{itemize}
+	\item Variabel merupakan istilah yang diadopsi dari dunia matematika, yang memetakan sebuah nama ke suatu nilai.
+	\item Setiap kali suatu variabel digunakan dalam ekspresi matematika, yang diacu sebenarnya adalah nilai yang dipetakan oleh nama variabel tersebut.
+	\item Contoh: jika kita menyatakan $x=5$, maka hasil dari $3x^2 + x$ adalah $80$.
+	\item Dalam pemrograman, kita bisa membuat variabel, mengisikan nilai pada variabel, dan mengacu nilai yang dipetakan variabel tersebut.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Aturan Penamaan Variabel}
+\begin{itemize}
+	\item Variabel bebas diberi nama apapun, tetapi terbatas pada beberapa aturan berikut:
+	\begin{itemize}
+		\item Terdiri dari kombinasi karakter huruf, angka, dan underscore ('\_').
+		\item Tidak boleh dimulai dengan angka. Artinya "2kar" bukan merupakan nama variabel yang sah.
+		\item Huruf kapital dan huruf kecil dianggap sama. Artinya "x1" dan "X1" dianggap merupakan dua variabel yang sama.
+		\item Tidak boleh merupakan \alert{reserved word}. Contoh reserved word pada Pascal: "begin", "end", "var", "if", atau "then".
+	\end{itemize}
+	\item Lebih jauh lagi, aturan ini berlaku pada nama \alert{identifier}, yang temasuk di dalamnya nama variabel, fungsi, dan prosedur (akan dipelajari selanjutnya).
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Contoh Program: assign.pas}
+\begin{itemize}
+	\item Perhatikan contoh program "assign.pas" berikut. Tuliskan, lalu jalankan program ini.
+	\begin{lstlisting}
+	var
+	    x:integer;
+	begin
+	    x := 12;
+	    writeln('Nilai = ', x);
+	end.
+	\end{lstlisting}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Penjelasan Program: assign.pas}
+\begin{itemize}
+	\item Keluaran yang dihasilkan dari program itu adalah sebuah baris berisikan "Nilai = 12".
+	\item Pada program tersebut, x merupakan suatu variabel.
+	\item Variabel x didaftarkan terlebih dahulu dengan menuliskan "x:integer" pada bagian antara "var" dengan "begin". Nantinya, semua variabel yang akan digunakan pada program utama wajib didaftarkan pada bagian ini.
+	\item Pada blok program utama, x diisi dengan nilai 12, lalu perintah writeln dieksekusi.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Contoh Program: assign2.pas}
+\begin{itemize}
+	\item Berikut adalah contoh program yang melibatkan beberapa variabel.
+	\begin{lstlisting}
+	var
+	    x:integer;
+	    y:longint;
+	begin
+	    x := 12;
+	    y := 123456;
+	    writeln('Nilai x = ', x);
+	    writeln('Nilai y = ', y);
+	    
+	    x := 15;
+	    writeln('Sekarang nilai x = ', x);
+	end.
+	\end{lstlisting}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Penjelasan Program: assign2.pas}
+\begin{itemize}
+	\item Keluaran yang dihasilkan dari program itu adalah:
+	\begin{lstlisting}
+	12
+	123456
+	15
+	\end{lstlisting}
+	\item Apa maksud dari kata "integer" dan "longint"? Dijelaskan pada bagian selanjutnya.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Tipe Data Variabel}
+\begin{itemize}
+	\item Setiap variabel pada Pascal wajib memiliki sebuah \alert{tipe data}.
+	\item Jenis tipe data dasar dari suatu variabel pada:
+	\begin{itemize}
+		\item Bilangan bulat: hanya bisa berisikan bilangan bulat.
+		\item Bilangan riil: bisa berisikan bilangan riil (termasuk pecahan).
+		\item Karakter: merepresentasikan karakter, seperti 'a', 'b', '3', atau '?'.
+		\item String: merepresentasikan untaian karakter, seperti 'aku' atau 'halo dunia'.
+		\item Nilai kebenaran: merepresentaskan benar (TRUE) atau salah (FALSE).
+	\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Tipe Data: Bilangan Bulat}
+\begin{tabular}{|c|c|c|}
+	\hline Nama  & Jangkauan  & Ukuran \\ 
+	\hline shortint & $-2^7 .. 2^7-1$ & 1 byte \\ 
+	\hline byte & $0 .. 2^8$ & 1 byte\\ 
+	\hline integer & $-2^{15} .. 2^{15}-1$ & 2 byte\\ 
+	\hline word & $0 .. 2^{16}$ & 2 byte\\ 
+	\hline longint & $-2^{31} .. 2^{31}-1$ & 4 byte\\ 
+	\hline longword & $0 .. 2^{32}$ & 4 byte\\ 
+	\hline int64 & $-2^{63} .. 2^{63}-1$ & 8 byte\\ 
+	\hline qword & $0 .. 2^{64}$ & 8 byte\\ 
+	\hline 
+\end{tabular} 
+\begin{itemize}
+	\item Biasa disebut dengan "integer" saja.
+	\item Pascal menawarkan beberapa tipe data bilangan bulat yang variasinya terletak pada jangkauan nilai yang bisa direpresentasikan dan ukurannya pada memori.
+	\item Dalam memprogram, yang umum digunakan adalan \alert{longint} dan \alert{int64}.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Tipe Data: Bilangan Riil}
+\begin{tabular}{|c|c|c|c|}
+	\hline Nama  & Jangkauan (magnitudo) & Akurasi & Ukuran \\ 
+	\hline single & $1.5\times10^{-45} .. 3.4\times10^{38}$ & 7-8 digit & 4 byte\\ 
+	\hline double & $5.0\times10^{-324} .. 1.7\times10^{308}$ & 15-16 digit & 8 byte \\ 
+	\hline 
+\end{tabular} 
+\begin{itemize}
+	\item Biasa disebut dengan "floating-point".
+	\item Tipe data floating point bisa merepresentasikan negatif atau positif dari magnitudonya.
+	\item Pada pemrograman, umumnya tipe data floating point dihindari karena tidak akurat. Representasi 3 pada floating point bisa jadi 3.000000000000001 karena keterbatasan pada memori komputer.
+	\item Tipe yang umum digunakan adalah double.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Tipe Data: Karakter}
+\begin{itemize}
+	\item Merupakan tipe data untuk merepresentasikan karakter menurut ASCII (\textit{American Standart Code for Information Interchange}).
+	\item Dalam ASCII, terdapat 128 karakter yang direpresentasikan dengan angka dari 0 sampai 127. 
+	\item Misalnya, kode ASCII untuk karakter spasi (' ') adalah 32, huruf 'A' adalah 64, 'B' adalah 65, huruf 'a' adalah 97, dan huruf 'b' adalah 98.
+	\item Pada Pascal, tipe data ini dinyatakan sebagai \alert{char}, dengan ukuran 2 byte.
+	\item Dalam memprogram, kita bisa menggunakan fungsi ord(x) untuk mendapatkan nilai ASCII dari char x, dan chr(x) untuk mendapatkan karakter dari kode ASCII x.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Contoh Program: karakter.pas}
+\begin{itemize}
+	\item Tulis dan coba eksekusi program berikut.
+	\begin{lstlisting}
+	begin
+	    writeln(chr(64));
+	    writeln(chr(65));
+	    writeln(chr(49));
+	    writeln(ord('A'));
+	    writeln(ord('a'));
+	    writeln(ord('1'));
+	    writeln(chr(ord('a')));
+	end.
+	\end{lstlisting}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Penjelasan Program: karakter.pas}
+\begin{itemize}
+	\item Berikut adalah keluaran dari contoh program tersebut.
+	\begin{lstlisting}
+	A
+	B
+	1
+	64
+	97
+	49
+	a
+	\end{lstlisting}
+	\item Dari contoh tersebut, kalian dapat memahami penggunaan chr dan ord.
+	\item Perhatikan pula penulisan suatu karakter perlu menggunakan tanda petik ('').
+	\item Bedakan antara 1 dengan '1'. Menuliskan ord(1) bisa mengakibatkan error dan program tidak bisa dikompilasi.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Tipe Data: String}
+\begin{itemize}
+	\item Tipe data yang merepresentasikan untaian dari karakter, contohnya 'kucing', 'dan', '' (string kosong). Tipe data ini dinyatakan sebagai \alert{string}.
+	\item Pada Pascal, string bisa menampung antara 0 sampai 255 karakter. Untuk menampung lebih dari 255 karakter, gunakan tipe data \alert{ansistring}.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Tipe Data: Boolean}
+\begin{itemize}
+	\item Merupakan tipe data yang menyimpan nilai kebenaran, yaitu hanya TRUE atau FALSE.
+	\item Tipe data ini akan lebih terasa kebermanfaatannya ketika kita sudah mempelajari struktur kondisi dan array.
+	\item Pada Pascal, kalian dapat menggunakan tipe data \alert{boolean}.
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Deklarasi Variabel}
+\begin{itemize}
+	\item Mendaftarkan nama-nama dan tipe variabel yang akan digunakan disebut dengan deklarasi variabel.
+	\item Pada saat dideklarasi, setiap variabel perlu disertakan tipe datanya. 
+	\item Pada Pascal, variabel dideklarasikan di antara "var" dengan "begin".
+	\item Pada Pascal, tipe data dituliskan sesudah tanda titik dua (':'), setelah nama variabel dituliskan. Contoh: "nilai:longint" atau "rerata:double".
+	\item Beberapa variabel juga bisa dideklarasikan secara bersamaan jika memiliki tipe data yang sama. Contoh: "x,y:double".
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Assignment}
+\begin{itemize}
+	\item Pengisian nilai yang diacu oleh variabel dengan suatu nilai disebut \alert{assignment}.
+	\item Operator untuk assignment adalah :=
+	\item Isikan ruas kiri dengan nama suatu variabel, dan ruas kanan dengan nilai yang ingin diisikan ke variabel tersebut.
+	\item Tipe data dari variabel dan nilai yang diacu \alert{harus sesuai}.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Contoh Program: tipedasar.pas}
+\begin{itemize}
+	\item Pahami program berikut ini dan coba jalankan!
+	\begin{lstlisting}
+	var
+	   p1,p2:longint;
+	   x,y:double;
+	   teks:string;
+	begin
+	   p1 := 100;
+	   p2 := 200;
+	   writeln('p1: ', p1, ' p2: ', p2);
+	   
+	   x := 3.1418;
+	   y := 234.432;
+	   writeln('x: ', x);
+	   writeln('y: ', y);
+	   
+	   teks := 'ini adalah string';
+	   writeln('teks: ', teks);
+	end.
+	\end{lstlisting}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Penjelasan Program: tipedasar.pas}
+\begin{itemize}
+	\item Berikut adalah keluaran dari program tipedasar.pas.
+	\begin{lstlisting}
+	p1: 100 p2: 200
+	x:  3.14180000000000E+000
+	y:  2.34432000000000E+002
+	teks: ini adalah string
+	\end{lstlisting}
+	\item Untuk tipe data floating point, bilangan tercetak dalam notasi \textit{scientific}, yaitu $3.1418 \times 10^{0}$ dan $2.34432 \times 10^{2}$.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Ordinalitas}
+\begin{itemize}
+	\item Menurut keberurutannya, tipe data dapat dibedakan menjadi tipe data ordinal atau non-ordinal.
+	\item Suatu tipe data memiliki sifat ordinal jika untuk suatu elemennya, kita bisa mengetahui secara pasti apa elemen sebelum atau selanjutnya. Contoh:
+	\begin{itemize}
+		\item Diberikan bilangan bulat 6, kita tahu sebelumnya adalah angka 5 dan sesudahnya adalah angka 7.
+		\item Diberikan karakter 'y', kita tahu sebelumnya adalah karakter 'x' dan sesudahnya adalah karakter 'z'.
+	\end{itemize}
+	\item Dengan demikian, seluruh tipe data bilangan bulat dan karakter adalah tipe data ordinal.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Ordinalitas (lanj.)}
+\begin{itemize}
+	\item Kebalikannya, suatu tipe data dinyatakan memiliki sifat non-ordinal jika kita tidak bisa menentukan elemen sebelum dan sesudahnya. Contohnya:
+	\begin{itemize}
+		\item Diberikan bilangan riil 6, apakah elemen sesudahnya 7, atau 6.1, atau 6.01, atau 6.001, atau 6.00000000001?
+		\item Diberikan string 'telur', apakah elemen sesudahnya? Apakah 'ayam'? 'bebek'?
+	\end{itemize}
+	\item String dan bilangan floating point termasuk dalam tipe data non-ordinal.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Yang Sudah Kita Pelajari...}
+\begin{itemize}
+	\item Mengenal konsep variabel.
+	\item Mempelajari berbagai tipe data.
+	\item Mempelajari cara deklarasi variabel.
+	\item Mengenal operasi assignment.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Selanjutnya...}
+\begin{itemize}
+	\item Mengenal tentang ekspresi.
+	\item Mengenal input dan output.
+\end{itemize}
+\end{frame}
+
+\end{document}
