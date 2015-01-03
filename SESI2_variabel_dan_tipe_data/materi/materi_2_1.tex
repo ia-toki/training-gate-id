@@ -85,7 +85,7 @@ Melalui dokumen ini, kalian akan:
 \begin{itemize}
 	\item Variabel bebas diberi nama apapun, tetapi terbatas pada beberapa aturan berikut:
 	\begin{itemize}
-		\item Terdiri dari kombinasi karakter huruf, angka, dan underscore ('\_').
+		\item Terdiri dari kombinasi karakter huruf, angka, dan underscore (\_).
 		\item Tidak boleh dimulai dengan angka. Artinya "2kar" bukan merupakan nama variabel yang sah.
 		\item Huruf kapital dan huruf kecil dianggap sama. Artinya "x1" dan "X1" dianggap merupakan dua variabel yang sama.
 		\item Tidak boleh merupakan \alert{reserved word}. Contoh reserved word pada Pascal: "begin", "end", "var", "if", atau "then".
@@ -248,7 +248,7 @@ Melalui dokumen ini, kalian akan:
 	a
 	\end{lstlisting}
 	\item Dari contoh tersebut, kalian dapat memahami penggunaan chr dan ord.
-	\item Perhatikan pula penulisan suatu karakter perlu menggunakan tanda petik ('').
+	\item Perhatikan pula penulisan suatu karakter perlu menggunakan tanda petik tunggal ('').
 	\item Bedakan antara 1 dengan '1'. Menuliskan ord(1) bisa mengakibatkan error dan program tidak bisa dikompilasi.
 \end{itemize}
 \end{frame}
@@ -277,7 +277,7 @@ Melalui dokumen ini, kalian akan:
 	\item Mendaftarkan nama-nama dan tipe variabel yang akan digunakan disebut dengan deklarasi variabel.
 	\item Pada saat dideklarasi, setiap variabel perlu disertakan tipe datanya. 
 	\item Pada Pascal, variabel dideklarasikan di antara "var" dengan "begin".
-	\item Pada Pascal, tipe data dituliskan sesudah tanda titik dua (':'), setelah nama variabel dituliskan. Contoh: "nilai:longint" atau "rerata:double".
+	\item Pada Pascal, tipe data dituliskan sesudah tanda titik dua (:), setelah nama variabel dituliskan. Contoh: "nilai:longint" atau "rerata:double".
 	\item Beberapa variabel juga bisa dideklarasikan secara bersamaan jika memiliki tipe data yang sama. Contoh: "x,y:double".
 \end{itemize}
 \end{frame}
@@ -303,7 +303,7 @@ Melalui dokumen ini, kalian akan:
 	   teks:string;
 	begin
 	   p1 := 100;
-	   p2 := 200;
+	   p2 := p1;
 	   writeln('p1: ', p1, ' p2: ', p2);
 	   
 	   x := 3.1418;
@@ -323,11 +323,12 @@ Melalui dokumen ini, kalian akan:
 \begin{itemize}
 	\item Berikut adalah keluaran dari program tipedasar.pas.
 	\begin{lstlisting}
-	p1: 100 p2: 200
+	p1: 100 p2: 100
 	x:  3.14180000000000E+000
 	y:  2.34432000000000E+002
 	teks: ini adalah string
 	\end{lstlisting}
+	\item Perhatikan bahwa perintah "p2 := p1" sama artinya dengan "p2 := 100", karena p1 sendiri mengacu pada nilai 100.
 	\item Untuk tipe data floating point, bilangan tercetak dalam notasi \textit{scientific}, yaitu $3.1418 \times 10^{0}$ dan $2.34432 \times 10^{2}$.
 \end{itemize}
 \end{frame}

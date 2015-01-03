@@ -1,0 +1,313 @@
+\documentclass{beamer}
+\usepackage{graphics}
+\usepackage{multirow}
+\usepackage{tabto}
+
+\usepackage{listings}
+\usepackage{color}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+  language=pascal,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+}
+
+\title{Ekspresi dan Input/Output}
+\author{Tim Olimpiade Komputer Indonesia}
+
+\begin{document}
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+\begin{frame}
+\frametitle{Pendahuluan}
+Melalui dokumen ini, kalian akan:
+\begin{itemize}
+	\item Mengenal ekspresi.
+	\item Mengenal input dan output.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Kilas Balik: Assignment}
+\begin{itemize}
+	\item Cukup membosankan bila kita hanya bisa mengisi suatu variabel dengan suatu nilai yang pasti. Kadang-kadang kita membutuhkan hal yang lebih ekspresif. Contoh:
+	\begin{lstlisting}
+	a := 5;
+	b := 2;
+	jumlah := a + b;
+	\end{lstlisting}
+	\item Kenyataannya, ya! Hal ini sangat mungkin diwujudkan pada pemrograman.
+	\item Perintah "a + b" biasa disebut sebagai ekspresi.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Mengenal Ekspresi}
+\begin{itemize}
+	\item Ekspresi terdiri dari dua komponen: \alert{operator} dan \alert{operand}.
+	\item Operand menyatakan nilai yang akan dioperasikan, misalnya suatu bilangan atau suatu ekspresi lagi.
+	\item Operator menyatakan bagaimana operand akan dioperasikan, apakah ditambah, dikali, atau dibagi.
+	\item Pada ekspresi "1 + 2", 1 dan 2 merupakan operand, dan '+' merupakan operator.
+	\item Pada ekspresi "5 - (1 + 2)", 1 dan (1 + 2) merupakan operand, dan '-' merupakan operator. Lebih jauh lagi, (1 + 2) sendiri terdiri dari operand 1 dan 2, serta operator '+'.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Operasi Numerik}
+\begin{itemize}
+	\item Operasi pada bilangan yang dapat dilakukan adalah penjumlahan (+), pengurangan (-), perkalian (*), pembagian (/), pembagian integer (div), dan modulo (mod).
+	\item Jika kedua operand merupakan bilangan bulat, hasil pengoperasian selalu bilangan bulat juga, kecuali untuk operasi pembagian yang selalu menghasilkan floating point. Contoh:
+	\begin{itemize}
+		\item 3-1 = 2
+		\item 10/5 = 2.0000000
+		\item 7/2 = 3.5000000
+	\end{itemize}
+	\item Ketika setidaknya salah satu dari operand ada yang bertipe data floating point, pengoperasian akan selalu menghasilkan floating point.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Operasi Numerik (lanj.)}
+\begin{itemize}
+	\item Operasi pembagian integer didefinisikan sebagai: membagi, lalu dibulatkan ke bawah. Contoh:
+	\begin{itemize}
+		\item 7 div 2 = 3
+		\item 10 div 2 = 5
+		\item 3 div 5 = 0
+	\end{itemize}
+	\item Operasi modulo adalah mengambil sisa bagi dari operand pertama terhadap operand kedua. Contoh:
+	\begin{itemize}
+		\item 7 mod 2 = 1
+		\item 10 mod 2 = 0
+		\item 3 mod 5 = 3
+		\item 8 mod 3 = 2
+	\end{itemize}
+	\item Operasi div dan mod hanya bisa dilakukan apabila kedua operand memiliki tipe data bilangan bulat.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Contoh Program: kuadrat1.pas}
+\begin{itemize}
+	\item Setelah memahami tentang operasi numerik, coba perhatikan program berikut dan cari tahu apa outputnya!
+	\begin{lstlisting}
+		var
+		    a,b,c,x,hasil:longint;
+		begin
+		    a := 1;
+		    b := 3;
+		    c := -2;
+		    x := 2;	    
+
+		    hasil := a*x*x + b*x + c;
+		    writeln('ax^2 + bx + c = ', hasil);
+		end.
+	\end{lstlisting}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Presendensi Pengerjaan}
+\begin{itemize}
+	\item Seperti pada ilmu matematika, ada juga presendensi pengerjaan pada ekspresi numerik. Tabel berikut menunjukkan prioritasnya:
+	
+	\begin{tabular}{|c|c|}
+	\hline Prioritas & Operasi \\ 
+	\hline 1 & *,/,div,mod \\ 
+	\hline 2 & +,- \\ 
+	\hline 
+	\end{tabular} 
+	\item Jika ada beberapa operasi yang memiliki prioritas sama, operasi yang terletak di posisi lebih kiri akan dikerjakan lebih dahulu.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Contoh Program: numerik.pas}
+\begin{itemize}
+	\item Kita juga bisa menggunakan tanda kurung untuk mengatur prioritas pengerjaan suatu ekspresi.
+	\item Perhatikan contoh berikut dan coba jalankan programnya:
+	\begin{lstlisting}
+		var
+		    hasil1,hasil2:longint;
+		begin
+		    hasil1 := 3+5 div 4;
+		    hasil2 := (3+5) div 4;
+		    writeln(hasil1);
+		    writeln(hasil2);
+		end.
+	\end{lstlisting}
+	\item Isi dari variabel hasil1 adalah 4, karena operasi "5 div 4" memiliki prioritas yang lebih tinggi untuk dikerjakan, dan menghasilkan nilai 1. Barulah "3 + 1" dilaksanakan kemudian. 
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Fungsi Dasar Numerik}
+\begin{itemize}
+	\item Terdapat pula fungsi-fungsi dasar yang telah disediakan Pascal untuk membantu perhitungan:
+	\begin{itemize}
+		\item trunc: mengambil bagian depan penanda desimal dari suatu bilangan pecahan. Contoh: trunc(3.14) akan menghasilkan 3.00.
+		\item frac: mengambil bagian belakang penanda desimal dari suatu bilangan pecahan. Contoh: frac(3.14) akan menghasilkan 0.14.
+		\item round: membulatkan suatu bilangan pecahan bilangan bulat terdekat (hasilnya adalah bilangan bertipe integer). Contoh: round(1.2) akan menghasilkan 1, sementara round(1.87) akan menghasilkan 2.
+		\item sqr: mengkuadratkan suatu bilangan. Contoh: sqr(3) akan menghasilkan 9.
+		\item sqrt: mendapatkan akar kuadrat dari suatu bilangan. Contoh: sqrt(9) akan menghasilkan 3.00, dan sqrt(3) akan menghasilkan 1.73205....
+	\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Contoh Program: kuadrat2.pas}
+\begin{itemize}
+	\item Program "kuadrat1.pas" bisa ditulis juga dengan menggunakan fungsi sqr(x), sehingga menjadi:
+	\begin{lstlisting}
+		var
+		    a,b,c,x,hasil:longint;
+		begin
+		    a := 1;
+		    b := 3;
+		    c := -2;
+		    x := 2;	    
+
+		    hasil := a*sqr(x) + b*x + c;
+		    writeln('ax^2 + bx + c = ', hasil);
+		end.
+	\end{lstlisting}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Operasi Relasional}
+\begin{itemize}
+	\item Kita juga bisa melakukan operasi relasional, yaitu:
+	\begin{itemize}
+		\item kurang dari ($<$)
+		\item lebih dari ($>$)
+		\item sama dengan ($=$)
+		\item kurang dari atau sama dengan ($<=$)
+		\item lebih dari atau sama dengan ($>=$)
+		\item tidak sama dengan ($<>$)
+	\end{itemize}
+	\item Operasi relasional harus melibatkan dua operand (ingat bahwa operand bisa jadi berupa ekspresi lagi), dan menghasilkan sebuah nilai kebenaran. Pada Pascal, nilai kebenaran dinyatakan dengan tipe data \alert{boolean}.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Contoh Program: relasional.pas}
+\begin{itemize}
+	\item Perhatikan contoh berikut dan coba jalankan programnya:
+	\begin{lstlisting}
+		begin
+		    writeln(2 > 1);
+		    writeln(2 < 1);
+		    writeln(2 = 1);
+		    writeln(2 >= 1);
+		    writeln(1 = 1);
+		    writeln(1 <> 1);
+		    writeln(1 <> 2);
+		end.
+	\end{lstlisting}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Operasi Relasional}
+\begin{itemize}
+	\item Operasi relasional dapat dilakukan pada setiap tipe data ordinal, sehingga bisa juga diterapkan pada char.
+	\item Tentu saja, ekspresi "'a' $<$ 'b'" akan bernilai TRUE, sementara "'a' $>$ 'z'" bernilai FALSE.
+	\item Lebih jauh lagi, string sebenarnya merupakan untaian char. Operasi relasional juga bisa diterapkan pada string, dan Pascal akan membandingkan karakter demi karakter dari kiri ke kanan. 
+	\item Hasilnya, keputusan apakah suatu string "lebih kecil dari" string lainnya ditentukan seperti urutan pada kamus.
+	\item Misalnya "'aa' $<$ 'ab'" akan bernilai TRUE, dan "'aa' $<$ 'a'" bernilai FALSE. 
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Contoh Program: relasional2.pas}
+\begin{itemize}
+	\item Perhatikan contoh berikut dan coba jalankan programnya:
+		\begin{lstlisting}
+			begin
+			    writeln('a' > 'A');
+			    writeln('a' < 'A');
+			    writeln('a' >= 'A');
+			    writeln('a' = 'A');
+
+			    writeln('a' < 'aa');
+			    writeln('abcb' > 'abca');
+			    writeln('abc' = 'abc');
+			    writeln('abc' <= 'abc');
+			end.
+		\end{lstlisting}
+\end{itemize}
+\end{frame}
+
+
+
+\begin{frame}
+\frametitle{Tentang Input dan Output}
+\begin{itemize}
+	\item Untuk menghasilkan output yang bervariasi, perlu ada suatu input dari luar program.
+	\item Dengan demikian, diperlukan mekanisme untuk melakukan pembacaan input dari luar program.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Membaca Input}
+\begin{itemize}
+	\item Input bagi suatu program bisa berasal dari berbagai sumber, misalnya \textit{standart input} (layar) atau suatu \textit{file}.
+	\item Pada Pascal, dikenal dua fungsi yang umum untuk membaca input: \alert{read} dan \alert{readln}.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Membaca Input: readln}
+\begin{itemize}
+	\item a
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Operasi Output}
+\begin{itemize}
+	\item bisa lewat file, stdio, dsb. ajarin write/writeln
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Contoh Program}
+\begin{itemize}
+	\item IO pakai basa-basi
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Penjelasan Tentang STDIO}
+\begin{itemize}
+	\item ada 2 stream berbeda
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Tentang Basa Basi}
+\begin{itemize}
+	\item OSN/IOI ga butuh basa basi
+\end{itemize}
+\end{frame}
+
+\end{document}
