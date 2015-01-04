@@ -257,6 +257,56 @@ Melalui dokumen ini, kalian akan:
 \end{itemize}
 \end{frame}
 
+\begin{frame}
+\frametitle{Operasi Boolean}
+\begin{itemize}
+	\item Operasi boolean merupakan operasi yang hanya melibatkan nilai-nilai kebenaran. Terdiri atas: not, and, or, xor.
+	\item Operasi-operasi ini sesuai dengan sebuah cabang ilmu matematika yang bernama "aljabar boolean".
+	\item Operasi \alert{not} merupakan operasi \textit{unary}, artinya hanya melibatkan satu operand. Gunannya untuk membalik 
+	\item Tabel berikut menunjukkan efek dari penggunaan not.
+	\begin{tabular}{|c|c|}
+	\hline a & not a \\ 
+	\hline TRUE & FALSE \\ 
+	\hline FALSE & TRUE \\ 
+	\hline 
+	\end{tabular} 
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Operasi Boolean (lanj.)}
+\begin{itemize}
+	\item Operasi boolean yang lainnya merupakan operasi \textit{binary}, yang artinya melibatkan dua operand.
+	\item Tabel berikut menunjukkan efek dari penggunaan operator-operator tersebut:
+	\begin{tabular}{|c|c|c|c|c|}
+	\hline a & b & a and b & a or b & a xor b \\ 
+	\hline TRUE & TRUE & TRUE & TRUE & FALSE \\ 
+	\hline TRUE & FALSE & FALSE & TRUE & TRUE \\ 
+	\hline FALSE & TRUE & FALSE & TRUE & TRUE\\ 
+	\hline FALSE & FALSE & FALSE & FALSE & FALSE \\ 
+	\hline 
+	\end{tabular} 
+	\item Presendensi pengerjaan dari operator boolean secara berurutan adalah: not, and, or, xor.
+	\item Tanda kurung juga bisa digunakan untuk menentukan operasi mana yang perlu dijalankan terlebih dahulu. Bahkan sangat disarankan untuk menggunakan tanda kurung.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Contoh Program: relasional3.pas}
+\begin{itemize}
+	\item Perhatikan contoh berikut dan coba jalankan programnya:
+	\begin{lstlisting}
+		begin
+		    writeln(2 > 1);
+		    writeln(not (2 > 1));
+		    writeln((2 > 1) and (3 > 1));
+		    writeln(((2 > 1) or (3 < 1)) and (1 = 1));
+		    writeln((1 <> 1) xor not (1 <> 1));
+		end.
+	\end{lstlisting}
+	\item Perhatikan bahwa tanda kurung diperlukan dalam ekspresi "not (2 $>$ 1)". Dengan tanda kurung, "2 $>$ 1" akan dievaluasi terlebih dahulu, menghasilkan nilai boolean. Barulah operator not bisa mengolah nilai boolean tersebut.
+\end{itemize}
+\end{frame}
 
 \begin{frame}[fragile]
 \frametitle{Kilas Balik: kuadrat2.pas}
