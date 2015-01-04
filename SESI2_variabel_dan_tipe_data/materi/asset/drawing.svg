@@ -14,7 +14,7 @@
    id="svg2"
    version="1.1"
    inkscape:version="0.48.3.1 r9886"
-   sodipodi:docname="New document 1">
+   sodipodi:docname="drawing.svg">
   <defs
      id="defs4">
     <marker
@@ -51,14 +51,14 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.0479543"
-     inkscape:cx="287.8489"
-     inkscape:cy="831.66762"
+     inkscape:zoom="0.55104611"
+     inkscape:cx="445.55914"
+     inkscape:cy="766.54843"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
      inkscape:window-width="1280"
-     inkscape:window-height="724"
+     inkscape:window-height="752"
      inkscape:window-x="0"
      inkscape:window-y="24"
      inkscape:window-maximized="1" />
@@ -84,7 +84,10 @@
        x="76.339203"
        y="259.3887"
        id="text3755"
-       sodipodi:linespacing="125%"><tspan
+       sodipodi:linespacing="125%"
+       inkscape:export-filename="/home/gyosh/coding/toki/ia_toki/training-gate/SESI2_variabel_dan_tipe_data/materi/asset/g1.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"><tspan
          sodipodi:role="line"
          id="tspan3757"
          x="76.339203"
@@ -95,7 +98,10 @@
        x="184.16832"
        y="413.97559"
        id="text3759"
-       sodipodi:linespacing="125%"><tspan
+       sodipodi:linespacing="125%"
+       inkscape:export-filename="/home/gyosh/coding/toki/ia_toki/training-gate/SESI2_variabel_dan_tipe_data/materi/asset/g1.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"><tspan
          sodipodi:role="line"
          id="tspan3761"
          x="184.16832"
@@ -106,7 +112,10 @@
        x="312.99072"
        y="259.3887"
        id="text3763"
-       sodipodi:linespacing="125%"><tspan
+       sodipodi:linespacing="125%"
+       inkscape:export-filename="/home/gyosh/coding/toki/ia_toki/training-gate/SESI2_variabel_dan_tipe_data/materi/asset/g1.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"><tspan
          sodipodi:role="line"
          id="tspan3765"
          x="312.99072"
@@ -116,12 +125,18 @@
        d="m 146.95297,279.42775 70.61376,98.28672"
        id="path3767"
        inkscape:connector-curvature="0"
-       sodipodi:nodetypes="cc" />
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="/home/gyosh/coding/toki/ia_toki/training-gate/SESI2_variabel_dan_tipe_data/materi/asset/g1.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
     <path
        style="fill:none;stroke:#000000;stroke-width:3.9000001;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#Arrow1Mend)"
        d="M 325.39585,383.43991 388.3757,273.70231"
        id="path3769"
        inkscape:connector-curvature="0"
-       sodipodi:nodetypes="cc" />
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="/home/gyosh/coding/toki/ia_toki/training-gate/SESI2_variabel_dan_tipe_data/materi/asset/g1.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
   </g>
 </svg>

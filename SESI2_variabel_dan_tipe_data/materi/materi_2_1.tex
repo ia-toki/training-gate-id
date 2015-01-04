@@ -94,6 +94,17 @@ Melalui dokumen ini, kalian akan:
 \end{itemize}
 \end{frame}
 
+\begin{frame}
+\frametitle{Assignment}
+\begin{itemize}
+	\item Pengisian nilai yang diacu oleh variabel dengan suatu nilai disebut \alert{assignment}.
+	\item Operator untuk assignment adalah :=
+	\item Isikan ruas kiri dengan nama suatu variabel, dan ruas kanan dengan nilai yang ingin diisikan ke variabel tersebut.
+	\item Tipe data dari variabel dan nilai yang diacu \alert{harus sesuai}.
+\end{itemize}
+\end{frame}
+
+
 \begin{frame}[fragile]
 \frametitle{Contoh Program: assign.pas}
 \begin{itemize}
@@ -270,7 +281,6 @@ Melalui dokumen ini, kalian akan:
 \end{itemize}
 \end{frame}
 
-
 \begin{frame}
 \frametitle{Deklarasi Variabel}
 \begin{itemize}
@@ -283,12 +293,55 @@ Melalui dokumen ini, kalian akan:
 \end{frame}
 
 \begin{frame}
-\frametitle{Assignment}
+\frametitle{Tipe Data Komposit: Record}
 \begin{itemize}
-	\item Pengisian nilai yang diacu oleh variabel dengan suatu nilai disebut \alert{assignment}.
-	\item Operator untuk assignment adalah :=
-	\item Isikan ruas kiri dengan nama suatu variabel, dan ruas kanan dengan nilai yang ingin diisikan ke variabel tersebut.
-	\item Tipe data dari variabel dan nilai yang diacu \alert{harus sesuai}.
+	\item Kadang-kadang, kita membutuhkan suatu tipe data yang sifatnya komposit; terdiri dari beberapa data lainnya.
+	\item Contoh kasusnya adalah ketika kita butuh suatu representasi dari titik. Setiap titik pada bidang memiliki dua komponen, yaitu x dan y.
+	\item Memang bisa saja kita mendeklarasi dua variabel, yaitu x dan y. Namun bagaimana jika kita hendak membuat beberapa titik? Apakah kita harus membuat x1, y1, x2, y2, ...? Sungguh melelahkan!
+	\item Karena itulah Pascal menyajikan suatu tipe data komposit, yaitu \alert{record}. 
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Tipe Data Komposit: Record}
+\begin{itemize}
+	\item Record dapat dideklarasikan pada blok "type", yang letaknya sebelum "var".
+	\begin{lstlisting}
+		type
+		    <nama record> = record
+		                        <variabel1>:<tipe1>;
+		                        <variabel2>:<tipe2>;
+		                        ...
+		                    end;
+		var
+		    ...
+	\end{lstlisting}
+	\item Setelah dideklarasikan, sebuah tipe data "<nama record>" sudah bisa digunakan.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Tipe Data Komposit: Record (lanj.)}
+\begin{itemize}
+	\item Sebagai contoh, perhatikan contoh program "titik.pas" berikut:
+	\begin{lstlisting}
+		type
+		    titik = record
+		                x,y:longint;
+		             end;
+		var
+		    t1,t2:titik;
+		begin
+		    t1.x := 5;
+		    t1.y := 3;
+		
+		    t2.x := 1;
+		    t2.y := 2;
+		
+		    writeln(t1.x, ',', t1.y);
+		    writeln(t2.x, ',', t2.y);
+		end.
+	\end{lstlisting}
 \end{itemize}
 \end{frame}
 
