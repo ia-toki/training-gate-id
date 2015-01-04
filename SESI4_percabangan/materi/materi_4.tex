@@ -1,0 +1,352 @@
+\documentclass{beamer}
+\usepackage{graphics}
+\usepackage{multirow}
+\usepackage{tabto}
+
+\usepackage{listings}
+\usepackage{color}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+  language=pascal,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+}
+
+\title{Percabangan}
+\author{Tim Olimpiade Komputer Indonesia}
+
+\begin{document}
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+\begin{frame}
+\frametitle{Pendahuluan}
+Melalui dokumen ini, kalian akan:
+\begin{itemize}
+	\item Mengenal percabangan.
+	\item Memahami analisa kasus dan mengimplementasikannya pada Pascal.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Motivasi}
+\begin{itemize}
+	\item Diberikan sebuah bilangan. Tentukan apakah bilangan itu positif atau bukan positif!
+	\item Jika positif, cetak "positif". Jika tidak, jangan cetak apa-apa.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Motivasi (lanj.)}
+\begin{itemize}
+	\item Sebuah bilangan dinyatakan positif apabila bilangan tersebut lebih dari nol. 
+	\item Dengan begitu, kita memerlukan suatu struktur yang memungkinkan "\alert{jika} bilangan itu lebih dari 0, \alert{maka} cetak positif".
+	\item Pada Pascal, hal ini bisa diwujudkan dengan struktur kondisional \alert{if}.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Struktur "if ... then ..."}
+\begin{itemize}
+	\item Struktur dari penulisan "if ... then ..." adalah:
+	\begin{lstlisting}
+	if (<kondisi>) then begin
+	    <perintah 1>;
+	    <perintah 2>;
+	    ...
+	end;
+	\end{lstlisting}
+	
+	\item Dengan $<$kondisi$>$ adalah suatu boolean.
+	\item Jika nilai $<$kondisi$>$ adalah TRUE, seluruh perintah yang ada di antara blok "begin" dan "end" akan dilaksanakan.
+	\item Jika FALSE, seluruh perintah yang ada di antara blok "begin" dan "end" akan dilewati.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Contoh Program: kondisi.pas}
+\begin{itemize}
+	\item Ketikkan dan jalankan program berikut:
+	\begin{lstlisting}
+		var
+		    x:longint;
+		begin
+		    readln(x);
+		
+		    if (x > 0) then begin
+		        writeln('positif');
+		    end;
+		end.
+	\end{lstlisting}
+	\item Perhatikan bahwa ekspresi "x $>$ 0" akan merupakan operasi relasional yang menghasilkan nilai boolean. Sehingga tepat untuk digunakan pada if.
+	\item Bagaimana jika ingin dibuat jika bilangan itu bukan positif, cetak "non-positif"?
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Struktur "if ... then ... else ..."}
+\begin{itemize}
+	\item Kita juga bisa membuat percabangan jika nilai pada $<$kondisi$>$ adalah FALSE, yaitu dengan kata kunci "else".
+	\item Struktur dari penulisan "if ... then ... else ..." adalah:
+	\begin{lstlisting}
+	if (<kondisi>) then begin
+	    <perintah 1>;
+	    <perintah 2>;
+	    ...
+	end else begin
+	    <perintah a>;
+	    <perintah b>;
+	    ...	
+	end;
+	\end{lstlisting}
+	
+	\item Jika nilai $<$kondisi$>$ adalah TRUE, $<$perintah 1$>$, $<$perintah 2$>$, ..., akan dilaksanakan.
+	\item Jika FALSE, $<$perintah a$>$, $<$perintah b$>$, ..., akan dilaksanakan.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Contoh Program: kondisi2.pas}
+\begin{itemize}
+	\item Dengan "if ... then ... else ...", kita bisa memodifikasi "kondisi.pas" menjadi "kondisi2.pas":
+	\begin{lstlisting}
+		var
+		    x:longint;
+		begin
+		    readln(x);
+		
+		    if (x > 0) then begin
+		        writeln('positif');
+		    end else begin
+		        writeln('non-positif');
+		    end;
+		end.
+	\end{lstlisting}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Persoalan Sebenarnya}
+Diberikan sebuah bilangan, sebut saja x.
+\begin{itemize}
+	\item Jika x positif, cetak "positif".
+	\item Jika x sama dengan nol, cetak "nol".
+	\item Jika x negatif, cetak "negatif".
+\end{itemize}
+
+Pada kasus ini, diperlukan struktur if yang lebih dari dua cabang!
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Struktur "if ... then ... else if ..."}
+\begin{itemize}
+	\item Pascal menyediakan struktur yang memungkinkan kita memilah-milah untuk cabang yang lebih dari dua, yaitu dengan struktur "if ... then ... else if ...".
+	\item Struktur dari penulisan "if ... then ... else if ..." adalah:
+	\begin{lstlisting}
+	if (<kondisi 1>) then begin
+	    <perintah 1>;
+	    <perintah 2>;
+	    ...
+	end else if (<kondisi 2>) then begin
+	    <perintah a>;
+	    <perintah b>;
+	    ...	
+	end else if (<kondisi 3>) then begin
+	    ...
+	end
+	\end{lstlisting}
+
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Struktur "if ... then ... else if ..." (lanj.)}
+\begin{itemize}
+	\item Jika nilai $<$kondisi 1$>$ TRUE, $<$perintah 1$>$, $<$perintah 2$>$, ..., akan dilaksanakan.
+	\item Jika nilai $<$kondisi 1$>$ FALSE, diperiksa apakah $<$kondisi 2$>$ bernilai TRUE. Jika ya, $<$perintah a$>$, $<$perintah b$>$, ..., akan dilaksanakan.
+	\item Jika nilai $<$kondisi 2$>$ FALSE, diperiksa apakah $<$kondisi 3$>$ bernilai TRUE. Hal ini akan terus diulang sampai seluruh percabangan habis.
+	\item Kalian juga bisa mengakhiri struktur ini dengan "else ...", yaitu ketika seluruh kondisi yang diberikan tidak terpenuhi, maka perintah-perintah di bawah else ini yang akan dilaksanakan.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Contoh Program: kondisi3.pas}
+\begin{itemize}
+	\item Dengan "if ... then ... else if ...", kita bisa memodifikasi "kondisi2.pas" menjadi "kondisi3.pas":
+	\begin{lstlisting}
+		var
+		    x:longint;
+		begin
+		    readln(x);
+		
+		    if (x > 0) then begin
+		        writeln('positif');
+		    end else if (x = 0) then begin
+		        writeln('nol');
+		    end else if (x < 0) then begin
+		        writeln('negatif');
+		    end;
+		end.
+	\end{lstlisting}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Contoh Program: kondisi4.pas}
+\begin{itemize}
+	\item Pada "kondisi3.pas", sebenarnya "else if ..." yang terakhir tidak perlu. Ketika suatu bilangan bukan positif dan bukan nol, sudah pasti bilangan itu negatif. Sehingga bisa didapatkan "kondisi4.pas":
+	\begin{lstlisting}
+		var
+		    x:longint;
+		begin
+		    readln(x);
+		
+		    if (x > 0) then begin
+		        writeln('positif');
+		    end else if (x = 0) then begin
+		        writeln('nol');
+		    end else begin
+		        // sudah pasti negatif
+		        writeln('negatif');
+		    end;
+		end.
+	\end{lstlisting}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Kombinasi dengan Ekspresi Boolean}
+\begin{itemize}
+	\item Kalian juga bisa menggabungkan struktur if dengan ekspresi boolean:
+	\begin{lstlisting}
+	  if ((x > 0) and (x mod 2 = 1)) then begin
+	      writeln('positif dan ganjil');
+	      
+	  end else if ((x > 0) and (x mod 2 = 0)) then begin
+	      writeln('positif dan genap');
+	      
+	  end else if ((x < 0) and (x mod 2 = 1)) then begin
+	      writeln('negatif dan ganjil');
+	      
+	  end else if ((x < 0) and (x mod 2 = 0)) then begin
+ 	      ...
+	\end{lstlisting}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{If Bersarang}
+\begin{itemize}
+	\item Solusi yang lebih rapi dicapai dengan menggunakan if secara bersarang:
+	\begin{lstlisting}
+	  if (x > 0) then begin
+	      if (x mod 2 = 1) then begin
+	          writeln('positif dan ganjil');
+	      end else begin
+	          writeln('positif dan genap');
+	      end;
+	  end else if (x < 0) then begin
+	      ...
+	\end{lstlisting}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Contoh Lainnya}
+\begin{itemize}
+	\item Misalkan diberikan sebuah karakter yang merupakan salah satu dari 'A', 'B', 'C', 'D', atau 'E'.
+	\item Cetak frase berikut sesuai karakter yang diberikan:
+	\begin{itemize}
+		\item 'A': Sempurna
+		\item 'B': Bagus
+		\item 'C': Cukup
+		\item 'D': Kurang
+		\item 'E': Sangat kurang
+	\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Contoh Lainnya (lanj.)}
+\begin{itemize}
+	\item Tentu saja kita bisa menggunakan "if ... then ... else if ..." untuk kasus ini.
+	\item Namun, menuliskan "if ... then ... else if ..." untuk kasus sederhana ini bisa cukup panjang.
+	\item Bayangkan, untuk setiap kasus, kalian perlu menulis:
+	\begin{lstlisting}
+		if (nilai = 'A') then begin
+		    ...
+		end else begin if (nilai = 'B') then begin
+		    ...
+	\end{lstlisting}	
+	\item Untuk kasus sejenis ini, tersedia struktur kondisional lain yang ditawarkan Pascal dan lebih cocok, yaitu \alert{case of}.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Struktur "case ... of ..."}
+\begin{itemize}
+	\item Struktur dari penulisan "case ... of ..." adalah:
+	\begin{lstlisting}
+	case (<ekspresi>) of
+	    <nilai 1>: begin <perintah 1>; end;
+	    <nilai 2>: begin <perintah 2>; end;
+	    <nilai 3>: begin <perintah 3>; end;
+	    ...
+	end;
+	\end{lstlisting}
+	
+	\item Dengan $<$ekspresi$>$ adalah suatu ekspresi yang menghasilkan \alert{nilai ordinal}.
+	\item Ketika nilai yang dihasilkan $<$ekspresi$>$ sama dengan $<$nilai 1$>$, maka seluruh $<$perintah 1$>$ akan dilaksanakan.
+	\item Ketika nilai yang dihasilkan $<$ekspresi$>$ sama dengan $<$nilai 2$>$, maka seluruh $<$perintah 2$>$ akan dilaksanakan.
+	\item ... dan seterusnya.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Contoh Program: "case.pas"}
+\begin{itemize}
+	\item Berikut ini adalah solusi dengan menggunakan "case ... of ...":
+	\begin{lstlisting}
+		var
+		    nilai:char;
+		begin
+		    readln(nilai);
+		
+		    case (nilai) of
+		        'A': begin writeln('Sempurna'); end;
+		        'B': begin writeln('Bagus'); end;
+		        'C': begin writeln('Cukup'); end;
+		        'D': begin writeln('Kurang'); end;
+		        'E': begin writeln('Sangat kurang'); end;
+		    end;
+		end.
+	\end{lstlisting}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Selanjutnya...}
+\begin{itemize}
+	\item Ke bagian yang lebih menarik lagi, yaitu perulangan!
+	\item Namun, pastikan kalian menguasai materi perulangan terlebih dahulu $:)$
+\end{itemize}
+\end{frame}
+
+\end{document}
