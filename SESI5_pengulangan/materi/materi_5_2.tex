@@ -40,8 +40,8 @@
 \frametitle{Pendahuluan}
 Melalui dokumen ini, kalian akan:
 \begin{itemize}
-	\item Memahami penggunaan perulangan yang bersarang.
-	\item Memecahkan beberapa persoalan dengan perulangan.
+	\item Memahami penggunaan pengulangan yang bersarang.
+	\item Memecahkan beberapa persoalan dengan pengulangan.
 \end{itemize}
 \end{frame}
 
@@ -63,7 +63,7 @@ Melalui dokumen ini, kalian akan:
 \begin{frame}[fragile]
 \frametitle{Motivasi (lanj.)}
 \begin{itemize}
-	\item Tentu saja solusinya sederhana, cukup gunakan salah satu struktur perulangan yang kalian kuasai.
+	\item Tentu saja solusinya sederhana, cukup gunakan salah satu struktur pengulangan yang kalian kuasai.
 	\item Untuk kasus ini, lebih tepat digunakan for:
 	\begin{lstlisting}
 		for i := 1 to N do begin
@@ -87,7 +87,7 @@ Melalui dokumen ini, kalian akan:
 	*****
 	\end{lstlisting}
 	
-	\item Kali ini, untuk setiap barisnya kita perlu melakukan perulangan untuk mencetak M karakter bintang!
+	\item Kali ini, untuk setiap barisnya kita perlu melakukan pengulangan untuk mencetak M karakter bintang!
 \end{itemize}
 \end{frame}
 
@@ -116,7 +116,7 @@ Melalui dokumen ini, kalian akan:
 \begin{frame}[fragile]
 \frametitle{Contoh Program: pola1\_2.pas}
 \begin{itemize}
-	\item Tentu saja kita bisa melakukannya dengan struktur perulangan yang lain, misalnya while:
+	\item Tentu saja kita bisa melakukannya dengan struktur pengulangan yang lain, misalnya while:
 	\begin{lstlisting}
 		var
 		    N,M:longint;
@@ -197,10 +197,10 @@ Melalui dokumen ini, kalian akan:
 \begin{frame}
 \frametitle{Break \& Continue}
 \begin{itemize}
-	\item Kadang kala, kita membutuhkan suatu perulangan untuk diberhentikan secara paksa atau lompat ke iterasi berikutnya pada for.
+	\item Kadang kala, kita membutuhkan suatu pengulangan untuk diberhentikan secara paksa atau lompat ke iterasi berikutnya pada for.
 	\item Pascal menyediakan kedua fitur tersebut, yaitu dengan kata kunci \alert{\textit{break}} dan \alert{\textit{continue}}.
-	\item Penggunaan \textit{break} akan membuat program keluar dari perulangan yang mengandung kata kunci tersebut.
-	\item Penggunaan \textit{continue} akan membuat program kembali ke baris paling atas perulangan, yaitu baris "for .. to .. do" (untuk for), "while ... do" (untuk while), dan "repeat ... until"(untuk repeat).
+	\item Penggunaan \textit{break} akan membuat program keluar dari pengulangan yang mengandung kata kunci tersebut.
+	\item Penggunaan \textit{continue} akan membuat program kembali ke baris paling atas pengulangan, yaitu baris "for .. to .. do" (untuk for), "while ... do" (untuk while), dan "repeat ... until"(untuk repeat).
 	\item Dengan demikian, untuk for nilai pencacah akan "bertambah satu tingkat".
 \end{itemize}
 \end{frame}
@@ -251,7 +251,7 @@ Melalui dokumen ini, kalian akan:
 \begin{frame}
 \frametitle{Penjelasan Program: break.pas}
 \begin{itemize}
-	\item Ketika \textit{break} ditemui, perulangan "for ... to ... do" akan diberhentikan secara paksa dan lanjut mengeksekusi perintah selanjutnya, yaitu mencetak tulisan "selesai".
+	\item Ketika \textit{break} ditemui, pengulangan "for ... to ... do" akan diberhentikan secara paksa dan lanjut mengeksekusi perintah selanjutnya, yaitu mencetak tulisan "selesai".
 \end{itemize}
 \end{frame}
 
@@ -302,7 +302,7 @@ Melalui dokumen ini, kalian akan:
 \frametitle{Penjelasan Program: continue.pas}
 \begin{itemize}
 	\item Ketika \textit{continue} ditemui, eksekusi perintah di dalam "for ... to ... do" untuk pencacah tersebut langsung dilewati dan lanjut ke pencacah selanjutnya.
-	\item Artinya, untuk N = 10 dan M = 2, ketika nilai i = 2 dan \textit{continue} ditemui, eksekusi akan dilewati dan lanjut ke perintah paling awal dalam perulangan dengan i = 3. 
+	\item Artinya, untuk N = 10 dan M = 2, ketika nilai i = 2 dan \textit{continue} ditemui, eksekusi akan dilewati dan lanjut ke perintah paling awal dalam pengulangan dengan i = 3. 
 \end{itemize}
 \end{frame}
 
@@ -357,7 +357,7 @@ Bagaimana kalian akan menyelesaikan persoalan ini?
 \begin{itemize}
 	\item Solusi 1 melakukan pemeriksaan dari 2 sampai dengan N-1, artinya dibutuhkan pemeriksaan sebanyak N-2 kali.
 	\item Sebetulnya pemeriksaan bisa dihentikan ketika ditemukan setidaknya satu saja bilangan yang habis membagi N.
-	\item Dengan demikian bisa digunakan \textit{break} untuk memberhentikan perulangan begitu ditemukan bilangan yang habis membagi N.
+	\item Dengan demikian bisa digunakan \textit{break} untuk memberhentikan pengulangan begitu ditemukan bilangan yang habis membagi N.
 \end{itemize}
 \end{frame}
 
@@ -391,7 +391,7 @@ end.
 \frametitle{Penggunaan Break}
 \begin{itemize}
 	\item Dalam prakteknya, penggunaan \textit{break} kurang dianjurkan karena membuat program menjadi "kotor".
-	\item Jika membutuhkan perulangan yang suatu ketika perlu diberhentikan (sudah memenuhi syarat tertentu), gunakan while atau repeat.
+	\item Jika membutuhkan pengulangan yang suatu ketika perlu diberhentikan (sudah memenuhi syarat tertentu), gunakan while atau repeat.
 	\item Solusi yang lebih baik ditunjukkan pada "prima1\_3.pas".
 \end{itemize}
 \end{frame}
@@ -491,7 +491,7 @@ end.
 \begin{frame}
 \frametitle{Penutup}
 \begin{itemize}
-	\item Percabangan dan perulangan merupakan dua struktur kontrol yang sangat penting pada pemrograman.
+	\item Percabangan dan pengulangan merupakan dua struktur kontrol yang sangat penting pada pemrograman.
 	\item Kalian diharapkan berlatih sampai lancar di kedua hal tersebut, baru lanjut untuk mempelajari materi selanjutnya.
 \end{itemize}
 \end{frame}
