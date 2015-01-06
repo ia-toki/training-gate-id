@@ -12,3 +12,6 @@ https://www.dropbox.com/s/cs1oresboy1pdv2/materi_3.pdf?dl=0
 
 Materi 4: Percabangan
 https://www.dropbox.com/s/ezvn6l2uklej0a7/materi_4.pdf?dl=0
+
+Materi 5-1: Perkenalan Perulangan
+https://www.dropbox.com/s/wygj31a6aw7wi19/materi_5_1.pdf?dl=0
