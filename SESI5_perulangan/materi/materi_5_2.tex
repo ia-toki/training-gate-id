@@ -1,0 +1,245 @@
+\documentclass{beamer}
+\usepackage{graphics}
+\usepackage{multirow}
+\usepackage{tabto}
+
+\usepackage{listings}
+\usepackage{color}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+  language=pascal,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+}
+
+\title{Perulangan Lanjut}
+\author{Tim Olimpiade Komputer Indonesia}
+
+\begin{document}
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+\begin{frame}
+\frametitle{Pendahuluan}
+Melalui dokumen ini, kalian akan:
+\begin{itemize}
+	\item Memahami penggunaan perulangan yang bersarang.
+	\item Memecahkan beberapa persoalan dengan perulangan.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Motivasi}
+\begin{itemize}
+	\item Diberikan sebuah bilangan, misalnya N.
+	\item Cetak karakter bintang (*) yang tersusun N baris!
+	
+	\item Contoh untuk N = 3:
+	\begin{lstlisting}
+	*
+	*
+	*
+	\end{lstlisting}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Motivasi (lanj.)}
+\begin{itemize}
+	\item Tentu saja solusinya sederhana, cukup gunakan salah satu struktur perulangan yang kalian kuasai.
+	\item Untuk kasus ini, lebih tepat digunakan for:
+	\begin{lstlisting}
+		for i := 1 to N do begin
+		    writeln('*');
+		end;
+	\end{lstlisting}	
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Motivasi: Pola 1}
+\begin{itemize}
+	\item Diberikan dua bilangan, misalnya N dan M.
+	\item Cetak karakter bintang (*) yang tersusun N baris dan M kolom!
+	
+	\item Contoh untuk N = 3 dan M = 5:
+	\begin{lstlisting}
+	*****
+	*****
+	*****
+	\end{lstlisting}
+	
+	\item Kali ini, untuk setiap barisnya kita perlu melakukan perulangan untuk mencetak M karakter bintang!
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Contoh Program: pola1\_1.pas}
+\begin{itemize}
+	\item Kita bisa membuat "for di dalam for", sehingga membentuk struktur yang bersarang.
+	\begin{lstlisting}
+		var
+		    N,M:longint;
+		    i,j:longint;
+		begin
+		    readln(N, M);
+		
+		    for i := 1 to N do begin
+		        for j := 1 to M do begin
+		            write('*');
+		        end;
+		        writeln;
+		    end;
+		end.
+	\end{lstlisting}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Contoh Program: pola1\_2.pas}
+\begin{itemize}
+	\item Tentu saja kita bisa melakukannya dengan struktur perulangan yang lain, misalnya while:
+	\begin{lstlisting}
+		var
+		    N,M:longint;
+		    i,j:longint;
+		begin
+		    readln(N, M);
+		
+		    for i := 1 to N do begin
+		        j := 1;
+		        while (j <= M) do begin
+		            write('*');
+		            j := j + 1;
+		        end;
+		        writeln;
+		    end;
+		end.
+	\end{lstlisting}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Contoh Lain: Pola 2}
+\begin{itemize}
+	\item Diberikan sebuah bilangan, misalnya N.
+	\item Cetak "struktur segitiga rata kiri" yang terdiri dari N baris.
+	\item Misalnya untuk N = 5, hasilnya adalah:
+	\begin{lstlisting}
+	*
+	**
+	***
+	****
+	*****
+	\end{lstlisting} 
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Contoh Solusi: pola2.pas}
+\begin{itemize}
+	\item Berikut ini adalah contoh solusinya, dimodifikasi dari "pola1\_1.pas":
+	\begin{lstlisting}
+		var
+		    N:longint;
+		    i,j:longint;
+		begin
+		    readln(N);
+		
+		    for i := 1 to N do begin
+		        for j := 1 to i do begin
+		            write('*');
+		        end;
+		        writeln;
+		    end;
+		end.
+	\end{lstlisting}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Latihan: Pola 3}
+Coba pikirkan solusi dan buat program dengan deskripsi berikut:
+\begin{itemize}
+	\item Diberikan sebuah bilangan, misalnya N.
+	\item Cetak "struktur segitiga rata kanan" yang terdiri dari N baris.
+	\item Misalnya untuk N = 5, hasilnya adalah:
+	\begin{lstlisting}
+	    *
+	   **
+	  ***
+	 ****
+	*****
+	\end{lstlisting} 
+	\item Petunjuk: cetak spasi terlebih dahulu!
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Contoh Soal: Tes Keprimaan}
+Kita beralih ke persoalan yang lebih nyata: memeriksa apakah suatu bilangan prima.
+\begin{itemize}
+	\item Diberikan sebuah bilangan, misalnya N (1 $<$ N $\leq$ 100).
+	\item Suatu bilangan N dikatakan prima apabila N positif dan hanya habis dibagi oleh 1 dan dirinya sendiri.
+	\item Jika N prima, cetak "$<$N$>$ adalah bilangan prima" dan jika tidak, cetak "$<$N$>$ bukan bilangan prima".
+\end{itemize}
+Bagaimana kalian akan menyelesaikan persoalan ini?
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Solusi 1: prima1\_1.pas}
+	\begin{lstlisting}
+		var
+		    N,i:longint;
+		    prima:boolean;
+		begin
+		    readln(N);
+		
+		    prima := TRUE;
+		    for i := 2 to N-1 do begin
+		        if (N mod i = 0) then begin
+		            prima := FALSE;
+		        end;
+		    end;
+		
+		    if (prima) then begin
+		        writeln(N, ' adalah bilangan prima');
+		    end else begin
+		        writeln(N, ' bukan bilangan prima');
+		    end;
+		end.
+	\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{}
+\begin{itemize}
+	\item 
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{}
+\begin{itemize}
+	\item 
+\end{itemize}
+\end{frame}
+
+\end{document}
