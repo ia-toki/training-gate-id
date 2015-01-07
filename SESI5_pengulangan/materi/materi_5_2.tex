@@ -27,7 +27,7 @@
   tabsize=3
 }
 
-\title{Perulangan Lanjut}
+\title{Pengulangan Lanjut}
 \author{Tim Olimpiade Komputer Indonesia}
 
 \begin{document}
@@ -49,9 +49,9 @@ Melalui dokumen ini, kalian akan:
 \frametitle{Motivasi: Pola 0}
 \begin{itemize}
 	\item Pak Dengklek sedang mengajari bebek-bebeknya yang baru lahir dari telur untuk menggambar.
-	\item Pak Dengklek akan memberikan sebuah bilangan, misalnya N.
-	\item Para bebek diminta untuk mencetak karakter bintang (*) yang tersusun N baris.
-	\item Contoh untuk N = 3:
+	\item Pak Dengklek akan memberikan sebuah bilangan, misalnya \textbf{N}.
+	\item Para bebek diminta untuk mencetak karakter bintang (*) yang tersusun \textbf{N} baris.
+	\item Contoh untuk \textbf{N} = 3:
 	\begin{lstlisting}
 	*
 	*
@@ -64,7 +64,7 @@ Melalui dokumen ini, kalian akan:
 \frametitle{Motivasi (lanj.)}
 \begin{itemize}
 	\item Tentu saja solusinya sederhana, cukup gunakan salah satu struktur pengulangan yang kalian kuasai.
-	\item Untuk kasus ini, lebih tepat digunakan for:
+	\item Untuk kasus ini, lebih tepat digunakan \textbf{for}:
 	\begin{lstlisting}
 		for i := 1 to N do begin
 		    writeln('*');
@@ -77,17 +77,17 @@ Melalui dokumen ini, kalian akan:
 \frametitle{Motivasi: Pola 1}
 \begin{itemize}
 	\item Setelah para bebek mampu mengerjakan "Pola 0", Pak Dengklek memberikan persoalan yang sedikit lebih sulit.
-	\item Diberikan dua bilangan, misalnya N dan M.
-	\item Cetak karakter bintang (*) yang tersusun N baris dan M kolom!
+	\item Diberikan dua bilangan, misalnya \textbf{N} dan \textbf{M}.
+	\item Cetak karakter bintang (*) yang tersusun \textbf{N} baris dan \textbf{M} kolom!
 	
-	\item Contoh untuk N = 3 dan M = 5:
+	\item Contoh untuk \textbf{N} = 3 dan \textbf{M} = 5:
 	\begin{lstlisting}
 	*****
 	*****
 	*****
 	\end{lstlisting}
 	
-	\item Kali ini, untuk setiap barisnya kita perlu melakukan pengulangan untuk mencetak M karakter bintang!
+	\item Kali ini, untuk setiap barisnya kita perlu melakukan pengulangan untuk mencetak \textbf{M} karakter bintang!
 \end{itemize}
 \end{frame}
 
@@ -97,17 +97,17 @@ Melalui dokumen ini, kalian akan:
 	\item Kita bisa membuat "for di dalam for", sehingga membentuk struktur yang bersarang.
 	\begin{lstlisting}
 		var
-		    N,M:longint;
-		    i,j:longint;
+		   N, M : longint;
+		   i, j : longint;
 		begin
-		    readln(N, M);
+		   readln(N, M);
 		
-		    for i := 1 to N do begin
-		        for j := 1 to M do begin
-		            write('*');
-		        end;
-		        writeln;
-		    end;
+		   for i := 1 to N do begin
+		     for j := 1 to M do begin
+		       write('*');
+		     end;
+		     writeln;
+		   end;
 		end.
 	\end{lstlisting}
 \end{itemize}
@@ -116,22 +116,22 @@ Melalui dokumen ini, kalian akan:
 \begin{frame}[fragile]
 \frametitle{Contoh Program: pola1\_2.pas}
 \begin{itemize}
-	\item Tentu saja kita bisa melakukannya dengan struktur pengulangan yang lain, misalnya while:
+	\item Tentu saja kita bisa melakukannya dengan struktur pengulangan yang lain, misalnya \textbf{while}:
 	\begin{lstlisting}
 		var
-		    N,M:longint;
-		    i,j:longint;
+		   N, M : longint;
+		   i, j : longint;
 		begin
-		    readln(N, M);
+		   readln(N, M);
 		
-		    for i := 1 to N do begin
-		        j := 1;
-		        while (j <= M) do begin
-		            write('*');
-		            j := j + 1;
-		        end;
-		        writeln;
-		    end;
+		   for i := 1 to N do begin
+		      j := 1;
+		      while (j <= M) do begin
+		         write('*');
+		         j := j + 1;
+		      end;
+		      writeln;
+		   end;
 		end.
 	\end{lstlisting}
 \end{itemize}
@@ -141,9 +141,9 @@ Melalui dokumen ini, kalian akan:
 \frametitle{Contoh Lain: Pola 2}
 \begin{itemize}
 	\item Soal "Pola 1" dapat diselesaikan bebek-bebek muda dengan mudah. Dengan demikian Pak Dengklek memberikan soal yang lebih menantang.
-	\item Diberikan sebuah bilangan, misalnya N.
-	\item Cetak "struktur segitiga rata kiri" yang terdiri dari N baris.
-	\item Misalnya untuk N = 5, hasilnya adalah:
+	\item Diberikan sebuah bilangan, misalnya \textbf{N}.
+	\item Cetak "struktur segitiga rata kiri" yang terdiri dari \textbf{N} baris.
+	\item Misalnya untuk \textbf{N} = 5, hasilnya adalah:
 	\begin{lstlisting}
 	*
 	**
@@ -157,20 +157,20 @@ Melalui dokumen ini, kalian akan:
 \begin{frame}[fragile]
 \frametitle{Contoh Solusi: pola2.pas}
 \begin{itemize}
-	\item Berikut ini adalah contoh solusinya, dimodifikasi dari "pola1\_1.pas":
+	\item Berikut ini adalah contoh solusinya, dimodifikasi dari pola1\_1.pas:
 	\begin{lstlisting}
 		var
-		    N:longint;
-		    i,j:longint;
+		   N : longint;
+		   i, j : longint;
 		begin
-		    readln(N);
+		   readln(N);
 		
-		    for i := 1 to N do begin
-		        for j := 1 to i do begin
-		            write('*');
-		        end;
-		        writeln;
-		    end;
+		   for i := 1 to N do begin
+		      for j := 1 to i do begin
+		         write('*');
+		      end;
+		      writeln;
+		   end;
 		end.
 	\end{lstlisting}
 \end{itemize}
@@ -180,9 +180,9 @@ Melalui dokumen ini, kalian akan:
 \frametitle{Latihan: Pola 3}
 \begin{itemize}
 	\item Pak Dengklek kemudian memberikan tugas bagi para bebek muda untuk dikerjakan di rumah nanti.
-	\item Diberikan sebuah bilangan, misalnya N.
-	\item Cetak "struktur segitiga rata kanan" yang terdiri dari N baris.
-	\item Misalnya untuk N = 5, hasilnya adalah:
+	\item Diberikan sebuah bilangan, misalnya \textbf{N}.
+	\item Cetak "struktur segitiga rata kanan" yang terdiri dari \textbf{N} baris.
+	\item Misalnya untuk \textbf{N} = 5, hasilnya adalah:
 	\begin{lstlisting}
 	    *
 	   **
@@ -197,11 +197,11 @@ Melalui dokumen ini, kalian akan:
 \begin{frame}
 \frametitle{Break \& Continue}
 \begin{itemize}
-	\item Kadang kala, kita membutuhkan suatu pengulangan untuk diberhentikan secara paksa atau lompat ke iterasi berikutnya pada for.
-	\item Pascal menyediakan kedua fitur tersebut, yaitu dengan kata kunci \alert{\textit{break}} dan \alert{\textit{continue}}.
-	\item Penggunaan \textit{break} akan membuat program keluar dari pengulangan yang mengandung kata kunci tersebut.
-	\item Penggunaan \textit{continue} akan membuat program kembali ke baris paling atas pengulangan, yaitu baris "for .. to .. do" (untuk for), "while ... do" (untuk while), dan "repeat ... until"(untuk repeat).
-	\item Dengan demikian, untuk for nilai pencacah akan "bertambah satu tingkat".
+	\item Kadang kala, kita membutuhkan suatu pengulangan untuk diberhentikan secara paksa atau lompat ke iterasi berikutnya pada \textbf{for}.
+	\item Pascal menyediakan kedua fitur tersebut, yaitu dengan kata kunci \alert{\textbf{break}} dan \alert{\textbf{continue}}.
+	\item Penggunaan \textbf{break} akan membuat program keluar dari pengulangan yang mengandung kata kunci tersebut.
+	\item Penggunaan \textbf{continue} akan membuat program kembali ke baris paling atas pengulangan, yaitu baris "for .. to .. do" (untuk \textbf{for}), "while ... do" (untuk \textbf{while}), dan "repeat ... until"(untuk \textbf{repeat}).
+	\item Dengan demikian, untuk \textbf{for} nilai pencacah akan "bertambah satu tingkat" atau "turun satu tingkat" (jika digunakan \textbf{downto}).
 \end{itemize}
 \end{frame}
 
@@ -209,10 +209,10 @@ Melalui dokumen ini, kalian akan:
 \frametitle{Contoh Soal: Berhitung 1}
 \begin{itemize}
 	\item Setelah para bebek mahir dalam menggambar pola, kini Pak Dengklek ingin mengajarkan mereka tentang berhitung.
-	\item Pak Dengklek akan memberikan dua bilangan, yaitu N dan M.
-	\item Para bebek diminta untuk menuliskan bilangan dari 1 sampai dengan N. Namun, ketika bilangan yang hendak ditulis adalah M, jangan cetak bilangan itu dan jangan cetak bilangan apapun lagi.
+	\item Pak Dengklek akan memberikan dua bilangan, yaitu \textbf{N} dan \textbf{M}.
+	\item Para bebek diminta untuk menuliskan bilangan dari 1 sampai dengan \textbf{N}. Namun, ketika bilangan yang hendak ditulis adalah \textbf{M}, jangan cetak bilangan itu dan jangan cetak bilangan apapun lagi.
 	\item Setelah selesai mencetak bilangan, cetak "selesai".
-	\item Contoh untuk N = 10 dan M = 5:
+	\item Contoh untuk \textbf{N} = 10 dan \textbf{M} = 5:
 	\begin{lstlisting}
 	1
 	2
@@ -229,20 +229,20 @@ Melalui dokumen ini, kalian akan:
 	\item Berikut ini adalah contoh solusi dari soal "Berhitung 1".
 	\begin{lstlisting}
 		var
-		    N,M:longint;
-		    i:longint;
+		   N, M : longint;
+		   i : longint;
 		begin
-		    readln(N, M);
+		   readln(N, M);
 		
-		    for i := 1 to N do begin
-		        if (i = M) then begin
-		            break;
-		        end;
+		   for i := 1 to N do begin
+		      if (i = M) then begin
+		         break;
+		      end;
 		
-		        writeln(i);
-		    end;
-		    
-		    writeln('selesai');
+		      writeln(i);
+		   end;
+		   
+		   writeln('selesai');
 		end.
 	\end{lstlisting}
 \end{itemize}
@@ -258,10 +258,10 @@ Melalui dokumen ini, kalian akan:
 \begin{frame}[fragile]
 \frametitle{Contoh Soal: Berhitung 2}
 \begin{itemize}
-	\item Kali ini Pak Dengklek mengubah soalnya: diberikan dua bilangan, yaitu N dan M.
-	\item Para bebek diminta untuk menuliskan bilangan dari 1 sampai dengan N. Namun, ketika bilangan yang hendak ditulis adalah \alert{kelipatan} dari M, jangan cetak bilangan itu.
+	\item Kali ini Pak Dengklek mengubah soalnya: diberikan dua bilangan, yaitu \textbf{N} dan \textbf{M}.
+	\item Para bebek diminta untuk menuliskan bilangan dari 1 sampai dengan \textbf{N}. Namun, ketika bilangan yang hendak ditulis adalah \alert{kelipatan} dari \textbf{M}, jangan cetak bilangan itu.
 	\item Setelah selesai mencetak bilangan, cetak "selesai".
-	\item Contoh untuk N = 10 dan M = 2:
+	\item Contoh untuk \textbf{N} = 10 dan \textbf{M} = 2:
 	\begin{lstlisting}
 	1
 	3
@@ -279,20 +279,20 @@ Melalui dokumen ini, kalian akan:
 	\item Berikut ini adalah contoh solusi dari soal "Berhitung 2".
 	\begin{lstlisting}
 		var
-		    N,M:longint;
-		    i:longint;
+		   N, M : longint;
+		   i : longint;
 		begin
-		    readln(N, M);
+		   readln(N, M);
 		
-		    for i := 1 to N do begin
-		        if (i mod M = 0) then begin
-		            continue;
-		        end;
+		   for i := 1 to N do begin
+		      if (i mod M = 0) then begin
+		         continue;
+		      end;
 		
-		        writeln(i);
-		    end;
-		    
-		    writeln('selesai');
+		      writeln(i);
+		   end;
+		   
+		   writeln('selesai');
 		end.
 	\end{lstlisting}
 \end{itemize}
@@ -302,7 +302,7 @@ Melalui dokumen ini, kalian akan:
 \frametitle{Penjelasan Program: continue.pas}
 \begin{itemize}
 	\item Ketika \textit{continue} ditemui, eksekusi perintah di dalam "for ... to ... do" untuk pencacah tersebut langsung dilewati dan lanjut ke pencacah selanjutnya.
-	\item Artinya, untuk N = 10 dan M = 2, ketika nilai i = 2 dan \textit{continue} ditemui, eksekusi akan dilewati dan lanjut ke perintah paling awal dalam pengulangan dengan i = 3. 
+	\item Artinya, untuk \textbf{N} = 10 dan \textbf{M} = 2, ketika nilai \textbf{i} = 2 dan \textbf{continue} ditemui, eksekusi akan dilewati dan lanjut ke perintah paling awal dalam pengulangan dengan \textbf{i} = 3. 
 \end{itemize}
 \end{frame}
 
@@ -311,9 +311,9 @@ Melalui dokumen ini, kalian akan:
 \frametitle{Contoh Soal: Tes Keprimaan}
 \begin{itemize}
 	\item Kemudian Pak Dengklek beralih persoalan yang lain, yaitu tentang teori bilangan.
-	\item Diberikan sebuah bilangan, misalnya N (1 $<$ N $\leq$ 100).
-	\item Suatu bilangan N dikatakan prima apabila N positif dan hanya habis dibagi oleh 1 dan dirinya sendiri.
-	\item Jika N prima, cetak "$<$N$>$ adalah bilangan prima" dan jika tidak, cetak "$<$N$>$ bukan bilangan prima".
+	\item Diberikan sebuah bilangan positif yang lebih dari 1, misalnya \textbf{N}.
+	\item Suatu bilangan \textbf{N} dikatakan prima apabila \textbf{N} positif dan hanya habis dibagi oleh 1 dan dirinya sendiri.
+	\item Jika \textbf{N} prima, cetak "$<$N$>$ adalah bilangan prima" dan jika tidak, cetak "$<$N$>$ bukan bilangan prima".
 \end{itemize}
 Bagaimana kalian akan menyelesaikan persoalan ini?
 \end{frame}
@@ -321,8 +321,8 @@ Bagaimana kalian akan menyelesaikan persoalan ini?
 \begin{frame}
 \frametitle{Solusi 1}
 \begin{itemize}
-	\item Salah satu solusi yang sederhana adalah: periksa semua bilangan di antara 2 sampai dengan N-1.
-	\item Jika ada setidaknya satu bilangan yang habis membagi N, artinya N bukan prima.
+	\item Salah satu solusi yang sederhana adalah: periksa semua bilangan di antara 2 sampai dengan \textbf{N}-1.
+	\item Jika ada setidaknya satu bilangan yang habis membagi \textbf{N}, artinya \textbf{N} bukan prima.
 \end{itemize}
 \end{frame}
 
@@ -331,23 +331,23 @@ Bagaimana kalian akan menyelesaikan persoalan ini?
 \frametitle{Solusi 1: prima1\_1.pas}
 	\begin{lstlisting}
 		var
-		    N,i:longint;
-		    prima:boolean;
+		   N, i : longint;
+		   prima : boolean;
 		begin
-		    readln(N);
+		   readln(N);
 		
-		    prima := TRUE;
-		    for i := 2 to N-1 do begin
-		        if (N mod i = 0) then begin
-		            prima := FALSE;
-		        end;
-		    end;
+		   prima := TRUE;
+		   for i := 2 to N-1 do begin
+		      if (N mod i = 0) then begin
+		         prima := FALSE;
+		      end;
+		   end;
 		
-		    if (prima) then begin
-		        writeln(N, ' adalah bilangan prima');
-		    end else begin
-		        writeln(N, ' bukan bilangan prima');
-		    end;
+		   if (prima) then begin
+		      writeln(N, ' adalah bilangan prima');
+		   end else begin
+		      writeln(N, ' bukan bilangan prima');
+		   end;
 		end.
 	\end{lstlisting}
 \end{frame}
@@ -355,9 +355,9 @@ Bagaimana kalian akan menyelesaikan persoalan ini?
 \begin{frame}
 \frametitle{Solusi 2}
 \begin{itemize}
-	\item Solusi 1 melakukan pemeriksaan dari 2 sampai dengan N-1, artinya dibutuhkan pemeriksaan sebanyak N-2 kali.
-	\item Sebetulnya pemeriksaan bisa dihentikan ketika ditemukan setidaknya satu saja bilangan yang habis membagi N.
-	\item Dengan demikian bisa digunakan \textit{break} untuk memberhentikan pengulangan begitu ditemukan bilangan yang habis membagi N.
+	\item Solusi 1 melakukan pemeriksaan dari 2 sampai dengan \textbf{N}-1, artinya dibutuhkan pemeriksaan sebanyak \textbf{N}-2 kali.
+	\item Sebetulnya pemeriksaan bisa dihentikan ketika ditemukan setidaknya satu saja bilangan yang habis membagi \textbf{N}.
+	\item Dengan demikian bisa digunakan \textbf{break} untuk memberhentikan pengulangan begitu ditemukan bilangan yang habis membagi \textbf{N}.
 \end{itemize}
 \end{frame}
 
@@ -365,24 +365,24 @@ Bagaimana kalian akan menyelesaikan persoalan ini?
 \frametitle{Solusi 2: prima1\_2.pas}
 \begin{lstlisting}
 var
-    N,i:longint;
-    prima:boolean;
+   N, i : longint;
+   prima : boolean;
 begin
-    readln(N);
+   readln(N);
 
-    prima := TRUE;
-    for i := 2 to N-1 do begin
-        if (N mod i = 0) then begin
-            prima := FALSE;
-            break;
-        end;
-    end;
+   prima := TRUE;
+   for i := 2 to N-1 do begin
+      if (N mod i = 0) then begin
+         prima := FALSE;
+         break;
+      end;
+   end;
 
-    if (prima) then begin
-        writeln(N, ' adalah bilangan prima');
-    end else begin
-        writeln(N, ' bukan bilangan prima');
-    end;
+   if (prima) then begin
+      writeln(N, ' adalah bilangan prima');
+   end else begin
+      writeln(N, ' bukan bilangan prima');
+   end;
 end.
 \end{lstlisting}
 \end{frame}
@@ -390,8 +390,8 @@ end.
 \begin{frame}
 \frametitle{Penggunaan Break}
 \begin{itemize}
-	\item Dalam prakteknya, penggunaan \textit{break} kurang dianjurkan karena membuat program menjadi "kotor".
-	\item Jika membutuhkan pengulangan yang suatu ketika perlu diberhentikan (sudah memenuhi syarat tertentu), gunakan while atau repeat.
+	\item Dalam prakteknya, penggunaan \textbf{break} kurang dianjurkan karena membuat program menjadi "kotor".
+	\item Jika membutuhkan pengulangan yang suatu ketika perlu diberhentikan (sudah memenuhi syarat tertentu), gunakan \textbf{while} atau \textbf{repeat}.
 	\item Solusi yang lebih baik ditunjukkan pada "prima1\_3.pas".
 \end{itemize}
 \end{frame}
@@ -400,24 +400,25 @@ end.
 \frametitle{Solusi 3: prima1\_3.pas}
 \begin{lstlisting}
 	var
-	    N,i:longint;
-	    found:boolean;
+	   N, i : longint;
+	   found : boolean;
 	begin
-	    readln(N);
+	   readln(N);
 	
-	    found := FALSE;
-	    i := 2;
-	    while ((i < N) and not found) do begin
-	        if (N mod i = 0) then begin
-	            found := TRUE;
-	        end;
-	        i := i + 1;
-	    end;
-	    if (not found) then begin
-	        writeln(N, ' adalah bilangan prima');
-	    end else begin
-	        writeln(N, ' bukan bilangan prima');
-	    end;
+	   found := FALSE;
+	   i := 2;
+	   while ((i < N) and not found) do begin
+	      if (N mod i = 0) then begin
+	         found := TRUE;
+	      end;
+	      i := i + 1;
+	   end;
+	
+	   if (not found) then begin
+	      writeln(N, ' adalah bilangan prima');
+	   end else begin
+	      writeln(N, ' bukan bilangan prima');
+	   end;
 	end.
 \end{lstlisting}
 \end{frame}
@@ -426,8 +427,8 @@ end.
 \frametitle{Contoh Soal: Pembangkit Prima}
 \begin{itemize}
 	\item Kini para bebek sudah mengetahui bagaimana memeriksa keprimaan suatu bilangan. Pak Dengklek memutuskan untuk memberikan tambahan soal untuk pekerjaan rumah.
-	\item Diberikan sebuah bilangan bulat N. Pak Dengklek meminta bebek-bebeknya untuk menuliskan N bilangan prima pertama.
-	\item Contoh untuk N = 5:
+	\item Diberikan sebuah bilangan bulat \textbf{N}. Pak Dengklek meminta bebek-bebeknya untuk menuliskan \textbf{N} bilangan prima pertama.
+	\item Contoh untuk \textbf{N} = 5:
 	\begin{lstlisting}
 	2
 	3
@@ -441,8 +442,8 @@ end.
 \begin{frame}
 \frametitle{Solusi: Pembangkit Prima}
 \begin{itemize}
-	\item Salah satu strategi yang dapat kalian gunakan adalah "selama belum ditemukan N bilangan prima, cari bilangan prima!".
-	\item Bagaimana mencari bilangan prima? Coba saja dari 2, 3, 4, dan seterusnya sampai ditemukan N bilangan prima.
+	\item Salah satu strategi yang dapat kalian gunakan adalah "selama belum ditemukan \textbf{N} bilangan prima, cari bilangan prima!".
+	\item Bagaimana mencari bilangan prima? Coba saja dari 2, 3, 4, dan seterusnya sampai ditemukan \textbf{N} bilangan prima.
 \end{itemize}
 \end{frame}
 
@@ -450,40 +451,40 @@ end.
 \frametitle{Contoh Solusi: prima2.pas}
 \begin{lstlisting}
 var
-    N,cur,i:longint;
-    count:longint;
-    found:boolean;
+   N, cur, i : longint;
+   count : longint;
+   found : boolean;
 begin
-    readln(N);
+   readln(N);
 
-    count := 0; // banyaknya prima yang sudah ditemukan
-    cur := 2; // nilai yang sedang diperiksa keprimaannya
-    while (count < N) do begin
-        found := FALSE;
-        i := 2;
-        while ((i < cur) and not found) do begin
-            if (cur mod i = 0) then begin
-                found := TRUE;
-            end;
-            i := i + 1;
-        end;
+   count := 0; // banyaknya prima yang sudah ditemukan
+   cur := 2; // nilai yang sedang diperiksa keprimaannya
+   while (count < N) do begin
+      found := FALSE;
+      i := 2;
+      while ((i < cur) and not found) do begin
+         if (cur mod i = 0) then begin
+            found := TRUE;
+         end;
+         i := i + 1;
+      end;
 \end{lstlisting}
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{Contoh Solusi: prima2.pas (lanj.)}
 \begin{lstlisting}
-        if (not found) then begin
-            // ditemukan prima! 
-            // cetak dan tambahkan prima yg sudah ditemukan
-            writeln(cur);
-            count := count + 1;
-        end;
+      if (not found) then begin
+         // ditemukan prima! 
+         // cetak dan tambahkan prima yg sudah ditemukan
+         writeln(cur);
+         count := count + 1;
+      end;
 
-        // entah ini prima atau bukan, lanjut untuk 
-        // memeriksa bilangan berikutnya
-        cur := cur + 1;
-    end;
+      // entah ini prima atau bukan, lanjut untuk 
+      // memeriksa bilangan berikutnya
+      cur := cur + 1;
+   end;
 end.
 \end{lstlisting}
 \end{frame}

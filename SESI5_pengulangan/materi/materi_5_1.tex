@@ -27,7 +27,7 @@
   tabsize=3
 }
 
-\title{Pengenalan Perulangan}
+\title{Pengenalan Pengulangan}
 \author{Tim Olimpiade Komputer Indonesia}
 
 \begin{document}
@@ -41,22 +41,22 @@
 Melalui dokumen ini, kalian akan:
 \begin{itemize}
 	\item Memahami konsep pengulangan.
-	\item Mempelajari struktur for, while, dan repeat pada Pascal.
+	\item Mempelajari struktur \textbf{for}, \textbf{while}, dan \textbf{repeat} pada Pascal.
 \end{itemize}
 \end{frame}
 
 \begin{frame}
 \frametitle{Motivasi}
 \begin{itemize}
-	\item Hari ini, Pak Dengklek ingin menyambut N ekor bebeknya yang baru lahir dari telur.
-	\item Diberikan N, cetak tulisan "halo dunia!" sebanyak N kali!
+	\item Hari ini, Pak Dengklek ingin menyambut \textbf{N} ekor bebeknya yang baru lahir dari telur.
+	\item Diberikan \textbf{N}, cetak tulisan "halo dunia!" sebanyak \textbf{N} kali!
 \end{itemize}
 \end{frame}
 
 \begin{frame}
 \frametitle{Motivasi (lanj.)}
 \begin{itemize}
-	\item Solusi "if (N = 1) then $<$cetak satu kali$>$, else if (N = 2) then $<$cetak dua kali$>$, ..." tidak mungkin digunakan, karena N bisa jadi sangat besar.
+	\item Solusi "if (N = 1) then $<$cetak satu kali$>$, else if (N = 2) then $<$cetak dua kali$>$, ..." tidak mungkin digunakan, karena \textbf{N} bisa jadi sangat besar.
 	\item Kita membutuhkan suatu struktur yang memungkinkan untuk mengulangi serangkaian pekerjaan!
 \end{itemize}
 \end{frame}
@@ -67,10 +67,10 @@ Melalui dokumen ini, kalian akan:
 	\item Umumnya setiap bahasa pemrograman memberikan struktur pengulangan yang bentuknya bisa berupa:
 	\begin{itemize}
 		\item Perulangan dengan pencacah. Contoh: "untuk i dari 1 sampai N, cetak 'halo dunia!'".
-		\item Perulangan selama dicapai suatu kondisi. Contoh: "selama i $<$ N, cetak 'halo dunia!' dan tambah i dengan 1.
-		\item Perulangan sampai dicapai suatu kondisi. Contoh: "cetak 'halo dunia!' dan tambah i dengan 1, hingga tercapai i = N.
+		\item Perulangan selama dicapai suatu kondisi. Contoh: "selama i $<$ N, cetak 'halo dunia!' dan tambah i dengan 1".
+		\item Perulangan sampai dicapai suatu kondisi. Contoh: "cetak 'halo dunia!' dan tambah i dengan 1, hingga tercapai i = N".
 	\end{itemize}
-	\item Pada Pascal, ada ketiga struktur itu yang masing-masing diwakili dengan \alert{for}, \alert{while}, dan \alert{repeat}. 
+	\item Pada Pascal, ada ketiga struktur itu yang masing-masing diwakili dengan \alert{\textbf{for}}, \alert{\textbf{while}}, dan \alert{\textbf{repeat}}. 
 \end{itemize}
 \end{frame}
 
@@ -97,16 +97,16 @@ Melalui dokumen ini, kalian akan:
 	\item Ketikkan program berikut dan coba jalankan:
 	\begin{lstlisting}
 		var
-		    N,i:longint;
+		   N, i : longint;
 		begin
-		    write('Masukkan nilai N: ');
-		    readln(N);
+		   write('Masukkan nilai N: ');
+		   readln(N);
 		
-		    for i := 1 to N do begin
-		        writeln('tulisan ini dicetak saat i = ', i);
-		    end;
-		    
-		    writeln('akhir dari program');
+		   for i := 1 to N do begin
+		      writeln('tulisan ini dicetak saat i = ', i);
+		   end;
+		   
+		   writeln('akhir dari program');
 		end.
 	\end{lstlisting}
 	\item Masukkan berbagai nilai N, misalnya 1, 2, 10, dan 0.
@@ -116,19 +116,19 @@ Melalui dokumen ini, kalian akan:
 \begin{frame}
 \frametitle{Penjelasan Program: for.pas}
 \begin{itemize}
-	\item Pada contoh tersebut, i merupakan variabel pencacah yang bertipe longint.
-	\item Pertama kali dijalankan, i akan bernilai 1. Kemudian tulisan akan dicetak saat i = 1.
-	\item Setelah itu, "end" dari struktur "for" ditemukan. Pascal akan menambahkan i dengan 1, lalu kembali ke awal dari "for". Jika i masih belum lebih dari N, maka perintah di dalamnya akan kembali dilaksanakan.
-	\item Dengan demikian, tercetaklah tulisan saat i = 2, 3, dan seterusnya hingga N.
-	\item Jika i sudah lebih dari N, pengulangan akan berhenti dan Pascal akan menjalankan perintah selanjutnya. Paca contoh ini, mencetak tulisan "akhir dari program".
+	\item Pada contoh tersebut, \textbf{i} merupakan variabel pencacah yang bertipe longint.
+	\item Pertama kali dijalankan, \textbf{i} akan bernilai 1. Kemudian tulisan akan dicetak saat \textbf{i} = 1.
+	\item Setelah itu, \textbf{end} dari struktur \textbf{for} ditemukan. Pascal akan menambahkan \textbf{i} dengan 1, lalu kembali ke awal dari \textbf{for}. Jika \textbf{i} masih belum lebih dari \textbf{N}, maka perintah di dalamnya akan kembali dilaksanakan.
+	\item Dengan demikian, tercetaklah tulisan saat \textbf{i} = 2, 3, dan seterusnya hingga \textbf{N}.
+	\item Jika \textbf{i} sudah lebih dari \textbf{N}, pengulangan akan berhenti dan Pascal akan menjalankan perintah selanjutnya. Paca contoh ini, mencetak tulisan "akhir dari program".
 \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{Perulangan: for (lanj.)}
 \begin{itemize}
-	\item Struktur for hanya bisa mencacah dari suatu nilai awal ke suatu nilai akhir, dan pencacah akan "bertambah satu tingkat" setiap waktunya.
-	\item Untuk keperluan pencacah "turun satu tingkat" setiap waktunya, terdapat sebuah variasi lain dari for, yaitu "for downto". Strukturnya:
+	\item Struktur \textbf{for} hanya bisa mencacah dari suatu nilai awal ke suatu nilai akhir, dan pencacah akan "bertambah satu tingkat" setiap waktunya.
+	\item Untuk keperluan pencacah "turun satu tingkat" setiap waktunya, terdapat sebuah variasi lain dari \textbf{for}, yaitu \textbf{for downto}. Strukturnya:
 	\begin{lstlisting}
 	for <pencacah> := <awal> downto <akhir> do begin
 	    <perintah 1>;
@@ -136,26 +136,26 @@ Melalui dokumen ini, kalian akan:
 	    ...
 	end;
 	\end{lstlisting}
-	\item Ya, cukup ubah \alert{to} menjadi \alert{downto}. Kini for akan bekerja secara menurun. Tentu saja jika $<$nilai awal$>$ dan $<$nilai akhir$>$ nilainya disesuaikan pula.
+	\item Ya, cukup ubah \alert{\textbf{to}} menjadi \alert{\textbf{downto}}. Kini \textbf{for} akan bekerja secara menurun. Tentu saja jika $<$nilai awal$>$ dan $<$nilai akhir$>$ nilainya disesuaikan pula.
 \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{Contoh Program: fordownto.pas}
 \begin{itemize}
-	\item Berikut ini contoh dari penggunaan "for downto":
+	\item Berikut ini contoh dari penggunaan \textbf{for downto}:
 	\begin{lstlisting}
 		var
-		    N,i:longint;
+		   N, i : longint;
 		begin
-		    write('Masukkan nilai N: ');
-		    readln(N);
+		   write('Masukkan nilai N: ');
+		   readln(N);
 		
-		    for i := N downto 1 do begin
-		        writeln('tulisan ini dicetak saat i = ', i);
-		    end;
+		   for i := N downto 1 do begin
+		      writeln('tulisan ini dicetak saat i = ', i);
+		   end;
 		
-		    writeln('akhir dari program');
+		   writeln('akhir dari program');
 		end.
 	\end{lstlisting}
 \end{itemize}
@@ -167,9 +167,9 @@ Melalui dokumen ini, kalian akan:
 	\item Penting untuk diketahui:
 	\begin{itemize}
 		\item Tipe data dari pencacah, nilai awal, dan nilai akhir harus sama dan \alert{ordinal}.
-		\item Karena tipe data pencacah yang penting merupakan tipe data ordinal, artinya pencacah boleh saja berupa char.
+		\item Karena tipe data pencacah yang penting merupakan tipe data ordinal, artinya pencacah boleh saja berupa \textbf{char}.
 		\item Nilai pencacah tidak boleh diubah saat pengulangan dikerjakan.
-		\item Pascal tidak bisa melayani "for" yang pencacahnya "bertambah dua tingkat" pada setiap pengulangan.
+		\item Pascal tidak bisa melayani \textbf{for} yang pencacahnya "bertambah dua tingkat" pada setiap pengulangan.
 	\end{itemize}
 \end{itemize}
 \end{frame}
@@ -180,20 +180,18 @@ Melalui dokumen ini, kalian akan:
 	\item Berikut adalah contoh program untuk menjumlahkan bilangan di antara dua bilangan:
 	\begin{lstlisting}
 		var
-		    awal,akhir,i:longint;
-		    jumlah:longint;
+		   awal, akhir, i : longint;
+		   jumlah : longint;
 		begin
-		    write('Masukkan nilai awal: ');
-		    readln(awal);
-		    write('Masukkan nilai akhir (>=awal): ');
-		    readln(akhir);
+		   write('Nilai awal: '); readln(awal);
+		   write('Nilai akhir: '); readln(akhir);
 		
-		    jumlah := 0;
-		    for i := awal to akhir do begin
-		        jumlah := jumlah + i;
-		    end;
+		   jumlah := 0;
+		   for i := awal to akhir do begin
+		      jumlah := jumlah + i;
+		   end;
 		
-		    writeln('jumlah bilangan bulat di antara awal dan akhir (inklusif) adalah ', jumlah);
+		   writeln('jumlah bilangan bulat di antara awal dan akhir (inklusif) adalah ', jumlah);
 		end.
 	\end{lstlisting}
 \end{itemize}
@@ -211,28 +209,28 @@ Melalui dokumen ini, kalian akan:
 		    ...
 		end;
 	\end{lstlisting}
-	\item Seperti pada "if", $<$kondisi$>$ adalah suatu nilai boolean. Selama nilainya TRUE, seluruh $<$perintah x$>$ di dalamnya akan dieksekusi secara berurutan.
+	\item Seperti pada \textbf{if}, $<$kondisi$>$ adalah suatu nilai boolean. Selama nilainya \textbf{TRUE}, seluruh $<$perintah x$>$ di dalamnya akan dieksekusi secara berurutan.
 \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{Contoh Program: while.pas}
 \begin{itemize}
-	\item Berikut adalah contoh penggunaan while untuk kasus yang sama dengan "for.pas":
+	\item Berikut adalah contoh penggunaan \textbf{while} untuk kasus yang sama dengan for.pas:
 	\begin{lstlisting}
 		var
-		    N,i:longint;
+		   N, i : longint;
 		begin
-		    write('Masukkan nilai N: ');
-		    readln(N);
+		   write('Masukkan nilai N: ');
+		   readln(N);
 		
-		    i := 1;
-		    while (i <= N) do begin
-		        writeln('tulisan ini dicetak saat i = ', i);
-		        i := i + 1;
-		    end;
+		   i := 1;
+		   while (i <= N) do begin
+		      writeln('tulisan ini dicetak saat i = ', i);
+		      i := i + 1;
+		   end;
 		
-		    writeln('akhir dari program');
+		   writeln('akhir dari program');
 		end.
 	\end{lstlisting}
 \end{itemize}
@@ -241,12 +239,12 @@ Melalui dokumen ini, kalian akan:
 \begin{frame}
 \frametitle{Penjelasan Program: while.pas}
 \begin{itemize}
-	\item Misalkan dimasukkan nilai N = 5.
-	\item Pada awalnya, nilai i diinisialisasi dengan 1.
-	\item Kemudian diperiksa apakah dipenuhi i $<$= N. Karena dipenuhi, perintah mencetak saat i = 1 dilaksanakan. Demikian pula dengan perintah "i := i + 1". Kini nilai i = 2.
-	\item Selanjutnya ditemukan "end" dari "while". Pascal akan kembali ke awal dari "while" dan memeriksa apakah masih dipenuhi kondisi yang diberikan.
+	\item Misalkan dimasukkan nilai \textbf{N} = 5.
+	\item Pada awalnya, nilai \textbf{i} diinisialisasi dengan 1.
+	\item Kemudian diperiksa apakah dipenuhi \textbf{i} $<$= \textbf{N}. Karena dipenuhi, perintah mencetak saat \textbf{i} = 1 dilaksanakan. Demikian pula dengan perintah "i := i + 1". Kini nilai \textbf{i} = 2.
+	\item Selanjutnya ditemukan \textbf{end} dari \textbf{while}. Pascal akan kembali ke awal dari \textbf{while} dan memeriksa apakah masih dipenuhi kondisi yang diberikan.
 	\item Jika masih, maka perintah di dalam while akan kembali dilaksanakan.
-	\item Jika sudah tidak dipenuhi, maka Pascal akan mengeksekusi perintah-perintah di bawah "end" dari "while", yakni mencetak tulisan "akhir dari program".
+	\item Jika sudah tidak dipenuhi, maka Pascal akan mengeksekusi perintah-perintah di bawah \textbf{end} dari \textbf{while}, yakni mencetak tulisan "akhir dari program".
 \end{itemize}
 \end{frame}
 
@@ -254,31 +252,31 @@ Melalui dokumen ini, kalian akan:
 \frametitle{Perulangan: while (lanj.)}
 \begin{itemize}
 	\item Perhatikan bahwa perintah "i := i + 1" diperlukan, supaya suatu saat nanti $<$kondisi$>$ pada while akan tidak dipenuhi.
-	\item Sekarang coba hapus perintah "i := i + 1" pada "while.pas", dan jalankan kembali programnya.
-	\item Apa yang terjadi? Program akan terjebak dalam \alert{\textit{infinite loop}}, atau \alert{pengulangan yang tiada akhirnya}! Gunakan tombol CTRL+C pada \textit{keyboard} untuk memberhentikan program secara paksa.
-	\item Pastikan suatu ketika kondisi pada while tidak dipenuhi, atau program tidak akan pernah berhenti $:)$
+	\item Sekarang coba hapus perintah "i := i + 1" pada while.pas, dan jalankan kembali programnya.
+	\item Apa yang terjadi? Program akan terjebak dalam \alert{\textit{infinite loop}}, atau \alert{pengulangan yang tidak akan pernah berhenti}! Gunakan tombol CTRL+C pada \textit{keyboard} untuk memberhentikan program secara paksa.
+	\item Pastikan suatu ketika kondisi pada \textbf{while} tidak dipenuhi, atau program tidak akan pernah berhenti $:)$
 \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{Contoh Program: jumlahwhile.pas}
 \begin{itemize}
-	\item Berikut ini contoh program dengan while yang melakukan hal serupa dengan "jumlahfor.pas":
+	\item Berikut ini contoh program dengan while yang melakukan hal serupa dengan jumlahfor.pas:
 	\begin{lstlisting}
 		var
-		    awal,akhir,i,jumlah:longint;
+		   awal, akhir, i, jumlah : longint;
 		begin
-		    write('Masukkan nilai awal: '); readln(awal);
-		    write('Masukkan nilai akhir (>=awal): '); readln(akhir);
+		   write('Nilai awal: '); readln(awal);
+		   write('Nilai akhir: '); readln(akhir);
 		
-		    jumlah := 0;
-		    i := awal;
-		    while (i <= akhir) do begin
-		        jumlah := jumlah + i;
-		        i := i + 1;
-		    end;
+		   jumlah := 0;
+		   i := awal;
+		   while (i <= akhir) do begin
+		      jumlah := jumlah + i;
+		      i := i + 1;
+		   end;
 		
-		    writeln('jumlah bilangan bulat di antara awal dan akhir (inklusif) adalah ', jumlah);
+		   writeln('jumlah bilangan bulat di antara awal dan akhir (inklusif) adalah ', jumlah);
 		end.
 	\end{lstlisting}
 \end{itemize}
@@ -287,7 +285,7 @@ Melalui dokumen ini, kalian akan:
 \begin{frame}[fragile]
 \frametitle{Perulangan: while (lanj.)} 
 \begin{itemize}
-	\item Struktur while bisa jadi lebih fleksibel dari struktur for, karena tipe datanya tidak harus ordinal.
+	\item Struktur \textbf{while} bisa jadi lebih fleksibel dari struktur \textbf{for}, karena tipe datanya tidak harus ordinal.
 	\item Kalian bisa membuat pencacah yang tidak sekedar "naik satu tingkat". Contoh:
 	\begin{lstlisting}
 		i := 1;
@@ -311,10 +309,10 @@ Melalui dokumen ini, kalian akan:
 \begin{frame}[fragile]
 \frametitle{Perulangan: while (lanj.)} 
 \begin{itemize}
-	\item Selain itu, dengan menggunakan while, kalian tidak perlu tahu berapa kali suatu pengulangan perlu dilakukan.
-	\item Contoh: diberikan serangkaian bilangan, satu pada setiap barisnya, dan cetak bilangan itu. Ketika menemukan bilangan negatif, berhenti membaca dan akhiri program.
-	\item Hal ini tidak dapat dilakukan dengan for, karena kita tidak tahu berapa nilai akhir dari for yang harus dilakukan.
-	\item Dengan while, hal ini dapat dilakukan dengan mudah:
+	\item Selain itu, dengan menggunakan \textbf{while}, kalian tidak perlu tahu berapa kali suatu pengulangan perlu dilakukan.
+	\item Contoh: Pak Dengklek memberikan serangkaian bilangan, satu pada setiap barisnya, dan cetak bilangan itu. Ketika menemukan bilangan negatif, berhenti membaca dan akhiri program.
+	\item Hal ini tidak dapat dilakukan dengan \textbf{for}, karena kita tidak tahu berapa nilai akhir dari \textbf{for} yang harus dilakukan.
+	\item Dengan \textbf{while}, hal ini dapat dilakukan dengan mudah:
 	\begin{lstlisting}
 		readln(x);
 		while (x >= 0) do begin
@@ -328,12 +326,12 @@ Melalui dokumen ini, kalian akan:
 \begin{frame}[fragile]
 \frametitle{Perulangan: repeat}
 \begin{itemize}
-	\item Struktur pengulangan yang lain adalah repeat.
-	\item Mirip dengan while, tetapi kali ini bentuknya adalah "lakukan perintah berikut, sampai dicapai suatu kondisi".
+	\item Struktur pengulangan yang lain adalah \textbf{repeat}.
+	\item Mirip dengan \textbf{while}, tetapi kali ini bentuknya adalah "lakukan perintah berikut, sampai dicapai suatu kondisi".
 	\item Perhatikan bedanya:
 	\begin{itemize}
-		\item while: selama suatu kondisi terpenuhi
-		\item repeat: sampai suatu kondisi terpenuhi
+		\item \textbf{while}: selama suatu kondisi terpenuhi
+		\item \textbf{repeat}: sampai suatu kondisi terpenuhi
 	\end{itemize}
 	\item Pada Pascal, strukturnya:
 	\begin{lstlisting}
@@ -349,21 +347,21 @@ Melalui dokumen ini, kalian akan:
 \begin{frame}[fragile]
 \frametitle{Contoh Program: repeat.pas}
 \begin{itemize}
-	\item Berikut ini adalah contoh program dengan repeat yang menjalankan tugas serupa dengan "for.pas" dan "while.pas".
+	\item Berikut ini adalah contoh program dengan \textbf{repeat} yang menjalankan tugas serupa dengan for.pas dan while.pas.
 	\begin{lstlisting}
 		var
-		    N,i:longint;
+		   N, i : longint;
 		begin
-		    write('Masukkan nilai N: ');
-		    readln(N);
+		   write('Masukkan nilai N: ');
+		   readln(N);
 		
-		    i := 1;
-		    repeat
-		        writeln('tulisan ini dicetak saat i = ', i);
-		        i := i + 1;
-		    until (i > N);
+		   i := 1;
+		   repeat
+		      writeln('tulisan ini dicetak saat i = ', i);
+		      i := i + 1;
+		   until (i > N);
 		
-		    writeln('akhir dari program');
+		   writeln('akhir dari program');
 		end.
 	\end{lstlisting}
 \end{itemize}
@@ -372,19 +370,19 @@ Melalui dokumen ini, kalian akan:
 \begin{frame}
 \frametitle{Penjelasan Program: repeat.pas}
 \begin{itemize}
-	\item Misalkan N = 5.
-	\item Awalnya i diinisialisasi dengan 1.
-	\item Memasuki struktur repeat, perintah mencetak saat i = 1 dilaksanakan. Kemudian setelah dilaksanakan "i := i + 1", i bernilai 2.
-	\item Memasuki "until", diperiksa apakah i $>$ N. Karena belum dipenuhi, maka seluruh peruntah sesudah kata kunci "repat" akan kembali dilaksanakan.
-	\item Ketika i = 5, perintah mencetak saat i = 5 akan dilaksanakan. Setelah itu, i ditambah 1 menjadi 6.
-	\item Karena sudah dipenuhi i $>$ N, maka pengulangan berhenti dan dilaksanakan perintah di bawah kata kunci "until". Dalam contoh ini, mencetak tulisan "akhir dari program".
+	\item Misalkan \textbf{N} = 5.
+	\item Awalnya \textbf{i} diinisialisasi dengan 1.
+	\item Memasuki struktur repeat, perintah mencetak saat \textbf{i} = 1 dilaksanakan. Kemudian setelah dilaksanakan "i := i + 1", \textbf{i} bernilai 2.
+	\item Memasuki \textbf{until}, diperiksa apakah \textbf{i} $>$ \textbf{N}. Karena belum dipenuhi, maka seluruh peruntah sesudah kata kunci \textbf{repeat} akan kembali dilaksanakan.
+	\item Ketika \textbf{i} = 5, perintah mencetak saat \textbf{i} = 5 akan dilaksanakan. Setelah itu, \textbf{i} ditambah 1 menjadi 6.
+	\item Karena sudah dipenuhi \textbf{i} $>$ \textbf{N}, maka pengulangan berhenti dan dilaksanakan perintah di bawah kata \textbf{until}. Dalam contoh ini, mencetak tulisan "akhir dari program".
 \end{itemize}
 \end{frame}
 
 \begin{frame}
 \frametitle{Perulangan: repeat (lanj.)}
 \begin{itemize}
-	\item Seperti pada while, pastikan suatu saat nanti kondisi berhenti dicapai supaya tidak terjebak pada \textit{infinite loop}.
+	\item Seperti pada \textbf{while}, pastikan suatu saat nanti kondisi berhenti dicapai supaya tidak terjebak pada \textit{infinite loop}.
 	\item Perhatikan bahwa seluruh perintah di dalam "repeat ... until" \alert{pasti} dilaksanakan setidaknya satu kali. Karena pemeriksaan pada kondisi baru di lakukan setelah seluruh perintah di dalamnya dilaksanakan. 
 \end{itemize}
 \end{frame}
@@ -392,23 +390,23 @@ Melalui dokumen ini, kalian akan:
 \begin{frame}[fragile]
 \frametitle{Contoh Program Lagi: jumlahrepeat.pas}
 \begin{itemize}
-	\item Berikut adalah contoh yang serupa dengan "jumlahfor.pas".
+	\item Berikut adalah contoh yang serupa dengan jumlahfor.pas.
 	\begin{lstlisting}
 		var
-		    awal,akhir,i:longint;
-		    jumlah:longint;
+		   awal, akhir, i : longint;
+		   jumlah : longint;
 		begin
-		    write('Masukkan nilai awal: '); readln(awal);
-		    write('Masukkan nilai akhir (>=awal): '); readln(akhir);
+		   write('Nilai awal: '); readln(awal);
+		   write('Nilai akhir: '); readln(akhir);
 		
-		    jumlah := 0;
-		    i := awal;
-		    repeat
-		        jumlah := jumlah + i;
-		        i := i + 1;
-		    until (i > akhir);
+		   jumlah := 0;
+		   i := awal;
+		   repeat
+		      jumlah := jumlah + i;
+		      i := i + 1;
+		   until (i > akhir);
 		
-		    writeln('jumlah bilangan bulat di antara awal dan akhir (inklusif) adalah ', jumlah);
+		   writeln('jumlah bilangan bulat di antara awal dan akhir (inklusif) adalah ', jumlah);
 		end.
 	\end{lstlisting}
 \end{itemize}
@@ -419,7 +417,7 @@ Melalui dokumen ini, kalian akan:
 Kalian sudah belajar tentang:
 \begin{itemize}
 	\item Konsep pengulangan pada pemrograman.
-	\item Struktur for, while, dan repeat beserta kegunaan dan perbedaannya.
+	\item Struktur \textbf{for}, \textbf{while}, dan \textbf{repeat} beserta kegunaan dan perbedaannya.
 \end{itemize}
 Selanjutnya kita akan memasuki tentang:
 \begin{itemize}
