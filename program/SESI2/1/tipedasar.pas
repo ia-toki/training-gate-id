@@ -1,7 +1,7 @@
 var
-   p1,p2:longint;
-   x,y:double;
-   teks:string;
+   p1, p2 : longint;
+   x, y : double;
+   teks : string;
 begin
    p1 := 100;
    p2 := p1;

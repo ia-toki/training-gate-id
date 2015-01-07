@@ -1,5 +1,5 @@
 var
-    x:integer;
+    x : integer;
 begin
     x := 12;
     writeln('Nilai = ', x);

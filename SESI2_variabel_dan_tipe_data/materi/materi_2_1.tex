@@ -56,7 +56,7 @@ Melalui dokumen ini, kalian akan:
 	    writeln('Halo Dunia!');
 	end.
 	\end{lstlisting}
-	\item Pada program tersebut, terdapat kata kunci "begin" dan "end" yang diakhiri dengan titik. Kedua kata kunci tersebut membentuk sesuatu yang disebut dengan blok program utama.
+	\item Pada program tersebut, terdapat kata kunci \textbf{begin} dan \textbf{end} yang diakhiri dengan titik. Kedua kata kunci tersebut membentuk sesuatu yang disebut dengan blok program utama.
 	\item Ketika halo.pas dieksekusi, seluruh perintah yang dituliskan dalam blok program utama akan dieksekusi secara sekuensial (berurutan).
 \end{itemize}
 \end{frame}
@@ -64,9 +64,8 @@ Melalui dokumen ini, kalian akan:
 \begin{frame}
 \frametitle{Baris Perintah Program}
 \begin{itemize}
-	\item Pada halo.pas, satu-satunya perintah yang ada adalah writeln('Halo Dunia!');
-	\item Pada Pascal, writeln(x) merupakan fungsi untuk mencetak x ke layar, apapun isi dari x. Untuk halo.pas, x = 'Halo Dunia!';
-	yang artinya mencetak tulisan yang ada di dalam writeln ke layar.
+	\item Pada halo.pas, satu-satunya perintah yang ada adalah \textbf{writeln('Halo Dunia!')};
+	\item Pada Pascal, \textbf{writeln(x)} merupakan fungsi untuk mencetak \textbf{x} ke layar. Untuk \textbf{halo.pas}, \textbf{x} = 'Halo Dunia!'.
 \end{itemize}
 \end{frame}
 
@@ -87,18 +86,18 @@ Melalui dokumen ini, kalian akan:
 	\begin{itemize}
 		\item Terdiri dari kombinasi karakter huruf, angka, dan underscore (\_).
 		\item Tidak boleh dimulai dengan angka. Artinya "2kar" bukan merupakan nama variabel yang sah.
-		\item Huruf kapital dan huruf kecil dianggap sama. Artinya "x1" dan "X1" dianggap merupakan dua variabel yang sama.
-		\item Tidak boleh merupakan \alert{reserved word}. Contoh reserved word pada Pascal: "begin", "end", "var", "if", atau "then".
+		\item Huruf kapital dan huruf kecil dianggap sama. Artinya "a1" dan "A1" dianggap merupakan dua variabel yang sama.
+		\item Tidak boleh merupakan \alert{\textit{reserved word}}. Contoh \textit{reserved word} pada Pascal: \textbf{begin}, \textbf{end}, \textbf{var}, \textbf{if}, atau \textbf{then}.
 	\end{itemize}
-	\item Lebih jauh lagi, aturan ini berlaku pada nama \alert{identifier}, yang temasuk di dalamnya nama variabel, fungsi, dan prosedur (akan dipelajari selanjutnya).
+	\item Lebih jauh lagi, aturan ini berlaku pada seluruh penamaan \alert{\textit{identifier}}, yang temasuk di dalamnya nama variabel, fungsi, dan prosedur (akan dipelajari selanjutnya).
 \end{itemize}
 \end{frame}
 
 \begin{frame}
 \frametitle{Assignment}
 \begin{itemize}
-	\item Pengisian nilai yang diacu oleh variabel dengan suatu nilai disebut \alert{assignment}.
-	\item Operator untuk assignment adalah :=
+	\item Pengisian nilai yang diacu oleh variabel dengan suatu nilai disebut \alert{\textit{assignment}}.
+	\item Operator untuk \textit{assignment} adalah :=
 	\item Isikan ruas kiri dengan nama suatu variabel, dan ruas kanan dengan nilai yang ingin diisikan ke variabel tersebut.
 	\item Tipe data dari variabel dan nilai yang diacu \alert{harus sesuai}.
 \end{itemize}
@@ -108,10 +107,10 @@ Melalui dokumen ini, kalian akan:
 \begin{frame}[fragile]
 \frametitle{Contoh Program: assign.pas}
 \begin{itemize}
-	\item Perhatikan contoh program "assign.pas" berikut. Tuliskan, lalu jalankan program ini.
+	\item Perhatikan contoh program assign.pas berikut. Tuliskan, lalu jalankan program ini.
 	\begin{lstlisting}
 	var
-	    x:integer;
+	    x : integer;
 	begin
 	    x := 12;
 	    writeln('Nilai = ', x);
@@ -123,10 +122,13 @@ Melalui dokumen ini, kalian akan:
 \begin{frame}[fragile]
 \frametitle{Penjelasan Program: assign.pas}
 \begin{itemize}
-	\item Keluaran yang dihasilkan dari program itu adalah sebuah baris berisikan "Nilai = 12".
-	\item Pada program tersebut, x merupakan suatu variabel.
-	\item Variabel x didaftarkan terlebih dahulu dengan menuliskan "x:integer" pada bagian antara "var" dengan "begin". Nantinya, semua variabel yang akan digunakan pada program utama wajib didaftarkan pada bagian ini.
-	\item Pada blok program utama, x diisi dengan nilai 12, lalu perintah writeln dieksekusi.
+	\item Keluaran yang dihasilkan dari program itu adalah sebuah baris berisikan:
+	\begin{lstlisting}
+		Nilai = 12
+	\end{lstlisting}
+	\item Pada program tersebut, \textbf{x} merupakan suatu variabel.
+	\item Variabel \textbf{x} didaftarkan terlebih dahulu dengan menuliskan \textbf{x : integer} pada bagian antara \textbf{var} dengan \textbf{begin}. Semua variabel yang akan digunakan pada program utama wajib didaftarkan pada bagian ini.
+	\item Pada blok program utama, \textbf{x} diisi dengan nilai 12, lalu perintah \textbf{writeln} dieksekusi.
 \end{itemize}
 \end{frame}
 
@@ -136,8 +138,8 @@ Melalui dokumen ini, kalian akan:
 	\item Berikut adalah contoh program yang melibatkan beberapa variabel.
 	\begin{lstlisting}
 	var
-	    x:integer;
-	    y:longint;
+	    x : integer;
+	    y : longint;
 	begin
 	    x := 12;
 	    y := 123456;
@@ -160,7 +162,7 @@ Melalui dokumen ini, kalian akan:
 	123456
 	15
 	\end{lstlisting}
-	\item Apa maksud dari kata "integer" dan "longint"? Dijelaskan pada bagian selanjutnya.
+	\item Apa maksud dari kata kunci \textbf{integer} dan \textbf{longint}? Dijelaskan pada bagian selanjutnya.
 \end{itemize}
 \end{frame}
 
@@ -174,7 +176,7 @@ Melalui dokumen ini, kalian akan:
 		\item Bilangan riil: bisa berisikan bilangan riil (termasuk pecahan).
 		\item Karakter: merepresentasikan karakter, seperti 'a', 'b', '3', atau '?'.
 		\item String: merepresentasikan untaian karakter, seperti 'aku' atau 'halo dunia'.
-		\item Nilai kebenaran: merepresentaskan benar (TRUE) atau salah (FALSE).
+		\item Nilai kebenaran: merepresentaskan benar (\textbf{TRUE}) atau salah (\textbf{FALSE}).
 	\end{itemize}
 \end{itemize}
 \end{frame}
@@ -194,9 +196,9 @@ Melalui dokumen ini, kalian akan:
 	\hline 
 \end{tabular} 
 \begin{itemize}
-	\item Biasa disebut dengan "integer" saja.
+	\item Biasa disebut dengan \alert{\textit{integer}} saja.
 	\item Pascal menawarkan beberapa tipe data bilangan bulat yang variasinya terletak pada jangkauan nilai yang bisa direpresentasikan dan ukurannya pada memori.
-	\item Dalam memprogram, yang umum digunakan adalan \alert{longint} dan \alert{int64}.
+	\item Dalam memprogram, yang umum digunakan adalan \alert{\textbf{longint}} dan \alert{\textbf{int64}}. 
 \end{itemize}
 \end{frame}
 
@@ -209,10 +211,10 @@ Melalui dokumen ini, kalian akan:
 	\hline 
 \end{tabular} 
 \begin{itemize}
-	\item Biasa disebut dengan "floating-point".
-	\item Tipe data floating point bisa merepresentasikan negatif atau positif dari magnitudonya.
-	\item Pada pemrograman, umumnya tipe data floating point dihindari karena tidak akurat. Representasi 3 pada floating point bisa jadi 3.000000000000001 karena keterbatasan pada memori komputer.
-	\item Tipe yang umum digunakan adalah double.
+	\item Biasa disebut dengan \alert{\textit{floating point}}.
+	\item Tipe data \textit{floating point} bisa merepresentasikan negatif atau positif dari magnitudonya.
+	\item Pada pemrograman, umumnya tipe data \textit{floating point} dihindari karena kurang akurat. Representasi 3 pada \textit{floating point} bisa jadi 2.99999999999999 atau 3.000000000000001 karena keterbatasan pada struktur penyimpanan bilangan \textit{floating point} komputer.
+	\item Tipe yang umum digunakan adalah \alert{\textbf{double}}.
 \end{itemize}
 \end{frame}
 
@@ -222,8 +224,8 @@ Melalui dokumen ini, kalian akan:
 	\item Merupakan tipe data untuk merepresentasikan karakter menurut ASCII (\textit{American Standart Code for Information Interchange}).
 	\item Dalam ASCII, terdapat 128 karakter yang direpresentasikan dengan angka dari 0 sampai 127. 
 	\item Misalnya, kode ASCII untuk karakter spasi (' ') adalah 32, huruf 'A' adalah 64, 'B' adalah 65, huruf 'a' adalah 97, dan huruf 'b' adalah 98.
-	\item Pada Pascal, tipe data ini dinyatakan sebagai \alert{char}, dengan ukuran 2 byte.
-	\item Dalam memprogram, kita bisa menggunakan fungsi ord(x) untuk mendapatkan nilai ASCII dari char x, dan chr(x) untuk mendapatkan karakter dari kode ASCII x.
+	\item Pada Pascal, tipe data ini dinyatakan sebagai \alert{\textbf{char}}, dengan ukuran 2 byte.
+	\item Dalam memprogram, kita bisa menggunakan fungsi \textbf{ord(x)} untuk mendapatkan nilai ASCII dari \textbf{char x}, dan \textbf{chr(x)} untuk mendapatkan karakter dari kode ASCII \textbf{x}.
 \end{itemize}
 \end{frame}
 
@@ -258,26 +260,26 @@ Melalui dokumen ini, kalian akan:
 	49
 	a
 	\end{lstlisting}
-	\item Dari contoh tersebut, kalian dapat memahami penggunaan chr dan ord.
+	\item Dari contoh tersebut, kalian dapat memahami penggunaan \textbf{chr} dan \textbf{ord}.
 	\item Perhatikan pula penulisan suatu karakter perlu menggunakan tanda petik tunggal ('').
-	\item Bedakan antara 1 dengan '1'. Menuliskan ord(1) bisa mengakibatkan error dan program tidak bisa dikompilasi.
+	\item Bedakan antara 1 dengan '1'. Menuliskan \textbf{ord(1)} bisa mengakibatkan \textit{error} dan program tidak bisa dikompilasi.
 \end{itemize}
 \end{frame}
 
 \begin{frame}
 \frametitle{Tipe Data: String}
 \begin{itemize}
-	\item Tipe data yang merepresentasikan untaian dari karakter, contohnya 'kucing', 'dan', '' (string kosong). Tipe data ini dinyatakan sebagai \alert{string}.
-	\item Pada Pascal, string bisa menampung antara 0 sampai 255 karakter. Untuk menampung lebih dari 255 karakter, gunakan tipe data \alert{ansistring}.
+	\item Tipe data yang merepresentasikan untaian dari \textbf{char}, contohnya 'kucing', 'dan', '' (string kosong). Tipe data ini dinyatakan sebagai \alert{\textbf{string}}.
+	\item Pada Pascal, \textbf{string} bisa menampung antara 0 sampai 255 karakter. Untuk menampung lebih dari 255 karakter, gunakan tipe data \alert{\textbf{ansistring}}.
 \end{itemize}
 \end{frame}
 
 \begin{frame}
 \frametitle{Tipe Data: Boolean}
 \begin{itemize}
-	\item Merupakan tipe data yang menyimpan nilai kebenaran, yaitu hanya TRUE atau FALSE.
-	\item Tipe data ini akan lebih terasa kebermanfaatannya ketika kita sudah mempelajari struktur kondisi dan array.
-	\item Pada Pascal, kalian dapat menggunakan tipe data \alert{boolean}.
+	\item Merupakan tipe data yang menyimpan nilai kebenaran, yaitu hanya \textbf{TRUE} atau \textbf{FALSE}.
+	\item Tipe data ini akan lebih terasa kebermanfaatannya ketika kita sudah mempelajari struktur percabangan dan \textbf{array}.
+	\item Pada Pascal, kalian dapat menggunakan tipe data \alert{\textbf{boolean}}.
 \end{itemize}
 \end{frame}
 
@@ -286,9 +288,9 @@ Melalui dokumen ini, kalian akan:
 \begin{itemize}
 	\item Mendaftarkan nama-nama dan tipe variabel yang akan digunakan disebut dengan deklarasi variabel.
 	\item Pada saat dideklarasi, setiap variabel perlu disertakan tipe datanya. 
-	\item Pada Pascal, variabel dideklarasikan di antara "var" dengan "begin".
-	\item Pada Pascal, tipe data dituliskan sesudah tanda titik dua (:), setelah nama variabel dituliskan. Contoh: "nilai:longint" atau "rerata:double".
-	\item Beberapa variabel juga bisa dideklarasikan secara bersamaan jika memiliki tipe data yang sama. Contoh: "x,y:double".
+	\item Pada Pascal, variabel dideklarasikan di antara \textbf{var} dengan \textbf{begin}.
+	\item Tipe data dituliskan sesudah tanda titik dua (:), setelah nama variabel dituliskan. Contoh: \textbf{nilai : longint} atau \textbf{rerata : double}.
+	\item Beberapa variabel juga bisa dideklarasikan secara bersamaan jika memiliki tipe data yang sama. Contoh: \textbf{x, y : double}.
 \end{itemize}
 \end{frame}
 
@@ -296,50 +298,53 @@ Melalui dokumen ini, kalian akan:
 \frametitle{Tipe Data Komposit: Record}
 \begin{itemize}
 	\item Kadang-kadang, kita membutuhkan suatu tipe data yang sifatnya komposit; terdiri dari beberapa data lainnya.
-	\item Contoh kasusnya adalah ketika kita butuh suatu representasi dari titik. Setiap titik pada bidang memiliki dua komponen, yaitu x dan y.
-	\item Memang bisa saja kita mendeklarasi dua variabel, yaitu x dan y. Namun bagaimana jika kita hendak membuat beberapa titik? Apakah kita harus membuat x1, y1, x2, y2, ...? Sungguh melelahkan!
-	\item Karena itulah Pascal menyajikan suatu tipe data komposit, yaitu \alert{record}. 
+	\item Contoh kasusnya adalah ketika kita butuh suatu representasi dari titik. Setiap titik pada bidang memiliki dua komponen, yaitu \textbf{x} dan \textbf{y}.
+	\item Memang bisa saja kita mendeklarasi dua variabel, yaitu \textbf{x} dan \textbf{y}. Namun bagaimana jika kita hendak membuat beberapa titik? Apakah kita harus membuat \textbf{x1}, \textbf{y1}, \textbf{x2}, \textbf{y2}, ...? Sungguh melelahkan!
+	\item Karena itulah Pascal menyajikan suatu tipe data komposit, yaitu \alert{\textbf{record}}. 
 \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{Tipe Data Komposit: Record}
 \begin{itemize}
-	\item Record dapat dideklarasikan pada blok "type", yang letaknya sebelum "var".
+	\item \textbf{Record} dapat dideklarasikan pada blok \textbf{type}, yang letaknya sebelum \textbf{var}.
 	\begin{lstlisting}
 		type
-		    <nama record> = record
-		                        <variabel1>:<tipe1>;
-		                        <variabel2>:<tipe2>;
-		                        ...
-		                    end;
+		   <nama record> = 
+		      record
+		         <variabel1> : <tipe1>;
+		         <variabel2> : <tipe2>;
+		         ...
+		      end;
 		var
-		    ...
+		   ...
 	\end{lstlisting}
-	\item Setelah dideklarasikan, sebuah tipe data "<nama record>" sudah bisa digunakan.
+	\item Setelah dideklarasikan, sebuah tipe data \textbf{$<$nama record$>$} sudah bisa digunakan.
+	\item Untuk mengakses nilai dari \textbf{$<$variabel 1$>$} dari suatu variabel bertipe \textbf{record}, gunakan tanda titik (.).
 \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{Tipe Data Komposit: Record (lanj.)}
 \begin{itemize}
-	\item Sebagai contoh, perhatikan contoh program "titik.pas" berikut:
+	\item Sebagai contoh, perhatikan contoh program titik.pas berikut:
 	\begin{lstlisting}
 		type
-		    titik = record
-		                x,y:longint;
-		             end;
+		   titik = 
+		      record
+		         x, y : longint;
+		      end;
 		var
-		    t1,t2:titik;
+		   t1, t2 : titik;
 		begin
-		    t1.x := 5;
-		    t1.y := 3;
+		   t1.x := 5;
+		   t1.y := 3;
 		
-		    t2.x := 1;
-		    t2.y := 2;
+		   t2.x := 1;
+		   t2.y := 2;
 		
-		    writeln(t1.x, ',', t1.y);
-		    writeln(t2.x, ',', t2.y);
+		   writeln(t1.x, ',', t1.y);
+		   writeln(t2.x, ',', t2.y);
 		end.
 	\end{lstlisting}
 \end{itemize}
@@ -351,9 +356,9 @@ Melalui dokumen ini, kalian akan:
 	\item Pahami program berikut ini dan coba jalankan!
 	\begin{lstlisting}
 	var
-	   p1,p2:longint;
-	   x,y:double;
-	   teks:string;
+	   p1, p2 : longint;
+	   x, y : double;
+	   teks : string;
 	begin
 	   p1 := 100;
 	   p2 := p1;
@@ -374,26 +379,26 @@ Melalui dokumen ini, kalian akan:
 \begin{frame}[fragile]
 \frametitle{Penjelasan Program: tipedasar.pas}
 \begin{itemize}
-	\item Berikut adalah keluaran dari program tipedasar.pas.
+	\item Berikut adalah keluaran dari program tipedasar.pas:
 	\begin{lstlisting}
 	p1: 100 p2: 100
 	x:  3.14180000000000E+000
 	y:  2.34432000000000E+002
 	teks: ini adalah string
 	\end{lstlisting}
-	\item Perhatikan bahwa perintah "p2 := p1" sama artinya dengan "p2 := 100", karena p1 sendiri mengacu pada nilai 100.
-	\item Untuk tipe data floating point, bilangan tercetak dalam notasi \textit{scientific}, yaitu $3.1418 \times 10^{0}$ dan $2.34432 \times 10^{2}$.
+	\item Perhatikan bahwa perintah \textbf{p2 := p1} sama artinya dengan \textbf{p2 := 100}, karena \textbf{p1} sendiri mengacu pada nilai 100.
+	\item Untuk tipe data \textit{floating point}, bilangan tercetak dalam notasi \textit{scientific}, yaitu $3.1418 \times 10^{0}$ dan $2.34432 \times 10^{2}$.
 \end{itemize}
 \end{frame}
 
 \begin{frame}
 \frametitle{Ordinalitas}
 \begin{itemize}
-	\item Menurut keberurutannya, tipe data dapat dibedakan menjadi tipe data ordinal atau non-ordinal.
+	\item Menurut keberurutannya, tipe data dapat dibedakan menjadi tipe data \alert{ordinal} atau \alert{non-ordinal}.
 	\item Suatu tipe data memiliki sifat ordinal jika untuk suatu elemennya, kita bisa mengetahui secara pasti apa elemen sebelum atau selanjutnya. Contoh:
 	\begin{itemize}
-		\item Diberikan bilangan bulat 6, kita tahu sebelumnya adalah angka 5 dan sesudahnya adalah angka 7.
-		\item Diberikan karakter 'y', kita tahu sebelumnya adalah karakter 'x' dan sesudahnya adalah karakter 'z'.
+		\item Diberikan bilangan bulat 6, kita tahu pasti sebelumnya adalah angka 5 dan sesudahnya adalah angka 7.
+		\item Diberikan karakter 'y', kita tahu pasti sebelumnya adalah karakter 'x' dan sesudahnya adalah karakter 'z'.
 	\end{itemize}
 	\item Dengan demikian, seluruh tipe data bilangan bulat dan karakter adalah tipe data ordinal.
 \end{itemize}
@@ -407,7 +412,7 @@ Melalui dokumen ini, kalian akan:
 		\item Diberikan bilangan riil 6, apakah elemen sesudahnya 7, atau 6.1, atau 6.01, atau 6.001, atau 6.00000000001?
 		\item Diberikan string 'telur', apakah elemen sesudahnya? Apakah 'ayam'? 'bebek'?
 	\end{itemize}
-	\item String dan bilangan floating point termasuk dalam tipe data non-ordinal.
+	\item \textbf{String} dan bilangan \textit{floating point} termasuk dalam tipe data non-ordinal.
 \end{itemize}
 \end{frame}
 

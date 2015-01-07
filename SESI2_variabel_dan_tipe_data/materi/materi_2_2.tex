@@ -63,31 +63,31 @@ Melalui dokumen ini, kalian akan:
 \frametitle{Mengenal Ekspresi}
 \begin{itemize}
 	\item Ekspresi terdiri dari dua komponen: \alert{operator} dan \alert{operand}.
-	\item Operand menyatakan nilai yang akan dioperasikan, misalnya suatu bilangan atau suatu ekspresi lagi.
+	\item Operand menyatakan nilai yang akan dioperasikan, misalnya suatu bilangan atau bisa jadi suatu ekspresi lagi.
 	\item Operator menyatakan bagaimana operand akan dioperasikan, apakah ditambah, dikali, atau dibagi.
-	\item Pada ekspresi "1 + 2", 1 dan 2 merupakan operand, dan '+' merupakan operator.
-	\item Pada ekspresi "5 - (1 + 2)", 1 dan (1 + 2) merupakan operand, dan '-' merupakan operator. Lebih jauh lagi, (1 + 2) sendiri terdiri dari operand 1 dan 2, serta operator '+'.
+	\item Pada ekspresi "1 + 2", 1 dan 2 merupakan operand, dan + merupakan operator.
+	\item Pada ekspresi "5 - (1 + 2)", 1 dan (1 + 2) merupakan operand, dan - merupakan operatornya. Lebih jauh lagi, (1 + 2) sendiri terdiri dari operand 1 dan 2, serta operator +.
 \end{itemize}
 \end{frame}
 
 \begin{frame}
 \frametitle{Operasi Numerik}
 \begin{itemize}
-	\item Operasi pada bilangan yang dapat dilakukan adalah penjumlahan (+), pengurangan (-), perkalian (*), pembagian (/), pembagian integer (div), dan modulo (mod).
-	\item Jika kedua operand merupakan bilangan bulat, hasil pengoperasian selalu bilangan bulat juga, kecuali untuk operasi pembagian yang selalu menghasilkan floating point. Contoh:
+	\item Operasi pada bilangan yang dapat dilakukan adalah penjumlahan (+), pengurangan (-), perkalian (*), pembagian (/), pembagian \textit{integer} (div), dan modulo (mod).
+	\item Jika kedua operand merupakan bilangan bulat, hasil pengoperasian selalu bilangan bulat juga, kecuali untuk operasi pembagian yang selalu menghasilkan \textit{floating point}. Contoh:
 	\begin{itemize}
-		\item 3-1 = 2
-		\item 10/5 = 2.0000000
-		\item 7/2 = 3.5000000
+		\item 3 - 1 = 2
+		\item 10 / 5 = 2.0000000
+		\item 7 / 2 = 3.5000000
 	\end{itemize}
-	\item Ketika setidaknya salah satu dari operand ada yang bertipe data floating point, pengoperasian akan selalu menghasilkan floating point.
+	\item Ketika setidaknya salah satu dari operand ada yang bertipe data \textit{floating point}, pengoperasian akan selalu menghasilkan \textit{floating point}.
 \end{itemize}
 \end{frame}
 
 \begin{frame}
 \frametitle{Operasi Numerik (lanj.)}
 \begin{itemize}
-	\item Operasi pembagian integer didefinisikan sebagai: membagi, lalu dibulatkan ke bawah. Contoh:
+	\item Operasi pembagian \textit{integer} didefinisikan sebagai: membagi, lalu dibulatkan ke bawah. Contoh:
 	\begin{itemize}
 		\item 7 div 2 = 3
 		\item 10 div 2 = 5
@@ -100,7 +100,7 @@ Melalui dokumen ini, kalian akan:
 		\item 3 mod 5 = 3
 		\item 8 mod 3 = 2
 	\end{itemize}
-	\item Operasi div dan mod hanya bisa dilakukan apabila kedua operand memiliki tipe data bilangan bulat.
+	\item Operasi div dan mod hanya bisa dilakukan apabila kedua operand memiliki tipe data \alert{bilangan bulat}.
 \end{itemize}
 \end{frame}
 
@@ -110,15 +110,15 @@ Melalui dokumen ini, kalian akan:
 	\item Setelah memahami tentang operasi numerik, coba perhatikan program berikut dan cari tahu apa outputnya!
 	\begin{lstlisting}
 		var
-		    a,b,c,x,hasil:longint;
+		   a, b, c, x, hasil : longint;
 		begin
-		    a := 1;
-		    b := 3;
-		    c := -2;
-		    x := 2;	    
-
-		    hasil := a*x*x + b*x + c;
-		    writeln('ax^2 + bx + c = ', hasil);
+		   a := 1;
+		   b := 3;
+		   c := -2;
+		   x := 2;	   
+		
+		   hasil := a*x*x + b*x + c;
+		   writeln('ax^2 + bx + c = ', hasil);
 		end.
 	\end{lstlisting}
 \end{itemize}
@@ -146,12 +146,12 @@ Melalui dokumen ini, kalian akan:
 	\item Perhatikan contoh berikut dan coba jalankan programnya:
 	\begin{lstlisting}
 		var
-		    hasil1,hasil2:longint;
+		   hasil1, hasil2 : longint;
 		begin
-		    hasil1 := 3+5 div 4;
-		    hasil2 := (3+5) div 4;
-		    writeln(hasil1);
-		    writeln(hasil2);
+		   hasil1 := 3+5 div 4;
+		   hasil2 := (3+5) div 4;
+		   writeln(hasil1);
+		   writeln(hasil2);
 		end.
 	\end{lstlisting}
 	\item Isi dari variabel hasil1 adalah 4, karena operasi "5 div 4" memiliki prioritas yang lebih tinggi untuk dikerjakan, dan menghasilkan nilai 1. Barulah "3 + 1" dilaksanakan kemudian. 
@@ -163,11 +163,11 @@ Melalui dokumen ini, kalian akan:
 \begin{itemize}
 	\item Terdapat pula fungsi-fungsi dasar yang telah disediakan Pascal untuk membantu perhitungan:
 	\begin{itemize}
-		\item trunc: mengambil bagian depan penanda desimal dari suatu bilangan pecahan. Contoh: trunc(3.14) akan menghasilkan 3.00.
-		\item frac: mengambil bagian belakang penanda desimal dari suatu bilangan pecahan. Contoh: frac(3.14) akan menghasilkan 0.14.
-		\item round: membulatkan suatu bilangan pecahan bilangan bulat terdekat (hasilnya adalah bilangan bertipe integer). Contoh: round(1.2) akan menghasilkan 1, sementara round(1.87) akan menghasilkan 2.
-		\item sqr: mengkuadratkan suatu bilangan. Contoh: sqr(3) akan menghasilkan 9.
-		\item sqrt: mendapatkan akar kuadrat dari suatu bilangan. Contoh: sqrt(9) akan menghasilkan 3.00, dan sqrt(3) akan menghasilkan 1.73205....
+		\item \textbf{trunc}: mengambil bagian depan penanda desimal dari suatu bilangan pecahan. Contoh: \textbf{trunc(3.14)} akan menghasilkan 3.00.
+		\item \textbf{frac}: mengambil bagian belakang penanda desimal dari suatu bilangan pecahan. Contoh: \textbf{frac(3.14)} akan menghasilkan 0.14.
+		\item \textbf{round}: membulatkan suatu bilangan pecahan bilangan bulat terdekat (hasilnya adalah bilangan bertipe \textit{integer}). Contoh: \textbf{round(1.2)} akan menghasilkan 1, sementara \textbf{round(1.87)} akan menghasilkan 2.
+		\item \textbf{sqr}: mengkuadratkan suatu bilangan. Contoh: \textbf{sqr(3)} akan menghasilkan 9.
+		\item \textbf{sqrt}: mendapatkan akar kuadrat dari suatu bilangan. Contoh: \textbf{sqrt(9)} akan menghasilkan 3.00, dan \textbf{sqrt(3)} akan menghasilkan 1.73205....
 	\end{itemize}
 \end{itemize}
 \end{frame}
@@ -175,18 +175,18 @@ Melalui dokumen ini, kalian akan:
 \begin{frame}[fragile]
 \frametitle{Contoh Program: kuadrat2.pas}
 \begin{itemize}
-	\item Program "kuadrat1.pas" bisa ditulis juga dengan menggunakan fungsi sqr(x), sehingga menjadi:
+	\item Program kuadrat1.pas bisa ditulis juga dengan menggunakan fungsi \textbf{sqr}, sehingga menjadi:
 	\begin{lstlisting}
 		var
-		    a,b,c,x,hasil:longint;
+		   a, b, c, x, hasil : longint;
 		begin
-		    a := 1;
-		    b := 3;
-		    c := -2;
-		    x := 2;	    
-
-		    hasil := a*sqr(x) + b*x + c;
-		    writeln('ax^2 + bx + c = ', hasil);
+		   a := 1;
+		   b := 3;
+		   c := -2;
+		   x := 2;
+		
+		   hasil := a*sqr(x) + b*x + c;
+		   writeln('ax^2 + bx + c = ', hasil);
 		end.
 	\end{lstlisting}
 \end{itemize}
@@ -204,7 +204,7 @@ Melalui dokumen ini, kalian akan:
 		\item lebih dari atau sama dengan ($>=$)
 		\item tidak sama dengan ($<>$)
 	\end{itemize}
-	\item Operasi relasional harus melibatkan dua operand (ingat bahwa operand bisa jadi berupa ekspresi lagi), dan menghasilkan sebuah nilai kebenaran. Pada Pascal, nilai kebenaran dinyatakan dengan tipe data \alert{boolean}.
+	\item Operasi relasional harus melibatkan dua operand (ingat bahwa operand bisa jadi berupa ekspresi lagi), dan menghasilkan sebuah nilai kebenaran. \item Pada Pascal, nilai kebenaran dinyatakan dengan tipe data \alert{\textbf{boolean}}.
 \end{itemize}
 \end{frame}
 
@@ -214,13 +214,13 @@ Melalui dokumen ini, kalian akan:
 	\item Perhatikan contoh berikut dan coba jalankan programnya:
 	\begin{lstlisting}
 		begin
-		    writeln(2 > 1);
-		    writeln(2 < 1);
-		    writeln(2 = 1);
-		    writeln(2 >= 1);
-		    writeln(1 = 1);
-		    writeln(1 <> 1);
-		    writeln(1 <> 2);
+		   writeln(2 > 1);
+		   writeln(2 < 1);
+		   writeln(2 = 1);
+		   writeln(2 >= 1);
+		   writeln(1 = 1);
+		   writeln(1 <> 1);
+		   writeln(1 <> 2);
 		end.
 	\end{lstlisting}
 \end{itemize}
@@ -229,11 +229,11 @@ Melalui dokumen ini, kalian akan:
 \begin{frame}
 \frametitle{Operasi Relasional}
 \begin{itemize}
-	\item Operasi relasional dapat dilakukan pada setiap tipe data ordinal, sehingga bisa juga diterapkan pada char.
-	\item Tentu saja, ekspresi "'a' $<$ 'b'" akan bernilai TRUE, sementara "'a' $>$ 'z'" bernilai FALSE.
-	\item Lebih jauh lagi, string sebenarnya merupakan untaian char. Operasi relasional juga bisa diterapkan pada string, dan Pascal akan membandingkan karakter demi karakter dari kiri ke kanan. 
-	\item Hasilnya, keputusan apakah suatu string "lebih kecil dari" string lainnya ditentukan seperti urutan pada kamus.
-	\item Misalnya "'aa' $<$ 'ab'" akan bernilai TRUE, dan "'aa' $<$ 'a'" bernilai FALSE. 
+	\item Operasi relasional dapat dilakukan pada setiap tipe data ordinal, sehingga bisa juga diterapkan pada \textbf{char}.
+	\item Tentu saja, ekspresi "'a' $<$ 'b'" akan bernilai \textbf{TRUE}, sementara "'a' $>$ 'z'" bernilai \textbf{FALSE}.
+	\item Lebih jauh lagi, \textbf{string} sebenarnya merupakan untaian \textbf{char}. Operasi relasional juga bisa diterapkan pada \textbf{string}, dan Pascal akan membandingkan karakter demi karakter dari kiri ke kanan. 
+	\item Hasilnya, keputusan apakah suatu \textbf{string} "lebih kecil dari" \textbf{string} lainnya ditentukan seperti urutan pada kamus.
+	\item Misalnya "'aa' $<$ 'ab'" akan bernilai \textbf{TRUE}, dan "'aa' $<$ 'a'" bernilai \textbf{FALSE}. 
 \end{itemize}
 \end{frame}
 
@@ -243,15 +243,15 @@ Melalui dokumen ini, kalian akan:
 	\item Perhatikan contoh berikut dan coba jalankan programnya:
 		\begin{lstlisting}
 			begin
-			    writeln('a' > 'A');
-			    writeln('a' < 'A');
-			    writeln('a' >= 'A');
-			    writeln('a' = 'A');
-
-			    writeln('a' < 'aa');
-			    writeln('abcb' > 'abca');
-			    writeln('abc' = 'abc');
-			    writeln('abc' <= 'abc');
+			   writeln('a' > 'A');
+			   writeln('a' < 'A');
+			   writeln('a' >= 'A');
+			   writeln('a' = 'A');
+			
+			   writeln('a' < 'aa');
+			   writeln('abcb' > 'abca');
+			   writeln('abc' = 'abc');
+			   writeln('abc' <= 'abc');
 			end.
 		\end{lstlisting}
 \end{itemize}
@@ -260,10 +260,10 @@ Melalui dokumen ini, kalian akan:
 \begin{frame}
 \frametitle{Operasi Boolean}
 \begin{itemize}
-	\item Operasi boolean merupakan operasi yang hanya melibatkan nilai-nilai kebenaran. Terdiri atas: not, and, or, xor.
+	\item Operasi \textbf{boolean} merupakan operasi yang hanya melibatkan nilai-nilai kebenaran. Terdiri atas: \textbf{not}, \textbf{and}, \textbf{or}, \textbf{xor}.
 	\item Operasi-operasi ini sesuai dengan sebuah cabang ilmu matematika yang bernama "aljabar boolean".
-	\item Operasi \alert{not} merupakan operasi \textit{unary}, artinya hanya melibatkan satu operand. Gunannya untuk membalik 
-	\item Tabel berikut menunjukkan efek dari penggunaan not.
+	\item Operasi \alert{not} merupakan operasi \textit{unary}, artinya hanya melibatkan satu operand. Gunanya untuk membalik nilai kebenaran.
+	\item Tabel berikut menunjukkan efek dari penggunaan \textbf{not}.
 	\begin{tabular}{|c|c|}
 	\hline a & not a \\ 
 	\hline TRUE & FALSE \\ 
@@ -276,7 +276,7 @@ Melalui dokumen ini, kalian akan:
 \begin{frame}
 \frametitle{Operasi Boolean (lanj.)}
 \begin{itemize}
-	\item Operasi boolean yang lainnya merupakan operasi \textit{binary}, yang artinya melibatkan dua operand.
+	\item Operasi \textbf{boolean} yang lainnya merupakan operasi \textit{binary}, yang artinya melibatkan dua operand.
 	\item Tabel berikut menunjukkan efek dari penggunaan operator-operator tersebut:
 	\begin{tabular}{|c|c|c|c|c|}
 	\hline a & b & a and b & a or b & a xor b \\ 
@@ -286,8 +286,8 @@ Melalui dokumen ini, kalian akan:
 	\hline FALSE & FALSE & FALSE & FALSE & FALSE \\ 
 	\hline 
 	\end{tabular} 
-	\item Presendensi pengerjaan dari operator boolean secara berurutan adalah: not, and, or, xor.
-	\item Tanda kurung juga bisa digunakan untuk menentukan operasi mana yang perlu dijalankan terlebih dahulu. Bahkan sangat disarankan untuk menggunakan tanda kurung.
+	\item Presendensi pengerjaan dari operator \textbf{boolean} secara berurutan adalah: \textbf{not}, \textbf{and}, \textbf{or}, \textbf{xor}.
+	\item Tanda kurung juga bisa digunakan untuk menentukan operasi mana yang perlu dijalankan terlebih dahulu. Bahkan sangat disarankan untuk selalu menggunakan tanda kurung untuk kejelasan.
 \end{itemize}
 \end{frame}
 
@@ -304,17 +304,17 @@ Melalui dokumen ini, kalian akan:
 		    writeln((1 <> 1) xor not (1 <> 1));
 		end.
 	\end{lstlisting}
-	\item Perhatikan bahwa tanda kurung diperlukan dalam ekspresi "not (2 $>$ 1)". Dengan tanda kurung, "2 $>$ 1" akan dievaluasi terlebih dahulu, menghasilkan nilai boolean. Barulah operator not bisa mengolah nilai boolean tersebut.
+	\item Perhatikan bahwa tanda kurung diperlukan dalam ekspresi "not (2 $>$ 1)". Dengan tanda kurung, "2 $>$ 1" akan dievaluasi terlebih dahulu, menghasilkan nilai \textbf{boolean}. Barulah operator \textbf{not} bisa mengolah nilai \textbf{boolean} tersebut.
 \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{Kilas Balik: kuadrat2.pas}
 \begin{itemize}
-	\item Sekarang coba lihat kembali program "kuadrat2.pas".
+	\item Sekarang coba lihat kembali program kuadrat2.pas:
 	\begin{lstlisting}
 		var
-		    a,b,c,x,hasil:longint;
+		    a, b, c, x, hasil : longint;
 		begin
 		    a := 1;
 		    b := 3;
@@ -325,7 +325,7 @@ Melalui dokumen ini, kalian akan:
 		    writeln('ax^2 + bx + c = ', hasil);
 		end.
 	\end{lstlisting}
-	\item Jika kita ingin mengganti nilai x, kode harus diganti, dikompilasi ulang, baru dijalankan kembali. Bertapa melelahkan!
+	\item Jika kita ingin mengganti nilai \textbf{x}, kode harus diganti, dikompilasi ulang, baru dijalankan kembali. Bertapa melelahkan!
 	\item Untuk menghasilkan output yang bervariasi, perlu ada suatu input dari luar program.
 \end{itemize}
 \end{frame}
@@ -334,18 +334,18 @@ Melalui dokumen ini, kalian akan:
 \frametitle{Membaca Input}
 \begin{itemize}	
 	\item Diperlukan mekanisme untuk melakukan pembacaan input dari luar program.
-	\item Input bagi suatu program bisa berasal dari berbagai sumber, misalnya \textit{standart input} (layar) atau suatu \textit{file}.
-	\item Pada Pascal, dikenal dua fungsi yang umum untuk membaca input: \alert{read} dan \alert{readln}.
+	\item Input bagi suatu program bisa berasal dari berbagai sumber, misalnya \textit{standart input} atau suatu \textit{file}.
+	\item Pada Pascal, dikenal dua fungsi yang umum untuk membaca input: \alert{\textbf{read}} dan \alert{\textbf{readln}}.
 \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{Membaca Input: readln}
 \begin{itemize}
-	\item Lakukan modifikasi pada bagian "x := 2" menjadi "readln(x)":
+	\item Lakukan modifikasi pada bagian \textbf{x := 2} menjadi \textbf{readln(x)}:
 	\begin{lstlisting}
 		var
-		   a,b,c,x,hasil:longint;
+		   a, b, c, x, hasil : longint;
 		begin
 		   a := 1;
 		   b := 3;
@@ -364,10 +364,10 @@ Melalui dokumen ini, kalian akan:
 \begin{frame}[fragile]
 \frametitle{Membaca Input: read}
 \begin{itemize}
-	\item Sekarang ganti "readln(x)" menjadi "read(x)":
+	\item Sekarang ganti \textbf{readln(x)} menjadi \textbf{read(x)}:
 	\begin{lstlisting}
 		var
-		   a,b,c,x,hasil:longint;
+		   a, b, c, x, hasil : longint;
 		begin
 		   a := 1;
 		   b := 3;
@@ -379,16 +379,15 @@ Melalui dokumen ini, kalian akan:
 		end.
 	\end{lstlisting}
 	\item Kompilasi, dan jalankan program. Kemudian ketikkan angka 2, dan tekan enter.
-	\item Hasilnya tetap sama, yaitu bekerja dengan baik. Lalu apa bedanya readln dengan read?
+	\item Hasilnya tetap sama. Lalu apa bedanya \textbf{readln} dengan \textbf{read}?
 \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{Perbedaan readln dengan read}
 \begin{itemize}
-	\item Pada readln, setelah program membaca input, program akan disiapkan untuk membaca input selanjutnya di \alert{baris berikutnya}.
-	\item Sementara pada read, setelah program membaca input, program akan disiapkan untuk membaca input selanjutnya di \alert{baris yang sama}.
-	\item Artinya, jika kita ingin membaca input dengan format masukkan:
+	\item Pada \textbf{readln}, setelah program membaca input, program akan disiapkan untuk membaca input selanjutnya di \alert{baris berikutnya}.
+	\item Sementara pada \textbf{read}, setelah program membaca input, program akan disiapkan untuk membaca input selanjutnya di \alert{baris yang sama}.
 \end{itemize}
 \end{frame}
 
@@ -433,7 +432,7 @@ Melalui dokumen ini, kalian akan:
 \begin{frame}[fragile]
 \frametitle{Perbedaan readln dengan read (lanj.)}
 \begin{itemize}
-	\item Sebagai alternatif, readln dan read juga bisa digunakan untuk membaca beberapa input pada suatu baris secara bersamaan:
+	\item Sebagai alternatif, \textbf{readln} dan \textbf{read} juga bisa digunakan untuk membaca beberapa input pada suatu baris secara bersamaan:
 	\begin{lstlisting}
 	readln(a,b,c);
 	readln(x);
@@ -450,7 +449,7 @@ Melalui dokumen ini, kalian akan:
 \begin{frame}[fragile]
 \frametitle{Tambahan: readln}
 \begin{itemize}
-	\item Fungsi readln juga bisa digunakan untuk memaksa program untuk berpindah baris dalam membaca masukan. Caranya dengan mengosongkan variabel di dalam pemanggilan fungsi readln.
+	\item Fungsi \textbf{readln} juga bisa digunakan untuk memaksa program untuk berpindah baris dalam membaca masukan. Caranya dengan mengosongkan variabel di dalam pemanggilan fungsi \textbf{readln}.
 	\item Pada contoh yang sebelumnya, boleh juga digunakan cara membaca seperti ini:
 	\begin{lstlisting}
 	read(a,b,c);
@@ -463,17 +462,17 @@ Melalui dokumen ini, kalian akan:
 \begin{frame}
 \frametitle{Mencetak Output}
 \begin{itemize}
-	\item Seperti input, output juga bisa disajikan dalam bentuk langsung ke layar (\textit{standart output}) atau ke \textit{file}.
-	\item Pada Pascal, fungsi untuk mencetak output yang umum adalah \alert{writeln} dan \alert{write}.
-	\item Sejauh ini, kita sudah menggunakan writeln.
+	\item Seperti input, output juga bisa disajikan dalam bentuk langsung ke \textit{standart output} atau ke \textit{file}.
+	\item Pada Pascal, fungsi untuk mencetak output yang umum adalah \alert{\textbf{writeln}} dan \alert{\textbf{write}}.
+	\item Sejauh ini, kita sudah menggunakan \textbf{writeln}.
 \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{Perbedaan writeln dengan write}
 \begin{itemize}
-	\item Seperti yang sudah kita gunakan selama ini, writeln akan mencetak seluruh string, karakter, angka, atau variabel yang diberikan, lalu \alert{mencetak sebuah baris baru}.
-	\item Fungsi write memiliki kegunaan yang sama, tetapi tidak \alert{mencetak baris baru} di akhir percetakan,
+	\item Seperti yang sudah kita gunakan selama ini, \textbf{writeln} akan mencetak seluruh \textbf{string}, karakter, angka, atau variabel yang diberikan, lalu \alert{mencetak} sebuah baris baru.
+	\item Fungsi \textbf{write} memiliki kegunaan yang sama, tetapi \alert{tidak mencetak} baris baru di akhir percetakan,
 \end{itemize}
 \end{frame}
 
@@ -506,15 +505,15 @@ Melalui dokumen ini, kalian akan:
 	\item Coba ketikkan dan jalankan program berikut:
 	\begin{lstlisting}
 		var
-		    a,b:longint;
+		   a, b : longint;
 		begin
-		    write('masukkan nilai a: ');
-		    readln(a);
-		    
-		    write('masukkan nilai b: ');
-		    readln(b);
-		    
-		    writeln('hasil dari penjumlahan a dan b: ', a+b);
+		   write('masukkan nilai a: ');
+		   readln(a);
+		   
+		   write('masukkan nilai b: ');
+		   readln(b);
+		   
+		   writeln('hasil dari penjumlahan a dan b: ', a+b);
 		end.
 	\end{lstlisting}
 	\item Pada program tersebut, dicetak terlebih dahulu apa yang perlu diinput. Tentu saja, program seperti ini sangat ramah terhadap pengguna (\textit{user-friendly}).
@@ -525,8 +524,8 @@ Melalui dokumen ini, kalian akan:
 \begin{frame}
 \frametitle{Penjelasan Tentang STDIO}
 \begin{itemize}
-	\item Tempat kalian selama ini memasukkan input dan melihat output biasa disebut sebagai \textit{standart input output}, atau STDIO.
-	\item STDIO memiliki dua saluran yang berbeda, yaitu input (STDIN) dan output (STDOUT).
+	\item Tempat kalian selama ini memasukkan input dan melihat output biasa disebut sebagai \textit{standart input output}, atau \textbf{STDIO}.
+	\item \textbf{STDIO} memiliki dua saluran yang berbeda, yaitu input (\textbf{STDIN}) dan output (\textbf{STDOUT}).
 \end{itemize}
 \end{frame}
 
@@ -545,38 +544,38 @@ Melalui dokumen ini, kalian akan:
 \begin{frame}[fragile]
 \frametitle{Penjelasan Tentang STDIO (lanj.)}
 \begin{itemize}
-	\item Untuk lebih memahami tentang hal ini, coba buat sebuah berkas bernama "input.txt" pada folder yang sama dengan program "jumlah.pas", dan berisi:
+	\item Untuk lebih memahami tentang hal ini, coba buat sebuah berkas bernama input.txt pada \textit{folder} yang sama dengan program jumlah.pas, dan berisi:
 	\begin{lstlisting}
 		1
 		2
 	\end{lstlisting}
-	\item Kemudian pada \textit{command line}, saat menjalankan program "jumlah.pas", ketikkan perintah:
+	\item Kemudian pada \textit{command line}, saat menjalankan program jumlah.pas, ketikkan perintah:
 	\begin{lstlisting}
 		jumlah < input.txt > output.txt
 	\end{lstlisting}
-	\item Buka "output.txt" dan perhatikan apa yang tercetak!
+	\item Buka output.txt dan perhatikan apa yang tercetak!
 \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{Penjelasan Tentang STDIO (lanj.)}
 \begin{itemize}
-	\item Isi dari "output.txt" adalah:
+	\item Isi dari output.txt adalah:
 	\begin{lstlisting}
 		masukkan nilai a: 
 		masukkan nilai b: 
 		hasil dari penjumlahan a dan b: 3
 	\end{lstlisting}
-	\item Tulisan "masukkan nilai ..." juga ikut tercetak, karena pada kasus ini, STDOUT merupakan berkas "output.txt". Segala yang dicetak lewat saluran STDOUT akan dicetak ke "output.txt".
-	\item Dengan pemahaman yang sama, seluruh input yang diberikan adalah lewat STDIN, yang merupakan "input.txt". Sehingga inputnya perlu dimasukkan ke "input.txt" terlebih dahulu.
+	\item Tulisan "masukkan nilai ..." juga ikut tercetak, karena pada kasus ini, \textbf{STDOUT} merupakan berkas output.txt. Segala yang dicetak lewat saluran \textbf{STDOUT} akan dicetak ke output.txt.
+	\item Dengan pemahaman yang sama, seluruh input yang diberikan adalah lewat \textbf{STDIN}, yang merupakan input.txt. Sehingga inputnya perlu dimasukkan ke input.txt terlebih dahulu.
 \end{itemize}
 \end{frame}
 
 \begin{frame}
 \frametitle{Input Output pada OSN/IOI}
 \begin{itemize}
-	\item Setelah kalian memahami tentang STDIN dan STDOUT, mungkin kalian sudah bisa menebak kenapa pada OSN/IOI tidak boleh mencetak informasi input seperti "masukkan nilai ...".
-	\item Hal ini dikarenakan tulisan itu akan ikut tercetak sebagai output, yang mana mengakibatkan ada output yang tidak sesuai spesifikasi soal. Hasilnya, program akan dinilai \alert{wrong answer}, alias menghasilkan jawaban yang tidak sesuai. 
+	\item Setelah kalian memahami tentang \textbf{STDIN} dan \textbf{STDOUT}, mungkin kalian sudah bisa menebak kenapa pada OSN/IOI tidak boleh mencetak informasi input seperti "masukkan nilai ...".
+	\item Hal ini dikarenakan tulisan itu akan ikut tercetak sebagai output, yang mana mengakibatkan ada output yang tidak sesuai spesifikasi soal. Hasilnya, program akan dinilai \alert{\textit{wrong answer}}, alias menghasilkan jawaban yang tidak sesuai. 
 \end{itemize}
 \end{frame}
 
