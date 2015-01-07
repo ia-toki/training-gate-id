@@ -1,11 +1,11 @@
 var
-    x:longint;
+   x : longint;
 begin
-    readln(x);
+   readln(x);
 
-    if (x > 0) then begin
-        writeln('positif');
-    end else begin
-        writeln('non-positif');
-    end;
+   if (x > 0) then begin
+      writeln('positif');
+   end else begin
+      writeln('non-positif');
+   end;
 end.
