@@ -50,7 +50,7 @@ Melalui dokumen ini, kalian akan:
 \begin{frame}
 \frametitle{Mengenal Komentar}
 \begin{itemize}
-	\item Program yang sederhana seperti "kuadrat.pas" atau "jumlah.pas" yang sebelumnya telah kita jumpai memang mudah dipahami.
+	\item Program yang pendek seperti kuadrat.pas atau jumlah.pas yang sebelumnya telah kita jumpai memang sederhana dan mudah dipahami.
 	\item Ketika program sudah mulai panjang dan kompleks, memahami alur kerja suatu program menjadi lebih sulit.
 	\item Salah satu cara untuk membantu memahami alur kerja program adalah dengan menulis komentar.
 \end{itemize}
@@ -80,35 +80,35 @@ Melalui dokumen ini, kalian akan:
 \end{frame}
 
 \begin{frame} [fragile]
-\frametitle{Contoh Program: "kuadrat3.pas"}
+\frametitle{Contoh Program: kuadrat3.pas}
 \begin{itemize}
 	\item Perhatikan program berikut:
 	\begin{lstlisting}
 		var
-		    a,b,c,x,hasil:longint;
+		   a, b, c, x, hasil : longint;
 		begin
-		    // inisialisasi
-		    a := 1;
-		    b := 3;
-		    c := -2;
-		    
-		    // baca nilai x
-		    readln(x);
+		   // inisialisasi
+		   a := 1;
+		   b := 3;
+		   c := -2;
+		   
+		   // baca nilai x
+		   readln(x);
 		
-		    // hitung hasil fungsi
-		    hasil := a*sqr(x) + b*x + c;
+		   // hitung hasil fungsi
+		   hasil := a*sqr(x) + b*x + c;
 		
-		    // cetak
-		    writeln('ax^2 + bx + c = ', hasil);
+		   // cetak
+		   writeln('ax^2 + bx + c = ', hasil);
 		end.
 	\end{lstlisting}
 \end{itemize}
 \end{frame}
 
 \begin{frame}
-\frametitle{Penjelasan Program: "kuadrat3.pas"}
+\frametitle{Penjelasan Program: kuadrat3.pas}
 \begin{itemize}
-	\item Program "kuadrat3.pas" menjadi lebih deskriptif ketika kita menuliskan komentar.
+	\item Program kuadrat3.pas menjadi lebih deskriptif ketika kita menuliskan komentar.
 	\item Ketika program yang dibuat sudah mulai panjang, komentar menjadi efektif untuk membantu kalian "mengingat kembali" apa yang telah diketikkan sebelumnya.
 	\item Komentar juga berguna ketika program kalian akan dibaca oleh orang lain, sehingga orang lain bisa memahaminya dengan lebih mudah.
 	\item Gunakan komentar secukupnya, jangan terlalu berlebihan juga.
@@ -197,8 +197,8 @@ Melalui dokumen ini, kalian akan:
 	\end{lstlisting}
 	\item Ada dua hal yang dilakukan di sini:
 	\begin{itemize}
-		\item Memberikan stdin kepada program "jumlah" yang akan dieksekusi dengan "input.txt". Hal ini dilakukan dengan operator $<$.
-		\item Memberikan stdout kepada program "jumlah" yang akan dieksekusi dengan "output.txt". Hal ini dilakukan dengan operator $>$.
+		\item Memberikan stdin kepada program jumlah yang akan dieksekusi dengan input.txt. Hal ini dilakukan dengan operator $<$.
+		\item Memberikan stdout kepada program jumlah yang akan dieksekusi dengan output.txt. Hal ini dilakukan dengan operator $>$.
 	\end{itemize}
 \end{itemize}
 \end{frame}
@@ -210,13 +210,13 @@ Melalui dokumen ini, kalian akan:
 	\begin{lstlisting}
 	jumlah < input.txt
 	\end{lstlisting}
-	\item Artinya program jumlah akan dijalankan dengan stdin dari berkas "input.txt", dan stdout ke layar.
+	\item Artinya program jumlah akan dijalankan dengan stdin dari berkas input.txt, dan stdout ke layar.
 	\item Hal ini akan membantu dalam mengurangi pengetikan berkas masukan terus menerus secara manual.
 	\item Demikian pula dengan:
 	\begin{lstlisting}
 	jumlah > output.txt
 	\end{lstlisting}
-	\item Artinya program jumlah akan dijalankan dengan stdin dari layar (kalian dapat mengetikkannya), dan stdout ke berkas "output.txt".
+	\item Artinya program jumlah akan dijalankan dengan stdin dari layar (kalian dapat mengetikkannya), dan stdout ke berkas output.txt.
 	\end{itemize}
 \end{frame}
 
