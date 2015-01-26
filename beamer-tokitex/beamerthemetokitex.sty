@@ -1,0 +1,52 @@
+% Created 25 Jan 2015
+% for TOKI Training Gate
+% William Gozali (will.gozali@gmail.com)
+% Feel free to use/modify
+
+\ProvidesPackage{beamerthemetokitex}[2015/01/25]
+
+\pgfdeclareimage[width=\paperwidth]{bar-small}{tokitex-asset/bar-small}
+\pgfdeclareimage[width=.12\paperwidth]{logo-small}{tokitex-asset/toki-logo}
+\pgfdeclareimage[width=.25\paperwidth]{logo-large}{tokitex-asset/toki-logo}
+
+\definecolor{bg-grey}{RGB}{249,249,249}
+\definecolor{blue-1}{RGB}{51,96,158}
+\definecolor{blue-2}{RGB}{103,140,255}
+\definecolor{blue-3}{RGB}{198,211,255}
+\setbeamercolor{background canvas}{bg=bg-grey}
+\usecolortheme[named=blue-1]{structure}
+
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{headline}{%
+\pgftext[at=\pgfpoint{0pt}{0pt},left,top]{\pgfuseimage{bar-small}}%
+}
+\setbeamertemplate{footline}{%
+  \ifnum\thepage>1%
+    \hfill\pgfuseimage{logo-small}\hspace*{10pt}\strut\vskip0pt
+  \else%
+    \hfill\pgfuseimage{logo-small}\hspace*{-50pt}\strut\vskip0pt
+  \fi
+  \pgfuseimage{bar-small}%
+}
+\setbeamertemplate{frametitle}[default][center]
+\addtobeamertemplate{frametitle}{\vskip12pt}{}
+\setbeamerfont{frametitle}{series=\bfseries}
+\setbeamerfont{title}{series=\bfseries}
+
+\setbeamertemplate{itemize items}[circle]
+
+\addtobeamertemplate{title page}{%
+\begin{pgfpicture}
+	\pgf@relevantforpicturesizefalse
+	\pgftransformxshift{-\Gm@lmargin}
+	\pgftransformyshift{25pt}
+	\pgfpathrectanglecorners{\pgfpoint{0pt}{0pt}}{\pgfpoint{\paperwidth}{-.25\paperheight}}
+	\pgfsetfillcolor{blue-1}
+	\pgfusepath{fill}
+	\pgftext[at=\pgfpoint{.5\paperwidth}{-.23\paperheight},center,bottom]{\pgfuseimage{logo-large}}
+\end{pgfpicture}%
+\vskip36pt%
+}{}
+
+\setbeamercolor{block title}{bg=blue-2,fg=black}
+\setbeamercolor{block body}{bg=blue-3,fg=black}
