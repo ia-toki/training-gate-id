@@ -1,7 +1,11 @@
 \documentclass{beamer}
+\usetheme{tokitex}
 \usepackage{graphics}
 \usepackage{multirow}
 \usepackage{tabto}
+\usepackage[english,bahasa]{babel}
+\newtranslation[to=bahasa]{Section}{Bagian}
+\newtranslation[to=bahasa]{Subsection}{Subbagian}
 
 \usepackage{listings}
 \usepackage{color}
@@ -12,8 +16,6 @@
 
 \lstset{frame=tb,
   language=pascal,
-  aboveskip=3mm,
-  belowskip=3mm,
   showstringspaces=false,
   columns=flexible,
   basicstyle={\small\ttfamily},
@@ -24,7 +26,7 @@
   stringstyle=\color{mauve},
   breaklines=true,
   breakatwhitespace=true,
-  tabsize=3
+  tabsize=2
 }
 
 \title{Ekspresi dan Input/Output}
@@ -55,9 +57,12 @@ Melalui dokumen ini, kalian akan:
 	jumlah := a + b;
 	\end{lstlisting}
 	\item Kenyataannya, ya! Hal ini sangat mungkin diwujudkan pada pemrograman.
-	\item Perintah "a + b" biasa disebut sebagai ekspresi.
+	\item Perintah "a + b" biasa disebut sebagai \alert{ekspresi}.
 \end{itemize}
 \end{frame}
+
+\section{Ekspresi}
+\frame{\sectionpage}
 
 \begin{frame}
 \frametitle{Mengenal Ekspresi}
@@ -160,15 +165,13 @@ Melalui dokumen ini, kalian akan:
 
 \begin{frame}
 \frametitle{Fungsi Dasar Numerik}
+Berikut fungsi dasar yang disediakan Pascal untuk membantu perhitungan:
 \begin{itemize}
-	\item Terdapat pula fungsi-fungsi dasar yang telah disediakan Pascal untuk membantu perhitungan:
-	\begin{itemize}
-		\item \textbf{trunc}: mengambil bagian depan penanda desimal dari suatu bilangan pecahan. Contoh: \textbf{trunc(3.14)} akan menghasilkan 3.00.
-		\item \textbf{frac}: mengambil bagian belakang penanda desimal dari suatu bilangan pecahan. Contoh: \textbf{frac(3.14)} akan menghasilkan 0.14.
-		\item \textbf{round}: membulatkan suatu bilangan pecahan bilangan bulat terdekat (hasilnya adalah bilangan bertipe \textit{integer}). Contoh: \textbf{round(1.2)} akan menghasilkan 1, sementara \textbf{round(1.87)} akan menghasilkan 2.
-		\item \textbf{sqr}: mengkuadratkan suatu bilangan. Contoh: \textbf{sqr(3)} akan menghasilkan 9.
-		\item \textbf{sqrt}: mendapatkan akar kuadrat dari suatu bilangan. Contoh: \textbf{sqrt(9)} akan menghasilkan 3.00, dan \textbf{sqrt(3)} akan menghasilkan 1.73205....
-	\end{itemize}
+	\item \textbf{trunc}: mengambil bagian depan penanda desimal dari suatu bilangan pecahan. Contoh: \textbf{trunc(3.14)} akan menghasilkan 3.00.
+	\item \textbf{frac}: mengambil bagian belakang penanda desimal dari suatu bilangan pecahan. Contoh: \textbf{frac(3.14)} akan menghasilkan 0.14.
+	\item \textbf{round}: membulatkan suatu bilangan pecahan bilangan bulat terdekat (hasilnya adalah bilangan bertipe \textit{integer}). Contoh: \textbf{round(1.2)} akan menghasilkan 1, sementara \textbf{round(1.87)} akan menghasilkan 2.
+	\item \textbf{sqr}: mengkuadratkan suatu bilangan. Contoh: \textbf{sqr(3)} akan menghasilkan 9.
+	\item \textbf{sqrt}: mendapatkan akar kuadrat dari suatu bilangan. Contoh: \textbf{sqrt(9)} akan menghasilkan 3.00, dan \textbf{sqrt(3)} akan menghasilkan 1.73205....
 \end{itemize}
 \end{frame}
 
@@ -326,9 +329,12 @@ Melalui dokumen ini, kalian akan:
 		end.
 	\end{lstlisting}
 	\item Jika kita ingin mengganti nilai \textbf{x}, kode harus diganti, dikompilasi ulang, baru dijalankan kembali. Bertapa melelahkan!
-	\item Untuk menghasilkan output yang bervariasi, perlu ada suatu input dari luar program.
+	\item Untuk menghasilkan output yang bervariasi, perlu ada \newline suatu input dari luar program.
 \end{itemize}
 \end{frame}
+
+\section{Input dan Output}
+\frame{\sectionpage}
 
 \begin{frame}
 \frametitle{Membaca Input}
@@ -385,10 +391,12 @@ Melalui dokumen ini, kalian akan:
 
 \begin{frame}[fragile]
 \frametitle{Perbedaan readln dengan read}
-\begin{itemize}
-	\item Pada \textbf{readln}, setelah program membaca input, program akan disiapkan untuk membaca input selanjutnya di \alert{baris berikutnya}.
-	\item Sementara pada \textbf{read}, setelah program membaca input, program akan disiapkan untuk membaca input selanjutnya di \alert{baris yang sama}.
-\end{itemize}
+\begin{block}{readln}
+	Setelah program membaca input, program akan disiapkan untuk membaca input selanjutnya di \alert{baris berikutnya}.
+\end{block}
+\begin{block}{read}
+	Setelah program membaca input, program akan disiapkan untuk membaca input selanjutnya di \alert{baris yang sama}.
+\end{block}
 \end{frame}
 
 \begin{frame}[fragile]
@@ -470,10 +478,12 @@ Melalui dokumen ini, kalian akan:
 
 \begin{frame}[fragile]
 \frametitle{Perbedaan writeln dengan write}
-\begin{itemize}
-	\item Seperti yang sudah kita gunakan selama ini, \textbf{writeln} akan mencetak seluruh \textbf{string}, karakter, angka, atau variabel yang diberikan, lalu \alert{mencetak} sebuah baris baru.
-	\item Fungsi \textbf{write} memiliki kegunaan yang sama, tetapi \alert{tidak mencetak} baris baru di akhir percetakan,
-\end{itemize}
+\begin{block}{writeln}
+	Seperti yang sudah kita gunakan selama ini, \textbf{writeln} akan mencetak seluruh \textbf{string}, karakter, angka, atau variabel yang diberikan, lalu \alert{mencetak} sebuah baris baru.
+\end{block}
+\begin{block}{write}
+	Fungsi \textbf{write} memiliki kegunaan yang sama, tetapi \alert{tidak mencetak} baris baru di akhir percetakan,
+\end{block}
 \end{frame}
 
 \begin{frame}[fragile]
@@ -509,7 +519,7 @@ Melalui dokumen ini, kalian akan:
 		begin
 		   write('masukkan nilai a: ');
 		   readln(a);
-		   
+
 		   write('masukkan nilai b: ');
 		   readln(b);
 		   
@@ -517,9 +527,12 @@ Melalui dokumen ini, kalian akan:
 		end.
 	\end{lstlisting}
 	\item Pada program tersebut, dicetak terlebih dahulu apa yang perlu diinput. Tentu saja, program seperti ini sangat ramah terhadap pengguna (\textit{user-friendly}).
-	\item Namun dalam kontes pemrograman OSN/IOI, hal seperti ini tidak perlu dilakukan. Bahkan, tidak boleh dilakukan.
+	\item Namun dalam kontes pemrograman OSN/IOI, hal seperti \newline ini tidak perlu dilakukan. Bahkan, tidak boleh dilakukan.
 \end{itemize}
 \end{frame}
+
+\section{Standart Input Output}
+\frame{\sectionpage}
 
 \begin{frame}
 \frametitle{Penjelasan Tentang STDIO}

@@ -1,7 +1,11 @@
 \documentclass{beamer}
+\usetheme{tokitex}
 \usepackage{graphics}
 \usepackage{multirow}
 \usepackage{tabto}
+\usepackage[english,bahasa]{babel}
+\newtranslation[to=bahasa]{Section}{Bagian}
+\newtranslation[to=bahasa]{Subsection}{Subbagian}
 
 \usepackage{listings}
 \usepackage{color}
@@ -12,8 +16,6 @@
 
 \lstset{frame=tb,
   language=pascal,
-  aboveskip=3mm,
-  belowskip=3mm,
   showstringspaces=false,
   columns=flexible,
   basicstyle={\small\ttfamily},
@@ -24,7 +26,7 @@
   stringstyle=\color{mauve},
   breaklines=true,
   breakatwhitespace=true,
-  tabsize=3
+  tabsize=2
 }
 
 \title{Penunjang Pemrograman Dasar}
@@ -38,7 +40,8 @@
 
 \begin{frame}
 \frametitle{Pendahuluan}
-Dokumen ini berisi tambahan pengetahuan yang dapat menunjang pemrograman dasar kalian.\newline
+Dokumen ini berisi tambahan pengetahuan yang dapat menunjang pemrograman dasar kalian.
+\vfill
 Melalui dokumen ini, kalian akan:
 \begin{itemize}
 	\item Mengenal komentar.
@@ -46,6 +49,9 @@ Melalui dokumen ini, kalian akan:
 	\item Memahami I/O \textit{redirection}.
 \end{itemize}
 \end{frame}
+
+\section{Komentar}
+\frame{\sectionpage}
 
 \begin{frame}
 \frametitle{Mengenal Komentar}
@@ -115,16 +121,21 @@ Melalui dokumen ini, kalian akan:
 \end{itemize}
 \end{frame}
 
+\section{Pesan Kesalahan (Error)}
+\frame{\sectionpage}
+
 \begin{frame}
-\frametitle{Pesan Kesalahan (\textit{Error})}
+\frametitle{Dua Jenis Error}
+\begin{block}{Compilation Error}
+	Kesalahan yang terjadi ketika program dikompilasi.\newline
+	Contoh: terdapat kesalahan dalam pengetikan nama variabel, kurang tanda titik koma (;), atau salah penggunaan tipe data.
+\end{block}
+\begin{block}{Runtime Error}
+	Kesalahan yang terjadi ketika program dieksekusi.\newline
+	Contoh: saat program dieksekusi, tiba-tiba ada operasi pembagian dengan 0.
+\end{block}
+
 \begin{itemize}
-	\item Secara garis besar, kesalahan pada program tergolong menjadi:
-	\begin{itemize}
-		\item \alert{\textit{Compilation Error}}: kesalahan yang terjadi ketika program dikompilasi.\newline
-		Contoh: terdapat kesalahan dalam pengetikan nama variabel, kurang tanda titik koma (;), dan salah penggunaan tipe data.
-		\item \alert{\textit{Runtime Error}}: kesalahan yang terjadi ketika program dieksekusi.\newline
-		Contoh: saat program dieksekusi, tiba-tiba ada operasi pembagian dengan 0.
-	\end{itemize}
 	\item Mampu memahami pesan kesalahan yang disampaikan dapat membantu kita memperbaiki program secara lebih efisien.
 \end{itemize}
 \end{frame}
@@ -186,6 +197,9 @@ Melalui dokumen ini, kalian akan:
 	\item Dari \textit{error code} dan nama \textit{error} yang muncul, kalian bisa mendiagnosa masalah pada program dan memperbaikinya.
 \end{itemize}
 \end{frame}
+
+\section{IO Redirection}
+\frame{\sectionpage}
 
 \begin{frame}[fragile]
 \frametitle{IO Redirection}

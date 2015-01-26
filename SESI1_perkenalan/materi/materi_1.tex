@@ -1,7 +1,13 @@
 \documentclass{beamer}
+\usetheme{tokitex}
+
 \usepackage{graphics}
 \usepackage{multirow}
 \usepackage{tabto}
+
+\usepackage[english,bahasa]{babel}
+\newtranslation[to=bahasa]{Section}{Bagian}
+\newtranslation[to=bahasa]{Subsection}{Subbagian}
 
 \usepackage{listings}
 \usepackage{color}
@@ -48,10 +54,15 @@ Melalui dokumen ini, kalian akan:
 \end{itemize}
 \end{frame}
 
+\section{Pengenalan Pemrograman}
+\frame{\sectionpage}
+
 \begin{frame}
-\frametitle{Program}
+\frametitle{Apa itu Program?}
+\begin{block}{Program}
+	Serangkaian instruksi yang dieksekusi oleh mesin untuk mencapai suatu tujuan tertentu.
+\end{block}
 \begin{itemize}
-	\item Program adalah serangkaian instruksi yang dieksekusi oleh mesin untuk mencapai suatu tujuan tertentu.
 	\item Biasanya, program dapat menerima masukan, memprosesnya, dan menghasilkan suatu keluaran.
 	\item Contoh: program penerjemah bahasa menerima berkas dalam suatu bahasa sebagai masukan, menerjemahkannya, lalu menghasilkan keluaran berupa hasil terjemahannya.
 \end{itemize}
@@ -114,6 +125,9 @@ Melalui dokumen ini, kalian akan:
 	\item Free Pascal memenuhi standar dalam bahasa Pascal.
 \end{itemize}
 \end{frame}
+
+\section{Petunjuk Mempersiapkan Lingkungan Belajar}
+\frame{\sectionpage}
 
 \begin{frame}
 \frametitle{Instalasi Free Pascal (Windows)}

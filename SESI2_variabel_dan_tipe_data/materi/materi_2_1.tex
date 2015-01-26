@@ -1,7 +1,13 @@
 \documentclass{beamer}
+\usetheme{tokitex}
+
 \usepackage{graphics}
 \usepackage{multirow}
 \usepackage{tabto}
+
+\usepackage[english,bahasa]{babel}
+\newtranslation[to=bahasa]{Section}{Bagian}
+\newtranslation[to=bahasa]{Subsection}{Subbagian}
 
 \usepackage{listings}
 \usepackage{color}
@@ -69,10 +75,15 @@ Melalui dokumen ini, kalian akan:
 \end{itemize}
 \end{frame}
 
-\begin{frame}
+\section{Konsep Variabel}
+\frame{\sectionpage}
+
+\begin{frame}[b]
 \frametitle{Pengenalan Variabel}
+\begin{block}{Variabel}
+	 Merupakan istilah yang diadopsi dari dunia matematika, yang memetakan sebuah nama ke suatu nilai.
+\end{block}
 \begin{itemize}
-	\item Variabel merupakan istilah yang diadopsi dari dunia matematika, yang memetakan sebuah nama ke suatu nilai.
 	\item Setiap kali suatu variabel digunakan dalam ekspresi matematika, yang diacu sebenarnya adalah nilai yang dipetakan oleh nama variabel tersebut.
 	\item Contoh: jika kita menyatakan $x=5$, maka hasil dari $3x^2 + x$ adalah $80$.
 	\item Dalam pemrograman, kita bisa membuat variabel, mengisikan nilai pada variabel, dan mengacu nilai yang dipetakan variabel tersebut.
@@ -95,8 +106,10 @@ Melalui dokumen ini, kalian akan:
 
 \begin{frame}
 \frametitle{Assignment}
+\begin{block}{Assignment}
+	Pengisian nilai yang diacu oleh variabel dengan suatu nilai disebut \alert{\textit{assignment}.}
+\end{block}
 \begin{itemize}
-	\item Pengisian nilai yang diacu oleh variabel dengan suatu nilai disebut \alert{\textit{assignment}}.
 	\item Operator untuk \textit{assignment} adalah :=
 	\item Isikan ruas kiri dengan nama suatu variabel, dan ruas kanan dengan nilai yang ingin diisikan ke variabel tersebut.
 	\item Tipe data dari variabel dan nilai yang diacu \alert{harus sesuai}.
@@ -166,6 +179,9 @@ Melalui dokumen ini, kalian akan:
 \end{itemize}
 \end{frame}
 
+\section{Tipe Data Variabel}
+\frame{\sectionpage}
+
 \begin{frame}
 \frametitle{Tipe Data Variabel}
 \begin{itemize}
@@ -183,18 +199,20 @@ Melalui dokumen ini, kalian akan:
 
 \begin{frame}
 \frametitle{Tipe Data: Bilangan Bulat}
-\begin{tabular}{|c|c|c|}
-	\hline Nama  & Jangkauan  & Ukuran \\ 
-	\hline shortint & $-2^7 .. 2^7-1$ & 1 byte \\ 
-	\hline byte & $0 .. 2^8$ & 1 byte\\ 
-	\hline integer & $-2^{15} .. 2^{15}-1$ & 2 byte\\ 
-	\hline word & $0 .. 2^{16}$ & 2 byte\\ 
-	\hline longint & $-2^{31} .. 2^{31}-1$ & 4 byte\\ 
-	\hline longword & $0 .. 2^{32}$ & 4 byte\\ 
-	\hline int64 & $-2^{63} .. 2^{63}-1$ & 8 byte\\ 
-	\hline qword & $0 .. 2^{64}$ & 8 byte\\ 
-	\hline 
-\end{tabular} 
+\begin{table}[ht]
+	\begin{tabular}{|c|c|c|}
+		\hline Nama  & Jangkauan  & Ukuran \\ 
+		\hline shortint & $-2^7 .. 2^7-1$ & 1 byte \\ 
+		\hline byte & $0 .. 2^8$ & 1 byte\\ 
+		\hline integer & $-2^{15} .. 2^{15}-1$ & 2 byte\\ 
+		\hline word & $0 .. 2^{16}$ & 2 byte\\ 
+		\hline longint & $-2^{31} .. 2^{31}-1$ & 4 byte\\ 
+		\hline longword & $0 .. 2^{32}$ & 4 byte\\ 
+		\hline int64 & $-2^{63} .. 2^{63}-1$ & 8 byte\\ 
+		\hline qword & $0 .. 2^{64}$ & 8 byte\\ 
+		\hline 
+	\end{tabular}
+\end{table} 
 \begin{itemize}
 	\item Biasa disebut dengan \alert{\textit{integer}} saja.
 	\item Pascal menawarkan beberapa tipe data bilangan bulat yang variasinya terletak pada jangkauan nilai yang bisa direpresentasikan dan ukurannya pada memori.
@@ -204,12 +222,14 @@ Melalui dokumen ini, kalian akan:
 
 \begin{frame}
 \frametitle{Tipe Data: Bilangan Riil}
-\begin{tabular}{|c|c|c|c|}
-	\hline Nama  & Jangkauan (magnitudo) & Akurasi & Ukuran \\ 
-	\hline single & $1.5\times10^{-45} .. 3.4\times10^{38}$ & 7-8 digit & 4 byte\\ 
-	\hline double & $5.0\times10^{-324} .. 1.7\times10^{308}$ & 15-16 digit & 8 byte \\ 
-	\hline 
-\end{tabular} 
+\begin{table}[ht]
+	\begin{tabular}{|c|c|c|c|}
+		\hline Nama  & Jangkauan (magnitudo) & Akurasi & Ukuran \\ 
+		\hline single & $1.5\times10^{-45} .. 3.4\times10^{38}$ & 7-8 digit & 4 byte\\ 
+		\hline double & $5.0\times10^{-324} .. 1.7\times10^{308}$ & 15-16 digit & 8 byte \\ 
+		\hline 
+	\end{tabular}
+\end{table} 
 \begin{itemize}
 	\item Biasa disebut dengan \alert{\textit{floating point}}.
 	\item Tipe data \textit{floating point} bisa merepresentasikan negatif atau positif dari magnitudonya.
