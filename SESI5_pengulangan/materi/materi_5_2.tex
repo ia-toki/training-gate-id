@@ -1,7 +1,11 @@
 \documentclass{beamer}
+\usetheme{tokitex}
 \usepackage{graphics}
 \usepackage{multirow}
 \usepackage{tabto}
+\usepackage[english,bahasa]{babel}
+\newtranslation[to=bahasa]{Section}{Bagian}
+\newtranslation[to=bahasa]{Subsection}{Subbagian}
 
 \usepackage{listings}
 \usepackage{color}
@@ -11,9 +15,9 @@
 \definecolor{mauve}{rgb}{0.58,0,0.82}
 
 \lstset{frame=tb,
+  aboveskip=0mm,
+  belowskip=0mm,
   language=pascal,
-  aboveskip=3mm,
-  belowskip=3mm,
   showstringspaces=false,
   columns=flexible,
   basicstyle={\small\ttfamily},
@@ -24,7 +28,7 @@
   stringstyle=\color{mauve},
   breaklines=true,
   breakatwhitespace=true,
-  tabsize=3
+  tabsize=2
 }
 
 \title{Pengulangan Lanjut}
@@ -404,7 +408,7 @@ end.
 	   found : boolean;
 	begin
 	   readln(N);
-	
+
 	   found := FALSE;
 	   i := 2;
 	   while ((i < N) and not found) do begin
@@ -413,7 +417,12 @@ end.
 	      end;
 	      i := i + 1;
 	   end;
-	
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Solusi 3: prima1\_3.pas (lanj.)}
+\begin{lstlisting}
 	   if (not found) then begin
 	      writeln(N, ' adalah bilangan prima');
 	   end else begin
