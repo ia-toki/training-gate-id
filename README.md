@@ -18,3 +18,12 @@ https://www.dropbox.com/s/wygj31a6aw7wi19/materi_5_1.pdf?dl=0
 
 Materi 5-2: Pengulangan Lanjut
 https://www.dropbox.com/s/f7xl5vusuad7cs3/materi_5_2.pdf?dl=0
+
+Materi 6: Pengenalan Array
+https://www.dropbox.com/s/ah2ojqia8gkmrib/materi_6.pdf?dl=0
+
+Materi 7: 
+
+
+Materi 8: Pendalaman String
+https://www.dropbox.com/s/i16me26qwfdsecm/materi_8.pdf?dl=0
