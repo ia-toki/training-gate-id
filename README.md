@@ -22,8 +22,8 @@ https://www.dropbox.com/s/f7xl5vusuad7cs3/materi_5_2.pdf?dl=0
 Materi 6: Pengenalan Array
 https://www.dropbox.com/s/ah2ojqia8gkmrib/materi_6.pdf?dl=0
 
-Materi 7: 
-
+Materi 7: Subprogram: Fungsi dan Prosedur
+https://www.dropbox.com/s/xd0sc7gso3b0vct/materi_7.pdf?dl=0
 
 Materi 8: Pendalaman String
 https://www.dropbox.com/s/i16me26qwfdsecm/materi_8.pdf?dl=0
