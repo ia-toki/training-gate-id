@@ -1,0 +1,113 @@
+\documentclass{beamer}
+\usetheme{tokitex}
+
+\usepackage{pgf}
+\usepackage{graphics}
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage{tabto}
+\usepackage[english,bahasa]{babel}
+\newtranslation[to=bahasa]{Section}{Bagian}
+\newtranslation[to=bahasa]{Subsection}{Subbagian}
+
+\usepackage{listings}
+\usepackage{color}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+  language=pascal,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=2
+}
+
+\title{Pengurutan Dasar}
+\author{Tim Olimpiade Komputer Indonesia}
+
+\begin{document}
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+\begin{frame}
+\frametitle{Pendahuluan}
+Melalui dokumen ini, kalian akan:
+\begin{itemize}
+	\item Mempelajari konsep algoritma sederhana.
+	\item Memahami berbagai algoritma pengurutan sederhana.
+	\item Memahami keuntungan dan kerugian dari masing-masing algoritma.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Pendahuluan (lanj.)}
+\begin{itemize}
+	\item Pengurutan sering digunakan dalam pemrograman untuk membantu membuat data lebih mudah diolah.
+	\item Terdapat berbagai macam cara untuk melakukan pengurutan, masing-masing dengan keuntungan dan kekurangan masing-masing.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Soal: Bebek Berbaris}
+Deskripsi:
+\begin{itemize}
+	\item Sebelum masuk ke dalam kandang, para bebek akan berbaris terlebih dahulu.
+	\item Seiring dengan berjalannya waktu, bebek-bebek tumbuh tinggi. Pertumbuhan ini berbeda-beda; ada bebek yang lebih tinggi dari bebek lainnya.
+	\item Terdapat $N$ ekor bebek, bebek ke-$i$ memiliki tinggi sebesar $h_i$.
+	\item Perbedaan tinggi ini menyebabkan barisan terlihat kurang rapi, sehingga Pak Dengklek ingin agar bebek-bebek berbaris dari yang paling pendek ke paling tinggi.
+	\item Bantulah para bebek untuk mengurutkan barisan mereka!
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Soal: Bebek Berbaris (lanj.)}
+Format masukan:
+\begin{itemize}
+	\item Baris pertama berisi sebuah bilangan bulat, yaitu $N$.
+	\item Baris kedua berisi $N$ bilangan bulat. Bilangan ke-$i$ menyatakan $h_i$.
+\end{itemize}
+Format keluaran:
+\begin{itemize}
+	\item Keluarkan ketinggian bebek dalam keadaan terurut menaik, seekor bebek pada setiap barisnya.
+\end{itemize}
+Batasan:
+\begin{itemize}
+	\item $1 \le N \le 1.000$
+	\item $1 \le h_i \le 100.000$, untuk $1 \le i \le N$
+\end{itemize}
+\end{frame}
+
+\section{Bubble Sort}
+\frame{\sectionframe}
+
+\begin{frame}
+\frametitle{Soal: Bebek Berbaris}
+Deskripsi:
+\begin{itemize}
+	\item Sebelum masuk ke dalam kandang, para bebek akan berbaris terlebih dahulu.
+	\item Seiring dengan berjalannya waktu, bebek-bebek tumbuh tinggi. Pertumbuhan ini berbeda-beda; ada bebek yang lebih tinggi dari bebek lainnya.
+	\item Terdapat $N$ ekor bebek, bebek ke-$i$ memiliki tinggi sebesar $h_i$.
+	\item Perbedaan tinggi ini menyebabkan barisan terlihat kurang rapi, sehingga Pak Dengklek ingin agar bebek-bebek berbaris dari yang paling pendek ke paling tinggi.
+	\item Bantulah para bebek untuk mengurutkan barisan mereka!
+\end{itemize}
+\end{frame}
+
+\section{Insertion Sort}
+\frame{\sectionframe}
+
+\section{Selection Sort}
+\frame{\sectionframe}
+
+\end{document}

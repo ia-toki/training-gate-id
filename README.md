@@ -27,3 +27,6 @@ https://www.dropbox.com/s/xd0sc7gso3b0vct/materi_7.pdf?dl=0
 
 Materi 8: Pendalaman String
 https://www.dropbox.com/s/i16me26qwfdsecm/materi_8.pdf?dl=0
+
+Materi 9-1: Pencarian
+https://www.dropbox.com/s/45i42e51jqsn1yh/materi_9_1.pdf?dl=0

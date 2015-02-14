@@ -352,9 +352,9 @@ end.
 	\item Struktur \textbf{array} bisa juga membentuk sebuah tabel dua dimensi.
 	\item Perhatikan contoh deklarasi berikut:
 	\begin{lstlisting}
-	matriks: array[1..3, 1..5] of longint;
+	matriks: array[1..2, 1..5] of longint;
 	\end{lstlisting}
-	\item Kini kita mendapatkan variabel bernama $matriks[a][b]$, yang terdefinisi untuk $1 \le a \le 3$ dan $1 \le b \le 5$.
+	\item Kini kita mendapatkan variabel bernama $matriks[a][b]$, yang terdefinisi untuk $1 \le a \le 2$ dan $1 \le b \le 5$.
 	\item Akses suatu elemen dapat dilakukan dengan dua cara, yaitu matriks[a][b] atau matriks[a,b].
 	\item Tabel berikut menunjukkan struktur dari \textbf{array} matriks:
 	\begin{table}[h]
@@ -362,11 +362,10 @@ end.
 			  & 1 & 2 & 3 & 4 & 5\\ 
 			\hline 1 & & & & & \\ 
 			\hline 2 & & & & & \\ 
-			\hline 3 & & & & & \\ 			
 			\hline
 		\end{tabular}
 	\end{table}  
-	\item Aturan perhitungan memori tetap sama; banyaknya elemen dikali memori per elemennya.\newline Pada kasus ini: $3 \times 5 \times 4$ byte $= 60$ byte.
+	\item Aturan perhitungan memori tetap sama; banyaknya elemen dikali memori per elemennya.\newline Pada kasus ini: $2 \times 5 \times 4$ byte $= 40$ byte.
 \end{itemize}
 \end{frame}
 
