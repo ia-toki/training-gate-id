@@ -58,7 +58,7 @@ Melalui dokumen ini, kalian akan:
 	\item Sebagai gambaran, perhatikan contoh soal berikut:
 	\begin{itemize}
 		\item Pak Dengklek menancapkan tiga buah tiang pancang di halaman rumahnya untuk membangun sebuah kandang bebek.
-		\item Setiap tiang pancang bisa dianggap terletak di suatu koordinat Cartesian, yaitu di $(A_x, A_y)$, $(B_x, B_y)$, dan $(C_x, C_y)$.
+		\item Setiap tiang pancang bisa dianggap terletak di suatu sistem koordinat Kartesius, yaitu di $(A_x, A_y)$, $(B_x, B_y)$, dan $(C_x, C_y)$.
 		\item Pagar akan dibentangkan menurut garis lurus antar setiap tiang pancang.
 		\item Sekarang Pak Dengklek ingin tahu, berapa luas kandang bebeknya!
 	\end{itemize}
@@ -83,9 +83,10 @@ Bagaimana implementasinya pada program?
 	\item Kita perlu menghitung jarak antar titik terlebih dahulu, baru bisa menghitung luasnya.
 	\item Pascal tidak menyediakan fungsi dasar untuk menghitung jarak antar dua titik, sehingga kita harus menuliskannya:
 	\begin{lstlisting}
-	a := sqrt(sqr(A.x - B.x) + sqr(A.y - B.y));
-	b := sqrt(sqr(A.x - C.x) + sqr(A.y - C.y));
-	c := sqrt(sqr(B.x - C.x) + sqr(B.y - C.y));
+	(* tA, tB, tC merupakan ketiga titik yang diberikan *)
+	a := sqrt(sqr(tA.x - tB.x) + sqr(tA.y - tB.y));
+	b := sqrt(sqr(tA.x - tC.x) + sqr(tA.y - tC.y));
+	c := sqrt(sqr(tB.x - tC.x) + sqr(tB.y - tC.y));
 	\end{lstlisting}
 	\item Perhatikan bahwa hal yang sama, yaitu menghitung jarak titik, dituliskan secara berulang-ulang.
 	\item Bagaimana jika pada salah satunya terdapat kesalahan pengetikan? Atau suatu ketika rumusnya perlu diubah? Sungguh merepotkan!
@@ -116,16 +117,6 @@ if (temp > 1) then
 
 \section{Konsep Subprogram}
 \frame{\sectionpage}
-
-\begin{frame}
-\frametitle{Kilas Balik}
-\begin{itemize}
-	\item Sejauh ini, sebenarnya kita sudah beberapa kali menggunakan subprogram.
-	\item Subprogram dapat ditulis sebagai \alert{fungsi} atau \alert{prosedur}.
-	\item Contoh fungsi: abs, sqr, atau sqrt.
-	\item Tanpa fungsi tersebut, kita harus menuliskan sendiri rutinitas untuk mengambil nilai mutlak, kuadrat, dan akar kuadrat. Bertapa melelahkan!
-\end{itemize}
-\end{frame}
 
 \begin{frame}
 \frametitle{Konsep Subprogram}
@@ -211,7 +202,7 @@ begin
 end;
 \end{lstlisting}
 \begin{itemize}
-	\item Blok \textbf{var} dan deklarasi variabel boleh dihilangkan.
+	\item Blok \textbf{var} dan deklarasi variabel boleh dihilangkan jika tidak ada variabel perlu dideklarasikan.
 	\item Perhatikan bahwa \textbf{end} diakhiri dengan titik koma (;), bukan titik (.) seperti pada blok program utama.
 \end{itemize}
 \end{frame}
@@ -306,6 +297,13 @@ end;
 
 \begin{frame}[fragile]
 \frametitle{Scope Variabel}
+\begin{block}{Apa itu \textbf{scope variabel}?}
+Bisa dianggap sebagai "masa hidup" suatu variabel; kapan dia terdefinisi dan kapan tidak.
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Scope Variabel (lanj.)}
 \begin{itemize}
 	\item Perhatikan kembali prosedur \textbf{gambar} berikut:
 	\begin{lstlisting}
@@ -320,7 +318,7 @@ end;
 	end;
 	\end{lstlisting}
 	\item Variabel \textbf{i} dan \textbf{x} pada prosedur tersebut hanya terdefinisi di antara blok \textbf{begin} dan \textbf{end} prosedur \textbf{gambar} saja.
-	\item Artinya jika pada program utama terdapat pula variabel bernama \textbf{x} atau \textbf{i}, maka variabel tersebut mengacu pada \alert{sesuatu yang lain}.
+	\item Artinya jika pada program utama terdapat pula variabel bernama \textbf{x} atau \textbf{i}, maka variabel tersebut \alert{bukan} mengacu pada \textbf{x} dan \textbf{i} pada prosedur \textbf{gambar}.
 \end{itemize}
 \end{frame}
 
@@ -422,12 +420,15 @@ end;
 \begin{frame}
 \frametitle{Fungsi (lanj.)}
 \begin{itemize}
-	\item Melakukan \textbf{assignment} pada nama fungsi tidak harus dilakukan pad bagian akhir.
+	\item Melakukan \textbf{assignment} pada nama fungsi tidak harus dilakukan pada bagian akhir.
 	\item Yang pasti, Pascal akan mengembalikan nilai yang terakhir di-\textbf{assign} ke dalam nama fungsi tersebut.
 	\item Seperti pada prosedur, bagian deklarasi variabel juga bisa dihilangkan jika tidak ada variabel lokal yang diperlukan.
 	\item Cara penulisan parameter juga sama dengan prosedur.
 \end{itemize}
 \end{frame}
+
+\section{Passing Parameter}
+\frame{\sectionpage}
 
 \begin{frame}
 \frametitle{Passing Parameter}
@@ -470,8 +471,8 @@ end;
 \begin{frame}[fragile]
 \frametitle{Passing Parameter By Value (lanj.)}
 \begin{itemize}
-	\item Kira-kira jika dijalankan, apa keluaran dari program tersebut? Apakah "x=2 y=1"?
-	\item Jawabannya adalah \alert{tidak}, yang tercetak adalah "x=1 y=2".
+	\item Jika dijalankan, apa keluaran dari program tersebut? Apakah "x=2 y=1"?
+	\item Jawabannya \alert{tidak}, yang tercetak adalah "x=1 y=2".
 	\item Hal ini disebabkan karena ketika prosedur \textbf{tukar} dipanggil, \alert{nilai} dari $x$ dan $y$ dikirim ke parameter $a$ dan $b$ pada prosedur \textbf{tukar}.
 	\item Jadi $a$ dan $b$ hanya melakukan \textbf{assignment} nilai dari $x$ dan $y$. Apapun yang terjadi pada $a$ dan $b$ selanjutnya tidak mempengaruhi $x$ dan $y$ karena mereka \alert{tidak berhubungan}.
 \end{itemize}
@@ -593,7 +594,7 @@ Berikut ini adalah prosedur untuk menghitung $a^b$, hasil ditampung pada variabe
 	y := 3 * y;
 	\end{lstlisting}
 	
-	\item Untuk kasus ini, penggunaan fungsi lebih tepat.
+	\item Untuk kasus ini, \alert{penggunaan fungsi lebih tepat}.
 \end{itemize}
 \end{frame}
 
@@ -602,7 +603,7 @@ Berikut ini adalah prosedur untuk menghitung $a^b$, hasil ditampung pada variabe
 \begin{itemize}
 	\item Sekarang coba ingat kembali prosedur \textbf{tukar} yang kita bahas sebelumnya.
 	\item Kurang masuk akal apabila kita menggunakan fungsi untuk melakukan penukaran.
-	\item Sehingga untuk kasus penukaran isi variabel, lebih tepat digunakan prosedur.
+	\item Sehingga untuk kasus penukaran isi variabel, \alert{lebih tepat digunakan prosedur}.
 \end{itemize}
 \end{frame}
 

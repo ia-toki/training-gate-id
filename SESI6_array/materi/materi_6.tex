@@ -125,7 +125,12 @@ Perhatikan contoh berikut!
 	\begin{lstlisting}
 	<nama>: array[<nilai awal>..<nilai akhir>] of <tipe>;
 	\end{lstlisting}
-	\item Dengan $<$nama$>$ adalah nama dari \textbf{array} (aturan penamaan sama seperti variabel biasanya), $<$nilai awal$>$ dan $<$nilai akhir$>$ adalah rentang indeks \textbf{array} terdefinisi, dan $<$tipe$>$ adalah tipe data dari \textbf{array}.
+	\item Dengan:
+	\begin{itemize}
+		\item $<$nama$>$ adalah nama dari \textbf{array} (aturan penamaan sama seperti variabel biasanya)
+		\item $<$nilai awal$>$ dan $<$nilai akhir$>$ adalah rentang indeks \textbf{array} yang terdefinisi (boleh saja negatif).
+		\item $<$tipe$>$ adalah tipe data dari \textbf{array}.
+	\end{itemize}
 	\item Tentu saja, tipe data di sini bisa berupa \textbf{longint}, \textbf{double}, \textbf{string}, \textbf{boolean} atau suatu \textbf{record}.
 \end{itemize}
 \end{frame}
@@ -136,12 +141,11 @@ Berikut ini adalah contoh deklarasi \textbf{array} pada Pascal:
 \begin{lstlisting}
 var
   tabel: array[0..100] of boolean;
-  bukuTelepon: array[1..1000] of string;
   frekuensi: array[-1000..1000] of longint;
 \end{lstlisting}
 \begin{itemize}
 	\item Untuk contoh \textbf{array} \textbf{tabel}, hanya tabel[0], tabel[1], tabel[2], ..., tabel[100] yang terdefinisi.
-	\item Mengakses nilai tabel[0], tabel[-2], atau tabel[500] akan menyebabkan \textbf{runtime error}.
+	\item Mengakses nilai tabel[-1], tabel[-2], atau tabel[500] akan menyebabkan \textbf{runtime error}. Sementara mengakses nilai frekuensi[-1] atau frekuensi[-100] sama sekali tidak bermasalah.
 	\item Untuk itu, tentukan rentang indeks yang akan kalian gunakan saat deklarasi dengan tepat (sesuai kebutuhan).
 \end{itemize}
 \end{frame}
@@ -511,8 +515,9 @@ Lakukan penjumlahan, lalu cetak hasilnya:
    for i := 1 to N do begin
       for j := 1 to N do begin
          write(hasil[i][j]);
-         if (j < N) then 
+         if (j < N) then begin
             write(' ');
+         end
       end;
       writeln;
    end;

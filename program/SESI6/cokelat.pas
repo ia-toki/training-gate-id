@@ -30,8 +30,9 @@ begin
    for i := 1 to N do begin
       for j := 1 to N do begin
          write(hasil[i][j]);
-         if (j < N) then 
+         if (j < N) then begin
             write(' ');
+         end
       end;
       writeln;
    end;

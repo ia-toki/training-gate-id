@@ -124,11 +124,12 @@ Melalui dokumen ini, kalian akan:
 \begin{frame}
 \frametitle{Penjelasan Program: for.pas}
 \begin{itemize}
-	\item Pada contoh tersebut, \textbf{i} merupakan variabel pencacah yang bertipe longint.
+	\item Pada contoh tersebut, \textbf{i} merupakan variabel pencacah yang bertipe \textbf{longint}.
 	\item Pertama kali dijalankan, \textbf{i} akan bernilai 1. Kemudian tulisan akan dicetak saat \textbf{i} = 1.
 	\item Setelah itu, \textbf{end} dari struktur \textbf{for} ditemukan. Pascal akan menambahkan \textbf{i} dengan 1, lalu kembali ke awal dari \textbf{for}. Jika \textbf{i} masih belum lebih dari \textbf{N}, maka perintah di dalamnya akan kembali dilaksanakan.
 	\item Dengan demikian, tercetaklah tulisan saat \textbf{i} = 2, 3, dan seterusnya hingga \textbf{N}.
-	\item Jika \textbf{i} sudah lebih dari \textbf{N}, pengulangan akan berhenti dan Pascal akan menjalankan perintah selanjutnya. Paca contoh ini, mencetak tulisan "akhir dari program".
+	\item Jika \textbf{i} sudah lebih dari \textbf{N}, pengulangan akan berhenti dan Pascal akan menjalankan perintah selanjutnya. Pada contoh ini, mencetak tulisan "akhir dari program".
+	\item Dalam kasus ini, variabel \textbf{i} mencacah 1, 2, 3, ..., \textbf{N}.
 \end{itemize}
 \end{frame}
 
@@ -173,7 +174,7 @@ Melalui dokumen ini, kalian akan:
 \frametitle{Perulangan: for (lanj.)}
 Penting untuk diketahui:
 \begin{itemize}
-	\item Tipe data dari pencacah, nilai awal, dan nilai akhir harus sama dan \alert{ordinal}.
+	\item Tipe data dari pencacah, nilai awal, dan nilai akhir harus sama dan bersifat \alert{ordinal}.
 	\item Karena tipe data pencacah yang penting merupakan tipe data ordinal, artinya pencacah boleh saja berupa \textbf{char}.
 	\item Nilai pencacah tidak boleh diubah saat pengulangan dikerjakan.
 	\item Pascal tidak bisa melayani \textbf{for} yang pencacahnya "bertambah dua tingkat" pada setiap pengulangan.
@@ -260,7 +261,7 @@ Penting untuk diketahui:
 	\item Perhatikan bahwa perintah "i := i + 1" diperlukan, supaya suatu saat nanti $<$kondisi$>$ pada while akan tidak dipenuhi.
 	\item Sekarang coba hapus perintah "i := i + 1" pada while.pas, dan jalankan kembali programnya.
 	\item Apa yang terjadi? Program akan terjebak dalam \alert{\textit{infinite loop}}, atau \alert{pengulangan yang tidak akan pernah berhenti}! Gunakan tombol CTRL+C pada \textit{keyboard} untuk memberhentikan program secara paksa.
-	\item Pastikan suatu ketika kondisi pada \textbf{while} tidak dipenuhi, atau program tidak akan pernah berhenti $:)$
+	\item Pastikan suatu ketika "kondisi pada \textbf{while}" tidak dipenuhi, atau program tidak akan pernah berhenti $:)$
 \end{itemize}
 \end{frame}
 

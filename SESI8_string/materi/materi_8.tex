@@ -185,10 +185,23 @@ s := '123';
 nilai := 0;
 e := 0;
 
+val(s, nilai, e);
 writeln(nilai + 5); (* mencetak 128 *)
 \end{lstlisting}
 
 \textbf{Error} bisa terjadi misalnya ketika s bernilai '1a23';
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Pengolahan String:\newline val (lanj.)}
+Parameter e sebenarnya tidak harus ada, sehingga bisa saja ditulis:
+\begin{lstlisting}
+s := '123';
+nilai := 0;
+
+val(s, nilai);
+writeln(nilai + 5); (* mencetak 128 *)
+\end{lstlisting}
 \end{frame}
 
 \begin{frame}[fragile]

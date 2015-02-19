@@ -29,7 +29,7 @@
   tabsize=2
 }
 
-\title{Ekspresi dan Input/Output}
+\title{Ekspresi dan \textit{Masukan/Keluaran}}
 \author{Tim Olimpiade Komputer Indonesia}
 
 \begin{document}
@@ -43,7 +43,7 @@
 Melalui dokumen ini, kalian akan:
 \begin{itemize}
 	\item Mengenal ekspresi.
-	\item Mengenal input dan output.
+	\item Mengenal masukan dan keluaran untuk program.
 \end{itemize}
 \end{frame}
 
@@ -71,7 +71,7 @@ Melalui dokumen ini, kalian akan:
 	\item Operand menyatakan nilai yang akan dioperasikan, misalnya suatu bilangan atau bisa jadi suatu ekspresi lagi.
 	\item Operator menyatakan bagaimana operand akan dioperasikan, apakah ditambah, dikali, atau dibagi.
 	\item Pada ekspresi "1 + 2", 1 dan 2 merupakan operand, dan + merupakan operator.
-	\item Pada ekspresi "5 - (1 + 2)", 1 dan (1 + 2) merupakan operand, dan - merupakan operatornya. Lebih jauh lagi, (1 + 2) sendiri terdiri dari operand 1 dan 2, serta operator +.
+	\item Pada ekspresi "5 - (1 + 2)", 5 dan (1 + 2) merupakan operand, dan - merupakan operatornya. Lebih jauh lagi, (1 + 2) sendiri terdiri dari operand 1 dan 2, serta operator +.
 \end{itemize}
 \end{frame}
 
@@ -112,7 +112,7 @@ Melalui dokumen ini, kalian akan:
 \begin{frame}[fragile]
 \frametitle{Contoh Program: kuadrat.pas}
 \begin{itemize}
-	\item Setelah memahami tentang operasi numerik, coba perhatikan program berikut dan cari tahu apa outputnya!
+	\item Setelah memahami tentang operasi numerik, coba perhatikan program berikut dan cari tahu apa keluarannya!
 	\begin{lstlisting}
 		var
 		   a, b, c, x, hasil : longint;
@@ -130,9 +130,9 @@ Melalui dokumen ini, kalian akan:
 \end{frame}
 
 \begin{frame}
-\frametitle{Presendensi Pengerjaan}
+\frametitle{Prioritas Pengerjaan}
 \begin{itemize}
-	\item Seperti pada ilmu matematika, ada juga presendensi pengerjaan pada ekspresi numerik. Tabel berikut menunjukkan prioritasnya:
+	\item Seperti pada ilmu matematika, ada juga prioritas pengerjaan pada ekspresi numerik. Tabel berikut menunjukkan prioritasnya:
 	
 	\begin{tabular}{|c|c|}
 	\hline Prioritas & Operasi \\ 
@@ -167,12 +167,32 @@ Melalui dokumen ini, kalian akan:
 \frametitle{Fungsi Dasar Numerik}
 Berikut fungsi dasar yang disediakan Pascal untuk membantu perhitungan:
 \begin{itemize}
-	\item \textbf{trunc}: mengambil bagian depan penanda desimal dari suatu bilangan pecahan. Contoh: \textbf{trunc(3.14)} akan menghasilkan 3.00.
+	\item \textbf{trunc}: mengambil bagian depan penanda desimal dari suatu bilangan pecahan. Contoh: \textbf{trunc(3.14)} akan menghasilkan 3 (sebuah \textit{integer}).
 	\item \textbf{frac}: mengambil bagian belakang penanda desimal dari suatu bilangan pecahan. Contoh: \textbf{frac(3.14)} akan menghasilkan 0.14.
-	\item \textbf{round}: membulatkan suatu bilangan pecahan bilangan bulat terdekat (hasilnya adalah bilangan bertipe \textit{integer}). Contoh: \textbf{round(1.2)} akan menghasilkan 1, sementara \textbf{round(1.87)} akan menghasilkan 2.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Fungsi Dasar Numerik (lanj.)}
+\begin{itemize}
+	\item \textbf{round}: membulatkan suatu bilangan pecahan bilangan bulat terdekat (hasilnya adalah bilangan bertipe \textit{integer}). Contoh: \textbf{round(1.2)} akan menghasilkan 1, sementara \textbf{round(1.87)} akan menghasilkan 2. 
 	\item \textbf{sqr}: mengkuadratkan suatu bilangan. Contoh: \textbf{sqr(3)} akan menghasilkan 9.
 	\item \textbf{sqrt}: mendapatkan akar kuadrat dari suatu bilangan. Contoh: \textbf{sqrt(9)} akan menghasilkan 3.00, dan \textbf{sqrt(3)} akan menghasilkan 1.73205....
 \end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Fungsi Dasar Numerik (lanj.)}
+\begin{block}{Catatan khusus untuk fungsi \textbf{round}}
+Jika angka yang diberikan memiliki pecahan tepat setengah, pembulatan ditentukan dari angka sebelum penanda desimal. Jika ganjil, dilakukan pembulatan ke atas. Jika genap, dilakukan pembulatan ke bawah. 
+
+Contoh:
+\begin{itemize}
+\item \textbf{round(1.5)} = 2
+\item \textbf{round(2.5)} = 2
+\item \textbf{round(3.5)} = 4
+\end{itemize}
+\end{block}
 \end{frame}
 
 \begin{frame}[fragile]
@@ -207,7 +227,8 @@ Berikut fungsi dasar yang disediakan Pascal untuk membantu perhitungan:
 		\item lebih dari atau sama dengan ($>=$)
 		\item tidak sama dengan ($<>$)
 	\end{itemize}
-	\item Operasi relasional harus melibatkan dua operand (ingat bahwa operand bisa jadi berupa ekspresi lagi), dan menghasilkan sebuah nilai kebenaran. \item Pada Pascal, nilai kebenaran dinyatakan dengan tipe data \alert{\textbf{boolean}}.
+	\item Operasi relasional harus melibatkan dua operand (ingat bahwa operand bisa jadi berupa ekspresi lagi), dan menghasilkan sebuah nilai kebenaran. 
+	\item Pada Pascal, nilai kebenaran dinyatakan dengan tipe data \alert{\textbf{boolean}}.
 \end{itemize}
 \end{frame}
 
@@ -230,13 +251,31 @@ Berikut fungsi dasar yang disediakan Pascal untuk membantu perhitungan:
 \end{frame}
 
 \begin{frame}
-\frametitle{Operasi Relasional}
+\frametitle{Operasi Relasional (lanj.)}
 \begin{itemize}
 	\item Operasi relasional dapat dilakukan pada setiap tipe data ordinal, sehingga bisa juga diterapkan pada \textbf{char}.
-	\item Tentu saja, ekspresi "'a' $<$ 'b'" akan bernilai \textbf{TRUE}, sementara "'a' $>$ 'z'" bernilai \textbf{FALSE}.
-	\item Lebih jauh lagi, \textbf{string} sebenarnya merupakan untaian \textbf{char}. Operasi relasional juga bisa diterapkan pada \textbf{string}, dan Pascal akan membandingkan karakter demi karakter dari kiri ke kanan. 
-	\item Hasilnya, keputusan apakah suatu \textbf{string} "lebih kecil dari" \textbf{string} lainnya ditentukan seperti urutan pada kamus.
-	\item Misalnya "'aa' $<$ 'ab'" akan bernilai \textbf{TRUE}, dan "'aa' $<$ 'a'" bernilai \textbf{FALSE}. 
+	\item Perbandingan karakter dilakukan dengan membandingkan kode ASCII mereka, sehingga menjadi seperti membandingkan angka biasa.
+	\item Contoh:
+	\begin{itemize}
+		\item 'a' $<$ 'b' akan bernilai \textbf{TRUE}
+		\item 'a' $>$ 'z' bernilai \textbf{FALSE}
+		\item 'A' $<$ 'a' akan bernilai \textbf{TRUE}
+	\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Operasi Relasional (string)}
+\begin{itemize}
+	\item Lebih jauh lagi, \textbf{string} sebenarnya merupakan untaian \textbf{char}. Operasi relasional juga bisa diterapkan pada \textbf{string} (meskipun \textbf{string} bukan tipe data ordinal).
+	\item Pascal akan membandingkan karakter demi karakter dari kiri ke kanan. Begitu ditemukan ada perbedaan karakter, lebih kecil atau tidaknya suatu string ditentukan oleh karakter tersebut.
+	\begin{itemize}
+		\item Contohnya, 'aa' $<$ 'ab' akan bernilai \textbf{TRUE}.
+	\end{itemize}
+	\item Jika sampai salah satu string habis dan tidak ditemukan ada perbedaan karakter, maka stirng yang lebih pendek dianggap lebih kecil.
+	\begin{itemize}
+		\item Contohnya 'a' $<$ 'aa' bernilai \textbf{TRUE}. 
+	\end{itemize}
 \end{itemize}
 \end{frame}
 
@@ -289,7 +328,7 @@ Berikut fungsi dasar yang disediakan Pascal untuk membantu perhitungan:
 	\hline FALSE & FALSE & FALSE & FALSE & FALSE \\ 
 	\hline 
 	\end{tabular} 
-	\item Presendensi pengerjaan dari operator \textbf{boolean} secara berurutan adalah: \textbf{not}, \textbf{and}, \textbf{or}, \textbf{xor}.
+	\item Prioritas pengerjaan dari operator \textbf{boolean} secara berurutan adalah: \textbf{not}, \textbf{and}, \textbf{or}, \textbf{xor}.
 	\item Tanda kurung juga bisa digunakan untuk menentukan operasi mana yang perlu dijalankan terlebih dahulu. Bahkan sangat disarankan untuk selalu menggunakan tanda kurung untuk kejelasan.
 \end{itemize}
 \end{frame}
@@ -328,25 +367,25 @@ Berikut fungsi dasar yang disediakan Pascal untuk membantu perhitungan:
 		    writeln('ax^2 + bx + c = ', hasil);
 		end.
 	\end{lstlisting}
-	\item Jika kita ingin mengganti nilai \textbf{x}, kode harus diganti, dikompilasi ulang, baru dijalankan kembali. Bertapa melelahkan!
-	\item Untuk menghasilkan output yang bervariasi, perlu ada \newline suatu input dari luar program.
+	\item Jika kita ingin mengganti nilai \textbf{x}, kode harus diganti, dikompilasi ulang, baru dijalankan kembali. Betapa melelahkan!
+	\item Untuk menghasilkan keluaran yang bervariasi, perlu ada \newline suatu masukan dari luar program.
 \end{itemize}
 \end{frame}
 
-\section{Input dan Output}
+\section{Masukan dan Keluaran}
 \frame{\sectionpage}
 
 \begin{frame}
-\frametitle{Membaca Input}
+\frametitle{Membaca Masukan}
 \begin{itemize}	
-	\item Diperlukan mekanisme untuk melakukan pembacaan input dari luar program.
-	\item Input bagi suatu program bisa berasal dari berbagai sumber, misalnya \textit{standart input} atau suatu \textit{file}.
-	\item Pada Pascal, dikenal dua fungsi yang umum untuk membaca input: \alert{\textbf{read}} dan \alert{\textbf{readln}}.
+	\item Diperlukan mekanisme untuk melakukan pembacaan masukan dari luar program.
+	\item Masukan bagi suatu program bisa berasal dari berbagai sumber, misalnya \textit{standard input} atau suatu \textit{file}.
+	\item Pada Pascal, dikenal dua fungsi yang umum untuk membaca masukan: \alert{\textbf{read}} dan \alert{\textbf{readln}}.
 \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{Membaca Input: readln}
+\frametitle{Membaca Masukan: readln}
 \begin{itemize}
 	\item Lakukan modifikasi pada bagian \textbf{x := 2} menjadi \textbf{readln(x)}:
 	\begin{lstlisting}
@@ -363,12 +402,12 @@ Berikut fungsi dasar yang disediakan Pascal untuk membantu perhitungan:
 		end.
 	\end{lstlisting}
 	\item Kompilasi, dan jalankan program. Kemudian ketikkan angka 2, dan tekan enter.
-	\item Selamat! Kalian berhasil membaca input!
+	\item Selamat! Kalian berhasil membaca masukan!
 \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{Membaca Input: read}
+\frametitle{Membaca Masukan: read}
 \begin{itemize}
 	\item Sekarang ganti \textbf{readln(x)} menjadi \textbf{read(x)}:
 	\begin{lstlisting}
@@ -392,23 +431,24 @@ Berikut fungsi dasar yang disediakan Pascal untuk membantu perhitungan:
 \begin{frame}[fragile]
 \frametitle{Perbedaan readln dengan read}
 \begin{block}{readln}
-	Setelah program membaca input, program akan disiapkan untuk membaca input selanjutnya di \alert{baris berikutnya}.
+	Setelah program membaca masukan, program akan disiapkan untuk membaca masukan selanjutnya di \alert{baris berikutnya}.
 \end{block}
 \begin{block}{read}
-	Setelah program membaca input, program akan disiapkan untuk membaca input selanjutnya di \alert{baris yang sama}.
+	Setelah program membaca masukan, program akan disiapkan untuk membaca masukan selanjutnya di \alert{baris yang sama}.
 \end{block}
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{Perbedaan readln dengan read (lanj.)}
 \begin{itemize}
-	\item Artinya, jika kita ingin membaca input dengan format masukkan:
-	\begin{lstlisting}
-	a
-	b
-	c
-	x
-	\end{lstlisting}
+	\item Artinya, jika kita ingin membaca masukan dengan format masukkan:
+	\begin{itemize}
+		\item Baris pertama berisi sebuah bilangan bulat, yaitu a.
+		\item Baris kedua berisi sebuah bilangan bulat, yaitu b.
+		\item Baris ketiga berisi sebuah bilangan bulat, yaitu c.
+		\item Baris keempat berisi sebuah bilangan bulat, yaitu x.
+	\end{itemize}
+
 	\item Bisa digunakan:
 	\begin{lstlisting}
 	readln(a);
@@ -423,10 +463,10 @@ Berikut fungsi dasar yang disediakan Pascal untuk membantu perhitungan:
 \frametitle{Perbedaan readln dengan read (lanj.)}
 \begin{itemize}
 	\item Namun, jika formatnya seperti ini:
-	\begin{lstlisting}
-	a b c
-	x
-	\end{lstlisting}
+	\begin{itemize}
+		\item Baris pertama berisi tiga bilangan bulat dipisahkan dengan sebuah spasi, yaitu a, b, dan c.
+		\item Baris kedua berisi sebuah bilangan bulat, yaitu x.
+	\end{itemize}
 	\item Dapat digunakan:
 	\begin{lstlisting}
 	read(a);
@@ -440,7 +480,7 @@ Berikut fungsi dasar yang disediakan Pascal untuk membantu perhitungan:
 \begin{frame}[fragile]
 \frametitle{Perbedaan readln dengan read (lanj.)}
 \begin{itemize}
-	\item Sebagai alternatif, \textbf{readln} dan \textbf{read} juga bisa digunakan untuk membaca beberapa input pada suatu baris secara bersamaan:
+	\item Sebagai alternatif, \textbf{readln} dan \textbf{read} juga bisa digunakan untuk membaca beberapa masukan pada suatu baris secara bersamaan:
 	\begin{lstlisting}
 	readln(a,b,c);
 	readln(x);
@@ -468,10 +508,10 @@ Berikut fungsi dasar yang disediakan Pascal untuk membantu perhitungan:
 \end{frame}
 
 \begin{frame}
-\frametitle{Mencetak Output}
+\frametitle{Mencetak Keluaran}
 \begin{itemize}
-	\item Seperti input, output juga bisa disajikan dalam bentuk langsung ke \textit{standart output} atau ke \textit{file}.
-	\item Pada Pascal, fungsi untuk mencetak output yang umum adalah \alert{\textbf{writeln}} dan \alert{\textbf{write}}.
+	\item Seperti masukan, keluaran juga bisa disajikan dalam bentuk langsung ke \textit{standard output} atau ke \textit{file}.
+	\item Pada Pascal, fungsi untuk mencetak keluaran yang umum adalah \alert{\textbf{writeln}} dan \alert{\textbf{write}}.
 	\item Sejauh ini, kita sudah menggunakan \textbf{writeln}.
 \end{itemize}
 \end{frame}
@@ -526,28 +566,28 @@ Berikut fungsi dasar yang disediakan Pascal untuk membantu perhitungan:
 		   writeln('hasil dari penjumlahan a dan b: ', a+b);
 		end.
 	\end{lstlisting}
-	\item Pada program tersebut, dicetak terlebih dahulu apa yang perlu diinput. Tentu saja, program seperti ini sangat ramah terhadap pengguna (\textit{user-friendly}).
+	\item Pada program tersebut, dicetak terlebih dahulu apa yang perlu dimasukkan. Tentu saja, program seperti ini sangat ramah terhadap pengguna (\textit{user-friendly}).
 	\item Namun dalam kontes pemrograman OSN/IOI, hal seperti \newline ini tidak perlu dilakukan. Bahkan, tidak boleh dilakukan.
 \end{itemize}
 \end{frame}
 
-\section{Standart Input Output}
+\section{Standard Input Output}
 \frame{\sectionpage}
 
 \begin{frame}
 \frametitle{Penjelasan Tentang STDIO}
 \begin{itemize}
-	\item Tempat kalian selama ini memasukkan input dan melihat output biasa disebut sebagai \textit{standart input output}, atau \textbf{STDIO}.
-	\item \textbf{STDIO} memiliki dua saluran yang berbeda, yaitu input (\textbf{STDIN}) dan output (\textbf{STDOUT}).
+	\item Tempat kalian selama ini mengisikan masukan dan melihat keluaran biasa disebut sebagai \textit{standard input output}, atau \textbf{STDIO}.
+	\item \textbf{STDIO} memiliki dua saluran yang berbeda, yaitu \textit{input} (\textbf{STDIN}) dan \textit{output} (\textbf{STDOUT}).
 \end{itemize}
 \end{frame}
 
 \begin{frame}
 \frametitle{Penjelasan Tentang STDIO (lanj.)}
 \begin{itemize}
-	\item Masukan yang kalian masukkan, akan melewati saluran input.
-	\item Keluaran yang kalian lihat, sebenarnya datang lewat saluran output.
-	\item Namun, pada \textit{command line} keduanya terlihat seperti menyatu dan kalian seakan-akan melakukan input maupun output pada jalur yang sama.
+	\item Masukan yang kalian masukkan, akan melewati saluran STDIN.
+	\item Keluaran yang kalian lihat, sebenarnya datang lewat saluran STDOUT.
+	\item Namun, pada \textit{command line} keduanya terlihat seperti menyatu, seakan-akan keduanya melewati jalur yang sama.
 \end{itemize}
 \begin{figure}
 	\includegraphics[width=4cm]{asset/g1.png}
@@ -580,22 +620,22 @@ Berikut fungsi dasar yang disediakan Pascal untuk membantu perhitungan:
 		hasil dari penjumlahan a dan b: 3
 	\end{lstlisting}
 	\item Tulisan "masukkan nilai ..." juga ikut tercetak, karena pada kasus ini, \textbf{STDOUT} merupakan berkas output.txt. Segala yang dicetak lewat saluran \textbf{STDOUT} akan dicetak ke output.txt.
-	\item Dengan pemahaman yang sama, seluruh input yang diberikan adalah lewat \textbf{STDIN}, yang merupakan input.txt. Sehingga inputnya perlu dimasukkan ke input.txt terlebih dahulu.
+	\item Dengan pemahaman yang sama, seluruh masukan yang diberikan adalah lewat \textbf{STDIN}, yang merupakan input.txt. Sehingga masukannya perlu dimasukkan ke input.txt terlebih dahulu.
 \end{itemize}
 \end{frame}
 
 \begin{frame}
-\frametitle{Input Output pada OSN/IOI}
+\frametitle{Masukan dan Keluaran pada OSN/IOI}
 \begin{itemize}
-	\item Setelah kalian memahami tentang \textbf{STDIN} dan \textbf{STDOUT}, mungkin kalian sudah bisa menebak kenapa pada OSN/IOI tidak boleh mencetak informasi input seperti "masukkan nilai ...".
-	\item Hal ini dikarenakan tulisan itu akan ikut tercetak sebagai output, yang mana mengakibatkan ada output yang tidak sesuai spesifikasi soal. Hasilnya, program akan dinilai \alert{\textit{wrong answer}}, alias menghasilkan jawaban yang tidak sesuai. 
+	\item Setelah kalian memahami tentang \textbf{STDIN} dan \textbf{STDOUT}, mungkin kalian sudah bisa menebak kenapa pada OSN/IOI tidak boleh mencetak informasi masukan seperti "masukkan nilai ...".
+	\item Hal ini dikarenakan tulisan itu akan ikut tercetak sebagai keluaran, yang mana mengakibatkan ada keluaran yang tidak sesuai spesifikasi soal. Hasilnya, program akan dinilai \alert{\textit{wrong answer}}, alias menghasilkan jawaban yang tidak sesuai. 
 \end{itemize}
 \end{frame}
 
 \begin{frame}
 \frametitle{Selanjutnya...}
 \begin{itemize}
-	\item Kini kalian sudah mempelajari tentang variabel, ekspresi, dan input/output. Artinya, sudah waktunya bagi kalian untuk menulis program-program sederhana $:)$
+	\item Kini kalian sudah mempelajari tentang variabel, ekspresi, dan masukan/keluaran. Artinya, sudah waktunya bagi kalian untuk menulis program-program sederhana $:)$
 \end{itemize}
 \end{frame}
 

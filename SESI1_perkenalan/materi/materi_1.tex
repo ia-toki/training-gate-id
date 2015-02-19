@@ -289,14 +289,16 @@ end.
 \end{itemize}
 \end{frame}
 
-\begin{frame}
+\begin{frame}[fragile]
 \frametitle{Kompilasi Program Pascal (lanj.)}
 \begin{itemize}
 	\item Ketikkan "fpc halo.pas" pada cmd.
 	\item Perhatikan bahwa mungkin akan muncul pesan kesalahan seperti berikut ini:
-	\begin{figure}
-		\includegraphics[width=9cm]{asset/cmd_0.PNG}
-	\end{figure}
+\end{itemize}
+\begin{quote}
+'fpc' is not recognized as an internal or external command, operable program or batch file.
+\end{quote}
+\begin{itemize}
 	\item Jika ini terjadi, artinya perlu pengaturan \textit{path} FPC pada \textit{environment variable} terlebih dahulu.
 \end{itemize}
 \end{frame}

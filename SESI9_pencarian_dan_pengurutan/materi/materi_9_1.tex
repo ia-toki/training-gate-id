@@ -137,9 +137,9 @@ Implementasinya cukup sederhana:
 \begin{frame}
 \frametitle{Adakah yang Lebih Cepat?}
 \begin{itemize}
-	\item Misalkan \alert{TBD} kata pada Kamus Besar Bahasa Indonesia (KBBI).
-	\item Bayangkan jika sesekali kita butuh mencari arti kata pada kamus, dan perlu melakukan paling banyak \alert{TBD} operasi!
-	\item Kenyataannya, pada kehidupan nyata kita tidak perlu membandingkan sampai \alert{TBD} kali!
+	\item Misalkan 90.000 kata pada Kamus Besar Bahasa Indonesia (KBBI).
+	\item Bayangkan jika sesekali kita butuh mencari arti kata pada kamus, dan perlu melakukan paling banyak 90.000 operasi!
+	\item Kenyataannya, pada kehidupan nyata kita tidak perlu membandingkan sampai 90.000 kali!
 	\item Bagaimana hal ini bisa terjadi?
 \end{itemize}
 \end{frame}
@@ -147,7 +147,7 @@ Implementasinya cukup sederhana:
 \begin{frame}
 \frametitle{Properti Khusus: Terurut}
 \begin{itemize}
-	\item KBBI memiliki sebuah properti yang khusus, yaitu \alert{terurut}.
+	\item KBBI memiliki sebuah properti yang khusus, yaitu \alert{terurut berdasarkan abjad}.
 	\item Dengan cara ini, kita bisa membuka halaman tengah dari KBBI, lalu periksa apakah kata yang kita cari ada pada halaman tersebut.
 	\item Misalkan kata yang kita cari berawalan 'W', lalu halaman tengah hanya menunjukkan daftar kata dengan awalan 'G'. Jelas bahwa kata yang kita cari tidak mungkin berada di \alert{separuh pertama} kamus, karena hanya berisi kata dengan awalan 'A' sampai 'G'.
 	\item Ulangi hal serupa dengan separuh belakang kamus, buka bagian tengahnya dan bandingkan.
@@ -158,8 +158,8 @@ Implementasinya cukup sederhana:
 \begin{frame}
 \frametitle{Analisis Performa}
 \begin{itemize}
-	\item Misalkan awalnya terdapat $N$ daftar yang perlu dicari. 
-	\item Banyaknya operasi yang dibutuhkan sampai suatu elemen bisa dipastikan keberadaannya sama dengan panjang dari barisan $[N, \frac{N}{2}, \frac{N}{4}, \frac{N}{8}, ..., 2, 1]$
+	\item Misalkan terdapat sebuah daftar berisi $N$ elemen, dan kita perlu mencari salah satu elemen. 
+	\item Banyaknya operasi maksimal yang dibutuhkan sampai suatu elemen bisa dipastikan keberadaannya sama dengan panjang dari barisan $[N, \frac{N}{2}, \frac{N}{4}, \frac{N}{8}, ..., 2, 1]$
 	\item Yaitu sebesar $\lceil ^2\log{N} \rceil$.
 	\item Pencarian seperti ini disebut dengan \alert{\textbf{binary search}}
 \end{itemize}
@@ -186,7 +186,7 @@ Bahkan untuk $N = 10^6$, \textit{binary search} hanya butuh maksimal 20 operasi!
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{Implementasi}
+\frametitle{Implementasi (cari\_2.pas)}
 Terdapat bermacam cara implementasi \textit{binary search}. Salah satunya:
 \begin{lstlisting}
    (* pencarian *)
