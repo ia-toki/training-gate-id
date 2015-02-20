@@ -32,7 +32,7 @@ begin
          write(hasil[i][j]);
          if (j < N) then begin
             write(' ');
-         end
+         end;
       end;
       writeln;
    end;

@@ -137,7 +137,7 @@ Implementasinya cukup sederhana:
 \begin{frame}
 \frametitle{Adakah yang Lebih Cepat?}
 \begin{itemize}
-	\item Misalkan 90.000 kata pada Kamus Besar Bahasa Indonesia (KBBI).
+	\item Misalkan terdapat 90.000 kata pada Kamus Besar Bahasa Indonesia (KBBI).
 	\item Bayangkan jika sesekali kita butuh mencari arti kata pada kamus, dan perlu melakukan paling banyak 90.000 operasi!
 	\item Kenyataannya, pada kehidupan nyata kita tidak perlu membandingkan sampai 90.000 kali!
 	\item Bagaimana hal ini bisa terjadi?
@@ -149,6 +149,12 @@ Implementasinya cukup sederhana:
 \begin{itemize}
 	\item KBBI memiliki sebuah properti yang khusus, yaitu \alert{terurut berdasarkan abjad}.
 	\item Dengan cara ini, kita bisa membuka halaman tengah dari KBBI, lalu periksa apakah kata yang kita cari ada pada halaman tersebut.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Properti Khusus: Terurut (lanj.)}
+\begin{itemize}
 	\item Misalkan kata yang kita cari berawalan 'W', lalu halaman tengah hanya menunjukkan daftar kata dengan awalan 'G'. Jelas bahwa kata yang kita cari tidak mungkin berada di \alert{separuh pertama} kamus, karena hanya berisi kata dengan awalan 'A' sampai 'G'.
 	\item Ulangi hal serupa dengan separuh belakang kamus, buka bagian tengahnya dan bandingkan.
 	\item Dengan cara ini, setiap perbandingan akan mengeleminasi separuh rentang pencarian!
@@ -208,7 +214,7 @@ Terdapat bermacam cara implementasi \textit{binary search}. Salah satunya:
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{Implementasi (lanj.)}
+\frametitle{Implementasi (cari\_2.pas) (lanj.)}
 \begin{lstlisting}
    if (hasil = 0) then begin
       writeln('beri hadiah lain');
