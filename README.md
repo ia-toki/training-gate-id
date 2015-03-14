@@ -35,6 +35,33 @@ https://www.dropbox.com/s/i16me26qwfdsecm/materi_8.pdf?dl=0
 Materi 9-1: Pencarian
 https://www.dropbox.com/s/45i42e51jqsn1yh/materi_9_1.pdf?dl=0
 
+## Skema Kontribusi Pengembangan TOKI Training Gate Berbahasa Indonesia
+
+Setelah Anda membaca atau menggunakan TOKI Training Gate, Anda dapat berkontribusi dengan cara:
+
+1. Memberikan masukan tanpa mengimplementasikannya pada materi.
+2. Memberikan masukan sekaligus mengimplementasikannya pada materi.
+
+Untuk mulai berkontribusi, lakukan langkah-langkah berikut:
+
+1. Buat akun github (http://github.com/).
+2. Pergi ke halaman https://github.com/ia-toki/training-gate-id/issues.
+3. Tambahkan isu baru dengan menekan tombol "Issues", lalu ketikkan masukan yang Anda berikan.
+4. Kontributor dari TOKI akan menanggapi masukan Anda dan membahasnya pada isu yang Anda tambahkan.
+5. Hasil akhir dari pembahasan adalah keputusan apakah masukan tersebut akan diimplementasikan pada TOKI Training Gate.
+
+  Jika diputuskan bahwa masukan itu akan diimplementasikan, Anda boleh memutuskan apakah Anda yang akan mengimplementasikannya atau tidak. Jika ya, lanjut ke langkah berikutnya. Jika tidak, isu tersebut akan menjadi "open issue" dan dapat dikerjakan oleh kontributor lainnya.
+
+  Sebelum memulai langkah berikutnya, Anda diharapkan paham perintah-perintah dasar git seperti clone, checkout, branch, add, commit, push, dan pull. Tutotial penggunaan git sudah banyak beredar di internet. Salah satu yang singkat dan mudah dipahami: https://try.github.io/levels/1/challenges/1
+
+  Selain itu, Anda juga diharapkan memiliki sedikit pengetahuan tentang penulisan materi dengan latex (http://latex-project.org/guides/).
+
+6. Clone repository TOKI Training Gate. 
+7. Checkout branch baru.
+8. Lakukan perubahan secukupnya, Anda bebas melakukan commit dan push.
+9. Setelah dirasa cukup, lakukan pull-request.
+10. Kontributor dari TOKI akan melakukan review terhadap perubahan yang Anda lakukan. Jika sudah disepakati, kontribusi Anda akan digunakan dan dimasukkan ke materi training gate.
+
 ## Lisensi
 
 <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
