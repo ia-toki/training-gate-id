@@ -101,12 +101,19 @@ Melalui dokumen ini, kalian akan:
 \frametitle{Blok "begin ... end" (lanj.)}
 \begin{itemize}
 	\item Setelah kata kunci \textbf{then}, sebenarnya hanya \alert{satu} perintah yang dapat dieksekusi jika $<$kondisi$>$ bernilai \textbf{TRUE}.
-	\item Artinya, meskipun perintah \textbf{writeln('masuk')} berikut hanya dieksekusi ketika \textbf{nilai} sama dengan 10, \textbf{writeln('lagi')} akan \alert{selalu dilaksanakan} tanpa peduli isi variabel \textbf{nilai}.
+	\item Perhatikan contoh berikut ini:
 	\begin{lstlisting}
 	if (nilai = 10) then
 	   writeln('masuk');
 	   writeln('lagi');
 	\end{lstlisting}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Blok "begin ... end" (lanj.)}
+\begin{itemize}
+	\item Meskipun perintah \textbf{writeln('masuk')} hanya dieksekusi ketika \textbf{nilai} sama dengan 10, \textbf{writeln('lagi')} akan \alert{selalu dilaksanakan} tanpa peduli isi variabel \textbf{nilai}.
 	\item Blok "begin ... end", akan berperan sebagai "pembungkus" beberapa perintah menjadi "satu" perintah, sehingga berapapun perintah di dalam blok tersebut, akan dilihat oleh Pascal sebagai "satu" perintah.
 \end{itemize}
 \end{frame}
@@ -388,7 +395,7 @@ Pada kasus ini, diperlukan struktur \textbf{if} yang lebih dari dua cabang!
 \frametitle{Selanjutnya...}
 \begin{itemize}
 	\item Ke bagian yang lebih menarik lagi, yaitu perulangan!
-	\item Namun, pastikan kalian menguasai materi percabangan terlebih dahulu $:)$
+	\item Pastikan kalian menguasai materi percabangan terlebih dahulu.
 \end{itemize}
 \end{frame}
 

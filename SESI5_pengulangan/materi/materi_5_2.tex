@@ -203,10 +203,17 @@ Melalui dokumen ini, kalian akan:
 \begin{itemize}
 	\item Kadang kala, kita membutuhkan suatu pengulangan untuk diberhentikan secara paksa atau lompat ke iterasi berikutnya pada \textbf{for}.
 	\item Pascal menyediakan kedua fitur tersebut, yaitu dengan kata kunci \alert{\textbf{break}} dan \alert{\textbf{continue}}.
-	\item Penggunaan \textbf{break} akan membuat program keluar dari pengulangan yang mengandung kata kunci tersebut.
-	\item Penggunaan \textbf{continue} akan membuat program kembali ke baris paling atas pengulangan, yaitu baris "for .. to .. do" (untuk \textbf{for}), "while ... do" (untuk \textbf{while}), dan "repeat ... until"(untuk \textbf{repeat}).
-	\item Dengan demikian, untuk \textbf{for} nilai pencacah akan "bertambah satu tingkat" atau "turun satu tingkat" (jika digunakan \textbf{downto}).
 \end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Break \& Continue (lanj.)}
+\begin{block}{Break}
+Penggunaan \textbf{break} akan membuat program keluar dari pengulangan yang mengandung kata kunci tersebut.
+\end{block}
+\begin{block}{Continue}
+Penggunaan \textbf{continue} akan membuat program kembali ke baris paling atas pengulangan, yaitu baris "for .. to .. do" (untuk \textbf{for}), "while ... do" (untuk \textbf{while}), dan "repeat ... until"(untuk \textbf{repeat}).
+\end{block}
 \end{frame}
 
 \begin{frame}[fragile]
@@ -466,8 +473,8 @@ var
 begin
    readln(N);
 
-   count := 0; // banyaknya prima yang sudah ditemukan
-   cur := 2; // nilai yang sedang diperiksa keprimaannya
+   count := 0; (* banyaknya prima yang sudah ditemukan *)
+   cur := 2; (* nilai yang akan diperiksa keprimaannya *)
    while (count < N) do begin
       found := FALSE;
       i := 2;
@@ -484,16 +491,17 @@ begin
 \frametitle{Contoh Solusi: prima2.pas (lanj.)}
 \begin{lstlisting}
       if (not found) then begin
-         // ditemukan prima! 
-         // cetak dan tambahkan prima yg sudah ditemukan
+         (* ditemukan prima! 
+            cetak dan tambahkan prima yg sudah ditemukan *)
          writeln(cur);
          count := count + 1;
       end;
 
-      // entah ini prima atau bukan, lanjut untuk 
-      // memeriksa bilangan berikutnya
+      (* entah ini prima atau bukan, lanjut untuk 
+         memeriksa bilangan berikutnya *)
       cur := cur + 1;
    end;
+   (* keluar dari while, dipastikan count = N *)
 end.
 \end{lstlisting}
 \end{frame}

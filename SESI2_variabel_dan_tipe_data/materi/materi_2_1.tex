@@ -214,7 +214,7 @@ Melalui dokumen ini, kalian akan:
 	\end{tabular}
 \end{table} 
 \begin{itemize}
-	\item Biasa disebut dengan \alert{\textit{integer}} saja.
+	\item Biasa disebut dengan \textit{integer} saja.
 	\item Pascal menawarkan beberapa tipe data bilangan bulat yang variasinya terletak pada jangkauan nilai yang bisa direpresentasikan dan ukurannya pada memori.
 	\item Dalam memprogram, yang umum digunakan adalah \alert{\textbf{longint}} dan \alert{\textbf{int64}}. 
 \end{itemize}
@@ -231,7 +231,7 @@ Melalui dokumen ini, kalian akan:
 	\end{tabular}
 \end{table} 
 \begin{itemize}
-	\item Biasa disebut dengan \alert{\textit{floating point}}.
+	\item Biasa disebut dengan \textit{floating point}.
 	\item Tipe data \textit{floating point} bisa merepresentasikan negatif atau positif dari magnitudonya.
 	\item Pada pemrograman, umumnya tipe data \textit{floating point} dihindari karena kurang akurat. Representasi 3 pada \textit{floating point} bisa jadi 2.99999999999999 atau 3.000000000000001 karena keterbatasan pada struktur penyimpanan bilangan \textit{floating point} komputer.
 	\item Tipe yang umum digunakan adalah \alert{\textbf{double}}.
@@ -244,6 +244,12 @@ Melalui dokumen ini, kalian akan:
 	\item Merupakan tipe data untuk merepresentasikan karakter menurut ASCII (\textit{American Standart Code for Information Interchange}).
 	\item Dalam ASCII, terdapat 128 karakter yang direpresentasikan dengan angka dari 0 sampai 127. 
 	\item Misalnya, kode ASCII untuk karakter spasi (' ') adalah 32, huruf 'A' adalah 65, 'B' adalah 66, huruf 'a' adalah 97, dan huruf 'b' adalah 98.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Tipe Data: Karakter (lanj.)}
+\begin{itemize}
 	\item Pada Pascal, tipe data ini dinyatakan sebagai \alert{\textbf{char}}, dengan ukuran 1 byte.
 	\item Dalam memprogram, kita bisa menggunakan fungsi \textbf{ord(x)} untuk mendapatkan nilai ASCII dari \textbf{char x}, dan \textbf{chr(x)} untuk mendapatkan karakter dari kode ASCII \textbf{x}.
 \end{itemize}
@@ -309,7 +315,9 @@ Melalui dokumen ini, kalian akan:
 	\item Mendaftarkan nama-nama dan tipe variabel yang akan digunakan disebut dengan deklarasi variabel.
 	\item Pada saat dideklarasi, setiap variabel perlu disertakan tipe datanya. 
 	\item Pada Pascal, variabel dideklarasikan di antara \textbf{var} dengan \textbf{begin}.
-	\item Tipe data dituliskan sesudah tanda titik dua (:), setelah nama variabel dituliskan. Contoh: \textbf{nilai : longint} atau \textbf{rerata : double}.
+	\item Tipe data dituliskan sesudah tanda titik dua (:), setelah nama variabel dituliskan.
+	
+	Contoh: \textbf{nilai : longint} atau \textbf{rerata : double}.
 	\item Beberapa variabel juga bisa dideklarasikan secara bersamaan jika memiliki tipe data yang sama. Contoh: \textbf{x, y : double}.
 \end{itemize}
 \end{frame}
@@ -414,7 +422,7 @@ Melalui dokumen ini, kalian akan:
 	y:  2.34432000000000E+002
 	teks: ini adalah string
 	\end{lstlisting}
-	\item Perhatikan bahwa perintah \textbf{p2 := p1} sama artinya dengan \textbf{p2 := 100}, karena \textbf{p1} sendiri mengacu pada nilai 100.
+	\item Perhatikan bahwa perintah \textbf{p2 := p1} sama artinya dengan \\ \textbf{p2 := 100}, karena \textbf{p1} sendiri mengacu pada nilai 100.
 	\item Untuk tipe data \textit{floating point}, bilangan tercetak dalam notasi \textit{scientific}, yaitu $3.1418 \times 10^{0}$ dan $2.34432 \times 10^{2}$.
 \end{itemize}
 \end{frame}
