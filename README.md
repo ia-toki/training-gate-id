@@ -1,5 +1,11 @@
 # TOKI Training Gate Berbahasa Indonesia
 
+## Tentang TOKI Training Gate
+Diinisiasi oleh Ikatan Alumni Tim Olimpiade Komputer Indonesia (IA-TOKI), TOKI Training Gate merupakan proyek e-learning untuk belajar pemrograman kompetitif yang ditujukan bagi pelajar Indonesia. Training Gate sendiri terdiri dari sekumpulan materi pembelajaran dan soal latihan terpusat yang ditulis dalam Bahasa Indonesia, ke depannya akan diintegrasikan ke website ia-toki.org.
+
+## Tujuan dibuatnya TOKI Training Gate
+Tidak semua sekolah di Indonesia mendapatkan pelajaran komputer tentang pemrograman, padahal setiap tahunnya ada banyak sekali kompetisi pemrograman bagi pelajar SMA/sederajat di Indonesia. Bahkan, terdapat Olimpiade Sains Nasional di bidang komputer dan International Olympiad in Informatics (IOI). Akibatnya, jawara dari ajang-ajang tersebut didominasi oleh siswa-siswi yang mendapat pelajaran pemrograman di sekolahnya. Meskipun sudah banyak beredar materi pembelajaran pemrograman di internet, masih jarang ada yang berbahasa Indonesia dan spesifik untuk mengarah ke kompetisi pemrograman. Untuk itulah TOKI Training Gate dibuat, yang tujuan utamanya adalah mempermudah siswa-siswi Indonesia untuk belajar pemrograman kompetitif secara mandiri.
+
 ## Silabus Pembelajaran
 
 Training Gate pemrograman dasar ini terdiri dari beberapa sesi. Setiap sesi terdiri dari beberapa materi yang masing-masing diwujudkan dalam sebuah slide presentasi. Setiap slide presentasi berisi subtopik-subtopik yang mewakili materi tersebut. Struktur ini dituliskan dalam bentuk:
