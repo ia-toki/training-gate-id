@@ -1,39 +1,150 @@
 # TOKI Training Gate Berbahasa Indonesia
 
-## Materi
+## Silabus Pembelajaran
 
-Materi 1: Perkenalan
-https://www.dropbox.com/s/8d5khy5ik8tg4c7/materi_1.pdf?dl=0
+Training Gate pemrograman dasar ini terdiri dari beberapa sesi. Setiap sesi terdiri dari beberapa materi yang masing-masing diwujudkan dalam sebuah slide presentasi. Setiap slide presentasi berisi subtopik-subtopik yang mewakili materi tersebut. Struktur ini dituliskan dalam bentuk:
 
-Materi 2-1: Variabel dan Tipe Data
-https://www.dropbox.com/s/1n03m81szwlrlf6/materi_2_1.pdf?dl=0
+>###1. Sesi
+>
+>  1. Materi (berupa link jika slide-nya sudah dibuat)
+>    
+>    * subtopik 1
+>    * subtopik 2
+>    * ...
 
-Materi 2-2: Ekspresi dan IO
-https://www.dropbox.com/s/2jldf9vb9bdpstj/materi_2_2.pdf?dl=0
+Berikut silabus pembelajaran untuk Training Gate pemrograman dasar:
 
-Materi 3: Penunjang Pemrograman Dasar
-https://www.dropbox.com/s/cs1oresboy1pdv2/materi_3.pdf?dl=0
+###1. Perkenalan Pemrograman dan Lingkungan Pemrograman
 
-Materi 4: Percabangan
-https://www.dropbox.com/s/ezvn6l2uklej0a7/materi_4.pdf?dl=0
+  1. [Perkenalan](https://www.dropbox.com/s/8d5khy5ik8tg4c7/materi_1.pdf?dl=0)
 
-Materi 5-1: Perkenalan Pengulangan
-https://www.dropbox.com/s/wygj31a6aw7wi19/materi_5_1.pdf?dl=0
+    * Perkenalan konsep pemrograman (memprogram, kompilasi, eksekusi)
+    * Perkenalan dan instalasi Pascal
+    * Perkenalan IDE dan instalasi 
+    * Program Hello World
 
-Materi 5-2: Pengulangan Lanjut
-https://www.dropbox.com/s/f7xl5vusuad7cs3/materi_5_2.pdf?dl=0
+###2. Variabel, tipe data, IO
 
-Materi 6: Pengenalan Array
-https://www.dropbox.com/s/ah2ojqia8gkmrib/materi_6.pdf?dl=0
+  1. [Variabel dan Tipe Data](https://www.dropbox.com/s/1n03m81szwlrlf6/materi_2_1.pdf?dl=0)
 
-Materi 7: Subprogram: Fungsi dan Prosedur
-https://www.dropbox.com/s/xd0sc7gso3b0vct/materi_7.pdf?dl=0
+    * Pengenalan konsep variabel
+    * Tipe data sederhana
+    * Tipe data buatan (struct)
+    * Dekalarasi variabel
 
-Materi 8: Pendalaman String
-https://www.dropbox.com/s/i16me26qwfdsecm/materi_8.pdf?dl=0
+  2. [Ekspresi dan IO](https://www.dropbox.com/s/2jldf9vb9bdpstj/materi_2_2.pdf?dl=0)    
 
-Materi 9-1: Pencarian
-https://www.dropbox.com/s/45i42e51jqsn1yh/materi_9_1.pdf?dl=0
+    * Ekspresi numerik
+    * Ekspresi boolean (predikat)
+    * Ekspresi relasional
+    * Prioritas pengerjaan
+    * Input output (read, readln, write, writeln)
+    * Penjelasan tentang STDIO
+
+###3. Penunjang Pemrograman Dasar
+
+  1. [Penunjang Pemrograman Dasar](https://www.dropbox.com/s/cs1oresboy1pdv2/materi_3.pdf?dl=0)
+
+    * Komentar
+    * Pesan kesalahan IDE
+    * I/O redirection
+
+###4. Percabangan
+
+  1. [Percabangan](https://www.dropbox.com/s/ezvn6l2uklej0a7/materi_4.pdf?dl=0)
+
+    * If ...
+    * If ... else ...
+    * If ... elseif ... else ... 
+    * case ... of ...
+    * Pengenalan tentang blok "begin ... end"
+
+###5. Pengulangan
+  1. [Pengenalan Pengulangan](https://www.dropbox.com/s/wygj31a6aw7wi19/materi_5_1.pdf?dl=0)
+
+    * Pengulangan dengan pencacah (for)
+    * Pengulangan dengan kondisi awal (while)
+    * Pengulangan dengan kondisi akhir (repeat until)
+
+  2. [Pengulangan Lanjut](https://www.dropbox.com/s/f7xl5vusuad7cs3/materi_5_2.pdf?dl=0)
+
+    * Break & continue
+    * Perulangan berlapis
+
+  3. Analisis Kompleksitas
+
+    * Pengenalan Big-Oh sederhana
+    * Penjelasan tentang apa pentingnya menghitung kompleksitas
+
+###6. Array
+  1. [Pengenalan Array](https://www.dropbox.com/s/ah2ojqia8gkmrib/materi_6.pdf?dl=0)
+
+    * Konsep array
+    * Deklarasi Array
+    * Mengisi array (baca)
+    * Menulis isi  array (tulis)
+    * Array multidimensi
+
+###7. Subprogram
+
+  1. [Fungsi dan Prosedur](https://www.dropbox.com/s/xd0sc7gso3b0vct/materi_7.pdf?dl=0)
+
+    * Prosedur
+    * Fungsi
+    * Scope
+    * Parameter dan passing parameter
+
+###8. String
+
+  1. [Pendalaman String](https://www.dropbox.com/s/i16me26qwfdsecm/materi_8.pdf?dl=0)
+
+    * Penjelasan bahwa string pada Pascal merupakan array of char
+    * Fungsi-fungsi dasar pada string (length, copy, delete, insert, pos, str, val)
+
+###9. Pencarian dan Pengurutan Dasar
+
+  1. [Pencarian](https://www.dropbox.com/s/45i42e51jqsn1yh/materi_9_1.pdf?dl=0)
+
+    * Linear search
+    * Binary search
+    * Analisis kompleksitas
+
+  2. Pengurutan Dasar
+
+    * Bubble sort
+    * Insertion sort
+    * Selection sort
+    * Analisis kompleksitas
+    * Kapan menggunakan insertion sort, kapan selection sort, dsb
+
+###10. Rekursi
+
+  1. Pengenalan Rekursi
+
+    * Mengapa perlu ada rekursi
+    * Rekursi tanpa cabang
+    * Analsis kompleksitas
+
+  2. Rekursi Lanjutan
+
+    * Rekursi dengan cabang
+    * Analsis kompleksitas
+
+###11. Pengurutan Lanjut
+
+  1. Quick Sort
+
+    * Mengapa perlu ada quick sort
+    * Konsep algoritma
+    * Contoh kode
+    * Analisis kompleksitas
+
+  2. Merge Sort
+
+    * Mengapa perlu ada merge sort
+    * Konsep algoritma
+    * Contoh kode
+    * Analisis kompleksitas + perbandingan terhadap quick sort
 
 ## Skema Kontribusi Pengembangan TOKI Training Gate Berbahasa Indonesia
 
