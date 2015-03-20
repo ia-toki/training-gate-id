@@ -1,3 +1,5 @@
+#!/bin/bash
+
 courses=(pemrograman-dasar)
 
 exitcode=0
@@ -14,12 +16,12 @@ do
 		for material in ${materials[@]};
 		do
 			# compile each material
-			directories=(${material//\// })                                                 
+			directories=(${material//\// })
 			filename=${directories[${#directories[@]} - 1]}
 
 			# "go inside" folder and compile it there
 			# compiling outside will cause latex error if it needs to access ./asset/*
-			(cd $session/materi/; pdflatex -draftmode -synctex=1 -interaction=nonstopmode -halt-on-error $filename)
+			(cd $session/materi/; pdflatex -synctex=1 -interaction=nonstopmode -halt-on-error $filename)
 
 			errorcode=`echo $?`
 			let "exitcode = $exitcode | $errorcode"
