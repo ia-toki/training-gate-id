@@ -1,5 +1,7 @@
 # TOKI Training Gate Berbahasa Indonesia
 
+[![Build Status](https://travis-ci.org/ia-toki/training-gate-id.svg?branch=master)](https://travis-ci.org/ia-toki/training-gate-id)
+
 ## Tabel konten
 * [Tentang TOKI Training Gate](#tentang-toki-training-gate)
 * [Tujuan dibuatnya TOKI Training Gate](#tujuan-dibuatnya-toki-training-gate)
