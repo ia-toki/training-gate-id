@@ -2,31 +2,32 @@
 
 [![Build Status](https://travis-ci.org/ia-toki/training-gate-id.svg?branch=master)](https://travis-ci.org/ia-toki/training-gate-id)
 
-## Tabel konten
+## Daftar Isi
 * [Tentang TOKI Training Gate](#tentang-toki-training-gate)
-* [Tujuan dibuatnya TOKI Training Gate](#tujuan-dibuatnya-toki-training-gate)
+* [Tujuan Dibuatnya TOKI Training Gate](#tujuan-dibuatnya-toki-training-gate)
 * [Silabus Pembelajaran](#silabus-pembelajaran)
-  * [1. Perkenalan Pemrograman dan Lingkungan Pemrograman](#1.-perkenalan-pemrograman-dan-lingkungan-pemrograman)
-  * [2. Variabel, tipe data, IO](#2.-variabel,-tipe-data,-io)
-  * [3. Penunjang Pemrograman Dasar](#3.-penunjang-pemrograman-dasar)
-  * [4. Percabangan](#4.-percabangan)
-  * [5. Pengulangan](#5.-pengulangan)
-  * [6. Array](#6.-array)
-  * [7. Subprogram](#7.-subprogram)
-  * [8. String](#8.-string)
-  * [9. Pencarian dan Pengurutan Dasar](#9.-pencarian-dan-pengurutan-dasar)
-  * [10. Rekursi](#10.-rekursi)
-  * [11. Pengurutan Lanjut](#11.-pengurutan-lanjut)
-* [Skema Kontribusi Pengembangan TOKI Training Gate Berbahasa Indonesia](#skema-kontribusi-pengembangan-toki-training-gate-berbahasa-indonesia)
+  * [1. Perkenalan Pemrograman dan Lingkungan Pemrograman](#1-perkenalan-pemrograman-dan-lingkungan-pemrograman)
+  * [2. Variabel, tipe data, IO](#2-variabel,-tipe-data,-io)
+  * [3. Penunjang Pemrograman Dasar](#3-penunjang-pemrograman-dasar)
+  * [4. Percabangan](#4-percabangan)
+  * [5. Pengulangan](#5-pengulangan)
+  * [6. Array](#6-array)
+  * [7. Subprogram](#7-subprogram)
+  * [8. String](#8-string)
+  * [9. Pencarian dan Pengurutan Dasar](#9-pencarian-dan-pengurutan-dasar)
+  * [10. Rekursi](#10-rekursi)
+  * [11. Pengurutan Lanjut](#11-pengurutan-lanjut)
+* [Setup Latex](#setup-latex)
+* [Skema Kontribusi](#skema-kontribusi)
 * [Lisensi](#lisensi)
 
 ## Tentang TOKI Training Gate
-Diinisiasi oleh Ikatan Alumni Tim Olimpiade Komputer Indonesia (IA-TOKI), TOKI Training Gate merupakan proyek e-learning untuk belajar pemrograman kompetitif yang ditujukan bagi pelajar Indonesia. 
+Diinisiasi oleh Ikatan Alumni Tim Olimpiade Komputer Indonesia (IA TOKI), TOKI Training Gate merupakan proyek e-learning untuk belajar pemrograman kompetitif yang ditujukan bagi pelajar Indonesia.
 
 Training Gate sendiri terdiri dari sekumpulan materi pembelajaran dan soal latihan terpusat yang ditulis dalam Bahasa Indonesia, ke depannya akan diintegrasikan ke website ia-toki.org.
 
 ## Latar Belakang
-Tidak semua sekolah di Indonesia mendapatkan pelajaran komputer tentang pemrograman, padahal setiap tahunnya ada banyak sekali kompetisi pemrograman bagi pelajar SMA/sederajat di Indonesia. Bahkan, terdapat Olimpiade Sains Nasional di bidang komputer dan International Olympiad in Informatics (IOI). Akibatnya, jawara dari ajang-ajang tersebut didominasi oleh siswa-siswi yang mendapat pelajaran pemrograman di sekolahnya. Meskipun sudah banyak beredar materi pembelajaran pemrograman di internet, masih jarang ada yang berbahasa Indonesia dan spesifik untuk mengarah ke kompetisi pemrograman. 
+Tidak semua sekolah di Indonesia mendapatkan pelajaran komputer tentang pemrograman, padahal setiap tahunnya ada banyak sekali kompetisi pemrograman bagi pelajar SMA/sederajat di Indonesia. Bahkan, terdapat Olimpiade Sains Nasional di bidang komputer dan International Olympiad in Informatics (IOI). Akibatnya, jawara dari ajang-ajang tersebut didominasi oleh siswa-siswi yang mendapat pelajaran pemrograman di sekolahnya. Meskipun sudah banyak beredar materi pembelajaran pemrograman di internet, masih jarang ada yang berbahasa Indonesia dan spesifik untuk mengarah ke kompetisi pemrograman.
 
 ## Tujuan dibuatnya TOKI Training Gate
 Sebagai tujuan jangka pendek: mempermudah siswa-siswi Indonesia untuk belajar pemrograman kompetitif secara mandiri.
@@ -40,7 +41,7 @@ Training Gate pemrograman dasar ini terdiri dari beberapa sesi. Setiap sesi terd
 >###1. Sesi
 >
 >  1. Materi (berupa link jika slide-nya sudah dibuat)
->    
+>
 >    * subtopik 1
 >    * subtopik 2
 >    * ...
@@ -53,7 +54,7 @@ Berikut silabus pembelajaran untuk Training Gate pemrograman dasar:
 
     * Perkenalan konsep pemrograman (memprogram, kompilasi, eksekusi)
     * Perkenalan dan instalasi Pascal
-    * Perkenalan IDE dan instalasi 
+    * Perkenalan IDE dan instalasi
     * Program Hello World
 
 ###2. Variabel, tipe data, IO
@@ -65,7 +66,7 @@ Berikut silabus pembelajaran untuk Training Gate pemrograman dasar:
     * Tipe data buatan (struct)
     * Dekalarasi variabel
 
-  2. [Ekspresi dan IO](https://www.dropbox.com/s/2jldf9vb9bdpstj/materi_2_2.pdf?dl=0)    
+  2. [Ekspresi dan IO](https://www.dropbox.com/s/2jldf9vb9bdpstj/materi_2_2.pdf?dl=0)
 
     * Ekspresi numerik
     * Ekspresi boolean (predikat)
@@ -88,7 +89,7 @@ Berikut silabus pembelajaran untuk Training Gate pemrograman dasar:
 
     * If ...
     * If ... else ...
-    * If ... elseif ... else ... 
+    * If ... elseif ... else ...
     * case ... of ...
     * Pengenalan tentang blok "begin ... end"
 
@@ -179,7 +180,16 @@ Berikut silabus pembelajaran untuk Training Gate pemrograman dasar:
     * Contoh kode
     * Analisis kompleksitas + perbandingan terhadap quick sort
 
-## Skema Kontribusi Pengembangan TOKI Training Gate Berbahasa Indonesia
+## Setup Latex
+
+Jika Anda tertarik untuk mengembangkan atau memodifikasi TOKI Training Gate, Anda perlu memasang Latex pada sistem Anda. Lakukan langkah-langkah berikut.
+
+1. Install Latex. Sebagai contoh, pada Linux Anda dapat meng-install texlive. Pada OS X, Anda dapat meng-install mactex.
+2. Clone repository ini.
+3. Jalankan script build.sh. Script ini akan meng-install theme beamer dan meng-compile seluruh materi menjadi PDF.
+4. Apabila seluruh PDF ter-compile dengan benar, berarti Anda sudah melakukan setup Latex untuk TOKI Training Gate dengan benar.
+
+## Skema Kontribusi Pengembangan TOKI Training Gate
 
 Setelah Anda membaca atau menggunakan TOKI Training Gate, Anda dapat berkontribusi dengan cara:
 
@@ -188,23 +198,23 @@ Setelah Anda membaca atau menggunakan TOKI Training Gate, Anda dapat berkontribu
 
 Untuk mulai berkontribusi, lakukan langkah-langkah berikut:
 
-1. Buat akun github (http://github.com/).
+1. Buat akun GitHub (http://github.com/).
 2. Pergi ke halaman https://github.com/ia-toki/training-gate-id/issues.
 3. Tambahkan isu baru dengan menekan tombol "Issues", lalu ketikkan masukan yang Anda berikan.
-4. Kontributor dari TOKI akan menanggapi masukan Anda dan membahasnya pada isu yang Anda tambahkan.
+4. Kontributor dari IA TOKI akan menanggapi masukan Anda dan membahasnya pada isu yang Anda tambahkan.
 5. Hasil akhir dari pembahasan adalah keputusan apakah masukan tersebut akan diimplementasikan pada TOKI Training Gate.
 
   Jika diputuskan bahwa masukan itu akan diimplementasikan, Anda boleh memutuskan apakah Anda yang akan mengimplementasikannya atau tidak. Jika ya, lanjut ke langkah berikutnya. Jika tidak, isu tersebut akan menjadi "open issue" dan dapat dikerjakan oleh kontributor lainnya.
 
   Sebelum memulai langkah berikutnya, Anda diharapkan paham perintah-perintah dasar git seperti clone, checkout, branch, add, commit, push, dan pull. Tutotial penggunaan git sudah banyak beredar di internet. Salah satu yang singkat dan mudah dipahami: https://try.github.io/levels/1/challenges/1
 
-  Selain itu, Anda juga diharapkan memiliki sedikit pengetahuan tentang penulisan materi dengan latex (http://latex-project.org/guides/).
+  Selain itu, Anda juga diharapkan memiliki sedikit pengetahuan tentang penulisan materi dengan Latex (http://latex-project.org/guides/).
 
-6. Clone repository TOKI Training Gate. 
+6. Clone repository ini.
 7. Checkout branch baru.
-8. Lakukan perubahan secukupnya, Anda bebas melakukan commit dan push.
-9. Setelah dirasa cukup, lakukan pull-request.
-10. Kontributor dari TOKI akan melakukan review terhadap perubahan yang Anda lakukan. Jika sudah disepakati, kontribusi Anda akan digunakan dan dimasukkan ke materi training gate.
+8. Lakukan perubahan secukupnya; Anda bebas melakukan commit dan push.
+9. Setelah dirasa cukup, lakukan pull request.
+10. Kontributor dari IA TOKI akan melakukan review terhadap perubahan yang Anda lakukan. Jika sudah disepakati, kontribusi Anda akan digunakan dan dimasukkan ke materi Training Gate.
 
 ## Lisensi
 
