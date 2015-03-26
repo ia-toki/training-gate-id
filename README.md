@@ -6,17 +6,7 @@
 * [Tentang TOKI Training Gate](#tentang-toki-training-gate)
 * [Tujuan Dibuatnya TOKI Training Gate](#tujuan-dibuatnya-toki-training-gate)
 * [Silabus Pembelajaran](#silabus-pembelajaran)
-  * [1. Perkenalan Pemrograman dan Lingkungan Pemrograman](#1-perkenalan-pemrograman-dan-lingkungan-pemrograman)
-  * [2. Variabel, tipe data, IO](#2-variabel,-tipe-data,-io)
-  * [3. Penunjang Pemrograman Dasar](#3-penunjang-pemrograman-dasar)
-  * [4. Percabangan](#4-percabangan)
-  * [5. Pengulangan](#5-pengulangan)
-  * [6. Array](#6-array)
-  * [7. Subprogram](#7-subprogram)
-  * [8. String](#8-string)
-  * [9. Pencarian dan Pengurutan Dasar](#9-pencarian-dan-pengurutan-dasar)
-  * [10. Rekursi](#10-rekursi)
-  * [11. Pengurutan Lanjut](#11-pengurutan-lanjut)
+* [Link Unduh](#link-unduh)
 * [Setup Latex](#setup-latex)
 * [Skema Kontribusi](#skema-kontribusi)
 * [Lisensi](#lisensi)
@@ -40,7 +30,7 @@ Training Gate pemrograman dasar ini terdiri dari beberapa sesi. Setiap sesi terd
 
 >###1. Sesi
 >
->  1. Materi (berupa link jika slide-nya sudah dibuat)
+>  1. Materi
 >
 >    * subtopik 1
 >    * subtopik 2
@@ -50,7 +40,7 @@ Berikut silabus pembelajaran untuk Training Gate pemrograman dasar:
 
 ###1. Perkenalan Pemrograman dan Lingkungan Pemrograman
 
-  1. [Perkenalan](https://www.dropbox.com/s/8d5khy5ik8tg4c7/materi_1.pdf?dl=0)
+  1. Perkenalan
 
     * Perkenalan konsep pemrograman (memprogram, kompilasi, eksekusi)
     * Perkenalan dan instalasi Pascal
@@ -59,14 +49,14 @@ Berikut silabus pembelajaran untuk Training Gate pemrograman dasar:
 
 ###2. Variabel, tipe data, IO
 
-  1. [Variabel dan Tipe Data](https://www.dropbox.com/s/1n03m81szwlrlf6/materi_2_1.pdf?dl=0)
+  1. Variabel dan Tipe Data
 
     * Pengenalan konsep variabel
     * Tipe data sederhana
     * Tipe data buatan (struct)
     * Dekalarasi variabel
 
-  2. [Ekspresi dan IO](https://www.dropbox.com/s/2jldf9vb9bdpstj/materi_2_2.pdf?dl=0)
+  2. Ekspresi dan IO
 
     * Ekspresi numerik
     * Ekspresi boolean (predikat)
@@ -77,7 +67,7 @@ Berikut silabus pembelajaran untuk Training Gate pemrograman dasar:
 
 ###3. Penunjang Pemrograman Dasar
 
-  1. [Penunjang Pemrograman Dasar](https://www.dropbox.com/s/cs1oresboy1pdv2/materi_3.pdf?dl=0)
+  1. Penunjang Pemrograman Dasar
 
     * Komentar
     * Pesan kesalahan IDE
@@ -85,7 +75,7 @@ Berikut silabus pembelajaran untuk Training Gate pemrograman dasar:
 
 ###4. Percabangan
 
-  1. [Percabangan](https://www.dropbox.com/s/ezvn6l2uklej0a7/materi_4.pdf?dl=0)
+  1. Percabangan
 
     * If ...
     * If ... else ...
@@ -94,13 +84,13 @@ Berikut silabus pembelajaran untuk Training Gate pemrograman dasar:
     * Pengenalan tentang blok "begin ... end"
 
 ###5. Pengulangan
-  1. [Pengenalan Pengulangan](https://www.dropbox.com/s/wygj31a6aw7wi19/materi_5_1.pdf?dl=0)
+  1. Pengenalan Pengulangan
 
     * Pengulangan dengan pencacah (for)
     * Pengulangan dengan kondisi awal (while)
     * Pengulangan dengan kondisi akhir (repeat until)
 
-  2. [Pengulangan Lanjut](https://www.dropbox.com/s/f7xl5vusuad7cs3/materi_5_2.pdf?dl=0)
+  2. Pengulangan Lanjut
 
     * Break & continue
     * Perulangan berlapis
@@ -111,7 +101,7 @@ Berikut silabus pembelajaran untuk Training Gate pemrograman dasar:
     * Penjelasan tentang apa pentingnya menghitung kompleksitas
 
 ###6. Array
-  1. [Pengenalan Array](https://www.dropbox.com/s/ah2ojqia8gkmrib/materi_6.pdf?dl=0)
+  1. Pengenalan Array
 
     * Konsep array
     * Deklarasi Array
@@ -121,7 +111,7 @@ Berikut silabus pembelajaran untuk Training Gate pemrograman dasar:
 
 ###7. Subprogram
 
-  1. [Fungsi dan Prosedur](https://www.dropbox.com/s/xd0sc7gso3b0vct/materi_7.pdf?dl=0)
+  1. Fungsi dan Prosedur
 
     * Prosedur
     * Fungsi
@@ -130,14 +120,14 @@ Berikut silabus pembelajaran untuk Training Gate pemrograman dasar:
 
 ###8. String
 
-  1. [Pendalaman String](https://www.dropbox.com/s/i16me26qwfdsecm/materi_8.pdf?dl=0)
+  1. Pendalaman String
 
     * Penjelasan bahwa string pada Pascal merupakan array of char
     * Fungsi-fungsi dasar pada string (length, copy, delete, insert, pos, str, val)
 
 ###9. Pencarian dan Pengurutan Dasar
 
-  1. [Pencarian](https://www.dropbox.com/s/45i42e51jqsn1yh/materi_9_1.pdf?dl=0)
+  1. Pencarian
 
     * Linear search
     * Binary search
@@ -180,6 +170,9 @@ Berikut silabus pembelajaran untuk Training Gate pemrograman dasar:
     * Contoh kode
     * Analisis kompleksitas + perbandingan terhadap quick sort
 
+## Link Unduh
+Materi dalam bentuk pdf yang sejauh ini sudah dibuat bisa diakses [di sini](https://www.dropbox.com/sh/9v7anrmpd7rr6qz/AAA1tiAqBNinWl7LJ5dR9c01a?dl=0)
+
 ## Setup Latex
 
 Jika Anda tertarik untuk mengembangkan atau memodifikasi TOKI Training Gate, Anda perlu memasang Latex pada sistem Anda. Lakukan langkah-langkah berikut.
@@ -209,7 +202,6 @@ Untuk mulai berkontribusi, lakukan langkah-langkah berikut:
   Sebelum memulai langkah berikutnya, Anda diharapkan paham perintah-perintah dasar git seperti clone, checkout, branch, add, commit, push, dan pull. Tutotial penggunaan git sudah banyak beredar di internet. Salah satu yang singkat dan mudah dipahami: https://try.github.io/levels/1/challenges/1
 
   Selain itu, Anda juga diharapkan memiliki sedikit pengetahuan tentang penulisan materi dengan Latex (http://latex-project.org/guides/).
-
 6. Clone repository ini.
 7. Checkout branch baru.
 8. Lakukan perubahan secukupnya; Anda bebas melakukan commit dan push.
