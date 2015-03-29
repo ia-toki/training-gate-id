@@ -26,3 +26,5 @@
 *.synctex.gz
 *.pdf
 *.bak
+*.fls
+*.fdb_latexmk

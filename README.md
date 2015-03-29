@@ -9,6 +9,7 @@
 * [Link Unduh](#link-unduh)
 * [Setup Latex](#setup-latex)
 * [Setup Tokitex](#setup-tokitex)
+* [Build PDF](#build-pdf)
 * [Skema Kontribusi](#skema-kontribusi)
 * [Lisensi](#lisensi)
 
@@ -187,6 +188,14 @@ Jika Anda tertarik untuk mengembangkan atau memodifikasi TOKI Training Gate, And
 
 Tokitex merupakan template latex untuk slide-slide TOKI Training Gate.
 Untuk membuat tokitex tersedia di sistem Anda, jalankan script install_tokitex.sh dengan akses root (misalnya menggunakan sudo).
+
+## Build PDF
+
+Setelah Anda clone repository ini, memasang Latex, dan memasang tokitex pada sistem, Anda bisa melakukan build pada seluruh berkas untuk mendapatkan semua materi dalam PDF. Caranya dengan cd ke folder repository TOKI Training Gate Anda, lalu jalankan:
+
+    make
+
+Setelah dijalankan, akan muncul sebuah folder benama "target" yang berisi berkas hasil kompilasi. Selain berkas PDF terdapat pula berkas lainnya yang bisa Anda abaikan.
 
 ## Skema Kontribusi Pengembangan TOKI Training Gate
 
