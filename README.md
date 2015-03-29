@@ -8,6 +8,7 @@
 * [Silabus Pembelajaran](#silabus-pembelajaran)
 * [Link Unduh](#link-unduh)
 * [Setup Latex](#setup-latex)
+* [Setup Tokitex](#setup-tokitex)
 * [Skema Kontribusi](#skema-kontribusi)
 * [Lisensi](#lisensi)
 
@@ -181,6 +182,11 @@ Jika Anda tertarik untuk mengembangkan atau memodifikasi TOKI Training Gate, And
 2. Clone repository ini.
 3. Jalankan script build.sh. Script ini akan meng-install theme beamer dan meng-compile seluruh materi menjadi PDF.
 4. Apabila seluruh PDF ter-compile dengan benar, berarti Anda sudah melakukan setup Latex untuk TOKI Training Gate dengan benar.
+
+## Setup Tokitex
+
+Tokitex merupakan template latex untuk slide-slide TOKI Training Gate.
+Untuk membuat tokitex tersedia di sistem Anda, jalankan script install_tokitex.sh dengan akses root (misalnya menggunakan sudo).
 
 ## Skema Kontribusi Pengembangan TOKI Training Gate
 
