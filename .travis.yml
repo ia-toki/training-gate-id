@@ -1,5 +1,12 @@
+before_install:
+    - sudo apt-get update
+    - wget launchpadlibrarian.net/128239195/latexmk_4.35-0ubuntu1_all.deb
+
 install:
     - sudo apt-get install texlive-latex-recommended texlive-latex-extra texlive-fonts-recommended
+    - sudo dpkg -i latexmk_4.35-0ubuntu1_all.deb
+    - sudo ./install_tokitex.sh
 
 script:
-    - sudo ./build.sh
+    - mkdir target
+    - make
