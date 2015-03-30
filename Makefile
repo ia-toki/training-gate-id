@@ -1,7 +1,7 @@
 mkfile_path = $(abspath $(lastword $(MAKEFILE_LIST)))
 mkfile_dir = $(dir $(mkfile_path))
 
-SRC = $(wildcard ./*/*/materi/*.tex)
+SRC = $(wildcard ./*/*/*.tex)
 LATEXMAKE = latexmk -pdf -pdflatex="pdflatex -interaction=nonstopmode -halt-on-error" -outdir=$(mkfile_dir)target
 
 all: $(SRC)
