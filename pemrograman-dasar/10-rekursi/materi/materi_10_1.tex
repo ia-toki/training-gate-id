@@ -1,0 +1,221 @@
+\documentclass{beamer}
+\usetheme{tokitex}
+ 
+\usepackage{pgf}
+\usepackage{graphics}
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage{tabto}
+\usepackage[english,bahasa]{babel}
+\newtranslation[to=bahasa]{Section}{Bagian}
+\newtranslation[to=bahasa]{Subsection}{Subbagian}
+ 
+\usepackage{listings}
+\usepackage{color}
+ 
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+ 
+\lstset{frame=tb,
+ language=pascal,
+ showstringspaces=false,
+ columns=flexible,
+ basicstyle={\small\ttfamily},
+ numbers=none,
+ numberstyle=\tiny\color{gray},
+ keywordstyle=\color{blue},
+ commentstyle=\color{dkgreen},
+ stringstyle=\color{mauve},
+ breaklines=true,
+ breakatwhitespace=true,
+ tabsize=2
+}
+ 
+\title{Pengenalan rekursi}
+\author{Tim Olimpiade Komputer Indonesia}
+ 
+\begin{document}
+ 
+\begin{frame}
+\titlepage
+\end{frame}
+ 
+\begin{frame}
+\frametitle{Pendahuluan}
+Melalui dokumen ini, kalian akan:
+\begin{itemize}
+        \item Memahami konsep rekursi.
+        \item Mempelajarai rekursi tak bercabang.
+\end{itemize}
+\end{frame}
+ 
+\begin{frame}
+\frametitle{Pendahuluan (lanj.) }
+\begin{itemize}
+        \item Rekursi adalah keadaan dimana kita membuat sebuah fungsi untuk menyelesaikan sebuah permasalahan dengan cara memanggil diri sendiri secara berulang-ulang
+        \item Ketika Anda memanggil fungsi, fungsi itu akan menyelesaikan masalah. Jika terlalu besar, fungsi itu akan memanggil diri sendiri tapi dengan permasalahan yang lebih kecil
+        \item Fungsi itu akan memanggil diri sendiri sampai kita berhasil mengecilkan permasalahan itu ke base-case atau permasalah paling simpel
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Cara mengerjakan soal dengan rekursi }
+Ketika kita mengerjakan soal dengan rekursi, kita harus memikirkan 3 perihal:
+\begin{itemize}
+        \item $Base Case$ Apakah base-case (atau soal paling simpel) dari pertanyaan ini?
+        \item Apa yang harus kita lakukan jika soal yang kita terima bukan $base case$?
+        \item Bagaimana cara implementasinya dalam fungsi tersebut?
+\end{itemize}
+\end{frame}
+ 
+\begin{frame}
+\frametitle{Soal: Faktorial}
+Deskripsi:
+\begin{itemize}
+        \item Operasi faktorial (dikenal dengan notasi $N$!) adalah operasi mengali bilangan dari 1 sampai N.
+        \item Contoh: Jika $N$ = 4, maka 4!=1 x 2 x 3 x 4 = 24
+        \item Bantu Pak Dengklek cari hasil $N$!
+\end{itemize}
+\end{frame}
+ 
+\begin{frame}
+\frametitle{Soal: Faktorial (lanj.) }
+Format masukan:
+\begin{itemize}
+        \item Sebuah baris berisi sebuah bilangan $N$
+\end{itemize}
+Format keluaran:
+\begin{itemize}
+        \item Sebuah baris berisi hasil $N$!
+\end{itemize}
+Batasan:
+\begin{itemize}
+        \item $1 \le N \le 10$
+\end{itemize}
+\end{frame}
+ 
+\begin{frame}
+\frametitle{Solusi}
+\begin{itemize}
+        \item Permasalahan: Bagaimana cara mengalihkan bilangan dari 1 sampai $N$?
+    \item Ide 1: Loop
+    \begin{itemize}
+       \item Kita set variabel $jawaban$ := 1
+       \item Buat sebuah loop dari $i$ sampai $N$
+       \item Untuk setiap $i$, $jawaban$ dikali dengan $i$
+   \end{itemize}
+   \item Ide 2: Rekursi (Akan kita jelaskan)   
+\end{itemize}
+\end{frame}
+ 
+\begin{frame}[fragile]
+\frametitle{Contoh Solusi: faktorial\_loop.pas}
+Implementasinya cukup sederhana:
+\begin{lstlisting}
+  (* Faktorial dengan loop : *)
+  var i,N,jawaban:longint;
+  begin
+       readln(N);
+       jawaban:=1; (*Initialisasi*)
+       for i:=1 to N do
+           jawaban:= jawaban * i;
+       writeln(jawaban);
+  end.
+\end{lstlisting}
+\end{frame}
+ 
+\begin{frame}
+\frametitle{Penjelasan solusi Rekursi}
+Seperti yang kami jelaskan tadi, mengerjakan soal rekursi ada 3 tahap
+\begin{itemize}
+    \item Tahap 1 : Base Case
+    \begin {itemize}
+        \item Jika kita lihat di batasan soal, soal kita akan menjawab soal dari 1! sampai 10!
+        \item Pertanyaan : Dari 1! sampai 10!, mana yang paling gampang dihitung?
+        \item Yang paling gampang dihitung adalah 1!, jadi 1! adalah base casenya.
+        \item 1! = 1
+    \end {itemize}
+\end{itemize}
+\end{frame} 
+ 
+\begin{frame}
+\frametitle{Penjelasan solusi Rekursi (lanj.) }
+\begin{itemize}
+    \item Tahap 2 : Bukan Base Case
+    \begin {itemize}
+        \item Bagaimana kalau fungsi kita menerima soal yang bukan 1! ?
+        \item Sesuai penjelasan di pendahuluan, kita harus mengecilkan masalah!
+        \item Setelah dipikir-pikir untuk semua N lebih dari 1. N! = N X (N-1)! 
+        \item Contoh: 5! = 5 X 4!
+        \item Dengan ini, kita telah mengecilkan permasalahan dari 5! jadi 4!
+        \item 4! lalu akan kita kecilkan terus menerus sampai menjadi $base case$ yaitu 1!
+    \end {itemize}
+\end{itemize}
+\end{frame} 
+
+\begin{frame}[fragile]
+\frametitle{Contoh Solusi: faktorial\_rekursi.pas}
+Perhatikan contoh berikut:
+\begin{lstlisting}
+  (* Faktorial dengan rekursi : *)
+   function faktorial(Z:longint):longint;
+   begin
+       if(Z==1)then (* Base Case *)
+           f:=1;
+       else
+           f:=Z*f(Z-1); (* Proses Mengecilkan Masalah*)
+   end;      
+\end{lstlisting}
+\end{frame}
+ 
+\begin{frame}
+\frametitle{Penjelasan solusi rekursi}
+Perhatikan maksud kami:
+\begin {itemize}
+    \item Anggap program kita ditanya nilai dari 5! (N=5)
+    \item Kita akan panggil faktorial(5) 
+    \item faktorial(5) akan mengecek, apakah N=5 adalah $base case$
+    \item Ternyata bukan! Karena baru $base case$ kalau N=1
+    \item Tadi kita ingat kalau 5! = 5 X 4!
+    \item Untuk menjawab soal dari nilai 5!, faktorial(5)  butuh nilai dari 4!
+    \item Karena dia butuh nilai dari 4! , dia akan panggil faktorial(4) 
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Penjelasan solusi rekursi (lanj.) }
+\begin {itemize}
+    \item faktorial(4) akan mengecek apa sudah base case! Belum! Kita ingat 4!= 4 X 3! Dia butuh nilai dari 3! maka dia akan panggil faktorial(3)
+    \item faktorial(3) akan mengecek apa sudah base case! Belum! Kita ingat 3!= 3 X 2! Dia butuh nilai dari 2! maka dia akan panggil faktorial(2)
+    \item faktorial(2) akan mengecek apa sudah base case! Belum! Kita ingat 2!= 2 X 1! Dia butuh nilai dari 1! maka dia akan panggil faktorial (1)
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Penjelasan solusi rekursi (lanj.) }
+\begin {itemize}
+    \item faktorial(1) akan mengecek apa sudah base case! Sudah! Karena 1! = 1, dia kembalikan angka 1
+    \item faktorial(2) menangkap jawaban 1! dari fakotrial(1). 2! = 2 X 1! = 2 X 1 =2. faktorial(2) mengembalikan angka 2
+    \item faktorial(3) menangkap jawaban 2! dari faktorial(2). 3!= 3 X 2! = 3 X 2 =6. faktorial(3) mengembalikan angka 6
+    \item Dst sampai faktorial(5) menangkap jawaban 4! dari faktorial(4). 5!= 5 X 4! = 5 X 24 =120.
+\end{itemize}
+\end{frame}
+
+ 
+\begin{frame}
+\frametitle{Kompleksitas solusi}
+\begin {itemize}
+   \item Kompleksitas solusi adalah O($N$). Karena jika kita panggil \alert{\textbf{faktorial(N)}}, pasti terpanggil semua dari \alert{\textbf{faktorial(1)}} sampai \alert{\textbf{f(N)}}.
+   \item Jumlah pemanggilan adalah $N$ kali. Makanya O($N$).
+\end {itemize}
+\end{frame}
+ 
+\begin{frame}
+\frametitle{Materi selanjutnya}
+\begin{itemize}
+   \item Rekursi bercabang. Di contoh faktorial tadi, program menangkap cuma 1 variabel. Bagaimana kalau program menangkap 2 variabel? (atau bahkan lebih)    
+\end {itemize}
+\end{frame}
+ 
+\end{document}
