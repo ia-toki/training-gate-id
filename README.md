@@ -158,19 +158,19 @@ Berikut silabus pembelajaran untuk Training Gate pemrograman dasar:
 
 ###11. Pengurutan Lanjut
 
-  1. Quick Sort
-
-    * Mengapa perlu ada quick sort
-    * Konsep algoritma
-    * Contoh kode
-    * Analisis kompleksitas
-
-  2. Merge Sort
+  1. Merge Sort
 
     * Mengapa perlu ada merge sort
     * Konsep algoritma
     * Contoh kode
-    * Analisis kompleksitas + perbandingan terhadap quick sort
+    * Analisis kompleksitas
+
+  2. Quick Sort
+
+    * Mengapa perlu ada quick sort
+    * Konsep algoritma
+    * Contoh kode
+    * Analisis kompleksitas, bandingkan dengan merge sort
 
 ## Link Unduh
 Materi dalam bentuk pdf yang sejauh ini sudah dibuat bisa diakses [di sini](https://www.dropbox.com/sh/9v7anrmpd7rr6qz/AAA1tiAqBNinWl7LJ5dR9c01a?dl=0)

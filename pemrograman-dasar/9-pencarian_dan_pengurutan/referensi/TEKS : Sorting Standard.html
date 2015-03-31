@@ -1,0 +1,397 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html><head>
+  <meta http-equiv="content-type" content="text/html; charset=windows-1252">
+  <link rel="stylesheet" type="text/css" href="TEKS%20:%20Sorting%20Standard_files/apalah.css">
+
+  <!-- Author: INSERT HERE -->
+  <!-- Last Updated: 4 Juli 2008 -->
+
+
+  <!-- browser title -->
+  <title> TEKS : Sorting Standard </title>
+</head><body>
+
+<!-- title -->
+<h1> TEKS : Sorting Standard </h1>
+
+<!-- author -->
+<div id="penulis">
+</div>
+
+<!-- header -->
+
+<!-- problem statement -->
+<div id="problem">
+<p>
+"To sort" artinya mengurutkan.  Misalnya, ada bilangan-bilangan
+</p>
+<pre class="code">2 5 4 1 3
+</pre>
+<p>
+maka setelah diurutkan akan menjadi
+</p>
+<pre class="code">1 2 3 4 5
+</pre>
+<p>
+Tapi mengurutkan tidak selalu dari kecil ke besar, tetapi bisa saja
+dari besar ke kecil, sehingga menjadi
+</p>
+<pre class="code">5 4 3 2 1
+</pre>
+<p>
+Hal yang diurutkan pun tidak harus angka, tetapi bisa saja string,
+misalnya
+</p>
+<pre class="code">komputer
+toki
+kompetisi
+peserta
+lomba
+</pre>
+<p>
+yang setelah diurutkan secara leksikografi (seperti dalam kamus)
+menjadi
+</p>
+<pre class="code">kompetisi
+komputer
+lomba
+peserta
+toki
+</pre>
+<p>
+Seperti sudah dikatakan sebelumnya, ada juga cara pengurutan lainnya,
+misalnya dari kata yang paling pendek ke yang paling panjang:
+</p>
+<pre class="code">toki
+lomba
+peserta
+komputer
+kompetisi
+</pre>
+<p>
+Jadi kita telah melihat bahwa dalam pengurutan, harus ada tipe data
+yang akan diurutkan dan juga aturan pengurutan yang jelas.
+Pengurutan sering
+dipakai di dalam soal-soal, dan biasanya menjadi suatu bagian
+dari algoritma yang lebih besar.
+</p>
+<p>
+Ada banyak sekali algoritma pengurutan (sort).  Ada yang
+kodenya mudah dan ada yang kodenya susah.  Ada yang
+cepat dan ada yang lambat.  Berikut ini akan dibahas beberapa algoritma
+pengurutan yang sering dipakai.  Untuk semua pembahasan, diberikan
+sebuah array of integer <span class="code">A</span> yang berisi
+<span class="code">N</span> buah integer:
+<span class="code">A[1]</span>,
+<span class="code">A[2]</span>, ...,
+<span class="code">A[N]</span>, dan kita diminta untuk mengurutkannya
+dari kecil ke besar.
+</p>
+
+<h3>Selection Sort</h3>
+<p>
+Algoritma ini cukup straightforward (mudah) dan bisa dilakukan
+di tempat (tanpa bantuan array lain).  Idenya adalah pada setiap
+langkah, cari elemen terkecil yang tersisa lalu letakkan di depan:
+</p>
+<pre class="code">for i := 1 to N - 1
+begin
+    dari antara A[i..N] cari elemen terkecil. misalnya A[j]
+    jika i &#8800; j, tukarkan A[i] dengan A[j]
+end;
+</pre>
+<p>
+Jadi, ketika loop ke-<span class="code">i</span> selesai,
+<span class="code">A[1..i]</span> sudah berisi <span class="code">i</span>
+elemen terkecil pertama, tetapi <span class="code">A[i+1..N]</span>
+mungkin masih acak.
+</p>
+
+<h3>Insertion Sort</h3>
+<p>
+Pada insertion sort, untuk setiap elemen ke-<span class="code">i</span>,
+kita berusaha meletakkan elemen itu di suatu tempat, sehingga
+<span class="code">i</span> elemen pertama menjadi terurut:
+</p>
+<pre class="code">for i := 2 to N
+begin
+    carilah j sedemikian sehingga jika
+    A[j..i-1] digeser ke kanan dan A[i] diletakkan di posisi j
+    maka A[1..i] menjadi terurut.
+    lakukan penggeseran dan letakkan A[i] di posisi j
+end;
+</pre>
+
+<h3>Bubble Sort</h3>
+<p>
+Pada bubble sort dilakukan <span class="code">N - 1</span> loop,
+di mana pada setiap loop elemen yang kecil perlahan-lahan bergeser
+ke depan dan yang besar perlahan-lahan bergeser ke belakang:
+</p>
+<pre class="code">for i := 1 to N - 1
+    for j := i + 1 to N
+        if (A[i] &gt; A[j]) then tukar A[i] dengan A[j]
+</pre>
+
+<h3>Merge Sort</h3>
+<p>
+Selection Sort, Insertion Sort, dan Bubble Sort adalah contoh-contoh
+sort yang memakan waktu O(N<sup>2</sup>), yang artinya kira-kira adalah
+running time berbanding lurus dengan kuadrat dari banyak input.
+Jadi, algoritma-algoritma sort di atas tidak baik dipakai untuk
+N yang terlalu besar.
+</p>
+<p>Algoritma merge sort dan quick sort (berikutnya) adalah algoritma
+yang berjalan dengan waktu O(N log N), yang jauh lebih efisien
+daripada O(N<sup>2</sup>), dan akan berjalan jauh lebih cepat untuk
+N yang besar.
+</p>
+<p>Algoritma merge sort sesungguhnya sangat sederhana: Bagi array
+menjadi dua sama besar, sort bagian pertama, sort bagian kedua, lalu
+gabungkan.  Tentu sort ini menggunakan prosedur rekursif
+dengan parameter index paling kiri (<span class="code">a</span>)
+dan index paling kanan (<span class="code">b</span>),
+seperti ini:
+</p>
+<pre class="code">procedure Sort(a, b: integer);
+begin
+    if (b &gt; a) then
+    begin
+        Sort(a, (a + b) div 2);     // sort bagian pertama
+        Sort((a + b) div 2 + 1, b); // sort bagian kedua
+        Merge(a, (a + b) div 2, (a + b) div 2 + 1, b); // gabungkan
+    end;
+end;
+</pre>
+<p>
+dengan pemanggilan pertama
+</p>
+<pre class="code">    Sort(1, N);
+</pre>
+<p>
+Di manakah basisnya?  Basisnya adalah pada kasus
+<span class="code">b = a</span>, yaitu ketika hanya ada 1 elemen
+yang akan disort.
+Pada kasus ini, Sort tidak melakukan apa-apa.  Inti dari algoritma
+ini sebenarnya ada pada bagian Merge, yang berfungsi menggabungkan
+<span class="code">A[a1..b1]</span> yang terurut dan
+<span class="code">A[a2..b2]</span> yang terurut menjadi
+<span class="code">A[a1..b2]</span> yang terurut.  Catatan: kita
+menggunakan sebuah array
+<span class="code">B</span> untuk menyimpan hasil sementara.
+Pada setiap loop, kita menentukan apakah elemen dari 
+<span class="code">A[a1..b1]</span> atau dari
+<span class="code">A[a2..b2]</span> yang harus ditambahkan
+ke B.  Jika sudah selesai, B akan dipindahkan ke A.
+</p>
+<pre class="code">procedure Merge(a1, b1, a2, b2: integer);
+var
+    i: integer;
+begin
+    i := a1;
+
+    while (a1 &lt;= b1) and (a2 &lt;= b2) do
+    begin
+        if (A[a1] &lt;= A[a2]) then masukkan nilai A[a1] ke B[i] lalu a1 := a1 + 1;
+        else                     masukkan nilai A[a2] ke B[i] lalu a2 := a2 + 1;   
+        i := i + 1;
+    end;
+    
+    // sisanya yang belum dimasukkan ke B
+    while (a1 &lt;= b1)
+        masukkan nilai A[a1] ke B[i] lalu a1 := a1 + 1;  i := i + 1;
+    while (a2 &lt;= b2)
+        masukkan nilai A[a2] ke B[i] lalu a2 := a2 + 1;  i := i + 1;
+        
+    copy B[a1..b2] ke A[a1..b2]
+end;
+</pre>
+<p>
+Ilustrasi Merge Sort (bagian berwarna biru menunjukan proses
+Merge):
+</p>
+<img src="TEKS%20:%20Sorting%20Standard_files/mergesort.html" title="Merge Sort">
+<p>
+</p>
+
+<h3>Quick Sort</h3>
+<p>
+Quick Sort adalah algoritma sort yang tercepat dari antara sort-sort
+O(N log N) lainnya.  Tetapi, Quick Sort juga algoritma yang running
+timenya tidak stabil.  Artinya, dijamin 99,9999% bahwa Quick Sort akan
+berjalan dengan sangat cepat, tetapi pada kasus-kasus tertentu
+Quick Sort akan berjalan agak lambat, dan kalau sedang sial,
+untuk input tertentu (worst case) Quick Sort akan berjalan
+dengan waktu O(N<sup>2</sup>).  Tapi pada
+umumnya (average case), Quick Sort berjalan dengan waktu O(N log N).
+Algoritma ini sangat unik.  Inti dari algoritma
+ini:
+</p>
+<pre class="code">procedure Quicksort(a, b: integer);
+var
+    pivot: integer;
+begin
+    if (b &gt; a) then
+    begin
+        pivot := A[(a + b) div 2];
+        pindahkan semua elemen yang lebih kecil dari pivot ke sebelah kiri pivot
+        pindahkan semua elemen yang lebih besar dari pivot ke sebelah kanan pivot
+        misalkan pivot akhirnya berada di posisi j, maka
+            Quicksort(a, j - 1);
+            Quicksort(j + 1, b);
+    end;
+end;
+</pre>
+<p>
+dengan pemanggilan pertama
+</p>
+<pre class="code">    Quicksort(1, N);
+</pre>
+<p>Basis dari prosedur rekursif ini adalah pada kasus
+<span class="code">b &lt;= a</span>, yaitu ketika hanya ada maksimum 1 elemen
+yang akan disort.  Pivot dapat dipilih secara acak, dan bisa elemen
+apapun dari antara <span class="code">A[a..b]</span>.  Untuk kasus
+di atas, kita pilih elemen ke-<span class="code">(a + b) div 2</span>.
+</p>
+<p>
+Di bawah ini adalah ilustrasi Quick Sort, di mana
+elemen yang diberi kotak biru adalah pivot.  Perhatikan bahwa
+elemen-elemen yang lebih kecil dari pivot diletakkan di sebelah kiri
+pivot, dan yang lebih besar di sebelah kanan pivot.
+</p>
+<img src="TEKS%20:%20Sorting%20Standard_files/quicksort.html" title="Merge Sort">
+<p>
+Salah satu implementasi Quick Sort dapat dilihat pada contoh berikut:
+</p>
+<pre class="code">procedure Quicksort(a, b: integer);
+var
+    pivot: integer;
+    left, right: integer;
+begin
+    if (b &gt; a) then
+    begin
+        pivot := A[(a + b) div 2];
+        left := a;  right := b;
+
+        while (left &lt;= right)
+        begin
+            while (A[left] &lt; pivot)  left := left + 1;
+            while (A[right] &gt; pivot) right := right - 1;
+        
+            if (left &lt;= right) then
+            begin
+                swap A[left] dengan A[right]
+                left := left + 1;
+                right := right - 1;
+            end;
+        end;
+        
+        // sampai di sini, tentu left &gt; right
+        Quicksort(a, right);
+        Quicksort(left, b);
+    end;
+end;
+</pre>
+
+<h3>Algoritma sort yang stabil</h3>
+<p>
+Kadang kala input yang kita miliki dapat memiliki elemen-elemen
+bernilai sama seperti
+</p>
+<pre class="code">1 2 3 1 3 1 2 2
+</pre>
+<p>
+sehingga jika diurutkan dari kecil ke besar menjadi
+</p>
+<pre class="code">1 1 1 2 2 2 3 3
+</pre>
+<p>
+Pada kasus ini tidak ada masalah, karena angka-angka yang sama tidak
+bisa dibedakan.  Namun bagaimana jika Anda diberikan input
+</p>
+<pre class="code">makan
+lomba
+main
+tidur
+toki
+</pre>
+<p>
+lalu Anda harus mengurutkan kata-kata tersebut dari yang pendek
+ke panjang?  Bagaimana memecahkan kondisi seri (tie) antara
+"toki" dan "main", dan juga antara "makan", "lomba", dan "tidur"?
+Algoritma sort yang stabil (stable) adalah algoritma yang
+dapat mengurutkan input, dan jika menemukan kondisi seri, akan
+mengeluarkan elemen-elemen yang seri sesuai
+dengan urutan input awal.  Pada contoh di atas, algoritma
+yang stabil akan mengeluarkan:
+</p>
+<pre class="code">main
+toki
+makan
+lomba
+tidur
+</pre>
+<p>
+karena "main" muncul terlebih dahulu daripada "toki", dan "makan"
+muncul dahulu daripada "lomba", lalu daripada "tidur".
+</p>
+<p>
+Dari algoritma-algoritma yang sudah kita pelajari di atas,
+semua algoritma stabil kecuali Quick Sort.  Ketika menggunakan
+Quick Sort, kita tidak bisa menentukan urutan
+relatif dari elemen-elemen yang seri.
+</p>
+<p>
+Berikut ini adalah tabel perbandingan algoritma-algoritma sort
+yang sudah kita pelajari:
+</p>
+<table border="1" cellpadding="3">
+<thead style="font-weight: bold;">
+<tr>
+<td>Algoritma</td>
+<td>Stabil</td>
+<td width="105px">Running time</td>
+<td>Catatan</td>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Selection Sort</td>
+<td>Ya</td>
+<td>O(N<sup>2</sup>)</td>
+<td>Running time tidak tergantung input</td>
+</tr>
+<tr>
+<td>Insertion Sort</td>
+<td>Ya</td>
+<td>O(N<sup>2</sup>)</td>
+<td>Jika input hampir terurut, running time menjadi sangat cepat</td>
+</tr>
+<tr>
+<td>Bubble Sort</td>
+<td>Ya</td>
+<td>O(N<sup>2</sup>)</td>
+<td>Lambat dibandingkan algoritma O(N<sup>2</sup>) lainnya</td>
+</tr>
+<tr>
+<td>Merge Sort</td>
+<td>Ya</td>
+<td>O(N log N)</td>
+<td>Running time tidak tergantung input</td>
+</tr>
+<tr>
+<td>Quick Sort</td>
+<td>Tidak</td>
+<td>O(N log N)</td>
+<td>Paling cepat dibandingkan algoritma O(N log N) lainnya,
+tetapi pada kasus terburuk (sangat jarang terjadi) menjadi
+O(N<sup>2</sup>).  Algoritma ini adalah algoritma yang paling
+populer digunakan di kompetisi informatika.</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+
+
+</body></html>
