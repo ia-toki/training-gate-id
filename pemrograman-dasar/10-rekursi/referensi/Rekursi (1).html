@@ -1,0 +1,220 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html><head>
+  <meta http-equiv="content-type" content="text/html; charset=windows-1252">
+  <link rel="stylesheet" type="text/css" href="Rekursi%20%281%29_files/apalah.css">
+
+  <!-- Author: INSERT HERE -->
+  <!-- Last Updated: 30 Juni 2008 -->
+
+
+  <!-- browser title -->
+  <title> Rekursi (1) </title>
+</head><body>
+
+<!-- title -->
+<h1> Rekursi (1) </h1>
+
+<!-- author -->
+<div id="penulis">
+</div>
+
+<!-- header -->
+
+<!-- problem statement -->
+<div id="problem">
+<table>
+<tbody><tr>
+<td valign="top">
+<p>
+Rekursi adalah metode mengekspresikan sesuatu menggunakan dirinya sendiri.
+Misalnya, gambar di samping ini adalah gambar sebuah kemasan
+produk bergambar orang yang sedang memegang kemasan produk,
+yang bergambar orang yang sedang memegang kemasan produk, yang
+bergambar orang yang sedang... dan seterusnya.  Gambar itu
+disebut gambar yang rekursif.
+</p>
+</td>
+<td>
+<img src="Rekursi%20%281%29_files/droste.jpg" height="315" width="206">
+</td>
+</tr>
+</tbody></table>
+
+<p>
+Pada bidang pemrograman, rekursi banyak dipakai untuk memecahkan
+berbagai masalah, dan diwujudkan dalam prosedur rekursif atau
+fungsi rekursif.
+Prosedur rekursif adalah prosedur yang memanggil dirinya sendiri,
+dan fungsi rekursif adalah fungsi yang memanggil dirinya sendiri.
+</p>
+<h3>Contoh: Deret Fibonacci</h3>
+<p>
+Misalnya, deret Fibonacci didefinisikan seperti ini:
+</p>
+<blockquote>
+F(1) = 1<br>
+F(2) = 1<br>
+F(n) = F(n - 1) + F(n - 2), untuk n&#8805;3
+</blockquote>
+<p>
+Kita dapat membuat sebuah fungsi rekursif yang menghasilkan nilai
+F(n) dengan mudah:
+</p>
+<pre class="code">function Fibonacci(n: longint): longint;
+begin
+    if (n = 1) or (n = 2) then
+        Fibonacci := 1
+    else
+        Fibonacci := Fibonacci(n - 1) + Fibonacci(n - 2);
+end;
+</pre>
+<p>
+Fungsi di atas akan menghasilkan hasil yang benar.  Misalnya, pemanggilan
+<span class="code">Fibonacci(3)</span> akan menghasilkan 2,
+<span class="code">Fibonacci(4)</span> akan menghasilkan 3, dan
+<span class="code">Fibonacci(5)</span> akan menghasilkan 5.
+Mengapa fungsi di atas dapat menghasilkan hasil yang benar?
+Ketika fungsi Fibonacci dipanggil dengan parameter 1 atau 2,
+fungsi tersebut akan mengembalikan nilai 1.  Ketika fungsi itu
+dipanggil dengan parameter 3 ke atas, fungsi itu akan memanggil dirinya
+sendiri untuk mendapatkan hasil dari
+<span class="code">Fibonacci(1)</span> dan <span class="code">Fibonacci(2)</span>,
+untuk mengeluarkan hasil yang benar untuk pemanggilan
+<span class="code">Fibonacci(3)</span>.  Demikian seterusnya.
+</p>
+<p>
+Ada dua komponen yang penting dalam penulisan suatu prosedur atau
+fungsi rekursif, yaitu <span class="bold">"basis"</span>
+dan <span class="bold">"rekurens"</span>.  Rekurens adalah bagian
+yang memanggil dirinya sendiri, yang pada contoh
+di atas adalah <span class="code">
+Fibonacci := Fibonacci(n - 1) + Fibonacci(n - 2);</span>.  Basis adalah
+bagian yang memberi batas pada rekursi, yang pada contoh di atas adalah
+<span class="code">
+if (n = 1) or (n = 2) then Fibonacci := 1</span>.  Meskipun rekurens
+adalah bagian utama dalam rekursi tersebut, basis menjadi
+bagian yang tidak kalah pentingnya.  Bayangkan jika tanpa sengaja
+Anda menuliskan fungsi seperti ini:
+</p>
+<pre class="code">function Fibonacci(n: longint): longint;
+begin
+    Fibonacci := Fibonacci(n - 1) + Fibonacci(n - 2);
+end;
+</pre>
+<p>Maka fungsi ini tidak akan pernah berhenti memanggil dirinya sendiri,
+dan setelah beberapa lama akan mengalami
+<span class="bold">"stack overflow"</span> karena
+kehabisan memori.  Namun, fungsi di bawah ini juga tetap salah:</p>
+<pre class="code">function Fibonacci(n: longint): longint;
+begin
+    if (n = 1) then
+        Fibonacci := 1
+    else
+        Fibonacci := Fibonacci(n - 1) + Fibonacci(n - 2);
+end;
+</pre>
+<p>
+karena basisnya tidak lengkap.  Pemanggilan
+<span class="code">Fibonacci(2)</span> untuk fungsi di atas ini
+tidak akan menghasilkan hasil yang benar karena tidak didefinisikan.
+Bahkan, fungsi itu akan memanggil
+<span class="code">Fibonacci(1)</span> dan
+<span class="code">Fibonacci(0)</span> (yang tidak didefinisikan)
+dan akan berjalan terus-menerus sampai stack overflow.
+Jadi, menentukan basis yang benar pada rekursi adalah hal yang
+sangat penting.
+</p>
+<h3>Contoh: Menguji Palindrom</h3>
+<p>
+Sebagai contoh, buatlah sebuah fungsi rekursif bernama
+<span class="code">Palindrom</span> yang memiliki parameter
+sebuah <span class="code">string</span> dan mengembalikan sebuah
+<span class="code">boolean</span>.  Fungsi tersebut mengembalikan
+<span class="code">true</span> jika string itu adalah palindrom
+(dibaca sama dari kiri dan dari kanan) dan <span class="code">false</span>
+jika bukan.  Misalnya, <span class="code">Palindrom('abcba')</span> akan
+menghasilkan <span class="code">true</span>, tetapi
+<span class="code">Palindrom('abcb')</span> akan menghasilkan
+<span class="code">false</span>.
+</p>
+<p>
+Mari membuat fungsi tersebut secara bertahap:
+</p>
+<pre class="code">function Palindrom(s: string): boolean;
+begin
+    ...
+    Palindrom := (s[1] = s[length(s)]) and
+                 Palindrom(substr(s, 2, length(s) - 2));
+end;
+</pre>
+<p>
+Pada contoh di atas, hanya bagian rekurens saja yang sudah ditulis.
+Jadi kita mendefinisikan Palindrom secara rekursif sebagai berikut:
+</p>
+<blockquote>
+<span class="code">s</span> adalah palindrom jika dan hanya jika
+karakter pertama <span class="code">s</span> sama dengan
+karakter terakhir <span class="code">s</span>, dan karakter-karakter
+di antaranya membentuk palindrom.
+</blockquote>
+<p>Misalnya <span class="code">'abcba'</span> adalah palindrom karena
+karakter pertamanya sama dengan karakter terakhirnya, dan
+<span class="code">'bcb'</span> juga adalah palindrom.
+</p>
+<blockquote><p>
+Catatan: <span class="code">substr</span> adalah sebuah fungsi Pascal
+yang akan mengembalikan substring dari string yang diberikan.
+Jadi, <span class="code">substr(s, first, count)</span> akan
+mengembalikan sebuah string yang dimulai dari karakter
+<span class="code">s</span> yang ke-<span class="code">first</span>
+sampai dengan karakter ke-<span class="code">(first + count - 1)</span>.
+Pada contoh di atas, <span class="code">substr(s, 2, length(s) - 2)</span>
+mengembalikan karakter kedua hingga karakter kedua sebelum terakhir
+dari <span class="code">s</span>.
+</p></blockquote>
+<p>
+Setelah kita yakin bahwa rekurens kita sudah benar, kita dapat menentukan
+basis yang lengkap untuk fungsi rekursif ini.  Kasus sederhana
+yang dapat kita temukan mungkin adalah string dengan panjang 1.
+Mari kita ubah kode menjadi seperti ini:
+</p>
+<pre class="code">function Palindrom(s: string): boolean;
+begin
+    if (length(s) = 1) then
+        Palindrom := true
+    else
+        Palindrom := (s[1] = s[length(s)]) and
+                     Palindrom(substr(s, 2, length(s) - 2));
+end;
+</pre>
+<p>
+Namun basis di atas tidak lengkap, karena fungsi di atas
+tidak dapat mendeteksi palindrom dengan panjang genap, misalnya
+<span class="code">'aa'</span>.  Untuk itu, kita perlu menambahkan
+sebuah basis lagi, yaitu kasus string dengan panjang 0.  Tentu string kosong
+juga adalah palindrom karena dibaca sama dari kiri dan dari kanan.
+</p>
+<pre class="code">function Palindrom(s: string): boolean;
+begin
+    if (length(s) &lt;= 1) then
+        Palindrom := true;
+    else
+        Palindrom := (s[1] = s[length(s)]) and
+                     Palindrom(substr(s, 2, length(s) - 2));
+end;
+</pre>
+<p>
+Demikianlah fungsi Palindrom yang benar.
+</p>
+<p>
+Catatan: Sebetulnya kita tidak memerlukan rekursi untuk menguji
+apakah sebuah string adalah palindrom, dan bahkan fungsi rekursi ini
+akan berjalan lambat karena fungsi <span class="code">substr</span>
+memakan waktu yang agak lama dan dipanggil berulang-ulang.  Contoh ini
+hanya untuk menjelaskan rekursi saja.
+</p>
+
+</div>
+
+
+</body></html>

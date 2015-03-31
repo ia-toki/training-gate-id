@@ -1,0 +1,120 @@
+/* Based on the original Apalah.html style by Ilham Kurnia
+ * Last updated: June 21, 2008
+ *
+ * [ NOTES ]
+ * This file must be included in the directory containing the tasks.
+ *
+ * [ USAGE ]
+ * - For format masukan and keluaran, use <pre class="io">
+ * - For source code, use <pre class="code">
+ * - Use <span class="code"> for source code inside a paragraph
+ */
+
+div#penulis
+{
+    text-align: right;
+    font-family: garamond, arial, verdana;
+    font-size: 12pt;
+}
+
+div#exp
+{
+    border: 1px solid #0cc;
+    background: #adc;
+    padding: 5px;
+    margin-bottom: 1em;
+}
+div#warn
+{
+    border: 1px solid #900;
+    background: #d22;
+    padding: 5px;
+}
+
+.code
+{
+    font-family: "Courier New", monospace;
+    font-size: 12pt;
+}
+
+.bold
+{
+    font-weight: bold;
+}
+
+pre.io
+{
+    border: 1px solid #ccc;
+    background: white;
+    padding: 5px;
+}
+
+pre.code
+{
+    border: 1px solid #ccc;
+    background: white;
+    padding: 5px;
+    margin-left: 30px;
+}
+
+body 
+{
+    background-color: #eee;
+    font-size: 12pt;
+    font-family: verdana;
+    margin: 15px;
+    padding: 15px;
+}
+
+h1 
+{
+    text-align: center;
+    font-family: times, "times new roman";
+    font-size: 18pt;
+}
+
+h2 
+{
+    font-size: 12pt;
+    font-family: garamond, verdana, arial;
+    margin-top: 30px;
+}
+
+h3
+{
+    font-size: 12pt;
+    font-family: garamond, verdana, arial;
+    margin-top: 0px;
+}
+
+p
+{
+    text-align: justify;
+    line-height: 1.5em;
+}
+
+hr
+{
+    text-align: left;
+    width: 10%;
+}
+
+table#header
+{
+    width: 100%;
+    font-family: garamond, arial, verdana;
+    font-size: 12pt;
+}
+
+table#header td.judul
+{
+    text-align: right;
+    font-weight: bold;
+}
+
+table#header td
+{
+    padding: 0px 5px 0px 5px;
+    width: 50%;
+}
+

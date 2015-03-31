@@ -1,0 +1,325 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html><head>
+  <meta http-equiv="content-type" content="text/html; charset=windows-1252">
+  <link rel="stylesheet" type="text/css" href="Rekursi%20%282%29_files/apalah.css">
+
+  <!-- Author: INSERT HERE -->
+  <!-- Last Updated: 30 Juni 2008 -->
+
+
+  <!-- browser title -->
+  <title> Rekursi (2) </title>
+</head><body>
+
+<!-- title -->
+<h1> Rekursi (2) </h1>
+
+<!-- author -->
+<div id="penulis">
+</div>
+
+<!-- header -->
+
+<!-- problem statement -->
+<div id="problem">
+
+<p>
+Pada artikel ini, kita akan melihat masalah-masalah yang membutuhkan
+rekursi yang lebih rumit daripada sebelumnya.  Jika pada artikel
+rekursi yang pertama kita menghitung jawaban untuk parameter N menggunakan
+nilai N yang lebih kecil, sekarang kita tidak bisa hanya mengandalkan
+parameter N, karena kita harus mempertimbangkan
+"konteks" dari masalah yang lebih kecil tersebut.
+</p>
+
+<h3>Contoh: Kombinasi 1, 2, 3</h3>
+<p>
+Mari kita memecahkan soal berikut ini bersama-sama.
+Diberikan sebuah bilangan bulat N yang cukup kecil,
+tuliskan semua bilangan yang terdiri
+atas N digit-digit 1, 2, atau 3, satu bilangan setiap baris,
+diurutkan dari bilangan terkecil.
+Misalnya, untuk N = 3,
+program harus menuliskan
+</p>
+<pre class="code">111
+112
+113
+121
+122
+123
+131
+132
+133
+211
+...
+333
+</pre>
+<p>
+Mari kita buat suatu prosedur rekursif yang akan menyelesaikan
+masalah berikut ini.  Perhatikan bahwa kita dapat mendelegasikan
+masalah N = 3 ke masalah yang lebih kecil, yaitu N = 2.  Mari kita
+susun prosedur rekursifnya:
+</p>
+<pre class="code">procedure Tulis(n: integer);
+var
+    i: integer;
+begin
+    ...
+    for i := 1 to 3 do
+        Tulis(n - 1);
+end;
+</pre>
+<p>
+Tapi sepertinya ada yang kurang.  Apa artinya
+<span class="code">Tulis(2)</span> yang pada kode di atas
+dipanggil tiga kali?  Kita menyadari bahwa ada sesuatu yang kurang:
+Kita harus menyimpan prefiks dari bilangan-bilangan yang akan ditulis
+oleh <span class="code">Tulis(2)</span>:
+</p>
+<pre class="code">procedure Tulis(n: integer; prefiks: longint);
+var
+    i: integer;
+begin
+    ...
+    for i := 1 to 3 do
+        Tulis(n - 1, prefiks * 10 + i);
+end;
+</pre>
+<p>
+Dengan cara ini, <span class="code">Tulis(3, 0)</span>
+akan memanggil:
+</p>
+<ul>
+<li><span class="code">Tulis(2, 1)</span></li>
+<li><span class="code">Tulis(2, 2)</span></li>
+<li><span class="code">Tulis(2, 3)</span></li>
+</ul>
+<p>
+dan <span class="code">Tulis(2, 1)</span> akan memanggil:
+</p>
+<ul>
+<li><span class="code">Tulis(1, 11)</span></li>
+<li><span class="code">Tulis(1, 12)</span></li>
+<li><span class="code">Tulis(1, 13)</span></li>
+</ul>
+<p>
+dan seterusnya.  Lalu kita perlu menuliskan basis untuk prosedur
+tersebut, yaitu kasus di mana <span class="code">n</span> = 0.
+Karena tidak ada bilangan yang memiliki 0 digit,
+apakah kita tidak perlu menuliskan apa-apa?  Kita tetap
+perlu menuliskan <span class="code">prefiks</span> yang sudah
+diteruskan dari satu pemanggilan ke pemanggilan berikutnya,
+tetapi kita tidak perlu menuliskan digit lagi di belakang
+<span class="code">prefiks</span> tersebut.
+</p>
+<pre class="code">procedure Tulis(n: integer; prefiks: longint);
+var
+    i: integer;
+begin
+    if (n = 0) then
+        writeln(prefiks)
+    else
+        for i := 1 to 3 do
+            Tulis(n - 1, prefiks * 10 + i);
+end;
+</pre>
+<p>
+Demikianlah prosedur yang benar.  Prosedur ini dapat kita pakai
+di program utama sebagai berikut:
+</p>
+<pre class="code">var
+    n: integer;
+begin
+    readln(n);
+    Tulis(n, 0);
+end.
+</pre>
+<p>
+Perhatikan bahwa prosedur Tulis memiliki local variable
+<span class="code">i</span>.  Bagaimana jika fungsi ini
+memanggil dirinya sendiri?  Apakah akan terjadi konflik?  Tidak.
+Local variable <span class="code">i</span> adalah milik sebuah
+pemanggilan <span class="code">Tulis</span>.  Jadi, jika prosedur
+Tulis dipanggil sebanyak 10x, ada 10 buah <span class="code">i</span>
+yang berbeda, yang masing-masing dapat memiliki nilai yang berbeda-beda,
+dan tentu saja memori yang dipakai juga 10 kali lipat.
+</p>
+<h3>Contoh: Permutasi</h3>
+<p>
+Mari kita mengerjakan contoh masalah berikutnya:
+Diberikan sebuah bilangan bulat N yang cukup kecil,
+tuliskan bilangan-bilangan yang merupakan
+permutasi dari 1, 2, 3, ..., N, satu bilangan setiap baris,
+diurutkan dari kecil ke besar.
+Misalnya, untuk N = 3,
+program harus menuliskan
+</p>
+<pre class="code">123
+132
+213
+231
+312
+321
+</pre>
+<p>
+Bagaimanakah cara memecahkan masalah ini?  Kita dapat mencoba membuat
+suatu prosedur rekursif seperti di atas:
+</p>
+<pre class="code">procedure Permutasi(n: integer; prefiks: longint);
+var
+    i: integer;
+begin
+    if (n = 0) then
+        writeln(prefiks)
+    else
+        for i := 1 to max_n do
+            Permutasi(n - 1, prefiks * 10 + i);
+end;
+</pre>
+<p>
+tapi bagaimana cara memastikan bahwa digit yang sudah ditulis tidak
+ditulis lagi?  Ada beberapa cara untuk memecahkan masalah ini:
+</p>
+<ol type="A">
+<li><p>Pada saat iterasi <span class="code">i</span>, jangan
+memakai digit-digit yang sudah ada pada <span class="code">prefiks</span>.
+</p></li>
+<li><p>Tambahkan sebuah parameter baru pada prosedur
+Permutasi yang berisi digit-digit yang belum dipakai.</p></li>
+<li><p>Gunakan sebuah array global yang menyimpan
+digit-digit yang belum dipakai.</p></li>
+</ol>
+<p>
+Masing-masing cara di atas memiliki kelebihan dan kekurangannya
+sendiri-sendiri.  Untuk kali ini, kita akan membahas cara C, yaitu
+dengan menggunakan sebuah array global.  Perhatikan program berikut ini:
+</p>
+<pre class="code">const
+    MAX = 9;
+var
+    dipakai: array[1..MAX] of boolean;
+    max_n: integer;
+</pre>
+<pre class="code">procedure Permutasi(n: integer; prefiks: longint);
+var
+    i: integer;
+begin
+    if (n = 0) then
+        writeln(prefiks)
+    else
+        for i := 1 to max_n do
+            if (not dipakai[i])
+            begin
+                dipakai[i] = true;
+                Permutasi(n - 1, prefiks * 10 + i);
+                dipakai[i] = false;
+            end;
+end;
+</pre>
+<pre class="code">begin
+    // inisialisasi isi array dengan false
+    fillchar(dipakai, sizeof(dipakai), 0);
+    
+    readln(max_n);
+    Permutasi(max_n, 0);
+end.
+</pre>
+<p>
+Array <span class="code">dipakai</span> adalah array dari 9 elemen
+boolean, di mana <span class="code">dipakai[i]</span> menyatakan
+apakah digit <span class="code">i</span> sudah dipakai atau belum
+di dalam <span class="code">prefiks</span> pada rekursi.
+Seluruh elemen array ini akan diinisialisasi dengan
+<span class="code">false</span>.  Catatan bahwa prosedur
+<span class="code">fillchar(x, count, value)</span> akan
+menginisialisasi sebanyak <span class="code">count</span>
+byte pertama pada variabel <span class="code">x</span>, dengan isi
+<span class="code">value</span>.  Karena nilai byte dari
+<span class="code">false</span> adalah 0, maka
+</p>
+<pre class="code">    fillchar(dipakai, sizeof(dipakai), 0);
+</pre>
+<p>sama saja dengan
+</p>
+<pre class="code">    for i := 1 to sizeof(dipakai)
+        dipakai[i] := false;
+</pre>
+<p>
+Perhatikan juga prosedur Permutasi yang baru.  Ada dua baris yang
+diselipkan di sana, yaitu 
+</p>
+<pre class="code">    dipakai[i] := true;
+</pre>
+<p>sebelum rekurens, untuk menandakan bahwa digit
+<span class="code">i</span> tidak boleh dipakai pada pemanggilan
+yang lebih dalam, dan</p>
+<pre class="code">    dipakai[i] := false;
+</pre>
+<p>setelah pemanggilan fungsi selesai, untuk membebaskan digit
+<span class="code">i</span> kembali.</p>
+<p>
+Kita juga menambahkan sebuah kondisi
+<span class="code">if (not dipakai[i])</span> agar digit selanjutnya
+yang akan ditulis adalah digit yang belum pernah dipakai di dalam
+prefiks.
+</p>
+<h3>Local atau global?</h3>
+<p>
+Sebetulnya ada banyak sekali cara untuk menyelesaikan masalah
+menulis permutasi di atas.  Kita dapat membuat array
+<span class="code">dipakai</span> tidak global, sehingga
+array <span class="code">dipakai</span> menjadi salah
+satu parameter <span class="code">Permutasi</span>.  Namun,
+tidak mudah meletakkan sebuah array di daftar parameter
+karena ada beberapa urusan administratif yang perlu dilakukan.
+Selain itu, memori yang dipakai akan menjadi besar karena pada
+setiap pemanggilan prosedur rekursif, seluruh parameter
+dan local variable memerlukan memori baru.  Jadi, tidak
+disarankan untuk meletakkan data yang terlalu besar sebagai parameter
+atau local variable.
+</p>
+<p>
+Sebaliknya, kita bisa saja membuat prosedur rekursif yang sama
+sekali tidak memiliki parameter, dan digantikan oleh variabel-variabel
+global, seperti ini:
+</p>
+<pre class="code">const
+    MAX = 9;
+var
+    dipakai: array[1..MAX] of boolean;
+    max_n: integer;
+    n: integer;
+    prefiks: longint;
+</pre>
+<pre class="code">procedure Permutasi;
+var
+    i: integer;
+begin    
+    if (n = 0) then
+        writeln(prefiks)
+    else
+        for i := 1 to max_n do
+            if (not dipakai[i])
+            begin
+                dipakai[i] := true;
+                n := n - 1;
+                prefiks := prefiks * 10 + i;
+                Permutasi;                     // &lt;---- rekurens
+                prefiks := prefiks div 10;
+                n := n + 1;
+                dipakai[i] := false;
+            end;
+end;
+</pre>
+<p>
+Meskipun prosedur di atas tetap menghasilkan keluaran yang sama,
+dan meskipun hemat memori,
+tetapi penulisannya menjadi tidak rapi, bukan?
+Oleh karena itu, Anda perlu menentukan sendiri dengan kebijaksanaan
+Anda, kapan memakai global variable atau local variable (parameter).
+</p>
+</div>
+
+
+</body></html>
