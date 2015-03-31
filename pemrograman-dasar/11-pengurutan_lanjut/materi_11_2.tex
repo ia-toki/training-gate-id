@@ -1,0 +1,101 @@
+\documentclass{beamer}
+\usetheme{tokitex}
+
+\usepackage{pgf}
+\usepackage{graphics}
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage{tabto}
+\usepackage[english,bahasa]{babel}
+\newtranslation[to=bahasa]{Section}{Bagian}
+\newtranslation[to=bahasa]{Subsection}{Subbagian}
+
+\usepackage{listings}
+\usepackage{color}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+  language=pascal,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=2
+}
+
+\title{Pencarian Lanjut - Quick Sort}
+\author{Tim Olimpiade Komputer Indonesia}
+
+\begin{document}
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+\begin{frame}
+\frametitle{Pendahuluan}
+Melalui dokumen ini, kalian akan:
+\begin{itemize}
+	\item Mempelajari konsep \textit{quick sort}.
+	\item Mengimplementasikan \textit{quick sort}.
+\end{itemize}
+\end{frame}
+
+\section{Konsep}
+\frame{\sectionpage}
+
+\begin{frame}
+\frametitle{$<$TODO: Konten Wajib$>$}
+\begin{itemize}
+	\item ide dasar: divide (pilih 1 pivot, partisi semua yang $<=$ pivot ke kiri, yg $>=$ pivot ke kanan), conquer (kalau sudah tinggal 1 elemen berarti sudah sorted), combine (tinggal "tempel" saja arraynya)
+	\item cara partisi array yg efisien (gunakan algoritma Hoare)
+	\item kasih demonstrasi cara partisi
+	\item analisis kompleksitas (best case, average case, worst case)
+	\item jelaskan strategi pemilihan pivot: randomized, pilih median dari elemen {depan, tengah, belakang}, dsb,
+	\item kemudian tekankan bahwa dalam soal programming, kasus worst case akan sangaaaaat jarang ditemui, sehingga menggunakan pivot elemen di tengah/depan/belakang sudah cukup
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{$<$TODO: Konten Wajib$>$}
+\begin{itemize}
+	\item jelaskan bahwa quick sort bukan stable sort (sebelum itu, jelaskan apa itu stable sort)
+	\item bisa gunakan berkas "TEKS : Sorting Standard.html" (lihat  https://www.dropbox.com/sh/zxcd1uct6rf3mio/AAD5v7W-EaypSSh7uP8D5FRVa?dl=0 sebagai acuan)
+\end{itemize}
+\end{frame}
+
+
+\section{Implementasi}
+\frame{\sectionpage}
+
+\begin{frame}
+\frametitle{$<$TODO: Konten Wajib$>$}
+\begin{itemize}
+	\item buat fungsi rekursif
+	\item jelaskan per bagian kodenya
+	\item jelaskan bahwa quick sort tidak butuh memori tambahan, karena partisi dapat dilakukan secara \textit{in-place}
+\end{itemize}
+\end{frame}
+
+\section{Perbandingan Algoritma Sort}
+\frame{\sectionpage}
+
+\begin{frame}
+\frametitle{$<$TODO: Konten Wajib$>$}
+\begin{itemize}
+	\item bandingkan selection sort, bubble sort, insertion sort, merge sort, dan quick sort. Tekankan bahwa merge/quick sort jauh lebih cepat dari sisanya
+	\item tekankan bahwa counting sort tetap lebih cepat dari quick/merge sort, meskipun perlu ada karakteristik khusus pada data
+	\item bandingkan quick sort dengan merge sort, biasa orang lebih sering menggunakan quick sort karena konstantanya lebih ringan dari merge sort, codingnya lebih pendek, dan tidak butuh memori tambahan.
+\end{itemize}
+\end{frame}
+
+\end{document}
