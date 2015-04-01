@@ -171,7 +171,7 @@ Berikut silabus pembelajaran untuk Training Gate pemrograman dasar:
     * Analisis kompleksitas, bandingkan dengan merge sort
 
 ## Link Unduh
-Materi dalam bentuk pdf yang sejauh ini sudah dibuat bisa diakses [di sini](https://www.dropbox.com/sh/9v7anrmpd7rr6qz/AAA1tiAqBNinWl7LJ5dR9c01a?dl=0)
+Materi dalam bentuk pdf yang sejauh ini sudah dibuat bisa diakses [di sini](https://www.dropbox.com/sh/9v7anrmpd7rr6qz/AAA1tiAqBNinWl7LJ5dR9c01a?dl=0).
 
 ## Setup Latex
 
@@ -186,29 +186,7 @@ Jika Anda tertarik untuk mengembangkan atau memodifikasi TOKI Training Gate, And
 
 ## Skema Kontribusi Pengembangan TOKI Training Gate
 
-Setelah Anda membaca atau menggunakan TOKI Training Gate, Anda dapat berkontribusi dengan cara:
-
-1. Memberikan masukan tanpa mengimplementasikannya pada materi.
-2. Memberikan masukan sekaligus mengimplementasikannya pada materi.
-
-Untuk mulai berkontribusi, lakukan langkah-langkah berikut:
-
-1. Buat akun GitHub (http://github.com/).
-2. Pergi ke halaman https://github.com/ia-toki/training-gate-id/issues.
-3. Tambahkan isu baru dengan menekan tombol "Issues", lalu ketikkan masukan yang Anda berikan.
-4. Kontributor dari IA TOKI akan menanggapi masukan Anda dan membahasnya pada isu yang Anda tambahkan.
-5. Hasil akhir dari pembahasan adalah keputusan apakah masukan tersebut akan diimplementasikan pada TOKI Training Gate.
-
-  Jika diputuskan bahwa masukan itu akan diimplementasikan, Anda boleh memutuskan apakah Anda yang akan mengimplementasikannya atau tidak. Jika ya, lanjut ke langkah berikutnya. Jika tidak, isu tersebut akan menjadi "open issue" dan dapat dikerjakan oleh kontributor lainnya.
-
-  Sebelum memulai langkah berikutnya, Anda diharapkan paham perintah-perintah dasar git seperti clone, checkout, branch, add, commit, push, dan pull. Tutotial penggunaan git sudah banyak beredar di internet. Salah satu yang singkat dan mudah dipahami: https://try.github.io/levels/1/challenges/1
-
-  Selain itu, Anda juga diharapkan memiliki sedikit pengetahuan tentang penulisan materi dengan Latex (http://latex-project.org/guides/).
-6. Clone repository ini.
-7. Checkout branch baru.
-8. Lakukan perubahan secukupnya; Anda bebas melakukan commit dan push.
-9. Setelah dirasa cukup, lakukan pull request.
-10. Kontributor dari IA TOKI akan melakukan review terhadap perubahan yang Anda lakukan. Jika sudah disepakati, kontribusi Anda akan digunakan dan dimasukkan ke materi Training Gate.
+Baca sepenuhnya [di sini](https://github.com/ia-toki/training-gate-id/blob/master/CONTRIBUTING.md).
 
 ## Lisensi
 
