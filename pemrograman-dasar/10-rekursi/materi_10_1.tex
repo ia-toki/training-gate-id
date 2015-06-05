@@ -1,6 +1,6 @@
 \documentclass{beamer}
 \usetheme{tokitex}
- 
+
 \usepackage{pgf}
 \usepackage{graphics}
 \usepackage{multirow}
@@ -9,38 +9,38 @@
 \usepackage[english,bahasa]{babel}
 \newtranslation[to=bahasa]{Section}{Bagian}
 \newtranslation[to=bahasa]{Subsection}{Subbagian}
- 
+
 \usepackage{listings}
 \usepackage{color}
- 
+
 \definecolor{dkgreen}{rgb}{0,0.6,0}
 \definecolor{gray}{rgb}{0.5,0.5,0.5}
 \definecolor{mauve}{rgb}{0.58,0,0.82}
- 
+
 \lstset{frame=tb,
- language=pascal,
- showstringspaces=false,
- columns=flexible,
- basicstyle={\small\ttfamily},
- numbers=none,
- numberstyle=\tiny\color{gray},
- keywordstyle=\color{blue},
- commentstyle=\color{dkgreen},
- stringstyle=\color{mauve},
- breaklines=true,
- breakatwhitespace=true,
- tabsize=2
+    language=pascal,
+    showstringspaces=false,
+    columns=flexible,
+    basicstyle={\small\ttfamily},
+    numbers=none,
+    numberstyle=\tiny\color{gray},
+    keywordstyle=\color{blue},
+    commentstyle=\color{dkgreen},
+    stringstyle=\color{mauve},
+    breaklines=true,
+    breakatwhitespace=true,
+    tabsize=2
 }
- 
+
 \title{Pengenalan rekursi}
 \author{Tim Olimpiade Komputer Indonesia}
- 
+
 \begin{document}
- 
+
 \begin{frame}
 \titlepage
 \end{frame}
- 
+
 \begin{frame}
 \frametitle{Pendahuluan}
 Melalui dokumen ini, kalian akan:
@@ -49,7 +49,7 @@ Melalui dokumen ini, kalian akan:
         \item Mempelajarai rekursi tak bercabang.
 \end{itemize}
 \end{frame}
- 
+
 \begin{frame}
 \frametitle{Pendahuluan (lanj.) }
 \begin{itemize}
@@ -62,7 +62,7 @@ Melalui dokumen ini, kalian akan:
 \begin{frame}
 \frametitle{$<$TODO: Konten Wajib$>$}
 \begin{itemize}
-	\item Mengapa perlu ada rekursi
+    \item Mengapa perlu ada rekursi
 \end{itemize}
 \end{frame}
 
@@ -75,7 +75,7 @@ Ketika kita mengerjakan soal dengan rekursi, kita harus memikirkan 3 perihal:
         \item Bagaimana cara implementasinya dalam fungsi tersebut?
 \end{itemize}
 \end{frame}
- 
+
 \begin{frame}
 \frametitle{Soal: Faktorial}
 Deskripsi:
@@ -85,7 +85,7 @@ Deskripsi:
         \item Bantu Pak Dengklek cari hasil $N$!
 \end{itemize}
 \end{frame}
- 
+
 \begin{frame}
 \frametitle{Soal: Faktorial (lanj.) }
 Format masukan:
@@ -101,7 +101,7 @@ Batasan:
         \item $1 \le N \le 10$
 \end{itemize}
 \end{frame}
- 
+
 \begin{frame}
 \frametitle{Solusi}
 \begin{itemize}
@@ -112,10 +112,10 @@ Batasan:
        \item Buat sebuah loop dari $i$ sampai $N$
        \item Untuk setiap $i$, $jawaban$ dikali dengan $i$
    \end{itemize}
-   \item Ide 2: Rekursi (Akan kita jelaskan)   
+   \item Ide 2: Rekursi (Akan kita jelaskan)
 \end{itemize}
 \end{frame}
- 
+
 \begin{frame}[fragile]
 \frametitle{Contoh Solusi: faktorial\_loop.pas}
 Implementasinya cukup sederhana:
@@ -131,7 +131,7 @@ Implementasinya cukup sederhana:
   end.
 \end{lstlisting}
 \end{frame}
- 
+
 \begin{frame}
 \frametitle{Penjelasan solusi Rekursi}
 Seperti yang kami jelaskan tadi, mengerjakan soal rekursi ada 3 tahap
@@ -144,8 +144,8 @@ Seperti yang kami jelaskan tadi, mengerjakan soal rekursi ada 3 tahap
         \item 1! = 1
     \end {itemize}
 \end{itemize}
-\end{frame} 
- 
+\end{frame}
+
 \begin{frame}
 \frametitle{Penjelasan solusi Rekursi (lanj.) }
 \begin{itemize}
@@ -153,13 +153,13 @@ Seperti yang kami jelaskan tadi, mengerjakan soal rekursi ada 3 tahap
     \begin {itemize}
         \item Bagaimana kalau fungsi kita menerima soal yang bukan 1! ?
         \item Sesuai penjelasan di pendahuluan, kita harus mengecilkan masalah!
-        \item Setelah dipikir-pikir untuk semua N lebih dari 1. N! = N X (N-1)! 
+        \item Setelah dipikir-pikir untuk semua N lebih dari 1. N! = N X (N-1)!
         \item Contoh: 5! = 5 X 4!
         \item Dengan ini, kita telah mengecilkan permasalahan dari 5! jadi 4!
         \item 4! lalu akan kita kecilkan terus menerus sampai menjadi $base case$ yaitu 1!
     \end {itemize}
 \end{itemize}
-\end{frame} 
+\end{frame}
 
 \begin{frame}[fragile]
 \frametitle{Contoh Solusi: faktorial\_rekursi.pas}
@@ -172,21 +172,21 @@ Perhatikan contoh berikut:
            f:=1;
        else
            f:=Z*f(Z-1); (* Proses Mengecilkan Masalah*)
-   end;      
+   end;
 \end{lstlisting}
 \end{frame}
- 
+
 \begin{frame}
 \frametitle{Penjelasan solusi rekursi}
 Perhatikan maksud kami:
 \begin {itemize}
     \item Anggap program kita ditanya nilai dari 5! (N=5)
-    \item Kita akan panggil faktorial(5) 
+    \item Kita akan panggil faktorial(5)
     \item faktorial(5) akan mengecek, apakah N=5 adalah $base case$
     \item Ternyata bukan! Karena baru $base case$ kalau N=1
     \item Tadi kita ingat kalau 5! = 5 X 4!
     \item Untuk menjawab soal dari nilai 5!, faktorial(5)  butuh nilai dari 4!
-    \item Karena dia butuh nilai dari 4! , dia akan panggil faktorial(4) 
+    \item Karena dia butuh nilai dari 4! , dia akan panggil faktorial(4)
 \end{itemize}
 \end{frame}
 
@@ -209,7 +209,7 @@ Perhatikan maksud kami:
 \end{itemize}
 \end{frame}
 
- 
+
 \begin{frame}
 \frametitle{Kompleksitas solusi}
 \begin {itemize}
@@ -217,12 +217,12 @@ Perhatikan maksud kami:
    \item Jumlah pemanggilan adalah $N$ kali. Makanya O($N$).
 \end {itemize}
 \end{frame}
- 
+
 \begin{frame}
 \frametitle{Materi selanjutnya}
 \begin{itemize}
-   \item Rekursi bercabang. Di contoh faktorial tadi, program menangkap cuma 1 variabel. Bagaimana kalau program menangkap 2 variabel? (atau bahkan lebih)    
+   \item Rekursi bercabang. Di contoh faktorial tadi, program menangkap cuma 1 variabel. Bagaimana kalau program menangkap 2 variabel? (atau bahkan lebih)
 \end {itemize}
 \end{frame}
- 
+
 \end{document}
