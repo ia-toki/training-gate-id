@@ -171,7 +171,7 @@ Berikut silabus pembelajaran untuk Training Gate pemrograman dasar:
     * Analisis kompleksitas, bandingkan dengan merge sort
 
 ## Link Unduh
-Materi dalam bentuk pdf yang sejauh ini sudah dibuat bisa diakses [di sini](https://www.dropbox.com/sh/9v7anrmpd7rr6qz/AAA1tiAqBNinWl7LJ5dR9c01a?dl=0).
+Materi dalam bentuk PDF yang sejauh ini sudah dibuat bisa diakses [di sini](https://github.com/ia-toki/training-gate-id/archive/target.zip).
 
 ## Setup Latex
 
@@ -182,7 +182,7 @@ Jika Anda tertarik untuk mengembangkan atau memodifikasi TOKI Training Gate, And
 3. Clone repository ini.
 4. Jalankan script install_tokitex.sh dengan akses root. Script ini akan meng-install theme beamer bernama tokitex.
 5. Untuk mencoba melakukan kompilasi, cd ke folder repository TOKI Training Gate Anda, lalu jalankan `make`.
-6. Setelah dijalankan, akan muncul sebuah folder benama "target" yang berisi berkas hasil kompilasi. Selain berkas PDF terdapat pula berkas lainnya yang bisa Anda abaikan. Apabila seluruh PDF ter-compile dengan benar, berarti Anda sudah melakukan setup Latex untuk TOKI Training Gate dengan benar. 
+6. Setelah dijalankan, akan muncul sebuah folder benama "target" yang berisi berkas hasil kompilasi. Selain berkas PDF terdapat pula berkas lainnya yang bisa Anda abaikan. Apabila seluruh PDF ter-compile dengan benar, berarti Anda sudah melakukan setup Latex untuk TOKI Training Gate dengan benar.
 
 ## Skema Kontribusi
 

@@ -1,3 +1,7 @@
+env:
+    # fushar's auth token
+    - secure: "yTjvOKfgq11N2G/BbA3tFxwKPwn4Ykh1dF4pQ2w4394hXwzsbrhhRVy4Q85z5JJ8r5xAmUzxefwpgSA0cQJ6ovhXW2paU1utxZRWLbBm+p7K9MiaStpX7eRtCU7whUYUsKsLHwgjxg89V7/Vlsv6/MqIk6lStB2utkcH90l5fJQ="
+
 before_install:
     - sudo apt-get update
     - wget launchpadlibrarian.net/128239195/latexmk_4.35-0ubuntu1_all.deb
@@ -9,3 +13,6 @@ install:
 
 script:
     - make
+
+after_success:
+    - ./publish_target.sh
