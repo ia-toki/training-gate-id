@@ -8,5 +8,4 @@ install:
     - sudo ./install_tokitex.sh
 
 script:
-    - mkdir target
     - make
