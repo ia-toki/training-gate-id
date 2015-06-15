@@ -61,9 +61,11 @@ Melalui dokumen ini, kalian akan:
 \end{frame}
 
 \begin{frame}
-\frametitle{$<$TODO: Konten Wajib$>$}
+\frametitle{Mengapa perlu ada rekursi }
 \begin{itemize}
-    \item Mengapa perlu ada rekursi
+    \item Banyak permasalahan yang akan lebih mudah diselesaikan (dan pendek kodenya) jika dilakukan pendekatan rekursi
+    \item Pada dasarnya $loop$ dan rekursi sama-sama melakukan sesuatu berulang-ulang. Namun, terkadang solusi $loop$ untuk suatu masalah sangat sulit untuk dipikirkan dan memerlukan teknik khusus
+    \item Karena rekursi berbentuk suatu fungsi maka Anda akan lebih mudah untuk melihat alur penyelesainnya di masalah-masalah yang solusi $loop$-nya rumit. Akan diberikan contohnya di materi selanjutnya
 \end{itemize}
 \end{frame}
 
@@ -122,12 +124,12 @@ Batasan:
 Implementasinya cukup sederhana:
 \begin{lstlisting}
   (* Faktorial dengan loop : *)
-  var i,N,jawaban:longint;
+  var i,N,jawaban : longint;
   begin
        readln(N);
-       jawaban:=1; (*Initialisasi*)
-       for i:=1 to N do
-           jawaban:= jawaban * i;
+       jawaban := 1; (*Initialisasi*)
+       for i := 1 to N do
+           jawaban := jawaban * i;
        writeln(jawaban);
   end.
 \end{lstlisting}
@@ -139,7 +141,7 @@ Seperti yang kami jelaskan tadi, mengerjakan soal rekursi ada 3 tahap
 \begin{itemize}
     \item Tahap 1 : Base Case
     \begin {itemize}
-        \item Jika kita lihat di batasan soal, soal kita akan menjawab soal dari 1! sampai 10!
+        \item Jika kita lihat di batasan soal, kita akan menjawab soal dari 1! sampai 10!
         \item Pertanyaan : Dari 1! sampai 10!, mana yang paling gampang dihitung?
         \item Yang paling gampang dihitung adalah 1!, jadi 1! adalah base casenya.
         \item 1! = 1
@@ -169,10 +171,10 @@ Perhatikan contoh berikut:
   (* Faktorial dengan rekursi : *)
    function faktorial(Z:longint):longint;
    begin
-       if(Z==1)then (* Base Case *)
-           f:=1;
+       if (Z = 1) then (* Base Case *)
+           faktorial := 1
        else
-           f:=Z*f(Z-1); (* Proses Mengecilkan Masalah*)
+           faktorial := Z * faktorial(Z-1); (* Proses Mengecilkan Masalah*)
    end;
 \end{lstlisting}
 \end{frame}
@@ -222,7 +224,7 @@ Perhatikan maksud kami:
 \begin{frame}
 \frametitle{Materi selanjutnya}
 \begin{itemize}
-   \item Rekursi bercabang. Di contoh faktorial tadi, program menangkap cuma 1 variabel. Bagaimana kalau program menangkap 2 variabel? (atau bahkan lebih)
+   \item Rekursi bercabang. Di contoh faktorial tadi, program hanya menangkap 1 variabel. Bagaimana kalau program menangkap 2 variabel? (atau bahkan lebih)
 \end {itemize}
 \end{frame}
 
