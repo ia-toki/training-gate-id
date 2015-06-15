@@ -6,6 +6,7 @@
 \usepackage{multirow}
 \usepackage{multicol}
 \usepackage{tabto}
+\usepackage{tikz}
 \usepackage[english,bahasa]{babel}
 \newtranslation[to=bahasa]{Section}{Bagian}
 \newtranslation[to=bahasa]{Subsection}{Subbagian}
@@ -52,11 +53,152 @@ Melalui dokumen ini, kalian akan:
 \end{frame}
 
 \begin{frame}
-\frametitle{$<$TODO: Konten Wajib$>$}
+\frametitle{Soal: Fibonacci}
+Deskripsi:
 \begin{itemize}
-    \item jelaskan cari fibonacci ke-n dengan rekursif
-    \item beri contoh kode, jelaskan alur eksekusi (dengan diagram seperti pohon)
-    \item jelaskan analisis kompleksitasnya, yaitu O(2\^n)
+        \item Deret fibonacci adalah deret di mana suatu bilangan adalah penjumlahan dari dua bilangan sebelumnya kecuali dua bilangan pertama
+        \item Jika $f_N$ adalah bilangan fibonacci ke-$N$, maka $f_0$ = 0, $f_1$ = 1, dan $f_N$ = $f_{N-1}$ + $f_{N-2}$ untuk $N > 1$
+        \item Beberapa bilangan pertama dari deret fibonacci adalah 0, 1, 1, 2, 3, 5, 8, 13, 21 dst.
+        \item Bantu Pak Dengklek cari bilangan fibonacci ke-$N$
+        \item Contoh : Bilangan fibonacci ke-6 adalah 8. Perhatikan bahwa indeks dimulai dari 0
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Soal: Fibonacci (lanj.) }
+Format masukan:
+\begin{itemize}
+        \item Sebuah baris berisi sebuah bilangan $N$
+\end{itemize}
+Format keluaran:
+\begin{itemize}
+        \item Sebuah baris berisi bilangan fibonacci ke-$N$
+\end{itemize}
+Batasan:
+\begin{itemize}
+        \item $0 \le N \le 20$
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Solusi}
+\begin{itemize}
+    \item Permasalahan: Bagaimana cara mendapatkan nilai dari dua bilangan fibonacci sebelum bilangan fibonacci ke-$N$?
+    \item Apakah kita bisa melakukan rekursi untuk mencari bilangan fibonacci ke-${N-1}$ dan ke-${N-2}$?
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Penjelasan solusi Rekursi}
+\begin{itemize}
+    \item Tahap 1 : Base Case
+    \begin {itemize}
+        \item Jika kita lihat di batasan soal, kita akan menjawab soal dengan $f_0$ sampai $f_{20}$
+        \item Pertanyaan : Dari $f_0$ sampai $f_{20}$, mana yang paling gampang dihitung?
+        \item Yang paling gampang dihitung adalah bilangan $f_0$ dan $f_1$, jadi keduanya adalah base casenya
+        \item Nilai dari $f_0$ = 0 dan $f_1$ = 1 atau dengan kata lain $f_N = N$ untuk $N \le 1$
+    \end {itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Penjelasan solusi Rekursi (lanj.) }
+\begin{itemize}
+    \item Tahap 2 : Bukan Base Case
+    \begin {itemize}
+        \item Bagaimana kalau fungsi kita menerima $N$ dengan $N > 1$?
+        \item Seperti yang sudah didefinisikan, $f_N$ = $f_{N-1}$ + $f_{N-2}$ untuk $N > 1$
+        \item Contoh: $f_5$ = $f_4$ + $f_3$
+        \item Dengan ini, kita telah mengecilkan permasalahan dari $f_5$ menjadi $f_4$ dan $f_3$ di mana keduanya ini akan dijumlahkan
+        \item $f_4$ dan $f_3$ sendiri akan dikecilkan terus menerus sampai menjadi $base case$ yaitu $f_0$ atau $f_1$
+    \end {itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Contoh Solusi: fibonacci\_rekursi.pas}
+Perhatikan contoh berikut:
+\begin{lstlisting}
+  (* Fibonacci dengan rekursi : *)
+   function fibonacci(N:longint):longint;
+   begin
+       if (N <= 1) then (* Base Case *)
+           fibonacci := N
+       else
+           fibonacci := fibonacci(N-1) + fibonacci(N-2); (* Proses Mengecilkan Masalah*)
+   end;
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Penjelasan solusi rekursi}
+Alur eksekusi rekursi dapat dimodelkan dengan pohon rekursi. Berikut adalah contoh pohonnya untuk $f_4$.
+\begin{tikzpicture}[level/.style={sibling distance=45mm/#1}]
+\node [circle,draw] (z){$f_4$}
+  child {node [circle,draw] (a) {$f_3$}
+    child {node [circle,draw] (b) {$f_2$}
+      child {node [circle,draw] (j) {$f_1$}}
+      child {node [circle,draw] (j) {$f_0$}}
+      }
+    child {node [circle,draw] (g) {$f_1$}}
+  }
+  child {node [circle,draw] (j) {$f_2$}
+      child {node [circle,draw] (k) {$f_1$}}
+      child {node [circle,draw] (k) {$f_0$}}
+  };
+\end{tikzpicture}
+\end{frame}
+
+\begin{frame}
+\frametitle{Penjelasan solusi rekursi (lanj.)}
+Kira-kira seperti inilah yang terjadi pada program ketika menghitung $f_4$
+\begin {itemize}
+    \item Kita akan panggil fibonacci(4)
+    \item fibonacci(4) akan mengecek, apakah N=4 adalah $base case$
+    \item Ternyata bukan! Karena baru $base case$ jika N $\le$ 1
+    \item Untuk menjawab nilai $f_4$, fibonacci(4)  butuh nilai dari $f_3$ dan $f_2$
+    \item Dijalankanlah "fibonacci := fibonacci(3) + fibonacci(2)"
+    \item Alur rekursi berjalan berurutan. Karena fibonacci(3) dipanggil duluan maka itulah yang dieksekusi duluan
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Penjelasan solusi rekursi (lanj.)}
+\begin {itemize}
+    \item fibonacci(3) akan menjalankan "fibonacci := fibonacci(2) + fibonacci(1)"
+    \item fibonacci(2) akan menjalankan "fibonacci := fibonacci(1) + fibonacci(0)"
+    \item Ternyata ketika fibonacci(1), 1 termasuk $base case$ sehingga fibonacci(1) = 1
+    \item Ternyata ketika fibonacci(0), 0 termasuk $base case$ sehingga fibonacci(0) = 0
+    \item Balik lagi ke fibonacci(2), nilai dari fibonacci(2) menjadi 1 + 0 = 1
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Penjelasan solusi rekursi (lanj.)}
+\begin {itemize}
+    \item Balik lagi ke fibonacci(3), nilai fibonacci(2) sudah ada nilainya tetapi fibonacci(1) belum sehingga akan dipanggil dan akan menghasilkan 1 (karena $base case$). Nilai dari fibonacci(3) menjadi 1 + 1 = 2
+    \item Balik lagi ke fibonacci(4), nilai fibonacci(3) sudah ada nilainya tetapi fibonacci(2) belum sehingga akan dipanggil dan akan menghasilkan 1 (alur yang terjadi sama seperti sebelumnya). Nilai dari fibonacci(4) menjadi 2 + 1 = 3
+\end{itemize}
+Tantangan : Cobalah membuat pohon rekursi dan alurnya untuk menghitung $f_5$
+\end{frame}
+
+\begin{frame}
+\frametitle{Kompleksitas solusi}
+\begin {itemize}
+   \item Perhatikan pohon rekursi yang sebelumnya. Berapa kali fungsi akan dipanggil?
+   \item Setiap fungsi yang dipanggil dia akan bercabang 2 dan kedalamannya adalah $N$
+   \item Walaupun totalnya tidak tepat $2^{N}$, namun secara kasar kita bisa sebutkan kira-kira fungsi akan dipanggil $2^{N}$ kali
+   \item Kompleksitasnya menjadi O($2^{N}$)
+\end {itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Masalah}
+\begin{itemize}
+    \item Perhatikan kembali pohon rekursi yang sebelumnya. Terlihat $f_2$ dihitung dua kali
+    \item Ketika $f_N$ cukup besar maka akan ada banyak fungsi dengan parameter yang sama namun dihitung berkali-kali. Hal inilah yang membuat kompleksitasnya boros
+    \item Kita bisa mereduksi kompleksitas rekursi fibonacci menjadi O($N$) dengan teknik yang akan kita pelajari pada pemrograman lanjut
+    \item Kita juga bisa membuat solusi O($N$)-nya dengan menghitung nilai fibonacci dengan $loop$. Dapatkah Anda membuatnya?
 \end{itemize}
 \end{frame}
 
