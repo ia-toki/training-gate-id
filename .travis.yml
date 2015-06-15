@@ -9,7 +9,7 @@ before_install:
 install:
     - sudo apt-get install texlive-latex-recommended texlive-latex-extra texlive-fonts-recommended
     - sudo dpkg -i latexmk_4.35-0ubuntu1_all.deb
-    - sudo ./install_tokitex.sh
+    - sudo ./setup.sh
 
 script:
     - make

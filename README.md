@@ -177,12 +177,12 @@ Materi dalam bentuk PDF yang sejauh ini sudah dibuat bisa diakses [di sini](http
 
 Jika Anda tertarik untuk mengembangkan atau memodifikasi TOKI Training Gate, Anda perlu memasang Latex pada sistem Anda. Lakukan langkah-langkah berikut.
 
-1. Install Latex. Sebagai contoh, pada Linux Anda dapat meng-install texlive. Pada OS X, Anda dapat meng-install mactex.
-2. Install latexmk, setidaknya versi 4.35.
+1. Install Latex. Sebagai contoh, pada Linux Anda dapat meng-install `texlive`. Pada OS X, Anda dapat meng-install `mactex`.
+2. Install `latexmk`, setidaknya versi 4.35.
 3. Clone repository ini.
-4. Jalankan script install_tokitex.sh dengan akses root. Script ini akan meng-install theme beamer bernama tokitex.
+4. Jalankan script `setup.sh` dengan akses root. Script ini akan meng-install theme beamer bernama tokitex dan meng-install package CTAN yang dibutuhkan.
 5. Untuk mencoba melakukan kompilasi, cd ke folder repository TOKI Training Gate Anda, lalu jalankan `make`.
-6. Setelah dijalankan, akan muncul sebuah folder benama "target" yang berisi berkas hasil kompilasi. Selain berkas PDF terdapat pula berkas lainnya yang bisa Anda abaikan. Apabila seluruh PDF ter-compile dengan benar, berarti Anda sudah melakukan setup Latex untuk TOKI Training Gate dengan benar.
+6. Setelah dijalankan, akan muncul sebuah folder benama `target` yang berisi berkas hasil kompilasi. Selain berkas PDF terdapat pula berkas lainnya yang bisa Anda abaikan. Apabila seluruh PDF ter-compile dengan benar, berarti Anda sudah melakukan setup Latex untuk TOKI Training Gate dengan benar.
 
 ## Skema Kontribusi
 
