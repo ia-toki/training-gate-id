@@ -49,17 +49,17 @@
 \frametitle{Pendahuluan}
 Melalui dokumen ini, kalian akan:
 \begin{itemize}
-    \item Memahami konsep rekursi.
-    \item Mempelajarai rekursi tak bercabang.
+  \item Memahami konsep rekursi.
+  \item Mempelajarai rekursi tak bercabang.
 \end{itemize}
 \end{frame}
 
 \begin{frame}
 \frametitle{Pendahuluan (lanj.) }
 \begin{itemize}
-    \item Rekursi adalah keadaan dimana kita membuat sebuah fungsi untuk menyelesaikan sebuah permasalahan dengan cara memanggil diri sendiri secara berulang-ulang
-    \item Ketika Anda memanggil fungsi, fungsi itu akan menyelesaikan masalah. Jika terlalu besar, fungsi itu akan memanggil diri sendiri tapi dengan permasalahan yang lebih kecil
-    \item Fungsi itu akan memanggil diri sendiri sampai kita berhasil mengecilkan permasalahan itu ke base-case atau permasalah paling simpel
+  \item Rekursi adalah keadaan dimana kita membuat sebuah fungsi untuk menyelesaikan sebuah permasalahan dengan cara memanggil diri sendiri secara berulang-ulang
+  \item Ketika Anda memanggil fungsi, fungsi itu akan menyelesaikan masalah. Jika terlalu besar, fungsi itu akan memanggil diri sendiri tapi dengan permasalahan yang lebih kecil
+  \item Fungsi itu akan memanggil diri sendiri sampai kita berhasil mengecilkan permasalahan itu ke base-case atau permasalah paling simpel
 \end{itemize}
 \end{frame}
 
@@ -74,9 +74,9 @@ Melalui dokumen ini, kalian akan:
 \frametitle{Cara mengerjakan soal dengan rekursi }
 Ketika kita mengerjakan soal dengan rekursi, kita harus memikirkan 3 perihal:
 \begin{itemize}
-    \item $Base Case$ Apakah base-case (atau soal paling simpel) dari pertanyaan ini?
-    \item Apa yang harus kita lakukan jika soal yang kita terima bukan $base case$?
-    \item Bagaimana cara implementasinya dalam fungsi tersebut?
+  \item $Base Case$ Apakah base-case (atau soal paling simpel) dari pertanyaan ini?
+  \item Apa yang harus kita lakukan jika soal yang kita terima bukan $base case$?
+  \item Bagaimana cara implementasinya dalam fungsi tersebut?
 \end{itemize}
 \end{frame}
 
@@ -84,9 +84,9 @@ Ketika kita mengerjakan soal dengan rekursi, kita harus memikirkan 3 perihal:
 \frametitle{Soal: Faktorial}
 Deskripsi:
 \begin{itemize}
-    \item Operasi faktorial (dikenal dengan notasi $N$!) adalah operasi mengali bilangan dari 1 sampai N.
-    \item Contoh: Jika $N$ = 4, maka 4!=1 x 2 x 3 x 4 = 24
-    \item Bantu Pak Dengklek cari hasil $N$!
+  \item Operasi faktorial (dikenal dengan notasi $N$!) adalah operasi mengali bilangan dari 1 sampai N.
+  \item Contoh: Jika $N$ = 4, maka 4!=1 x 2 x 3 x 4 = 24
+  \item Bantu Pak Dengklek cari hasil $N$!
 \end{itemize}
 \end{frame}
 
@@ -94,27 +94,27 @@ Deskripsi:
 \frametitle{Soal: Faktorial (lanj.) }
 Format masukan:
 \begin{itemize}
-    \item Sebuah baris berisi sebuah bilangan $N$
+  \item Sebuah baris berisi sebuah bilangan $N$
 \end{itemize}
 Format keluaran:
 \begin{itemize}
-    \item Sebuah baris berisi hasil $N$!
+  \item Sebuah baris berisi hasil $N$!
 \end{itemize}
 Batasan:
 \begin{itemize}
-    \item $1 \le N \le 10$
+  \item $1 \le N \le 10$
 \end{itemize}
 \end{frame}
 
 \begin{frame}
 \frametitle{Solusi}
 \begin{itemize}
-    \item Permasalahan: Bagaimana cara mengalihkan bilangan dari 1 sampai $N$?
+  \item Permasalahan: Bagaimana cara mengalihkan bilangan dari 1 sampai $N$?
   \item Ide 1: Loop
   \begin{itemize}
-     \item Kita set variabel $jawaban$ := 1
-     \item Buat sebuah loop dari $i$ sampai $N$
-     \item Untuk setiap $i$, $jawaban$ dikali dengan $i$
+    \item Kita set variabel $jawaban$ := 1
+    \item Buat sebuah loop dari $i$ sampai $N$
+    \item Untuk setiap $i$, $jawaban$ dikali dengan $i$
    \end{itemize}
    \item Ide 2: Rekursi (Akan kita jelaskan)
 \end{itemize}
@@ -170,12 +170,12 @@ Seperti yang kami jelaskan tadi, mengerjakan soal rekursi ada 3 tahap
 Perhatikan contoh berikut:
 \begin{lstlisting}
   (* Faktorial dengan rekursi : *)
-   function faktorial(Z:longint):longint;
-   begin
-      if(Z==1)then (* Base Case *)
-        f:=1;
-      else
-        f:=Z*f(Z-1); (* Proses Mengecilkan Masalah*)
+  function faktorial(Z:longint):longint;
+  begin
+    if(Z==1)then (* Base Case *)
+      f:=1;
+    else
+      f:=Z*f(Z-1); (* Proses Mengecilkan Masalah*)
    end;
 \end{lstlisting}
 \end{frame}
@@ -217,15 +217,15 @@ Perhatikan maksud kami:
 \begin{frame}
 \frametitle{Kompleksitas solusi}
 \begin {itemize}
-   \item Kompleksitas solusi adalah O($N$). Karena jika kita panggil \alert{\textbf{faktorial(N)}}, pasti terpanggil semua dari \alert{\textbf{faktorial(1)}} sampai \alert{\textbf{f(N)}}.
-   \item Jumlah pemanggilan adalah $N$ kali. Makanya O($N$).
+  \item Kompleksitas solusi adalah O($N$). Karena jika kita panggil \alert{\textbf{faktorial(N)}}, pasti terpanggil semua dari \alert{\textbf{faktorial(1)}} sampai \alert{\textbf{f(N)}}.
+  \item Jumlah pemanggilan adalah $N$ kali. Makanya O($N$).
 \end {itemize}
 \end{frame}
 
 \begin{frame}
 \frametitle{Materi selanjutnya}
 \begin{itemize}
-   \item Rekursi bercabang. Di contoh faktorial tadi, program menangkap cuma 1 variabel. Bagaimana kalau program menangkap 2 variabel? (atau bahkan lebih)
+  \item Rekursi bercabang. Di contoh faktorial tadi, program menangkap cuma 1 variabel. Bagaimana kalau program menangkap 2 variabel? (atau bahkan lebih)
 \end {itemize}
 \end{frame}
 
