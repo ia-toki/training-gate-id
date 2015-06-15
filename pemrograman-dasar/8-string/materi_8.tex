@@ -8,7 +8,7 @@
 \newtranslation[to=bahasa]{Section}{Bagian}
 \newtranslation[to=bahasa]{Subsection}{Subbagian}
 
-\usepackage{listings}
+\usepackage{listings, lstautogobble}
 \usepackage{color}
 
 \definecolor{dkgreen}{rgb}{0,0.6,0}
@@ -16,18 +16,21 @@
 \definecolor{mauve}{rgb}{0.58,0,0.82}
 
 \lstset{frame=tb,
-    language=pascal,
-    showstringspaces=false,
-    columns=flexible,
-    basicstyle={\small\ttfamily},
-    numbers=none,
-    numberstyle=\tiny\color{gray},
-    keywordstyle=\color{blue},
-    commentstyle=\color{dkgreen},
-    stringstyle=\color{mauve},
-    breaklines=true,
-    breakatwhitespace=true,
-    tabsize=2
+  language=pascal,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=fullflexible,
+  keepspaces=true,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  autogobble=true
 }
 
 \title{Pendalaman String\newline (Pascal)}
@@ -44,8 +47,8 @@
 \frametitle{Pendahuluan}
 Melalui dokumen ini, kalian akan:
 \begin{itemize}
-    \item Memahami lebih dalam soal string.
-    \item Mengenal fungsi-fungsi dasar untuk pengolahan string.
+  \item Memahami lebih dalam soal string.
+  \item Mengenal fungsi-fungsi dasar untuk pengolahan string.
 \end{itemize}
 \vfill
 Seluruh pembahasan string pada dokumen ini mengacu pada tipe data \textbf{string} pada \textbf{Pascal}.
@@ -58,13 +61,13 @@ Seluruh pembahasan string pada dokumen ini mengacu pada tipe data \textbf{string
 \frametitle{Pengolahan String}
 Pascal menyediakan berbagai fungsi dan prosedur dasar pengolah string, beberapa di antaranya adalah:
 \begin{itemize}
-    \item length
-    \item pos
-    \item copy
-    \item delete
-    \item insert
-    \item str
-    \item val
+  \item length
+  \item pos
+  \item copy
+  \item delete
+  \item insert
+  \item str
+  \item val
 \end{itemize}
 \end{frame}
 
@@ -76,13 +79,13 @@ Merupakan fungsi yang mengembalikan panjang dari string $S$.
 
 Contoh:
 \begin{lstlisting}
-s1 := 'bebek';
-s2 := '';
-s3 := 'Pak Dengklek';
+  s1 := 'bebek';
+  s2 := '';
+  s3 := 'Pak Dengklek';
 
-writeln(length(s1)); (* mencetak 5 *)
-writeln(length(s2)); (* mencetak 0 *)
-writeln(length(s3)); (* mencetak 12 *)
+  writeln(length(s1)); (* mencetak 5 *)
+  writeln(length(s2)); (* mencetak 0 *)
+  writeln(length(s3)); (* mencetak 12 *)
 \end{lstlisting}
 \end{frame}
 
@@ -95,14 +98,14 @@ Jika tidak ditemukan, dikembalikan nilai 0.
 \end{block}
 Contoh:
 \begin{lstlisting}
-s := 'Pak Dengklek berternak';
-t1 := 'Dengklek';
-t2 := 'pak';
-t3 := 'klek';
+  s := 'Pak Dengklek berternak';
+  t1 := 'Dengklek';
+  t2 := 'pak';
+  t3 := 'klek';
 
-writeln(pos(t1, s)); (* mencetak 4 *)
-writeln(pos(t2, s)); (* mencetak 0, tidak ditemukan  *)
-writeln(pos(t3, s)); (* mencetak 9 *)
+  writeln(pos(t1, s)); (* mencetak 4 *)
+  writeln(pos(t2, s)); (* mencetak 0, tidak ditemukan  *)
+  writeln(pos(t3, s)); (* mencetak 9 *)
 \end{lstlisting}
 \end{frame}
 
@@ -113,10 +116,10 @@ Merupakan fungsi yang mengembalikan substring dari indeks $pos$ sebanyak $cnt$ k
 \end{block}
 Contoh:
 \begin{lstlisting}
-s := 'Pak Dengklek berternak';
+  s := 'Pak Dengklek berternak';
 
-writeln(copy(s, 1, 6)); (* mencetak 'Pak De' *)
-writeln(copy(s, 3, 1)); (* mencetak 'k' *)
+  writeln(copy(s, 1, 6)); (* mencetak 'Pak De' *)
+  writeln(copy(s, 3, 1)); (* mencetak 'k' *)
 \end{lstlisting}
 \end{frame}
 
@@ -129,10 +132,10 @@ Parameter $S$ dipanggil dengan \textit{by reference}.
 \end{block}
 Contoh:
 \begin{lstlisting}
-s := 'Pak Dengklek berternak';
+  s := 'Pak Dengklek berternak';
 
-delete(s, 2, 3);
-writeln(s); (* mencetak 'PDengklek berternak' *)
+  delete(s, 2, 3);
+  writeln(s); (* mencetak 'PDengklek berternak' *)
 \end{lstlisting}
 \end{frame}
 
@@ -145,11 +148,11 @@ Parameter $S$ dipanggil dengan \textit{by reference}.
 \end{block}
 Contoh:
 \begin{lstlisting}
-s := 'Pak Dengklek berternak';
-t := 'dan Bu ';
+  s := 'Pak Dengklek berternak';
+  t := 'dan Bu ';
 
-insert(t, s, 5);
-writeln(s); (* mencetak 'Pak dan Bu Dengklek berternak' *)
+  insert(t, s, 5);
+  writeln(s); (* mencetak 'Pak dan Bu Dengklek berternak' *)
 \end{lstlisting}
 \end{frame}
 
@@ -162,12 +165,12 @@ Parameter $S$ dipanggil dengan \textit{by reference}.
 \end{block}
 Contoh:
 \begin{lstlisting}
-s := '';
-nilai := 781;
+  s := '';
+  nilai := 781;
 
-str(nilai, s);
-writeln(s);           (* mencetak '781' *)
-writeln(length(s)); (* mencetak 3 *)
+  str(nilai, s);
+  writeln(s);           (* mencetak '781' *)
+  writeln(length(s)); (* mencetak 3 *)
 \end{lstlisting}
 \end{frame}
 
@@ -182,12 +185,12 @@ Parameter $v$ dan $e$ dipanggil dengan \textit{by reference}.
 \end{block}
 Contoh:
 \begin{lstlisting}
-s := '123';
-nilai := 0;
-e := 0;
+  s := '123';
+  nilai := 0;
+  e := 0;
 
-val(s, nilai, e);
-writeln(nilai + 5); (* mencetak 128 *)
+  val(s, nilai, e);
+  writeln(nilai + 5); (* mencetak 128 *)
 \end{lstlisting}
 
 \textbf{Error} bisa terjadi misalnya ketika s bernilai '1a23';
@@ -197,27 +200,27 @@ writeln(nilai + 5); (* mencetak 128 *)
 \frametitle{Pengolahan String:\newline val (lanj.)}
 Parameter e sebenarnya tidak harus ada, sehingga bisa saja ditulis:
 \begin{lstlisting}
-s := '123';
-nilai := 0;
+  s := '123';
+  nilai := 0;
 
-val(s, nilai);
-writeln(nilai + 5); (* mencetak 128 *)
+  val(s, nilai);
+  writeln(nilai + 5); (* mencetak 128 *)
 \end{lstlisting}
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{Operasi Tambahan: konkatenasi}
 \begin{itemize}
-    \item Konkatenasi adalah penggabungan string.
-    \item Pada Pascal, hal ini dapat dilakukan cukup dengan operasi '+', layaknya operasi numerik.
-    \item Contoh:
-    \begin{lstlisting}
+  \item Konkatenasi adalah penggabungan string.
+  \item Pada Pascal, hal ini dapat dilakukan cukup dengan operasi '+', layaknya operasi numerik.
+  \item Contoh:
+  \begin{lstlisting}
     s := 'Pak';
     t := 'Dengklek';
 
     gabung := s + t;
     writeln(gabung); (* mencetak 'PakDengklek' *)
-    \end{lstlisting}
+  \end{lstlisting}
 \end{itemize}
 \end{frame}
 
@@ -233,31 +236,31 @@ Sebenarnya, \textbf{string} adalah \textbf{\alert{array of char}}!
 \begin{frame}
 \frametitle{Fakta Tentang String... (lanj.)}
 \begin{itemize}
-    \item Pascal membungkus \textbf{array[0..255] of char} menjadi \textbf{string}, kemudian menambahkan fungsi dan prosedur dasar untuk pengolahan string.
-    \item Elemen ke-0 dari string tidak digunakan untuk menampung karakter, melainkan untuk menyimpan \alert{panjang dari string tersebut}.
-    \item Artinya, tipe data \textbf{string} hanya bisa menampung maksimal 255 karakter yang menyusunnya.
-    \item Gunakan tipe data \textbf{ansistring} untuk menampung karakter yang lebih banyak dari itu, atau buat \textbf{array of char} sendiri $:)$
+  \item Pascal membungkus \textbf{array[0..255] of char} menjadi \textbf{string}, kemudian menambahkan fungsi dan prosedur dasar untuk pengolahan string.
+  \item Elemen ke-0 dari string tidak digunakan untuk menampung karakter, melainkan untuk menyimpan \alert{panjang dari string tersebut}.
+  \item Artinya, tipe data \textbf{string} hanya bisa menampung maksimal 255 karakter yang menyusunnya.
+  \item Gunakan tipe data \textbf{ansistring} untuk menampung karakter yang lebih banyak dari itu, atau buat \textbf{array of char} sendiri $:)$
 \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{Bukti}
 \begin{itemize}
-    \item Coba jalankan potongan kode berikut!
-    \begin{lstlisting}
+  \item Coba jalankan potongan kode berikut!
+  \begin{lstlisting}
     s := 'tes';
     writeln(byte(s[0]));
     s := 'tes lagi'
     writeln(byte(s[0]));
-    \end{lstlisting}
+  \end{lstlisting}
 \end{itemize}
 \end{frame}
 
 \begin{frame}
 \frametitle{Selanjutnya...}
 \begin{itemize}
-    \item Pembelajaran kalian tentang Bahasa Pascal sudah cukup untuk bisa menuliskan algoritma-algoritma kompleks.
-    \item Berikutnya kita akan mempelajari hal-hal yang lebih berkaitan dengan \textbf{algoritma}, bukan sekedar belajar bahasa $:)$.
+  \item Pembelajaran kalian tentang Bahasa Pascal sudah cukup untuk bisa menuliskan algoritma-algoritma kompleks.
+  \item Berikutnya kita akan mempelajari hal-hal yang lebih berkaitan dengan \textbf{algoritma}, bukan sekedar belajar bahasa $:)$.
 \end{itemize}
 \end{frame}
 

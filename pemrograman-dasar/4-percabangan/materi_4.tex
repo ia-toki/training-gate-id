@@ -7,7 +7,7 @@
 \newtranslation[to=bahasa]{Section}{Bagian}
 \newtranslation[to=bahasa]{Subsection}{Subbagian}
 
-\usepackage{listings}
+\usepackage{listings, lstautogobble}
 \usepackage{color}
 
 \definecolor{dkgreen}{rgb}{0,0.6,0}
@@ -15,18 +15,21 @@
 \definecolor{mauve}{rgb}{0.58,0,0.82}
 
 \lstset{frame=tb,
-    language=pascal,
-    showstringspaces=false,
-    columns=flexible,
-    basicstyle={\small\ttfamily},
-    numbers=none,
-    numberstyle=\tiny\color{gray},
-    keywordstyle=\color{blue},
-    commentstyle=\color{dkgreen},
-    stringstyle=\color{mauve},
-    breaklines=true,
-    breakatwhitespace=true,
-    tabsize=2
+  language=pascal,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=fullflexible,
+  keepspaces=true,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  autogobble=true
 }
 
 \title{Percabangan}
@@ -43,151 +46,151 @@
 \frametitle{Pendahuluan}
 Melalui dokumen ini, kalian akan:
 \begin{itemize}
-    \item Mengenal percabangan.
-    \item Memahami analisa kasus dan mengimplementasikannya pada Pascal.
+  \item Mengenal percabangan.
+  \item Memahami analisa kasus dan mengimplementasikannya pada Pascal.
 \end{itemize}
 \end{frame}
 
 \begin{frame}
 \frametitle{Motivasi}
 \begin{itemize}
-    \item Bebek-bebek Pak Dengklek sedang belajar tentang membedakan bilangan positif, nol, atau negatif.
-    \item Karena bebek-bebek kebingungan, mereka memberikan kalian sebuah bilangan dan meminta kalian menentukan apakah bilangan itu positif atau bukan positif!
-    \item Jika positif, cetak "positif". Jika tidak, jangan cetak apa-apa.
+  \item Bebek-bebek Pak Dengklek sedang belajar tentang membedakan bilangan positif, nol, atau negatif.
+  \item Karena bebek-bebek kebingungan, mereka memberikan kalian sebuah bilangan dan meminta kalian menentukan apakah bilangan itu positif atau bukan positif!
+  \item Jika positif, cetak "positif". Jika tidak, jangan cetak apa-apa.
 \end{itemize}
 \end{frame}
 
 \begin{frame}
 \frametitle{Motivasi (lanj.)}
 \begin{itemize}
-    \item Sebuah bilangan dinyatakan positif apabila bilangan tersebut lebih dari nol.
-    \item Dengan begitu, kita memerlukan suatu struktur yang memungkinkan "\alert{jika} bilangan itu lebih dari 0, \alert{maka} cetak positif".
-    \item Pada Pascal, hal ini bisa diwujudkan dengan struktur kondisional \alert{\textbf{if}}.
+  \item Sebuah bilangan dinyatakan positif apabila bilangan tersebut lebih dari nol.
+  \item Dengan begitu, kita memerlukan suatu struktur yang memungkinkan "\alert{jika} bilangan itu lebih dari 0, \alert{maka} cetak positif".
+  \item Pada Pascal, hal ini bisa diwujudkan dengan struktur kondisional \alert{\textbf{if}}.
 \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{Struktur "if ... then ..."}
 \begin{itemize}
-    \item Struktur dari penulisan "if ... then ..." adalah:
-    \begin{lstlisting}
+  \item Struktur dari penulisan "if ... then ..." adalah:
+  \begin{lstlisting}
     if (<kondisi>) then begin
-        <perintah 1>;
-        <perintah 2>;
-        ...
+      <perintah 1>;
+      <perintah 2>;
+      ...
     end;
-    \end{lstlisting}
+  \end{lstlisting}
 
-    \item Dengan $<$kondisi$>$ adalah suatu boolean.
-    \item Jika nilai $<$kondisi$>$ adalah \textbf{TRUE}, seluruh perintah yang ada di antara blok "begin" dan "end" akan dilaksanakan.
-    \item Jika \textbf{FALSE}, seluruh perintah yang ada di antara blok "begin" dan "end" akan dilewati.
+  \item Dengan $<$kondisi$>$ adalah suatu boolean.
+  \item Jika nilai $<$kondisi$>$ adalah \textbf{TRUE}, seluruh perintah yang ada di antara blok "begin" dan "end" akan dilaksanakan.
+  \item Jika \textbf{FALSE}, seluruh perintah yang ada di antara blok "begin" dan "end" akan dilewati.
 \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{Blok "begin ... end"}
 \begin{itemize}
-    \item Struktur yang sebenarnya dari penulisan "if ... then ..." adalah:
-    \begin{lstlisting}
-        if (<kondisi>) then
-            <perintah>;
-    \end{lstlisting}
-    \item Jika nilai $<$kondisi$>$ adalah \textbf{TRUE}, $<$perintah$>$ akan dilaksanakan.
-    \item Jika nilai $<$kondisi$>$ adalah \textbf{FALSE}, $<$perintah$>$ tidak dilaksanakan.
-    \item Lalu di mana bedanya?
+  \item Struktur yang sebenarnya dari penulisan "if ... then ..." adalah:
+  \begin{lstlisting}
+    if (<kondisi>) then
+      <perintah>;
+  \end{lstlisting}
+  \item Jika nilai $<$kondisi$>$ adalah \textbf{TRUE}, $<$perintah$>$ akan dilaksanakan.
+  \item Jika nilai $<$kondisi$>$ adalah \textbf{FALSE}, $<$perintah$>$ tidak dilaksanakan.
+  \item Lalu di mana bedanya?
 \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{Blok "begin ... end" (lanj.)}
 \begin{itemize}
-    \item Setelah kata kunci \textbf{then}, sebenarnya hanya \alert{satu} perintah yang dapat dieksekusi jika $<$kondisi$>$ bernilai \textbf{TRUE}.
-    \item Perhatikan contoh berikut ini:
-    \begin{lstlisting}
+  \item Setelah kata kunci \textbf{then}, sebenarnya hanya \alert{satu} perintah yang dapat dieksekusi jika $<$kondisi$>$ bernilai \textbf{TRUE}.
+  \item Perhatikan contoh berikut ini:
+  \begin{lstlisting}
     if (nilai = 10) then
        writeln('masuk');
        writeln('lagi');
-    \end{lstlisting}
+  \end{lstlisting}
 \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{Blok "begin ... end" (lanj.)}
 \begin{itemize}
-    \item Meskipun perintah \textbf{writeln('masuk')} hanya dieksekusi ketika \textbf{nilai} sama dengan 10, \textbf{writeln('lagi')} akan \alert{selalu dilaksanakan} tanpa peduli isi variabel \textbf{nilai}.
-    \item Blok "begin ... end", akan berperan sebagai "pembungkus" beberapa perintah menjadi "satu" perintah, sehingga berapapun perintah di dalam blok tersebut, akan dilihat oleh Pascal sebagai "satu" perintah.
+  \item Meskipun perintah \textbf{writeln('masuk')} hanya dieksekusi ketika \textbf{nilai} sama dengan 10, \textbf{writeln('lagi')} akan \alert{selalu dilaksanakan} tanpa peduli isi variabel \textbf{nilai}.
+  \item Blok "begin ... end", akan berperan sebagai "pembungkus" beberapa perintah menjadi "satu" perintah, sehingga berapapun perintah di dalam blok tersebut, akan dilihat oleh Pascal sebagai "satu" perintah.
 \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{Blok "begin ... end" (lanj.)}
 \begin{itemize}
-    \item Menulis "begin ... end" setiap sesudah \textbf{if} merupakan kebiasaan yang bagus, meskipun isi dari \textbf{if} itu hanya satu perintah.
-    \item Dengan cara ini, ketika ada tambahan perintah yang perlu dimasukkan ke dalam \textbf{if}, kalian tidak perlu menuliskan lagi "begin ... end".
-    \item Konsisten dengan selalu menulis "begin ... end" juga menjaga program tetap rapi.
-    \item Sebagai informasi, seluruh kode yang memuat \textbf{if} pada tulisan ini akan selalu menggunakan "begin ... end".
+  \item Menulis "begin ... end" setiap sesudah \textbf{if} merupakan kebiasaan yang bagus, meskipun isi dari \textbf{if} itu hanya satu perintah.
+  \item Dengan cara ini, ketika ada tambahan perintah yang perlu dimasukkan ke dalam \textbf{if}, kalian tidak perlu menuliskan lagi "begin ... end".
+  \item Konsisten dengan selalu menulis "begin ... end" juga menjaga program tetap rapi.
+  \item Sebagai informasi, seluruh kode yang memuat \textbf{if} pada tulisan ini akan selalu menggunakan "begin ... end".
 \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{Contoh Program: kondisi.pas}
 \begin{itemize}
-    \item Ketikkan dan jalankan program berikut:
-    \begin{lstlisting}
-        var
-           x : longint;
-        begin
-           readln(x);
+  \item Ketikkan dan jalankan program berikut:
+  \begin{lstlisting}
+    var
+      x : longint;
+    begin
+      readln(x);
 
-           if (x > 0) then begin
-              writeln('positif');
-           end;
-        end.
-    \end{lstlisting}
-    \item Perhatikan bahwa ekspresi "x $>$ 0" akan merupakan operasi relasional yang menghasilkan nilai boolean. Sehingga tepat untuk digunakan pada if.
-    \item Bagaimana jika ingin dibuat jika bilangan itu bukan positif, cetak "non-positif"?
+      if (x > 0) then begin
+        writeln('positif');
+      end;
+    end.
+  \end{lstlisting}
+  \item Perhatikan bahwa ekspresi "x $>$ 0" akan merupakan operasi relasional yang menghasilkan nilai boolean. Sehingga tepat untuk digunakan pada if.
+  \item Bagaimana jika ingin dibuat jika bilangan itu bukan positif, cetak "non-positif"?
 \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{Struktur "if ... then ... else ..."}
 \begin{itemize}
-    \item Kita juga bisa membuat percabangan jika nilai pada $<$kondisi$>$ adalah \textbf{FALSE}, yaitu dengan kata kunci \textbf{else}.
-    \item Struktur dari penulisan "if ... then ... else ..." adalah:
-    \begin{lstlisting}
+  \item Kita juga bisa membuat percabangan jika nilai pada $<$kondisi$>$ adalah \textbf{FALSE}, yaitu dengan kata kunci \textbf{else}.
+  \item Struktur dari penulisan "if ... then ... else ..." adalah:
+  \begin{lstlisting}
     if (<kondisi>) then begin
-        <perintah 1>;
-        <perintah 2>;
-        ...
+      <perintah 1>;
+      <perintah 2>;
+      ...
     end else begin
-        <perintah a>;
-        <perintah b>;
-        ...
+      <perintah a>;
+      <perintah b>;
+      ...
     end;
-    \end{lstlisting}
+  \end{lstlisting}
 
-    \item Jika nilai $<$kondisi$>$ adalah \textbf{TRUE}, $<$perintah 1$>$, $<$perintah 2$>$, ..., akan dilaksanakan.
-    \item Jika \textbf{FALSE}, $<$perintah a$>$, $<$perintah b$>$, ..., akan dilaksanakan.
+  \item Jika nilai $<$kondisi$>$ adalah \textbf{TRUE}, $<$perintah 1$>$, $<$perintah 2$>$, ..., akan dilaksanakan.
+  \item Jika \textbf{FALSE}, $<$perintah a$>$, $<$perintah b$>$, ..., akan dilaksanakan.
 \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{Contoh Program: kondisi2.pas}
 \begin{itemize}
-    \item Dengan "if ... then ... else ...", kita bisa memodifikasi kondisi.pas menjadi kondisi2.pas:
-    \begin{lstlisting}
-        var
-           x : longint;
-        begin
-           readln(x);
+  \item Dengan "if ... then ... else ...", kita bisa memodifikasi kondisi.pas menjadi kondisi2.pas:
+  \begin{lstlisting}
+    var
+      x : longint;
+    begin
+      readln(x);
 
-           if (x > 0) then begin
-              writeln('positif');
-           end else begin
-              writeln('non-positif');
-           end;
-        end.
-    \end{lstlisting}
+      if (x > 0) then begin
+        writeln('positif');
+      end else begin
+        writeln('non-positif');
+      end;
+    end.
+  \end{lstlisting}
 \end{itemize}
 \end{frame}
 
@@ -195,9 +198,9 @@ Melalui dokumen ini, kalian akan:
 \frametitle{Persoalan Sebenarnya}
 Ketika bebek-bebek memberikan kalian sebuah bilangan, sebut saja \textbf{x}, mereka ingin tahu:
 \begin{itemize}
-    \item Jika \textbf{x} positif, cetak "positif".
-    \item Jika \textbf{x} sama dengan nol, cetak "nol".
-    \item Jika \textbf{x} negatif, cetak "negatif".
+  \item Jika \textbf{x} positif, cetak "positif".
+  \item Jika \textbf{x} sama dengan nol, cetak "nol".
+  \item Jika \textbf{x} negatif, cetak "negatif".
 \end{itemize}
 
 Pada kasus ini, diperlukan struktur \textbf{if} yang lebih dari dua cabang!
@@ -206,21 +209,21 @@ Pada kasus ini, diperlukan struktur \textbf{if} yang lebih dari dua cabang!
 \begin{frame}[fragile]
 \frametitle{Struktur "if ... then ... else if ..."}
 \begin{itemize}
-    \item Pascal menyediakan struktur yang memungkinkan kita memilah-milah untuk cabang yang lebih dari dua, yaitu dengan struktur "if ... then ... else if ...".
-    \item Struktur dari penulisan "if ... then ... else if ..." adalah:
-    \begin{lstlisting}
+  \item Pascal menyediakan struktur yang memungkinkan kita memilah-milah untuk cabang yang lebih dari dua, yaitu dengan struktur "if ... then ... else if ...".
+  \item Struktur dari penulisan "if ... then ... else if ..." adalah:
+  \begin{lstlisting}
     if (<kondisi 1>) then begin
-        <perintah 1>;
-        <perintah 2>;
-        ...
+      <perintah 1>;
+      <perintah 2>;
+      ...
     end else if (<kondisi 2>) then begin
-        <perintah a>;
-        <perintah b>;
-        ...
+      <perintah a>;
+      <perintah b>;
+      ...
     end else if (<kondisi 3>) then begin
-        ...
+      ...
     end
-    \end{lstlisting}
+  \end{lstlisting}
 
 \end{itemize}
 \end{frame}
@@ -228,175 +231,175 @@ Pada kasus ini, diperlukan struktur \textbf{if} yang lebih dari dua cabang!
 \begin{frame}
 \frametitle{Struktur "if ... then ... else if ..." (lanj.)}
 \begin{itemize}
-    \item Jika nilai $<$kondisi 1$>$ \textbf{TRUE}, $<$perintah 1$>$, $<$perintah 2$>$, ..., akan dilaksanakan.
-    \item Jika nilai $<$kondisi 1$>$ \textbf{FALSE}, diperiksa apakah $<$kondisi 2$>$ bernilai \textbf{TRUE}. Jika ya, $<$perintah a$>$, $<$perintah b$>$, ..., akan dilaksanakan.
-    \item Jika nilai $<$kondisi 2$>$ \textbf{FALSE}, diperiksa apakah $<$kondisi 3$>$ bernilai \textbf{TRUE}. Hal ini akan terus diulang sampai seluruh percabangan habis.
-    \item Kalian juga bisa mengakhiri struktur ini dengan "else ...", yaitu ketika seluruh kondisi yang diberikan tidak terpenuhi, maka perintah-perintah di bawah \textbf{else} ini yang akan dilaksanakan.
+  \item Jika nilai $<$kondisi 1$>$ \textbf{TRUE}, $<$perintah 1$>$, $<$perintah 2$>$, ..., akan dilaksanakan.
+  \item Jika nilai $<$kondisi 1$>$ \textbf{FALSE}, diperiksa apakah $<$kondisi 2$>$ bernilai \textbf{TRUE}. Jika ya, $<$perintah a$>$, $<$perintah b$>$, ..., akan dilaksanakan.
+  \item Jika nilai $<$kondisi 2$>$ \textbf{FALSE}, diperiksa apakah $<$kondisi 3$>$ bernilai \textbf{TRUE}. Hal ini akan terus diulang sampai seluruh percabangan habis.
+  \item Kalian juga bisa mengakhiri struktur ini dengan "else ...", yaitu ketika seluruh kondisi yang diberikan tidak terpenuhi, maka perintah-perintah di bawah \textbf{else} ini yang akan dilaksanakan.
 \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{Contoh Program: kondisi3.pas}
 \begin{itemize}
-    \item Dengan "if ... then ... else if ...", kita bisa memodifikasi kondisi2.pas menjadi kondisi3.pas:
-    \begin{lstlisting}
-        var
-           x : longint;
-        begin
-           readln(x);
+  \item Dengan "if ... then ... else if ...", kita bisa memodifikasi kondisi2.pas menjadi kondisi3.pas:
+  \begin{lstlisting}
+    var
+      x : longint;
+    begin
+      readln(x);
 
-           if (x > 0) then begin
-              writeln('positif');
-           end else if (x = 0) then begin
-              writeln('nol');
-           end else if (x < 0) then begin
-              writeln('negatif');
-           end;
-        end.
-    \end{lstlisting}
+      if (x > 0) then begin
+        writeln('positif');
+      end else if (x = 0) then begin
+        writeln('nol');
+      end else if (x < 0) then begin
+        writeln('negatif');
+      end;
+    end.
+  \end{lstlisting}
 \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{Contoh Program: kondisi4.pas}
 \begin{itemize}
-    \item Pada kondisi3.pas, sebenarnya "else if ..." yang terakhir tidak diperlukan.
-    \item Ketika suatu bilangan bukan positif dan bukan nol, sudah pasti bilangan itu negatif. Sehingga bisa didapatkan kondisi4.pas:
-    \begin{lstlisting}
-        var
-           x : longint;
-        begin
-           readln(x);
+  \item Pada kondisi3.pas, sebenarnya "else if ..." yang terakhir tidak diperlukan.
+  \item Ketika suatu bilangan bukan positif dan bukan nol, sudah pasti bilangan itu negatif. Sehingga bisa didapatkan kondisi4.pas:
+  \begin{lstlisting}
+    var
+      x : longint;
+    begin
+      readln(x);
 
-           if (x > 0) then begin
-              writeln('positif');
-           end else if (x = 0) then begin
-              writeln('nol');
-           end else begin
-              // sudah pasti negatif
-              writeln('negatif');
-           end;
-        end.
-    \end{lstlisting}
+      if (x > 0) then begin
+        writeln('positif');
+      end else if (x = 0) then begin
+        writeln('nol');
+      end else begin
+        // sudah pasti negatif
+        writeln('negatif');
+      end;
+    end.
+  \end{lstlisting}
 \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{Kombinasi dengan Ekspresi Boolean}
 \begin{itemize}
-    \item Kalian juga bisa menggabungkan struktur if dengan ekspresi \textbf{boolean}:
-    \begin{lstlisting}
-      if ((x > 0) and (x mod 2 = 1)) then begin
-          writeln('positif dan ganjil');
+  \item Kalian juga bisa menggabungkan struktur if dengan ekspresi \textbf{boolean}:
+  \begin{lstlisting}
+    if ((x > 0) and (x mod 2 = 1)) then begin
+      writeln('positif dan ganjil');
 
-      end else if ((x > 0) and (x mod 2 = 0)) then begin
-          writeln('positif dan genap');
+    end else if ((x > 0) and (x mod 2 = 0)) then begin
+      writeln('positif dan genap');
 
-      end else if ((x < 0) and (x mod 2 = 1)) then begin
-          writeln('negatif dan ganjil');
+    end else if ((x < 0) and (x mod 2 = 1)) then begin
+      writeln('negatif dan ganjil');
 
-      end else if ((x < 0) and (x mod 2 = 0)) then begin
-          ...
-    \end{lstlisting}
+    end else if ((x < 0) and (x mod 2 = 0)) then begin
+      ...
+  \end{lstlisting}
 \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{If Bersarang}
 \begin{itemize}
-    \item Solusi yang lebih rapi dicapai dengan menggunakan if secara bersarang:
-    \begin{lstlisting}
-      if (x > 0) then begin
-          if (x mod 2 = 1) then begin
-              writeln('positif dan ganjil');
-          end else begin
-              writeln('positif dan genap');
-          end;
-      end else if (x < 0) then begin
-          ...
-    \end{lstlisting}
+  \item Solusi yang lebih rapi dicapai dengan menggunakan if secara bersarang:
+  \begin{lstlisting}
+    if (x > 0) then begin
+      if (x mod 2 = 1) then begin
+        writeln('positif dan ganjil');
+      end else begin
+        writeln('positif dan genap');
+      end;
+    end else if (x < 0) then begin
+      ...
+  \end{lstlisting}
 \end{itemize}
 \end{frame}
 
 \begin{frame}
 \frametitle{Contoh Lainnya}
 \begin{itemize}
-    \item Misalkan diberikan sebuah karakter yang merupakan salah satu dari 'A', 'B', 'C', 'D', atau 'E'.
-    \item Cetak frase berikut sesuai karakter yang diberikan:
-    \begin{itemize}
-        \item 'A': Sempurna
-        \item 'B': Bagus
-        \item 'C': Cukup
-        \item 'D': Kurang
-        \item 'E': Sangat kurang
-    \end{itemize}
+  \item Misalkan diberikan sebuah karakter yang merupakan salah satu dari 'A', 'B', 'C', 'D', atau 'E'.
+  \item Cetak frase berikut sesuai karakter yang diberikan:
+  \begin{itemize}
+    \item 'A': Sempurna
+    \item 'B': Bagus
+    \item 'C': Cukup
+    \item 'D': Kurang
+    \item 'E': Sangat kurang
+  \end{itemize}
 \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{Contoh Lainnya (lanj.)}
 \begin{itemize}
-    \item Tentu saja kita bisa menggunakan "if ... then ... else if ..." untuk kasus ini.
-    \item Namun, menuliskan "if ... then ... else if ..." untuk kasus sederhana ini bisa cukup panjang.
-    \item Bayangkan, untuk setiap kasus, kalian perlu menulis:
-    \begin{lstlisting}
-        if (nilai = 'A') then begin
-            ...
-        end else begin if (nilai = 'B') then begin
-            ...
-    \end{lstlisting}
-    \item Untuk kasus sejenis ini, tersedia struktur kondisional lain yang ditawarkan Pascal dan lebih cocok, yaitu \alert{\textbf{case}}.
+  \item Tentu saja kita bisa menggunakan "if ... then ... else if ..." untuk kasus ini.
+  \item Namun, menuliskan "if ... then ... else if ..." untuk kasus sederhana ini bisa cukup panjang.
+  \item Bayangkan, untuk setiap kasus, kalian perlu menulis:
+  \begin{lstlisting}
+    if (nilai = 'A') then begin
+      ...
+    end else begin if (nilai = 'B') then begin
+      ...
+  \end{lstlisting}
+  \item Untuk kasus sejenis ini, tersedia struktur kondisional lain yang ditawarkan Pascal dan lebih cocok, yaitu \alert{\textbf{case}}.
 \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{Struktur "case ... of ..."}
 \begin{itemize}
-    \item Struktur dari penulisan "case ... of ..." adalah:
-    \begin{lstlisting}
-    case (<ekspresi>) of
-        <nilai 1> : begin <perintah 1>; end;
-        <nilai 2> : begin <perintah 2>; end;
-        <nilai 3> : begin <perintah 3>; end;
-        ...
-    end;
-    \end{lstlisting}
+  \item Struktur dari penulisan "case ... of ..." adalah:
+  \begin{lstlisting}
+  case (<ekspresi>) of
+    <nilai 1> : begin <perintah 1>; end;
+    <nilai 2> : begin <perintah 2>; end;
+    <nilai 3> : begin <perintah 3>; end;
+    ...
+  end;
+  \end{lstlisting}
 
-    \item Dengan $<$ekspresi$>$ adalah suatu ekspresi yang menghasilkan \alert{nilai ordinal}.
-    \item Ketika nilai yang dihasilkan $<$ekspresi$>$ sama dengan $<$nilai 1$>$, maka seluruh $<$perintah 1$>$ akan dilaksanakan.
-    \item Ketika nilai yang dihasilkan $<$ekspresi$>$ sama dengan $<$nilai 2$>$, maka seluruh $<$perintah 2$>$ akan dilaksanakan.
-    \item ... dan seterusnya.
+  \item Dengan $<$ekspresi$>$ adalah suatu ekspresi yang menghasilkan \alert{nilai ordinal}.
+  \item Ketika nilai yang dihasilkan $<$ekspresi$>$ sama dengan $<$nilai 1$>$, maka seluruh $<$perintah 1$>$ akan dilaksanakan.
+  \item Ketika nilai yang dihasilkan $<$ekspresi$>$ sama dengan $<$nilai 2$>$, maka seluruh $<$perintah 2$>$ akan dilaksanakan.
+  \item ... dan seterusnya.
 \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{Contoh Program: "case.pas"}
 \begin{itemize}
-    \item Berikut ini adalah solusi dengan menggunakan "case ... of ...":
-    \begin{lstlisting}
-        var
-           nilai : char;
-        begin
-           readln(nilai);
+  \item Berikut ini adalah solusi dengan menggunakan "case ... of ...":
+  \begin{lstlisting}
+    var
+      nilai : char;
+    begin
+      readln(nilai);
 
-           case (nilai) of
-              'A' : begin writeln('Sempurna'); end;
-              'B' : begin writeln('Bagus'); end;
-              'C' : begin writeln('Cukup'); end;
-              'D' : begin writeln('Kurang'); end;
-              'E' : begin writeln('Sangat kurang'); end;
-           end;
-        end.
-    \end{lstlisting}
-    \item Seperti pada \textbf{if}, blok "begin ... end" sebenarnya tidak harus dituliskan. Untuk menjaga konsistensi dan mempermudah \newline jika ada penambahan kode, ada baiknya tetap dituliskan.
+      case (nilai) of
+        'A' : begin writeln('Sempurna'); end;
+        'B' : begin writeln('Bagus'); end;
+        'C' : begin writeln('Cukup'); end;
+        'D' : begin writeln('Kurang'); end;
+        'E' : begin writeln('Sangat kurang'); end;
+      end;
+    end.
+  \end{lstlisting}
+  \item Seperti pada \textbf{if}, blok "begin ... end" sebenarnya tidak harus dituliskan. Untuk menjaga konsistensi dan mempermudah \newline jika ada penambahan kode, ada baiknya tetap dituliskan.
 \end{itemize}
 \end{frame}
 
 \begin{frame}
 \frametitle{Selanjutnya...}
 \begin{itemize}
-    \item Ke bagian yang lebih menarik lagi, yaitu perulangan!
-    \item Pastikan kalian menguasai materi percabangan terlebih dahulu.
+  \item Ke bagian yang lebih menarik lagi, yaitu perulangan!
+  \item Pastikan kalian menguasai materi percabangan terlebih dahulu.
 \end{itemize}
 \end{frame}
 

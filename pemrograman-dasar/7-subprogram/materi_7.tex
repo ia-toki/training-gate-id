@@ -10,7 +10,7 @@
 \newtranslation[to=bahasa]{Section}{Bagian}
 \newtranslation[to=bahasa]{Subsection}{Subbagian}
 
-\usepackage{listings}
+\usepackage{listings, lstautogobble}
 \usepackage{color}
 
 \definecolor{dkgreen}{rgb}{0,0.6,0}
@@ -18,18 +18,21 @@
 \definecolor{mauve}{rgb}{0.58,0,0.82}
 
 \lstset{frame=tb,
-    language=pascal,
-    showstringspaces=false,
-    columns=flexible,
-    basicstyle={\small\ttfamily},
-    numbers=none,
-    numberstyle=\tiny\color{gray},
-    keywordstyle=\color{blue},
-    commentstyle=\color{dkgreen},
-    stringstyle=\color{mauve},
-    breaklines=true,
-    breakatwhitespace=true,
-    tabsize=2
+  language=pascal,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=fullflexible,
+  keepspaces=true,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  autogobble=true
 }
 
 \title{Subprogram: \newline Fungsi dan Prosedur}
@@ -46,24 +49,24 @@
 \frametitle{Pendahuluan}
 Melalui dokumen ini, kalian akan:
 \begin{itemize}
-    \item Memahami mengapa perlu ada subprogram.
-    \item Membedakan fungsi dan prosedur.
-    \item Mempelajari cara menulis fungsi dan prosedur.
+  \item Memahami mengapa perlu ada subprogram.
+  \item Membedakan fungsi dan prosedur.
+  \item Mempelajari cara menulis fungsi dan prosedur.
 \end{itemize}
 \end{frame}
 
 \begin{frame}
 \frametitle{Motivasi-1}
 \begin{itemize}
-    \item Ketika menulis program, kadang-kadang kita memerlukan suatu rutinitas yang sama di beberapa tempat.
-    \item Sebagai gambaran, perhatikan contoh soal berikut:
-    \begin{itemize}
-        \item Pak Dengklek menancapkan tiga buah tiang pancang di halaman rumahnya untuk membangun sebuah kandang bebek.
-        \item Setiap tiang pancang bisa dianggap terletak di suatu sistem koordinat Kartesius, yaitu di $(A_x, A_y)$, $(B_x, B_y)$, dan $(C_x, C_y)$.
-        \item Pagar akan dibentangkan menurut garis lurus antar setiap tiang pancang.
-        \item Sekarang Pak Dengklek ingin tahu, berapa luas kandang bebeknya!
-    \end{itemize}
-    \item Persoalan yang kita hadapi adalah menghitung luas dari segitiga, jika hanya diberikan titik-titik sudutnya.
+  \item Ketika menulis program, kadang-kadang kita memerlukan suatu rutinitas yang sama di beberapa tempat.
+  \item Sebagai gambaran, perhatikan contoh soal berikut:
+  \begin{itemize}
+    \item Pak Dengklek menancapkan tiga buah tiang pancang di halaman rumahnya untuk membangun sebuah kandang bebek.
+    \item Setiap tiang pancang bisa dianggap terletak di suatu sistem koordinat Kartesius, yaitu di $(A_x, A_y)$, $(B_x, B_y)$, dan $(C_x, C_y)$.
+    \item Pagar akan dibentangkan menurut garis lurus antar setiap tiang pancang.
+    \item Sekarang Pak Dengklek ingin tahu, berapa luas kandang bebeknya!
+  \end{itemize}
+  \item Persoalan yang kita hadapi adalah menghitung luas dari segitiga, jika hanya diberikan titik-titik sudutnya.
 \end{itemize}
 \end{frame}
 
@@ -81,38 +84,38 @@ Bagaimana implementasinya pada program?
 \begin{frame}[fragile]
 \frametitle{Motivasi-1 (lanj.)}
 \begin{itemize}
-    \item Kita perlu menghitung jarak antar titik terlebih dahulu, baru bisa menghitung luasnya.
-    \item Pascal tidak menyediakan fungsi dasar untuk menghitung jarak antar dua titik, sehingga kita harus menuliskannya:
-    \begin{lstlisting}
+  \item Kita perlu menghitung jarak antar titik terlebih dahulu, baru bisa menghitung luasnya.
+  \item Pascal tidak menyediakan fungsi dasar untuk menghitung jarak antar dua titik, sehingga kita harus menuliskannya:
+  \begin{lstlisting}
     (* tA, tB, tC merupakan ketiga titik yang diberikan *)
     a := sqrt(sqr(tA.x - tB.x) + sqr(tA.y - tB.y));
     b := sqrt(sqr(tA.x - tC.x) + sqr(tA.y - tC.y));
     c := sqrt(sqr(tB.x - tC.x) + sqr(tB.y - tC.y));
-    \end{lstlisting}
-    \item Perhatikan bahwa hal yang sama, yaitu menghitung jarak titik, dituliskan secara berulang-ulang.
-    \item Bagaimana jika pada salah satunya terdapat kesalahan pengetikan? Atau suatu ketika rumusnya perlu diubah? Sungguh merepotkan!
+  \end{lstlisting}
+  \item Perhatikan bahwa hal yang sama, yaitu menghitung jarak titik, dituliskan secara berulang-ulang.
+  \item Bagaimana jika pada salah satunya terdapat kesalahan pengetikan? Atau suatu ketika rumusnya perlu diubah? Sungguh merepotkan!
 \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{Motivasi-2}
 \begin{itemize}
-    \item Seringkali ketika kita menulis program yang panjang, program menjadi lebih sulit dipahami, meskipun telah ditulis komentar sekalipun.
-    \item Alangkah baiknya jika kita bisa membuat subprogram untuk suatu rutinitas tertentu dan menyatukannya di akhir, seperti:
-    \begin{lstlisting}
-bacaMasukan(N);
-bangkitkanPrimaSampai(N);
+  \item Seringkali ketika kita menulis program yang panjang, program menjadi lebih sulit dipahami, meskipun telah ditulis komentar sekalipun.
+  \item Alangkah baiknya jika kita bisa membuat subprogram untuk suatu rutinitas tertentu dan menyatukannya di akhir, seperti:
+  \begin{lstlisting}
+    bacaMasukan(N);
+    bangkitkanPrimaSampai(N);
 
-writeln('faktorisasi:');
-temp := N;
-while (not cekPrima(temp)) do begin
-   d := cariPembagiTerkecil(temp);
-   temp := temp div d;
-   writeln(d);
-end;
-if (temp > 1) then
-   writeln(temp);
-    \end{lstlisting}
+    writeln('faktorisasi:');
+    temp := N;
+    while (not cekPrima(temp)) do begin
+      d := cariPembagiTerkecil(temp);
+      temp := temp div d;
+      writeln(d);
+    end;
+    if (temp > 1) then
+      writeln(temp);
+  \end{lstlisting}
 \end{itemize}
 \end{frame}
 
@@ -122,69 +125,69 @@ if (temp > 1) then
 \begin{frame}
 \frametitle{Konsep Subprogram}
 \begin{itemize}
-    \item Sesuai dengan namanya, subprogram adalah bagian dari program.
-    \item Jika program merupakan serangkaian instruksi untuk mencapai suatu tujuan tertentu, maka subprogram bisa dianggap sebagai serangkaian instruksi untuk mencapai suatu tujuan tertentu, \alert{sebagai bagian dari tujuan program}.
-    \item Subprogram bisa dipanggil di bagian manapun pada program.
+  \item Sesuai dengan namanya, subprogram adalah bagian dari program.
+  \item Jika program merupakan serangkaian instruksi untuk mencapai suatu tujuan tertentu, maka subprogram bisa dianggap sebagai serangkaian instruksi untuk mencapai suatu tujuan tertentu, \alert{sebagai bagian dari tujuan program}.
+  \item Subprogram bisa dipanggil di bagian manapun pada program.
 \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{Konsep Prosedur}
 \begin{itemize}
-    \item Kita bisa memindahkan serangkaian kode menjadi sebuah subprogram, lalu memanggilnya pada program utama.
-    \item Perhatikan contoh pesan.pas berikut!
-    \begin{lstlisting}
+  \item Kita bisa memindahkan serangkaian kode menjadi sebuah subprogram, lalu memanggilnya pada program utama.
+  \item Perhatikan contoh pesan.pas berikut!
+  \begin{lstlisting}
     var
-       pesan: string;
+      pesan: string;
 
     (* prosedur *)
     procedure bacaPesan();
     begin
-       write('masukkan pesan: ');
-       readln(pesan);
+      write('masukkan pesan: ');
+      readln(pesan);
     end;
 
     (* program utama *)
     begin
-       bacaPesan();
-       writeln('pesan = ', pesan);
+      bacaPesan();
+      writeln('pesan = ', pesan);
     end.
-    \end{lstlisting}
+  \end{lstlisting}
 \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{Penjelasan}
 \begin{itemize}
-    \item Pada pesan.pas, terdapat sebuah prosedur bernama \textbf{bacaPesan} yang melakukan perintah untuk membaca masukan.
-    \item Ketika \textbf{bacaPesan} dipanggil pada program utama, bisa dianggap seluruh instruksi yang ada di dalam prosedur tersebut dipindahkan ke program utama yang memanggilnya.
-    \item Sehingga, program utama seakan-akan menjadi:
-    \begin{lstlisting}
+  \item Pada pesan.pas, terdapat sebuah prosedur bernama \textbf{bacaPesan} yang melakukan perintah untuk membaca masukan.
+  \item Ketika \textbf{bacaPesan} dipanggil pada program utama, bisa dianggap seluruh instruksi yang ada di dalam prosedur tersebut dipindahkan ke program utama yang memanggilnya.
+  \item Sehingga, program utama seakan-akan menjadi:
+  \begin{lstlisting}
     (* program utama *)
     begin
-       write('masukkan pesan: ');
-       readln(pesan);
-       writeln('pesan = ', pesan);
+      write('masukkan pesan: ');
+      readln(pesan);
+      writeln('pesan = ', pesan);
     end.
-    \end{lstlisting}
+  \end{lstlisting}
 \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{Penjelasan (lanj.)}
 \begin{itemize}
-    \item Tentu saja, sebuah prosedur bisa dipanggil berkali-kali, dan hal yang dilakukan tetap sama.
-    \item Coba modifikasi blok progam utama pesan.pas sehingga menjadi:
-    \begin{lstlisting}
+  \item Tentu saja, sebuah prosedur bisa dipanggil berkali-kali, dan hal yang dilakukan tetap sama.
+  \item Coba modifikasi blok progam utama pesan.pas sehingga menjadi:
+  \begin{lstlisting}
     (* program utama *)
     begin
-       bacaPesan();
-       writeln('pesan = ', pesan);
+      bacaPesan();
+      writeln('pesan = ', pesan);
 
-       bacaPesan();
-       writeln('sekarang pesan berisi = ', pesan);
+      bacaPesan();
+      writeln('sekarang pesan berisi = ', pesan);
     end.
-    \end{lstlisting}
+  \end{lstlisting}
 \end{itemize}
 \end{frame}
 
@@ -195,16 +198,16 @@ if (temp > 1) then
 \frametitle{Prosedur}
 Pada Pascal, prosedur bisa ditulis dengan format berikut:
 \begin{lstlisting}
-procedure <nama>(<parameter...>);
-var
-   <deklarasi variabel...>
-begin
-   <instruksi...>
-end;
+  procedure <nama>(<parameter...>);
+  var
+    <deklarasi variabel...>
+  begin
+    <instruksi...>
+  end;
 \end{lstlisting}
 \begin{itemize}
-    \item Blok \textbf{var} dan deklarasi variabel boleh dihilangkan jika tidak ada variabel perlu dideklarasikan.
-    \item Perhatikan bahwa \textbf{end} diakhiri dengan titik koma (;), bukan titik (.) seperti pada blok program utama.
+  \item Blok \textbf{var} dan deklarasi variabel boleh dihilangkan jika tidak ada variabel perlu dideklarasikan.
+  \item Perhatikan bahwa \textbf{end} diakhiri dengan titik koma (;), bukan titik (.) seperti pada blok program utama.
 \end{itemize}
 \end{frame}
 
@@ -214,73 +217,73 @@ Parameter merupakan tempat untuk "memberi masukan" bagi prosedur, sehingga prose
 \vfill
 Perhatikan contoh berikut:
 \begin{lstlisting}
-procedure gambar(x: longint);
-var
-   i: longint;
-begin
-   for i := 1 to x do begin
+  procedure gambar(x: longint);
+  var
+    i: longint;
+  begin
+    for i := 1 to x do begin
       write('*');
-   end;
-   writeln;
-end;
+    end;
+    writeln;
+  end;
 \end{lstlisting}
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{Konsep Parameter (lanj.)}
 \begin{itemize}
-    \item Prosedur \textbf{gambar} berfungsi untuk menuliskan karakter '*' pada sebuah baris sebanyak $x$ kali.
-    \item Lalu apa $x$ pada prosedur tersebut?
-    \item Untuk menjawabnya, perhatikan blok program utama berikut:
-    \begin{lstlisting}
+  \item Prosedur \textbf{gambar} berfungsi untuk menuliskan karakter '*' pada sebuah baris sebanyak $x$ kali.
+  \item Lalu apa $x$ pada prosedur tersebut?
+  \item Untuk menjawabnya, perhatikan blok program utama berikut:
+  \begin{lstlisting}
     (* program utama *)
     begin
-       gambar(3);
-       gambar(5);
+      gambar(3);
+      gambar(5);
     end.
-    \end{lstlisting}
-    \item Yang akan tercetak adalah:
-    \begin{lstlisting}
+  \end{lstlisting}
+  \item Yang akan tercetak adalah:
+  \begin{lstlisting}
     ***
     *****
-    \end{lstlisting}
+  \end{lstlisting}
 \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{Konsep Parameter (lanj.)}
 \begin{itemize}
-    \item Pada pemanggilan pertama, angka 3 pada \textbf{gambar(3)} mengakibatkan nilai $x$ untuk prosedur \textbf{gambar} bernilai 3. Sehingga tercetak 3 karakter '*'.
-    \item Pada pemanggilan kedua, nilai $x$ yang diterima adalah 5. Sehingga tercetak 5 karakter '*'.
-    \item Variabel $x$ pada prosedur \textbf{gambar} disebut sebagai \alert{\textbf{parameter}}.
-    \item Melalui contoh ini, kalian dapat memahami bahwa nilai parameter dapat digunakan untuk mengatur perilaku prosedur.
+  \item Pada pemanggilan pertama, angka 3 pada \textbf{gambar(3)} mengakibatkan nilai $x$ untuk prosedur \textbf{gambar} bernilai 3. Sehingga tercetak 3 karakter '*'.
+  \item Pada pemanggilan kedua, nilai $x$ yang diterima adalah 5. Sehingga tercetak 5 karakter '*'.
+  \item Variabel $x$ pada prosedur \textbf{gambar} disebut sebagai \alert{\textbf{parameter}}.
+  \item Melalui contoh ini, kalian dapat memahami bahwa nilai parameter dapat digunakan untuk mengatur perilaku prosedur.
 \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{Konsep Parameter (lanj.)}
 \begin{itemize}
-    \item Tentu saja, pemanggilan juga bisa dilakukan dengan variabel seperti contoh berikut:
-    \begin{lstlisting}
+  \item Tentu saja, pemanggilan juga bisa dilakukan dengan variabel seperti contoh berikut:
+  \begin{lstlisting}
     var
-       N: longint;
+      N: longint;
 
     ... (* prosedur gambar *)
 
     begin
-       readln(N);
-       gambar(N);
+      readln(N);
+      gambar(N);
     end.
-    \end{lstlisting}
+  \end{lstlisting}
 \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{Parameter}
 \begin{itemize}
-    \item Parameter dituliskan seperti pada deklarasi variabel.
-    \item Contoh:
-    \begin{lstlisting}
+  \item Parameter dituliskan seperti pada deklarasi variabel.
+  \item Contoh:
+  \begin{lstlisting}
     (* tanpa parameter *)
     procedure baca();
 
@@ -292,7 +295,7 @@ end;
 
     (* dua parameter, berbeda tipe data *)
     procedure berbeda(x: string; y: longint);
-    \end{lstlisting}
+  \end{lstlisting}
 \end{itemize}
 \end{frame}
 
@@ -306,125 +309,125 @@ Bisa dianggap sebagai "masa hidup" suatu variabel; kapan dia terdefinisi dan kap
 \begin{frame}[fragile]
 \frametitle{Scope Variabel (lanj.)}
 \begin{itemize}
-    \item Perhatikan kembali prosedur \textbf{gambar} berikut:
-    \begin{lstlisting}
+  \item Perhatikan kembali prosedur \textbf{gambar} berikut:
+  \begin{lstlisting}
     procedure gambar(x: longint);
     var
-       i: longint;
+      i: longint;
     begin
-       for i := 1 to x do begin
-          write('*');
-       end;
-       writeln;
+      for i := 1 to x do begin
+        write('*');
+      end;
+      writeln;
     end;
-    \end{lstlisting}
-    \item Variabel \textbf{i} dan \textbf{x} pada prosedur tersebut hanya terdefinisi di antara blok \textbf{begin} dan \textbf{end} prosedur \textbf{gambar} saja.
-    \item Artinya jika pada program utama terdapat pula variabel bernama \textbf{x} atau \textbf{i}, maka variabel tersebut \alert{bukan} mengacu pada \textbf{x} dan \textbf{i} pada prosedur \textbf{gambar}.
+  \end{lstlisting}
+  \item Variabel \textbf{i} dan \textbf{x} pada prosedur tersebut hanya terdefinisi di antara blok \textbf{begin} dan \textbf{end} prosedur \textbf{gambar} saja.
+  \item Artinya jika pada program utama terdapat pula variabel bernama \textbf{x} atau \textbf{i}, maka variabel tersebut \alert{bukan} mengacu pada \textbf{x} dan \textbf{i} pada prosedur \textbf{gambar}.
 \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{Scope Variabel (lanj.)}
 \begin{itemize}
-    \item Variabel yang dideklarasikan pada blok \textbf{var subprogram} biasa disebut sebagai \textbf{variabel lokal}.
-    \item Sementara variabel yang dideklarasikan pada blok \textbf{var program utama} disebut sebagai \textbf{variabel global}.
-    \item Variabel global dapat diakses di mana saja, bahkan di dalam subprogram sekalipun.
-    \item Namun, variabel lokal hanya bisa diakses pada subprogram yang mendeklarasikannya.
+  \item Variabel yang dideklarasikan pada blok \textbf{var subprogram} biasa disebut sebagai \textbf{variabel lokal}.
+  \item Sementara variabel yang dideklarasikan pada blok \textbf{var program utama} disebut sebagai \textbf{variabel global}.
+  \item Variabel global dapat diakses di mana saja, bahkan di dalam subprogram sekalipun.
+  \item Namun, variabel lokal hanya bisa diakses pada subprogram yang mendeklarasikannya.
 \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{Fungsi}
 \begin{itemize}
-    \item Setelah kalian memahami tentang prosedur, mari kita membahas tentang fungsi.
-    \item Secara konsep, fungsi mirip dengan prosedur.
-    \item Bedanya adalah fungsi \alert{mengembalikan sebuah nilai}.
-    \item Perhatikan fungsi berikut:
-    \begin{lstlisting}
+  \item Setelah kalian memahami tentang prosedur, mari kita membahas tentang fungsi.
+  \item Secara konsep, fungsi mirip dengan prosedur.
+  \item Bedanya adalah fungsi \alert{mengembalikan sebuah nilai}.
+  \item Perhatikan fungsi berikut:
+  \begin{lstlisting}
     function kubik(x: longint): longint;
     begin
-       kubik := x*x*x;
+      kubik := x*x*x;
     end;
-    \end{lstlisting}
+  \end{lstlisting}
 \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{Penjelasan}
 \begin{itemize}
-    \item Pada program utama, kita bisa melakukan:
-    \begin{lstlisting}
+  \item Pada program utama, kita bisa melakukan:
+  \begin{lstlisting}
     (* program utama *)
     begin.
-       volume := kubik(3);
-       selisih := volume - kubik(2);
-       writeln('4 kubik adalah ', kubik(4));
+      volume := kubik(3);
+      selisih := volume - kubik(2);
+      writeln('4 kubik adalah ', kubik(4));
     end.
-    \end{lstlisting}
-    \item Teringat dengan sesuatu?
-    \item Fungsi \textbf{kubik} kini terlihat seperti fungsi yang biasa kalian gunakan, seperti \textbf{sqrt}, \textbf{trunc}, atau \textbf{abs}!
+  \end{lstlisting}
+  \item Teringat dengan sesuatu?
+  \item Fungsi \textbf{kubik} kini terlihat seperti fungsi yang biasa kalian gunakan, seperti \textbf{sqrt}, \textbf{trunc}, atau \textbf{abs}!
 \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{Nilai Kembalian}
 \begin{itemize}
-    \item Ciri paling utama yang membedakan fungsi dengan prosedur adalah adanya \textbf{nilai kembalian}.
-    \item Ketika fungsi dipanggil, fungsi akan mengembalikan nilai, dan nilai ini bisa dioperasikan ke dalam \textbf{ekspresi} atau \textbf{assignment}.
-    \item Sebagai ilustrasi, perhatikan ekspresi berikut:
-    \begin{lstlisting}
+  \item Ciri paling utama yang membedakan fungsi dengan prosedur adalah adanya \textbf{nilai kembalian}.
+  \item Ketika fungsi dipanggil, fungsi akan mengembalikan nilai, dan nilai ini bisa dioperasikan ke dalam \textbf{ekspresi} atau \textbf{assignment}.
+  \item Sebagai ilustrasi, perhatikan ekspresi berikut:
+  \begin{lstlisting}
     x := 2;
     y := 3*sqr(x) - 1;
-    \end{lstlisting}
-    \item Pada saat dijalankan, fungsi sqr(x) akan dieksekusi dan \textbf{mengembalikan nilai} 4.
-    \begin{lstlisting}
+  \end{lstlisting}
+  \item Pada saat dijalankan, fungsi sqr(x) akan dieksekusi dan \textbf{mengembalikan nilai} 4.
+  \begin{lstlisting}
     y := 3*4 - 1;
-    \end{lstlisting}
-    \item Setelah itu ekspresi dievaluasi, menghasilkan nilai 11 pada \textbf{y}.
+  \end{lstlisting}
+  \item Setelah itu ekspresi dievaluasi, menghasilkan nilai 11 pada \textbf{y}.
 \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{Nilai Kembalian (lanj.)}
 \begin{itemize}
-    \item Hal semacam ini tidak berlaku pada prosedur, karena prosedur tidak mengembalikan nilai.
-    \item Hal ini juga menjelaskan mengapa fungsi dan prosedur biasa dipanggil dengan cara:
-    \begin{lstlisting}
+  \item Hal semacam ini tidak berlaku pada prosedur, karena prosedur tidak mengembalikan nilai.
+  \item Hal ini juga menjelaskan mengapa fungsi dan prosedur biasa dipanggil dengan cara:
+  \begin{lstlisting}
     (* prosedur *)
     prosedurKerja();
 
     (* fungsi *)
     x := fungsiKerja();
-    \end{lstlisting}
+  \end{lstlisting}
 \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{Fungsi}
 \begin{itemize}
-    \item Pada Pascal, fungsi dituliskan dengan format:
-    \begin{lstlisting}
+  \item Pada Pascal, fungsi dituliskan dengan format:
+  \begin{lstlisting}
     function <nama>(<parameter...): <tipe kembalian>
     var
-       <deklarasi variabel...>
+      <deklarasi variabel...>
     begin
-       <instruksi...>
-       ...
-       <nama> := <nilai kembalian>;
+      <instruksi...>
+      ...
+      <nama> := <nilai kembalian>;
     end;
-    \end{lstlisting}
-    \item Dengan $<$tipe kembalian$>$ adalah tipe data untuk nilai yang dikembalikan.
-    \item Untuk memberi tahu Pascal nilai yang perlu dikembalikan, lakukan \textbf{assingment} pada nama fungsi dengan nilai yang akan dikembalikan, seperti yang dicontohkan baris akhir isi subprogram pada format di atas.
+  \end{lstlisting}
+  \item Dengan $<$tipe kembalian$>$ adalah tipe data untuk nilai yang dikembalikan.
+  \item Untuk memberi tahu Pascal nilai yang perlu dikembalikan, lakukan \textbf{assingment} pada nama fungsi dengan nilai yang akan dikembalikan, seperti yang dicontohkan baris akhir isi subprogram pada format di atas.
 \end{itemize}
 \end{frame}
 
 \begin{frame}
 \frametitle{Fungsi (lanj.)}
 \begin{itemize}
-    \item Melakukan \textbf{assignment} pada nama fungsi tidak harus dilakukan pada bagian akhir.
-    \item Yang pasti, Pascal akan mengembalikan nilai yang terakhir di-\textbf{assign} ke dalam nama fungsi tersebut.
-    \item Seperti pada prosedur, bagian deklarasi variabel juga bisa dihilangkan jika tidak ada variabel lokal yang diperlukan.
-    \item Cara penulisan parameter juga sama dengan prosedur.
+  \item Melakukan \textbf{assignment} pada nama fungsi tidak harus dilakukan pada bagian akhir.
+  \item Yang pasti, Pascal akan mengembalikan nilai yang terakhir di-\textbf{assign} ke dalam nama fungsi tersebut.
+  \item Seperti pada prosedur, bagian deklarasi variabel juga bisa dihilangkan jika tidak ada variabel lokal yang diperlukan.
+  \item Cara penulisan parameter juga sama dengan prosedur.
 \end{itemize}
 \end{frame}
 
@@ -434,104 +437,104 @@ Bisa dianggap sebagai "masa hidup" suatu variabel; kapan dia terdefinisi dan kap
 \begin{frame}
 \frametitle{Passing Parameter}
 \begin{itemize}
-    \item \textit{Passing parameter} merupakan aktivitas menyalurkan nilai pada parameter saat memanggil subprogram.
-    \item Umumnya, dikenal dua macam \textit{passing parameter}:
-    \begin{itemize}
-        \item \textit{By value}, yaitu mengirimkan \alert{nilai} dari setiap parameter yang diberikan.
-        \item \textit{By reference}, yaitu mengirimkan \alert{alamat} dari setiap parameter yang diberikan.
-    \end{itemize}
+  \item \textit{Passing parameter} merupakan aktivitas menyalurkan nilai pada parameter saat memanggil subprogram.
+  \item Umumnya, dikenal dua macam \textit{passing parameter}:
+  \begin{itemize}
+    \item \textit{By value}, yaitu mengirimkan \alert{nilai} dari setiap parameter yang diberikan.
+    \item \textit{By reference}, yaitu mengirimkan \alert{alamat} dari setiap parameter yang diberikan.
+  \end{itemize}
 \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{Passing Parameter By Value}
 \begin{itemize}
-    \item Sebagai penjelasan, perhatikan program berikut:
-    \begin{lstlisting}
+  \item Sebagai penjelasan, perhatikan program berikut:
+  \begin{lstlisting}
     var
-       x, y: longint;
+      x, y: longint;
 
     procedure tukar(a, b: longint);
     var
-       temp: longint;
+      temp: longint;
     begin
-       temp := a;
-       a := b;
-       b := a;
+      temp := a;
+      a := b;
+      b := a;
     end;
 
     begin
-       x := 1; y := 2;
-       tukar(x, y);
-       writeln('x=', x, ' y=', y);
+      x := 1; y := 2;
+      tukar(x, y);
+      writeln('x=', x, ' y=', y);
     end.
-    \end{lstlisting}
+  \end{lstlisting}
 \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{Passing Parameter By Value (lanj.)}
 \begin{itemize}
-    \item Jika dijalankan, apa keluaran dari program tersebut? Apakah "x=2 y=1"?
-    \item Jawabannya \alert{tidak}, yang tercetak adalah "x=1 y=2".
-    \item Hal ini disebabkan karena ketika prosedur \textbf{tukar} dipanggil, \alert{nilai} dari $x$ dan $y$ dikirim ke parameter $a$ dan $b$ pada prosedur \textbf{tukar}.
-    \item Jadi $a$ dan $b$ hanya melakukan \textbf{assignment} nilai dari $x$ dan $y$. Apapun yang terjadi pada $a$ dan $b$ selanjutnya tidak mempengaruhi $x$ dan $y$ karena mereka \alert{tidak berhubungan}.
+  \item Jika dijalankan, apa keluaran dari program tersebut? Apakah "x=2 y=1"?
+  \item Jawabannya \alert{tidak}, yang tercetak adalah "x=1 y=2".
+  \item Hal ini disebabkan karena ketika prosedur \textbf{tukar} dipanggil, \alert{nilai} dari $x$ dan $y$ dikirim ke parameter $a$ dan $b$ pada prosedur \textbf{tukar}.
+  \item Jadi $a$ dan $b$ hanya melakukan \textbf{assignment} nilai dari $x$ dan $y$. Apapun yang terjadi pada $a$ dan $b$ selanjutnya tidak mempengaruhi $x$ dan $y$ karena mereka \alert{tidak berhubungan}.
 \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{Passing Parameter By Reference}
 \begin{itemize}
-    \item Lain halnya ketika kita menambahkan kata kunci \textbf{var} pada penulisan parameter:
-    \begin{lstlisting}
-    procedure tukar(var a, b: longint);
-    var
-       temp: longint;
-    begin
-       temp := a;
-       a := b;
-       b := a;
-    end;
-    \end{lstlisting}
+  \item Lain halnya ketika kita menambahkan kata kunci \textbf{var} pada penulisan parameter:
+  \begin{lstlisting}
+  procedure tukar(var a, b: longint);
+  var
+     temp: longint;
+  begin
+     temp := a;
+     a := b;
+     b := a;
+  end;
+  \end{lstlisting}
 \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{Passing Parameter By Reference (lanj.)}
 \begin{itemize}
-    \item Dengan cara ini, ketika \textbf{tukar}($x$, $y$) dipanggil, \alert{alamat memori variabel} $x$ dan $y$ dikirimkan ke parameter $a$ dan $b$.
-    \item Kini, $x$ dan $a$ mengacu pada alamat memori yang sama.
-    \item Apabila dilakukan perintah "$a := 3$", maka nilai $x$ juga ikut menjadi 3. Hal ini disebabkan karena $x$ dan $a$ mengacu pada \alert{alamat memori yang sama}.
-    \item Demikian pula untuk $y$ dan $b$.
-    \item Sehingga keluaran program menjadi "x=2 y=1"!
+  \item Dengan cara ini, ketika \textbf{tukar}($x$, $y$) dipanggil, \alert{alamat memori variabel} $x$ dan $y$ dikirimkan ke parameter $a$ dan $b$.
+  \item Kini, $x$ dan $a$ mengacu pada alamat memori yang sama.
+  \item Apabila dilakukan perintah "$a := 3$", maka nilai $x$ juga ikut menjadi 3. Hal ini disebabkan karena $x$ dan $a$ mengacu pada \alert{alamat memori yang sama}.
+  \item Demikian pula untuk $y$ dan $b$.
+  \item Sehingga keluaran program menjadi "x=2 y=1"!
 \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{Passing Parameter By Reference (lanj.)}
 \begin{itemize}
-    \item Dengan \textit{passing parameter by reference}, kita tidak bisa melakukan:
-    \begin{lstlisting}
+  \item Dengan \textit{passing parameter by reference}, kita tidak bisa melakukan:
+  \begin{lstlisting}
     tukar(2, 3);
-    \end{lstlisting}
+  \end{lstlisting}
 
-    \item Mengirimkan alamat memori dari variabel memang bisa dilakukan, tetapi angka 2 atau 3 jelas bukan variabel dan jelas \alert{tidak punya alamat memori}.
-    \item Jika kita mengembalikan kedua parameter prosedur \textbf{tukar} untuk menggunakan \textit{passing parameter by value}, barulah hal ini bisa dilakukan. Karena yang dikirimkan adalah \alert{nilainya}.
+  \item Mengirimkan alamat memori dari variabel memang bisa dilakukan, tetapi angka 2 atau 3 jelas bukan variabel dan jelas \alert{tidak punya alamat memori}.
+  \item Jika kita mengembalikan kedua parameter prosedur \textbf{tukar} untuk menggunakan \textit{passing parameter by value}, barulah hal ini bisa dilakukan. Karena yang dikirimkan adalah \alert{nilainya}.
 \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{Penulisan Pada Pascal}
 \begin{itemize}
-    \item Untuk melakukan \textit{passing parameter by reference}, cukup tambahkan kata kunci \textbf{var} di depan parameter yang akan di-\textit{pass by reference}.
-    \item Sebuah subprogram bisa juga menerima parameter dengan cara \textit{passing parameter} yang campuran:
-    \begin{lstlisting}
+  \item Untuk melakukan \textit{passing parameter by reference}, cukup tambahkan kata kunci \textbf{var} di depan parameter yang akan di-\textit{pass by reference}.
+  \item Sebuah subprogram bisa juga menerima parameter dengan cara \textit{passing parameter} yang campuran:
+  \begin{lstlisting}
     procedure bagi(a,b:longint; var hasil,sisa:longint);
     begin
-       hasil := a div b;
-       sisa := a mod b;
+      hasil := a div b;
+      sisa := a mod b;
     end;
-    \end{lstlisting}
+  \end{lstlisting}
 \end{itemize}
 \end{frame}
 
@@ -542,18 +545,18 @@ Bisa dianggap sebagai "masa hidup" suatu variabel; kapan dia terdefinisi dan kap
 \frametitle{Fungsi Pangkat}
 Berikut ini adalah fungsi untuk menghitung $a^b$:
 \begin{lstlisting}
-function pangkat(a, b: longint);
-var
-   i: longint;
-   hasil: longint;
-begin
-   hasil := 1;
-   for i := 1 to b do begin
+  function pangkat(a, b: longint);
+  var
+    i: longint;
+    hasil: longint;
+  begin
+    hasil := 1;
+    for i := 1 to b do begin
       hasil := hasil * a;
-   end;
+    end;
 
-   pangkat := hasil;
-end;
+    pangkat := hasil;
+  end;
 \end{lstlisting}
 \end{frame}
 
@@ -561,90 +564,90 @@ end;
 \frametitle{Prosedur Pangkat}
 Berikut ini adalah prosedur untuk menghitung $a^b$, hasil ditampung pada variabel $hasil$:
 \begin{lstlisting}
-    procedure pangkat(a, b: longint; var hasil: longint);
-    var
-       i: longint;
-    begin
-       hasil := 1;
-       for i := 1 to b do begin
-          hasil := hasil * a;
-       end;
+  procedure pangkat(a, b: longint; var hasil: longint);
+  var
+    i: longint;
+  begin
+    hasil := 1;
+    for i := 1 to b do begin
+      hasil := hasil * a;
     end;
+  end;
 \end{lstlisting}
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{Fungsi dan Prosedur}
 \begin{itemize}
-    \item Baik dengan fungsi atau prosedur, kita bisa mencapai hal yang sama.
-    \item Pertanyaannya adalah: \alert{mana yang lebih tepat}?
+  \item Baik dengan fungsi atau prosedur, kita bisa mencapai hal yang sama.
+  \item Pertanyaannya adalah: \alert{mana yang lebih tepat}?
 \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{Fungsi dan Prosedur (lanj.)}
 \begin{itemize}
-    \item Dengan fungsi, menghitung $y = 3x^5$ bisa dilakukan dengan:
-    \begin{lstlisting}
+  \item Dengan fungsi, menghitung $y = 3x^5$ bisa dilakukan dengan:
+  \begin{lstlisting}
     y := 3 * pangkat(x, 5);
-    \end{lstlisting}
+  \end{lstlisting}
 
-    \item Dengan prosedur, sedikit lebih rumit:
-    \begin{lstlisting}
+  \item Dengan prosedur, sedikit lebih rumit:
+  \begin{lstlisting}
     pangkat(x, 5, y);
     y := 3 * y;
-    \end{lstlisting}
+  \end{lstlisting}
 
-    \item Untuk kasus ini, \alert{penggunaan fungsi lebih tepat}.
+  \item Untuk kasus ini, \alert{penggunaan fungsi lebih tepat}.
 \end{itemize}
 \end{frame}
 
 \begin{frame}
 \frametitle{Kilas Balik: Prosedur tukar}
 \begin{itemize}
-    \item Sekarang coba ingat kembali prosedur \textbf{tukar} yang kita bahas sebelumnya.
-    \item Kurang masuk akal apabila kita menggunakan fungsi untuk melakukan penukaran.
-    \item Sehingga untuk kasus penukaran isi variabel, \alert{lebih tepat digunakan prosedur}.
+  \item Sekarang coba ingat kembali prosedur \textbf{tukar} yang kita bahas sebelumnya.
+  \item Kurang masuk akal apabila kita menggunakan fungsi untuk melakukan penukaran.
+  \item Sehingga untuk kasus penukaran isi variabel, \alert{lebih tepat digunakan prosedur}.
 \end{itemize}
 \end{frame}
 
 \begin{frame}
 \frametitle{Penggunaan Fungsi dan Prosedur}
 \begin{itemize}
-    \item Dari sini kita mempelajari bahwa ada subprogram yang lebih cocok diimplementasikan menjadi fungsi, dan ada juga yang lebih cocok menjadi prosedur.
-    \item Biasanya, fungsi bersifat:
-    \begin{itemize}
-        \item Menghasilkan suatu nilai berdasarkan parameter.
-        \item Tidak mengakibatkan efek samping, misalnya adanya perubahan nilai pada parameter yang diberikan seperti pada prosedur \textbf{tukar}.
-    \end{itemize}
-    \item Sementara prosedur bersifat:
-    \begin{itemize}
-        \item Tidak menghasilkan suatu nilai.
-        \item Boleh jadi mengakibatkan perubahan pada variabel global atau parameter yang dikirimkan.
-    \end{itemize}
+  \item Dari sini kita mempelajari bahwa ada subprogram yang lebih cocok diimplementasikan menjadi fungsi, dan ada juga yang lebih cocok menjadi prosedur.
+  \item Biasanya, fungsi bersifat:
+  \begin{itemize}
+    \item Menghasilkan suatu nilai berdasarkan parameter.
+    \item Tidak mengakibatkan efek samping, misalnya adanya perubahan nilai pada parameter yang diberikan seperti pada prosedur \textbf{tukar}.
+  \end{itemize}
+  \item Sementara prosedur bersifat:
+  \begin{itemize}
+    \item Tidak menghasilkan suatu nilai.
+    \item Boleh jadi mengakibatkan perubahan pada variabel global atau parameter yang dikirimkan.
+  \end{itemize}
 \end{itemize}
 \end{frame}
 
 \begin{frame}
 \frametitle{Manfaat Subprogram}
 \begin{itemize}
-    \item Meningkatkan daya daur ulang kode (\textit{reusability}).
-    \newline Satu kali saja kita mendefinisikan prosedur untuk menukar isi variabel, berapa kali pun penukaran isi variabel bisa dilakukan tanpa perlu menuliskan algoritma penukaran (cukup memanggil prosedur).
-    \item Memecah program menjadi beberapa subprogram yang lebih kecil.
-    \newline Keuntungannya adalah didapatkan kumpulan subprogram yang:
-    \begin{itemize}
-        \item Fokus pada suatu tujuan tertentu.
-        \item Tersusun atas kode yang cenderung pendek.
-        \item Karena kedua hal di atas, lebih mudah dibaca dan ditelusuri.
-    \end{itemize}
+  \item Meningkatkan daya daur ulang kode (\textit{reusability}).
+  \newline Satu kali saja kita mendefinisikan prosedur untuk menukar isi variabel, berapa kali pun penukaran isi variabel bisa dilakukan tanpa perlu menuliskan algoritma penukaran (cukup memanggil prosedur).
+  \item Memecah program menjadi beberapa subprogram yang lebih kecil.
+  \newline Keuntungannya adalah didapatkan kumpulan subprogram yang:
+  \begin{itemize}
+    \item Fokus pada suatu tujuan tertentu.
+    \item Tersusun atas kode yang cenderung pendek.
+    \item Karena kedua hal di atas, lebih mudah dibaca dan ditelusuri.
+  \end{itemize}
 \end{itemize}
 \end{frame}
 
 \begin{frame}
 \frametitle{Selanjutnya...}
 \begin{itemize}
-    \item Mengulas lebih dalam tentang tipe data \textbf{string} pada Pascal.
-    \item Mengeksplorasi fungsi dan prosedur dasar pada pengolahan \textbf{string}.
+  \item Mengulas lebih dalam tentang tipe data \textbf{string} pada Pascal.
+  \item Mengeksplorasi fungsi dan prosedur dasar pada pengolahan \textbf{string}.
 \end{itemize}
 \end{frame}
 

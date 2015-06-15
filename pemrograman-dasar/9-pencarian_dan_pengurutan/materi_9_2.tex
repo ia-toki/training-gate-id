@@ -10,7 +10,7 @@
 \newtranslation[to=bahasa]{Section}{Bagian}
 \newtranslation[to=bahasa]{Subsection}{Subbagian}
 
-\usepackage{listings}
+\usepackage{listings, lstautogobble}
 \usepackage{color}
 
 \definecolor{dkgreen}{rgb}{0,0.6,0}
@@ -18,18 +18,21 @@
 \definecolor{mauve}{rgb}{0.58,0,0.82}
 
 \lstset{frame=tb,
-    language=pascal,
-    showstringspaces=false,
-    columns=flexible,
-    basicstyle={\small\ttfamily},
-    numbers=none,
-    numberstyle=\tiny\color{gray},
-    keywordstyle=\color{blue},
-    commentstyle=\color{dkgreen},
-    stringstyle=\color{mauve},
-    breaklines=true,
-    breakatwhitespace=true,
-    tabsize=2
+  language=pascal,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=fullflexible,
+  keepspaces=true,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  autogobble=true
 }
 
 \title{Pengurutan Dasar}
@@ -46,17 +49,17 @@
 \frametitle{Pendahuluan}
 Melalui dokumen ini, kalian akan:
 \begin{itemize}
-    \item Mempelajari konsep algoritma sederhana.
-    \item Memahami berbagai algoritma pengurutan sederhana.
-    \item Memahami keuntungan dan kerugian dari masing-masing algoritma.
+  \item Mempelajari konsep algoritma sederhana.
+  \item Memahami berbagai algoritma pengurutan sederhana.
+  \item Memahami keuntungan dan kerugian dari masing-masing algoritma.
 \end{itemize}
 \end{frame}
 
 \begin{frame}
 \frametitle{Pendahuluan (lanj.)}
 \begin{itemize}
-    \item Pengurutan sering digunakan dalam pemrograman untuk membantu membuat data lebih mudah diolah.
-    \item Terdapat berbagai macam cara untuk melakukan pengurutan, masing-masing dengan keuntungan dan kekurangan masing-masing.
+  \item Pengurutan sering digunakan dalam pemrograman untuk membantu membuat data lebih mudah diolah.
+  \item Terdapat berbagai macam cara untuk melakukan pengurutan, masing-masing dengan keuntungan dan kekurangan masing-masing.
 \end{itemize}
 \end{frame}
 
@@ -64,11 +67,11 @@ Melalui dokumen ini, kalian akan:
 \frametitle{Soal: Bebek Berbaris}
 Deskripsi:
 \begin{itemize}
-    \item Sebelum masuk ke dalam kandang, para bebek akan berbaris terlebih dahulu.
-    \item Seiring dengan berjalannya waktu, bebek-bebek tumbuh tinggi. Pertumbuhan ini berbeda-beda; ada bebek yang lebih tinggi dari bebek lainnya.
-    \item Terdapat $N$ ekor bebek, bebek ke-$i$ memiliki tinggi sebesar $h_i$.
-    \item Perbedaan tinggi ini menyebabkan barisan terlihat kurang rapi, sehingga Pak Dengklek ingin agar bebek-bebek berbaris dari yang paling pendek ke paling tinggi.
-    \item Bantulah para bebek untuk mengurutkan barisan mereka!
+  \item Sebelum masuk ke dalam kandang, para bebek akan berbaris terlebih dahulu.
+  \item Seiring dengan berjalannya waktu, bebek-bebek tumbuh tinggi. Pertumbuhan ini berbeda-beda; ada bebek yang lebih tinggi dari bebek lainnya.
+  \item Terdapat $N$ ekor bebek, bebek ke-$i$ memiliki tinggi sebesar $h_i$.
+  \item Perbedaan tinggi ini menyebabkan barisan terlihat kurang rapi, sehingga Pak Dengklek ingin agar bebek-bebek berbaris dari yang paling pendek ke paling tinggi.
+  \item Bantulah para bebek untuk mengurutkan barisan mereka!
 \end{itemize}
 \end{frame}
 
@@ -76,17 +79,17 @@ Deskripsi:
 \frametitle{Soal: Bebek Berbaris (lanj.)}
 Format masukan:
 \begin{itemize}
-    \item Baris pertama berisi sebuah bilangan bulat, yaitu $N$.
-    \item Baris kedua berisi $N$ bilangan bulat. Bilangan ke-$i$ menyatakan $h_i$.
+  \item Baris pertama berisi sebuah bilangan bulat, yaitu $N$.
+  \item Baris kedua berisi $N$ bilangan bulat. Bilangan ke-$i$ menyatakan $h_i$.
 \end{itemize}
 Format keluaran:
 \begin{itemize}
-    \item Keluarkan ketinggian bebek dalam keadaan terurut menaik, seekor bebek pada setiap barisnya.
+  \item Keluarkan ketinggian bebek dalam keadaan terurut menaik, seekor bebek pada setiap barisnya.
 \end{itemize}
 Batasan:
 \begin{itemize}
-    \item $1 \le N \le 1.000$
-    \item $1 \le h_i \le 100.000$, untuk $1 \le i \le N$
+  \item $1 \le N \le 1.000$
+  \item $1 \le h_i \le 100.000$, untuk $1 \le i \le N$
 \end{itemize}
 \end{frame}
 
@@ -96,10 +99,10 @@ Batasan:
 \begin{frame}
 \frametitle{$<$TODO: Konten Wajib$>$}
 \begin{itemize}
-    \item ide dasar
-    \item contoh kode
-    \item analisis kompleksitas (best case, worst case, average case, semuanya sama)
-    \item bisa gunakan berkas "TEKS : Sorting Standard.html"  (lihat  https://www.dropbox.com/sh/zxcd1uct6rf3mio/AAD5v7W-EaypSSh7uP8D5FRVa?dl=0 sebagai acuan)
+  \item ide dasar
+  \item contoh kode
+  \item analisis kompleksitas (best case, worst case, average case, semuanya sama)
+  \item bisa gunakan berkas "TEKS : Sorting Standard.html"  (lihat  https://www.dropbox.com/sh/zxcd1uct6rf3mio/AAD5v7W-EaypSSh7uP8D5FRVa?dl=0 sebagai acuan)
 \end{itemize}
 \end{frame}
 
@@ -109,11 +112,11 @@ Batasan:
 \begin{frame}
 \frametitle{$<$TODO: Konten Wajib$>$}
 \begin{itemize}
-    \item ide dasar
-    \item contoh kode
-    \item penjelasan insertion sort bisa cepat kalau datanya sudah hampir sorted
-    \item analisis kompleksitas (best case, worst case, average case)
-    \item bisa gunakan berkas "TEKS : Sorting Standard.html"  (lihat  https://www.dropbox.com/sh/zxcd1uct6rf3mio/AAD5v7W-EaypSSh7uP8D5FRVa?dl=0 sebagai acuan)
+  \item ide dasar
+  \item contoh kode
+  \item penjelasan insertion sort bisa cepat kalau datanya sudah hampir sorted
+  \item analisis kompleksitas (best case, worst case, average case)
+  \item bisa gunakan berkas "TEKS : Sorting Standard.html"  (lihat  https://www.dropbox.com/sh/zxcd1uct6rf3mio/AAD5v7W-EaypSSh7uP8D5FRVa?dl=0 sebagai acuan)
 \end{itemize}
 \end{frame}
 
@@ -123,10 +126,10 @@ Batasan:
 \begin{frame}
 \frametitle{$<$TODO: Konten Wajib$>$}
 \begin{itemize}
-    \item ide dasar
-    \item contoh kode
-    \item analisis kompleksitas (best case, worst case, average case, semuanya sama)
-    \item bisa gunakan berkas "TEKS : Sorting Standard.html"  (lihat  https://www.dropbox.com/sh/zxcd1uct6rf3mio/AAD5v7W-EaypSSh7uP8D5FRVa?dl=0 sebagai acuan)
+  \item ide dasar
+  \item contoh kode
+  \item analisis kompleksitas (best case, worst case, average case, semuanya sama)
+  \item bisa gunakan berkas "TEKS : Sorting Standard.html"  (lihat  https://www.dropbox.com/sh/zxcd1uct6rf3mio/AAD5v7W-EaypSSh7uP8D5FRVa?dl=0 sebagai acuan)
 \end{itemize}
 \end{frame}
 
@@ -136,12 +139,12 @@ Batasan:
 \begin{frame}
 \frametitle{$<$TODO: Konten Wajib$>$}
 \begin{itemize}
-    \item ide dasar
-    \item kapan counting sort bisa dipakai
-    \item tekankan bahwa counting sort itu sangat cepat, hanya O(N)
-    \item contoh kode
-    \item analisis kompleksitas (best case, worst case, average case, semuanya sama)
-    \item bisa gunakan berkas "TEKS : Sorting Standard.html"  (lihat https://www.dropbox.com/sh/zxcd1uct6rf3mio/AAD5v7W-EaypSSh7uP8D5FRVa?dl=0 sebagai acuan)
+  \item ide dasar
+  \item kapan counting sort bisa dipakai
+  \item tekankan bahwa counting sort itu sangat cepat, hanya O(N)
+  \item contoh kode
+  \item analisis kompleksitas (best case, worst case, average case, semuanya sama)
+  \item bisa gunakan berkas "TEKS : Sorting Standard.html"  (lihat https://www.dropbox.com/sh/zxcd1uct6rf3mio/AAD5v7W-EaypSSh7uP8D5FRVa?dl=0 sebagai acuan)
 \end{itemize}
 \end{frame}
 

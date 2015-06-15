@@ -8,7 +8,7 @@
 \newtranslation[to=bahasa]{Section}{Bagian}
 \newtranslation[to=bahasa]{Subsection}{Subbagian}
 
-\usepackage{listings}
+\usepackage{listings, lstautogobble}
 \usepackage{color}
 
 \definecolor{dkgreen}{rgb}{0,0.6,0}
@@ -16,18 +16,21 @@
 \definecolor{mauve}{rgb}{0.58,0,0.82}
 
 \lstset{frame=tb,
-    language=pascal,
-    showstringspaces=false,
-    columns=flexible,
-    basicstyle={\small\ttfamily},
-    numbers=none,
-    numberstyle=\tiny\color{gray},
-    keywordstyle=\color{blue},
-    commentstyle=\color{dkgreen},
-    stringstyle=\color{mauve},
-    breaklines=true,
-    breakatwhitespace=true,
-    tabsize=2
+  language=pascal,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=fullflexible,
+  keepspaces=true,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  autogobble=true
 }
 
 \title{Pengenalan Array}
@@ -44,9 +47,9 @@
 \frametitle{Pendahuluan}
 Melalui dokumen ini, kalian akan:
 \begin{itemize}
-    \item Memahami konsep \textbf{array}.
-    \item Mengimplementasikan \textbf{array} pada bahasa Pascal.
-    \item Menggunakan \textbf{array} untuk penyelesaian beberapa contoh masalah.
+  \item Memahami konsep \textbf{array}.
+  \item Mengimplementasikan \textbf{array} pada bahasa Pascal.
+  \item Menggunakan \textbf{array} untuk penyelesaian beberapa contoh masalah.
 \end{itemize}
 \end{frame}
 
@@ -56,20 +59,20 @@ Melalui dokumen ini, kalian akan:
 \begin{frame}
 \frametitle{Motivasi}
 \begin{itemize}
-    \item Pak Dengklek memiliki sebuah tumpukan berisi $N$ kartu, yang dipenuhi $1 \le N \le 100$.
-    \item Setiap kartu bertuliskan suatu bilangan bulat.
-    \item Sekarang Pak Dengklek ingin tahu urutan angka-angka pada kartu tersebut bila tumpukan kartu itu dibalik.
-    \item Contoh: jika diberikan 5 kartu dengan angka-angka dari atasnya [1, 5, 3, 20, 4], maka setelah dibalik urutannya menjadi: [4, 20, 3, 5, 1].
-    \item Bantulah Pak Dengklek menentukan urutan angka-angka tersebut setelah tumpukan kartu dibalik!
+  \item Pak Dengklek memiliki sebuah tumpukan berisi $N$ kartu, yang dipenuhi $1 \le N \le 100$.
+  \item Setiap kartu bertuliskan suatu bilangan bulat.
+  \item Sekarang Pak Dengklek ingin tahu urutan angka-angka pada kartu tersebut bila tumpukan kartu itu dibalik.
+  \item Contoh: jika diberikan 5 kartu dengan angka-angka dari atasnya [1, 5, 3, 20, 4], maka setelah dibalik urutannya menjadi: [4, 20, 3, 5, 1].
+  \item Bantulah Pak Dengklek menentukan urutan angka-angka tersebut setelah tumpukan kartu dibalik!
 \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{Solusi?}
 \begin{itemize}
-    \item Sederhana, idenya adalah dengan menampung seluruh bilangan terlebih dahulu, baru dicetak dalam urutan terbalik.
-    \item Misalnya jika $N$ selalu 3, kita bisa membuat 3 variabel (misalnya a, b, c), lalu:
-    \begin{lstlisting}
+  \item Sederhana, idenya adalah dengan menampung seluruh bilangan terlebih dahulu, baru dicetak dalam urutan terbalik.
+  \item Misalnya jika $N$ selalu 3, kita bisa membuat 3 variabel (misalnya a, b, c), lalu:
+  \begin{lstlisting}
     readln(a);
     readln(b);
     readln(c);
@@ -77,8 +80,8 @@ Melalui dokumen ini, kalian akan:
     writeln(c);
     writeln(b);
     writeln(a);
-    \end{lstlisting}
-    \item Sayangnya nilai $N$ tidak tetap! Dibutuhkan suatu mekanisme lain untuk menggunakan dan mengakses variabel!
+  \end{lstlisting}
+  \item Sayangnya nilai $N$ tidak tetap! Dibutuhkan suatu mekanisme lain untuk menggunakan dan mengakses variabel!
 \end{itemize}
 \end{frame}
 
@@ -98,20 +101,20 @@ Perhatikan contoh berikut!
 \end{tabular}
 
 \begin{itemize}
-    \item A[1] = 3
-    \item A[2] = 10
-    \item A[5] = 35
+  \item A[1] = 3
+  \item A[2] = 10
+  \item A[5] = 35
 \end{itemize}
 \end{frame}
 
 \begin{frame}
 \frametitle{Penjelasan}
 \begin{itemize}
-    \item Pada contoh sebelumnya, kita memiliki sebuah variabel bernama \textbf{A}.
-    \item \textbf{A} memiliki 10 nilai, yang masing-masing dapat diakses dengan indeks.
-    \item Untuk mengakses nilai \textbf{A} yang ke-x, digunakan \textbf{A[x]}.
-    \item Lebih jauh lagi, sebenarnya \textbf{A[x]} bisa dianggap sebagai sebuah variabel yang berdiri sendiri.
-    \item Konsep inilah yang disebut sebagai \textbf{array}!
+  \item Pada contoh sebelumnya, kita memiliki sebuah variabel bernama \textbf{A}.
+  \item \textbf{A} memiliki 10 nilai, yang masing-masing dapat diakses dengan indeks.
+  \item Untuk mengakses nilai \textbf{A} yang ke-x, digunakan \textbf{A[x]}.
+  \item Lebih jauh lagi, sebenarnya \textbf{A[x]} bisa dianggap sebagai sebuah variabel yang berdiri sendiri.
+  \item Konsep inilah yang disebut sebagai \textbf{array}!
 \end{itemize}
 \end{frame}
 
@@ -121,18 +124,18 @@ Perhatikan contoh berikut!
 \begin{frame}[fragile]
 \frametitle{Deklarasi}
 \begin{itemize}
-    \item Karena \textbf{array} merupakan variabel, diperlukan deklarasi seperti variabel lainnya.
-    \item Format deklarasi \textbf{array} adalah:
-    \begin{lstlisting}
+  \item Karena \textbf{array} merupakan variabel, diperlukan deklarasi seperti variabel lainnya.
+  \item Format deklarasi \textbf{array} adalah:
+  \begin{lstlisting}
     <nama>: array[<nilai awal>..<nilai akhir>] of <tipe>;
-    \end{lstlisting}
-    \item Dengan:
-    \begin{itemize}
-        \item $<$nama$>$ adalah nama dari \textbf{array} (aturan penamaan sama seperti variabel biasanya)
-        \item $<$nilai awal$>$ dan $<$nilai akhir$>$ adalah rentang indeks \textbf{array} yang terdefinisi (boleh saja negatif).
-        \item $<$tipe$>$ adalah tipe data dari \textbf{array}.
-    \end{itemize}
-    \item Tentu saja, tipe data di sini bisa berupa \textbf{longint}, \textbf{double}, \textbf{string}, \textbf{boolean} atau suatu \textbf{record}.
+  \end{lstlisting}
+  \item Dengan:
+  \begin{itemize}
+    \item $<$nama$>$ adalah nama dari \textbf{array} (aturan penamaan sama seperti variabel biasanya)
+    \item $<$nilai awal$>$ dan $<$nilai akhir$>$ adalah rentang indeks \textbf{array} yang terdefinisi (boleh saja negatif).
+    \item $<$tipe$>$ adalah tipe data dari \textbf{array}.
+  \end{itemize}
+  \item Tentu saja, tipe data di sini bisa berupa \textbf{longint}, \textbf{double}, \textbf{string}, \textbf{boolean} atau suatu \textbf{record}.
 \end{itemize}
 \end{frame}
 
@@ -140,72 +143,72 @@ Perhatikan contoh berikut!
 \frametitle{Contoh Deklarasi}
 Berikut ini adalah contoh deklarasi \textbf{array} pada Pascal:
 \begin{lstlisting}
-var
-  tabel: array[0..100] of boolean;
-  frekuensi: array[-1000..1000] of longint;
+  var
+    tabel: array[0..100] of boolean;
+    frekuensi: array[-1000..1000] of longint;
 \end{lstlisting}
 \begin{itemize}
-    \item Untuk contoh \textbf{array} \textbf{tabel}, hanya tabel[0], tabel[1], tabel[2], ..., tabel[100] yang terdefinisi.
-    \item Mengakses nilai tabel[-1], tabel[-2], atau tabel[500] akan menyebabkan \textbf{runtime error}. Sementara mengakses nilai frekuensi[-1] atau frekuensi[-100] sama sekali tidak bermasalah.
-    \item Untuk itu, tentukan rentang indeks yang akan kalian gunakan saat deklarasi dengan tepat (sesuai kebutuhan).
+  \item Untuk contoh \textbf{array} \textbf{tabel}, hanya tabel[0], tabel[1], tabel[2], ..., tabel[100] yang terdefinisi.
+  \item Mengakses nilai tabel[-1], tabel[-2], atau tabel[500] akan menyebabkan \textbf{runtime error}. Sementara mengakses nilai frekuensi[-1] atau frekuensi[-100] sama sekali tidak bermasalah.
+  \item Untuk itu, tentukan rentang indeks yang akan kalian gunakan saat deklarasi dengan tepat (sesuai kebutuhan).
 \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{Array dan Variabel}
 \begin{itemize}
-    \item Karena suatu elemen dari \textbf{array} juga bisa dianggap variabel, tentu saja kita bisa melakukan perintah \textbf{readln} padanya.
-    \item Sebagai contoh, jika kita memiliki \textbf{array} bernama \textbf{tabel} yang terdefinisi dari 1 sampai dengan \textbf{100}, kita bisa melakukan:
-    \begin{lstlisting}
+  \item Karena suatu elemen dari \textbf{array} juga bisa dianggap variabel, tentu saja kita bisa melakukan perintah \textbf{readln} padanya.
+  \item Sebagai contoh, jika kita memiliki \textbf{array} bernama \textbf{tabel} yang terdefinisi dari 1 sampai dengan \textbf{100}, kita bisa melakukan:
+  \begin{lstlisting}
     readln(tabel[2]);
-    \end{lstlisting}
+  \end{lstlisting}
 \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{Array dan Variabel (lanj.)}
 \begin{itemize}
-    \item Jika diberikan \textbf{5} bilangan, dan kita perlu menyimpan masing-masing bilangan di tabel, kita bisa melakukan:
-    \begin{lstlisting}
+  \item Jika diberikan \textbf{5} bilangan, dan kita perlu menyimpan masing-masing bilangan di tabel, kita bisa melakukan:
+  \begin{lstlisting}
     readln(tabel[1]);
     readln(tabel[2]);
     readln(tabel[3]);
     readln(tabel[4]);
     readln(tabel[5]);
-    \end{lstlisting}
-    \item Tentu saja hal ini sangat tidak efisien!
-    \item Untungnya, kita sudah mempelajari sebuah teknik yang sangat penting, yaitu \textbf{perulangan}.
+  \end{lstlisting}
+  \item Tentu saja hal ini sangat tidak efisien!
+  \item Untungnya, kita sudah mempelajari sebuah teknik yang sangat penting, yaitu \textbf{perulangan}.
 \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{Array dan Variabel (lanj.)}
 \begin{itemize}
-    \item Proses membaca 5 bilangan pada 5 baris kini bisa dilakukan dengan cara:
-    \begin{lstlisting}
+  \item Proses membaca 5 bilangan pada 5 baris kini bisa dilakukan dengan cara:
+  \begin{lstlisting}
     for i := 1 to 5 do begin
        readln(tabel[i]);
     end;
-    \end{lstlisting}
-    \item Untuk kasus umum, yaitu ketika diberikan $N$ bilangan, cukup ganti angka 5 dengan variabel $N$.
-    \begin{lstlisting}
+  \end{lstlisting}
+  \item Untuk kasus umum, yaitu ketika diberikan $N$ bilangan, cukup ganti angka 5 dengan variabel $N$.
+  \begin{lstlisting}
     for i := 1 to N do begin
        readln(tabel[i]);
     end;
-    \end{lstlisting}
+  \end{lstlisting}
 \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{Array dan Variabel (lanj.)}
 \begin{itemize}
-    \item Demikian pula untuk pencetakan secara terbalik, kita bisa menggunakan perulangan sebagai berikut:
-    \begin{lstlisting}
+  \item Demikian pula untuk pencetakan secara terbalik, kita bisa menggunakan perulangan sebagai berikut:
+  \begin{lstlisting}
     for i := N downto 1 do begin
        writeln(tabel[i]);
     end;
-    \end{lstlisting}
-    \item Sekarang masalah Pak Dengklek terpecahkan!
+  \end{lstlisting}
+  \item Sekarang masalah Pak Dengklek terpecahkan!
 \end{itemize}
 \end{frame}
 
@@ -213,21 +216,21 @@ var
 \frametitle{Contoh Solusi: balik.pas}
 Berikut contoh solusi lengkap untuk permasalahan motivasi:
 \begin{lstlisting}
-var
-   N, i: longint;
-   tabel: array[1..100] of longint;
+  var
+    N, i: longint;
+    tabel: array[1..100] of longint;
 
-begin
-   readln(N);
+  begin
+    readln(N);
 
-   for i := 1 to N do begin
+    for i := 1 to N do begin
       readln(tabel[i]);
-   end;
+    end;
 
-   for i := N downto 1 do begin
+    for i := N downto 1 do begin
       writeln(tabel[i]);
-   end;
-end.
+    end;
+  end.
 \end{lstlisting}
 \end{frame}
 
@@ -235,18 +238,18 @@ end.
 \begin{frame}
 \frametitle{Array dan Memori}
 \begin{itemize}
-    \item Setiap elemen pada \textbf{array} membutuhkan memori, bergantung pada tipe data yang digunakan.
-    \item Total memori yang dibutuhkan untuk sebuah \textbf{array} sama dengan banyaknya elemennya dikali ukuran memori satu elemennya.
-    \item Sebagai contoh, \textbf{array} dengan 100 elemen dan memiliki tipe \textbf{longint} membutuhkan memori sebesar $100 \times 4$ byte $= 400$ byte,
+  \item Setiap elemen pada \textbf{array} membutuhkan memori, bergantung pada tipe data yang digunakan.
+  \item Total memori yang dibutuhkan untuk sebuah \textbf{array} sama dengan banyaknya elemennya dikali ukuran memori satu elemennya.
+  \item Sebagai contoh, \textbf{array} dengan 100 elemen dan memiliki tipe \textbf{longint} membutuhkan memori sebesar $100 \times 4$ byte $= 400$ byte,
 \end{itemize}
 \end{frame}
 
 \begin{frame}
 \frametitle{Rentang Array}
 \begin{itemize}
-    \item Pada \textbf{balik.pas}, dideklarasikan \textbf{array} sebesar 100 elemen (dari 1 sampai dengan 100), padahal bisa jadi hanya digunakan sebagian saja.
-    \item Cara ini memang "boros" memori, tetapi ingat bahwa kita harus mendeklarasikan \textbf{array} tersebut di awal, yang mana pada saat itu tidak diketahui berapa nilai $N$.
-    \item Dengan demikian, cara yang paling mudah adalah mendeklarasikannya sebesar nilai $N$ maksimal yang mungkin.
+  \item Pada \textbf{balik.pas}, dideklarasikan \textbf{array} sebesar 100 elemen (dari 1 sampai dengan 100), padahal bisa jadi hanya digunakan sebagian saja.
+  \item Cara ini memang "boros" memori, tetapi ingat bahwa kita harus mendeklarasikan \textbf{array} tersebut di awal, yang mana pada saat itu tidak diketahui berapa nilai $N$.
+  \item Dengan demikian, cara yang paling mudah adalah mendeklarasikannya sebesar nilai $N$ maksimal yang mungkin.
 \end{itemize}
 \end{frame}
 
@@ -254,15 +257,15 @@ end.
 \frametitle{Contoh Soal: Ujian Harian}
 Deskripsi:
 \begin{itemize}
-    \item Pak Dengklek menyelenggarakan ujian harian setelah selesai mengajarkan $N$ ekor bebeknya mengenai konsep \textbf{array}.
-    \item Setiap bebek ke-i mendapatkan nilai sebesar \textbf{$h_i$}, yang merupakan bilangan bulat.
-    \item Untuk menentukan lulus atau tidaknya seekor bebek, nilai bebek tersebut harus tidak kurang dari nilai rata-rata dari seluruh bebek.
-    \item Tentukan banyaknya bebek yang lulus ujian!
+  \item Pak Dengklek menyelenggarakan ujian harian setelah selesai mengajarkan $N$ ekor bebeknya mengenai konsep \textbf{array}.
+  \item Setiap bebek ke-i mendapatkan nilai sebesar \textbf{$h_i$}, yang merupakan bilangan bulat.
+  \item Untuk menentukan lulus atau tidaknya seekor bebek, nilai bebek tersebut harus tidak kurang dari nilai rata-rata dari seluruh bebek.
+  \item Tentukan banyaknya bebek yang lulus ujian!
 \end{itemize}
 Batasan:
 \begin{itemize}
-    \item $1 \le N \le 100$
-    \item $1 \le h_i \le 100$, untuk $1 \le i \le N$
+  \item $1 \le N \le 100$
+  \item $1 \le h_i \le 100$, untuk $1 \le i \le N$
 \end{itemize}
 \end{frame}
 
@@ -270,12 +273,12 @@ Batasan:
 \frametitle{Contoh Soal: Ujian Harian (lanj.)}
 Format masukan:
 \begin{itemize}
-    \item Baris pertama berisi sebuah bilangan bulat $N$.
-    \item $N$ baris berikutnya berisi nilai ujian bebek. Baris ke-$i$ ini merupakan $h_i$.
+  \item Baris pertama berisi sebuah bilangan bulat $N$.
+  \item $N$ baris berikutnya berisi nilai ujian bebek. Baris ke-$i$ ini merupakan $h_i$.
 \end{itemize}
 Format keluaran:
 \begin{itemize}
-    \item Sebuah baris yang menyatakan banyaknya bebek yang lulus ujian.
+  \item Sebuah baris yang menyatakan banyaknya bebek yang lulus ujian.
 \end{itemize}
 \end{frame}
 
@@ -283,14 +286,14 @@ Format keluaran:
 \frametitle{Contoh Soal: Ujian Harian (lanj.)}
 Contoh masukan:
 \begin{lstlisting}
-3
-5
-6
-7
+  3
+  5
+  6
+  7
 \end{lstlisting}
 Contoh keluaran:
 \begin{lstlisting}
-2
+  2
 \end{lstlisting}
 \begin{block}{Penjelasan}
 Nilai rata-rata dari seluruh bebek adalah 6, dan terdapat 2 ekor bebek yang nilainya tidak kurang dari 6.
@@ -300,50 +303,50 @@ Nilai rata-rata dari seluruh bebek adalah 6, dan terdapat 2 ekor bebek yang nila
 \begin{frame}
 \frametitle{Petunjuk}
 \begin{itemize}
-    \item Salah satu solusinya adalah melalui dua tahap:
-    \begin{enumerate}
-        \item Hitung rata-ratanya.
-        \item Hitung banyaknya bebek yang nilainya tidak kurang dari rata-rata.
-    \end{enumerate}
-    \item Sebisa mungkin, hindari penggunaan \textbf{\alert{floating-point}}!
-    \begin{itemize}
-        \item Ingat bahwa tipe data \textbf{floating-point} kurang bisa menyatakan bilangan secara akurat; nilai 1/3*3 bisa jadi 0.999999999999999 atau 1.0000000000001.
-        \item Pengoperasian tipe data \textbf{integer} oleh komputer jauh lebih cepat daripada pengoperasian tipe data \textbf{floating-point}!
-    \end{itemize}
+  \item Salah satu solusinya adalah melalui dua tahap:
+  \begin{enumerate}
+    \item Hitung rata-ratanya.
+    \item Hitung banyaknya bebek yang nilainya tidak kurang dari rata-rata.
+  \end{enumerate}
+  \item Sebisa mungkin, hindari penggunaan \textbf{\alert{floating-point}}!
+  \begin{itemize}
+    \item Ingat bahwa tipe data \textbf{floating-point} kurang bisa menyatakan bilangan secara akurat; nilai 1/3*3 bisa jadi 0.999999999999999 atau 1.0000000000001.
+    \item Pengoperasian tipe data \textbf{integer} oleh komputer jauh lebih cepat daripada pengoperasian tipe data \textbf{floating-point}!
+  \end{itemize}
 \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{Contoh Solusi: lulus.pas}
 \begin{lstlisting}
-var
-   N, i, total, lulus: longint;
-   h: array[1..100] of longint;
-begin
-   readln(N);
-   for i := 1 to N do begin
+  var
+    N, i, total, lulus: longint;
+    h: array[1..100] of longint;
+  begin
+    readln(N);
+    for i := 1 to N do begin
       readln(h[i]);
-   end;
+    end;
 
-   total := 0;
-   for i := 1 to N do begin
+    total := 0;
+    for i := 1 to N do begin
       total := total + h[i];
-   end;
+    end;
 \end{lstlisting}
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{Contoh Solusi: lulus.pas (lanj.)}
 \begin{lstlisting}
-   lulus := 0;
-   for i := 1 to N do begin
-      (* trik menghindari pembagian *)
-      if (h[i]*N >= total) then begin
-         lulus := lulus + 1;
-      end;
-   end;
+  lulus := 0;
+  for i := 1 to N do begin
+    (* trik menghindari pembagian *)
+    if (h[i]*N >= total) then begin
+      lulus := lulus + 1;
+    end;
+  end;
 
-   writeln(lulus);
+  writeln(lulus);
 end.
 \end{lstlisting}
 \end{frame}
@@ -354,23 +357,23 @@ end.
 \begin{frame}[fragile]
 \frametitle{Array Dua Dimensi}
 \begin{itemize}
-    \item Struktur \textbf{array} bisa juga membentuk sebuah tabel dua dimensi.
-    \item Perhatikan contoh deklarasi berikut:
-    \begin{lstlisting}
+  \item Struktur \textbf{array} bisa juga membentuk sebuah tabel dua dimensi.
+  \item Perhatikan contoh deklarasi berikut:
+  \begin{lstlisting}
     matriks: array[1..2, 1..5] of longint;
-    \end{lstlisting}
-    \item Kini kita mendapatkan variabel bernama $matriks[a][b]$, yang terdefinisi untuk $1 \le a \le 2$ dan $1 \le b \le 5$.
-    \item Akses suatu elemen dapat dilakukan dengan dua cara, yaitu matriks[a][b] atau matriks[a,b].
-    \item Tabel berikut menunjukkan struktur dari \textbf{array} matriks:
-    \begin{table}[h]
-        \begin{tabular}{c|c|c|c|c|c|}
-              & 1 & 2 & 3 & 4 & 5\\
-            \hline 1 & & & & & \\
-            \hline 2 & & & & & \\
-            \hline
-        \end{tabular}
-    \end{table}
-    \item Aturan perhitungan memori tetap sama; banyaknya elemen dikali memori per elemennya.\newline Pada kasus ini: $2 \times 5 \times 4$ byte $= 40$ byte.
+  \end{lstlisting}
+  \item Kini kita mendapatkan variabel bernama $matriks[a][b]$, yang terdefinisi untuk $1 \le a \le 2$ dan $1 \le b \le 5$.
+  \item Akses suatu elemen dapat dilakukan dengan dua cara, yaitu matriks[a][b] atau matriks[a,b].
+  \item Tabel berikut menunjukkan struktur dari \textbf{array} matriks:
+  \begin{table}[h]
+    \begin{tabular}{c|c|c|c|c|c|}
+        & 1 & 2 & 3 & 4 & 5\\
+      \hline 1 & & & & & \\
+      \hline 2 & & & & & \\
+      \hline
+    \end{tabular}
+  \end{table}
+  \item Aturan perhitungan memori tetap sama; banyaknya elemen dikali memori per elemennya.\newline Pada kasus ini: $2 \times 5 \times 4$ byte $= 40$ byte.
 \end{itemize}
 \end{frame}
 
@@ -378,16 +381,16 @@ end.
 \frametitle{Contoh Soal:\newline Cokelat Bebek}
 Deskripsi:
 \begin{itemize}
-    \item Pak Ganesh datang bertamu ke peternakan bebek Pak Dengklek.
-    \item Pada peternakan bebek Pak Dengklek, terdapat kandang bebek yang tersusun atas petak-petak $N$ baris dan $N$ kolom.
-    \item Pak Dengklek memberi $d_{i,j}$ gram cokelat* ke kandang di baris ke-$i$ dan kolom ke-$j$.
-    \item Pak Ganesh memberi $g_{i,j}$ gram cokelat* ke kandang di baris ke-$i$ dan kolom ke-$j$.
-    \item Tentukan berapa gram cokelat yang diperoleh setiap bebek di kandangnya!
+  \item Pak Ganesh datang bertamu ke peternakan bebek Pak Dengklek.
+  \item Pada peternakan bebek Pak Dengklek, terdapat kandang bebek yang tersusun atas petak-petak $N$ baris dan $N$ kolom.
+  \item Pak Dengklek memberi $d_{i,j}$ gram cokelat* ke kandang di baris ke-$i$ dan kolom ke-$j$.
+  \item Pak Ganesh memberi $g_{i,j}$ gram cokelat* ke kandang di baris ke-$i$ dan kolom ke-$j$.
+  \item Tentukan berapa gram cokelat yang diperoleh setiap bebek di kandangnya!
 \end{itemize}
 Batasan:
 \begin{itemize}
-    \item $1 \le N \le 100$
-    \item $0 \le d_{i,j}, h_{i,j} \le 10$, untuk $1 \le i,j \le N$
+  \item $1 \le N \le 100$
+  \item $0 \le d_{i,j}, h_{i,j} \le 10$, untuk $1 \le i,j \le N$
 \end{itemize}
 
 \tiny *Catatan: bebek-bebek suka cokelat!
@@ -396,33 +399,33 @@ Batasan:
 \begin{frame}
 \frametitle{Contoh Soal:\newline Cokelat Bebek (lanj.)}
 \begin{itemize}
-    \item Sebagai contoh, misalkan $N = 3$.
-    \item Kemudian berikut adalah cokelat yang diberikan Pak Dengklek ($D$) dan Pak Ganesh ($G$):
-    \vfill
-    \(D =
-    \left[\begin{matrix}
-    1 & 3 & 0 \\
-    6 & 2 & 4 \\
-    2 & 1 & 5
-    \end{matrix}\right]
-    \)
-    \hfil
-    \(G =
-    \left[\begin{matrix}
-    2 & 1 & 7 \\
-    0 & 0 & 1 \\
-    1 & 1 & 2
-    \end{matrix}\right]
-    \) \centering
-    \item Maka total cokelat yang didapatkan setiap kandang adalah:
-    \vfill
-    \(
-    \left[\begin{matrix}
-    3 & 4 & 7 \\
-    6 & 2 & 5 \\
-    3 & 2 & 7
-    \end{matrix}\right]
-    \) \centering
+  \item Sebagai contoh, misalkan $N = 3$.
+  \item Kemudian berikut adalah cokelat yang diberikan Pak Dengklek ($D$) dan Pak Ganesh ($G$):
+  \vfill
+  \(D =
+  \left[\begin{matrix}
+  1 & 3 & 0 \\
+  6 & 2 & 4 \\
+  2 & 1 & 5
+  \end{matrix}\right]
+  \)
+  \hfil
+  \(G =
+  \left[\begin{matrix}
+  2 & 1 & 7 \\
+  0 & 0 & 1 \\
+  1 & 1 & 2
+  \end{matrix}\right]
+  \) \centering
+  \item Maka total cokelat yang didapatkan setiap kandang adalah:
+  \vfill
+  \(
+  \left[\begin{matrix}
+  3 & 4 & 7 \\
+  6 & 2 & 5 \\
+  3 & 2 & 7
+  \end{matrix}\right]
+  \) \centering
 \end{itemize}
 \end{frame}
 
@@ -430,13 +433,13 @@ Batasan:
 \frametitle{Contoh Soal:\newline Cokelat Bebek (lanj.)}
 Format masukan:
 \begin{itemize}
-    \item Baris pertama berisi sebuah bilangan bulat $N$.
-    \item $N$ baris berikutnya berisi $N$ bilangan. Bilangan di baris ke-$i$ dan kolom ke-$j$ ini adalah $d_{i,j}$.
-    \item $N$ baris sisanya berisi $N$ bilangan. Bilangan di baris ke-$i$ dan kolom ke-$j$ ini adalah $g_{i,j}$.
+  \item Baris pertama berisi sebuah bilangan bulat $N$.
+  \item $N$ baris berikutnya berisi $N$ bilangan. Bilangan di baris ke-$i$ dan kolom ke-$j$ ini adalah $d_{i,j}$.
+  \item $N$ baris sisanya berisi $N$ bilangan. Bilangan di baris ke-$i$ dan kolom ke-$j$ ini adalah $g_{i,j}$.
 \end{itemize}
 Format keluaran:
 \begin{itemize}
-    \item $N$ baris yang berisi $N$ bilangan. Bilangan di baris ke-$i$ dan kolom ke-$j$ ini adalah total makanan yang ada di kandang baris ke-$i$ dan kolom ke-$j$.
+  \item $N$ baris yang berisi $N$ bilangan. Bilangan di baris ke-$i$ dan kolom ke-$j$ ini adalah total makanan yang ada di kandang baris ke-$i$ dan kolom ke-$j$.
 \end{itemize}
 \end{frame}
 
@@ -444,27 +447,27 @@ Format keluaran:
 \frametitle{Contoh Soal:\newline Cokelat Bebek (lanj.)}
 Contoh masukan:
 \begin{lstlisting}
-3
-1 3 0
-6 2 4
-2 1 5
-2 1 7
-0 0 1
-1 1 2
+  3
+  1 3 0
+  6 2 4
+  2 1 5
+  2 1 7
+  0 0 1
+  1 1 2
 \end{lstlisting}
 Contoh keluaran:
 \begin{lstlisting}
-3 4 7
-6 2 5
-3 2 7
+  3 4 7
+  6 2 5
+  3 2 7
 \end{lstlisting}
 \end{frame}
 
 \begin{frame}
 \frametitle{Petunjuk}
 \begin{itemize}
-    \item Salah satu cara yang mudah adalah membuat tiga \textbf{array} dua dimensi, masing-masing untuk menampung makanan yang diberikan Pak Dengklek ($D$), Pak Ganesh ($G$), dan hasil akhirnya ($hasil$).
-    \item Tentu saja hubungannya adalah $hasil[i][j] = D[i][j] + G[i][j]$, untuk $1 \le i,j \le N$.
+  \item Salah satu cara yang mudah adalah membuat tiga \textbf{array} dua dimensi, masing-masing untuk menampung makanan yang diberikan Pak Dengklek ($D$), Pak Ganesh ($G$), dan hasil akhirnya ($hasil$).
+  \item Tentu saja hubungannya adalah $hasil[i][j] = D[i][j] + G[i][j]$, untuk $1 \le i,j \le N$.
 \end{itemize}
 \end{frame}
 
@@ -472,11 +475,10 @@ Contoh keluaran:
 \frametitle{Solusi: cokelat.pas}
 Pertama, mari kita deklarasikan variabel yang akan digunakan:
 \begin{lstlisting}
-var
-   N: longint;
-   D, G, hasil: array[1..100, 1..100] of longint;
-   i, j: longint;
-
+  var
+    N: longint;
+    D, G, hasil: array[1..100, 1..100] of longint;
+    i, j: longint;
 \end{lstlisting}
 \end{frame}
 
@@ -484,22 +486,21 @@ var
 \frametitle{Solusi: cokelat.pas (lanj.)}
 Kemudian baca masukan sesuai dengan format yang diberikan:
 \begin{lstlisting}
-begin
-   readln(N);
-
-   for i := 1 to N do begin
+  begin
+    readln(N);
+    for i := 1 to N do begin
       for j := 1 to N do begin
-         read(D[i][j]);
+        read(D[i][j]);
       end;
       readln;
-   end;
+    end;
 
-   for i := 1 to N do begin
+    for i := 1 to N do begin
       for j := 1 to N do begin
-         read(G[i][j]);
+        read(G[i][j]);
       end;
       readln;
-   end;
+    end;
 \end{lstlisting}
 \end{frame}
 
@@ -507,22 +508,22 @@ begin
 \frametitle{Solusi: cokelat.pas (lanj.)}
 Lakukan penjumlahan, lalu cetak hasilnya:
 \begin{lstlisting}
-   for i := 1 to N do begin
+    for i := 1 to N do begin
       for j := 1 to N do begin
-         hasil[i][j] := D[i][j] + G[i][j];
+        hasil[i][j] := D[i][j] + G[i][j];
       end;
-   end;
+    end;
 
-   for i := 1 to N do begin
+    for i := 1 to N do begin
       for j := 1 to N do begin
-         write(hasil[i][j]);
-         if (j < N) then begin
-            write(' ');
-         end;
+        write(hasil[i][j]);
+        if (j < N) then begin
+          write(' ');
+        end;
       end;
       writeln;
-   end;
-end.
+    end;
+  end.
 \end{lstlisting}
 \end{frame}
 
@@ -530,66 +531,66 @@ end.
 \frametitle{Solusi: cokelat\_2.pas}
 Nilai \textbf{array} $D$ dan $G$ sebenarnya tidak perlu disimpan, kita bisa menghemat memori dengan langsung menjumlahkannya.
 \begin{lstlisting}
-var
-   N: longint;
-   temp: longint;
-   hasil: array[1..100, 1..100] of longint;
-   i, j: longint;
+  var
+    N: longint;
+    temp: longint;
+    hasil: array[1..100, 1..100] of longint;
+    i, j: longint;
 
-begin
-   readln(N);
+  begin
+    readln(N);
 
-   for i := 1 to N do begin
+    for i := 1 to N do begin
       for j := 1 to N do begin
-         read(temp);
-         hasil[i][j] := temp;
+        read(temp);
+        hasil[i][j] := temp;
       end;
       readln;
-   end;
+    end;
 \end{lstlisting}
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{Solusi: cokelat\_2.pas (lanj.)}
 \begin{lstlisting}
-   for i := 1 to N do begin
+    for i := 1 to N do begin
       for j := 1 to N do begin
-         read(temp);
-         hasil[i][j] := hasil[i][j] + temp;
+        read(temp);
+        hasil[i][j] := hasil[i][j] + temp;
       end;
       readln;
-   end;
+    end;
 
-   for i := 1 to N do begin
+    for i := 1 to N do begin
       for j := 1 to N do begin
-         write(hasil[i][j]);
-         if (j < N) then
-            write(' ');
-      end;
+        write(hasil[i][j]);
+        if (j < N) then
+          write(' ');
+        end;
       writeln;
-   end;
-end.
+    end;
+  end.
 \end{lstlisting}
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{Array Multidimensi}
 \begin{itemize}
-    \item Tidak hanya sampai dua dimensi, dimensi tiga, empat, atau lebih pun bisa.
-    \item Sebagai contoh:
-    \begin{lstlisting}
+  \item Tidak hanya sampai dua dimensi, dimensi tiga, empat, atau lebih pun bisa.
+  \item Sebagai contoh:
+  \begin{lstlisting}
     data: array[1..2, 1..50, 1..50] of longint;
-    \end{lstlisting}
-    \item Kita akan mendapatkan variabel $data[i][j][k]$ yang terdefinisi untuk $1 \le i \le 2$, dan $1 \le j, k \le 50$.
-    \item Akses elemen juga bisa dilakukan dengan $data[i,j,k]$.
+  \end{lstlisting}
+  \item Kita akan mendapatkan variabel $data[i][j][k]$ yang terdefinisi untuk $1 \le i \le 2$, dan $1 \le j, k \le 50$.
+  \item Akses elemen juga bisa dilakukan dengan $data[i,j,k]$.
 \end{itemize}
 \end{frame}
 
 \begin{frame}
 \frametitle{Selanjutnya...}
 \begin{itemize}
-    \item Mempelajari tentang \textbf{fungsi} dan \textbf{prosedur}.
-    \item Selamat berlatih untuk memperkuat pemahaman tentang \textbf{array}!
+  \item Mempelajari tentang \textbf{fungsi} dan \textbf{prosedur}.
+  \item Selamat berlatih untuk memperkuat pemahaman tentang \textbf{array}!
 \end{itemize}
 \end{frame}
 

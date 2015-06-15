@@ -1,6 +1,6 @@
 # Skema Kontribusi TOKI Training Gate
 
-Setelah Anda membaca atau menggunakan TOKI Training Gate, Anda dapat berkontribusi dalam pengembangannya. 
+Setelah Anda membaca atau menggunakan TOKI Training Gate, Anda dapat berkontribusi dalam pengembangannya.
 Sebelum mulai berkontribusi, mohon baca dokumen berikut supaya Anda mengerti dengan alur kontribusi, dan proyek ini dapat dikerjakan dengan lancar.
 
 # Bentuk Kontribusi
@@ -52,12 +52,12 @@ Setelah itu, Anda bisa mulai bekerja dengan:
 5. Kemudian lakukan pull request dengan:
  1. Pergi ke halaman [pull request](https://github.com/ia-toki/training-gate-id/pulls).
  2. Pilih `New pull request`.
- 3. Kemudian pilih link `compare across forks`. 
- 4. Pilih `base fork: ia-toki/training-gate-id`, `base: master`, `head fork: <username Anda>/training-gate-id`, dan `compare: <nama branch yang mau di-push>`. 
+ 3. Kemudian pilih link `compare across forks`.
+ 4. Pilih `base fork: ia-toki/training-gate-id`, `base: master`, `head fork: <username Anda>/training-gate-id`, dan `compare: <nama branch yang mau di-push>`.
  5. Pilih `Create pull request`, isi judul dan penjelasan singkat tentang apa saja yang sudah Anda kerjakan, lalu pilih lagi `Create pull request`.
  6. Pastikan hasil push Anda lulus build dari Travis CI (jika tidak lulus, lihat pesan kesalahannya, perbaiki, lalu commit lagi).
 6. Kontributor dari IA TOKI akan melakukan review terhadap perubahan yang Anda lakukan. Jika belum disepakati, perubahan Anda akan diberi ulasan dan Anda dapat memperbaikinya. Jika sudah disepakati, kontribusi Anda akan digunakan dan dimasukkan ke materi Training Gate.
-7. Anda bisa kembali ke branch master dengan cara mengetikkan `git checkout master`. 
+7. Anda bisa kembali ke branch master dengan cara mengetikkan `git checkout master`.
 8. Jika kontribusi Anda sudah digabungkan dengan master, Anda bisa melakukan pull dengan mengetikkan `git pull upstream master` untuk mendapatkan perubahan dari repository TOKI Training Gate.
 
 # Panduan Menulis
@@ -78,7 +78,7 @@ Untuk membuat tulisan konsisten antar materi, berikut konvensi yang ditetapkan:
     5. Penekanan pada penjelasan bisa menggunakan cetak merah (dengan perintah \alert{}).
     6. Rujuk suatu perintah pada program dengan petik dua, contoh: "fpb := fpb(b, a mod b)".
 6. Jika suatu topik dijelaskan pada beberapa slide, tambahkan "... (lanj.)" pada halaman slide berikutnya.
-7. Jika Anda menambahkan gambar, masukkan gambar tersebut di folder aset materi yang bersangkutan. Masukkan juga berkas mentah gambar tersebut (misalnya .svg). Hindari hanya memasukkan gambar jadinya (misalnya .png atau .jpg) karena gambar tidak bisa diedit lagi (kecuali gambar tersebut memang screenshot). Lebih disarankan menggunakan .svg dan pengolah gambar [inkscape](https://inkscape.org/).  
+7. Jika Anda menambahkan gambar, masukkan gambar tersebut di folder aset materi yang bersangkutan. Masukkan juga berkas mentah gambar tersebut (misalnya .svg). Hindari hanya memasukkan gambar jadinya (misalnya .png atau .jpg) karena gambar tidak bisa diedit lagi (kecuali gambar tersebut memang screenshot). Lebih disarankan menggunakan .svg dan pengolah gambar [inkscape](https://inkscape.org/).
 
 # Panduan Menulis Kode
 
