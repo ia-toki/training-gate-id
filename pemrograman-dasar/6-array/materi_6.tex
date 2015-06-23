@@ -154,13 +154,13 @@ Berikut ini adalah contoh deklarasi \textbf{array} pada Pascal:
   \item Proses membaca 5 bilangan pada 5 baris kini bisa dilakukan dengan cara:
   \begin{lstlisting}
     for i := 1 to 5 do begin
-       readln(tabel[i]);
+      readln(tabel[i]);
     end;
   \end{lstlisting}
   \item Untuk kasus umum, yaitu ketika diberikan $N$ bilangan, cukup ganti angka 5 dengan variabel $N$.
   \begin{lstlisting}
     for i := 1 to N do begin
-       readln(tabel[i]);
+      readln(tabel[i]);
     end;
   \end{lstlisting}
 \end{itemize}
@@ -172,7 +172,7 @@ Berikut ini adalah contoh deklarasi \textbf{array} pada Pascal:
   \item Demikian pula untuk pencetakan secara terbalik, kita bisa menggunakan perulangan sebagai berikut:
   \begin{lstlisting}
     for i := N downto 1 do begin
-       writeln(tabel[i]);
+      writeln(tabel[i]);
     end;
   \end{lstlisting}
   \item Sekarang masalah Pak Dengklek terpecahkan!
@@ -304,17 +304,17 @@ Nilai rata-rata dari seluruh bebek adalah 6, dan terdapat 2 ekor bebek yang nila
 
 \begin{frame}[fragile]
 \frametitle{Contoh Solusi: lulus.pas (lanj.)}
-\begin{lstlisting}
-  lulus := 0;
-  for i := 1 to N do begin
-    (* trik menghindari pembagian *)
-    if (h[i]*N >= total) then begin
-      lulus := lulus + 1;
+\begin{lstlisting}[gobble=2]
+    lulus := 0;
+    for i := 1 to N do begin
+      (* trik menghindari pembagian *)
+      if (h[i]*N >= total) then begin
+        lulus := lulus + 1;
+      end;
     end;
-  end;
 
-  writeln(lulus);
-end.
+    writeln(lulus);
+  end.
 \end{lstlisting}
 \end{frame}
 
@@ -474,7 +474,7 @@ Kemudian baca masukan sesuai dengan format yang diberikan:
 \begin{frame}[fragile]
 \frametitle{Solusi: cokelat.pas (lanj.)}
 Lakukan penjumlahan, lalu cetak hasilnya:
-\begin{lstlisting}
+\begin{lstlisting}[gobble=2]
     for i := 1 to N do begin
       for j := 1 to N do begin
         hasil[i][j] := D[i][j] + G[i][j];
@@ -519,7 +519,7 @@ Nilai \textbf{array} $D$ dan $G$ sebenarnya tidak perlu disimpan, kita bisa meng
 
 \begin{frame}[fragile]
 \frametitle{Solusi: cokelat\_2.pas (lanj.)}
-\begin{lstlisting}
+\begin{lstlisting}[gobble=2]
     for i := 1 to N do begin
       for j := 1 to N do begin
         read(temp);

@@ -92,6 +92,16 @@ Untuk menjaga konsistensi kode-kode antar materi, gunakan cara penulisan kode be
 4. Selalu gunakan tanda kurung pada kondisi `if`, `while`, dan `until`.
 5. Gunakan indentasi berupa 2 spasi.
 
+## Deklarasi Variabel Pascal ##
+Tambahkan spasi setelah tanda `:`. Contoh:
+
+```
+var
+  nilai: longint;
+  x, y: double;
+  ar: array[1..100] of string;
+```
+
 ## Blok begin...end
 Pada Bahasa Pascal, selalu gunakan blok `begin ... end` pada struktur percabangan dan pengulangan. Contoh:
 

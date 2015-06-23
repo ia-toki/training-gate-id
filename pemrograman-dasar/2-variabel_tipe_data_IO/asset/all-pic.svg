@@ -78,72 +78,75 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1">
-    <text
-       xml:space="preserve"
-       style="font-size:40px;font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Press Start;-inkscape-font-specification:Press Start"
-       x="76.339203"
-       y="83.359879"
-       id="text3755"
-       sodipodi:linespacing="125%"
-       inkscape:export-filename="/home/gyosh/coding/toki/ia_toki/training-gate/SESI2_variabel_dan_tipe_data/materi/asset/g1.png"
-       inkscape:export-xdpi="90"
-       inkscape:export-ydpi="90"><tspan
-         sodipodi:role="line"
-         id="tspan3757"
+    <g
+       id="g3016">
+      <text
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/gyosh/coding/toki/ia_toki/training-gate/SESI2_variabel_dan_tipe_data/materi/asset/g1.png"
+         sodipodi:linespacing="125%"
+         id="text3755"
+         y="83.359879"
          x="76.339203"
-         y="83.359879">STDIN</tspan></text>
-    <text
-       xml:space="preserve"
-       style="font-size:40px;font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Press Start;-inkscape-font-specification:Press Start"
-       x="184.16832"
-       y="237.94676"
-       id="text3759"
-       sodipodi:linespacing="125%"
-       inkscape:export-filename="/home/gyosh/coding/toki/ia_toki/training-gate/SESI2_variabel_dan_tipe_data/materi/asset/g1.png"
-       inkscape:export-xdpi="90"
-       inkscape:export-ydpi="90"><tspan
-         sodipodi:role="line"
-         id="tspan3761"
+         style="font-size:40px;font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Press Start;-inkscape-font-specification:Press Start"
+         xml:space="preserve"><tspan
+           y="83.359879"
+           x="76.339203"
+           id="tspan3757"
+           sodipodi:role="line">STDIN</tspan></text>
+      <text
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/gyosh/coding/toki/ia_toki/training-gate/SESI2_variabel_dan_tipe_data/materi/asset/g1.png"
+         sodipodi:linespacing="125%"
+         id="text3759"
+         y="237.94676"
          x="184.16832"
-         y="237.94676">program</tspan></text>
-    <text
-       xml:space="preserve"
-       style="font-size:40px;font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Press Start;-inkscape-font-specification:Press Start"
-       x="312.99072"
-       y="83.359879"
-       id="text3763"
-       sodipodi:linespacing="125%"
-       inkscape:export-filename="/home/gyosh/coding/toki/ia_toki/training-gate/SESI2_variabel_dan_tipe_data/materi/asset/g1.png"
-       inkscape:export-xdpi="90"
-       inkscape:export-ydpi="90"><tspan
-         sodipodi:role="line"
-         id="tspan3765"
+         style="font-size:40px;font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Press Start;-inkscape-font-specification:Press Start"
+         xml:space="preserve"><tspan
+           y="237.94676"
+           x="184.16832"
+           id="tspan3761"
+           sodipodi:role="line">program</tspan></text>
+      <text
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/gyosh/coding/toki/ia_toki/training-gate/SESI2_variabel_dan_tipe_data/materi/asset/g1.png"
+         sodipodi:linespacing="125%"
+         id="text3763"
+         y="83.359879"
          x="312.99072"
-         y="83.359879">STDOUT</tspan></text>
-    <path
-       style="fill:none;stroke:#000000;stroke-width:3.9000001;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#Arrow1Mend)"
-       d="m 146.95297,103.39892 70.61376,98.28672"
-       id="path3767"
-       inkscape:connector-curvature="0"
-       sodipodi:nodetypes="cc"
-       inkscape:export-filename="/home/gyosh/coding/toki/ia_toki/training-gate/SESI2_variabel_dan_tipe_data/materi/asset/g1.png"
-       inkscape:export-xdpi="90"
-       inkscape:export-ydpi="90" />
-    <path
-       style="fill:none;stroke:#000000;stroke-width:3.9000001;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#Arrow1Mend)"
-       d="M 325.39585,207.41108 388.3757,97.673484"
-       id="path3769"
-       inkscape:connector-curvature="0"
-       sodipodi:nodetypes="cc"
-       inkscape:export-filename="/home/gyosh/coding/toki/ia_toki/training-gate/SESI2_variabel_dan_tipe_data/materi/asset/g1.png"
-       inkscape:export-xdpi="90"
-       inkscape:export-ydpi="90" />
+         style="font-size:40px;font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Press Start;-inkscape-font-specification:Press Start"
+         xml:space="preserve"><tspan
+           y="83.359879"
+           x="312.99072"
+           id="tspan3765"
+           sodipodi:role="line">STDOUT</tspan></text>
+      <path
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/gyosh/coding/toki/ia_toki/training-gate/SESI2_variabel_dan_tipe_data/materi/asset/g1.png"
+         sodipodi:nodetypes="cc"
+         inkscape:connector-curvature="0"
+         id="path3767"
+         d="m 146.95297,103.39892 70.61376,98.28672"
+         style="fill:none;stroke:#000000;stroke-width:3.9000001;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#Arrow1Mend)" />
+      <path
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/gyosh/coding/toki/ia_toki/training-gate/SESI2_variabel_dan_tipe_data/materi/asset/g1.png"
+         sodipodi:nodetypes="cc"
+         inkscape:connector-curvature="0"
+         id="path3769"
+         d="M 325.39585,207.41108 388.3757,97.673484"
+         style="fill:none;stroke:#000000;stroke-width:3.9000001;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#Arrow1Mend)" />
+    </g>
     <g
        id="g3003"
        transform="translate(35.516306,183.83813)"
        inkscape:export-filename="/home/gyosh/coding/toki/ia-toki/training-gate-id/pemrograman-dasar/2-variabel_tipe_data_IO/asset/ekspresi.png"
-       inkscape:export-xdpi="270"
-       inkscape:export-ydpi="270">
+       inkscape:export-xdpi="180.02654"
+       inkscape:export-ydpi="180.02654">
       <text
          sodipodi:linespacing="125%"
          id="text2985"
@@ -195,8 +198,8 @@
        id="g3467"
        transform="translate(47.217128,486.05696)"
        inkscape:export-filename="/home/gyosh/coding/toki/ia-toki/training-gate-id/pemrograman-dasar/2-variabel_tipe_data_IO/asset/ekspresi-nested.png"
-       inkscape:export-xdpi="270"
-       inkscape:export-ydpi="270">
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180">
       <text
          xml:space="preserve"
          style="font-size:60.61473846px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Serif;-inkscape-font-specification:Serif"

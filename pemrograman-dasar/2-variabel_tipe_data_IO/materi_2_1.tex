@@ -91,7 +91,7 @@ Melalui dokumen ini, kalian akan:
   \item Perhatikan contoh program assign.pas berikut. Tuliskan, lalu jalankan program ini.
   \begin{lstlisting}
     var
-      x : integer;
+      x: integer;
     begin
       x := 12;
       writeln('Nilai = ', x);
@@ -108,7 +108,7 @@ Melalui dokumen ini, kalian akan:
     Nilai = 12
   \end{lstlisting}
   \item Pada program tersebut, \textbf{x} merupakan suatu variabel.
-  \item Variabel \textbf{x} didaftarkan terlebih dahulu dengan menuliskan \textbf{x : integer} pada bagian antara \textbf{var} dengan \textbf{begin}. Semua variabel yang akan digunakan pada program utama wajib didaftarkan pada bagian ini.
+  \item Variabel \textbf{x} didaftarkan terlebih dahulu dengan menuliskan \textbf{x: integer} pada bagian antara \textbf{var} dengan \textbf{begin}. Semua variabel yang akan digunakan pada program utama wajib didaftarkan pada bagian ini.
   \item Pada blok program utama, \textbf{x} diisi dengan nilai 12, lalu perintah \textbf{writeln} dieksekusi.
 \end{itemize}
 \end{frame}
@@ -119,8 +119,8 @@ Melalui dokumen ini, kalian akan:
   \item Berikut adalah contoh program yang melibatkan beberapa variabel.
   \begin{lstlisting}
     var
-      x : integer;
-      y : longint;
+      x: integer;
+      y: longint;
     begin
       x := 12;
       y := 123456;
@@ -285,8 +285,8 @@ Melalui dokumen ini, kalian akan:
   \item Pada Pascal, variabel dideklarasikan di antara \textbf{var} dengan \textbf{begin}.
   \item Tipe data dituliskan sesudah tanda titik dua (:), setelah nama variabel dituliskan.
 
-  Contoh: \textbf{nilai : longint} atau \textbf{rerata : double}.
-  \item Beberapa variabel juga bisa dideklarasikan secara bersamaan jika memiliki tipe data yang sama. Contoh: \textbf{x, y : double}.
+  Contoh: \textbf{nilai: longint} atau \textbf{rerata: double}.
+  \item Beberapa variabel juga bisa dideklarasikan secara bersamaan jika memiliki tipe data yang sama. Contoh: \textbf{x, y: double}.
 \end{itemize}
 \end{frame}
 
@@ -308,8 +308,8 @@ Melalui dokumen ini, kalian akan:
     type
       <nama record> =
         record
-          <variabel1> : <tipe1>;
-          <variabel2> : <tipe2>;
+          <variabel1>: <tipe1>;
+          <variabel2>: <tipe2>;
           ...
         end;
     var
@@ -328,10 +328,10 @@ Melalui dokumen ini, kalian akan:
     type
       titik =
         record
-          x, y : longint;
+          x, y: longint;
         end;
     var
-      t1, t2 : titik;
+      t1, t2: titik;
     begin
       t1.x := 5;
       t1.y := 3;
@@ -360,9 +360,9 @@ Melalui dokumen ini, kalian akan:
   \item Pahami program berikut ini dan coba jalankan!
   \begin{lstlisting}
     var
-      p1, p2 : longint;
-      x, y : double;
-      teks : string;
+      p1, p2: longint;
+      x, y: double;
+      teks: string;
     begin
       p1 := 100;
       p2 := p1;
@@ -375,7 +375,7 @@ Melalui dokumen ini, kalian akan:
 
       teks := 'ini adalah string';
       writeln('teks: ', teks);
-  end.
+    end.
   \end{lstlisting}
 \end{itemize}
 \end{frame}

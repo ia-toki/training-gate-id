@@ -71,8 +71,8 @@ Melalui dokumen ini, kalian akan:
   \item Kita bisa membuat "for di dalam for", sehingga membentuk struktur yang bersarang.
   \begin{lstlisting}
     var
-      N, M : longint;
-      i, j : longint;
+      N, M: longint;
+      i, j: longint;
     begin
       readln(N, M);
 
@@ -93,8 +93,8 @@ Melalui dokumen ini, kalian akan:
   \item Tentu saja kita bisa melakukannya dengan struktur pengulangan yang lain, misalnya \textbf{while}:
   \begin{lstlisting}
     var
-      N, M : longint;
-      i, j : longint;
+      N, M: longint;
+      i, j: longint;
     begin
       readln(N, M);
 
@@ -134,8 +134,8 @@ Melalui dokumen ini, kalian akan:
   \item Berikut ini adalah contoh solusinya, dimodifikasi dari pola1\_1.pas:
   \begin{lstlisting}
     var
-      N : longint;
-      i, j : longint;
+      N: longint;
+      i, j: longint;
     begin
       readln(N);
 
@@ -210,8 +210,8 @@ Penggunaan \textbf{continue} akan membuat program kembali ke baris paling atas p
   \item Berikut ini adalah contoh solusi dari soal "Berhitung 1".
   \begin{lstlisting}
     var
-      N, M : longint;
-      i : longint;
+      N, M: longint;
+      i: longint;
     begin
       readln(N, M);
 
@@ -260,8 +260,8 @@ Penggunaan \textbf{continue} akan membuat program kembali ke baris paling atas p
   \item Berikut ini adalah contoh solusi dari soal "Berhitung 2".
   \begin{lstlisting}
     var
-      N, M : longint;
-      i : longint;
+      N, M: longint;
+      i: longint;
     begin
       readln(N, M);
 
@@ -312,8 +312,8 @@ Bagaimana kalian akan menyelesaikan persoalan ini?
 \frametitle{Solusi 1: prima1\_1.pas}
   \begin{lstlisting}
     var
-      N, i : longint;
-      prima : boolean;
+      N, i: longint;
+      prima: boolean;
     begin
       readln(N);
 
@@ -346,8 +346,8 @@ Bagaimana kalian akan menyelesaikan persoalan ini?
 \frametitle{Solusi 2: prima1\_2.pas}
 \begin{lstlisting}
   var
-    N, i : longint;
-    prima : boolean;
+    N, i: longint;
+    prima: boolean;
   begin
     readln(N);
 
@@ -381,8 +381,8 @@ Bagaimana kalian akan menyelesaikan persoalan ini?
 \frametitle{Solusi 3: prima1\_3.pas}
 \begin{lstlisting}
   var
-    N, i : longint;
-    found : boolean;
+    N, i: longint;
+    found: boolean;
   begin
     readln(N);
 
@@ -399,14 +399,14 @@ Bagaimana kalian akan menyelesaikan persoalan ini?
 
 \begin{frame}[fragile]
 \frametitle{Solusi 3: prima1\_3.pas (lanj.)}
-\begin{lstlisting}
+  \begin{lstlisting}[gobble=2]
     if (not found) then begin
       writeln(N, ' adalah bilangan prima');
     end else begin
       writeln(N, ' bukan bilangan prima');
     end;
   end.
-\end{lstlisting}
+  \end{lstlisting}
 \end{frame}
 
 \begin{frame}[fragile]
@@ -436,43 +436,43 @@ Bagaimana kalian akan menyelesaikan persoalan ini?
 \begin{frame}[fragile]
 \frametitle{Contoh Solusi: prima2.pas}
 \begin{lstlisting}
-var
-  N, cur, i : longint;
-  count : longint;
-  found : boolean;
-begin
-  readln(N);
+  var
+    N, cur, i: longint;
+    count: longint;
+    found: boolean;
+  begin
+    readln(N);
 
-  count := 0; (* banyaknya prima yang sudah ditemukan *)
-  cur := 2; (* nilai yang akan diperiksa keprimaannya *)
-  while (count < N) do begin
-    found := FALSE;
-    i := 2;
-    while ((i < cur) and not found) do begin
-      if (cur mod i = 0) then begin
-        found := TRUE;
+    count := 0; (* banyaknya prima yang sudah ditemukan *)
+    cur := 2; (* nilai yang akan diperiksa keprimaannya *)
+    while (count < N) do begin
+      found := FALSE;
+      i := 2;
+      while ((i < cur) and not found) do begin
+        if (cur mod i = 0) then begin
+          found := TRUE;
+        end;
+        i := i + 1;
       end;
-      i := i + 1;
-    end;
 \end{lstlisting}
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{Contoh Solusi: prima2.pas (lanj.)}
-\begin{lstlisting}
-    if (not found) then begin
-      (* ditemukan prima!
-      cetak dan tambahkan prima yg sudah ditemukan *)
-      writeln(cur);
-      count := count + 1;
-    end;
+\begin{lstlisting}[gobble=2]
+      if (not found) then begin
+        (* ditemukan prima!
+        cetak dan tambahkan prima yg sudah ditemukan *)
+        writeln(cur);
+        count := count + 1;
+      end;
 
-    (* entah ini prima atau bukan, lanjut untuk
-     memeriksa bilangan berikutnya *)
-    cur := cur + 1;
-  end;
-  (* keluar dari while, dipastikan count = N *)
-end.
+      (* entah ini prima atau bukan, lanjut untuk
+       memeriksa bilangan berikutnya *)
+      cur := cur + 1;
+    end;
+    (* keluar dari while, dipastikan count = N *)
+  end.
 \end{lstlisting}
 \end{frame}
 
