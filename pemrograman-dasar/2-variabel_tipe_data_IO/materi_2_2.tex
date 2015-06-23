@@ -22,13 +22,14 @@ Melalui dokumen ini, kalian akan:
 \begin{frame}[fragile]
 \frametitle{Kilas Balik: Assignment}
 \begin{itemize}
-  \item Cukup membosankan bila kita hanya bisa mengisi suatu variabel dengan suatu nilai yang pasti. Kadang-kadang kita membutuhkan hal yang lebih ekspresif. Contoh:
+  \item Membosankan sekali jika kita hanya bisa mengisi variabel dengan nilai yang pasti. 
+  \item Kadang-kadang dibutuhkan hal yang lebih ekspresif. Contoh:
   \begin{lstlisting}
     a := 5;
     b := 2;
     jumlah := a + b;
   \end{lstlisting}
-  \item Kenyataannya, ya! Hal ini sangat mungkin diwujudkan pada pemrograman.
+  \item Kenyataannya, hal ini dapat diwujudkan pada pemrograman!
   \item Perintah "a + b" biasa disebut sebagai \alert{ekspresi}.
 \end{itemize}
 \end{frame}
@@ -38,13 +39,24 @@ Melalui dokumen ini, kalian akan:
 
 \begin{frame}
 \frametitle{Mengenal Ekspresi}
+\begin{figure}
+  \centering
+  \includegraphics[width=4 cm]{asset/ekspresi.png}
+\end{figure}
 \begin{itemize}
   \item Ekspresi terdiri dari dua komponen: \alert{operator} dan \alert{operand}.
-  \item Operand menyatakan nilai yang akan dioperasikan, misalnya suatu bilangan atau bisa jadi suatu ekspresi lagi.
-  \item Operator menyatakan bagaimana operand akan dioperasikan, apakah ditambah, dikali, atau dibagi.
-  \item Pada ekspresi "1 + 2", 1 dan 2 merupakan operand, dan + merupakan operator.
-  \item Pada ekspresi "5 - (1 + 2)", 5 dan (1 + 2) merupakan operand, dan - merupakan operatornya. Lebih jauh lagi, (1 + 2) sendiri terdiri dari operand 1 dan 2, serta operator +.
+  \item Operand menyatakan nilai yang akan dioperasikan, misalnya bilangan atau suatu ekspresi lagi.
+  \item Operator menyatakan bagaimana operand akan dioperasikan, apakah ditambah, dikali, atau dibagi?
 \end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Mengenal Ekspresi (lanj.)}
+Bisa juga dibentuk ekspresi bersarang, yaitu ekspresi yang operand-nya merupakan ekspresi lagi:
+\begin{figure}
+  \centering
+  \includegraphics[width=5 cm]{asset/ekspresi-nested.png}
+\end{figure}
 \end{frame}
 
 \begin{frame}
@@ -348,8 +360,8 @@ Contoh:
       writeln('ax^2 + bx + c = ', hasil);
     end.
   \end{lstlisting}
-  \item Jika kita ingin mengganti nilai \textbf{x}, kode harus diganti, dikompilasi ulang, baru dijalankan kembali. Betapa melelahkan!
-  \item Untuk menghasilkan keluaran yang bervariasi, perlu ada \newline suatu masukan dari luar program.
+  \item Jika kita ingin mengganti nilai \textbf{x}, kode harus diganti, dikompilasi ulang, baru dijalankan kembali.
+  \item Untuk menghasilkan keluaran yang bervariasi, perlu ada \newline masukan dari luar program.
 \end{itemize}
 \end{frame}
 
@@ -357,7 +369,7 @@ Contoh:
 \frametitle{Membaca Masukan}
 \begin{itemize}
   \item Diperlukan mekanisme untuk melakukan pembacaan masukan dari luar program.
-  \item Masukan bagi suatu program bisa berasal dari berbagai sumber, misalnya \textit{standard input} atau suatu \textit{file}.
+  \item Masukan bagi suatu program bisa berasal dari berbagai sumber, misalnya \textit{standard input} atau \textit{file}.
   \item Pada Pascal, dikenal dua fungsi yang umum untuk membaca masukan: \alert{\textbf{read}} dan \alert{\textbf{readln}}.
 \end{itemize}
 \end{frame}
@@ -402,7 +414,7 @@ Contoh:
     end.
   \end{lstlisting}
   \item Kompilasi, dan jalankan program. Kemudian ketikkan angka 2, dan tekan enter.
-  \item Hasilnya tetap sama. Lalu apa bedanya \textbf{readln} dengan \textbf{read}?
+  \item Hasilnya tetap sama. Lalu apa bedanya \textbf{readln} \\ dengan \textbf{read}?
 \end{itemize}
 \end{frame}
 
@@ -473,7 +485,7 @@ Contoh:
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{Tambahan: readln}
+\frametitle{Kegunaan Lain readln}
 \begin{itemize}
   \item Fungsi \textbf{readln} juga bisa digunakan untuk memaksa program untuk berpindah baris dalam membaca masukan. Caranya dengan mengosongkan variabel di dalam pemanggilan fungsi \textbf{readln}.
   \item Pada contoh yang sebelumnya, boleh juga digunakan cara membaca seperti ini:
@@ -482,6 +494,56 @@ Contoh:
     readln;
     readln(x);
   \end{lstlisting}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Membaca string}
+\begin{itemize}
+  \item Ketika digunakan untuk membaca \textit{string}, baik \textbf{read} maupun \textbf{readln} akan membaca satu baris penuh.
+  \item Perhatikan program berikut:
+  \begin{lstlisting}
+    var
+      s : string;
+    begin
+      readln(s);
+      writeln('s = ', s);
+    end.
+  \end{lstlisting}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Membaca string (lanj.)}
+\begin{itemize}
+  \item Jika program tersebut diberi masukan:
+  \begin{lstlisting}
+    bebek 123
+  \end{lstlisting}
+  \item maka keluaran dari program tersebut adalah:
+  \begin{lstlisting}
+    s = bebek 123
+  \end{lstlisting}
+  \item Dari contoh ini, diketahui bahwa variabel \textbf{s} berisi "bebek 123".
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Membaca string (lanj.)}
+\begin{itemize}
+  \item Bagaimana jika kita ingin \textbf{s} hanya berisi "bebek", sementara 123 disimpan pada variabel lainnya?
+  \item Apakah hal berikut bisa dilakukan?
+    \begin{lstlisting}
+      var
+        s : string;
+        nilai : longint;
+      begin
+        readln(s, nilai);
+        writeln('s = ', s, ' nilai = ', nilai);
+      end.
+    \end{lstlisting}
+  \item Sayangnya tidak bisa. Variabel \textbf{s} langsung berisi seluruh karakter yang ada pada baris input, sehingga variabel \textbf{nilai} tidak menerima masukan apa-apa.
+  \item Penanganan kasus sejenis ini dipelajari pada materi yang akan datang.  
 \end{itemize}
 \end{frame}
 
@@ -537,10 +599,8 @@ Contoh:
     begin
       write('masukkan nilai a: ');
       readln(a);
-
       write('masukkan nilai b: ');
       readln(b);
-
       writeln('hasil dari penjumlahan a dan b: ', a+b);
     end.
   \end{lstlisting}
