@@ -359,6 +359,83 @@ Pada kasus ini, diperlukan struktur \textbf{if} yang lebih dari dua cabang!
 \end{itemize}
 \end{frame}
 
+\begin{frame}[fragile]
+    \frametitle{Struktur "case ... of ..." dengan Rentang}
+    \begin{itemize}
+        \item Struktur dari penulisan "case ... of ..." juga dapat ditulis untuk suatu rentang:
+        \begin{lstlisting}
+          case <ekspresi> of
+            <nilai 1a>..<nilai 1b>: begin <perintah 1>; end;
+            <nilai 2a>..<nilai 2b>: begin <perintah 2>; end;
+            <nilai 3a>..<nilai 3b>: begin <perintah 3>; end;
+            ...
+          end;
+        \end{lstlisting}
+        
+        \item Perhatikan bahwa $<$ekspresi$>$ selalu menghasilkan tipe data ordinal, sehingga pemeriksaan rentang dapat dilakukan.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Contoh Lagi}
+\begin{itemize}
+  \item Misalkan diberikan sebuah bilangan bulat yang menyatakan nilai.
+  \item Cetak frase berikut sesuai nilai yang diberikan:
+  \begin{itemize}
+    \item Antara 0 sampai 59: Kurang
+    \item Antara 60 sampai 74: Cukup
+    \item Antara 75 sampai 89: Baik
+    \item Antara 90 sampai 99: Sangat Baik
+    \item Nilai 100: Sempurna
+  \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Contoh Program: "case-2.pas"}
+\begin{itemize}
+  \item Berikut ini adalah contoh program "case ... of ..." untuk suatu rentang:
+  \begin{lstlisting}
+    var
+      nilai: longint;
+    begin
+      readln(nilai);
+    
+      case (nilai) of
+        0..59: begin writeln('Kurang'); end;
+        60..74: begin writeln('Cukup'); end;
+        75..89: begin writeln('Baik'); end;
+        90..99: begin writeln('Sangat Baik'); end;
+        100..100: begin writeln('Sempurna'); end;
+      end;
+    end.
+  \end{lstlisting}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Contoh Program: "case-3.pas"}
+\begin{itemize}
+  \item Penulisan "case ... of ..." juga bisa ditulis secara campuran, antara dengan atau tanpa rentang.
+  \item Dengan demikian, kasus untuk nilai 100 dapat dipersingkat:
+  \begin{lstlisting}
+    var
+      nilai: longint;
+    begin
+      readln(nilai);
+    
+      case (nilai) of
+        0..59: begin writeln('Kurang'); end;
+        60..74: begin writeln('Cukup'); end;
+        75..89: begin writeln('Baik'); end;
+        90..99: begin writeln('Sangat Baik'); end;
+        100: begin writeln('Sempurna'); end;
+      end;
+    end.
+  \end{lstlisting}
+\end{itemize}
+\end{frame}
+
 \begin{frame}
 \frametitle{Selanjutnya...}
 \begin{itemize}
