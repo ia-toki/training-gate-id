@@ -32,7 +32,7 @@ Melalui dokumen ini, kalian akan:
 \end{block}
 \begin{itemize}
   \item Biasanya, program dapat menerima masukan, memprosesnya, dan menghasilkan suatu keluaran.
-  \item Contoh: program penerjemah bahasa menerima berkas dalam suatu bahasa sebagai masukan, menerjemahkannya, lalu menghasilkan keluaran berupa hasil terjemahannya.
+  \item Contoh: program penerjemah bahasa menerima berkas dalam suatu bahasa sebagai masukan, menerjemahkannya, lalu menghasilkan keluaran berupa hasil terjemahan.
 \end{itemize}
 \end{frame}
 
@@ -49,8 +49,8 @@ Melalui dokumen ini, kalian akan:
 \begin{frame}
 \frametitle{Bagaimana Komputer Menjalankan Program?}
 \begin{itemize}
-  \item Pada masa lalu, komputer diprogram dengan menuliskan sederetan instruksi dalam bahasa Assembly.
-  \item Bahasa Assembly mudah dimengerti oleh mesin, sehingga mudah untuk dieksekusi. Oleh karena itu, Bahasa Assembly termasuk dalam bahasa pemrograman tingkat rendah (dekat dengan mesin).
+  \item Pada masa lalu, komputer diprogram dengan bahasa Assembly.
+  \item Bahasa Assembly mudah dimengerti oleh mesin. Oleh karena itu, Bahasa Assembly termasuk dalam bahasa pemrograman tingkat rendah (dekat dengan mesin).
   \item Meskipun begitu, membaca dan mengerti alur program Assembly cukup sulit bagi manusia.
 \end{itemize}
 \end{frame}
@@ -59,8 +59,15 @@ Melalui dokumen ini, kalian akan:
 \frametitle{Bagaimana Komputer Menjalankan Program? (lanj.)}
 \begin{itemize}
   \item Pada tahun 1960-an, mulai diciptakan bahasa pemrograman tingkat tinggi.
-  \item Bahasa-bahasa ini lebih mudah dimengerti manusia karena menggunakan frase bahasa sehari-hari, seperti "jika ... maka ...", "lakukan ... hingga tercapai ...", dan sebagainya.
-  \item Sayangnya, bahasa pemrograman tingkat tinggi tidak bisa dimengerti secara langsung oleh mesin. Perlu ada penerjemahan bahasa pemrograman tingkat tinggi ke tingkat rendah, sehingga mesin dapat mengerti instruksi-instruksi yang diberikan.
+  \item Bahasa ini lebih mudah dimengerti manusia karena menggunakan frase bahasa sehari-hari, seperti "jika ... maka ..." dan "lakukan ... hingga tercapai ...".
+  \item Sayangnya, bahasa pemrograman tingkat tinggi tidak bisa dimengerti secara langsung oleh mesin.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Bagaimana Komputer Menjalankan Program? (lanj.)}
+\begin{itemize}
+  \item Perlu ada penerjemahan bahasa pemrograman tingkat tinggi ke tingkat rendah, sehingga mesin dapat mengerti instruksi yang diberikan.
   \item Penerjemahan ini biasa dilakukan oleh program yang berperan sebagai kompilator, intepreter, atau keduanya. Dalam hal ini kita hanya akan membahas tentang kompilator.
 \end{itemize}
 \end{frame}
@@ -69,9 +76,9 @@ Melalui dokumen ini, kalian akan:
 \frametitle{Kompilator}
 \begin{itemize}
   \item Merupakan program komputer yang dapat menerjemahkan bahasa pemrograman tingkat tinggi ke bahasa mesin.
-  \item Hasil terjemahan ini yang nantinya dapat dimengerti oleh mesin, sehingga dapat dieksekusi oleh komputer.
+  \item Hasil terjemahan ini dapat dimengerti oleh mesin, sehingga dapat dieksekusi oleh komputer denga mudah.
   \item Aktivitas menerjemahkan ini disebut dengan kompilasi.
-  \item Siklus kerja jika kita menggunakan kompilator adalah: tulis program $\rightarrow$ kompilasi $\rightarrow$ eksekusi.
+  \item Siklus kerja jika kita menggunakan kompilator adalah: tulis~program $\rightarrow$ kompilasi $\rightarrow$ eksekusi.
 \end{itemize}
 \end{frame}
 
@@ -85,7 +92,7 @@ Melalui dokumen ini, kalian akan:
 \end{frame}
 
 \begin{frame}
-\frametitle{Tentang Free Pascal}
+\frametitle{Free Pascal}
 \begin{itemize}
   \item Merupakan salah satu kompilator Pascal yang populer.
   \item Program kompilator Free Pascal beserta dokumentasinya tersedia gratis.
@@ -94,7 +101,7 @@ Melalui dokumen ini, kalian akan:
 \end{itemize}
 \end{frame}
 
-\section{Petunjuk Mempersiapkan Lingkungan Belajar}
+\section{Petunjuk Mempersiapkan \newline Lingkungan Belajar}
 \frame{\sectionpage}
 
 \begin{frame}
@@ -106,7 +113,13 @@ Melalui dokumen ini, kalian akan:
     \item Kompilator Free Pascal.
     \item IDE (\textit{Integrated Development Environment}) bawaan dari Free Pascal. IDE ini bisa dianggap sebagai sebuah lingkungan tempat kalian memprogram nantinya.
   \end{itemize}
-  \item Buka \textit{browser} kalian dan kunjungi http://www.freepascal.org/download.var
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Instalasi Free Pascal (Windows)}
+\begin{itemize}
+  \item Buka \textit{browser} kalian dan kunjungi \href{http://www.freepascal.org/download.var}{http://www.freepascal.org/download.var}
   \item Unduh sesuai dengan arsitektur prosesor komputer kalian, misalnya intel dan Windows 32 bit
 \end{itemize}
 \end{frame}
@@ -171,8 +184,8 @@ Melalui dokumen ini, kalian akan:
 \begin{itemize}
   \item Sejauh ini, memprogram dengan Free Pascal sudah bisa dilakukan.
   \item Namun, memprogram langsung dari IDE Free Pascal biasanya kurang nyaman; banyak keterbatasannya meskipun ada beberapa keuntungannya (seperti fitur \textit{debugging}).
-  \item Untuk itu, kami akan memperkenalkan penggunaan \textit{text editor} yang cukup populer, yaitu Notepad++.
-  \item Kalian akan menulis kode di Notepad++, lalu melakukan kompilasi dan eksekusi program di \textit{command line}. Praktik sejenis ini merupakan kebiasaan dari para peserta IOI, dan ada baiknya dilatih sejak awal kalian belajar memprogram \text{:)}
+  \item Untuk itu, kami memperkenalkan penggunaan \textit{text editor} yang cukup populer, yaitu Notepad++.
+  \item Kalian akan menulis kode di Notepad++, lalu melakukan kompilasi dan eksekusi program di \textit{command line}. 
 \end{itemize}
 \end{frame}
 
@@ -229,7 +242,7 @@ Melalui dokumen ini, kalian akan:
 \end{itemize}
 \begin{lstlisting}
   begin
-    writeln('Halo Dunia!');
+    writeln('halo dunia');
   end.
 \end{lstlisting}
 \end{frame}

@@ -68,7 +68,7 @@ Melalui dokumen ini, kalian akan:
     \item Huruf kapital dan huruf kecil dianggap sama. Artinya "a1" dan "A1" dianggap merupakan dua variabel yang sama.
     \item Tidak boleh merupakan \alert{\textit{reserved word}}. Contoh \textit{reserved word} pada Pascal: \textbf{begin}, \textbf{end}, \textbf{var}, \textbf{if}, atau \textbf{then}.
   \end{itemize}
-  \item Lebih jauh lagi, aturan ini berlaku pada seluruh penamaan \alert{\textit{identifier}}, yang temasuk di dalamnya nama variabel, fungsi, dan prosedur (akan dipelajari selanjutnya).
+  \item Lebih jauh lagi, aturan ini berlaku pada seluruh penamaan \alert{\textit{identifier}}, yaitu nama variabel, fungsi, dan prosedur (akan dipelajari selanjutnya).
 \end{itemize}
 \end{frame}
 
@@ -201,7 +201,7 @@ Melalui dokumen ini, kalian akan:
 \begin{itemize}
   \item Biasa disebut dengan \textit{floating point}.
   \item Tipe data \textit{floating point} bisa merepresentasikan negatif atau positif dari magnitudonya.
-  \item Pada pemrograman, umumnya tipe data \textit{floating point} dihindari karena kurang akurat. Representasi 3 pada \textit{floating point} bisa jadi 2.99999999999999 atau 3.000000000000001 karena keterbatasan pada struktur penyimpanan bilangan \textit{floating point} komputer.
+  \item Pada pemrograman, umumnya tipe data \textit{floating point} dihindari karena kurang akurat. Representasi 3 pada \textit{floating point} bisa jadi 2.99999999999999 atau 3.000000000000001 karena keterbatasan pada struktur penyimpanan bilangan pecahan pada komputer.
   \item Tipe yang umum digunakan adalah \alert{\textbf{double}}.
 \end{itemize}
 \end{frame}
@@ -282,6 +282,12 @@ Melalui dokumen ini, kalian akan:
 \begin{itemize}
   \item Mendaftarkan nama-nama dan tipe variabel yang akan digunakan disebut dengan deklarasi variabel.
   \item Pada saat dideklarasi, setiap variabel perlu disertakan tipe datanya.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Deklarasi Variabel (lanj.)}
+\begin{itemize}
   \item Pada Pascal, variabel dideklarasikan di antara \textbf{var} dengan \textbf{begin}.
   \item Tipe data dituliskan sesudah tanda titik dua (:), setelah nama variabel dituliskan.
 
@@ -290,69 +296,6 @@ Melalui dokumen ini, kalian akan:
 \end{itemize}
 \end{frame}
 
-\begin{frame}
-\frametitle{Tipe Data Komposit: Record}
-\begin{itemize}
-  \item Kadang-kadang, kita membutuhkan suatu tipe data yang sifatnya komposit; terdiri dari beberapa data lainnya.
-  \item Contoh kasusnya adalah ketika kita butuh suatu representasi dari titik. Setiap titik pada bidang memiliki dua komponen, yaitu \textbf{x} dan \textbf{y}.
-  \item Memang bisa saja kita mendeklarasi dua variabel, yaitu \textbf{x} dan \textbf{y}. Namun bagaimana jika kita hendak membuat beberapa titik? Apakah kita harus membuat \textbf{x1}, \textbf{y1}, \textbf{x2}, \textbf{y2}, ...? Sungguh melelahkan!
-  \item Karena itulah Pascal menyajikan suatu tipe data komposit, yaitu \alert{\textbf{record}}.
-\end{itemize}
-\end{frame}
-
-\begin{frame}[fragile]
-\frametitle{Tipe Data Komposit: Record}
-\begin{itemize}
-  \item \textbf{Record} dapat dideklarasikan pada blok \textbf{type}, yang letaknya sebelum \textbf{var}.
-  \begin{lstlisting}
-    type
-      <nama record> =
-        record
-          <variabel1>: <tipe1>;
-          <variabel2>: <tipe2>;
-          ...
-        end;
-    var
-      ...
-  \end{lstlisting}
-  \item Setelah dideklarasikan, sebuah tipe data \textbf{$<$nama record$>$} sudah bisa digunakan.
-  \item Untuk mengakses nilai dari \textbf{$<$variabel 1$>$} dari suatu variabel bertipe \textbf{record}, gunakan tanda titik (.).
-\end{itemize}
-\end{frame}
-
-\begin{frame}[fragile]
-\frametitle{Tipe Data Komposit: Record (lanj.)}
-\begin{itemize}
-  \item Sebagai contoh, perhatikan contoh program titik.pas berikut:
-  \begin{lstlisting}
-    type
-      titik =
-        record
-          x, y: longint;
-        end;
-    var
-      t1, t2: titik;
-    begin
-      t1.x := 5;
-      t1.y := 3;
-
-      t2.x := 1;
-      t2.y := 2;
-
-      writeln(t1.x, ',', t1.y);
-      writeln(t2.x, ',', t2.y);
-    end.
-  \end{lstlisting}
-\end{itemize}
-\end{frame}
-
-\begin{frame}
-\frametitle{Tipe Data Komposit: Record}
-\begin{itemize}
-  \item memori yang dibutuhkan bagi sebuah tipe data \textbf{record} sama dengan jumlah memori tipe data yang menyusunnya.
-  \item Artinya, \textbf{record} bernama \textbf{titik} pada contoh titik.pas mengkonsumsi memori yang sama dengan dua buah longint, yaitu 8 byte.
-\end{itemize}
-\end{frame}
 
 \begin{frame}[fragile]
 \frametitle{Contoh Program: tipedasar.pas}
@@ -392,6 +335,77 @@ Melalui dokumen ini, kalian akan:
   \end{lstlisting}
   \item Perhatikan bahwa perintah \textbf{p2 := p1} sama artinya dengan \\ \textbf{p2 := 100}, karena \textbf{p1} sendiri mengacu pada nilai 100.
   \item Untuk tipe data \textit{floating point}, bilangan tercetak dalam notasi \textit{scientific}, yaitu $3.1418 \times 10^{0}$ dan $2.34432 \times 10^{2}$.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Tipe Data Komposit: Record}
+\begin{itemize}
+  \item Kadang-kadang, kita membutuhkan suatu tipe data yang sifatnya komposit; terdiri dari beberapa data lainnya.
+  \item Contoh kasusnya adalah ketika kita butuh suatu representasi dari titik. Setiap titik pada bidang memiliki dua komponen, yaitu \textbf{x} dan \textbf{y}.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Tipe Data Komposit: Record (lanj.)}
+\begin{itemize}
+  \item Memang bisa saja kita mendeklarasi dua variabel, yaitu \textbf{x} dan \textbf{y}. Namun bagaimana jika kita hendak membuat beberapa titik? Apakah kita harus membuat \textbf{x1}, \textbf{y1}, \textbf{x2}, \textbf{y2}, ...? Sungguh melelahkan!
+  \item Karena itulah Pascal menyajikan suatu tipe data komposit, yaitu \alert{\textbf{record}}.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Tipe Data Komposit: Record (lanj.)}
+\begin{itemize}
+  \item \textbf{Record} dapat dideklarasikan pada blok \textbf{type}, yang letaknya sebelum \textbf{var}.
+  \begin{lstlisting}
+    type
+      <nama record> =
+        record
+          <variabel1>: <tipe1>;
+          <variabel2>: <tipe2>;
+          ...
+        end;
+        
+    var
+      ...
+  \end{lstlisting}
+  \item Setelah dideklarasikan, sebuah tipe data \textbf{$<$nama record$>$} sudah bisa digunakan.
+  \item Untuk mengakses nilai dari \textbf{$<$variabel 1$>$} dari suatu variabel bertipe \textbf{record}, gunakan tanda titik (.).
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Tipe Data Komposit: Record (lanj.)}
+\begin{itemize}
+  \item Sebagai contoh, perhatikan contoh program titik.pas berikut:
+  \begin{lstlisting}
+    type
+      titik =
+        record
+          x, y: longint;
+        end;
+    var
+      t1, t2: titik;
+    begin
+      t1.x := 5;
+      t1.y := 3;
+
+      t2.x := 1;
+      t2.y := 2;
+
+      writeln(t1.x, ',', t1.y);
+      writeln(t2.x, ',', t2.y);
+    end.
+  \end{lstlisting}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Konsumsi Memori Record}
+\begin{itemize}
+  \item Memori yang dibutuhkan bagi sebuah tipe data \textbf{record} sama dengan jumlah memori tipe data yang menyusunnya.
+  \item Artinya, \textbf{record} bernama \textbf{titik} pada contoh titik.pas mengkonsumsi memori yang sama dengan dua buah longint, yaitu 8 byte.
 \end{itemize}
 \end{frame}
 

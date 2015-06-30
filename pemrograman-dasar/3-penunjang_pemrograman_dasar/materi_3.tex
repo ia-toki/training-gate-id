@@ -124,6 +124,12 @@ Melalui dokumen ini, kalian akan:
     tes.pas(4,13) Error: Identifier not found "nilai"
   \end{lstlisting}
   \item Artinya pada berkas tes.pas, baris 4, kolom 13, terdapat kesalahan berupa: sebuah \textit{identifier} bernama "nilai" tidak ditemukan. Untuk memperbaikinya, "nilai" harus dideklarasikan terlebih dahulu.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{\textit{Compilation Error} (lanj.)}
+\begin{itemize}
   \item Ketika suatu program memiliki \textit{compilation error}, kompilasi akan dibatalkan dan program tidak bisa dikompilasi sampai kesalahannya diperbaiki.
 \end{itemize}
 \end{frame}
@@ -132,7 +138,14 @@ Melalui dokumen ini, kalian akan:
 \frametitle{\textit{Compilation Warning}}
 \begin{itemize}
   \item Selain \textit{error}, kompilator Free Pascal juga memberikan beberapa peringatan (\textit{warning}).
-  \item Tidak seperti \textit{error}, \textit{warning} tidak membuat program batal dikompilasi. \textit{Warning} hanya seperti peringatan bahwa ada beberapa bagian dari program kalian yang mungkin bermasalah. Contoh:
+  \item Tidak seperti \textit{error}, \textit{warning} tidak membuat program batal dikompilasi. \textit{Warning} hanya seperti peringatan bahwa ada beberapa bagian dari program kalian yang mungkin bermasalah. 
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{\textit{Compilation Warning} (lanj.)}
+\begin{itemize}
+  \item Contoh:
   \begin{lstlisting}
     tes.pas(5,19) Warning: Variable "saldo" does not seem to be initialized
   \end{lstlisting}
