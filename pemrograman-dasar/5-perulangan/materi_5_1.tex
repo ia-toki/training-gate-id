@@ -1,6 +1,6 @@
 \input{../config.tex}
 
-\title{Pengenalan Pengulangan}
+\title{Perulangan}
 \author{Tim Olimpiade Komputer Indonesia}
 \date{}
 
@@ -14,7 +14,7 @@
 \frametitle{Pendahuluan}
 Melalui dokumen ini, kalian akan:
 \begin{itemize}
-  \item Memahami konsep pengulangan.
+  \item Memahami konsep perulangan.
   \item Mempelajari struktur \textbf{for}, \textbf{while}, dan \textbf{repeat} pada Pascal.
 \end{itemize}
 \end{frame}
@@ -42,22 +42,22 @@ Melalui dokumen ini, kalian akan:
 \end{frame}
 
 \begin{frame}
-\frametitle{Pengulangan}
+\frametitle{Perulangan}
 \begin{itemize}
-  \item Umumnya setiap bahasa pemrograman memberikan struktur pengulangan yang bentuknya bisa berupa:
+  \item Umumnya setiap bahasa pemrograman memberikan struktur perulangan yang bentuknya bisa berupa:
   \begin{itemize}
-    \item Pengulangan dengan pencacah. Contoh: "untuk i dari 1 sampai N, cetak 'halo dunia!'".
-    \item Pengulangan selama dicapai suatu kondisi. Contoh: "selama i $<$ N, cetak 'halo dunia!' dan tambah i dengan 1".
-    \item Pengulangan sampai dicapai suatu kondisi. Contoh: "cetak 'halo dunia!' dan tambah i dengan 1, hingga tercapai i = N".
+    \item Perulangan dengan pencacah. Contoh: "untuk i dari 1 sampai N, cetak 'halo dunia!'".
+    \item Perulangan selama dicapai suatu kondisi. Contoh: "selama i $<$ N, cetak 'halo dunia!' dan tambah i dengan 1".
+    \item Perulangan sampai dicapai suatu kondisi. Contoh: "cetak 'halo dunia!' dan tambah i dengan 1, hingga tercapai i = N".
   \end{itemize}
   \item Pada Pascal, ada ketiga struktur itu yang masing-masing diwakili dengan \alert{\textbf{for}}, \alert{\textbf{while}}, dan \alert{\textbf{repeat}}.
 \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{Pengulangan: for}
+\frametitle{Perulangan: for}
 \begin{itemize}
-  \item Biasanya digunakan ketika kita tahu berapa kali pengulangan perlu dilakukan.
+  \item Biasanya digunakan ketika kita tahu berapa kali perulangan perlu dilakukan.
   \item Pada Pascal, strukturnya:
   \begin{lstlisting}
     for <pencacah> := <awal> to <akhir> do begin
@@ -106,14 +106,14 @@ Melalui dokumen ini, kalian akan:
 \begin{frame}
 \frametitle{Penjelasan Program: for.pas (lanj.)}
 \begin{itemize}
-  \item Jika \textbf{i} sudah lebih dari \textbf{N}, pengulangan akan berhenti dan Pascal akan menjalankan perintah selanjutnya.
+  \item Jika \textbf{i} sudah lebih dari \textbf{N}, perulangan akan berhenti dan Pascal akan menjalankan perintah selanjutnya.
   \item Pada contoh ini, mencetak tulisan "akhir dari program".
   \item Dalam kasus ini, variabel \textbf{i} mencacah 1, 2, 3, ..., \textbf{N}.
 \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{Pengulangan: for (lanj.)}
+\frametitle{Perulangan: for (lanj.)}
 \begin{itemize}
   \item Struktur \textbf{for} hanya bisa mencacah dari suatu nilai awal ke suatu nilai akhir, dan pencacah akan "bertambah satu tingkat" setiap waktunya.
   \item Untuk keperluan pencacah "turun satu tingkat" setiap waktunya, terdapat sebuah variasi lain dari \textbf{for}, yaitu \textbf{for downto} dengan struktur:
@@ -150,13 +150,13 @@ Melalui dokumen ini, kalian akan:
 \end{frame}
 
 \begin{frame}
-\frametitle{Hal Penting untuk Pengulangan for}
+\frametitle{Hal Penting untuk Perulangan for}
 Penting untuk diketahui:
 \begin{itemize}
   \item Tipe data dari pencacah, nilai awal, dan nilai akhir harus sama dan bersifat \alert{ordinal}.
   \item Karena tipe data pencacah yang penting merupakan tipe data ordinal, artinya pencacah boleh saja berupa \textbf{char}.
-  \item Nilai pencacah tidak boleh diubah saat pengulangan dikerjakan.
-  \item Pascal tidak bisa melayani \textbf{for} yang pencacahnya "bertambah dua tingkat" pada setiap pengulangan.
+  \item Nilai pencacah tidak boleh diubah saat perulangan dikerjakan.
+  \item Pascal tidak bisa melayani \textbf{for} yang pencacahnya "bertambah dua tingkat" pada setiap perulangan.
 \end{itemize}
 \end{frame}
 
@@ -184,7 +184,7 @@ Penting untuk diketahui:
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{Pengulangan: while}
+\frametitle{Perulangan: while}
 \begin{itemize}
   \item Biasa digunakan ketika tidak diketahui harus berapa kali serangkaian perintah dilaksanakan, tetapi diketahui perintah-perintah itu perlu dilaksanakan selama suatu kondisi terpenuhi.
   \item Pada Pascal, strukturnya:
@@ -235,11 +235,11 @@ Penting untuk diketahui:
 \end{frame}
 
 \begin{frame}
-\frametitle{Pengulangan: while (lanj.)}
+\frametitle{Perulangan: while (lanj.)}
 \begin{itemize}
   \item Perhatikan bahwa perintah "i := i + 1" diperlukan, supaya suatu saat nanti $<$kondisi$>$ pada while akan tidak dipenuhi.
   \item Sekarang coba hapus perintah "i := i + 1" pada while.pas, dan jalankan kembali programnya.
-  \item Apa yang terjadi? Program akan terjebak dalam \alert{\textit{infinite loop}}, atau \alert{pengulangan yang tidak akan pernah berhenti}! Gunakan tombol CTRL+C pada \textit{keyboard} untuk memberhentikan program secara paksa.
+  \item Apa yang terjadi? Program akan terjebak dalam \alert{\textit{infinite loop}}, atau \alert{perulangan yang tidak akan pernah berhenti}! Gunakan tombol CTRL+C pada \textit{keyboard} untuk memberhentikan program secara paksa.
   \item Pastikan suatu ketika "kondisi pada \textbf{while}" tidak dipenuhi, atau program tidak akan pernah berhenti $:)$
 \end{itemize}
 \end{frame}
@@ -269,7 +269,7 @@ Penting untuk diketahui:
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{Pengulangan: while (lanj.)}
+\frametitle{Perulangan: while (lanj.)}
 \begin{itemize}
   \item Struktur \textbf{while} bisa jadi lebih fleksibel dari struktur \textbf{for}, karena tipe datanya tidak harus ordinal.
   \item Kalian bisa membuat pencacah yang tidak sekedar "naik satu tingkat". Contoh:
@@ -293,9 +293,9 @@ Penting untuk diketahui:
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{Pengulangan: while (lanj.)}
+\frametitle{Perulangan: while (lanj.)}
 \begin{itemize}
-  \item Selain itu, dengan menggunakan \textbf{while}, kalian tidak perlu tahu berapa kali suatu pengulangan perlu dilakukan.
+  \item Selain itu, dengan menggunakan \textbf{while}, kalian tidak perlu tahu berapa kali suatu perulangan perlu dilakukan.
   \item Contoh soal: Pak Dengklek memberikan serangkaian bilangan, satu pada setiap barisnya, dan cetak bilangan itu. Ketika menemukan bilangan negatif, berhenti membaca dan akhiri program.
   \item Hal ini tidak dapat dilakukan dengan \textbf{for}, karena kita tidak tahu berapa nilai akhir dari \textbf{for} yang harus dilakukan.
   \item Dengan \textbf{while}, hal ini dapat dilakukan dengan mudah:
@@ -310,9 +310,9 @@ Penting untuk diketahui:
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{Pengulangan: repeat}
+\frametitle{Perulangan: repeat}
 \begin{itemize}
-  \item Struktur pengulangan yang lain adalah \textbf{repeat}.
+  \item Struktur perulangan yang lain adalah \textbf{repeat}.
   \item Mirip dengan \textbf{while}, tetapi kali ini bentuknya adalah "lakukan perintah berikut, sampai dicapai suatu kondisi".
   \item Perhatikan bedanya:
   \begin{itemize}
@@ -361,12 +361,12 @@ Penting untuk diketahui:
   \item Memasuki struktur repeat, perintah mencetak saat \textbf{i} = 1 dilaksanakan. Kemudian setelah dilaksanakan "i := i + 1", \textbf{i} bernilai 2.
   \item Memasuki \textbf{until}, diperiksa apakah \textbf{i} $>$ \textbf{N}. Karena belum dipenuhi, maka seluruh perintah sesudah kata kunci \textbf{repeat} akan kembali dilaksanakan.
   \item Ketika \textbf{i} = 5, perintah mencetak saat \textbf{i} = 5 akan dilaksanakan. Setelah itu, \textbf{i} ditambah 1 menjadi 6.
-  \item Karena sudah dipenuhi \textbf{i} $>$ \textbf{N}, maka pengulangan berhenti dan dilaksanakan perintah di bawah kata \textbf{until}. Dalam contoh ini, mencetak tulisan "akhir dari program".
+  \item Karena sudah dipenuhi \textbf{i} $>$ \textbf{N}, maka perulangan berhenti dan dilaksanakan perintah di bawah kata \textbf{until}. Dalam contoh ini, mencetak tulisan "akhir dari program".
 \end{itemize}
 \end{frame}
 
 \begin{frame}
-\frametitle{Pengulangan: repeat (lanj.)}
+\frametitle{Perulangan: repeat (lanj.)}
 \begin{itemize}
   \item Seperti pada \textbf{while}, pastikan suatu saat nanti kondisi berhenti dicapai supaya tidak terjebak pada \textit{infinite loop}.
   \item Perhatikan bahwa seluruh perintah di dalam "repeat ... until" \alert{pasti} dilaksanakan setidaknya satu kali. Karena pemeriksaan pada kondisi baru di lakukan setelah seluruh perintah di dalamnya dilaksanakan.
@@ -402,12 +402,12 @@ Penting untuk diketahui:
 \frametitle{Sejauh ini...}
 Kalian sudah belajar tentang:
 \begin{itemize}
-  \item Konsep pengulangan pada pemrograman.
+  \item Konsep perulangan pada pemrograman.
   \item Struktur \textbf{for}, \textbf{while}, dan \textbf{repeat} beserta kegunaan dan perbedaannya.
 \end{itemize}
 Selanjutnya kita akan memasuki tentang:
 \begin{itemize}
-  \item Penggunaan pengulangan yang lebih kompleks: pengulangan bersarang.
+  \item Penggunaan perulangan yang lebih kompleks: perulangan bersarang.
   \item Membuat program sederhana dengan seluruhnya yang telah dipelajari sejauh ini.
 \end{itemize}
 \end{frame}

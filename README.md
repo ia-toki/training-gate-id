@@ -42,16 +42,16 @@ Berikut silabus pembelajaran untuk Training Gate pemrograman dasar:
 
   1. Perkenalan
 
-    * Perkenalan konsep pemrograman (memprogram, kompilasi, eksekusi)
-    * Perkenalan dan instalasi Pascal
-    * Perkenalan IDE dan instalasi
+    * Konsep pemrograman (memprogram, kompilasi, eksekusi)
+    * Pascal dan instalasinya
+    * IDE dan instalasinya
     * Program Hello World
 
 ###2. Variabel, tipe data, IO
 
   1. Variabel dan Tipe Data
 
-    * Pengenalan konsep variabel
+    * Konsep variabel
     * Tipe data sederhana
     * Tipe data buatan (struct)
     * Dekalarasi variabel
@@ -81,27 +81,27 @@ Berikut silabus pembelajaran untuk Training Gate pemrograman dasar:
     * If ... else ...
     * If ... elseif ... else ...
     * case ... of ...
-    * Pengenalan tentang blok "begin ... end"
+    * Blok "begin ... end"
 
-###5. Pengulangan
-  1. Pengenalan Pengulangan
+###5. Perulangan
+  1. Perulangan
 
-    * Pengulangan dengan pencacah (for)
-    * Pengulangan dengan kondisi awal (while)
-    * Pengulangan dengan kondisi akhir (repeat until)
+    * Perulangan dengan pencacah (for)
+    * Perulangan dengan kondisi awal (while)
+    * Perulangan dengan kondisi akhir (repeat until)
 
-  2. Pengulangan Lanjut
+  2. Perulangan Lanjut
 
     * Break & continue
     * Perulangan berlapis
 
   3. Analisis Kompleksitas
 
-    * Pengenalan Big-Oh sederhana
-    * Penjelasan tentang apa pentingnya menghitung kompleksitas
+    * Perkenalan Big-Oh sederhana
+    * Pentingnya menghitung kompleksitas
 
 ###6. Array
-  1. Pengenalan Array
+  1. Array
 
     * Konsep array
     * Deklarasi Array
@@ -143,7 +143,7 @@ Berikut silabus pembelajaran untuk Training Gate pemrograman dasar:
 
 ###10. Rekursi
 
-  1. Pengenalan Rekursi
+  1. Rekursi
 
     * Mengapa perlu ada rekursi
     * Rekursi tanpa cabang
@@ -153,22 +153,6 @@ Berikut silabus pembelajaran untuk Training Gate pemrograman dasar:
 
     * Rekursi dengan cabang
     * Analsis kompleksitas
-
-###11. Pengurutan Lanjut
-
-  1. Merge Sort
-
-    * Mengapa perlu ada merge sort
-    * Konsep algoritma
-    * Contoh kode
-    * Analisis kompleksitas
-
-  2. Quick Sort
-
-    * Mengapa perlu ada quick sort
-    * Konsep algoritma
-    * Contoh kode
-    * Analisis kompleksitas, bandingkan dengan merge sort
 
 ## Link Unduh
 Materi dalam bentuk PDF yang sejauh ini sudah dibuat bisa diakses [di sini](https://github.com/ia-toki/training-gate-id/archive/target.zip).

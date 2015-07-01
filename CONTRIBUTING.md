@@ -25,7 +25,7 @@ Seluruh masukan yang Anda berikan dituliskan pada [GitHub Issue Tracker](https:/
 Tata cara penulisan isu:
 
 1. Tulis isu dengan Bahasa Indonesia.
-2. Judul isu merupakan garis besar tentang apa yang Anda angkat sebagai isu, tuliskan dengan singkat dan jelas. Khusus untuk isu yang menyangkut suatu materi, tulis dalam format "\<judul materi\>: \<isu Anda\>". Beberapa contoh penulisan isu: "Pencarian: tambahan contoh", "Pengulangan lanjut: perbaikan typo", "Tokitex error untuk penambahan gambar .TIFF".
+2. Judul isu merupakan garis besar tentang apa yang Anda angkat sebagai isu, tuliskan dengan singkat dan jelas. Khusus untuk isu yang menyangkut suatu materi, tulis dalam format "\<judul materi\>: \<isu Anda\>". Beberapa contoh penulisan isu: "Pencarian: tambahan contoh", "Perulangan lanjut: perbaikan typo", "Tokitex error untuk penambahan gambar .TIFF".
 3. Isi isu merupakan penjelasan tentang apa yang Anda angkat sebagai isu, tuliskan dengan jelas dan tidak ambigu (tidak menimbulkan pertanyaan dari kontributor lainnya). Jika isu yang diangkat mengacu pada suatu materi, tuliskan di slide ke berapa. Jika mengacu pada penulisan kata-kata, tuliskan di mana kata tersebut muncul. Jika isu yang diangkat adalah penulisan materi baru, cukup tuliskan secara garis besar apa yang akan Anda tulis.
 
 Setelah isu dituliskan, kontributor dari IA TOKI akan menanggapi masukan Anda dan membahasnya pada isu yang Anda tambahkan. Hasil akhir dari pembahasan adalah keputusan apakah masukan tersebut akan diimplementasikan pada TOKI Training Gate. Jika diputuskan bahwa masukan itu akan diimplementasikan, Anda boleh memutuskan apakah Anda yang akan mengimplementasikannya atau tidak. Jika ya, ikuti [tata cara implementasi](#tata-cara-implementasi). Jika tidak, isu tersebut akan menjadi *open issue* dan dapat dikerjakan oleh kontributor lainnya (mengacu pada poin 5 pada [bentuk kontribusi](#bentuk-kontribusi)).
@@ -78,7 +78,7 @@ Untuk membuat tulisan konsisten antar materi, berikut konvensi yang ditetapkan:
     5. Penekanan pada penjelasan bisa menggunakan cetak merah (dengan perintah \alert{}).
     6. Rujuk suatu perintah pada program dengan petik dua, contoh: "fpb := fpb(b, a mod b)".
 6. Jika suatu topik dijelaskan pada beberapa slide, tambahkan "... (lanj.)" pada halaman slide berikutnya.
-7. Jika Anda menambahkan gambar, masukkan gambar tersebut di folder aset materi yang bersangkutan. Masukkan juga berkas mentah gambar tersebut (misalnya .svg). Hindari hanya memasukkan gambar jadinya (misalnya .png atau .jpg) karena gambar tidak bisa diedit lagi (kecuali gambar tersebut memang screenshot). Lebih disarankan menggunakan .svg dan pengolah gambar [inkscape](https://inkscape.org/).
+7. Jika Anda menambahkan gambar, masukkan gambar tersebut di folder aset materi yang bersangkutan. Masukkan juga berkas mentah gambar tersebut (misalnya .svg, .pdf). Hindari hanya memasukkan gambar jadinya (misalnya .png atau .jpg) karena gambar tidak bisa diedit lagi (kecuali gambar tersebut memang screenshot). Lebih disarankan menggunakan .svg dan pengolah gambar [inkscape](https://inkscape.org/).
 
 # Panduan Menulis Kode
 
@@ -103,7 +103,7 @@ var
 ```
 
 ## Blok begin...end
-Pada Bahasa Pascal, selalu gunakan blok `begin ... end` pada struktur percabangan dan pengulangan. Contoh:
+Pada Bahasa Pascal, selalu gunakan blok `begin ... end` pada struktur percabangan dan perulangan. Contoh:
 
 ```
 if (i < 3) then begin

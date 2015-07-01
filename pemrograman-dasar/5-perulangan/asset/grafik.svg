@@ -15,7 +15,7 @@
    version="1.1"
    inkscape:version="0.48.4 r9939"
    sodipodi:docname="grafik.svg"
-   inkscape:export-filename="/home/gyosh/coding/toki/ia-toki/training-gate-id/pemrograman-dasar/5-pengulangan/asset/grafik.png"
+   inkscape:export-filename="/home/gyosh/coding/toki/ia-toki/training-gate-id/pemrograman-dasar/5-perulangan/asset/grafik.png"
    inkscape:export-xdpi="90.056702"
    inkscape:export-ydpi="90.056702">
   <defs
@@ -64,7 +64,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -74,11 +74,14 @@
      id="layer1">
     <g
        id="g4258"
-       transform="translate(-127,-24)">
+       transform="translate(-127,-24)"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"
+       inkscape:export-filename="/home/gyosh/coding/toki/ia-toki/training-gate-id/pemrograman-dasar/5-perulangan/asset/grafik.png">
       <path
          inkscape:connector-curvature="0"
          id="path2989"
-         d="m 221.76544,445.17425 c 386.03546,0 579.0532,0 579.0532,0"
+         d="m 221.76544,445.17425 c 278.98506,0 418.4776,0 418.4776,0"
          style="fill:none;stroke:#000000;stroke-width:3.10000014;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#Arrow1Mend)" />
       <path
          inkscape:connector-curvature="0"
