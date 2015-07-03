@@ -26,133 +26,109 @@ Sebagai tujuan jangka panjang: diharapkan pengembangan TOKI Training Gate dilaku
 
 ## Silabus Pembelajaran
 
-Training Gate pemrograman dasar ini terdiri dari beberapa sesi. Setiap sesi terdiri dari beberapa materi yang masing-masing diwujudkan dalam sebuah slide presentasi. Setiap slide presentasi berisi subtopik-subtopik yang mewakili materi tersebut. Struktur ini dituliskan dalam bentuk:
+Saat ini, Training Gate hanya berisi sebuah topik (*course*): **Pemrograman Dasar**.
 
->###1. Sesi
->
->  1. Materi
->
->    * subtopik 1
->    * subtopik 2
->    * ...
+Topik Pemrograman Dasar ini terdiri dari beberapa bab. Setiap bab terdiri atas materi-materi yang diwujudkan dalam sebuah slide presentasi.
 
-Berikut silabus pembelajaran untuk Training Gate pemrograman dasar:
+Berikut ini adalah bab-bab dalam silabus pembelajaran untuk topik Pemrograman Dasar, beserta materi-materi yang ada di dalamnya:
 
-###1. Perkenalan Pemrograman dan Lingkungan Pemrograman
+###1. Perkenalan
 
-  1. Perkenalan
+  * Perkenalan konsep pemrograman (memprogram, kompilasi, eksekusi)
+  * Perkenalan dan instalasi Pascal
+  * Perkenalan IDE dan instalasi
+  * Program Hello World
 
-    * Konsep pemrograman (memprogram, kompilasi, eksekusi)
-    * Pascal dan instalasinya
-    * IDE dan instalasinya
-    * Program Hello World
+###2. Variabel dan Tipe Data
 
-###2. Variabel, tipe data, IO
+  * Pengenalan konsep variabel
+  * Tipe data sederhana
+  * Tipe data buatan (struct)
+  * Dekalarasi variabel
 
-  1. Variabel dan Tipe Data
+###3. Ekspresi dan Masukan/Keluaran
 
-    * Konsep variabel
-    * Tipe data sederhana
-    * Tipe data buatan (struct)
-    * Dekalarasi variabel
+  * Ekspresi numerik
+  * Ekspresi boolean (predikat)
+  * Ekspresi relasional
+  * Prioritas pengerjaan
+  * Input output (read, readln, write, writeln)
+  * Penjelasan tentang STDIO
 
-  2. Ekspresi dan IO
+###4. Penunjang Pemrograman Dasar
 
-    * Ekspresi numerik
-    * Ekspresi boolean (predikat)
-    * Ekspresi relasional
-    * Prioritas pengerjaan
-    * Input output (read, readln, write, writeln)
-    * Penjelasan tentang STDIO
+  * Komentar
+  * Pesan kesalahan IDE
+  * I/O redirection
 
-###3. Penunjang Pemrograman Dasar
+###5. Percabangan
 
-  1. Penunjang Pemrograman Dasar
+  * If ...
+  * If ... else ...
+  * If ... elseif ... else ...
+  * case ... of ...
+  * Pengenalan tentang blok "begin ... end"
 
-    * Komentar
-    * Pesan kesalahan IDE
-    * I/O redirection
+###6. Perulangan
 
-###4. Percabangan
+  * Pengulangan dengan pencacah (for)
+  * Pengulangan dengan kondisi awal (while)
+  * Pengulangan dengan kondisi akhir (repeat until)
 
-  1. Percabangan
+###7. Perulangan Lanjut
 
-    * If ...
-    * If ... else ...
-    * If ... elseif ... else ...
-    * case ... of ...
-    * Blok "begin ... end"
+  * Break & continue
+  * Perulangan berlapis
 
-###5. Perulangan
-  1. Perulangan
+###8. Analisis Kompleksitas
 
-    * Perulangan dengan pencacah (for)
-    * Perulangan dengan kondisi awal (while)
-    * Perulangan dengan kondisi akhir (repeat until)
+  * Pengenalan Big-Oh sederhana
+  * Penjelasan tentang apa pentingnya menghitung kompleksitas
 
-  2. Perulangan Lanjut
+###9. Array
 
-    * Break & continue
-    * Perulangan berlapis
+  * Konsep array
+  * Deklarasi Array
+  * Mengisi array (baca)
+  * Menulis isi array (tulis)
+  * Array multidimensi
 
-  3. Analisis Kompleksitas
+###10. Fungsi dan Prosedur
 
-    * Perkenalan Big-Oh sederhana
-    * Pentingnya menghitung kompleksitas
+  * Prosedur
+  * Fungsi
+  * Scope
+  * Parameter dan passing parameter
 
-###6. Array
-  1. Array
+###11. Pendalaman String
 
-    * Konsep array
-    * Deklarasi Array
-    * Mengisi array (baca)
-    * Menulis isi  array (tulis)
-    * Array multidimensi
+  * Penjelasan bahwa string pada Pascal merupakan array of char
+  * Fungsi-fungsi dasar pada string (length, copy, delete, insert, pos, str, val)
 
-###7. Subprogram
+###12. Pencarian
 
-  1. Fungsi dan Prosedur
+  * Linear search
+  * Binary search
+  * Analisis kompleksitas
 
-    * Prosedur
-    * Fungsi
-    * Scope
-    * Parameter dan passing parameter
+###13. Pengurutan Dasar
 
-###8. String
+  * Bubble sort
+  * Insertion sort
+  * Selection sort
+  * Analisis kompleksitas
+  * Kapan menggunakan insertion sort, kapan selection sort, dsb
 
-  1. Pendalaman String
+###14. Rekursi
 
-    * Penjelasan bahwa string pada Pascal merupakan array of char
-    * Fungsi-fungsi dasar pada string (length, copy, delete, insert, pos, str, val)
+  * Mengapa perlu ada rekursi
+  * Rekursi tanpa cabang
+  * Analsis kompleksitas
 
-###9. Pencarian dan Pengurutan Dasar
+###15. Rekursi Lanjutan
 
-  1. Pencarian
-
-    * Linear search
-    * Binary search
-    * Analisis kompleksitas
-
-  2. Pengurutan Dasar
-
-    * Bubble sort
-    * Insertion sort
-    * Selection sort
-    * Analisis kompleksitas
-    * Kapan menggunakan insertion sort, kapan selection sort, dsb
-
-###10. Rekursi
-
-  1. Rekursi
-
-    * Mengapa perlu ada rekursi
-    * Rekursi tanpa cabang
-    * Analsis kompleksitas
-
-  2. Rekursi Lanjutan
-
-    * Rekursi dengan cabang
-    * Analsis kompleksitas
+  * Rekursi dengan cabang
+  * Analsis kompleksitas
 
 ## Link Unduh
 Materi dalam bentuk PDF yang sejauh ini sudah dibuat bisa diakses [di sini](https://github.com/ia-toki/training-gate-id/archive/target.zip).
