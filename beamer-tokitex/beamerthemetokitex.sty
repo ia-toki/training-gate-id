@@ -22,9 +22,11 @@
 }
 \setbeamertemplate{footline}{%
   \ifnum\thepage>1%
-    \hfill\pgfuseimage{logo-small}\hspace*{10pt}\strut\vskip0pt
+    \hfill\pgfuseimage{logo-small} \insertframenumber/\inserttotalframenumber \hspace*{3.5pt}
+    \newline
   \else%
-    \hfill\pgfuseimage{logo-small}\hspace*{-50pt}\strut\vskip0pt
+    % somehow the logo must appear here, so we just push it out of slide
+    \hfill\insertframenumber/\inserttotalframenumber \pgfuseimage{logo-small}\hspace*{-40pt}\strut\vskip0pt 
   \fi
   \pgfuseimage{bar-small}%
 }
