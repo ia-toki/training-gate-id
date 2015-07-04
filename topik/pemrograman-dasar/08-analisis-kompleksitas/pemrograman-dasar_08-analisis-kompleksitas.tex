@@ -100,12 +100,12 @@ Bagian implementasi:
   C := N;
   for i := 1 to N begin
     for j := 1 to N do begin
-    if (i*j = N) then begin
-      if (abs(R-C) > abs(i-j)) then begin
-      R := i;
-      C := j;
+      if (i*j = N) then begin
+        if (abs(R-C) > abs(i-j)) then begin
+        R := i;
+        C := j;
+        end;
       end;
-    end;
     end;
   end
   writeln(R, ' ', C);
