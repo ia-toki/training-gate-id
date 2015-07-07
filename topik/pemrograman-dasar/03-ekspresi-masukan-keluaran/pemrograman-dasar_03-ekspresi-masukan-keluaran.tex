@@ -397,6 +397,17 @@ Contoh:
 \end{frame}
 
 \begin{frame}[fragile]
+\frametitle{Fungsi readln}
+  \begin{itemize}
+    \item Fungsi \textbf{readln} berguna untuk membaca masukan, dan nilainya dapat di-\textit{assign} ke dalam variabel.
+    \item Cara kerja readln: pada berkas masukan, cari \textit{token} yang dapat dibaca berikutnya, lalu baca ambil nilainya.
+    \item Yang dimaksud \textit{token} adalah serangkaian karakter non-spasi, misalnya huruf atau angka.
+    \item Pada contoh sebelumnya, \textit{token} yang dimaksud adalah bilangan yang akan menjadi nilai variabel \textbf{x}.
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]
 \frametitle{Membaca Masukan: read}
 \begin{itemize}
   \item Sekarang ganti \textbf{readln(x)} menjadi \textbf{read(x)}:
@@ -414,45 +425,29 @@ Contoh:
     end.
   \end{lstlisting}
   \item Kompilasi, dan jalankan program. Kemudian ketikkan angka 2, dan tekan enter.
-  \item Hasilnya tetap sama. Lalu apa bedanya \textbf{readln} \\ dengan \textbf{read}?
+  \item Hasilnya tetap sama. Lalu apa yang membedakan \textbf{readln} \\ dengan \textbf{read}?
 \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{Perbedaan readln dengan read}
+Setelah \textbf{read} atau \textbf{readln} mencari \textit{token} berikutnya dan membacanya, yang terjadi selanjutnya adalah:
 \begin{block}{readln}
-  Setelah program membaca masukan, program akan disiapkan untuk membaca masukan selanjutnya di \alert{baris berikutnya}.
+  Program disiapkan untuk membaca masukan
+   
+  selanjutnya di \alert{baris berikutnya}.
 \end{block}
 \begin{block}{read}
-  Setelah program membaca masukan, program akan disiapkan untuk membaca masukan selanjutnya di \alert{baris yang sama}.
+  Program \alert{tidak} disiapkan untuk membaca masukan 
+  
+  selanjutnya di \alert{baris berikutnya}.
 \end{block}
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{Perbedaan readln dengan read (lanj.)}
 \begin{itemize}
-  \item Artinya, jika kita ingin membaca masukan dengan format masukkan:
-  \begin{itemize}
-    \item Baris pertama berisi sebuah bilangan bulat, yaitu a.
-    \item Baris kedua berisi sebuah bilangan bulat, yaitu b.
-    \item Baris ketiga berisi sebuah bilangan bulat, yaitu c.
-    \item Baris keempat berisi sebuah bilangan bulat, yaitu x.
-  \end{itemize}
-
-  \item Bisa digunakan:
-  \begin{lstlisting}
-    readln(a);
-    readln(b);
-    readln(c);
-    readln(x);
-  \end{lstlisting}
-\end{itemize}
-\end{frame}
-
-\begin{frame}[fragile]
-\frametitle{Perbedaan readln dengan read (lanj.)}
-\begin{itemize}
-  \item Namun, jika formatnya seperti ini:
+  \item Artinya, jika kita ingin membaca masukan dengan format:
   \begin{itemize}
     \item Baris pertama berisi tiga bilangan bulat dipisahkan dengan sebuah spasi, yaitu a, b, dan c.
     \item Baris kedua berisi sebuah bilangan bulat, yaitu x.
@@ -470,7 +465,37 @@ Contoh:
 \begin{frame}[fragile]
 \frametitle{Perbedaan readln dengan read (lanj.)}
 \begin{itemize}
-  \item Sebagai alternatif, \textbf{readln} dan \textbf{read} juga bisa digunakan untuk membaca beberapa masukan pada suatu baris secara bersamaan:
+  \item Boleh juga:
+  \begin{lstlisting}
+    read(a);
+    read(b);
+    read(c);
+    read(x);
+  \end{lstlisting}
+  \item Ingat bahwa baik \textbf{read} maupun \textbf{readln} akan mencari \textit{token} berikutnya untuk dibaca, tanpa peduli di baris mana \textit{token} itu berada.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Perbedaan readln dengan read (lanj.)}
+\begin{itemize}
+  \item Namun hal ini tidak bisa dilakukan:
+  \begin{lstlisting}
+    readln(a);
+    readln(b);
+    readln(c);
+    readln(x);
+  \end{lstlisting}
+  \item Sebab pada \textbf{readln}, setelah membaca \textit{token} pada suatu baris, sisa \textit{token} yang ada pada baris yang sama diabaikan dan langsung berpindah ke baris berikutnya.
+  \item Akibatnya, \textit{token} yang seharusnya menjadi masukan bagi variabel \textbf{b} dan \textbf{c} terabaikan.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Perbedaan readln dengan read (lanj.)}
+\begin{itemize}
+  \item Sebagai alternatif, \textbf{readln} dan \textbf{read} juga bisa digunakan untuk membaca beberapa masukan pada suatu baris secara bersamaan.
+  \item Contoh penggunaan yang benar:
   \begin{lstlisting}
     readln(a,b,c);
     readln(x);
@@ -487,7 +512,8 @@ Contoh:
 \begin{frame}[fragile]
 \frametitle{Kegunaan Lain readln}
 \begin{itemize}
-  \item Fungsi \textbf{readln} juga bisa digunakan untuk memaksa program untuk berpindah baris dalam membaca masukan. Caranya dengan mengosongkan variabel di dalam pemanggilan fungsi \textbf{readln}.
+  \item Fungsi \textbf{readln} dapat digunakan untuk memaksa program untuk berpindah baris dalam membaca masukan. 
+  \item Caranya dengan mengosongkan variabel di dalam pemanggilan fungsi \textbf{readln}.
   \item Pada contoh yang sebelumnya, boleh juga digunakan cara membaca seperti ini:
   \begin{lstlisting}
     read(a,b,c);
@@ -500,7 +526,7 @@ Contoh:
 \begin{frame}[fragile]
 \frametitle{Membaca string}
 \begin{itemize}
-  \item Ketika digunakan untuk membaca \textit{string}, baik \textbf{read} maupun \textbf{readln} akan membaca satu baris penuh.
+  \item Khusus untuk membaca \textit{string}, baik \textbf{read} maupun \textbf{readln} akan membaca satu baris penuh.
   \item Perhatikan program berikut:
   \begin{lstlisting}
     var
