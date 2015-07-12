@@ -15,50 +15,56 @@
 Melalui dokumen ini, kalian akan:
 \begin{itemize}
   \item Memahami konsep rekursi.
-  \item Mempelajarai rekursi tak bercabang.
+  \item Mempelajari rekursi sederhana.
 \end{itemize}
 \end{frame}
 
 \begin{frame}
-\frametitle{Pendahuluan (lanj.) }
+\frametitle{Pengenalan Rekursi}
 \begin{itemize}
-  \item Rekursi adalah keadaan dimana kita membuat sebuah fungsi untuk menyelesaikan sebuah permasalahan dengan cara memanggil diri sendiri secara berulang-ulang
-  \item Ketika Anda memanggil fungsi, fungsi itu akan menyelesaikan masalah. Jika terlalu besar, fungsi itu akan memanggil diri sendiri tapi dengan permasalahan yang lebih kecil
-  \item Fungsi itu akan memanggil diri sendiri sampai kita berhasil mengecilkan permasalahan itu ke base-case atau permasalah paling simpel
+  \item Rekursi adalah keadaan yang mana sebuah fungsi menyelesaikan sebuah permasalahan dengan cara memanggil diri sendiri secara berulang kali.
+  \item Jika masalah sudah cukup kecil, maka fungsi rekursi dapat langsung menghasilkan jawaban.
+  \item Jika masalah terlalu besar, maka fungsi akan memanggil diri sendiri dengan cakupan masalah yang lebih kecil.
 \end{itemize}
 \end{frame}
 
 \begin{frame}
-\frametitle{Mengapa perlu ada rekursi }
+\frametitle{Mengapa Perlu Ada Rekursi}
 \begin{itemize}
-  \item Banyak permasalahan yang akan lebih mudah diselesaikan (dan pendek kodenya) jika dilakukan pendekatan rekursi
-  \item Pada dasarnya $loop$ dan rekursi sama-sama melakukan sesuatu berulang-ulang. Namun, terkadang solusi $loop$ untuk suatu masalah sangat sulit untuk dipikirkan dan memerlukan teknik khusus
-  \item Karena rekursi berbentuk suatu fungsi maka Anda akan lebih mudah untuk melihat alur penyelesainnya di masalah-masalah yang solusi $loop$-nya rumit. Akan diberikan contohnya di materi selanjutnya
+  \item Banyak permasalahan yang lebih mudah diselesaikan (dan pendek kodenya) jika menggunakan pendekatan rekursif.
+  \item Pada dasarnya, strategi iteratif (misalnya dengan \textit{for loop}) dan rekursif sama-sama melakukan sesuatu yang berulang-ulang. 
+  \item Namun, terkadang solusi iteratif  untuk suatu masalah sangat sulit untuk dipikirkan dan memerlukan teknik khusus.
+  \item Dengan solusi rekursif, mungkin saja lebih mudah untuk melihat dan merancang alur penyelesaiannya.
 \end{itemize}
 \end{frame}
 
 \begin{frame}
-\frametitle{Cara mengerjakan soal dengan rekursi }
-Ketika kita mengerjakan soal dengan rekursi, kita harus memikirkan 3 perihal:
+\frametitle{Strategi Rekursif}
+Terdapat dua hal yang perlu dipikirkan ketika menggunakan strategi rekursif:
 \begin{itemize}
-  \item $Base Case$ Apakah base-case (atau soal paling simpel) dari pertanyaan ini?
-  \item Apa yang harus kita lakukan jika soal yang kita terima bukan $base case$?
-  \item Bagaimana cara implementasinya dalam fungsi tersebut?
+  \item \textit{Base case}
+  
+  Apa kasus paling sederhana dari permasalahan ini?
+  
+  \item \textit{Recurrence relation}
+  
+  Bagaimana hubungan rekursif dari persoalan ini dengan persoalan serupa yang lebih kecil?
 \end{itemize}
 \end{frame}
 
 \begin{frame}
-\frametitle{Soal: Faktorial}
+\frametitle{Contoh Soal: Faktorial}
 Deskripsi:
 \begin{itemize}
-  \item Operasi faktorial (dikenal dengan notasi $N$!) adalah operasi mengali bilangan dari 1 sampai N.
-  \item Contoh: Jika $N$ = 4, maka 4!=1 x 2 x 3 x 4 = 24
-  \item Bantu Pak Dengklek cari hasil $N$!
+  \item Pak Dengklek baru mempelajari konsep matematika baru, yaitu faktorial.
+  \item Operasi faktorial pada $N$, atau ditulis dengan notasi $N$!, adalah operasi mengalikan bilangan dari 1 sampai N.
+  \item Contoh: Jika $N = 4$, maka $4! = 1 \times 2 \times 3 \times 4 = 24$
+  \item Diberikan $N$, bantu Pak Dengklek mencari hasil $N$!
 \end{itemize}
 \end{frame}
 
 \begin{frame}
-\frametitle{Soal: Faktorial (lanj.) }
+\frametitle{Contoh Soal: Faktorial (lanj.) }
 Format masukan:
 \begin{itemize}
   \item Sebuah baris berisi sebuah bilangan $N$
@@ -76,124 +82,143 @@ Batasan:
 \begin{frame}
 \frametitle{Solusi}
 \begin{itemize}
-  \item Permasalahan: Bagaimana cara mengalihkan bilangan dari 1 sampai $N$?
-  \item Ide 1: Loop
-    \begin{itemize}
-      \item Kita set variabel $jawaban$ := 1
-      \item Buat sebuah loop dari $i$ sampai $N$
-      \item Untuk setiap $i$, $jawaban$ dikali dengan $i$
-    \end{itemize}
-  \item Ide 2: Rekursi (Akan kita jelaskan)
+  \item Ide 1:
+  \begin{itemize}
+    \item Cukup gunakan \textit{for loop} biasa
+    \item Solusi ini bekerja secara iteratif.
+  \end{itemize}
+  \item Ide 2: Rekursi 
 \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{Contoh Solusi: faktorial\_loop.pas}
-Implementasinya cukup sederhana:
-\begin{lstlisting}
-  (* Faktorial dengan loop : *)
-  var i,N,jawaban : longint;
+\frametitle{Contoh Solusi Iteratif}
+Implementasi solusi secara iteratif cukup sederhana:
+\begin{lstlisting}    
+  function faktorial(x: longint): longint;
+  var
+    jawaban: longint;
   begin
-    readln(N);
-    jawaban := 1; (*Initialisasi*)
-    for i := 1 to N do
+    jawaban := 1; 
+    for i := 1 to x do begin
       jawaban := jawaban * i;
-    writeln(jawaban);
-  end.
-\end{lstlisting}
-\end{frame}
-
-\begin{frame}
-\frametitle{Penjelasan solusi Rekursi}
-Seperti yang kami jelaskan tadi, mengerjakan soal rekursi ada 3 tahap
-\begin{itemize}
-  \item Tahap 1 : Base Case
-    \begin {itemize}
-      \item Jika kita lihat di batasan soal, kita akan menjawab soal dari 1! sampai 10!
-      \item Pertanyaan : Dari 1! sampai 10!, mana yang paling gampang dihitung?
-      \item Yang paling gampang dihitung adalah 1!, jadi 1! adalah base casenya.
-      \item 1! = 1
-    \end {itemize}
-  \end{itemize}
-\end{frame}
-
-\begin{frame}
-\frametitle{Penjelasan solusi Rekursi (lanj.) }
-\begin{itemize}
-  \item Tahap 2 : Bukan Base Case
-    \begin {itemize}
-      \item Bagaimana kalau fungsi kita menerima soal yang bukan 1! ?
-      \item Sesuai penjelasan di pendahuluan, kita harus mengecilkan masalah!
-      \item Setelah dipikir-pikir untuk semua N lebih dari 1. N! = N X (N-1)!
-      \item Contoh: 5! = 5 X 4!
-      \item Dengan ini, kita telah mengecilkan permasalahan dari 5! jadi 4!
-      \item 4! lalu akan kita kecilkan terus menerus sampai menjadi $base case$ yaitu 1!
-    \end {itemize}
-  \end{itemize}
-\end{frame}
-
-\begin{frame}[fragile]
-\frametitle{Contoh Solusi: faktorial\_rekursi.pas}
-Perhatikan contoh berikut:
-\begin{lstlisting}
-  (* Faktorial dengan rekursi : *)
-  function faktorial(Z:longint):longint;
-  begin
-    if (Z = 1) then (* Base Case *)
-      faktorial := 1
-    else
-      faktorial := Z * faktorial(Z-1); (* Proses Mengecilkan Masalah*)
+    end;
+    
+    faktorial := jawaban;
   end;
 \end{lstlisting}
 \end{frame}
 
 \begin{frame}
-\frametitle{Penjelasan solusi rekursi}
-Perhatikan maksud kami:
-\begin {itemize}
-  \item Anggap program kita ditanya nilai dari 5! (N=5)
-  \item Kita akan panggil faktorial(5)
-  \item faktorial(5) akan mengecek, apakah N=5 adalah $base case$
-  \item Ternyata bukan! Karena baru $base case$ kalau N=1
-  \item Tadi kita ingat kalau 5! = 5 X 4!
-  \item Untuk menjawab soal dari nilai 5!, faktorial(5)  butuh nilai dari 4!
-  \item Karena dia butuh nilai dari 4! , dia akan panggil faktorial(4)
+\frametitle{Solusi Rekursif}
+\textit{Base Case}
+\begin{itemize}
+  \item Pada batasan soal, nilai $N$ berkisar antara 1 sampai 10.
+  \item Dari batasan tersebut, kasus terkecilnya adalah $N=1$.
+  \item Jadi $N=1$ adalah \textit{base case}, dan memang jelas diketahui bahwa 1! = 1.
 \end{itemize}
 \end{frame}
 
 \begin{frame}
-\frametitle{Penjelasan solusi rekursi (lanj.) }
-\begin {itemize}
-  \item faktorial(4) akan mengecek apa sudah base case! Belum! Kita ingat 4!= 4 X 3! Dia butuh nilai dari 3! maka dia akan panggil faktorial(3)
-  \item faktorial(3) akan mengecek apa sudah base case! Belum! Kita ingat 3!= 3 X 2! Dia butuh nilai dari 2! maka dia akan panggil faktorial(2)
-  \item faktorial(2) akan mengecek apa sudah base case! Belum! Kita ingat 2!= 2 X 1! Dia butuh nilai dari 1! maka dia akan panggil faktorial (1)
+\frametitle{Solusi Rekursif (lanj.) }
+\textit{Recurrence Relation}
+\begin{itemize}
+  \item Bagaimana jika $N > 1$?
+  \item Sadari bahwa untuk mencari $N!$, diperlukan informasi $(N-1)!$.
+  \item Jika $(N-1)!$ diketahui, bisa dihitung $N! = N \times (N-1)!$
+  \item Dengan observasi ini, kita mengetahui hubungan rekursif dari $N!$, yaitu $N! = N \times (N-1)!$.
 \end{itemize}
 \end{frame}
 
 \begin{frame}
-\frametitle{Penjelasan solusi rekursi (lanj.) }
-\begin {itemize}
-  \item faktorial(1) akan mengecek apa sudah base case! Sudah! Karena 1! = 1, dia kembalikan angka 1
-  \item faktorial(2) menangkap jawaban 1! dari fakotrial(1). 2! = 2 X 1! = 2 X 1 =2. faktorial(2) mengembalikan angka 2
-  \item faktorial(3) menangkap jawaban 2! dari faktorial(2). 3!= 3 X 2! = 3 X 2 =6. faktorial(3) mengembalikan angka 6
-  \item Dst sampai faktorial(5) menangkap jawaban 4! dari faktorial(4). 5!= 5 X 4! = 5 X 24 =120.
+\frametitle{Contoh Pengerjaan}
+\begin{itemize}
+  \item Jadi untuk menghitung $4!$, nilainya adalah $4 \times 3\!$.
+  \item Berhubung program tidak tahu nilai dari $3!$, maka kasus diperkecil lebih lanjut: $3 \times 2!$
+  \item Program juga tidak tahu nilai dari $2!$, sehingga kasus diperkecil lebih lanjut: $2 \times 1!$.
 \end{itemize}
 \end{frame}
 
+\begin{frame}
+\frametitle{Contoh Pengerjaan (lanj.)}
+\begin{itemize}
+  \item $1!$ sudah diketahui nilainya, yaitu $1$. Jadi $2! = 2 \times 1 = 2$.
+  \item $2!$ sudah diketahui nilainya, yaitu $2$. Jadi $3! = 3 \times 2 = 6$.
+  \item $3!$ sudah diketahui nilainya, yaitu $6$. Jadi $4! = 4 \times 6 = 24$.
+  \item Kini diketahui $4! = 24$, dan persoalan selesai.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Contoh Solusi: faktorial\_rekursif.pas}
+Berikut implementasi pencarian faktorial secara rekursif:
+\begin{lstlisting}
+  function faktorial(x: longint): longint;
+  begin
+    if (x = 1) then begin
+      faktorial := 1
+    end else begin
+      faktorial := x * faktorial(x-1); 
+    end;
+  end;
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}
+\frametitle{Contoh Eksekusi Fungsi}
+\begin{itemize}
+  \item Misalkan hendak dicari nilai $4!$ ($N=4$)
+  \item Panggil faktorial(4)
+  \item faktorial(4) akan memeriksa, apakah $N=1$
+  \item Ternyata bukan, sehingga masuk ke bagian \textit{recurrence relation}.
+  \item Untuk mencari faktorial(4), diperlukan nilai $3!$, sehingga dipanggil faktorial(3).
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Contoh Eksekusi Fungsi (lanj.) }
+\begin{itemize}
+  \item faktorial(3) juga masih bukan \textit{base case},
+  
+  sehingga panggil faktorial(2).
+  \item faktorial(2) juga masih bukan \textit{base case}, 
+  
+  sehingga panggil faktorial(1).
+  \item faktorial(1) merupakan \textit{base case}, 
+  
+  sehingga langsung dikembalikan hasilnya, yaitu 1.
+  
+  \item Nilai ini dikembalikan ke fungsi yang memanggil faktorial(1), yaitu faktorial(2).
+ 
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Contoh Eksekusi Fungsi (lanj.) }
+\begin{itemize}
+  \item faktorial(2) menerima jawaban dari faktorial(1), sehingga "faktorial(2) = 2 $\times$ faktorial(1)" kini bisa dikerjakan dan dihasilkan nilai 2.
+  \item faktorial(3) menangkap jawaban dari faktorial(2), sehingga "faktorial(3) = 3 $\times$ faktorial(2)" kini bisa dikerjakan dan dihasilkan nilai 6.
+  \item faktorial(4) menangkap jawaban dari faktorial(3), sehingga "faktorial(4) = 4 $\times$ faktorial(3)" kini bisa dikerjakan dan dihasilkan nilai 24.
+  \item Pemanggilan fungsi selesai, dan disimpulkan faktorial(4) = 24.
+\end{itemize}
+\end{frame}
 
 \begin{frame}
 \frametitle{Kompleksitas solusi}
-\begin {itemize}
-  \item Kompleksitas solusi adalah O($N$). Karena jika kita panggil \alert{\textbf{faktorial(N)}}, pasti terpanggil semua dari \alert{\textbf{faktorial(1)}} sampai \alert{\textbf{f(N)}}.
-  \item Jumlah pemanggilan adalah $N$ kali. Makanya O($N$).
-\end {itemize}
+\begin{itemize}
+  \item Baik secara iteratif maupun rekursif, kompleksitasnya adalah $O(N)$.
+  \item Setiap pemanggilan rekursif membutuhkan alokasi memori, sehingga jika pemanggilannya semakin dalam, semakin banyak tambahan memori yang digunakan.
+  \item Waktu untuk mengalokasikan memori juga menyebabkan solusi rekursif cenderung bekerja lebih lambat dibandingkan solusi iteratif.
+\end{itemize}
 \end{frame}
 
 \begin{frame}
-\frametitle{Materi selanjutnya}
+\frametitle{Materi Selanjutnya}
 \begin{itemize}
-  \item Rekursi bercabang. Di contoh faktorial tadi, program hanya menangkap 1 variabel. Bagaimana kalau program menangkap 2 variabel? (atau bahkan lebih)
-\end {itemize}
+  \item Pada pembelajaran ini, rekursi yang digunakan masih sangat sederhana.
+  \item Bahkan belum terasa bahwa solusi rekursi lebih mudah dan pendek kodenya dibandingkan solusi iteratif.
+  \item Pembelajaran selanjutnya tentang rekursi yang lebih kompleks akan menunjukkan hal tersebut.
+\end{itemize}
 \end{frame}
 
 \end{document}
