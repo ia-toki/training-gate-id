@@ -1,28 +1,28 @@
-# TOKI Training Gate Berbahasa Indonesia
+# TLX Training Gate Berbahasa Indonesia
 
 [![Build Status](https://travis-ci.org/ia-toki/training-gate-id.svg?branch=master)](https://travis-ci.org/ia-toki/training-gate-id)
 
 ## Daftar Isi
-* [Tentang TOKI Training Gate](#tentang-toki-training-gate)
-* [Tujuan Dibuatnya TOKI Training Gate](#tujuan-dibuatnya-toki-training-gate)
+* [Tentang TLX Training Gate](#tentang-toki-training-gate)
+* [Tujuan Dibuatnya TLX Training Gate](#tujuan-dibuatnya-toki-training-gate)
 * [Silabus Pembelajaran](#silabus-pembelajaran)
 * [Link Unduh](#link-unduh)
 * [Setup Latex](#setup-latex)
 * [Skema Kontribusi](#skema-kontribusi)
 * [Lisensi](#lisensi)
 
-## Tentang TOKI Training Gate
-Diinisiasi oleh Ikatan Alumni Tim Olimpiade Komputer Indonesia (IA TOKI), TOKI Training Gate merupakan proyek e-learning untuk belajar pemrograman kompetitif yang ditujukan bagi pelajar Indonesia.
+## Tentang TLX Training Gate
+Diinisiasi oleh Ikatan Alumni Tim Olimpiade Komputer Indonesia (IA TOKI), TLX Training Gate merupakan proyek e-learning untuk belajar pemrograman kompetitif yang ditujukan bagi pelajar Indonesia.
 
 Training Gate sendiri terdiri dari sekumpulan materi pembelajaran dan soal latihan terpusat yang ditulis dalam Bahasa Indonesia, ke depannya akan diintegrasikan ke website ia-toki.org.
 
 ## Latar Belakang
 Tidak semua sekolah di Indonesia mendapatkan pelajaran komputer tentang pemrograman, padahal setiap tahunnya ada banyak sekali kompetisi pemrograman bagi pelajar SMA/sederajat di Indonesia. Bahkan, terdapat Olimpiade Sains Nasional di bidang komputer dan International Olympiad in Informatics (IOI). Akibatnya, jawara dari ajang-ajang tersebut didominasi oleh siswa-siswi yang mendapat pelajaran pemrograman di sekolahnya. Meskipun sudah banyak beredar materi pembelajaran pemrograman di internet, masih jarang ada yang berbahasa Indonesia dan spesifik untuk mengarah ke kompetisi pemrograman.
 
-## Tujuan dibuatnya TOKI Training Gate
+## Tujuan dibuatnya TLX Training Gate
 Sebagai tujuan jangka pendek: mempermudah siswa-siswi Indonesia untuk belajar pemrograman kompetitif secara mandiri.
 
-Sebagai tujuan jangka panjang: diharapkan pengembangan TOKI Training Gate dilakukan hingga materi pembelajaran lanjut, seperti materi Pelatihan Nasional (Pelatnas) TOKI. Dengan demikian, setiap siswa-siswi di Indonesia berkesempatan untuk mempelajari apa yang didapatkan saat Pelatnas TOKI.
+Sebagai tujuan jangka panjang: diharapkan pengembangan TLX Training Gate dilakukan hingga materi pembelajaran lanjut, seperti materi Pelatihan Nasional (Pelatnas) TOKI. Dengan demikian, setiap siswa-siswi di Indonesia berkesempatan untuk mempelajari apa yang didapatkan saat Pelatnas TOKI.
 
 ## Silabus Pembelajaran
 
@@ -135,14 +135,14 @@ Materi dalam bentuk PDF yang sejauh ini sudah dibuat bisa diakses [di sini](http
 
 ## Setup Latex
 
-Jika Anda tertarik untuk mengembangkan atau memodifikasi TOKI Training Gate, Anda perlu memasang Latex pada sistem Anda. Lakukan langkah-langkah berikut.
+Jika Anda tertarik untuk mengembangkan atau memodifikasi TLX Training Gate, Anda perlu memasang Latex pada sistem Anda. Lakukan langkah-langkah berikut.
 
 1. Install Latex. Sebagai contoh, pada Linux Anda dapat meng-install `texlive`. Pada OS X, Anda dapat meng-install `mactex`.
 2. Install `latexmk`, setidaknya versi 4.35.
 3. Clone repository ini.
 4. Jalankan script `setup.sh` dengan akses root. Script ini akan meng-install theme beamer bernama tokitex dan meng-install package CTAN yang dibutuhkan.
-5. Untuk mencoba melakukan kompilasi, cd ke folder repository TOKI Training Gate Anda, lalu jalankan `make`.
-6. Setelah dijalankan, akan muncul sebuah folder benama `target` yang berisi berkas hasil kompilasi. Selain berkas PDF terdapat pula berkas lainnya yang bisa Anda abaikan. Apabila seluruh PDF ter-compile dengan benar, berarti Anda sudah melakukan setup Latex untuk TOKI Training Gate dengan benar.
+5. Untuk mencoba melakukan kompilasi, cd ke folder repository TLX Training Gate Anda, lalu jalankan `make`.
+6. Setelah dijalankan, akan muncul sebuah folder benama `target` yang berisi berkas hasil kompilasi. Selain berkas PDF terdapat pula berkas lainnya yang bisa Anda abaikan. Apabila seluruh PDF ter-compile dengan benar, berarti Anda sudah melakukan setup Latex untuk TLX Training Gate dengan benar.
 
 ## Skema Kontribusi
 
