@@ -124,16 +124,16 @@ Implementasi solusi secara iteratif cukup sederhana:
 \textit{Recurrence Relation}
 \begin{itemize}
   \item Bagaimana jika $N > 1$?
-  \item Sadari bahwa untuk mencari $N!$, diperlukan informasi $(N-1)!$.
-  \item Jika $(N-1)!$ diketahui, bisa dihitung $N! = N \times (N-1)!$
-  \item Dengan observasi ini, kita mengetahui hubungan rekursif dari $N!$, yaitu $N! = N \times (N-1)!$.
+  \item Untuk mencari $N!$, kita bisa mencari $(N-1)!$ dan mengalikannya dengan $N$.
+  \item Jadi persoalan mencari $N!$ bisa diselesaikan dengan mudah jika diketahui $(N-1)!$.
+  \item Dengan observasi ini, kita mengetahui hubungan rekursif dari $N!$. 
 \end{itemize}
 \end{frame}
 
 \begin{frame}
 \frametitle{Contoh Pengerjaan}
 \begin{itemize}
-  \item Jadi untuk menghitung $4!$, nilainya adalah $4 \times 3\!$.
+  \item Untuk menghitung $4!$, nilainya adalah $4 \times 3!$.
   \item Berhubung program tidak tahu nilai dari $3!$, maka kasus diperkecil lebih lanjut: $3 \times 2!$
   \item Program juga tidak tahu nilai dari $2!$, sehingga kasus diperkecil lebih lanjut: $2 \times 1!$.
 \end{itemize}
@@ -164,43 +164,157 @@ Berikut implementasi pencarian faktorial secara rekursif:
 \end{lstlisting}
 \end{frame}
 
+\begin{frame}[fragile]
+\frametitle{Contoh Solusi: faktorial\_rekursif.pas (lanj.)}
+Pemanggilan pada program utama bisa dilakukan seperti memanggil fungsi biasa:
+\begin{lstlisting}
+  ...
+  
+  begin
+    writeln('4! = ', faktorial(4));
+  end.
+\end{lstlisting}
+\end{frame}
+
 \begin{frame}
 \frametitle{Contoh Eksekusi Fungsi}
-\begin{itemize}
-  \item Misalkan hendak dicari nilai $4!$ ($N=4$)
-  \item Panggil faktorial(4)
-  \item faktorial(4) akan memeriksa, apakah $N=1$
-  \item Ternyata bukan, sehingga masuk ke bagian \textit{recurrence relation}.
-  \item Untuk mencari faktorial(4), diperlukan nilai $3!$, sehingga dipanggil faktorial(3).
-\end{itemize}
+\begin{columns}
+  \column{0.38\linewidth}
+    \centering
+    \includegraphics[width=4cm]{asset/rekursi-1.pdf}
+  \column{0.58\linewidth}
+    \begin{itemize}
+      \item Pada awalnya, program utama dijalankan. Misalkan hendak dicari nilai $4!$.
+    \end{itemize} 
+  \end{columns} 
 \end{frame}
 
 \begin{frame}
-\frametitle{Contoh Eksekusi Fungsi (lanj.) }
-\begin{itemize}
-  \item faktorial(3) juga masih bukan \textit{base case},
-  
-  sehingga panggil faktorial(2).
-  \item faktorial(2) juga masih bukan \textit{base case}, 
-  
-  sehingga panggil faktorial(1).
-  \item faktorial(1) merupakan \textit{base case}, 
-  
-  sehingga langsung dikembalikan hasilnya, yaitu 1.
-  
-  \item Nilai ini dikembalikan ke fungsi yang memanggil faktorial(1), yaitu faktorial(2).
- 
-\end{itemize}
+\frametitle{Contoh Eksekusi Fungsi (lanj.)}
+\begin{columns}
+  \column{0.38\linewidth}
+    \centering
+    \includegraphics[width=4cm]{asset/rekursi-2.pdf}
+  \column{0.58\linewidth}
+    \begin{itemize}
+      \item Dari program utama, dipanggil fungsi \textbf{faktorial(4)}.
+      \item Pada saat ini, status program utama adalah "tidak aktif", dan akan "aktif" kembali setelah fungsi \textbf{faktorial(4)} selesai.
+    \end{itemize}
+  \end{columns} 
 \end{frame}
 
 \begin{frame}
-\frametitle{Contoh Eksekusi Fungsi (lanj.) }
-\begin{itemize}
-  \item faktorial(2) menerima jawaban dari faktorial(1), sehingga "faktorial(2) = 2 $\times$ faktorial(1)" kini bisa dikerjakan dan dihasilkan nilai 2.
-  \item faktorial(3) menangkap jawaban dari faktorial(2), sehingga "faktorial(3) = 3 $\times$ faktorial(2)" kini bisa dikerjakan dan dihasilkan nilai 6.
-  \item faktorial(4) menangkap jawaban dari faktorial(3), sehingga "faktorial(4) = 4 $\times$ faktorial(3)" kini bisa dikerjakan dan dihasilkan nilai 24.
-  \item Pemanggilan fungsi selesai, dan disimpulkan faktorial(4) = 24.
-\end{itemize}
+\frametitle{Contoh Eksekusi Fungsi (lanj.)}
+\begin{columns}
+  \column{0.38\linewidth}
+    \centering
+    \includegraphics[width=4cm]{asset/rekursi-3.pdf}
+  \column{0.58\linewidth}
+    \begin{itemize}
+      \item \textbf{faktorial(4)} mengeksekusi baris "faktorial := x * faktorial(x-1)", yang pada kasus ini \textbf{x} = 4.
+      \item Akibatnya, dipanggil fungsi \textbf{faktorial(3)}. 
+      \item Kini yang "aktif" adalah \textbf{faktorial(3)}.
+    \end{itemize}
+  \end{columns} 
+\end{frame}
+
+\begin{frame}
+\frametitle{Contoh Eksekusi Fungsi (lanj.)}
+\begin{columns}
+  \column{0.38\linewidth}
+    \centering
+    \includegraphics[width=4cm]{asset/rekursi-4.pdf}
+  \column{0.58\linewidth}
+    \begin{itemize}
+      \item Hal serupa terjadi untuk mencari nilai \textbf{faktorial(3)}.
+    \end{itemize}
+  \end{columns} 
+\end{frame}
+
+\begin{frame}
+\frametitle{Contoh Eksekusi Fungsi (lanj.)}
+\begin{columns}
+  \column{0.38\linewidth}
+    \centering
+    \includegraphics[width=4cm]{asset/rekursi-5.pdf}
+  \column{0.58\linewidth}
+    \begin{itemize}
+      \item Terjadi juga untuk mencari nilai \textbf{faktorial(2)}.
+    \end{itemize}
+  \end{columns} 
+\end{frame}
+
+\begin{frame}
+\frametitle{Contoh Eksekusi Fungsi (lanj.)}
+\begin{columns}
+  \column{0.38\linewidth}
+    \centering
+    \includegraphics[width=4cm]{asset/rekursi-5.pdf}
+  \column{0.58\linewidth}
+    \begin{itemize}
+      \item Pada saat ini, \textbf{faktorial(1)} tidak lagi melakukan pemanggilan rekursif, berhubung ditemui \textit{base case}.
+      \item Sebaliknya, langsung dikembalikan nilai 1 sebagai jawaban atas \textbf{faktorial(1)}.
+    \end{itemize}
+  \end{columns} 
+\end{frame}
+
+\begin{frame}
+\frametitle{Contoh Eksekusi Fungsi (lanj.)}
+\begin{columns}
+  \column{0.38\linewidth}
+    \centering
+    \includegraphics[width=4cm]{asset/rekursi-4.pdf}
+  \column{0.58\linewidth}
+    \begin{itemize}
+      \item \textbf{faktorial(1)} selesai, kini kembali ke \textbf{faktorial(2)}.
+      \item Nilai \textbf{faktorial(2)} kini ditemukan, yaitu 2 $\times$ \textbf{faktorial(1)}.
+      \item Fungsi \textbf{faktorial(2)} mengembalikan nilai 2 ke pemanggilnya, lalu selesai.
+    \end{itemize}
+  \end{columns} 
+\end{frame}
+
+\begin{frame}
+\frametitle{Contoh Eksekusi Fungsi (lanj.)}
+\begin{columns}
+  \column{0.38\linewidth}
+    \centering
+    \includegraphics[width=4cm]{asset/rekursi-3.pdf}
+  \column{0.58\linewidth}
+    \begin{itemize}
+      \item Setelah menerima nilai kembalian \textbf{faktorial(2)}, \textbf{faktorial(3)} kembali aktif.
+      \item Hasilnya dapat ditemukan, yaitu \\ 3 $\times$ \textbf{faktorial(2)}.
+      \item Fungsi \textbf{faktorial(3)} mengembalikan nilai 6 ke pemanggilnya, lalu selesai.
+    \end{itemize}
+  \end{columns} 
+\end{frame}
+
+\begin{frame}
+\frametitle{Contoh Eksekusi Fungsi (lanj.)}
+\begin{columns}
+  \column{0.38\linewidth}
+    \centering
+    \includegraphics[width=4cm]{asset/rekursi-2.pdf}
+  \column{0.58\linewidth}
+    \begin{itemize}
+      \item Kini \textbf{faktorial(4)} kembali aktif.
+      \item Hasilnya dapat ditemukan, yaitu \\ 4 $\times$ \textbf{faktorial(3)}.
+      \item Fungsi \textbf{faktorial(4)} mengembalikan nilai 24 ke pemanggilnya, lalu selesai.
+    \end{itemize}
+  \end{columns} 
+\end{frame}
+
+\begin{frame}
+\frametitle{Contoh Eksekusi Fungsi (lanj.)}
+\begin{columns}
+  \column{0.38\linewidth}
+    \centering
+    \includegraphics[width=4cm]{asset/rekursi-1.pdf}
+  \column{0.58\linewidth}
+    \begin{itemize}
+      \item Program utama yang memanggil \textbf{faktorial(4)} menerima nilai kembaliannya, yaitu 24.
+      \item Program utama kembali menjalankan perintah-perintah berikutnya.
+    \end{itemize}
+  \end{columns} 
 \end{frame}
 
 \begin{frame}
