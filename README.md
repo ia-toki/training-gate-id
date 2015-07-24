@@ -131,7 +131,7 @@ Berikut ini adalah bab-bab dalam silabus pembelajaran untuk topik Pemrograman Da
   * Analsis kompleksitas
 
 ## Link Unduh
-Materi dalam bentuk PDF yang sejauh ini sudah dibuat bisa diakses [di sini](https://github.com/ia-toki/training-gate-id/archive/target.zip).
+Materi dalam bentuk PDF yang sejauh ini sudah dibuat bisa diakses [di sini](https://github.com/ia-toki/training-gate-id-pdf/archive/master.zip).
 
 ## Setup Latex
 

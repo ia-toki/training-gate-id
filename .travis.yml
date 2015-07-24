@@ -15,4 +15,4 @@ script:
     - make
 
 after_success:
-    - ./publish_target.sh
+    - ./publish_pdf.sh
