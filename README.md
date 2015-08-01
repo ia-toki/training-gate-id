@@ -125,7 +125,7 @@ Berikut ini adalah bab-bab dalam silabus pembelajaran untuk topik Pemrograman Da
   * Rekursi tanpa cabang
   * Analsis kompleksitas
 
-###15. Rekursi Lanjutan
+###15. Rekursi Lanjut
 
   * Rekursi dengan cabang
   * Analsis kompleksitas
