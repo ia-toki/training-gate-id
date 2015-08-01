@@ -57,7 +57,7 @@ Terdapat dua hal yang perlu dipikirkan ketika menggunakan strategi rekursif:
 Deskripsi:
 \begin{itemize}
   \item Pak Dengklek baru mempelajari konsep matematika baru, yaitu faktorial.
-  \item Operasi faktorial pada $N$, atau ditulis dengan notasi $N$!, adalah operasi mengalikan bilangan dari 1 sampai N.
+  \item Operasi faktorial pada $N$, atau ditulis dengan notasi $N$!, adalah operasi mengalikan bilangan dari 1 sampai dengan $N$.
   \item Contoh: Jika $N = 4$, maka $4! = 1 \times 2 \times 3 \times 4 = 24$
   \item Diberikan $N$, bantu Pak Dengklek mencari hasil $N$!
 \end{itemize}
@@ -113,7 +113,7 @@ Implementasi solusi secara iteratif cukup sederhana:
 \frametitle{Solusi Rekursif}
 \textit{Base Case}
 \begin{itemize}
-  \item Pada batasan soal, nilai $N$ berkisar antara 1 sampai 10.
+  \item Pada batasan soal, nilai $N$ berkisar antara 1 sampai dengan 10.
   \item Dari batasan tersebut, kasus terkecilnya adalah $N=1$.
   \item Jadi $N=1$ adalah \textit{base case}, dan memang jelas diketahui bahwa 1! = 1.
 \end{itemize}
@@ -318,7 +318,7 @@ Pemanggilan pada program utama bisa dilakukan seperti memanggil fungsi biasa:
 \end{frame}
 
 \begin{frame}
-\frametitle{Kompleksitas solusi}
+\frametitle{Kompleksitas Solusi}
 \begin{itemize}
   \item Baik secara iteratif maupun rekursif, kompleksitasnya adalah $O(N)$.
   \item Setiap pemanggilan rekursif membutuhkan alokasi memori, sehingga jika pemanggilannya semakin dalam, semakin banyak tambahan memori yang digunakan.
