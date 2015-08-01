@@ -29,7 +29,7 @@ Melalui dokumen ini, kalian akan:
     \item Pak Dengklek menancapkan tiga buah tiang pancang di halaman rumahnya untuk membangun sebuah kandang bebek.
     \item Setiap tiang pancang bisa dianggap terletak di suatu sistem koordinat Kartesius, yaitu di $(A_x, A_y)$, $(B_x, B_y)$, dan $(C_x, C_y)$.
     \item Pagar akan dibentangkan menurut garis lurus antar setiap tiang pancang.
-    \item Sekarang Pak Dengklek ingin tahu, berapa luas kandang bebeknya!
+    \item Sekarang Pak Dengklek ingin tahu berapa luas kandang bebeknya.
   \end{itemize}
   \item Persoalan yang kita hadapi adalah menghitung luas dari segitiga, jika hanya diberikan titik-titik sudutnya.
 \end{itemize}
@@ -70,7 +70,6 @@ Bagaimana implementasinya pada program?
   \begin{lstlisting}
     bacaMasukan(N);
     bangkitkanPrimaSampai(N);
-
     writeln('faktorisasi:');
     temp := N;
     while (not cekPrima(temp)) do begin
@@ -78,8 +77,9 @@ Bagaimana implementasinya pada program?
       temp := temp div d;
       writeln(d);
     end;
-    if (temp > 1) then
+    if (temp > 1) then begin
       writeln(temp);
+    end;
   \end{lstlisting}
 \end{itemize}
 \end{frame}
@@ -178,7 +178,7 @@ Pada Pascal, prosedur bisa ditulis dengan format berikut:
 
 \begin{frame}[fragile]
 \frametitle{Konsep Parameter}
-Parameter merupakan tempat untuk "memberi masukan" bagi prosedur, sehingga prosedur bisa berperilaku berdasarkan masukan yang dia terima.
+Parameter merupakan tempat untuk "memberi masukan" bagi prosedur, sehingga prosedur bisa berperilaku berdasarkan masukan yang ia terima.
 \vfill
 Perhatikan contoh berikut:
 \begin{lstlisting}
@@ -265,14 +265,14 @@ Perhatikan contoh berikut:
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{Scope Variabel}
-\begin{block}{Apa itu \textbf{scope variabel}?}
-Bisa dianggap sebagai "masa hidup" suatu variabel; kapan dia terdefinisi dan kapan tidak.
+\frametitle{Lingkup Variabel}
+\begin{block}{Apa itu \textbf{lingkup variabel}?}
+Bisa dianggap sebagai "masa hidup" suatu variabel; kapan ia mulai terdefinisi dan kapan ia sudah tidak terdefinisi lagi.
 \end{block}
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{Scope Variabel (lanj.)}
+\frametitle{Lingkup Variabel (lanj.)}
 \begin{itemize}
   \item Perhatikan kembali prosedur \textbf{gambar} berikut:
   \begin{lstlisting}
@@ -292,7 +292,7 @@ Bisa dianggap sebagai "masa hidup" suatu variabel; kapan dia terdefinisi dan kap
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{Scope Variabel (lanj.)}
+\frametitle{Lingkup Variabel (lanj.)}
 \begin{itemize}
   \item Variabel yang dideklarasikan pada blok \textbf{var subprogram} biasa disebut sebagai \textbf{variabel lokal}.
   \item Sementara variabel yang dideklarasikan pada blok \textbf{var program utama} disebut sebagai \textbf{variabel global}.
@@ -412,7 +412,7 @@ Bisa dianggap sebagai "masa hidup" suatu variabel; kapan dia terdefinisi dan kap
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{Passing Parameter By Value}
+\frametitle{Passing Parameter by Value}
 \begin{itemize}
   \item Sebagai penjelasan, perhatikan program berikut:
   \begin{lstlisting}
@@ -438,7 +438,7 @@ Bisa dianggap sebagai "masa hidup" suatu variabel; kapan dia terdefinisi dan kap
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{Passing Parameter By Value (lanj.)}
+\frametitle{Passing Parameter by Value (lanj.)}
 \begin{itemize}
   \item Jika dijalankan, apa keluaran dari program tersebut? Apakah "x=2 y=1"?
   \item Jawabannya \alert{tidak}, yang tercetak adalah "x=1 y=2".
@@ -448,7 +448,7 @@ Bisa dianggap sebagai "masa hidup" suatu variabel; kapan dia terdefinisi dan kap
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{Passing Parameter By Reference}
+\frametitle{Passing Parameter by Reference}
 \begin{itemize}
   \item Lain halnya ketika kita menambahkan kata kunci \textbf{var} pada penulisan parameter:
   \begin{lstlisting}
@@ -465,7 +465,7 @@ Bisa dianggap sebagai "masa hidup" suatu variabel; kapan dia terdefinisi dan kap
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{Passing Parameter By Reference (lanj.)}
+\frametitle{Passing Parameter by Reference (lanj.)}
 \begin{itemize}
   \item Dengan cara ini, ketika \textbf{tukar}($x$, $y$) dipanggil, \alert{alamat memori variabel} $x$ dan $y$ dikirimkan ke parameter $a$ dan $b$.
   \item Kini, $x$ dan $a$ mengacu pada alamat memori yang sama.
@@ -476,7 +476,7 @@ Bisa dianggap sebagai "masa hidup" suatu variabel; kapan dia terdefinisi dan kap
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{Passing Parameter By Reference (lanj.)}
+\frametitle{Passing Parameter by Reference (lanj.)}
 \begin{itemize}
   \item Dengan \textit{passing parameter by reference}, kita tidak bisa melakukan:
   \begin{lstlisting}
@@ -489,12 +489,12 @@ Bisa dianggap sebagai "masa hidup" suatu variabel; kapan dia terdefinisi dan kap
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{Penulisan Pada Pascal}
+\frametitle{Penulisan pada Pascal}
 \begin{itemize}
   \item Untuk melakukan \textit{passing parameter by reference}, cukup tambahkan kata kunci \textbf{var} di depan parameter yang akan di-\textit{pass by reference}.
   \item Sebuah subprogram bisa juga menerima parameter dengan cara \textit{passing parameter} yang campuran:
   \begin{lstlisting}
-    procedure bagi(a,b:longint; var hasil,sisa:longint);
+    procedure bagi(a,b: longint; var hasil,sisa: longint);
     begin
       hasil := a div b;
       sisa := a mod b;
