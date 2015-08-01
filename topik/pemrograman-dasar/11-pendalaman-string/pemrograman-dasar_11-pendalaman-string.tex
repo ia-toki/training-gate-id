@@ -14,7 +14,7 @@
 \frametitle{Pendahuluan}
 Melalui dokumen ini, kalian akan:
 \begin{itemize}
-  \item Memahami lebih dalam soal string.
+  \item Memahami lebih dalam mengenai string.
   \item Mengenal fungsi-fungsi dasar untuk pengolahan string.
 \end{itemize}
 \vfill
@@ -26,7 +26,7 @@ Seluruh pembahasan string pada dokumen ini mengacu pada tipe data \textbf{string
 
 \begin{frame}
 \frametitle{Pengolahan String}
-Pascal menyediakan berbagai fungsi dan prosedur dasar pengolah string, beberapa di antaranya adalah:
+Pascal menyediakan berbagai fungsi dan prosedur dasar pengolahan string, beberapa di antaranya adalah:
 \begin{itemize}
   \item length
   \item pos
@@ -36,6 +36,8 @@ Pascal menyediakan berbagai fungsi dan prosedur dasar pengolah string, beberapa 
   \item str
   \item val
 \end{itemize}
+
+Sebagai catatan, pada Pascal, indeks atau posisi dari karakter pertama pada sebuah string adalah 1 (\textit{1-based indexing}).
 \end{frame}
 
 \begin{frame}[fragile]
@@ -136,7 +138,7 @@ Contoh:
   nilai := 781;
 
   str(nilai, s);
-  writeln(s);           (* mencetak '781' *)
+  writeln(s);         (* mencetak '781' *)
   writeln(length(s)); (* mencetak 3 *)
 \end{lstlisting}
 \end{frame}
@@ -176,7 +178,7 @@ Parameter e sebenarnya tidak harus ada, sehingga bisa saja ditulis:
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{Operasi Tambahan: konkatenasi}
+\frametitle{Operasi Tambahan: Konkatenasi}
 \begin{itemize}
   \item Konkatenasi adalah penggabungan string.
   \item Pada Pascal, hal ini dapat dilakukan cukup dengan operasi '+', layaknya operasi numerik.
@@ -217,7 +219,7 @@ Sebenarnya, \textbf{string} adalah \textbf{\alert{array of char}}!
   \begin{lstlisting}
     s := 'tes';
     writeln(byte(s[0]));
-    s := 'tes lagi'
+    s := 'tes lagi';
     writeln(byte(s[0]));
   \end{lstlisting}
 \end{itemize}
