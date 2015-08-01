@@ -130,25 +130,6 @@ Implementasi solusi secara iteratif cukup sederhana:
 \end{itemize}
 \end{frame}
 
-\begin{frame}
-\frametitle{Contoh Pengerjaan}
-\begin{itemize}
-  \item Untuk menghitung $4!$, nilainya adalah $4 \times 3!$.
-  \item Berhubung program tidak tahu nilai dari $3!$, maka kasus diperkecil lebih lanjut: $3 \times 2!$
-  \item Program juga tidak tahu nilai dari $2!$, sehingga kasus diperkecil lebih lanjut: $2 \times 1!$.
-\end{itemize}
-\end{frame}
-
-\begin{frame}
-\frametitle{Contoh Pengerjaan (lanj.)}
-\begin{itemize}
-  \item $1!$ sudah diketahui nilainya, yaitu $1$. Jadi $2! = 2 \times 1 = 2$.
-  \item $2!$ sudah diketahui nilainya, yaitu $2$. Jadi $3! = 3 \times 2 = 6$.
-  \item $3!$ sudah diketahui nilainya, yaitu $6$. Jadi $4! = 4 \times 6 = 24$.
-  \item Kini diketahui $4! = 24$, dan persoalan selesai.
-\end{itemize}
-\end{frame}
-
 \begin{frame}[fragile]
 \frametitle{Contoh Solusi: faktorial\_rekursif.pas}
 Berikut implementasi pencarian faktorial secara rekursif:
