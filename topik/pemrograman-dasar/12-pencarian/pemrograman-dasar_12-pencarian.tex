@@ -35,7 +35,7 @@ Deskripsi:
   \item Kwek, salah satu bebek Pak Dengklek akan segera merayakan ulang tahunnya. Pak Dengklek akan memberikan Kwek hadiah ulang tahun berupa sepatu.
   \item Terdapat $N$ sepatu di toko. Sepatu ke-$i$ memiliki ukuran sebesar $h_i$.
   \item Pak Dengklek tahu bahwa ukuran kaki Kwek adalah sebuah bilangan bulat $X$.
-  \item Karena $N$ bisa jadi sangat besar, Pak Dengklek meminta bantuan kalian untuk mencari sepatu ke berapa yang cocok dengan ukuran kaki Kwek.
+  \item Karena $N$ bisa jadi sangat besar, Pak Dengklek meminta bantuan kalian untuk mencari sepatu keberapa yang cocok dengan ukuran kaki Kwek.
   \item Bantulah dia!
 \end{itemize}
 \end{frame}
@@ -64,7 +64,7 @@ Batasan:
 \frametitle{Solusi}
 \begin{itemize}
   \item Kita dihadapkan pada persoalan pencarian: diberikan $N$ angka. Cari apakah $X$ ada di antara angka-angka tersebut.
-  \item Jika ditemukan, cetak di urutan ke berapa angka tersebut berada.
+  \item Jika ditemukan, cetak di urutan keberapa angka tersebut berada.
   \item Salah satu ide yang muncul adalah:
   \begin{itemize}
     \item Periksa satu per satu dari sepatu pertama, kedua, ketiga, dan seterusnya.
@@ -140,12 +140,12 @@ Implementasinya cukup sederhana:
 \end{frame}
 
 \begin{frame}
-\frametitle{Analisis Performa}
+\frametitle{Analisis Kinerja}
 \begin{itemize}
   \item Misalkan terdapat sebuah daftar berisi $N$ elemen, dan kita perlu mencari salah satu elemen.
-  \item Banyaknya operasi maksimal yang dibutuhkan sampai suatu elemen bisa dipastikan keberadaannya sama dengan panjang dari barisan $[N, \frac{N}{2}, \frac{N}{4}, \frac{N}{8}, ..., 2, 1]$
-  \item Yaitu sebesar $\lceil ^2\log{N} \rceil$, sehingga kompleksitasnya $O(\log{N})$.
-  \item Pencarian seperti ini disebut dengan \alert{\textbf{binary search}}
+  \item Banyaknya operasi maksimal yang dibutuhkan sampai suatu elemen bisa dipastikan keberadaannya sama dengan panjang dari barisan $[N, \frac{N}{2}, \frac{N}{4}, \frac{N}{8}, ..., 2, 1]$.
+  \item Yakni sebesar $\lceil ^2\log{N} \rceil$, sehingga kompleksitasnya $O(\log{N})$.
+  \item Pencarian seperti ini disebut dengan \alert{\textbf{binary search}}.
 \end{itemize}
 \end{frame}
 
@@ -226,7 +226,7 @@ Terdapat bermacam cara implementasi \textit{binary search}. Salah satunya:
   \begin{figure}
     \vspace*{-0.32cm}
     \includegraphics{asset/BS-1.pdf}
-    \caption{Misalkan hendak dicari angka 3 dari [1, 1, 3, 5, 5, 6, 7]}
+    \caption{Misalkan hendak dicari bilangan 3 dari [1, 1, 3, 5, 5, 6, 7]}
   \end{figure}
 \end{frame}
 
@@ -234,7 +234,7 @@ Terdapat bermacam cara implementasi \textit{binary search}. Salah satunya:
 \frametitle{Ilustrasi Eksekusi Algoritma (lanj.)}
   \begin{figure}
     \includegraphics{asset/BS-2.pdf}
-    \caption{Angka yang terletak di tengah adalah 5, yang lebih besar dari 3. Artinya, jika angka 3 ada, pasti berada di antara $kiri$ sampai $tengah-1$.}
+    \caption{Bilangan yang terletak di tengah adalah 5, yang lebih besar daripada 3. Artinya, jika bilangan 3 ada, pasti berada di antara $kiri$ sampai dengan $tengah-1$.}
   \end{figure}
 \end{frame}
 
@@ -252,7 +252,7 @@ Terdapat bermacam cara implementasi \textit{binary search}. Salah satunya:
 \frametitle{Ilustrasi Eksekusi Algoritma (lanj.)}
   \begin{figure}
     \includegraphics{asset/BS-4.pdf}
-    \caption{Angka yang terletak di tengah adalah 1, yang lebih kecil dari 3. Artinya, jika angka 3 ada, pasti berada di antara $tengah+1$ sampai $kanan$.}
+    \caption{Bilangan yang terletak di tengah adalah 1, yang lebih kecil daripada 3. Artinya, jika bilangan 3 ada, pasti berada di antara $tengah+1$ sampai dengan $kanan$.}
   \end{figure}
 \end{frame}
 
@@ -271,7 +271,7 @@ Terdapat bermacam cara implementasi \textit{binary search}. Salah satunya:
 \frametitle{Ilustrasi Eksekusi Algoritma (lanj.)}
   \begin{figure}
     \includegraphics{asset/BS-6.pdf}
-    \caption{Ternyata elemen di tengah adalah angka 3, yaitu angka yang dicari. Dengan demikian, angka 3 ditemukan.}
+    \caption{Ternyata elemen di tengah adalah bilangan 3, yaitu bilangan yang dicari. Dengan demikian, bilangan 3 ditemukan.}
   \end{figure}
 \end{frame}
 
