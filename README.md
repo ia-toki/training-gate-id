@@ -142,7 +142,7 @@ Jika Anda tertarik untuk mengembangkan atau memodifikasi TLX Training Gate, Anda
 3. Clone repository ini.
 4. Jalankan script `setup.sh` dengan akses root. Script ini akan meng-install theme beamer bernama tokitex dan meng-install package CTAN yang dibutuhkan.
 5. Untuk mencoba melakukan kompilasi, cd ke folder repository TLX Training Gate Anda, lalu jalankan `make`.
-6. Setelah dijalankan, akan muncul sebuah folder benama `target` yang berisi berkas hasil kompilasi. Selain berkas PDF terdapat pula berkas lainnya yang bisa Anda abaikan. Apabila seluruh PDF ter-compile dengan benar, berarti Anda sudah melakukan setup Latex untuk TLX Training Gate dengan benar.
+6. Setelah dijalankan, akan muncul sebuah folder bernama `target` yang berisi berkas hasil kompilasi. Selain berkas PDF terdapat pula berkas lainnya yang bisa Anda abaikan. Apabila seluruh PDF ter-compile dengan benar, berarti Anda sudah melakukan setup Latex untuk TLX Training Gate dengan benar.
 
 ## Skema Kontribusi
 

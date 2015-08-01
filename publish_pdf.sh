@@ -4,7 +4,7 @@
 
 if [ "$TRAVIS_REPO_SLUG" == "ia-toki/training-gate-id" ] && [ "$TRAVIS_PULL_REQUEST" == "false" ] && [ "$TRAVIS_BRANCH" == "master" ]; then
 
-    cd pdf
+    cd target
     git init
     git config user.email "travis@travis-ci.org"
     git config user.name "travis-ci"
