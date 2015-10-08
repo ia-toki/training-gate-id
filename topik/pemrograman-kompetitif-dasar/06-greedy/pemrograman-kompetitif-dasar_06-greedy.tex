@@ -1,0 +1,45 @@
+\input{../config.tex}
+
+\title{Greedy}
+\author{Tim Olimpiade Komputer Indonesia}
+\date{}
+
+\begin{document}
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+\begin{frame}
+\frametitle{Panduan Konten}
+\begin{itemize}
+  \item Jelaskan konsepnya
+  \item Langsung berikan studi kasus, disarankan coin change dengan koin \{1, 5, 10\}
+  \item Jelaskan mengapa bisa benar? dapat dikaitkan juga bahwa pembuktian greedy kadang sulit dilakukan. Menurut kita "ini pasti optimal, tapi tidak tahu bagaimana dibuktikannnya" karena kita punya insting dan sifat rakus dalam diri :p
+  \item Berikan studi kasus lainnya, misalnya activity selection: diberikan N interval, pilih subset interval dengan anggota terbanyak dengan tidak ada interval yg overlap
+  \item Contoh studi kasus lain yang enak dibahas adalah: diberikan N interval dan sebuah interval besar. Pilih subset interval dengan anggota terkecil, supaya kalau seluruh interval di subset itu digabung, hasilnya bisa mencakupi si interval besar.
+  \item Boleh dijelaskan bahwa greedy butuh banyak latihan dan rakus ;)
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Tips}
+Demi keseragaman dan kemudahan, gunakan command yang sudah didefinisikan di ../config.tex:
+% Komentar: meskipun ada yang menghasilkan format yang sama, tetapi menggunakan command ini mempermudah kalau ke depannya mau mengubah format, tidak perlu find and replace 1 per 1. 
+\begin{itemize}
+  \item Gunakan \textbackslash id\{\} untuk menulis identifier (nama fungsi, variabel), contoh: \textbackslash id\{primeCount\} akan mencetak \id{primeCount}.
+  \item Gunakan \textbackslash progTerm\{\} untuk menulis istilah dalam pemrograman (tipe data, jenis error, for), contoh: \textbackslash progTerm\{integer\} akan mencetak \progTerm{integer}.
+  \item Gunakan \textbackslash foreignTerm\{\} untuk menulis istilah asing lainnya, contoh: \textbackslash foreignTerm\{default\} akan mencetak \foreignTerm{default}.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Tips (lanj.)}
+\begin{itemize}
+  \item Jika diperlukan, gunakan \textbackslash newTerm\{\} untuk menulis istilah yang baru diperkanalkan, contoh: \textbackslash newTerm\{rekursi\} akan mencetak \newTerm{rekursi}.
+  \item Gunakan \textbackslash emp\{\} untuk memberi penekanan, contoh: \textbackslash emp\{sangat lambat\} akan mencetak \emp{sangat lambat}.
+  \item Gunakan \textbackslash statement\{\} untuk merujuk pada statement program, contoh: \textbackslash statement\{count := count + 1\} akan mencetak \statement{count := count + 1}.
+\end{itemize}
+\end{frame}
+
+\end{document}

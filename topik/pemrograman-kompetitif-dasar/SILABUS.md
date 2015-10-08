@@ -8,9 +8,9 @@
 ##2. Matematika Diskret Dasar
   
   * Aritmetika modular
+  * Faktor bilangan dan sifatnya
   * FPB dan KPK
   * Prime generation
-  * Faktorial dan sifatnya
   * Kombinatorik
   * Prinsip inklusi ekslusi
   * Pigeon Hole Principle
