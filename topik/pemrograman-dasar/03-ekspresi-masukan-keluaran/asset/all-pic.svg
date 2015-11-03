@@ -52,8 +52,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.55104611"
-     inkscape:cx="445.55914"
-     inkscape:cy="693.95922"
+     inkscape:cx="471.39671"
+     inkscape:cy="367.35714"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -70,7 +70,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -166,18 +166,18 @@
          x="295.9747"
          style="font-size:40px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Serif;-inkscape-font-specification:Serif"
          xml:space="preserve"><tspan
+           id="tspan2995"
            y="229.08786"
            x="295.9747"
-           id="tspan2991"
-           sodipodi:role="line">operator</tspan><tspan
-           id="tspan2993"
+           sodipodi:role="line">operand</tspan><tspan
            y="279.08786"
            x="295.9747"
-           sodipodi:role="line">operand</tspan><tspan
-           id="tspan2995"
+           sodipodi:role="line"
+           id="tspan3026">operator</tspan><tspan
            y="329.08786"
            x="295.9747"
-           sodipodi:role="line">operator</tspan></text>
+           sodipodi:role="line"
+           id="tspan3028">operand</tspan></text>
       <path
          inkscape:connector-curvature="0"
          id="path2997"
@@ -222,17 +222,17 @@
          id="text3473"
          sodipodi:linespacing="125%"><tspan
            sodipodi:role="line"
-           id="tspan3475"
            x="395.9747"
-           y="229.08786">operator</tspan><tspan
+           y="229.08786"
+           id="tspan3479">operand</tspan><tspan
            sodipodi:role="line"
            x="395.9747"
            y="279.08786"
-           id="tspan3477">operand</tspan><tspan
+           id="tspan3035">operator</tspan><tspan
            sodipodi:role="line"
            x="395.9747"
            y="329.08786"
-           id="tspan3479">operator</tspan></text>
+           id="tspan3037">operand</tspan></text>
       <path
          style="fill:none;stroke:#000000;stroke-width:0.99999994px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
          d="m 324.60077,185.65583 0,33.3305 51.93592,0"
