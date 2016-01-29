@@ -11,33 +11,41 @@
 \end{frame}
 
 \begin{frame}
-\frametitle{Panduan Konten}
+\frametitle{Apa itu Pemrograman Kompetitif ?}
+\begin{block}{Pemrograman Kompetitif}
+\foreignTerm{Competitive programming is a mind sport usually held over the Internet or a local network, involving participants trying to program according to provided specifications.}
+
+-Wikipedia-
+\end{block}
+\end{frame}
+
+\begin{frame}
+\frametitle{Penyelesaian Masalah}
+Penyelesaian masalah adalah suatu proses mental dan intelektual dalam \emp{menemukan masalah} dan memecahkan berdasarkan \emp{data dan informasi} yang akurat, sehingga dapat diambil \emp{kesimpulan} yang tepat dan cermat (Hamalik, 1994:151).
+\end{frame}
+
+\begin{frame}
+\frametitle{Demonstrasi Problem Solving}
+\begin{block}{Masalah}
+Terdapat 3 jenis koin, koin dengan nilai 1, 5 dan 10.
+berapakah jumlah koin minimal yang dibutuhkan untuk mendapatkan nilai N ?
+\end{block}
+\end{frame}
+
+\begin{frame}
+\frametitle{Demonstrasi Problem Solving (lanj.)}
 \begin{itemize}
-  \item Apa yang akan dipelajari pada topik pemrograman kompetitif dasar
-  \item Demonstrasi problem solving
-  \item Pemanasan dengan soal ad hoc
-  \item Slide ini tidak butuh materi, hanya perkenalan
+  \item Masalahnya : memecah bilangan N menjadi bentuk $a + 5 * b + 10 * c$ dan $a + b + c$ minimal
+  \item Data : Koin yang tersedia bernilai 1, 5 dan 10
+  \item Observasi : Mengambil 1 koin bernilai 5 akan lebih baik dibandingkan mengambil 5 koin bernilai 1. Begitu pula dengan koin 5 dan 10
 \end{itemize}
 \end{frame}
 
 \begin{frame}
-\frametitle{Tips}
-Demi keseragaman dan kemudahan, gunakan command yang sudah didefinisikan di ../config.tex:
-% Komentar: meskipun ada yang menghasilkan format yang sama, tetapi menggunakan command ini mempermudah kalau ke depannya mau mengubah format, tidak perlu find and replace 1 per 1. 
-\begin{itemize}
-  \item Gunakan \textbackslash id\{\} untuk menulis identifier (nama fungsi, variabel), contoh: \textbackslash id\{primeCount\} akan mencetak \id{primeCount}.
-  \item Gunakan \textbackslash progTerm\{\} untuk menulis istilah dalam pemrograman (tipe data, jenis error, for), contoh: \textbackslash progTerm\{integer\} akan mencetak \progTerm{integer}.
-  \item Gunakan \textbackslash foreignTerm\{\} untuk menulis istilah asing lainnya, contoh: \textbackslash foreignTerm\{default\} akan mencetak \foreignTerm{default}.
-\end{itemize}
-\end{frame}
-
-\begin{frame}
-\frametitle{Tips (lanj.)}
-\begin{itemize}
-  \item Jika diperlukan, gunakan \textbackslash newTerm\{\} untuk menulis istilah yang baru diperkenalkan, contoh: \textbackslash newTerm\{rekursi\} akan mencetak \newTerm{rekursi}.
-  \item Gunakan \textbackslash emp\{\} untuk memberi penekanan, contoh: \textbackslash emp\{sangat lambat\} akan mencetak \emp{sangat lambat}.
-  \item Gunakan \textbackslash statement\{\} untuk merujuk pada statement program, contoh: \textbackslash statement\{count := count + 1\} akan mencetak \statement{count := count + 1}.
-\end{itemize}
+\frametitle{Demonstrasi Problem Solving (lanj.)}
+\begin{block}{Kesimpulan}
+Untuk mendapatkan hasil terbaik, kita mecoba untuk mengambil koin 10 sebanyak banyaknya, kemudian koin 5 dan kemudian koin 1
+\end{block}
 \end{frame}
 
 \end{document}
