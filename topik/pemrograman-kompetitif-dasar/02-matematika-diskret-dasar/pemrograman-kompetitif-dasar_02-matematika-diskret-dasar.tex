@@ -30,7 +30,12 @@ Melalui dokumen ini, kalian akan:
 \begin{itemize}
   \item Operasi $A \mod M$ biasa disebut "A modulo M".
   \item Operasi modulo ini akan memberikan sisa hasil bagi A oleh M.
-  \item Contoh: $5 \mod 3 = 2$, $10 \mod 2 = 0$, $21 \mod 6 = 3$
+  \item Contoh: 
+  \begin{itemize}
+    \item $5 \mod 3 = 2$ 
+    \item $10 \mod 2 = 0$
+    \item $21 \mod 6 = 3$
+  \end{itemize}  
 \end{itemize}
 \end{frame}
 
@@ -39,13 +44,13 @@ Melalui dokumen ini, kalian akan:
 \begin{itemize}
   \item $(A + B) \mod M = ((A \mod M) + (B \mod M)) \mod M$
   \item $(A - B) \mod M = ((A \mod M) - (B \mod M)) \mod M$
-  \item $(A * B) \mod M = ((A \mod M) * (B \mod M)) \mod M$  
+  \item $(AB) \mod M = ((A \mod M) \times (B \mod M)) \mod M$  
   \item $(A^{B}) \mod M = ((A \mod M)^{B}) \mod M$
   \item $(A * B) \mod (A * M) = A * (B \mod M)$
 \end{itemize}
 \end{frame} 
 
-\begin{frame}[fragile]
+\begin{frame}
 \frametitle{Aplikasi Modulo}
 \begin{itemize}
   \item Pada \foreignTerm{Competitive Programming}, tidak jarang kita harus menghitung $n! \mod k$ (terutama dalam kombinatorika). 
@@ -58,16 +63,15 @@ Melalui dokumen ini, kalian akan:
 \frametitle{Aplikasi Modulo (lanj.)}
 Solusi: 
 \begin{lstlisting}
-  function faktorialModular(n, k: longint): longint;
+  function modularFactorial(n, k: longint): longint;
   var
-    i, jawaban: longint;
+    i, result: longint;
   begin
-    jawaban := 1;
+    result := 1;
     for i := 1 to n do begin
-      jawaban := (jawaban * i) mod k;
+      result := (result * i) mod k;
     end
-
-    faktorialModular := jawaban;
+    modularFactorial := result;
   end;  
 \end{lstlisting}
 \end{frame}
@@ -80,7 +84,7 @@ Solusi:
   \item Contohnya, $\frac{12}{4} \; (\bmod\; 6) \; \neq \; \frac{12 \mod 6}{4 \mod 6} \; (\bmod\; 6)$.
   \item Pada aritmetika modular, $\frac{a}{b} \; (\bmod\; n)$ biasa kita tulis sebagai $a * b^{-1}\;(\bmod\; n)$, dimana $b^{-1}$ adalah 
       \newTerm{Modular Multiplicative Inverse} dari $b$.
-  \item Jika tertarik, anda bisa mempelajari \foreignTerm{Modular Multiplicative Inverse} melalui \textcolor{blue}{\href{https://en.wikipedia.org/wiki/  Modular_multiplicative_inverse}{link wikipedia ini}.} 
+  \item Jika tertarik, Anda bisa mempelajari \foreignTerm{Modular Multiplicative Inverse} melalui \textcolor{blue}{\href{https://en.wikipedia.org/wiki/  Modular_multiplicative_inverse}{link wikipedia ini}.} 
 \end{itemize}
 \end{frame}
 
@@ -101,7 +105,7 @@ Solusi:
 \frametitle{Primality Testing}
 \begin{itemize}
   \item \newTerm{Primality Testing} adalah algoritma untuk mengecek apakah suatu bilangan bulat $N$ adalah bilangan prima.
-  \item Kita dapat memanfaatkaan sifat bilangan prima yang disebut di slide sebelumnya untuk mengecek apakah suatu bilangan merupakan suatu bilangan prima. 
+  \item Kita dapat memanfaatkan sifat bilangan prima yang disebut di slide sebelumnya untuk mengecek apakah suatu bilangan merupakan suatu bilangan prima. 
 \end{itemize}
 \end{frame}
 
@@ -120,18 +124,18 @@ Solusi:
   function isPrimeNaive(n: longint): boolean;
   var
     i: longint;
-    prima: boolean;
+    prime: boolean;
   begin
-    prima := true;
+    prime := true;
     for i := 2 to n - 1 do begin
       if (n mod i = 0) then begin
-        prima := false;
+        prime := false;
       end;
     end;
     if(n < 2) then begin
-      prima := false;
+      prime := false;
     end;
-    isPrimeNaive := prima;
+    isPrimeNaive := prime;
   end;  
 \end{lstlisting}
 \end{frame}
@@ -153,18 +157,20 @@ Solusi:
   function isPrimeSqrt(n: longint): boolean;
   var
     i: longint;
-    prima: boolean;
+    prime: boolean;
   begin
-    prima := true;
-    for i := 2 to trunc(sqrt(n)) do begin
-      if (n mod i = 0) then begin
-        prima := false;
+    prime := true;
+    i := 2;
+    while (i * i <= n) do begin
+      if (n mod i = 0) begin
+        prime := false;
       end;
+      inc(i);
     end;
     if(n < 2) then begin
-      prima := false;
+      prime := false;
     end;
-    isPrimeSqrt := prima;
+    isPrimeSqrt := prime;
   end;  
 \end{lstlisting}
 \end{frame}
@@ -172,8 +178,8 @@ Solusi:
 \begin{frame}
 \frametitle{Primality Testing (lanj.)}
 \begin{itemize}
-  \item \foreignTerm{Primality Testing} sebenarnya merupakan persoalan yang sulit!
-  \item Jika tertarik, anda dapat membacanya lebih lanjut di \textcolor{blue}{\href{https://en.wikipedia.org/wiki/Primality_test}{link wikipedia ini}.} 
+  \item \foreignTerm{Primality Testing}, walaupun topiknya mirip dengan faktorisasi, sesungguhnya jauh lebih mudah dibanding faktorisasi.
+  \item Jika tertarik, Anda dapat membacanya lebih lanjut di \textcolor{blue}{\href{https://en.wikipedia.org/wiki/Primality_test}{link wikipedia ini}.} 
 \end{itemize}
 \end{frame}
 
@@ -194,23 +200,23 @@ Solusi:
 
 \begin{frame}[fragile]
 \frametitle{Solusi Awal (lanj.)}
-Solusi:
   \begin{lstlisting}
   procedure sqrtGeneration(n: longint);
   var
     i, j: longint;
-    prima: boolean;
+    prime: boolean;
   begin
     for i := 2 to n do begin
-        prima := true;
-        for j := 2 to trunc(sqrt(i)) do begin
+        prime := true;
+        j := 2;
+        while (j * j <= n) do begin
           if (i mod j = 0) then begin
-            prima := false;
-          end;  
+            prime := false;
+          end;
+          inc(j);
         end;
-        if (prima) then begin
+        if (prime) then
           writeln(i, ' adalah bilangan prima');
-        end;
     end;
   end;  
   \end{lstlisting}
@@ -221,7 +227,7 @@ Solusi:
 \begin{itemize}
   \item Terdapat solusi yang lebih optimal dari segi waktu untuk membangkitkan bilangan prima, yaitu \newTerm{Sieve of Erathostenes}.
   \item Ide utama utama dari algoritma ini adalah mengeliminasi bilangan-bilangan dari calon bilangan prima.
-  \item Yang akan kita eliminasi tentu bilangan komposit. Pertama, kita tahu bahwa suatu bilangan bulat $X$ dapat dinyatakan sebagai $X = P*Q$, dimana P suatu bilangan prima.
+  \item Yang akan kita eliminasi tentu bilangan komposit. Pertama, kita tahu bahwa suatu bilangan bulat $X$ dapat dinyatakan sebagai $X = P \times Q$, dimana P suatu bilangan prima.
   \item Seandainya kita sudah mendapatkan suatu bilangan prima, kita dapat mengeliminasi kelipatan bilangan tersebut dari calon bilangan prima.
 \end{itemize}
 \end{frame}
@@ -251,7 +257,7 @@ Solusi:
       for i := 2 to n do 
         if (not flag[i]) then begin
           writeln(i, ' adalah bilangan prima').
-          j = i;
+          j := i;
           while(i * j <= n) do begin
             flag[i * j] = true;
             inc(j);
@@ -269,7 +275,7 @@ Solusi:
 \begin{itemize}
   \item Ketika masih SD, tentunya kita pernah belajar memfaktorkan bilangan dengan pohon faktor.
   \item Melalui faktorisasi prima, kita dapat menyatakan suatu bilangan sebagai hasil kali perkalian faktor-faktornya.
-  \item Contoh: $7875 = 3^{2} * 5^{3} * 7$ .
+  \item Contoh: $7875 = 3^{2} \times 5^{3} \times 7$ .
   \item Faktorisasi prima ini dapat bermanfaat pada soal-soal matematika di \foreignTerm{Competitive Programming}.
 \end{itemize}
 \end{frame}
@@ -277,18 +283,18 @@ Solusi:
 \begin{frame}
 \frametitle{FPB dan KPK}
 \begin{itemize}
-  \item Ketika masih SD, kita pernah diajari cara mencari FPB dan KPK melalui faktorisasi prima. Singkatnya, untuk setiap bilangan prima, kita menggunakan pangkat terkecil untuk FPB dan pangkat terbesar untuk KPK.
-  \item Contoh: $4725 = 3^{3} * 5^{2} * 7$ dan $7875 = 3^{2} * 5^{3} * 7$.
-  \item Maka, $FPB(4725,7875) = 3^{2} * 5^{2} * 7 = 1525$ dan $KPK(4725,7875) = 3^{3} * 5^{3} * 7 = 23625$.
-  \item Jika kita observasi, $KPK(A,B) = \frac{A * B}{FPB(A,B)}$. 
+  \item Kita pernah diajari cara mencari FPB dan KPK melalui faktorisasi prima. Singkatnya, untuk setiap bilangan prima, kita menggunakan pangkat terkecil untuk FPB dan pangkat terbesar untuk KPK.
+  \item Contoh: $4725 = 3^{3} \times 5^{2} \times 7$ dan $7875 = 3^{2} \times 5^{3} \times 7$.
+  \item Maka, $FPB(4725,7875) = 3^{2} \times 5^{2} \times 7 = 1525$ dan $KPK(4725,7875) = 3^{3} \times 5^{3} \times 7 = 23625$.
+  \item Jika kita observasi, $KPK(A,B) = \frac{A \times B}{FPB(A,B)}$. 
 \end{itemize}
 \end{frame}
 
 \begin{frame}
 \frametitle{Algoritma Euclid}
 \begin{itemize}
-  \item Untuk mencari FPB suatu bilangan, menggunakan pohon faktor \emp{sangat sulit!}
-  \item Kita harus mencari faktor prima bilangan tersebut, dan jika faktor prima-nya besar, tentu akan menghabiskan banyak waktu.
+  \item Untuk mencari FPB suatu bilangan, menggunakan pohon faktor \emp{sangat rumit!}
+  \item Kita harus mencari faktor prima bilangan tersebut, dan jika faktor primanya besar, tentu akan menghabiskan banyak waktu.
   \item Terdapat algoritma yang dapat mencari $FPB(A,B)$ dalam $O(log(min(A,B))$.
 \end{itemize}
 \end{frame}
@@ -308,7 +314,7 @@ Solusi:
     end;
   end;
   \end{lstlisting}
-  \item Jika anda tertarik, anda dapat membaca lebih lanjut \textcolor{blue}{\href{https://en.wikipedia.org/wiki/Euclidean_algorithm}{di link wikipedia ini}.}   
+  \item Jika Anda tertarik, Anda dapat membaca lebih lanjut \textcolor{blue}{\href{https://en.wikipedia.org/wiki/Euclidean_algorithm}{di link wikipedia ini}.}   
 \end{itemize}
 \end{frame}
 
@@ -366,7 +372,6 @@ Batasan:
 \frametitle{Motivasi (lanj.)}
 \begin{itemize}
   \item Dengan menyelesaikan versi mudah dari soal awal kita, ternyata kita justru dapat menyelesaikan soal tersebut.
-  \item Konsep \statement{Jika ada $N$ nilai dan $M$ kotak, dimana $M > N$ , maka ada setidaknya 2 kotak yang memiliki nilai sama} biasa disebut sebagai \newTerm{Pigeon Hole Principle}.
 \end{itemize}
 \end{frame}
 
