@@ -21,10 +21,10 @@ Melalui dokumen ini, kalian akan:
 \end{frame}
 
 \begin{frame}
-\frametitle{Soal : Subset Sum}
+\frametitle{Soal: Subset Sum}
 Deskripsi:
 \begin{itemize}
-  \item Diberikan $N$ buah integer $(a_1, a_2, ..., a_n)$ dan integer $K$
+  \item Diberikan $N$ buah integer $(a_1, a_2, ..., a_N)$ dan integer $K$
   \item Apakah terdapat subset dari integer-integer tersebut sehingga jumlahan dari elemen subset tersebut sama dengan $K$? 
   \item Bila iya, maka keluarkan "YA". Selain itu keluarkan "TIDAK"
 \end{itemize}
@@ -72,7 +72,7 @@ Bisakah solusi tersebut menjadi lebih cepat?
 gunakan \newTerm{pruning}!
 
 \begin{block}{Pruning}
-  Merupakan optimisasi dengan mengurangi \foreignTerm{search space} dengan cara melakukan eksklusi pada kemungkinan jawaban yang pasti salah.
+  Merupakan optimisasi dengan mengurangi \foreignTerm{search space} dengan cara menghindari pencarian pada jawaban yang pasti salah.
 \end{block}
 \end{frame}
 
@@ -105,47 +105,6 @@ else
   \item Karena semua $a_i$ bernilai positif, maka \id{sum} tidak akan menjadi lebih kecil.
   \item Karena itu, bila \id{sum} sudah lebih besar dari \id{K} bisa dipastikan tidak akan tercapai sebuah solusi
 \end{itemize}
-\end{frame}
-
-\begin{frame}
-\frametitle{Backtracking}
-  \begin{block}{Backtracking}
-    Merupakan metode untuk mengetahui solusi dari \foreignTerm{brute force}
-  \end{block}
-\end{frame}
-
-\begin{frame}[fragile]
-\frametitle{Solusi Backtracking}
-\begin{lstlisting}
-solve(pos, sum):
-  if sum > K then
-    return false
-
-  if pos > n then
-    if sum == K then
-      print sequence
-      return true
-    else
-      return false
-
-  ret = solve(pos + 1, sum)
-  sequence.push_back(a[pos])
-  ret = res or solve(pos + 1, sum + a[pos])
-  sequence.pop_back()
-
-  return ret
-
-\end{lstlisting}
-\end{frame}
-
-\begin{frame}[fragile]
-\frametitle{Solusi Backtracking}
-\begin{lstlisting}
-if solve(1,0) == true then
-  print "YA"
-else
-  print "TIDAK"
-\end{lstlisting}
 \end{frame}
 
 \begin{frame}
