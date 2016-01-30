@@ -53,10 +53,6 @@ Berdasarkan hubungannya dengan node lain, linked list terbagi menjadi 2 macam, y
 	\item Single Linked List, yaitu linked list dimana tiap nodenya hanya memiliki pointer ke node selanjutnya saja. Tiap node hanya memiliki pointer \alert{next} untuk menunjuk node selanjutnya.
 	\item Double Linked List, yaitu linked list dimana tiap nodenya memiliki pointer terhadap node selanjutnya dan node sebelumnya. Tiap pointer memiliki pointer next dan \alert{prev} untuk menunjuk node sebelumnya.
 \end{itemize}
-\end{frame}
-
-\begin{frame}
-\frametitle{Mengenal Linked List (lanj.)}
 Selain itu, berdasarkan bentuknya, linked list juga dapat terbagi menjadi 2 macam, yaitu:
 \begin{itemize}
 	\item Linear Linked List, yaitu linked list dimana \alert{tail} atau node paling terakhir nextnya dihubungkan ke \alert{NULL}. Demikian pula dalam double linked list, maka \alert{head} atau node pertama prevnya dihubungkan ke NULL.
@@ -64,19 +60,6 @@ Selain itu, berdasarkan bentuknya, linked list juga dapat terbagi menjadi 2 maca
 \end{itemize}
 \end{frame}
 
-\begin{frame}
-\frametitle{Keuntungan Linked List}
-Mengapa kita harus menggunakan linked list? Hal ini dikarenakan linked list memiliki keuntungan dalam menangani penghapusan suatu elemen. Sebagai contoh, misal kita akan menghapus salah satu elemen pada linked list. Maka yang perlu dilakukan hanya menghapus node tersebut. Jika dibandingkan dengan array, maka penghapusan suatu elemen harus menggeser seluruh elemen setelah atau sebelum elemen yang dihapus.
-\end{frame}
 
-\begin{frame}
-\frametitle{Kerugian Linked List}
-Namun, penggunaan linked list juga memiliki kerugian. Sebagai contoh, untuk proses membaca elemen tidak semudah dalam pembacaan elemen pada array. Untuk membaca elemen pada indeks tertentu, maka harus dilakukan iterasi mulai dari node head hingga ke node yang diinginkan. Begitu pula dengan proses pengupdatean harus dilakukan iterasi dari awal terlebih dahulu.
-\end{frame}
-
-\section{Stack}
-\frame{\sectionpage}
-
-\end{document}
 
 
