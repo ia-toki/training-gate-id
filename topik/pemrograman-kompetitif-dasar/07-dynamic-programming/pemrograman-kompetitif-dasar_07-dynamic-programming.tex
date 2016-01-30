@@ -11,53 +11,305 @@
 \end{frame}
 
 \begin{frame}
-\frametitle{Panduan Konten}
+\frametitle{Pendahuluan}
+Melalui dokumen ini, kalian akan:
 \begin{itemize}
-  \item Disarankan untuk tidak langsung menjelaskan konsepnya
-  \item Disarankan untuk mulai dengan coin change, koinnya \{1, 6, 10\} dan mau tukar 12
-  \item Jelaskan mengapa greedy menjadi salah
-  \item Bahas dengan mencoba diselesaikan secara rekursif
-  \item Jelaskan bahwa kompleksitasnya eksponensial
-  \item Jelaskan kalau ada banyak kasus overlap, dan pada akhirnya hanya ada O(N) kasus (state)
-  \item Aplikasikan tabel memo DP, dan jelaskan bahwa sekarang kompleksitasnya polinomial
-  \item Disarankan untuk menjelaskan dengan DP top down (rekursif + memo)
+  \item Memahami konsep \foreignTerm{dynamic programming}
+  \item Menyelesaikan beberapa contoh persoalan \foreignTerm{dynamic programming} sederhana
 \end{itemize}
 \end{frame}
 
 \begin{frame}
-\frametitle{Panduan Konten}
+\frametitle{Motivasi}
 \begin{itemize}
-  \item Jelaskan tentang DP bottom up (lanjutkan pembahasan coin change sebelumnya)
-  \item Barulah bahas konsep DP: ada pilihan, kalau salah satu dipilih bakal muncul subproblem serupa dengan cakupan lebih kecil. Solusinya adalah coba saja semua kemungkinan, dan pilih yg hasil akhirnya terbaik
-  \item Boleh disarankan bahwa untuk menyelesaikan soal DP, dapat cari dulu hubungan rekursifnya lalu temukan base case. Sebenarnya ini tergantung preferensi, ada juga yang lebih suka cari base case, baru disambung2 dan ditemukan hubungan rekursifnya 
-  \item Lanjut ke studi kasus knapsack dan matrix chain multiplication. Gunakan pola yang sebelumnya: coba solve secara rekursif, cari statenya, berikan memo, hitung kompleksitas, contoh implementasi
+  \item Kita akan memulai pembelajaran ini dengan mencoba menyelesaikan sebuah problem klasik. \\ 
+  \item Diberikan nominal-nominal koin yang tersedia dan nominal uang yang ingin anda bayar. Asumsikan kita memiliki tak hingga koin untuk setiap nominal koin yang ada. Tentukan berapa banyaknya minimal koin yang harus kita berikan untuk membayar tepat uang yang ingin anda bayar.
 \end{itemize}
 \end{frame}
 
 \begin{frame}
-\frametitle{Catatan}
+\frametitle{Motivasi (lanj.)}
 \begin{itemize}
-  \item Jika isi slide ini menjadi terlalu banyak, boleh dipecah menjadi 2 atau 3 slide sesuai subtopik pembahasan.
+  \item Marilah kita mencoba menyelesaikan masalah ini menggunakan algoritma \foreignTerm{greedy}. Karena kita ingin meminimalisasi banyaknya koin yang ingin kita bayar, maka salah satu algoritma \foreignTerm{greedy} yang mungkin adalah dengan menggunakan koin dengan nominal terbesar yang masih tidak lebih besar daripada sisa uang yang harus dibayar.
+   \item Namun algoritma \foreignTerm{greedy} ini tidaklah benar.
+ \end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Motivasi (lanj.)}
+\begin{itemize}
+  \item Misalkan kita memiliki nominal koin 1 rupiah, 6 rupiah, dan 10 rupiah dan kita ingin membayar 12 rupiah.
+  \item Jika kita menggunakan algoritma \foreignTerm{greedy}, maka kita akan menggunakan koin 10 rupiah terlebih dahulu. Karena tersisa 2 rupiah, berikutnya kita akan menggunakan 2 koin 1 rupiah, sehingga totalnya kita menggunakan 3 koin.
+   \item Namun, kita bisa menggunakan lebih sedikit koin dengan hanya menggunakan 2 koin 6 rupiah.
+ \end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Solusi rekursi}
+\begin{itemize}
+  \item Soal ini dapat diselesaikan menggunakan rekursi.
+  \item Marilah kita definisikan sebuah fungsi $f(x)$ adalah banyaknya koin minimum yang dibutuhkan untuk membayar $x$ rupiah.
+  \item Katakan $A_{1..n}$ adalah nominal-nominal koin yang tersedia.
+  \item Marilah kita mencoba-coba koin berikutnya yang ingin kita gunakan.
+  \item Jika $A_k \leq x$ maka kita dapat menggunakan koin dengan nominal $A_k$. Jika kita menggunakan koin dengan nominal $A_k$, maka kita akan menyisakan $x - A_k$ rupiah, sehingga kita akan membutuhkan $f(x-A_k)$ koin dan ditambah satu koin $A_k$.
+   \item Sehingga 
+   \[f(x) = \left\{\begin{array}{lr}
+        0, & n = 0\\
+        \min_{1 \leq i \leq N, A_i \leq x} {f(x - i) + 1}, & n > 0\\
+        \end{array}\right\}\]
+ \end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Solusi rekursi (lanj.)}
+% TODO: Penjelasan bahwa solusi ini eksponential dan akan memakan waktu yang sangat lama
+\end{frame}
+
+\begin{frame}
+\frametitle{Optimisasi}
+\begin{itemize}
+  \item Jika diperhatikan ternyata banyak $f(x)$ yang dihitung berkali-kali. Ini menyebabkan solusi berjalan sangat lambat.
+  \item Ternyata hanya ada $M + 1$ kemungkinan isi $x$ untuk $f(x)$ yaitu $0$ sampai $M$, dimana $M$ adalah nominal koin yang dibayarkan pada awalnya.
+  \item Kita dapat melakukan \newTerm{memoisasi}, dimana kita menyimpan hasil nilai $f(x)$ setelah menghitung nilai $f(x)$ agar jika kita memerlukan nilai $f(x)$ pada masa depannya, kita tidak perlu menghitungnya kembali.
+  \item Untuk menghitung sebuah nilai $f(x)$, kita membutuhkan $N$ iterasi, dimana $N$ adalah banyaknya nominal koin yang ada.
+  \item Sehingga untuk menghitung nilai $f(x)$ untuk seluruh $x$, kita membutuhkan $O(NM)$ operasi, dimana banyaknya operasi ini polinomial terhadap $N$ dan $M$ dan jauh lebih cepat daripada solusi rekursif sebelumnya.
 \end{itemize}
 \end{frame}
 
 \begin{frame}
-\frametitle{Tips}
-Demi keseragaman dan kemudahan, gunakan command yang sudah didefinisikan di ../config.tex:
-% Komentar: meskipun ada yang menghasilkan format yang sama, tetapi menggunakan command ini mempermudah kalau ke depannya mau mengubah format, tidak perlu find and replace 1 per 1. 
+\frametitle{Optimisasi rekursi}
 \begin{itemize}
-  \item Gunakan \textbackslash id\{\} untuk menulis identifier (nama fungsi, variabel), contoh: \textbackslash id\{primeCount\} akan mencetak \id{primeCount}.
-  \item Gunakan \textbackslash progTerm\{\} untuk menulis istilah dalam pemrograman (tipe data, jenis error, for), contoh: \textbackslash progTerm\{integer\} akan mencetak \progTerm{integer}.
-  \item Gunakan \textbackslash foreignTerm\{\} untuk menulis istilah asing lainnya, contoh: \textbackslash foreignTerm\{default\} akan mencetak \foreignTerm{default}.
+  \item Jika diperhatikan ternyata banyak $f(x)$ yang dihitung berkali-kali. Ini menyebabkan solusi berjalan sangat lambat.
+  \item Ternyata hanya ada $M + 1$ kemungkinan isi $x$ untuk $f(x)$ yaitu $0$ sampai $M$, dimana $M$ adalah nominal koin yang dibayarkan pada awalnya.
+  \item Kita dapat melakukan \newTerm{memoisasi}, dimana kita menyimpan hasil nilai $f(x)$ setelah menghitung nilai $f(x)$ agar jika kita memerlukan nilai $f(x)$ pada masa depannya, kita tidak perlu menghitungnya kembali.
+  \item Untuk menghitung sebuah nilai $f(x)$, kita membutuhkan $N$ iterasi, dimana $N$ adalah banyaknya nominal koin yang ada.
+  \item Sehingga untuk menghitung nilai $f(x)$ untuk seluruh $x$, kita membutuhkan $O(NM)$ operasi, dimana banyaknya operasi ini polinomial terhadap $N$ dan $M$ dan jauh lebih cepat daripada solusi rekursif sebelumnya.
+\end{itemize}
+\end{frame}
+
+\begin{frame} [fragile]
+\frametitle{Pseudocode Optimisasi rekursi}
+\begin{lstlisting}
+   function f(x)
+     if (remainingCoins == 0)
+       return 0
+     if (sudahDihitung[x])
+       return hasilHitungan[x]
+     hasil = INFINITY
+     for i in [1, N]
+       if (x >= A[i])
+         result = min(result, f(x - A[i])
+     sudahDihitung[x] = true
+     hasilHitungan[x] = hasil
+     return hasil
+\end{lstlisting}
+\end{frame}
+
+\begin{frame} [fragile]
+\frametitle{Cara lain}
+\begin{itemize}
+  \item Cara lain untuk mengerjakan soal ini adalah dengan menghitung semua nilai $f(x)$ untuk semua nilai $x$ dari $0$ sampai $M$ secara menaik.
+  \item Dengan cara ini, kita dapat menghitung nilai $f(x)$ tanpa perlu menghitung nilai-nilai $f$ yang lain, karena semua nilai $f$ yang diperlukan untuk menghitung $f(x)$ sudah pernah dihitung.
+\begin{lstlisting}
+  f[0] = 0
+  for i in [1,M]
+    f[i] = INFINITY
+    for j in [1,N]
+      if (i >= A[j])
+        f[i] = min(f[i], f[i - A[j]])
+\end{lstlisting}
+  \item Solusi ini biasanya disebut \newTerm{bottom up}, karena kita menghitung mulai dari bawah (dari yang paling kecil) lalu ke atas. Sedangkan solusi yang sebelumnya biasanya disebut \newTerm{top down}, karena kita menghitung mulai dari atas ke bawah.
+\end{itemize}
+\end{frame}
+
+\begin{frame} 
+\frametitle{Dynamic Programming}
+\begin{itemize}
+  \item \newTerm{Dynamic Programming} (biasanya disingkat DP) adalah metode penyelesaian sebuah persoalan dengan menyelesaikan sub-persoalan (persoalan yang sama namun lebih kecil) dan menghitung solusi sub-persoalan tersebut hanya sekali dengan menyimpan solusinya di memori.
+  \item Jika sub-persoalan tersebut diperlukan kembali pada masa depan, maka kita dapat hanya mengakses nilainya dari memori.
+  \item Biasanya soal-soal DP diselesaikan dengan mempelajari sub-persoalan sub-persoalan apa saja yang dibutuhkan untuk menyelesaikan sebuah persoalan.
+  \item Jika sebuah persoalan adalah sebuah persoalan optimisasi, maka biasanya kita mencoba semua kemungkinan dan menghitung solusi sub-problem yang dihasilkan dari kemungkinan tersebut, dan kita mengambil kemungkinan yang hasil hitungannya paling optimal. 
+\end{itemize}
+\end{frame}
+
+\begin{frame} 
+\frametitle{Contoh Soal 1: Knapsack}
+\begin{itemize}
+  \item Diberikan $N$ buah barang. Barang ke-$i$ memiliki harga $v_i$ rupiah dan memiliki berat $w_i$ gram. Anda memiliki tas yang berkapasitas $W$ gram. 
+  \item Anda ingin memasukan beberapa barang kedalam tas sedemikian sehingga jumlah berat dari barang-barang yang anda masukan tidak lebih dari kapasitas tas dan jumlah harga dari barang-barang yang anda masukan sebanyak mungkin.
+\end{itemize}
+\end{frame}
+
+\begin{frame} 
+\frametitle{Contoh Soal 1: Knapsack (Solusi)}
+\begin{itemize}
+  \item Marilah kita definisikan sebuah fungsi $g(x,y)$ adalah jumlah harga maksimum yang mungkin diperoleh, jika kita hanya mempunyai barang ke-$1$ sampai ke-$x$ dan kapasitas tas kita adalah $y$ gram.
+  \item Untuk menghitung fungsi $g(x,y)$ kita bisa mencoba-coba apakah kita akan memasukan barang ke-$x$ ke tas.
+  \begin{itemize}
+  \item Jika kita memasukan barang ke-$x$ ke tas, maka kita akan menyisakan barang ke-$1$ sampai ke-$x-1$ dan sisa kapasitas tas adalah $y-w_x$. Kita dapat menghitung jumlah harga maksimum pada kasus ini pada $g(x-1,y-w_x)$ ditambah dengan harga yang kita peroleh pada barang ke-$x$. Kasus ini hanya boleh dipertimbangkan jika $y \geq w_x$.
+  \item Jika kita tidak memasukan barang ke-$x$ ke tas, maka perbedaannya hanya sisa kapasitas tas masih tetap $y$, sehingga jumlah harga maksimumnya adalah $g(x-1,y)$ tanpa tambahan apapun, karena kita tidak mengambil barang ke-$x$.
+  \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame} 
+\frametitle{Contoh Soal 1: Knapsack (Solusi (lanj.))}
+\begin{itemize}
+  \item Jika $x=0$, maka $g(x,y)$ berarti tidak ada sisa barang yang tersedia. Ini berarti $g(x,y) = 0$.
+  \item Sehingga, $g(x,y)$ dapat dirumuskan sebagai berikut
+  % Rumus ini mungkin saja panjang dan mungkin saja tidak dapat dicakup pada slide
+  \begin{small}
+  \[g(x,y) = \left\{\begin{array}{lr}
+        0, & x = 0\\
+        g(x-1,y), & x > 0 \wedge y < w_x\\
+        \max(g(x-1,y-w_x)+v_x,g(x-1,y)), & x > 0 \wedge y \geq w_x\\
+        \end{array}\right\}\]
+  \end{small}
+  \item Terdapat $O(N)$ nilai berbeda untuk nilai $x$ dan $O(W)$ nilai berbeda untuk nilai $y$ pada $g(x,y)$. Dibutuhkan $O(1)$ iterasi untuk menghitung $g(x,y)$. Sehingga untuk menghitung seluruh nilai $g(x,y)$ untuk seluruh $x$ dan $y$ dibutuhkan waktu $O(NW)$.  
+\end{itemize}
+\end{frame}
+
+\begin{frame} [fragile]
+\frametitle{Contoh Soal 1: Knapsack (Pseudocode)}
+  Berikut adalah contoh implementasi menggunakan rekursi diatas dan memoisasi.
+  \begin{lstlisting}
+    function g(x,y)
+      if (x == 0)
+        return 0
+      if (sudahDihitung[x][y])
+        return hasilHitungan[x][y]
+      hasil = g(x-1,y)
+      if (y >= w[x]) hasil = max(hasil, g(x-1,y-w[x]) + v[x])
+      sudahDihitung[x][y] = true
+      hasilHitungan[x][y] = hasil
+      return hasil
+  \end{lstlisting}
+  Hasil jawaban terdapat pada 
+  \begin{lstlisting}
+    g(N, W)
+  \end{lstlisting}
+  karena pada awalnya kita memiliki seluruh barang dari barang ke-$1$ sampai barang ke-$N$ dan kapasitas tas adalah $W$ gram.
+\end{frame}
+
+\begin{frame} [fragile]
+\frametitle{Contoh Soal 1: Knapsack (Pseudocode (lanj.))}
+  Berikut adalah contoh implementasi menggunakan solusi \foreignTerm{bottom up}.
+  \begin{lstlisting}
+    for i in [1,N]
+      for j in [0,W]
+        g[i][j] = g[i-1][j]
+        if (j >= w[i])
+          g[i][j] = max(g[i][j], g[i-1][j-w[x]] + v[x])
+  \end{lstlisting}
+  Hasil jawaban terdapat pada
+  \begin{lstlisting}
+    g[N][W]
+  \end{lstlisting}
+\end{frame}
+
+\begin{frame}
+\frametitle{Contoh Soal 2: Memotong Kayu}
+\begin{itemize}
+  \item Anda harus memotong-motong sebuah batang kayu dengan panjang $L$ meter pada $N$ titik menjadi $N+1$ bagian. Titik ke-$i$ berada di $L_i$ meter dari sebuah ujung.
+  \item Untuk memotong kayu, anda memerlukan usaha sebanyak panjang kayu yang sedang anda potong.
+  \item Sebagai contoh, terdapat sebuah kayu dengan panjang 10 meter dan terdapat 3 titik potongan pada 2 meter, 4 meter, dan 7 meter dari sebuah ujung. Kita bisa memotong pada titik 2, titik 4, lalu titik 7 dan memerlukan usaha 10 + 8 + 6 = 24. Cara lain adalah memotong pada titik 4, titik 2, lalu titik 7 dan memerlukan usaha 10 + 4 + 6 = 20.
+  \item Kita harus mencari urutan pemotongan sedemikian sehingga total usaha yang dibutuhkan minimum.
 \end{itemize}
 \end{frame}
 
 \begin{frame}
-\frametitle{Tips (lanj.)}
+\frametitle{Contoh Soal 2: Memotong Kayu (Solusi)}
 \begin{itemize}
-  \item Jika diperlukan, gunakan \textbackslash newTerm\{\} untuk menulis istilah yang baru diperkanalkan, contoh: \textbackslash newTerm\{rekursi\} akan mencetak \newTerm{rekursi}.
-  \item Gunakan \textbackslash emp\{\} untuk memberi penekanan, contoh: \textbackslash emp\{sangat lambat\} akan mencetak \emp{sangat lambat}.
-  \item Gunakan \textbackslash statement\{\} untuk merujuk pada statement program, contoh: \textbackslash statement\{count := count + 1\} akan mencetak \statement{count := count + 1}.
+  \item Marilah kita definisikan sebuah fungsi $g(x,y)$ adalah jumlah usaha minimum yang mungkin diperoleh, jika kita hanya perlu memotong potongan-potongan dari potongan ke-$x$ sampai ke-$y$.
+  \item Untuk menghitung fungsi $g(x,y)$ kita bisa mencoba-coba potongan manakah yang kita potong pertama kali.
+  \item Jika kita memotong potongan ke-$k$ $(x \leq k \leq y)$, maka kita akan mendapatkan dua potongan. Total usaha minimum dari potongan pertama adalah $g(x,k-1)$ dan total usaha minimum dari potongan kedua adalah $g(k+1,y)$ dan usaha yang dibutuhkan dari potongan pertama adalah panjang potongan saat ini, yaitu $L_{y+1} - L_{x-1}$, dimana $L_0 = 0$ dan $L_{N+1} = L$.
+\end{itemize}
+\end{frame}
+
+\begin{frame} 
+\frametitle{Contoh Soal 2: Memotong Kayu (Solusi (lanj.))}
+\begin{itemize}
+  \item Jika $x>y$, maka $g(x,y)$ berarti tidak ada potongan kayu yang tersisa. Ini berarti $g(x,y) = 0$.
+  \item Sehingga, $g(x,y)$ dapat dirumuskan sebagai berikut
+  % Rumus ini mungkin saja panjang dan mungkin saja tidak dapat dicakup pada slide
+  \begin{small}
+  \[g(x,y) = \left\{\begin{array}{lr}
+        0, & x>y\\
+        \min_{x \leq i \leq y} g(x,i-1) + g(i+1,y) + (L_{y+1} - L_{x-1}) & x \leq y \\
+        \end{array}\right\}\]
+  \end{small}
+  \item Terdapat $O(N)$ nilai berbeda untuk nilai $x$ dan $O(N)$ nilai berbeda untuk nilai $y$ pada $g(x,y)$. Dibutuhkan $O(N)$ iterasi untuk menghitung $g(x,y)$. Sehingga untuk menghitung seluruh nilai $g(x,y)$ untuk seluruh $x$ dan $y$ dibutuhkan waktu $O(N^3)$.
+\end{itemize}
+\end{frame}
+
+\begin{frame} [fragile]
+\frametitle{Contoh Soal 2: Memotong Kayu (Pseudocode)}
+  Berikut adalah contoh implementasi menggunakan rekursi diatas dan memoisasi.
+  % Kode ini mungkin saja panjang dan mungkin saja tidak dapat dicakup pada slide, sehingga beberapa baris (seperti if(x > y) return 0) harus dibuat satu line
+  \begin{lstlisting}
+    function g(x,y)
+      if (x > y) return 0
+      if (sudahDihitung[x][y]) return hasilHitungan[x][y]
+      hasil = INFINITY
+      for i in range[x,y]
+        hasil = min(hasil, g(x,i-1) + g(i+1,y))
+      hasil = hasil + L[y+1] - L[x-1]
+      sudahDihitung[x][y] = true
+      hasilHitungan[x][y] = hasil
+      return hasil
+  \end{lstlisting}
+  Hasil jawaban terdapat pada 
+  \begin{lstlisting}
+    g(1, N)
+  \end{lstlisting}
+  karena pada awalnya kita harus memotong seluruh titik potongan dari potongan ke-$1$ sampai potongan ke-$N$.
+\end{frame}
+
+\begin{frame} [fragile]
+\frametitle{Contoh Soal 2: Memotong Kayu (Pseudocode (lanj.))}
+  Berikut adalah contoh implementasi menggunakan solusi \foreignTerm{bottom up}.
+  \begin{lstlisting}
+    L[0] = 0
+    L[N+1] = L
+    for i in [1,N]
+      for j in [i, N]
+        g[i][j] = INFINITY
+	for k in [i,j]
+	  g[i][j] = min(g[i][j], g[i][k-1] + g[k+1][j])
+	g[i][j] += L[j+1] - L[i-1]
+  \end{lstlisting}
+  Hasil jawaban terdapat pada
+  \begin{lstlisting}
+    g[1][N]
+  \end{lstlisting}
+\end{frame}
+
+\begin{frame}
+\frametitle{Top Down dan Bottom Up}
+Dua versi DP masing-masing memiliki keuntungan dan kerugian masing-masing.
+\begin{itemize}
+  \item Top Down
+  \begin{itemize}
+    \item Keuntungan: Sebuah transformasi natural dari formula rekursi. Urutan pengisian tabel tidak penting.
+    \item Keuntungan: Hanya menghitung nilai dari fungsi jika hanya diperlukan.
+    \item Kerugian : Pemanggilan fungsi yang berkali-kali mungkin saja membuat kode lebih lambat.
+  \end{itemize}
+  \item Bottom Up
+  \begin{itemize}
+    \item Keuntungan : Kode mungkin saja lebih cepat karena tidak membutuhkan pemanggilan fungsi yang berkali-kali.
+    \item Kerugian : Harus memikirkan urutan pengisian nilai tabel. 
+    \item Kerugian : Semua tabel harus diisi nilainya walaupun tidak dibutuhkan akhirnya.
+  \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Penutup}
+\begin{itemize}
+  \item DP merupakan topik yang cukup luas untuk dibicarakan.
+  \item Terdapat dua versi DP, yaitu \foreignTerm{bottom up} dan \foreignTerm{top down}. Keduanya memiliki keuntungan dan kerugian masing-masing. Kita harus bisa memilih versi yang tepat sesuai dengan kebutuhan soal.
+  \item Kunci dari mengerjakan soal DP adalah mendapatkan \foreignTerm{state} dan rekurens dari solusi DP. 
+  \item Banyak latihan mengerjakan soal DP dapat melatih kita untuk mendapatkan rumus DP yang sesuai.
 \end{itemize}
 \end{frame}
 
