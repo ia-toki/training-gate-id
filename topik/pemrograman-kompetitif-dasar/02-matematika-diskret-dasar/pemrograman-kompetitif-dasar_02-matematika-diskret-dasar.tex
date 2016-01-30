@@ -46,7 +46,7 @@ Melalui dokumen ini, kalian akan:
   \item $(A - B) \mod M = ((A \mod M) - (B \mod M)) \mod M$
   \item $(AB) \mod M = ((A \mod M) \times (B \mod M)) \mod M$  
   \item $(A^{B}) \mod M = ((A \mod M)^{B}) \mod M$
-  \item $(A * B) \mod (A * M) = A * (B \mod M)$
+  \item $(A \times B) \mod (A \times M) = A \times (B \mod M)$
 \end{itemize}
 \end{frame} 
 
@@ -82,7 +82,7 @@ Solusi:
   \item Aritmetika modular tidak langsung bekerja pada pembagian.
   \item $\frac{a}{b} \; (\bmod\; n) \; \neq \; \frac{a \mod n}{b \mod n} \; (\bmod\; n)$.
   \item Contohnya, $\frac{12}{4} \; (\bmod\; 6) \; \neq \; \frac{12 \mod 6}{4 \mod 6} \; (\bmod\; 6)$.
-  \item Pada aritmetika modular, $\frac{a}{b} \; (\bmod\; n)$ biasa kita tulis sebagai $a * b^{-1}\;(\bmod\; n)$, dimana $b^{-1}$ adalah 
+  \item Pada aritmetika modular, $\frac{a}{b} \; (\bmod\; n)$ biasa kita tulis sebagai $a \times b^{-1}\;(\bmod\; n)$, dimana $b^{-1}$ adalah 
       \newTerm{Modular Multiplicative Inverse} dari $b$.
   \item Jika tertarik, Anda bisa mempelajari \foreignTerm{Modular Multiplicative Inverse} melalui \textcolor{blue}{\href{https://en.wikipedia.org/wiki/  Modular_multiplicative_inverse}{link wikipedia ini}.} 
 \end{itemize}
@@ -144,7 +144,7 @@ Solusi:
 \frametitle{Primality Testing (lanj.)}
 \begin{itemize}
   \item Sebenarnya, ada solusi yang lebih cepat dari $O(N)$.
-  \item Kita dapat memanfaatkan observasi bahwa jika $N = A*B$, dan $A \leq B$, maka $A \leq \sqrt{N}$ dan $B \geq \sqrt{N}$.
+  \item Kita dapat memanfaatkan observasi bahwa jika $N = A \times B$, dan $A \leq B$, maka $A \leq \sqrt{N}$ dan $B \geq \sqrt{N}$.
   \item Kita tidak perlu mengecek $B$, seandainya $N$ habis dibagi $B$, tentu $N$ habis dibagi $A$.
   \item Maka, kita hanya perlu mengecek hingga $\sqrt{N}$.
   \item Kompleksitas : $O(\sqrt{N})$
