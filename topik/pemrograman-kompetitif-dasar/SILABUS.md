@@ -8,9 +8,11 @@
 ##2. Matematika Diskret Dasar
   
   * Aritmetika modular
+  * Faktor bilangan dan sifatnya
   * FPB dan KPK
   * Prime generation
   * Kombinatorik
+  * Prinsip inklusi eksklusi
   * Pigeon Hole Principle
 
 ##3. Struktur Data Dasar
