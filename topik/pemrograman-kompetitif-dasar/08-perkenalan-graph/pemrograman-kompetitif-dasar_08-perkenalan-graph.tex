@@ -11,50 +11,29 @@
 \end{frame}
 
 \begin{frame}
-\frametitle{Panduan Konten}
-\begin{itemize}
-  \item Jelaskan konsep graph, terutama terminologi seperti apa itu node/vertex, edge, indegree, outdegree, degree, cycle
-  \item Jelaskan jenis2 graph (unweighted/weighted, undirected/directed)
-  \item Jelaskan representasi graph pada pemrograman: adjacency matrix, adjacency list, edge list
-  \item Untuk setiap representasi, jelaskan keuntungan dan kerugiannya. Sekalian kompleksitas untuk operasi cek ketetanggaan, tambah edge, buang edge, dapetin daftar tetangga, konsumsi memori, dsb
-\end{itemize}
+\frametitle{Pendahuluan}
+
 \end{frame}
 
 \begin{frame}
-\frametitle{Panduan Konten}
-\begin{itemize}
-  \item Bahas graph traversal (penelusuran graph): BFS dan DFS
-  \item Disarankan untuk mulai dengan persoalan (misalnya diberikan grid maze, cari shortest path dari pintu masuk ke pintu keluar)
-  \item Jelaskan bahwa BFS selalu menjamin didapatkan shortest path
-  \item Jelaskan kompleksitas dan konsumsi memori dari masing2 pendekatan
-\end{itemize}
+\frametitle{Mengenal Graph}
+Graph merupakan struktur data yang terdiri dari \alert(node/vertex) dan \alert(edge). Node direpresentasikan dengan bentuk lingkaran dan edge direpresentasikan dengan bentuk garis pada ilustrasi dibawah ini.
 \end{frame}
 
 \begin{frame}
-\frametitle{Panduan Konten}
-\begin{itemize}
-  \item Tuliskan secara singkat tentang graph khusus: tree, directed acyclic graph, bipartite graph
-  \item Boleh juga ditambahkan jenis directed graph yang setiap nodenya punya tepat 1 outdegree, yang pada akhirnya selalu memiliki cycle maksimal O(V) (V = vertex)
-\end{itemize}
+Melalui ilustrasi diatas, dapat disimpulkan bahwa edge bertugas menghubungkan antar-node. 
 \end{frame}
 
 \begin{frame}
-\frametitle{Tips}
-Demi keseragaman dan kemudahan, gunakan command yang sudah didefinisikan di ../config.tex:
-% Komentar: meskipun ada yang menghasilkan format yang sama, tetapi menggunakan command ini mempermudah kalau ke depannya mau mengubah format, tidak perlu find and replace 1 per 1. 
+\frametitle{Jenis Graph}
+Berdasarkan hubungan antar node, graph terbagi menjadi 2 :
 \begin{itemize}
-  \item Gunakan \textbackslash id\{\} untuk menulis identifier (nama fungsi, variabel), contoh: \textbackslash id\{primeCount\} akan mencetak \id{primeCount}.
-  \item Gunakan \textbackslash progTerm\{\} untuk menulis istilah dalam pemrograman (tipe data, jenis error, for), contoh: \textbackslash progTerm\{integer\} akan mencetak \progTerm{integer}.
-  \item Gunakan \textbackslash foreignTerm\{\} untuk menulis istilah asing lainnya, contoh: \textbackslash foreignTerm\{default\} akan mencetak \foreignTerm{default}.
+	\item Directed graph, yaitu graph satu arah. Di graph jenis ini, jika terdapat edge dari A ke B, maka belum tentu terdapat edge dari B ke A. Contoh graph ini adalah kota-kota sebagai nodenya dan jalan 1 arah sebagai edgenya.
+	\item Undirected graph, yaitu graph dua arah. Dalam graph ini, jika terdapat edge dari A ke B, maka pasti juga terdapat edge dari B ke A. Contoh graph jenis ini adalah kota-kota sebagai nodenya dan jalan 2 arah sebagai edgenya.
 \end{itemize}
-\end{frame}
-
-\begin{frame}
-\frametitle{Tips (lanj.)}
+Berdasarkan weight dari edgenya, graph juga terbagi menjadi 2 :
 \begin{itemize}
-  \item Jika diperlukan, gunakan \textbackslash newTerm\{\} untuk menulis istilah yang baru diperkanalkan, contoh: \textbackslash newTerm\{rekursi\} akan mencetak \newTerm{rekursi}.
-  \item Gunakan \textbackslash emp\{\} untuk memberi penekanan, contoh: \textbackslash emp\{sangat lambat\} akan mencetak \emp{sangat lambat}.
-  \item Gunakan \textbackslash statement\{\} untuk merujuk pada statement program, contoh: \textbackslash statement\{count := count + 1\} akan mencetak \statement{count := count + 1}.
+	\item Unweighted Graph, yaitu graph dimana edgenya tidak memiliki value, sehingga semua edge memiliki weight 1 dan hanya bermakna bahwa memang terdapat hubungan antar node yang dihubungkannya. 
 \end{itemize}
 \end{frame}
 
