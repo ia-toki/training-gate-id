@@ -157,6 +157,119 @@ Setelah mengenal struktur data queue, berikut adalah beberapa operasi yang dapat
 	\item Front, yaitu melihat elemen yang paling depan dari queue tersebut
 \end{itemize}
 \end{frame}
+
+\section{Binary Search Tree}
+\frame{\sectionpage}
+
+\begin{frame}
+\frametitle{Soal Pemanasan}
+Misalkan Anda diberi problem dimana terdapat 2 macam query, yaitu insert suatu angka dan cari suatu angka. Perintah insert adalah memasukan angka tersebut ke struktur data. Perintah cari berarti mencari angka yang diinput dalam struktur data yang ada. Jika angka tersebut ada, print 1, jika tidak ada print 0.
+\newline\newline
+Cara yang paling mudah adalah untuk tiap operasi insert, maka masukkan angka tersebut ke array indeks paling akhir. Lalu, untuk operasi cari, maka lakukan linear search pada array. Namun, operasi pencarian ini kurang efisien karena butuh O(n) untuk mencari angka tersebut.
+\end{frame}
+
+\begin{frame}
+\frametitle{Mengenal Binary Search Tree}
+Untuk memperkecil kompleksitas problem tersebut, maka kita perlu belajar mengenai Binary Search Tree. Binary Search Tree merupakan struktur data yang cukup berbeda dengan struktur data yang sebelumnya. Berikut adalah ilustrasi sekilas mengenai binary search tree
+
+\begin{figure}
+	\centering
+	\includegraphics[width=4 cm]{asset/bst.png}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+\frametitle{Mengenal BST (lanj.)}
+Berdasarkan ilustrasi diatas, maka dapat disimpulkan beberapa hal berikut:
+\begin{itemize}
+	\item Tiap node pada BST memiliki sebuah nilai dan 2 pointer ke anaknya (anak kiri dan anak kanan).
+	\item Node yang berada di sebelah kiri suatu node pasti memiliki nilai yang lebih kecil daripada node sekarang.
+	\item Node yang berada di sebelah kanan suatu node pasti memiliki nilai yang lebih besar daripada node sekarang.
+	\item Node yang paling atas merupakan node \alert{root} yang merupakan satu-satunya node yang dapat diakses secara langsung
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Operasi Insert pada BST}
+
+Dengan adanya sifat-sifat BST di atas, maka proses insert dapat dimulai dari node root. Lakukan hal berikut hingga menemukan node NULL.
+\begin{itemize}
+	\item Jika nilai pada node sekarang lebih besar daripada nilai yang akan diinsert, maka pergi ke anak kiri dari node sekarang.
+	\item Jika nilai pada node sekarang lebih kecil dari nilai yang akan diinsert, maka pergi ke anak kanan dari node sekarang.\newline
+\end{itemize}
+
+Jika node sekarang NULL, maka buat node baru dengan anak kiri dan anak kanan adalah NULL. Jangan lupa untuk memasukkan nilai yang diinsert ke node tersebut.
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Pseudocode Insert pada BST}
+
+\begin{lstlisting}
+
+node* insert (node* currNode, int value)
+
+    if currNode = NULL:
+        currNode = new Node
+        currNode.val = value
+        currNode.left_child = NULL
+        currNode.right_child = NULL
+	
+    else if currNode.val > value:
+        currNode.left_child =
+        insert(currNode.left_child, value)
+	
+    else:
+        currNode.right_child = 
+        insert(currNode.right_child, value)
+		
+    return currNode
+		
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}
+\frametitle{Operasi Find pada BST}
+
+Dengan adanya sifat-sifat BST di atas, maka proses find dapat dimulai dari node root. Lakukan hal berikut hingga menemukan angka yang dicari atau menemukan node NULL.
+\begin{itemize}
+	\item Jika nilai pada node sekarang lebih besar daripada nilai yang akan diinsert, maka pergi ke anak kiri dari node sekarang.
+	\item Jika nilai pada node sekarang lebih kecil dari nilai yang akan diinsert, maka pergi ke anak kanan dari node sekarang.\newline
+\end{itemize}
+Jika value dari node sekarang sesuai dengan yang dicari, berarti angka yang dicari ditemukan dalam BST.
+\newline\newline
+Jika node sekarang NULL, maka angka yang dicari tidak ditemukan dalam BST.
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Pseudocode Insert pada BST}
+
+\begin{lstlisting}
+
+int insert (node* currNode, int value)
+
+    if currNode = NULL:
+        return 0
+    
+    else if currNode.val = value:
+        return 1
+        
+    else if currNode.val > value:
+        return insert(currNode.left_child, value)
+        
+    else:
+        return insert(currNode.right_child,value)
+		
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}
+\frametitle{Pembahasan Soal}
+
+Setelah mengenai BST, maka untuk menyelesaikan masalah sebelumnya kita dapat menggunakan BST. Untuk proses insert, maka gunakan proses insert yang terdapat pada BST. Untuk proses find, juga gunakan proses find yang terdapat pada BST.
+\newline\newline
+Dengan demikian, kompleksitas dari insert dan find keduanya adalah sesuai dengan tinggi dari BST. Solusi ini lebih efisien daripada menggunakan array dan harus mencari seluruh isi array
+\end{frame}
+
 \end{document}
 
 
