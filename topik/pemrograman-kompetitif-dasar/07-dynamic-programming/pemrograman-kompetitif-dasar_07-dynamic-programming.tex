@@ -69,10 +69,10 @@ Melalui dokumen ini, kalian akan:
 \frametitle{Optimisasi}
 \begin{itemize}
   \item Jika diperhatikan ternyata banyak $f(x)$ yang dihitung berkali-kali. Ini menyebabkan solusi berjalan sangat lambat.
-  \item Ternyata hanya ada $M + 1$ kemungkinan isi $x$ untuk $f(x)$ yaitu $0$ sampai $M$, dimana $M$ adalah nominal koin yang dibayarkan pada awalnya.
-  \item Kita dapat melakukan \newTerm{memoisasi}, dimana kita menyimpan hasil nilai $f(x)$ setelah menghitung nilai $f(x)$ agar jika kita memerlukan nilai $f(x)$ pada masa depannya, kita tidak perlu menghitungnya kembali.
-  \item Untuk menghitung sebuah nilai $f(x)$, kita membutuhkan $N$ iterasi, dimana $N$ adalah banyaknya nominal koin yang ada.
-  \item Sehingga untuk menghitung nilai $f(x)$ untuk seluruh $x$, kita membutuhkan $O(NM)$ operasi, dimana banyaknya operasi ini polinomial terhadap $N$ dan $M$ dan jauh lebih cepat daripada solusi rekursif sebelumnya.
+  \item Ternyata hanya ada $M + 1$ kemungkinan isi $x$ untuk $f(x)$ yaitu $0$ sampai $M$, yang mana $M$ adalah nominal koin yang dibayarkan pada awalnya.
+  \item Kita dapat melakukan \newTerm{memoisasi}, yang mana kita menyimpan hasil nilai $f(x)$ setelah menghitung nilai $f(x)$ agar jika kita memerlukan nilai $f(x)$ pada masa depannya, kita tidak perlu menghitungnya kembali.
+  \item Untuk menghitung sebuah nilai $f(x)$, kita membutuhkan $N$ iterasi, yang mana $N$ adalah banyaknya nominal koin yang ada.
+  \item Sehingga untuk menghitung nilai $f(x)$ untuk seluruh $x$, kita membutuhkan $O(NM)$ operasi, yang mana banyaknya operasi ini polinomial terhadap $N$ dan $M$ dan jauh lebih cepat daripada solusi rekursif sebelumnya.
 \end{itemize}
 \end{frame}
 
@@ -80,10 +80,10 @@ Melalui dokumen ini, kalian akan:
 \frametitle{Optimisasi}
 \begin{itemize}
   \item Jika diperhatikan ternyata banyak $f(x)$ yang dihitung berkali-kali. Ini menyebabkan solusi berjalan sangat lambat.
-  \item Ternyata hanya ada $M + 1$ kemungkinan isi $x$ untuk $f(x)$ yaitu $0$ sampai $M$, dimana $M$ adalah nominal koin yang dibayarkan pada awalnya.
-  \item Kita dapat melakukan \newTerm{memoisasi}, dimana kita menyimpan hasil nilai $f(x)$ setelah menghitung nilai $f(x)$ agar jika kita memerlukan nilai $f(x)$ pada masa depannya, kita tidak perlu menghitungnya kembali.
-  \item Untuk menghitung sebuah nilai $f(x)$, kita membutuhkan $N$ iterasi, dimana $N$ adalah banyaknya nominal koin yang ada.
-  \item Sehingga untuk menghitung nilai $f(x)$ untuk seluruh $x$, kita membutuhkan $O(NM)$ operasi, dimana banyaknya operasi ini polinomial terhadap $N$ dan $M$ dan jauh lebih cepat daripada solusi rekursif sebelumnya.
+  \item Ternyata hanya ada $M + 1$ kemungkinan isi $x$ untuk $f(x)$ yaitu $0$ sampai $M$, yang mana $M$ adalah nominal koin yang dibayarkan pada awalnya.
+  \item Kita dapat melakukan \newTerm{memoisasi}, yang berarti kita menyimpan hasil nilai $f(x)$ setelah menghitung nilai $f(x)$ agar jika kita memerlukan nilai $f(x)$ pada masa depannya, kita tidak perlu menghitungnya kembali.
+  \item Untuk menghitung sebuah nilai $f(x)$, kita membutuhkan $N$ iterasi, yang mana $N$ adalah banyaknya nominal koin yang ada.
+  \item Sehingga untuk menghitung nilai $f(x)$ untuk seluruh $x$, kita membutuhkan $O(NM)$ operasi, yang mana banyaknya operasi ini polinomial terhadap $N$ dan $M$ dan jauh lebih cepat daripada solusi rekursif sebelumnya.
 \end{itemize}
 \end{frame}
 
@@ -127,15 +127,15 @@ Melalui dokumen ini, kalian akan:
 \begin{itemize}
   \item \newTerm{Dynamic Programming} (biasanya disingkat DP) adalah metode penyelesaian sebuah persoalan dengan menyelesaikan sub-persoalan (persoalan yang sama namun lebih kecil) dan menghitung solusi sub-persoalan tersebut hanya sekali dengan menyimpan solusinya di memori.
   \item Jika sub-persoalan tersebut diperlukan kembali pada masa depan, maka kita dapat hanya mengakses nilainya dari memori.
-  \item Biasanya soal-soal DP diselesaikan dengan mempelajari sub-persoalan sub-persoalan apa saja yang dibutuhkan untuk menyelesaikan sebuah persoalan.
-  \item Jika sebuah persoalan adalah sebuah persoalan optimisasi, maka biasanya kita mencoba semua kemungkinan dan menghitung solusi sub-problem yang dihasilkan dari kemungkinan tersebut, dan kita mengambil kemungkinan yang hasil hitungannya paling optimal. 
+  \item Biasanya soal-soal DP diselesaikan dengan mempelajari sub-persoalan apa saja yang dibutuhkan untuk menyelesaikan sebuah persoalan.
+  \item Jika sebuah persoalan adalah persoalan optimisasi, maka biasanya kita mencoba semua kemungkinan solusi sub-problem yang dihasilkan, dan  mengambil kemungkinan yang hasilnya paling optimal. 
 \end{itemize}
 \end{frame}
 
 \begin{frame} 
 \frametitle{Contoh Soal 1: Knapsack}
 \begin{itemize}
-  \item Diberikan $N$ buah barang. Barang ke-$i$ memiliki harga $v_i$ rupiah dan memiliki berat $w_i$ gram. Kita memiliki tas yang berkapasitas $W$ gram. 
+  \item Diberikan $N$ buah barang. Barang ke-$i$ memiliki harga $v_i$ rupiah dan memiliki berat $w_i$ gram. Kita memiliki tas yang berkapasitas $G$ gram. 
   \item Kita ingin memasukan beberapa barang kedalam tas sedemikian sehingga jumlah berat dari barang-barang yang kita masukan tidak lebih dari kapasitas tas dan jumlah harga dari barang-barang yang kita masukan sebanyak mungkin.
 \end{itemize}
 \end{frame}
@@ -147,7 +147,7 @@ Melalui dokumen ini, kalian akan:
   \item Untuk menghitung fungsi $g(x,y)$ kita bisa mencoba-coba apakah kita akan memasukan barang ke-$x$ ke tas.
   \begin{itemize}
   \item Jika kita memasukan barang ke-$x$ ke tas, maka kita akan menyisakan barang ke-$1$ sampai ke-$x-1$ dan sisa kapasitas tas adalah $y-w_x$. Kita dapat menghitung jumlah harga maksimum pada kasus ini pada $g(x-1,y-w_x)$ ditambah dengan harga yang kita peroleh pada barang ke-$x$. Kasus ini hanya boleh dipertimbangkan jika $y \geq w_x$.
-  \item Jika kita tidak memasukan barang ke-$x$ ke tas, maka perbedaannya hanya sisa kapasitas tas masih tetap $y$, sehingga jumlah harga maksimumnya adalah $g(x-1,y)$ tanpa tambahan apapun, karena kita tidak mengambil barang ke-$x$.
+  \item Jika kita tidak memasukan barang ke-$x$ ke tas, maka kita akan menyisakan barang ke-$1$ sampai ke-$x-1$ dan sisa kapasitas tas masih tetap $y$, sehingga jumlah harga maksimumnya adalah $g(x-1,y)$ tanpa tambahan apapun, karena kita tidak mengambil barang ke-$x$.
   \end{itemize}
 \end{itemize}
 \end{frame}
@@ -165,7 +165,7 @@ Melalui dokumen ini, kalian akan:
         \max(g(x-1,y-w_x)+v_x,g(x-1,y)), & x > 0 \wedge y \geq w_x\\
         \end{array}\right\}\]
   \end{small}
-  \item Terdapat $O(N)$ nilai berbeda untuk nilai $x$ dan $O(W)$ nilai berbeda untuk nilai $y$ pada $g(x,y)$. Dibutuhkan $O(1)$ iterasi untuk menghitung $g(x,y)$. Sehingga untuk menghitung seluruh nilai $g(x,y)$ untuk seluruh $x$ dan $y$ dibutuhkan waktu $O(NW)$.  
+  \item Terdapat $O(N)$ nilai berbeda untuk nilai $x$ dan $O(G)$ nilai berbeda untuk nilai $y$ pada $g(x,y)$. Dibutuhkan $O(1)$ iterasi untuk menghitung $g(x,y)$. Sehingga untuk menghitung seluruh nilai $g(x,y)$ untuk seluruh $x$ dan $y$ dibutuhkan waktu $O(NG)$.
 \end{itemize}
 \end{frame}
 
@@ -186,32 +186,34 @@ Melalui dokumen ini, kalian akan:
   \end{lstlisting}
   Hasil jawaban terdapat pada 
   \begin{lstlisting}
-    g(N, W)
+    g(N, G)
   \end{lstlisting}
-  karena pada awalnya kita memiliki seluruh barang dari barang ke-$1$ sampai barang ke-$N$ dan kapasitas tas adalah $W$ gram.
+  karena pada awalnya kita memiliki seluruh barang dari barang ke-$1$ sampai barang ke-$N$ dan kapasitas tas adalah $G$ gram.
 \end{frame}
 
 \begin{frame} [fragile]
 \frametitle{Contoh Soal 1: Knapsack (Pseudocode (lanj.))}
   Berikut adalah contoh implementasi menggunakan solusi \foreignTerm{bottom up}.
   \begin{lstlisting}
+    for j in [0, G]
+      g[0][j] = 0
     for i in [1,N]
-      for j in [0,W]
+      for j in [0,G]
         g[i][j] = g[i-1][j]
         if (j >= w[i])
           g[i][j] = max(g[i][j], g[i-1][j-w[x]] + v[x])
   \end{lstlisting}
   Hasil jawaban terdapat pada
   \begin{lstlisting}
-    g[N][W]
+    g[N][G]
   \end{lstlisting}
 \end{frame}
 
 \begin{frame}
 \frametitle{Contoh Soal 2: Memotong Kayu}
 \begin{itemize}
-  \item Kita harus memotong-motong sebuah batang kayu dengan panjang $L$ meter pada $N$ titik menjadi $N+1$ bagian. Titik ke-$i$ berada di $L_i$ meter dari sebuah ujung.
-  \item Untuk memotong kayu, kita memerlukan usaha sebanyak panjang kayu yang sedang kita potong.
+  \item Kita harus memotong-motong sebuah batang kayu dengan panjang $M$ meter pada $N$ titik menjadi $N+1$ bagian. Titik ke-$i$ berada di $L_i$ meter dari sebuah ujung.
+  \item Untuk memotong sebatang kayu menjadi dua, kita memerlukan usaha sebanyak panjang kayu yang sedang kita potong.
   \item Sebagai contoh, terdapat sebuah kayu dengan panjang 10 meter dan terdapat 3 titik potongan pada 2 meter, 4 meter, dan 7 meter dari sebuah ujung. Kita bisa memotong pada titik 2, titik 4, lalu titik 7 dan memerlukan usaha 10 + 8 + 6 = 24. Cara lain adalah memotong pada titik 4, titik 2, lalu titik 7 dan memerlukan usaha 10 + 4 + 6 = 20.
   \item Kita harus mencari urutan pemotongan sedemikian sehingga total usaha yang dibutuhkan minimum.
 \end{itemize}
@@ -222,7 +224,7 @@ Melalui dokumen ini, kalian akan:
 \begin{itemize}
   \item Marilah kita definisikan sebuah fungsi $g(x,y)$ adalah jumlah usaha minimum yang mungkin diperoleh, jika kita hanya perlu memotong potongan-potongan dari potongan ke-$x$ sampai ke-$y$.
   \item Untuk menghitung fungsi $g(x,y)$ kita bisa mencoba-coba potongan manakah yang kita potong pertama kali.
-  \item Jika kita memotong potongan ke-$k$ $(x \leq k \leq y)$, maka kita akan mendapatkan dua potongan. Total usaha minimum dari potongan pertama adalah $g(x,k-1)$ dan total usaha minimum dari potongan kedua adalah $g(k+1,y)$ dan usaha yang dibutuhkan dari potongan pertama adalah panjang potongan saat ini, yaitu $L_{y+1} - L_{x-1}$, dimana $L_0 = 0$ dan $L_{N+1} = L$.
+  \item Jika kita memotong potongan ke-$k$ $(x \leq k \leq y)$, maka kita akan mendapatkan dua potongan. Total usaha minimum dari potongan pertama adalah $g(x,k-1)$ dan total usaha minimum dari potongan kedua adalah $g(k+1,y)$ dan usaha yang dibutuhkan dari potongan pertama adalah panjang potongan saat ini, yaitu $L_{y+1} - L_{x-1}$, dengan $L_0 = 0$ dan $L_{N+1} = M$.
 \end{itemize}
 \end{frame}
 
@@ -267,12 +269,15 @@ Melalui dokumen ini, kalian akan:
 
 \begin{frame} [fragile]
 \frametitle{Contoh Soal 2: Memotong Kayu (Pseudocode (lanj.))}
-  Berikut adalah contoh implementasi menggunakan solusi \foreignTerm{bottom up}.
+  Berikut adalah contoh implementasi menggunakan solusi \foreignTerm{bottom up}. Perhatikan urutan pengisian tabel $g$
   \begin{lstlisting}
-    L[0] = 0
-    L[N+1] = L
-    for i in [1,N]
-      for j in [i, N]
+    L[0] = 0, L[N+1] = M
+    for i in [0,N+1]
+      for j in [0,N+1]
+        if (i > j) g[i][j] = 0
+    for dif in [0,N]
+      for i in [1, N - dif]
+        j = i + dif
         g[i][j] = INFINITY
 	for k in [i,j]
 	  g[i][j] = min(g[i][j], g[i][k-1] + g[k+1][j])
