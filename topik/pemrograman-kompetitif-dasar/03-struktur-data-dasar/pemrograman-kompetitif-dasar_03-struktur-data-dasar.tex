@@ -37,7 +37,7 @@ Array merupakan salah satu contoh struktur data yang dasar yang mendukung operas
 \frametitle{Mengenal Linked List}
 \begin{figure}
 	\centering
-	\includegraphics[width=4 cm]{asset/linkedlist.png}
+	\includegraphics[width=6 cm]{asset/linkedlist.png}
 \end{figure}
 \begin{itemize}
 	\item Linked list terdiri dari kumpulan \alert{node} yang saling terhubung
@@ -76,6 +76,59 @@ Namun, penggunaan linked list juga memiliki kerugian. Sebagai contoh, untuk pros
 
 \section{Stack}
 \frame{\sectionpage}
+
+\begin{frame}
+\frametitle{Soal Pemanasan}
+
+Misal kita mendapat soal sebagai berikut
+\begin{itemize}
+	\item Anda diberikan sebuah string misal "acaabcbcd"
+	\item Cari string "abc" dalam string tersebut. Jika ditemukan maka hapus string "abc" tersebut, lalu ulangi pencarian.
+	\item Pencarian berakhir ketika tidak terdapat string "abc" lagi. Outputkan total penghapusan yang berhasil dilakukan
+	\item Contoh, pada string "acaabcbcd" terdapat sebuah string abc, dan hapus string tersebut menjadi "acabcd". Lalu, ditemukan lagi string abc dan hapus menjadi "acd". Karena tidak ditemukan lagi string "abc", maka output 2.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Mengenal Stack}
+
+Stack dapat dimisalkan seperti tumpukan piring. Jika terdapat piring baru yang ingin dimasukkan, maka piring tersebut masuk dari paling atas. Jika sebuah piring akan diambil dari tumpukan, maka yang diambil juga piring yang paling atas.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=4 cm]{asset/plates-stack.jpg}
+\end{figure}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Mengenal Stack (lanj.)}
+
+Seperti pada analogi tumpukan piring, struktur data stack memiliki sifat yang sama:
+\begin{itemize}
+	\item Push, yaitu memasukan elemen baru ke bagian akhir dari stack
+	\item Pop, yaitu membuang elemen paling akhir dari stack
+\end{itemize}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=4 cm]{asset/stack.png}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+\frametitle{Pembahasan Soal}
+
+Setelah mengenali struktur data stack, maka kita sudah dapat menjawab soal sebelumnya dengan efisien.
+\begin{itemize}
+	\item Lakukan iterasi tiap karakter pada string tersebut
+	\item Untuk karakter selain huruf 'c', maka masukkan ke stack yang dimiliki
+	\item jika karakter sekarang adalah 'c', maka ada kemungkinan bahwa string terakhir adalah "abc". Oleh karena itu, cek 2 elemen teratas dari stack, apakah 'b' dan 'a'.
+	\item Jika tidak, maka masukkan 'c' kedalam stack.
+	\item Jika iya, maka terdapat 1 penghapusan, lalu pop huruf 'b' dan 'a' dari stack.
+\end{itemize}
+Kompleksitas total adalah O(n) yang cukup efisien karena pada tiap karakter, kita hanya memasukkan kedalam stack atau mengecek 2 elemen teratas dari stack.
+\end{frame}
 
 \end{document}
 
