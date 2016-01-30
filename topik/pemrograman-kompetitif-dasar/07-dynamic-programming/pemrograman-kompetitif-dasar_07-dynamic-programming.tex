@@ -45,7 +45,7 @@ Melalui dokumen ini, kalian akan:
 \end{frame}
 
 \begin{frame}
-\frametitle{Solusi rekursi}
+\frametitle{Solusi rekursif}
 \begin{itemize}
   \item Soal ini dapat diselesaikan menggunakan rekursi.
   \item Marilah kita definisikan sebuah fungsi $f(x)$ adalah banyaknya koin minimum yang dibutuhkan untuk membayar $x$ rupiah.
@@ -61,7 +61,7 @@ Melalui dokumen ini, kalian akan:
 \end{frame}
 
 \begin{frame}
-\frametitle{Solusi rekursi (lanj.)}
+\frametitle{Solusi rekursif (lanj.)}
 % TODO: Penjelasan bahwa solusi ini eksponential dan akan memakan waktu yang sangat lama
 \end{frame}
 
@@ -77,7 +77,7 @@ Melalui dokumen ini, kalian akan:
 \end{frame}
 
 \begin{frame}
-\frametitle{Optimisasi rekursi}
+\frametitle{Optimisasi}
 \begin{itemize}
   \item Jika diperhatikan ternyata banyak $f(x)$ yang dihitung berkali-kali. Ini menyebabkan solusi berjalan sangat lambat.
   \item Ternyata hanya ada $M + 1$ kemungkinan isi $x$ untuk $f(x)$ yaitu $0$ sampai $M$, dimana $M$ adalah nominal koin yang dibayarkan pada awalnya.
@@ -88,7 +88,7 @@ Melalui dokumen ini, kalian akan:
 \end{frame}
 
 \begin{frame} [fragile]
-\frametitle{Pseudocode Optimisasi rekursi}
+\frametitle{Pseudocode Optimisasi}
 \begin{lstlisting}
    function f(x)
      if (remainingCoins == 0)
@@ -290,7 +290,7 @@ Dua versi DP masing-masing memiliki keuntungan dan kerugian masing-masing.
 \begin{itemize}
   \item Top Down
   \begin{itemize}
-    \item Keuntungan: Sebuah transformasi natural dari formula rekursi. Urutan pengisian tabel tidak penting.
+    \item Keuntungan: Sebuah transformasi natural dari formula rekursif. Urutan pengisian tabel tidak penting.
     \item Keuntungan: Hanya menghitung nilai dari fungsi jika hanya diperlukan.
     \item Kerugian : Pemanggilan fungsi yang berkali-kali mungkin saja membuat kode lebih lambat.
   \end{itemize}
