@@ -4,6 +4,7 @@
 \author{Tim Olimpiade Komputer Indonesia}
 \date{}
 
+\usepackage{qtree}
 \begin{document}
 
 \begin{frame}
@@ -60,9 +61,98 @@ Melalui dokumen ini, kalian akan:
  \end{itemize}
 \end{frame}
 
-\begin{frame}
+\begin{frame} [fragile]
 \frametitle{Solusi rekursif (lanj.)}
-% TODO: Penjelasan bahwa solusi ini eksponential dan akan memakan waktu yang sangat lama
+Marilah kita melihat pohon rekursi yang dihasilkan oleh fungsi $f$ ini. Sebagai contoh, marilah kita melihat pohon rekursi dari $f(12)$ dengan nominal koin 1, 6, dan 10 rupiah.
+\scalebox{.5}{
+\Tree [.$f(12)$
+		[.$f(2)$
+			[.$f(1)$
+				[.$f(0)$ ]
+			]
+		]
+		[.$f(6)$
+			[.$f(0)$ ]
+			[.$f(5)$
+				[.$f(4)$
+					[.$f(3)$
+						[.$f(2)$
+							[.$f(1)$
+								[.$f(0)$ ]
+							]
+						]
+					]
+				]
+			]
+		]
+		[.$f(11)$
+			[.$f(1)$
+				[.$f(0)$ ]
+			]
+			[.$f(5)$
+				[.$f(4)$
+					[.$f(3)$
+						[.$f(2)$
+							[.$f(1)$
+								[.$f(0)$ ]
+							]
+						]
+					]
+				]
+			]
+			[.$f(10)$ 
+				[.$f(0)$ ]
+				[.$f(4)$
+					[.$f(3)$
+						[.$f(2)$
+							[.$f(1)$
+								[.$f(0)$ ]
+							]
+						]
+					]
+				]
+				[.$f(9)$
+					[.$f(3)$
+						[.$f(2)$
+							[.$f(1)$
+								[.$f(0)$ ]
+							]
+						]
+					]
+					[.$f(8)$
+						[.$f(2)$
+							[.$f(1)$
+								[.$f(0)$ ]
+							]
+						]
+						[.$f(7)$
+							[.$f(1)$
+								[.$f(0)$ ]
+							]
+							[.$f(6)$
+								[.$f(0)$ ]
+								[.$f(5)$ 
+									[.$f(4)$ ...
+									]
+								]
+							]
+						]
+					]
+				]
+			]
+		]
+	]
+}
+\end{frame}
+
+\begin{frame}
+\begin{itemize}
+  \item Jika diperhatikan pada pohon rekursi, banyak \foreignTerm{node} yang memiliki $N$ anak pohon, yang mana $N$ adalah banyaknya nominal koin yang ada.
+  \item Karena itu, jika kita ingin menghitung nilai $f(M)$, kita akan memiliki pohon rekursi yang memiliki kira-kira $N^M$ \foreignTerm{node} dengan menggunakan aturan perkalian.
+  \item Karena itu, solusi kita akan membutuhkan kira-kira $O(N^M)$ operasi, yang mana banyaknya operasi ini eksponensial terhadap $N$ atau $M$.
+  \item Biasanya solusi eksponensial berjalan sangat lambat dan kita tidak ingin memiliki solusi eksponensial pada \foreignTerm{competitive programming}, kecuali pada soal-soal tertentu dimana tidak terdapat solusi polinomial. 
+  \item Karena itu, kita harus melakukan sebuah optimisasi.
+\end{itemize}
 \end{frame}
 
 \begin{frame}
