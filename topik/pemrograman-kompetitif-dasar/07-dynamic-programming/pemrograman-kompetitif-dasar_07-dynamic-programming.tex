@@ -76,17 +76,6 @@ Melalui dokumen ini, kalian akan:
 \end{itemize}
 \end{frame}
 
-\begin{frame}
-\frametitle{Optimisasi}
-\begin{itemize}
-  \item Jika diperhatikan ternyata banyak $f(x)$ yang dihitung berkali-kali. Ini menyebabkan solusi berjalan sangat lambat.
-  \item Ternyata hanya ada $M + 1$ kemungkinan isi $x$ untuk $f(x)$ yaitu $0$ sampai $M$, yang mana $M$ adalah nominal koin yang dibayarkan pada awalnya.
-  \item Kita dapat melakukan \newTerm{memoisasi}, yang berarti kita menyimpan hasil nilai $f(x)$ setelah menghitung nilai $f(x)$ agar jika kita memerlukan nilai $f(x)$ pada masa depannya, kita tidak perlu menghitungnya kembali.
-  \item Untuk menghitung sebuah nilai $f(x)$, kita membutuhkan $N$ iterasi, yang mana $N$ adalah banyaknya nominal koin yang ada.
-  \item Sehingga untuk menghitung nilai $f(x)$ untuk seluruh $x$, kita membutuhkan $O(NM)$ operasi, yang mana banyaknya operasi ini polinomial terhadap $N$ dan $M$ dan jauh lebih cepat daripada solusi rekursif sebelumnya.
-\end{itemize}
-\end{frame}
-
 \begin{frame} [fragile]
 \frametitle{Pseudocode Optimisasi}
 \begin{lstlisting}
