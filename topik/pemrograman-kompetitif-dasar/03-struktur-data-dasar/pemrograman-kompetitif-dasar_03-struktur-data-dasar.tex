@@ -11,43 +11,269 @@
 \end{frame}
 
 \begin{frame}
-\frametitle{Panduan Konten}
+\frametitle{Pendahuluan}
+Melalui dokumen ini, kalian akan:
 \begin{itemize}
-  \item Pengertian struktur data \& apa pentingnya
-  \item Review: tunjukkan bahwa array adalah contoh struktur data sederhana yang mendukung operasi read \& update secara random access
-  \item Bahas linked list, tekankan apa keuntungan/kerugian dari linked list dibandingkan dengan array
-  \item Bahas stack dan queue, bisa dimulai dengan diberikan permasalahan, lalu cari struktur data yang tepat kira-kira apa. Contohnya sederhana saja, misalnya tumpukan piring cucian dan antrian kantor pajak
-  \item Jelaskan tentang Binary Search Tree, supaya ada variasi yang lebih jelas. Biasanya kalau hanya belajar stack/queue/linked list, orang tidak terlalu paham abstraksi dari struktur data. Cukup jelaskan operasi insert dan find saja. Operasi delete cukup disebut, dan beri link supaya peserta bisa baca kalau berminat.
+  \item Mengenal beberapa macam struktur data dasar
+  \item Mengetahui pentingnya penggunaan struktur data
+  \item Mengetahui operasi-operasi yang dapat dilakukan pada struktur data dasar
 \end{itemize}
 \end{frame}
 
 \begin{frame}
-\frametitle{Tips}
+\frametitle{Kilas Balik: Array}
+Apakah Anda masih ingat mengenai struktur data array?
+Array merupakan salah satu contoh struktur data yang dasar yang mendukung operasi berikut :
 \begin{itemize}
-  \item Setiap penjelasan tentang struktur data ada baiknya menjabarkan operasi apa saja yang didukung
-  \item Misalnya untuk BST, operasi yang didukung adalah insert(x), dan find(x).
-  \item Jelaskan kompleksitas untuk setiap operasi yang didukung.
+  \item Membaca elemen di dalam array secara random. Pada array, kita dapat membaca elemen pada indeks yang kita inginkan.
+  \item Mengubah elemen di dalam array secara random. Pada array, kita dapat mengubah nilai elemen di dalam array
+\end{itemize} 
+\end{frame}
+
+\section{Linked List}
+\frame{\sectionpage}
+
+\begin{frame}
+\frametitle{Mengenal Linked List}
+\begin{figure}
+  \centering
+  \includegraphics[width=6 cm]{asset/linkedlist.png}
+\end{figure}
+\begin{itemize}
+  \item Linked list terdiri dari kumpulan \alert{node} yang memiliki referensi ke node lainnya
+  \item Tiap node terdiri dari elemen yang akan disimpan dan \alert{pointer} ke node lainnya
+  \item Pointer tersebut yang menghubungkan antar node dalam linked list
+  \item Node paling depan biasa disebut \alert{head} sedangkan node paling akhir biasa disebut \alert{tail}
 \end{itemize}
 \end{frame}
 
 \begin{frame}
-\frametitle{Tips}
-Demi keseragaman dan kemudahan, gunakan command yang sudah didefinisikan di ../config.tex:
-% Komentar: meskipun ada yang menghasilkan format yang sama, tetapi menggunakan command ini mempermudah kalau ke depannya mau mengubah format, tidak perlu find and replace 1 per 1. 
+\frametitle{Mengenal Linked List (lanj.)}
+Berdasarkan hubungannya dengan node lain, linked list terbagi menjadi 2 macam, yaitu:
 \begin{itemize}
-  \item Gunakan \textbackslash id\{\} untuk menulis identifier (nama fungsi, variabel), contoh: \textbackslash id\{primeCount\} akan mencetak \id{primeCount}.
-  \item Gunakan \textbackslash progTerm\{\} untuk menulis istilah dalam pemrograman (tipe data, jenis error, for), contoh: \textbackslash progTerm\{integer\} akan mencetak \progTerm{integer}.
-  \item Gunakan \textbackslash foreignTerm\{\} untuk menulis istilah asing lainnya, contoh: \textbackslash foreignTerm\{default\} akan mencetak \foreignTerm{default}.
+  \item Single Linked List, yaitu linked list yang mana tiap nodenya hanya memiliki pointer ke node selanjutnya saja. Tiap node hanya memiliki pointer \alert{next} untuk menunjuk node selanjutnya.
+  \item Double Linked List, yaitu linked list yang mana tiap nodenya memiliki pointer terhadap node selanjutnya dan node sebelumnya. Tiap pointer memiliki pointer next dan \alert{prev} untuk menunjuk node sebelumnya.
 \end{itemize}
 \end{frame}
 
 \begin{frame}
-\frametitle{Tips (lanj.)}
+\frametitle{Mengenal Linked List (lanj.)}
+Selain itu, berdasarkan bentuknya, linked list juga dapat terbagi menjadi 2 macam, yaitu:
 \begin{itemize}
-  \item Jika diperlukan, gunakan \textbackslash newTerm\{\} untuk menulis istilah yang baru diperkanalkan, contoh: \textbackslash newTerm\{rekursi\} akan mencetak \newTerm{rekursi}.
-  \item Gunakan \textbackslash emp\{\} untuk memberi penekanan, contoh: \textbackslash emp\{sangat lambat\} akan mencetak \emp{sangat lambat}.
-  \item Gunakan \textbackslash statement\{\} untuk merujuk pada statement program, contoh: \textbackslash statement\{count := count + 1\} akan mencetak \statement{count := count + 1}.
+  \item Linear Linked List, yaitu linked list yang mana \alert{tail} atau node paling terakhir nextnya dihubungkan ke \alert{NULL}. Demikian pula dalam double linked list, maka \alert{head} atau node pertama prevnya dihubungkan ke NULL.
+  \item Circular Linked List, yaitu linked list yang mana tail bagian nextnya akan dihubungkan ke head. Selain itu, bagian prev pada head juga akan dihubungkan ke tail. 
 \end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Keuntungan Linked List}
+Linked list memiliki keuntungan dalam menangani penghapusan suatu elemen. Sebagai contoh, misal kita akan menghapus salah satu elemen pada linked list. Maka yang perlu dilakukan hanya menghapus node tersebut. Jika dibandingkan dengan array, maka penghapusan suatu elemen harus menggeser seluruh elemen setelah atau sebelum elemen yang dihapus.
+\end{frame}
+
+\begin{frame}
+\frametitle{Kerugian Linked List}
+Proses membaca elemen dalam linked list tidak semudah dalam pembacaan elemen pada array. Untuk membaca elemen pada indeks tertentu, maka harus dilakukan iterasi mulai dari node head hingga ke node yang diinginkan. Begitu pula dengan proses pengubahan harus dilakukan iterasi dari awal terlebih dahulu.
+\end{frame}
+
+\section{Stack}
+\frame{\sectionpage}
+
+\begin{frame}
+\frametitle{Soal Pemanasan}
+
+Misal kita mendapat soal sebagai berikut
+\begin{itemize}
+  \item Anda diberikan sebuah string misal "acaabcbcd"
+  \item Cari string "abc" dalam string tersebut. Jika ditemukan maka hapus string "abc" tersebut, lalu ulangi pencarian.
+  \item Pencarian berakhir ketika tidak terdapat string "abc" lagi. Outputkan total penghapusan yang berhasil dilakukan
+  \item Contoh, pada string "acaabcbcd" terdapat sebuah string abc, dan hapus string tersebut menjadi "acabcd". Lalu, ditemukan lagi string abc dan hapus menjadi "acd". Karena tidak ditemukan lagi string "abc", maka output 2.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Mengenal Stack}
+
+Stack dapat dimisalkan seperti tumpukan piring. Jika terdapat piring baru yang ingin dimasukkan, maka piring tersebut masuk dari paling atas. Jika sebuah piring akan diambil dari tumpukan, maka yang diambil juga piring yang paling atas.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=4 cm]{asset/plates-stack.png}
+\end{figure}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Mengenal Stack (lanj.)}
+
+Struktur data stack memiliki sifat LIFO (Last In First Out). Hal ini disebabkan elemen yang paling terakhir masuk (Last In) akan lebih dahulu keluar dari stack (First Out).\newline\newline
+Stack memiliki operasi sebagai berikut:
+\begin{itemize}
+  \item Push, yaitu memasukan elemen baru ke bagian akhir dari stack
+  \item Pop, yaitu membuang elemen paling akhir dari stack
+\end{itemize}
+
+\begin{figure}
+  \centering
+  \includegraphics[width=4 cm]{asset/stack.png}
+\end{figure}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Pembahasan Soal}
+
+Setelah mengenali struktur data stack, maka kita sudah dapat menjawab soal sebelumnya dengan efisien.
+\begin{itemize}
+  \item Lakukan iterasi tiap karakter pada string tersebut
+  \item Untuk karakter selain huruf 'c', maka masukkan ke stack yang dimiliki
+  \item jika karakter sekarang adalah 'c', maka ada kemungkinan bahwa string terakhir adalah "abc". Oleh karena itu, cek 2 elemen teratas dari stack, apakah 'b' dan 'a'.
+  \item Jika tidak, maka masukkan 'c' kedalam stack.
+  \item Jika iya, maka terdapat 1 penghapusan, lalu pop huruf 'b' dan 'a' dari stack.
+\end{itemize}
+Kompleksitas total adalah O(N) yang cukup efisien karena pada tiap karakter, kita hanya memasukkan kedalam stack atau mengecek 2 elemen teratas dari stack. Di sini, N merupakan panjang string awal.
+\end{frame}
+
+\section{Queue}
+\frame{\sectionpage}
+
+\begin{frame}
+\frametitle{Mengenal Queue}
+
+Apakah anda pernah melihat antrian pembelian? Tentu saja pernah bukan?
+\newline
+\newline
+Struktur Data Queue mirip dengan analogi antrian tersebut. Saat seorang ingin masuk ke antrian, maka orang tersebut harus mengantri dari belakang. Sementara itu, orang yang dilayani terlebih dahulu adalah orang yang paling depan.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=8 cm]{asset/queue.png}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+\frametitle{Mengenal Queue (lanj.)}
+
+Queue memiliki sifat yang berbeda dengan stack, yaitu FIFO (First In First Out). Hal ini disebabkan elemen yang pertama masuk kedalam queue (First In) akan keluar dari queue terlebih dahulu (First Out).\newline\newline
+Queue memiliki beberapa operasi yang dapat dilakukan:
+\begin{itemize}
+  \item Push, yaitu memasukkan elemen baru kedalam indeks paling akhir dari queue
+  \item Pop, yaitu mengeluarkan elemen paling depan dari queue
+  \item Front, yaitu melihat elemen yang paling depan dari queue tersebut
+\end{itemize}
+\end{frame}
+
+\section{Binary Search Tree}
+\frame{\sectionpage}
+
+\begin{frame}
+\frametitle{Soal Pemanasan}
+Misalkan Anda diberi problem yang mana terdapat 2 macam query, yaitu insert suatu angka dan cari suatu angka. Perintah insert adalah memasukan angka tersebut ke struktur data. Perintah cari berarti mencari angka yang diinput dalam struktur data yang ada. Jika angka tersebut ada, print 1, jika tidak ada print 0.
+\newline\newline
+Cara yang paling mudah adalah untuk tiap operasi insert, maka masukkan angka tersebut ke array indeks paling akhir. Lalu, untuk operasi cari, maka lakukan linear search pada array. Namun, operasi pencarian ini kurang efisien karena butuh O(n) untuk mencari angka tersebut.
+\end{frame}
+
+\begin{frame}
+\frametitle{Mengenal Binary Search Tree}
+Untuk memperkecil kompleksitas problem tersebut, maka kita perlu belajar mengenai Binary Search Tree. Binary Search Tree merupakan struktur data yang cukup berbeda dengan struktur data yang sebelumnya. Berikut adalah ilustrasi sekilas mengenai binary search tree
+
+\begin{figure}
+  \centering
+  \includegraphics[width=4 cm]{asset/bst.png}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+\frametitle{Mengenal BST (lanj.)}
+Berdasarkan ilustrasi diatas, maka dapat disimpulkan beberapa hal berikut:
+\begin{itemize}
+  \item Tiap node pada BST memiliki sebuah nilai dan 2 pointer ke anaknya (anak kiri dan anak kanan).
+  \item Semua node yang berada di sebelah kiri suatu node pasti memiliki nilai yang lebih kecil daripada node sekarang.
+  \item Semua node yang berada di sebelah kanan suatu node pasti memiliki nilai yang lebih besar daripada node sekarang.
+  \item Node yang paling atas merupakan node \alert{root} yang merupakan satu-satunya node yang dapat diakses secara langsung
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Operasi Insert pada BST}
+
+Dengan adanya sifat-sifat BST di atas, maka proses insert dapat dimulai dari node root. Lakukan hal berikut hingga menemukan node NULL.
+\begin{itemize}
+  \item Jika nilai pada node sekarang lebih besar daripada nilai yang akan diinsert, maka pergi ke anak kiri dari node sekarang.
+  \item Jika nilai pada node sekarang lebih kecil dari nilai yang akan diinsert, maka pergi ke anak kanan dari node sekarang.\newline
+\end{itemize}
+
+Jika node sekarang NULL, maka buat node baru dengan anak kiri dan anak kanan adalah NULL. Jangan lupa untuk memasukkan nilai yang diinsert ke node tersebut.
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Pseudocode Insert pada BST}
+
+\begin{lstlisting}
+
+node* insert (node* currNode, int value)
+
+    if currNode = NULL:
+        currNode = new Node
+        currNode.val = value
+        currNode.left_child = NULL
+        currNode.right_child = NULL
+  
+    else if currNode.val > value:
+        currNode.left_child =
+        insert(currNode.left_child, value)
+  
+    else:
+        currNode.right_child = 
+        insert(currNode.right_child, value)
+    
+    return currNode
+    
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}
+\frametitle{Operasi Find pada BST}
+
+Dengan adanya sifat-sifat BST di atas, maka proses find dapat dimulai dari node root. Lakukan hal berikut hingga menemukan angka yang dicari atau menemukan node NULL.
+\begin{itemize}
+  \item Jika nilai pada node sekarang lebih besar daripada nilai yang akan diinsert, maka pergi ke anak kiri dari node sekarang.
+  \item Jika nilai pada node sekarang lebih kecil dari nilai yang akan diinsert, maka pergi ke anak kanan dari node sekarang.\newline
+\end{itemize}
+Jika value dari node sekarang sesuai dengan yang dicari, berarti angka yang dicari ditemukan dalam BST.
+\newline\newline
+Jika node sekarang NULL, maka angka yang dicari tidak ditemukan dalam BST.
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Pseudocode Insert pada BST}
+
+\begin{lstlisting}
+
+int insert (node* currNode, int value)
+
+    if currNode = NULL:
+        return 0
+    
+    else if currNode.val = value:
+        return 1
+        
+    else if currNode.val > value:
+        return insert(currNode.left_child, value)
+        
+    else:
+        return insert(currNode.right_child,value)
+    
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}
+\frametitle{Pembahasan Soal}
+
+Setelah mengenai BST, maka untuk menyelesaikan masalah sebelumnya kita dapat menggunakan BST. Untuk proses insert, maka gunakan proses insert yang terdapat pada BST. Untuk proses find, juga gunakan proses find yang terdapat pada BST.
+\newline\newline
+Dengan demikian, kompleksitas dari insert dan find keduanya adalah sesuai dengan tinggi dari BST. Solusi ini lebih efisien daripada menggunakan array dan harus mencari seluruh isi array
 \end{frame}
 
 \end{document}
+
+
