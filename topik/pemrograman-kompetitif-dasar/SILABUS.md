@@ -12,7 +12,7 @@
   * FPB dan KPK
   * Prime generation
   * Kombinatorik
-  * Prinsip inklusi ekslusi
+  * Prinsip inklusi eksklusi
   * Pigeon Hole Principle
 
 ##3. Struktur Data Dasar

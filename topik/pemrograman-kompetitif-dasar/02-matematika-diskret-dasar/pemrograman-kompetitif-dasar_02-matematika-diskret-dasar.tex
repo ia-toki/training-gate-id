@@ -11,87 +11,370 @@
 \end{frame}
 
 \begin{frame}
-\frametitle{Panduan Konten}
-Slide ini berisi semacam ringkasan dari materi berikut:
+\frametitle{Pendahuluan}
+Melalui dokumen ini, kalian akan:
 \begin{itemize}
-  \item Aritmetika modular
-  \item Faktor bilangan dan sifatnya
-  \item FPB dan KPK
-  \item Prime generation
-  \item Kombinatorik
-  \item Prinsip inklusi ekslusi
-  \item Pigeon Hole Principle
+  \item Mempelajari \newTerm{aritmetika modular}.
+  \item Mempelajari bilangan prima.
+  \item Memahami FPB dan KPK.
+  \item Mempelajari algoritma \newTerm{prime generation}.
+  \item Mempelajari dan memanfaatkan \newTerm{pigeon hole principle}.
+\end{itemize}
+\end{frame}
+
+\section{Arimetika Modular}
+\frame{\sectionpage}
+
+\begin{frame}
+\frametitle{Konsep Modulo}
+\begin{itemize}
+  \item Operasi $A \mod M$ biasa disebut "A modulo M".
+  \item Operasi modulo ini akan memberikan sisa hasil bagi A oleh M.
+  \item Contoh: $5 \mod 3 = 2$, $10 \mod 2 = 0$, $21 \mod 6 = 3$
 \end{itemize}
 \end{frame}
 
 \begin{frame}
-\frametitle{Panduan Konten: Aritmetika Modular}
+\frametitle{Sifat-Sifat Modulo}
 \begin{itemize}
-  \item Jelaskan tentang konsep modulo
-  \item Sifat-sifat modulo
-  \item Beri contoh aplikasi sifatnya, misalnya menghitung N faktorial modulo suatu nilai
-  \item Tekankan kalau tidak berlaku untuk pembagian
+  \item $(A + B) \mod M = ((A \mod M) + (B \mod M)) \mod M$
+  \item $(A - B) \mod M = ((A \mod M) - (B \mod M)) \mod M$
+  \item $(A * B) \mod M = ((A \mod M) * (B \mod M)) \mod M$  
+  \item $(A^{B}) \mod M = ((A \mod M)^{B}) \mod M$
+  \item $(A * B) \mod (A * M) = A * (B \mod M)$
+\end{itemize}
+\end{frame} 
+
+\begin{frame}[fragile]
+\frametitle{Aplikasi Modulo}
+\begin{itemize}
+  \item Pada \foreignTerm{Competitive Programming}, tidak jarang kita harus menghitung $n! \mod k$ (terutama dalam kombinatorika). 
+  \item Seandainya kita menghitung $n!$ , kemudian menggunakan operasi $\mod$, kemungkinan besar kita akan mendapatkan \emp{overflow!}
+  \item Untungnya, kita bisa menggunakan sifat modulo.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Aplikasi Modulo (lanj.)}
+Solusi: 
+\begin{lstlisting}
+  function faktorialModular(n, k: longint): longint;
+  var
+    i, jawaban: longint;
+  begin
+    jawaban := 1;
+    for i := 1 to n do begin
+      jawaban := (jawaban * i) mod k;
+    end
+
+    faktorialModular := jawaban;
+  end;  
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}
+\frametitle{Hati-Hati!}
+\begin{itemize}
+  \item Aritmetika modular tidak langsung bekerja pada pembagian.
+  \item $\frac{a}{b} \; (\bmod\; n) \; \neq \; \frac{a \mod n}{b \mod n} \; (\bmod\; n)$.
+  \item Contohnya, $\frac{12}{4} \; (\bmod\; 6) \; \neq \; \frac{12 \mod 6}{4 \mod 6} \; (\bmod\; 6)$.
+  \item Pada aritmetika modular, $\frac{a}{b} \; (\bmod\; n)$ biasa kita tulis sebagai $a * b^{-1}\;(\bmod\; n)$, dimana $b^{-1}$ adalah 
+      \newTerm{Modular Multiplicative Inverse} dari $b$.
+  \item Jika tertarik, anda bisa mempelajari \foreignTerm{Modular Multiplicative Inverse} melalui \textcolor{blue}{\href{https://en.wikipedia.org/wiki/  Modular_multiplicative_inverse}{link wikipedia ini}.} 
+\end{itemize}
+\end{frame}
+
+\section{Bilangan Prima}
+\frame{\sectionpage}
+
+\begin{frame}
+\frametitle{Konsep Bilangan Prima}
+\begin{itemize}
+  \item Bilangan prima adalah bilangan bulat positif yang hanya habis dibagi oleh 1 dan dirinya sendiri.
+  \item Contoh: $2, 3, 5, 13, 97$.
+  \item Bilangan komposit adalah bilangan yang memiliki faktor lebih dari 2 buah.
+  \item Contoh: $6, 14, 20, 25$.
 \end{itemize}
 \end{frame}
 
 \begin{frame}
-\frametitle{Panduan Konten: Faktor Bilangan dan Sifatnya}
+\frametitle{Primality Testing}
 \begin{itemize}
-  \item Jelaskan tentang konsep faktorisasi bilangan
-  \item Kaitkan dengan faktorisasi prima \& bilangan prima
-  \item Kaitkan dengan divisibility
+  \item \newTerm{Primality Testing} adalah algoritma untuk mengecek apakah suatu bilangan bulat $N$ adalah bilangan prima.
+  \item Kita dapat memanfaatkaan sifat bilangan prima yang disebut di slide sebelumnya untuk mengecek apakah suatu bilangan merupakan suatu bilangan prima. 
 \end{itemize}
 \end{frame}
 
 \begin{frame}
-\frametitle{Panduan Konten: FPB dan KPK}
+\frametitle{Primality Testing (lanj.)}
 \begin{itemize}
-  \item Jelaskan definisi FPB dan KPK, kaitkan dengan konsep faktorisasi bilangan
-  \item Bahas algoritma Euclid (rekursif), tidak perlu dibuktikan kebenarannya
-  \item Jelaskan hubungan antara FPB dan KPK
+  \item Solusi yang mudah untuk mengecek apakah $N$ prima atau tidak tentu dengan mengecek apakah ada bilangan selain 1 dan $N$ yang habis membagi $N$.
+  \item Maka, kita dapat melakukan iterasi dari 2 sampai $N-1$ untuk mengetahui apakah ada bilangan selain 1 dan $N$ yang habis membagi $N$.
+  \item Kompleksitas: $O(N)$.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Primality Testing (lanj.)}
+\begin{lstlisting}
+  function isPrimeNaive(n: longint): boolean;
+  var
+    i: longint;
+    prima: boolean;
+  begin
+    prima := true;
+    for i := 2 to n - 1 do begin
+      if (n mod i = 0) then begin
+        prima := false;
+      end;
+    end;
+    if(n < 2) then begin
+      prima := false;
+    end;
+    isPrimeNaive := prima;
+  end;  
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}
+\frametitle{Primality Testing (lanj.)}
+\begin{itemize}
+  \item Sebenarnya, ada solusi yang lebih cepat dari $O(N)$.
+  \item Kita dapat memanfaatkan observasi bahwa jika $N = A*B$, dan $A \leq B$, maka $A \leq \sqrt{N}$ dan $B \geq \sqrt{N}$.
+  \item Kita tidak perlu mengecek $B$, seandainya $N$ habis dibagi $B$, tentu $N$ habis dibagi $A$.
+  \item Maka, kita hanya perlu mengecek hingga $\sqrt{N}$.
+  \item Kompleksitas : $O(\sqrt{N})$
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Primality Testing (lanj.)}
+\begin{lstlisting}
+  function isPrimeSqrt(n: longint): boolean;
+  var
+    i: longint;
+    prima: boolean;
+  begin
+    prima := true;
+    for i := 2 to trunc(sqrt(n)) do begin
+      if (n mod i = 0) then begin
+        prima := false;
+      end;
+    end;
+    if(n < 2) then begin
+      prima := false;
+    end;
+    isPrimeSqrt := prima;
+  end;  
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}
+\frametitle{Primality Testing (lanj.)}
+\begin{itemize}
+  \item \foreignTerm{Primality Testing} sebenarnya merupakan persoalan yang sulit!
+  \item Jika tertarik, anda dapat membacanya lebih lanjut di \textcolor{blue}{\href{https://en.wikipedia.org/wiki/Primality_test}{link wikipedia ini}.} 
+\end{itemize}
+\end{frame}
+
+\section{Generating Prime}
+\frame{\sectionpage}
+
+\begin{frame}
+\frametitle{Solusi Awal}
+\begin{itemize}
+  \item Kita dapat membangkitkan bilangan prima dengan iterasi dan \foreignTerm{Primality Testing}.
+  \item Solusi: 
+  \begin{enumerate}
+    \item Lakukan iterasi dari 2 sampai N
+    \item Untuk tiap bilangan, cek apakah dia bilangan prima atau bukan. Jika iya, kita bisa memasukkannya ke daftar bilangan prima.
+  \end{enumerate}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Solusi Awal (lanj.)}
+Solusi:
+  \begin{lstlisting}
+  procedure sqrtGeneration(n: longint);
+  var
+    i, j: longint;
+    prima: boolean;
+  begin
+    for i := 2 to n do begin
+        prima := true;
+        for j := 2 to trunc(sqrt(i)) do begin
+          if (i mod j = 0) then begin
+            prima := false;
+          end;  
+        end;
+        if (prima) then begin
+          writeln(i, ' adalah bilangan prima');
+        end;
+    end;
+  end;  
+  \end{lstlisting}
+\end{frame}
+
+\begin{frame}
+\frametitle{Sieve of Erathostenes}
+\begin{itemize}
+  \item Terdapat solusi yang lebih optimal dari segi waktu untuk membangkitkan bilangan prima, yaitu \newTerm{Sieve of Erathostenes}.
+  \item Ide utama utama dari algoritma ini adalah mengeliminasi bilangan-bilangan dari calon bilangan prima.
+  \item Yang akan kita eliminasi tentu bilangan komposit. Pertama, kita tahu bahwa suatu bilangan bulat $X$ dapat dinyatakan sebagai $X = P*Q$, dimana P suatu bilangan prima.
+  \item Seandainya kita sudah mendapatkan suatu bilangan prima, kita dapat mengeliminasi kelipatan bilangan tersebut dari calon bilangan prima.
 \end{itemize}
 \end{frame}
 
 \begin{frame}
-\frametitle{Panduan Konten: Prime Generation}
+\frametitle{Sieve of Erathostenes (lanj.)}
 \begin{itemize}
-  \item Jelaskan Sieve of Erathostenes
+  \item Prosedurnya:
+  \begin{enumerate}
+    \item Lakukan iterasi dari 2 sampai N .
+    \item Ketika bertemu dengan bilangan yang belum dieliminasi, artinya bilangan ini merupakan bilangan prima. Kemudian, lakukan iterasi untuk mengeliminasi kelipatan bilangan tersebut.
+  \end{enumerate}
+  \item Kita memerlukan \foreignTerm{array} untuk mengetahui bilangan yang sudah tereliminasi. Maka, kita memerlukan memori sebesar $O(N)$.
+  \item Kompleksitas waktu solusi ini $O(N\;log\;log\;N)$.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Sieve of Erathostenes (lanj.)}
+Solusi:
+  \begin{lstlisting}
+    procedure sieveOfErathostenes(n: longint);
+    var
+      i, j: longint;
+      flag: array[1..100000] of boolean;
+    begin
+      for i := 2 to n do 
+        if (not flag[i]) then begin
+          writeln(i, ' adalah bilangan prima').
+          j = i;
+          while(i * j <= n) do begin
+            flag[i * j] = true;
+            inc(j);
+          end;
+        end;
+    end;  
+  \end{lstlisting}
+\end{frame}
+
+\section{FPB dan KPK}
+\frame{\sectionpage}
+
+\begin{frame}
+\frametitle{Faktorisasi Prima}
+\begin{itemize}
+  \item Ketika masih SD, tentunya kita pernah belajar memfaktorkan bilangan dengan pohon faktor.
+  \item Melalui faktorisasi prima, kita dapat menyatakan suatu bilangan sebagai hasil kali perkalian faktor-faktornya.
+  \item Contoh: $7875 = 3^{2} * 5^{3} * 7$ .
+  \item Faktorisasi prima ini dapat bermanfaat pada soal-soal matematika di \foreignTerm{Competitive Programming}.
 \end{itemize}
 \end{frame}
 
 \begin{frame}
-\frametitle{Panduan Konten: Kombinatorik}
+\frametitle{FPB dan KPK}
 \begin{itemize}
-  \item Jelaskan tentang permutasi \& kombinasi
-  \item Penjelasan sebaiknya tidak langsung memberikan rumus, tetapi dimulai dengan soal 
+  \item Ketika masih SD, kita pernah diajari cara mencari FPB dan KPK melalui faktorisasi prima. Singkatnya, untuk setiap bilangan prima, kita menggunakan pangkat terkecil untuk FPB dan pangkat terbesar untuk KPK.
+  \item Contoh: $4725 = 3^{3} * 5^{2} * 7$ dan $7875 = 3^{2} * 5^{3} * 7$.
+  \item Maka, $FPB(4725,7875) = 3^{2} * 5^{2} * 7 = 1525$ dan $KPK(4725,7875) = 3^{3} * 5^{3} * 7 = 23625$.
+  \item Jika kita observasi, $KPK(A,B) = \frac{A * B}{FPB(A,B)}$. 
 \end{itemize}
 \end{frame}
 
 \begin{frame}
-\frametitle{Panduan Konten: Pigeon Hole Principle}
+\frametitle{Algoritma Euclid}
 \begin{itemize}
-  \item Mulai dengan soal cerita
-  \item Berikan contoh aplikasinya, terutama bisa menggunakan soal pemrograman OSP 2015
+  \item Untuk mencari FPB suatu bilangan, menggunakan pohon faktor \emp{sangat sulit!}
+  \item Kita harus mencari faktor prima bilangan tersebut, dan jika faktor prima-nya besar, tentu akan menghabiskan banyak waktu.
+  \item Terdapat algoritma yang dapat mencari $FPB(A,B)$ dalam $O(log(min(A,B))$.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Algoritma Euclid (lanj.)}
+\begin{itemize}
+  \item Solusi:
+  \begin{lstlisting}
+  function euclid(a,b: longint): longint;
+  begin
+    if (b = 0) then begin
+      euclid := a;
+    end
+    else begin
+      euclid := euclid(b,a mod b);
+    end;
+  end;
+  \end{lstlisting}
+  \item Jika anda tertarik, anda dapat membaca lebih lanjut \textcolor{blue}{\href{https://en.wikipedia.org/wiki/Euclidean_algorithm}{di link wikipedia ini}.}   
+\end{itemize}
+\end{frame}
+
+\section{Pigeon Hole Principle}
+\frame{\sectionpage}
+
+\begin{frame}
+\frametitle{Motivasi}
+Deskripsi: \newline
+Pak Dengklek memiliki sebuah array berisi N bilangan bulat non-negatif. Pak Dengklek pun menantang Anda untuk memilih angka-angka dari arraynya yang jika dijumlahkan habis dibagi N. Tentu saja angka di suatu indeks tidak boleh dipilih lebih dari sekali. Apabila hal ini mungkin, beritahu Pak Dengklek berapa banyak angka yang Anda ambil dan apa saja angka-angkanya. Apabila hal ini tidak mungkin, katakan "Tidak mungkin". \newline\newline
+Batasan:
+\begin{itemize}
+  \item $1 \leq N \leq 10^{5}$
+  \item Array berisi bilangan bulat non-negatif.
 \end{itemize}
 \end{frame}
 
 \begin{frame}
-\frametitle{Tips}
-Demi keseragaman dan kemudahan, gunakan command yang sudah didefinisikan di ../config.tex:
-% Komentar: meskipun ada yang menghasilkan format yang sama, tetapi menggunakan command ini mempermudah kalau ke depannya mau mengubah format, tidak perlu find and replace 1 per 1. 
+\frametitle{Motivasi (lanj.)}
 \begin{itemize}
-  \item Gunakan \textbackslash id\{\} untuk menulis identifier (nama fungsi, variabel), contoh: \textbackslash id\{primeCount\} akan mencetak \id{primeCount}.
-  \item Gunakan \textbackslash progTerm\{\} untuk menulis istilah dalam pemrograman (tipe data, jenis error, for), contoh: \textbackslash progTerm\{integer\} akan mencetak \progTerm{integer}.
-  \item Gunakan \textbackslash foreignTerm\{\} untuk menulis istilah asing lainnya, contoh: \textbackslash foreignTerm\{default\} akan mencetak \foreignTerm{default}.
+  \item Inti permasalahan ini adalah mencari apakah pada \foreignTerm{array} berukuran $N$, terdapat sub-himpunan tidak kosong yang jumlahan elemennya habis dibagi $N$.
+  \item Jika ada, outputkan indeks-indeks yang terdapat di sub-himpunan tersebut. Jika tidak ada, keluarkan "Tidak Mungkin".
 \end{itemize}
 \end{frame}
 
 \begin{frame}
-\frametitle{Tips (lanj.)}
+\frametitle{Motivasi (lanj.)}
 \begin{itemize}
-  \item Jika diperlukan, gunakan \textbackslash newTerm\{\} untuk menulis istilah yang baru diperkanalkan, contoh: \textbackslash newTerm\{rekursi\} akan mencetak \newTerm{rekursi}.
-  \item Gunakan \textbackslash emp\{\} untuk memberi penekanan, contoh: \textbackslash emp\{sangat lambat\} akan mencetak \emp{sangat lambat}.
-  \item Gunakan \textbackslash statement\{\} untuk merujuk pada statement program, contoh: \textbackslash statement\{count := count + 1\} akan mencetak \statement{count := count + 1}.
+  \item Mari kita coba mengerjakan versi lebih mudah dari soal ini. Bagaimana jika yang diminta sub-barisan, bukan sub-himpunan?
+  \item Misal kita memiliki fungsi $sum(k) = \sum\limits_{i=1}^k array[i]$.
+  \item Bagaimana hubungan sub-barisan yang habis dibagi $N$ seandainya kita kaitkan dengan $sum(k)$ dan sifat modulo?
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Motivasi (lanj.)}
+\begin{itemize}
+  \item Kita dapat menyimpulkan bahwa $\sum\limits_{i=l}^r array[i] = sum(r) - sum(l - 1)$.
+  \item Jika habis dibagi $N$, maka $(sum(r) - sum(l - 1)) \mod N = 0 \mod N$.
+  \item Ini dapat kita tuliskan sebagai $sum(r) \mod N = sum(l - 1) \mod N$.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Motivasi (lanj.)}
+\begin{itemize}
+  \item Observasi 1: ada N buah kemungkinan nilai sum(x), yaitu [0...N-1].
+  \item Observasi 2: ada N+1 buah kemungkinan nilai x untuk sum(x), yaitu [0..N]. Nilai 0 harus ada agar sub-barisan dalam bentuk (1,k) untuk tiap k dapat kita nyatakan dalam bentuk dari slide sebelumnya.
+  \item Observasi 3: Karena ada N+1 kemungkinan nilai x, dan ada N buah kemungkinan nilai sum(x), maka \emp{pasti ada 2 buah indeks, a dan b, sehingga $sum(b) \mod N = sum(a) \mod N$}
+  \item Maka, kita bisa menggunakan sub-barisan [a+1..b] sebagai solusi.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Motivasi (lanj.)}
+\begin{itemize}
+  \item Dengan menyelesaikan versi mudah dari soal awal kita, ternyata kita justru dapat menyelesaikan soal tersebut.
+  \item Konsep \statement{Jika ada $N$ nilai dan $M$ kotak, dimana $M > N$ , maka ada setidaknya 2 kotak yang memiliki nilai sama} biasa disebut sebagai \newTerm{Pigeon Hole Principle}.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Pigeon Hole Principle}
+\begin{itemize}
+  \item Konsep PHP adalah \statement{Jika ada $N$ burung dan $M$ sangkar, dimana $M > N$ , maka ada sangkar yang berisi setidaknya 2 ekor burung}.
+  \item Secara matematis, jika ada $N$ burung dan $M$ sangkar, maka ada sangkar yang berisi setidaknya $\big\lceil \frac{M}{N} \big\rceil$ ekor burung.
 \end{itemize}
 \end{frame}
 
