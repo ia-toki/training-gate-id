@@ -22,19 +22,27 @@ Melalui dokumen ini, kalian akan:
 \end{itemize}
 \end{frame}
 
+\begin{frame}
+\frametitle{Matematika Diskret}
+\begin{itemize}
+  \item Merupakan cabang matematika yang mempelajari tentang logika, sifat bilangan, kombinatorik, graf, dan lainnya.
+  \item Diskret sendiri bermakna tidak kontinu, atau tidak bersinambungan.
+\end{itemize}
+\end{frame}
+
 \section{Arimetika Modular}
 \frame{\sectionpage}
 
 \begin{frame}
 \frametitle{Konsep Modulo}
 \begin{itemize}
-  \item Operasi $A \mod M$ biasa disebut "A modulo M".
-  \item Operasi modulo ini akan memberikan sisa hasil bagi A oleh M.
+  \item Operasi $a \bmod m$ biasa disebut "$a$ modulo $m$".
+  \item Operasi modulo ini akan memberikan sisa hasil bagi $a$ oleh $m$.
   \item Contoh: 
   \begin{itemize}
-    \item $5 \mod 3 = 2$ 
-    \item $10 \mod 2 = 0$
-    \item $21 \mod 6 = 3$
+    \item $5 \bmod 3 = 2$ 
+    \item $10 \bmod 2 = 0$
+    \item $21 \bmod 6 = 3$
   \end{itemize}  
 \end{itemize}
 \end{frame}
@@ -42,48 +50,53 @@ Melalui dokumen ini, kalian akan:
 \begin{frame}
 \frametitle{Sifat-Sifat Modulo}
 \begin{itemize}
-  \item $(A + B) \mod M = ((A \mod M) + (B \mod M)) \mod M$
-  \item $(A - B) \mod M = ((A \mod M) - (B \mod M)) \mod M$
-  \item $(AB) \mod M = ((A \mod M) \times (B \mod M)) \mod M$  
-  \item $(A^{B}) \mod M = ((A \mod M)^{B}) \mod M$
-  \item $(A \times B) \mod (A \times M) = A \times (B \mod M)$
+  \item $(A + B) \bmod M = ((A \bmod M) + (B \bmod M)) \bmod M$
+  \item $(A - B) \bmod M = ((A \bmod M) - (B \bmod M)) \bmod M$
+  \item $(AB) \bmod M = ((A \bmod M) \times (B \bmod M)) \bmod M$  
+  \item $(A^{B}) \bmod M = ((A \bmod M)^{B}) \bmod M$
+  \item $(A \times B) \bmod (A \times M) = A \times (B \bmod M)$
 \end{itemize}
 \end{frame} 
 
 \begin{frame}
 \frametitle{Aplikasi Modulo}
 \begin{itemize}
-  \item Pada \foreignTerm{Competitive Programming}, tidak jarang kita harus menghitung $n! \mod k$ (terutama dalam kombinatorika). 
-  \item Seandainya kita menghitung $n!$ , kemudian menggunakan operasi $\mod$, kemungkinan besar kita akan mendapatkan \emp{overflow!}
-  \item Untungnya, kita bisa menggunakan sifat modulo.
+  \item Pada pemrograman kompetitif, tidak jarang kita harus menghitung $n! \bmod k$ (terutama dalam kombinatorik). 
+  \item Seandainya kita menghitung $n!$, kemudian menggunakan operasi $\bmod$, kemungkinan besar kita akan mendapatkan \emp{integer overflow}.
+  \item Untungnya, kita dapat memanfaatkan sifat modulo.
 \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{Aplikasi Modulo (lanj.)}
 Solusi: 
-\begin{lstlisting}
-  function modularFactorial(n, k: longint): longint;
-  var
-    i, result: longint;
-  begin
-    result := 1;
-    for i := 1 to n do begin
-      result := (result * i) mod k;
-    end
-    modularFactorial := result;
-  end;  
-\end{lstlisting}
+
+\begin{codebox}
+\Procname{$\proc{modularFactorial}(n, k)$}
+\li $result \gets 1$
+\li \For $i \gets 1$ \To $n$
+    \Do
+\li   $result \gets (result \times i) \bmod k$
+    \End
+\li \Return $result$    
+\end{codebox}
+
 \end{frame}
 
 \begin{frame}
 \frametitle{Hati-Hati!}
 \begin{itemize}
   \item Aritmetika modular tidak langsung bekerja pada pembagian.
-  \item $\frac{a}{b} \; (\bmod\; n) \; \neq \; \frac{a \mod n}{b \mod n} \; (\bmod\; n)$.
-  \item Contohnya, $\frac{12}{4} \; (\bmod\; 6) \; \neq \; \frac{12 \mod 6}{4 \mod 6} \; (\bmod\; 6)$.
-  \item Pada aritmetika modular, $\frac{a}{b} \; (\bmod\; n)$ biasa kita tulis sebagai $a \times b^{-1}\;(\bmod\; n)$, dimana $b^{-1}$ adalah 
-      \newTerm{Modular Multiplicative Inverse} dari $b$.
+  \item $\frac{a}{b} \; \bmod\; n \; \neq \; \left( \frac{a \bmod n}{b \bmod n} \right) \; \bmod\; n$.
+  \item Contoh: $\frac{12}{4} \; \bmod\; 6 \; \neq \; \left( \frac{12 \bmod 6}{4 \bmod 6} \right) \; \bmod\; 6$.
+  \newline
+  \item Pada aritmetika modular, $\frac{a}{b} \; \bmod\; n$ biasa ditulis sebagai:
+  \newline
+  \begin{center}
+    $a \times b^{-1}\; \bmod\; n$
+    \newline
+  \end{center}
+  dengan $b^{-1}$ adalah \newTerm{Modular Multiplicative Inverse} dari $b$.
   \item Jika tertarik, Anda bisa mempelajari \foreignTerm{Modular Multiplicative Inverse} melalui \textcolor{blue}{\href{https://en.wikipedia.org/wiki/  Modular_multiplicative_inverse}{link wikipedia ini}.} 
 \end{itemize}
 \end{frame}
@@ -93,12 +106,17 @@ Solusi:
 
 \begin{frame}
 \frametitle{Konsep Bilangan Prima}
-\begin{itemize}
-  \item Bilangan prima adalah bilangan bulat positif yang hanya habis dibagi oleh 1 dan dirinya sendiri.
-  \item Contoh: $2, 3, 5, 13, 97$.
-  \item Bilangan komposit adalah bilangan yang memiliki faktor lebih dari 2 buah.
-  \item Contoh: $6, 14, 20, 25$.
-\end{itemize}
+\begin{block}{Bilangan Prima}
+Bilangan bulat positif yang hanya habis dibagi oleh 1 dan dirinya sendiri.
+\newline
+Contoh: $2, 3, 5, 13, 97$.
+\end{block}
+
+\begin{block}{Bilangan Komposit}
+Bilangan yang memiliki lebih dari dua faktor.
+\newline
+Contoh: $6, 14, 20, 25$.
+\end{block}
 \end{frame}
 
 \begin{frame}
@@ -118,70 +136,71 @@ Solusi:
 \end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]
+\begin{frame}
 \frametitle{Primality Testing (lanj.)}
-\begin{lstlisting}
-  function isPrimeNaive(n: longint): boolean;
-  var
-    i: longint;
-    prime: boolean;
-  begin
-    prime := true;
-    for i := 2 to n - 1 do begin
-      if (n mod i = 0) then begin
-        prime := false;
-      end;
-    end;
-    if(n < 2) then begin
-      prime := false;
-    end;
-    isPrimeNaive := prime;
-  end;  
-\end{lstlisting}
+
+\begin{codebox}
+\Procname{$\proc{isPrimeNaive}(n)$}
+\li $result \gets true$
+\li \For $i \gets 2$ \To $n-1$
+    \Do
+\li   \If $n \bmod i \isequal 0$
+      \Then
+\li     $result \gets false$
+      \End    
+    \End
+\zi
+\li \If $n < 2$
+    \Then
+\li   $result \gets false$
+    \End
+\zi
+\li \Return $result$    
+\end{codebox}
 \end{frame}
 
 \begin{frame}
 \frametitle{Primality Testing (lanj.)}
 \begin{itemize}
-  \item Sebenarnya, ada solusi yang lebih cepat dari $O(N)$.
-  \item Kita dapat memanfaatkan observasi bahwa jika $N = A \times B$, dan $A \leq B$, maka $A \leq \sqrt{N}$ dan $B \geq \sqrt{N}$.
-  \item Kita tidak perlu mengecek $B$, seandainya $N$ habis dibagi $B$, tentu $N$ habis dibagi $A$.
-  \item Maka, kita hanya perlu mengecek hingga $\sqrt{N}$.
-  \item Kompleksitas : $O(\sqrt{N})$
+  \item Ada solusi yang lebih cepat dari $O(N)$.
+  \item Manfaatkan observasi bahwa jika $N = a \times b$, dan $a \leq b$, maka $a \leq \sqrt{N}$ dan $b \geq \sqrt{N}$.
+  \item Kita tidak perlu memeriksa $b$, seandainya $N$ habis dibagi $b$, tentu $N$ habis dibagi $a$.
+  \item Jadi kita hanya perlu memeriksa hingga $\sqrt{N}$.
+  \item Kompleksitas: $O(\sqrt{N})$
 \end{itemize}
-\end{frame}
-
-\begin{frame}[fragile]
-\frametitle{Primality Testing (lanj.)}
-\begin{lstlisting}
-  function isPrimeSqrt(n: longint): boolean;
-  var
-    i: longint;
-    prime: boolean;
-  begin
-    prime := true;
-    i := 2;
-    while (i * i <= n) do begin
-      if (n mod i = 0) begin
-        prime := false;
-      end;
-      inc(i);
-    end;
-    if(n < 2) then begin
-      prime := false;
-    end;
-    isPrimeSqrt := prime;
-  end;  
-\end{lstlisting}
 \end{frame}
 
 \begin{frame}
 \frametitle{Primality Testing (lanj.)}
-\begin{itemize}
-  \item \foreignTerm{Primality Testing}, walaupun topiknya mirip dengan faktorisasi, sesungguhnya jauh lebih mudah dibanding faktorisasi.
-  \item Jika tertarik, Anda dapat membacanya lebih lanjut di \textcolor{blue}{\href{https://en.wikipedia.org/wiki/Primality_test}{link wikipedia ini}.} 
-\end{itemize}
+\begin{codebox}
+\Procname{$\proc{isPrimeSqrt}(n)$}
+\li $result \gets true$
+\li $i \gets 2$
+\li \While $i \times i \leq n$
+    \Do
+\li   \If $n \bmod i \isequal 0$
+      \Then
+\li     $result \gets false$
+      \End
+\li   $i \gets i + 1$          
+    \End
+\zi
+\li \If $n < 2$
+    \Then
+\li   $result \gets false$
+    \End
+\zi
+\li \Return $result$    
+\end{codebox}
 \end{frame}
+
+%\begin{frame}
+%\frametitle{Primality Testing (lanj.)}
+%\begin{itemize}
+%  \item \foreignTerm{Primality Testing}, walaupun topiknya mirip dengan faktorisasi, sesungguhnya jauh lebih mudah dibanding faktorisasi.
+%  \item Jika tertarik, Anda dapat membacanya lebih lanjut di \textcolor{blue}{\href{https://en.wikipedia.org/wiki/Primality_test}{link wikipedia ini}.} 
+%\end{itemize}
+%\end{frame}
 
 \section{Generating Prime}
 \frame{\sectionpage}
@@ -198,73 +217,84 @@ Solusi:
 \end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]
+\begin{frame}
 \frametitle{Solusi Awal (lanj.)}
-  \begin{lstlisting}
-  procedure sqrtGeneration(n: longint);
-  var
-    i, j: longint;
-    prime: boolean;
-  begin
-    for i := 2 to n do begin
-        prime := true;
-        j := 2;
-        while (j * j <= n) do begin
-          if (i mod j = 0) then begin
-            prime := false;
-          end;
-          inc(j);
-        end;
-        if (prime) then
-          writeln(i, ' adalah bilangan prima');
-    end;
-  end;  
-  \end{lstlisting}
+\begin{codebox}
+\Procname{$\proc{simplePrimeGeneration}(n)$}
+\li $primeList \gets \{\}$
+\li \For $i \gets 2$ \To $n$
+    \Do
+\li   \If $\proc{isPrimeSqrt(i)}$
+      \Then
+\li     $primeList \gets primeList \cup \{i\}$
+      \End    
+    \End
+\li \Return $primeList$
+\end{codebox}
 \end{frame}
 
 \begin{frame}
 \frametitle{Sieve of Erathostenes}
 \begin{itemize}
-  \item Terdapat solusi yang lebih optimal dari segi waktu untuk membangkitkan bilangan prima, yaitu \newTerm{Sieve of Erathostenes}.
+  \item Terdapat solusi yang lebih cepat untuk membangkitkan bilangan prima, yaitu \newTerm{Sieve of Erathostenes}.
   \item Ide utama utama dari algoritma ini adalah mengeliminasi bilangan-bilangan dari calon bilangan prima.
-  \item Yang akan kita eliminasi tentu bilangan komposit. Pertama, kita tahu bahwa suatu bilangan bulat $X$ dapat dinyatakan sebagai $X = P \times Q$, dimana P suatu bilangan prima.
-  \item Seandainya kita sudah mendapatkan suatu bilangan prima, kita dapat mengeliminasi kelipatan bilangan tersebut dari calon bilangan prima.
+  \item Yang akan kita eliminasi adalah bilangan komposit.
 \end{itemize}
 \end{frame}
 
 \begin{frame}
 \frametitle{Sieve of Erathostenes (lanj.)}
 \begin{itemize}
-  \item Prosedurnya:
+  \item Kita tahu bahwa suatu bilangan komposit $x$ dapat dinyatakan sebagai $x = p \times q$, dengan $p$ suatu bilangan prima.
+  \item Seandainya kita mengetahui suatu bilangan prima, kita dapat mengeliminasi kelipatan bilangan tersebut dari calon bilangan prima.
+  \item Contoh: jika diketahui 7 adalah bilangan prima, maka 14, 21, 28, ... dieleminasi dari calon bilangan prima.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Prosedur Sieve of Erathostenes}
+\begin{enumerate}
+  \item Awalnya seluruh bilangan dari 2 sampai N belum dieleminasi.
+  \item Lakukan iterasi dari 2 sampai N:
   \begin{enumerate}
-    \item Lakukan iterasi dari 2 sampai N .
-    \item Ketika bertemu dengan bilangan yang belum dieliminasi, artinya bilangan ini merupakan bilangan prima. Kemudian, lakukan iterasi untuk mengeliminasi kelipatan bilangan tersebut.
+    \item Jika bilangan ini belum dieliminasi, artinya bilangan ini merupakan bilangan prima.
+    \item Lakukan iterasi untuk mengeliminasi kelipatan bilangan tersebut.  
   \end{enumerate}
-  \item Kita memerlukan \foreignTerm{array} untuk mengetahui bilangan yang sudah tereliminasi. Maka, kita memerlukan memori sebesar $O(N)$.
-  \item Kompleksitas waktu solusi ini $O(N\;log\;log\;N)$.
+\end{enumerate}
+\end{frame}
+
+\begin{frame}
+\frametitle{Implementasi Sieve of Erathostenes}
+\begin{itemize}
+  \item Kita dapat menggunakan \progTerm{array} \progTerm{boolean} untuk menyimpan informasi apakah suatu bilangan telah tereleminasi.
+  \item Jika kita ingin mencari bilangan prima yang $\leq N$, maka diperlukan memori sebesar $O(N)$.
+  \item Melalui perhitungan matematis, kompleksitas waktu solusi ini $O(N\;log\;log\;N)$.
 \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{Sieve of Erathostenes (lanj.)}
-Solusi:
-  \begin{lstlisting}
-    procedure sieveOfErathostenes(n: longint);
-    var
-      i, j: longint;
-      flag: array[1..100000] of boolean;
-    begin
-      for i := 2 to n do 
-        if (not flag[i]) then begin
-          writeln(i, ' adalah bilangan prima').
-          j := i;
-          while(i * j <= n) do begin
-            flag[i * j] = true;
-            inc(j);
-          end;
-        end;
-    end;  
-  \end{lstlisting}
+\frametitle{Implementasi Sieve of Erathostenes (lanj.)}
+\begin{codebox}
+\Procname{$\proc{sieveOfErathostenes}(n)$}
+\li \Comment Siapkan array $eleminated$ berukuran n
+\li \Comment Inisialisasi array $eleminated$ dengan $false$
+\li $primeList \gets \{\}$
+\li $eleminated[1] \gets false$
+\li \For $i \gets 2$ \To $n$
+    \Do
+\li   \If $not$ $eleminated[i]$
+      \Then
+\li     $primeList \gets primeList \cup \{i\}$
+\li     $j \gets i$
+\li     \While $i \times j \leq n$
+        \Do
+\li       $eleminated[i \times j] \gets true$
+\li       $j \gets j + i$       
+        \End
+      \End      
+    \End
+\li \Return $primeList$
+\end{codebox}
 \end{frame}
 
 \section{FPB dan KPK}
@@ -273,8 +303,8 @@ Solusi:
 \begin{frame}
 \frametitle{Faktorisasi Prima}
 \begin{itemize}
-  \item Ketika masih SD, tentunya kita pernah belajar memfaktorkan bilangan dengan pohon faktor.
-  \item Melalui faktorisasi prima, kita dapat menyatakan suatu bilangan sebagai hasil kali perkalian faktor-faktornya.
+  \item Ketika masih SD, kita pernah belajar memfaktorkan bilangan dengan pohon faktor.
+  \item Melalui faktorisasi prima, kita dapat menyatakan suatu bilangan sebagai hasil kali perkalian faktor primanya.
   \item Contoh: $7875 = 3^{2} \times 5^{3} \times 7$ .
   \item Faktorisasi prima ini dapat bermanfaat pada soal-soal matematika di \foreignTerm{Competitive Programming}.
 \end{itemize}
@@ -283,103 +313,183 @@ Solusi:
 \begin{frame}
 \frametitle{FPB dan KPK}
 \begin{itemize}
-  \item Kita pernah diajari cara mencari FPB dan KPK melalui faktorisasi prima. Singkatnya, untuk setiap bilangan prima, kita menggunakan pangkat terkecil untuk FPB dan pangkat terbesar untuk KPK.
-  \item Contoh: $4725 = 3^{3} \times 5^{2} \times 7$ dan $7875 = 3^{2} \times 5^{3} \times 7$.
-  \item Maka, $FPB(4725,7875) = 3^{2} \times 5^{2} \times 7 = 1525$ dan $KPK(4725,7875) = 3^{3} \times 5^{3} \times 7 = 23625$.
-  \item Jika kita observasi, $KPK(A,B) = \frac{A \times B}{FPB(A,B)}$. 
+  \item FPB dan KPK dapat dicari melalui faktorisasi prima. 
+  \item Untuk setiap bilangan prima, kita menggunakan pangkat terkecil untuk FPB dan pangkat terbesar untuk KPK.
+  \item Contoh:
+  \begin{itemize}
+    \item $4725 = 3^{3} \times 5^{2} \times 7$
+    \item $7875 = 3^{2} \times 5^{3} \times 7$
+  \end{itemize}
+  \item Maka: 
+  \begin{itemize}
+    \item $FPB(4725,7875) = 3^{2} \times 5^{2} \times 7 = 1525$
+    \item $KPK(4725,7875) = 3^{3} \times 5^{3} \times 7 = 23625$
+    \newline
+  \end{itemize}
+  \item Perhatikan bahwa $KPK(a,b) = \frac{a \times b}{FPB(a,b)}$. 
 \end{itemize}
 \end{frame}
 
 \begin{frame}
 \frametitle{Algoritma Euclid}
 \begin{itemize}
-  \item Untuk mencari FPB suatu bilangan, menggunakan pohon faktor \emp{sangat rumit!}
-  \item Kita harus mencari faktor prima bilangan tersebut, dan jika faktor primanya besar, tentu akan menghabiskan banyak waktu.
-  \item Terdapat algoritma yang dapat mencari $FPB(A,B)$ dalam $O(log(min(A,B))$.
+  \item Untuk mencari FPB suatu bilangan, menggunakan pohon faktor cukup merepotkan.
+  \item Kita perlu mencari faktor prima bilangan tersebut, dan jika faktor primanya besar, tentu akan menghabiskan banyak waktu.
+  \item Terdapat algoritma yang dapat mencari $FPB(a,b)$ dalam $O(\log{(\min{(a,b)})})$.
+  \item Algoritma ini bernama Algoritma Euclid.
 \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{Algoritma Euclid (lanj.)}
+\begin{codebox}
+\Procname{$\proc{euclid}(a, b)$}
+\li \If $b \isequal 0$
+    \Then
+\li   \Return $a$
+\li \Else
+\li   \Return $\proc{euclid}(b, a \bmod b)$ 
+    \End
+\end{codebox}
+\end{frame}
+
+\begin{frame}
+\frametitle{Pembuktian?}
 \begin{itemize}
-  \item Solusi:
-  \begin{lstlisting}
-  function euclid(a,b: longint): longint;
-  begin
-    if (b = 0) then begin
-      euclid := a;
-    end
-    else begin
-      euclid := euclid(b,a mod b);
-    end;
-  end;
-  \end{lstlisting}
-  \item Jika Anda tertarik, Anda dapat membaca lebih lanjut \textcolor{blue}{\href{https://en.wikipedia.org/wiki/Euclidean_algorithm}{di link wikipedia ini}.}   
-\end{itemize}
+  \item Sangat pendek!
+  \item Anda dapat menghemat waktu pengetikkan kode dalam melakukan pencarian FPB dengan algoritma ini.
+  \item Jika Anda tertarik dengan pembuktiannya, baca lebih lanjut \textcolor{blue}{\href{https://en.wikipedia.org/wiki/Euclidean_algorithm}{di link wikipedia ini}.}
+\end{itemize}   
 \end{frame}
 
 \section{Pigeon Hole Principle}
 \frame{\sectionpage}
 
 \begin{frame}
-\frametitle{Motivasi}
-Deskripsi: \newline
-Pak Dengklek memiliki sebuah array berisi N bilangan bulat non-negatif. Pak Dengklek pun menantang Anda untuk memilih angka-angka dari arraynya yang jika dijumlahkan habis dibagi N. Tentu saja angka di suatu indeks tidak boleh dipilih lebih dari sekali. Apabila hal ini mungkin, beritahu Pak Dengklek berapa banyak angka yang Anda ambil dan apa saja angka-angkanya. Apabila hal ini tidak mungkin, katakan "Tidak mungkin". \newline\newline
-Batasan:
-\begin{itemize}
-  \item $1 \leq N \leq 10^{5}$
-  \item Array berisi bilangan bulat non-negatif.
-\end{itemize}
-\end{frame}
-
-\begin{frame}
-\frametitle{Motivasi (lanj.)}
-\begin{itemize}
-  \item Inti permasalahan ini adalah mencari apakah pada \foreignTerm{array} berukuran $N$, terdapat sub-himpunan tidak kosong yang jumlahan elemennya habis dibagi $N$.
-  \item Jika ada, outputkan indeks-indeks yang terdapat di sub-himpunan tersebut. Jika tidak ada, keluarkan "Tidak Mungkin".
-\end{itemize}
-\end{frame}
-
-\begin{frame}
-\frametitle{Motivasi (lanj.)}
-\begin{itemize}
-  \item Mari kita coba mengerjakan versi lebih mudah dari soal ini. Bagaimana jika yang diminta sub-barisan, bukan sub-himpunan?
-  \item Misal kita memiliki fungsi $sum(k) = \sum\limits_{i=1}^k array[i]$.
-  \item Bagaimana hubungan sub-barisan yang habis dibagi $N$ seandainya kita kaitkan dengan $sum(k)$ dan sifat modulo?
-\end{itemize}
-\end{frame}
-
-\begin{frame}
-\frametitle{Motivasi (lanj.)}
-\begin{itemize}
-  \item Kita dapat menyimpulkan bahwa $\sum\limits_{i=l}^r array[i] = sum(r) - sum(l - 1)$.
-  \item Jika habis dibagi $N$, maka $(sum(r) - sum(l - 1)) \mod N = 0 \mod N$.
-  \item Ini dapat kita tuliskan sebagai $sum(r) \mod N = sum(l - 1) \mod N$.
-\end{itemize}
-\end{frame}
-
-\begin{frame}
-\frametitle{Motivasi (lanj.)}
-\begin{itemize}
-  \item Observasi 1: ada N buah kemungkinan nilai sum(x), yaitu [0...N-1].
-  \item Observasi 2: ada N+1 buah kemungkinan nilai x untuk sum(x), yaitu [0..N]. Nilai 0 harus ada agar sub-barisan dalam bentuk (1,k) untuk tiap k dapat kita nyatakan dalam bentuk dari slide sebelumnya.
-  \item Observasi 3: Karena ada N+1 kemungkinan nilai x, dan ada N buah kemungkinan nilai sum(x), maka \emp{pasti ada 2 buah indeks, a dan b, sehingga $sum(b) \mod N = sum(a) \mod N$}
-  \item Maka, kita bisa menggunakan sub-barisan [a+1..b] sebagai solusi.
-\end{itemize}
-\end{frame}
-
-\begin{frame}
-\frametitle{Motivasi (lanj.)}
-\begin{itemize}
-  \item Dengan menyelesaikan versi mudah dari soal awal kita, ternyata kita justru dapat menyelesaikan soal tersebut.
-\end{itemize}
-\end{frame}
-
-\begin{frame}
 \frametitle{Pigeon Hole Principle}
 \begin{itemize}
   \item Konsep PHP adalah \statement{Jika ada $N$ burung dan $M$ sangkar, dimana $M > N$ , maka ada sangkar yang berisi setidaknya 2 ekor burung}.
   \item Secara matematis, jika ada $N$ burung dan $M$ sangkar, maka ada sangkar yang berisi setidaknya $\big\lceil \frac{M}{N} \big\rceil$ ekor burung.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Pigeon Hole Principle (lanj.)}
+\begin{itemize}
+  \item Terkesan sederhana?
+  \item Simak contoh aplikasi prinsip ini.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Contoh Soal PHP}
+\begin{itemize}
+  \item Pak Dengklek memiliki sebuah \progTerm{array} $A$ berisi $N$ bilangan bulat non-negatif.
+  \item Anda ditantang untuk memilih angka-angka dari \progTerm{array}-nya yang jika dijumlahkan habis dibagi $N$.
+  \item Angka di suatu indeks \progTerm{array} tidak boleh dipilih lebih dari sekali.
+  \item Apabila mungkin, cetak angka-angka yang Anda ambil.
+  \item Apabila tidak mungkin, cetak "Tidak mungkin".
+  \item Batasan
+  \begin{itemize}
+    \item $1 \leq N \leq 10^{5}$
+    \item \progTerm{Array} berisi bilangan bulat non-negatif.
+  \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Analisis Contoh Soal PHP}
+\begin{itemize}
+  \item Inti permasalahan ini adalah mencari apakah pada \progTerm{array} berukuran $N$, terdapat sub-himpunan tidak kosong yang jumlahan elemennya habis dibagi $N$.
+  \item Jika ada, outputkan indeks-indeks yang terdapat di sub-himpunan tersebut.
+  \item Jika tidak ada, keluarkan "Tidak Mungkin".
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Analisis Contoh Soal PHP (lanj.)}
+\begin{itemize}
+  \item Mari kita coba mengerjakan versi lebih mudah dari soal ini:
+  Bagaimana jika yang diminta sub-barisan, bukan sub-himpunan?
+  \item Anggap array dimulai dari indeks 1 (\foreignTerm{one-based}).
+  \item Misalkan kita memiliki fungsi $sum(k) = \sum\limits_{i=1}^k A[i]$.
+  \item Untuk $sum(0)$, sesuai definisi nilainya adalah $0$.
+%  \item Bagaimana hubungan sub-barisan yang habis dibagi $N$ seandainya kita kaitkan dengan $sum(k)$ dan sifat modulo?
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Analisis Contoh Soal PHP (lanj.)}
+\begin{itemize}
+  \item Kita dapat menyimpulkan bahwa $\sum\limits_{i=l}^r A[i] = sum(r) - sum(l - 1)$.
+  \newline
+  \item Jika sub-barisan $A[l..r]$ habis dibagi $N$, maka $(sum(r) - sum(l - 1)) \bmod N = 0$.
+  \newline
+  \item Ini dapat kita tuliskan sebagai $sum(r) \bmod N = sum(l - 1) \bmod N$.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Analisis Contoh Soal PHP (lanj.)}
+\begin{itemize}
+  \item Observasi 1: \newline
+  Ada $N$ kemungkinan nilai $(sum(x) \bmod N)$, yaitu $[0..N-1]$.
+  \item Observasi 2: \newline
+  Ada $N+1$ nilai x untuk $(sum(x) \bmod N)$, yaitu untuk $x \in [0..N]$. \newline \newline
+  Ingat bahwa $sum(0)$ ada agar jumlahan sub-barisan $A[1..k]$ untuk tiap $k$ dapat kita nyatakan dalam bentuk: $(sum(k) - sum(0))$.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Analisis Contoh Soal PHP (lanj.)}
+Observasi 3
+\begin{itemize}
+  \item Ada $N+1$ kemungkinan nilai $x$
+  \item Ada $N$ kemungkinan nilai $sum(x) \bmod N$
+  \item \emp{Pasti ada} $a$ dan $b$, sehingga \newline $sum(b) \bmod N = sum(a) \bmod N$
+  \item Sub-barisan yang menjadi solusi adalah $A[a+1..b]$.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Analisis Contoh Soal PHP (lanj.)}
+\begin{itemize}
+  \item Dengan menyelesaikan versi mudah dari soal awal kita, ternyata kita justru dapat menyelesaikan soal tersebut.
+  \item Suatu sub-barisan dari $A$ pasti juga merupakan sub-himpunan dari $A$.
+  \item Diketahui pula bahwa \emp{selalu} ada cara untuk menjawab pertanyaan Pak Dengklek.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Implementasi}
+\begin{codebox}
+\Procname{$\proc{findDivisibleSubsequence}(A, N)$}
+\li \Comment Inisialisasi array $sum[0..N]$ dengan $0$
+\li \Comment Isikan nilai $sum[i]$ dengan $(A[1] + A[2] + ... + A[i])$
+\li \Comment Inisialisasi array $seenInIndex[0..N-1]$ dengan $-1$
+\zi 
+\li $a \gets 0$, $b \gets 0$
+\li \For $i \gets 0$ \To $N$
+    \Do
+\li   \If $seenInIndex[sum[i] \bmod N] \isequal -1$
+      \Then
+\li     $seenInIndex[sum[i] \bmod N] \gets i$    
+\li   \Else
+\li     $a \gets seenInIndex[sum[i] \bmod N]$
+\li     $b \gets i$
+      \End
+    \End
+\zi
+\li Print $A[a..b]$
+\end{codebox}
+\end{frame}
+
+\begin{frame}
+\frametitle{Penutup}
+\begin{itemize}
+  \item Matematika diskret merupakan topik yang sangat luas.
+  \item Materi ini berisikan beberapa konsep dasar matematika diskret yang umum digunakan pada pemrograman kompetitif.
+  \item Selamat berlatih dan mengasah kemampuan!
 \end{itemize}
 \end{frame}
 
