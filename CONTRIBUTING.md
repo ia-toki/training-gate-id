@@ -80,7 +80,9 @@ Untuk membuat tulisan konsisten antar materi, berikut konvensi yang ditetapkan:
 6. Jika suatu topik dijelaskan pada beberapa slide, tambahkan "... (lanj.)" pada halaman slide berikutnya.
 7. Jika Anda menambahkan gambar, masukkan gambar tersebut di folder aset materi yang bersangkutan. Masukkan juga berkas mentah gambar tersebut (misalnya .svg, .pdf). Hindari hanya memasukkan gambar jadinya (misalnya .png atau .jpg) karena gambar tidak bisa diedit lagi (kecuali gambar tersebut memang screenshot). Lebih disarankan menggunakan .svg dan pengolah gambar [inkscape](https://inkscape.org/).
 
-# Panduan Menulis Kode
+# Panduan Menulis Kode Pascal
+
+Bahasa pemrograman Pascal hanya digunakan untuk topik **pemrograman dasar**.
 
 Untuk menjaga konsistensi kode-kode antar materi, gunakan cara penulisan kode berikut.
 
@@ -136,4 +138,105 @@ var
 begin
   ...
 end;
+```
+
+# Panduan Menulis Pseudocode
+
+Untuk materi secara umum, digunakan pseudocode sebagai pengganti bahasa pemrograman spesifik.
+
+Alasan menggunakan pseudocode:
+
+1. Beberapa masukan dari pengguna, mereka tidak familiar dengan Pascal, bisanya C.
+2. Pseudocode mudah dibaca dan disesuaikan ke bahasa pemrograman sungguhan.
+3. Penulisannya lebih singkat (tidak perlu deklarasi variabel) dan dapat memberikan abstraksi lebih (misalnya perintah "urutkan berdasarkan...")
+
+Terdapat banyak cara penulisan pseudocode. Yang diadopsi untuk TOKI Training Gate adalah dialek yang digunakan pada buku "Introduction to Algorithms", tulisan Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest dan Clifford Stein, yang kerap disebut sebagai CLRS (inisial dari nama belakang para penulisnya).
+
+CLRS merilis [package latex](http://www.cs.dartmouth.edu/~thc/clrscode/) untuk menulis pseudocode seperti yang digunakan pada buku tesebut.
+
+Package tersebut telah dimasukkan ke dalam setup.sh, dan siap digunakan di dalam materi. Anda tidak perlu menuliskan perintah untuk melakukan `include` atau semacamnya lagi.
+
+Aturan umum:
+
+1. Gunakan Bahasa Inggris untuk identifier.
+2. Gunakan camelCase untuk identifier, contoh: isPrime, fastPrimeGeneration, computeDpTable.
+3. Boleh menggunakan komentar dalam Bahasa Indonesia untuk menjelaskan operasi yang trivial, misalnya "urutkan berdasarkan berat secara menaik".
+4. Boleh menggunakan notasi umum pada matematika diskret, misalnya notasi himpunan, operator boolean, atau vektor.
+5. Tidak perlu mendeklarasikan tipe data variabel.
+6. Inisialisasi suatu variabel pada *scope* yang Anda harap variabel tersebut terdefinisi.
+7. Hindari operasi yang spesifik hanya ada pada suatu bahasa pemrograman, misalnya `i++`, `inc(i)`, `Math.floor(x)`.
+
+## Contoh Sederhana
+
+Contoh sederhana dengan pemanggilan fungsi lain.
+
+```
+\begin{codebox}
+\Procname{$\proc{simplePrimeGeneration}(n)$}
+\li $primeList \gets \{\}$
+\li \For $i \gets 2$ \To $n$
+    \Do
+\li   \If $\proc{isPrimeSqrt(i)}$
+      \Then
+\li     $primeList \gets primeList \cup \{i\}$
+      \End
+    \End
+\li \Return $primeList$
+\end{codebox}
+```
+
+## Contoh dengan Perintah Bahasa Alami
+
+Bahasa alami dapat ditulis dalam bentuk komentar dan mendeskripsikan suatu aktivitas trivial.
+
+```
+\begin{codebox}
+\Procname{$\proc{sieveOfErathostenes}(n)$}
+\li \Comment Siapkan array $eleminated$ berukuran n
+\li \Comment Inisialisasi array $eleminated$ dengan $false$
+\li $primeList \gets \{\}$
+\li $eleminated[1] \gets false$
+\li \For $i \gets 2$ \To $n$
+    \Do
+\li   \If $not$ $eleminated[i]$
+      \Then
+\li     $primeList \gets primeList \cup \{i\}$
+\li     $j \gets i$
+\li     \While $i \times j \leq n$
+        \Do
+\li       $eleminated[i \times j] \gets true$
+\li       $j \gets j + i$
+        \End
+      \End
+    \End
+\li \Return $primeList$
+\end{codebox}
+
+```
+
+## Contoh dengan Memperhatikan Scope Variabel
+
+Pada contoh berikut, variabel `a` dan `b` diinisialisasi di luar struktur For karena akan digunakan di bagian paling akhir. Tanpa inisialisasi ini, pembaca mungkin bingung dengan asal muasal `a` dan `b`.
+
+```
+\begin{codebox}
+\Procname{$\proc{findDivisibleSubsequence}(A, N)$}
+\li \Comment Inisialisasi array $sum[0..N]$ dengan $0$
+\li \Comment Isikan nilai $sum[i]$ dengan $(A[1] + A[2] + ... + A[i])$
+\li \Comment Inisialisasi array $seenInIndex[0..N-1]$ dengan $-1$
+\zi
+\li $a \gets 0$, $b \gets 0$
+\li \For $i \gets 0$ \To $N$
+    \Do
+\li   \If $seenInIndex[sum[i] \bmod N] \isequal -1$
+      \Then
+\li     $seenInIndex[sum[i] \bmod N] \gets i$
+\li   \Else
+\li     $a \gets seenInIndex[sum[i] \bmod N]$
+\li     $b \gets i$
+      \End
+    \End
+\zi
+\li Print $A[a..b]$
+\end{codebox}
 ```
