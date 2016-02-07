@@ -14,20 +14,46 @@
 \frametitle{Pendahuluan}
 Melalui dokumen ini, kalian akan:
 \begin{itemize}
-  \item Mengenal beberapa macam struktur data dasar
-  \item Mengetahui pentingnya penggunaan struktur data
-  \item Mengetahui operasi-operasi yang dapat dilakukan pada struktur data dasar
+  \item Mengenal beberapa macam struktur data dasar.
+  \item Mengetahui pentingnya penggunaan struktur data.
+  \item Mengetahui operasi-operasi yang dapat dilakukan pada struktur data dasar.
 \end{itemize}
 \end{frame}
 
 \begin{frame}
+\frametitle{Tentang Struktur Data}
+\begin{block}{Struktur Data}
+Merupakan tata cara untuk merepresentasikan dan menyimpan data, sehingga mendukung operasi terhadap data tersebut secara efisien.
+\end{block}
+\end{frame}
+
+\begin{frame}
 \frametitle{Kilas Balik: Array}
-Apakah Anda masih ingat mengenai struktur data array?
-Array merupakan salah satu contoh struktur data yang dasar yang mendukung operasi berikut :
+\foreignTerm{Array} merupakan contoh struktur data dasar yang mendukung operasi berikut:
 \begin{itemize}
-  \item Membaca elemen di dalam array secara random. Pada array, kita dapat membaca elemen pada indeks yang kita inginkan.
-  \item Mengubah elemen di dalam array secara random. Pada array, kita dapat mengubah nilai elemen di dalam array
-\end{itemize} 
+  \item Membaca nilai yang disimpan pada suatu indeks sembarang.
+  \item Mengubah nilai yang disimpan pada suatu indeks sembarang.
+  \newline
+\end{itemize}
+Akses indeks secara sembarang ini biasa disebut sebagai \foreignTerm{random access}.
+\end{frame}
+
+\begin{frame}
+\frametitle{Kilas Balik: Array (lanj.)}
+\begin{itemize}
+  \item Bagaimana kalau kita hendak menyisipkan suatu elemen sebagai indeks pertama dari \foreignTerm{array}?
+  \item Kita harus menggeser seluruh isi \foreignTerm{array}, barulah memasukkan elemen yang hendak dimasukkan di indeks pertama.
+  \item Operasi ini dilaksanakan dalam $O(N)$, dengan $N$ adalah ukuran \foreignTerm{array}.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Kilas Balik: Array (lanj.)}
+\begin{itemize}
+  \item Bagaimana jika operasi ini sering dilakukan?
+  \item Melaksanakannya dalam $O(N)$ kurang efisien.
+  \item Adakah cara yang lebih baik?
+\end{itemize}
 \end{frame}
 
 \section{Linked List}
@@ -35,243 +61,635 @@ Array merupakan salah satu contoh struktur data yang dasar yang mendukung operas
 
 \begin{frame}
 \frametitle{Mengenal Linked List}
+\foreignTerm{Linked list} terdiri dari kumpulan \alert{\foreignTerm{node}}.\newline
+
+\foreignTerm{Node} dapat diartikan sebagai sebuah titik yang nantinya dapat dihubungkan dengan \foreignTerm{node} lainnya.\newline
+
+Sebuah \foreignTerm{node} menyimpan dua informasi:
+\begin{enumerate}
+  \item data: informasi yang disimpan.
+  \item next: \foreignTerm{pointer} ke \foreignTerm{node} berikutnya.
+\end{enumerate}
+\begin{figure}
+  \centering \includegraphics[width=2 cm]{asset/singly-node.pdf}
+\end{figure}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Mengenal Linked List (lanj.)}
+\begin{itemize}
+  \item \foreignTerm{Pointer}-\foreignTerm{pointer} ini menghubungkan antar \foreignTerm{node} dalam \foreignTerm{linked list}.
+  \item \foreignTerm{Node} paling depan biasa disebut \alert{\foreignTerm{head}}.
+\end{itemize}
+\begin{figure}
+  \centering \includegraphics[width=8 cm]{asset/singly-linked-list.pdf}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+\frametitle{Jenis Linked List}
+Berdasarkan hubungannya dengan \foreignTerm{node} lain, \foreignTerm{linked list} terbagi menjadi 2 macam, yaitu:
+\begin{itemize}
+  \item \foreignTerm{Singly Linked List}: tiap \foreignTerm{node} hanya memiliki \foreignTerm{pointer} ke \foreignTerm{node} selanjutnya saja (next).
+  \item \foreignTerm{Doubly Linked List}: tiap \foreignTerm{node} memiliki \foreignTerm{pointer} ke \foreignTerm{node} selanjutnya (next) dan \foreignTerm{node} sebelumnya (prev).
+  \newline
+\end{itemize}
+Pada pembahasan ini, kita akan menggunakan \foreignTerm{doubly linked list}.
+\end{frame}
+
+\begin{frame}
+\frametitle{Struktur \foreignTerm{Doubly Linked List}}
 \begin{figure}
   \centering
-  \includegraphics[width=6 cm]{asset/linkedlist.png}
+  \includegraphics[width=3 cm]{asset/doubly-node.pdf}
 \end{figure}
+\begin{figure}
+  \centering
+  \includegraphics[width=9 cm]{asset/doubly-linked-list.pdf}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+\frametitle{Linked List dan Array}
 \begin{itemize}
-  \item Linked list terdiri dari kumpulan \alert{node} yang memiliki referensi ke node lainnya
-  \item Tiap node terdiri dari elemen yang akan disimpan dan \alert{pointer} ke node lainnya
-  \item Pointer tersebut yang menghubungkan antar node dalam linked list
-  \item Node paling depan biasa disebut \alert{head} sedangkan node paling akhir biasa disebut \alert{tail}
+  \item Pada \foreignTerm{doubly linked list}, biasanya kita hanya memiliki referensi ke \foreignTerm{head} dan \foreignTerm{tail}.
+  \item Untuk mengakses elemen ke-$x$ dari \foreignTerm{linked list}, kita dapat melakukannya dengan:
+
+  \begin{codebox}
+  \Procname{$\proc{get}(head, x)$}
+  \li $current \gets head$
+  \li \For $i \gets 1$ \To $x$ \Do
+  \li   $current \gets current.next$
+      \End
+  \li \Return $current$
+  \zi
+  \end{codebox}
+  \item Terlihat tidak efisien?
 \end{itemize}
 \end{frame}
 
 \begin{frame}
-\frametitle{Mengenal Linked List (lanj.)}
-Berdasarkan hubungannya dengan node lain, linked list terbagi menjadi 2 macam, yaitu:
+\frametitle{Linked List dan Array (lanj.)}
+\foreignTerm{Doubly linked list} memiliki keuntungan dalam:
 \begin{itemize}
-  \item Single Linked List, yaitu linked list yang mana tiap nodenya hanya memiliki pointer ke node selanjutnya saja. Tiap node hanya memiliki pointer \alert{next} untuk menunjuk node selanjutnya.
-  \item Double Linked List, yaitu linked list yang mana tiap nodenya memiliki pointer terhadap node selanjutnya dan node sebelumnya. Tiap pointer memiliki pointer next dan \alert{prev} untuk menunjuk node sebelumnya.
+  \item Menyisipkan elemen baru.
+  \item Menghapus suatu elemen.
+  \newline
+\end{itemize}
+Kedua operasi tersebut dapat dilakukan secara efisien.
+\end{frame}
+
+\begin{frame}
+\frametitle{Menyisipkan Elemen Linked List}
+Diberikan $node$ yang bukan $tail$, sisipkan $newNode$ sesudahnya.
+\begin{figure}
+  \centering
+  \includegraphics[width=9 cm]{asset/doubly-insert-1.pdf}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+\frametitle{Menyisipkan Elemen Linked List (lanj.)}
+1. Isi \foreignTerm{pointer} $newNode.prev$ untuk mengarah ke $node$.
+
+2. Isi \foreignTerm{pointer} $newNode.next$ untuk mengarah ke $node.next$.
+\begin{figure}
+  \centering
+  \includegraphics[width=9 cm]{asset/doubly-insert-2.pdf}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+\frametitle{Menyisipkan Elemen Linked List (lanj.)}
+3. Perbaiki \foreignTerm{pointer} $newNode.prev.next$ untuk mengarah ke $newNode$.
+
+4. Perbaiki \foreignTerm{pointer} $newNode.next.prev$ untuk mengarah ke $newNode$.
+\begin{figure}
+  \centering
+  \includegraphics[width=9 cm]{asset/doubly-insert-3.pdf}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+\frametitle{Menyisipkan Elemen Linked List (lanj.)}
+\begin{itemize}
+  \item Untuk menyisipkan elemen di paling awal atau paling akhir, gunakan cara serupa.
+  \item Tidak ada pergeseran, hanya "cabut" dan "pasang" \foreignTerm{pointer}.
+  \item Kompleksitasnya adalah $O(1)$.
+\end{itemize}
+%\begin{codebox}
+%\Procname{$\proc{insertAfter}(node, newNode)$}
+%\li $newNode.prev \gets node$
+%\li $newNode.next \gets node.next$
+%\li $newNode.prev.next \gets newNode$
+%\li $newNode.next.prev \gets newNode$
+%\end{codebox}
+\end{frame}
+
+\begin{frame}
+\frametitle{Menghapus Elemen Linked List}
+Diberikan $node$ yang bukan $head$ maupun $tail$, hapus dari \foreignTerm{linked list}.
+\begin{figure}
+  \centering
+  \includegraphics[width=9 cm]{asset/doubly-delete-1.pdf}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+\frametitle{Menghapus Elemen Linked List (lanj.)}
+1. Ubah $node.prev.next$ menjadi $node.next$.
+
+2. Ubah $node.next.prev$ menjadi $node.prev$.
+\begin{figure}
+  \centering
+  \includegraphics[width=9 cm]{asset/doubly-delete-2.pdf}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+\frametitle{Menghapus Elemen Linked List (lanj.)}
+3. Hapus $node$.
+\begin{figure}
+  \centering
+  \includegraphics[width=9 cm]{asset/doubly-delete-3.pdf}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+\frametitle{Menghapus Elemen Linked List (lanj.)}
+%\begin{codebox}
+%\Procname{$\proc{delete}(node)$}
+%\li $node.prev.next \gets node.next$
+%\li $node.next.prev \gets node.prev$
+%\end{codebox}
+\begin{itemize}
+  \item Anda juga dapat menghapus $head$ atau $tail$ dengan cara serupa.
+  \item Sama seperti menyisipkan elemen, tidak ada operasi pergeseran di sini.
+  \item Kompleksitasnya adalah $O(1)$.
 \end{itemize}
 \end{frame}
 
 \begin{frame}
-\frametitle{Mengenal Linked List (lanj.)}
-Selain itu, berdasarkan bentuknya, linked list juga dapat terbagi menjadi 2 macam, yaitu:
+\frametitle{Rangkuman}
 \begin{itemize}
-  \item Linear Linked List, yaitu linked list yang mana \alert{tail} atau node paling terakhir nextnya dihubungkan ke \alert{NULL}. Demikian pula dalam double linked list, maka \alert{head} atau node pertama prevnya dihubungkan ke NULL.
-  \item Circular Linked List, yaitu linked list yang mana tail bagian nextnya akan dihubungkan ke head. Selain itu, bagian prev pada head juga akan dihubungkan ke tail. 
+  \item \foreignTerm{Linked list} memang tidak mendukung \foreignTerm{random access} secara efisien.
+  \item Namun \foreignTerm{linked list} mendukung operasi menyisipkan dan menghapus \emp{jika diketahui} $node$ tempat penyisipan/penghapusan dilakukan.
 \end{itemize}
-\end{frame}
-
-\begin{frame}
-\frametitle{Keuntungan Linked List}
-Linked list memiliki keuntungan dalam menangani penghapusan suatu elemen. Sebagai contoh, misal kita akan menghapus salah satu elemen pada linked list. Maka yang perlu dilakukan hanya menghapus node tersebut. Jika dibandingkan dengan array, maka penghapusan suatu elemen harus menggeser seluruh elemen setelah atau sebelum elemen yang dihapus.
-\end{frame}
-
-\begin{frame}
-\frametitle{Kerugian Linked List}
-Proses membaca elemen dalam linked list tidak semudah dalam pembacaan elemen pada array. Untuk membaca elemen pada indeks tertentu, maka harus dilakukan iterasi mulai dari node head hingga ke node yang diinginkan. Begitu pula dengan proses pengubahan harus dilakukan iterasi dari awal terlebih dahulu.
 \end{frame}
 
 \section{Stack}
 \frame{\sectionpage}
 
-\begin{frame}
-\frametitle{Soal Pemanasan}
-
-Misal kita mendapat soal sebagai berikut
-\begin{itemize}
-  \item Anda diberikan sebuah string misal "acaabcbcd"
-  \item Cari string "abc" dalam string tersebut. Jika ditemukan maka hapus string "abc" tersebut, lalu ulangi pencarian.
-  \item Pencarian berakhir ketika tidak terdapat string "abc" lagi. Outputkan total penghapusan yang berhasil dilakukan
-  \item Contoh, pada string "acaabcbcd" terdapat sebuah string abc, dan hapus string tersebut menjadi "acabcd". Lalu, ditemukan lagi string abc dan hapus menjadi "acd". Karena tidak ditemukan lagi string "abc", maka output 2.
-\end{itemize}
-\end{frame}
+%\begin{frame}
+%\frametitle{Soal Pemanasan}
+%
+%Misal kita mendapat soal sebagai berikut
+%\begin{itemize}
+%  \item Anda diberikan sebuah string misal "acaabcbcd"
+%  \item Cari string "abc" dalam string tersebut. Jika ditemukan maka hapus string "abc" tersebut, lalu ulangi pencarian.
+%  \item Pencarian berakhir ketika tidak terdapat string "abc" lagi. Outputkan total penghapusan yang berhasil dilakukan
+%  \item Contoh, pada string "acaabcbcd" terdapat sebuah string abc, dan hapus string tersebut menjadi "acabcd". Lalu, ditemukan lagi string abc dan hapus menjadi "acd". Karena tidak ditemukan lagi string "abc", maka output 2.
+%\end{itemize}
+%\end{frame}
 
 \begin{frame}
 \frametitle{Mengenal Stack}
-
-Stack dapat dimisalkan seperti tumpukan piring. Jika terdapat piring baru yang ingin dimasukkan, maka piring tersebut masuk dari paling atas. Jika sebuah piring akan diambil dari tumpukan, maka yang diambil juga piring yang paling atas.
+\begin{itemize}
+  \item \foreignTerm{Stack} dapat dimisalkan seperti tumpukan piring pada umumnya.
+  \item Jika terdapat piring baru yang ingin dimasukkan, maka piring tersebut masuk dari paling atas.
+  \item Jika sebuah piring akan diambil dari tumpukan, maka yang diambil juga piring yang paling atas.
+\end{itemize}
 
 \begin{figure}
   \centering
-  \includegraphics[width=4 cm]{asset/plates-stack.png}
+  \includegraphics[width=4 cm]{asset/plates-stack.pdf}
 \end{figure}
-
 \end{frame}
 
 \begin{frame}
 \frametitle{Mengenal Stack (lanj.)}
-
-Struktur data stack memiliki sifat LIFO (Last In First Out). Hal ini disebabkan elemen yang paling terakhir masuk (Last In) akan lebih dahulu keluar dari stack (First Out).\newline\newline
-Stack memiliki operasi sebagai berikut:
 \begin{itemize}
-  \item Push, yaitu memasukan elemen baru ke bagian akhir dari stack
-  \item Pop, yaitu membuang elemen paling akhir dari stack
+  \item Struktur data \foreignTerm{stack} menyimpan informasi dalam bentuk tumpukan.
+  \item Informasi yang baru dimasukkan ke paling atas tumpukan.
+  \item Hanya informasi paling atas yang bisa diakses/dihapus pada setiap waktunya.
+  \item Oleh karena itu struktur data \foreignTerm{stack} disebut memiliki sifat LIFO (Last In First Out).
 \end{itemize}
-
 \begin{figure}
   \centering
   \includegraphics[width=4 cm]{asset/stack.png}
 \end{figure}
+\end{frame}
+
+\begin{frame}
+\frametitle{Operasi pada Stack}
+
+\foreignTerm{Stack} memiliki operasi sebagai berikut:
+\begin{itemize}
+  \item \foreignTerm{Push}, yaitu memasukan elemen baru ke bagian atas tumpukan.
+  \item \foreignTerm{Pop}, yaitu membuang elemen paling atas tumpukan.
+  \item \foreignTerm{Top}, yaitu mengakses elemen paling atas tumpukan.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Aplikasi Stack}
+\begin{itemize}
+  \item Eksekusi fungsi pada sejumlah bahasa pemrograman biasanya menggunakan struktur data \foreignTerm{stack}, tertama untuk fungsi rekursif.
+  \item Pemanggilan fungsi rekursif yang menambah kedalaman berarti melakukan "\foreignTerm{push}" pada \foreignTerm{stack} eksekusi fungsi.
+  \item Fungsi yang dieksekusi adalah fungsi di paling atas \foreignTerm{stack}.
+  \item Setelah fungsi di paling atas selesai, dilakukan "\foreignTerm{pop}" dan eksekusi fungsi dilanjutkan ke fungsi yang ada di paling atas \foreignTerm{stack} berikutnya.
+  \item Oleh sebab itu, ketika pemanggilan fungsi terlalu dalam, terjadi \emp{stack overflow}.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Aplikasi Stack Lainnya}
+\begin{itemize}
+  \item \foreignTerm{Stack} juga digunakan pada kalkulator ekspresi matmatika dalam notasi postfix.
+  \item Notasi postfix adalah notasi penulisan ekspresi  matematika dengan urutan operand, operand, dan operator.
+  \item Contoh:
+  \begin{itemize}
+    \item "$1 \ 2 \ +$" bermakna "$1 + 2$"
+    \item "$1 \ 2 \ 3 + \ -$" bermakna "$1 - (2 + 3)$"
+    \item "$1 \ 2 \ 3 + \ - \ 4 \ \times$" bermakna "$(1 - (2 + 3)) \times 4$"
+  \end{itemize}
+  \item Notasi yang biasa kita gunakan adalah notasi infix, yaitu dengan urutan operand, operator, dan operand.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Aplikasi Stack Lainnya (lanj.)}
+\begin{itemize}
+  \item Diberikan sebuah ekspresi dalam notasi postfix, nilai akhirnya dapat dicari dengan skema kerja \foreignTerm{stack}.
+  \item Pada awalnya, inisialisasi sebuah \foreignTerm{stack} kosong.
+  \item Proses ekspresi dari kiri ke kanan:
+  \begin{enumerate}
+    \item Jika ditemukan operand, \foreignTerm{push} ke dalam \foreignTerm{stack}.
+    \item Jika ditemukan operator, \foreignTerm{pop} dua kali untuk mendapat dua operand teratas \foreignTerm{stack}, hitung, lalu \foreignTerm{push} kembali ke dalam \foreignTerm{stack}.
+  \end{enumerate}
+  \item Satu-satunya nilai terakhir di dalam \foreignTerm{stack} adalah hasil ekspresinya.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Eksekusi Ekspresi Postfix}
+Ekspresi: $1 \ 2 \ 3 + \ - \ 4 \ \times$
+\begin{enumerate}
+  \item \foreignTerm{Push} angka 1, \foreignTerm{stack}: [1].
+  \item \foreignTerm{Push} angka 2, \foreignTerm{stack}: [1, 2].
+  \item \foreignTerm{Push} angka 3, \foreignTerm{stack}: [1, 2, 3].
+  \item Ditemukan +:
+  \begin{itemize}
+    \item \foreignTerm{Pop} dua kali, didapat nilai 2 dan 3, \foreignTerm{stack}: [1].
+    \item Operasikan 2 + 3, dan \foreignTerm{push}, \foreignTerm{stack}: [1, 5]
+  \end{itemize}
+  \item ...
+\end{enumerate}
+\end{frame}
+
+\begin{frame}
+\frametitle{Eksekusi Ekspresi Postfix (lanj.)}
+Ekspresi: $1 \ 2 \ 3 + \ - \ 4 \ \times$
+\begin{enumerate}
+  \setcounter{enumi}{4}
+  \item Ditemukan -:
+  \begin{itemize}
+    \item \foreignTerm{Pop} dua kali, didapat nilai 1 dan 5, \foreignTerm{stack}: [].
+    \item Operasikan 1 - 5, dan \foreignTerm{push}, \foreignTerm{stack}: [-4]
+  \end{itemize}
+  \item \foreignTerm{Push} angka 4, \foreignTerm{stack}: [-4, 4].
+  \item Ditemukan $\times$:
+  \begin{itemize}
+    \item \foreignTerm{Pop} dua kali, didapat nilai -4 dan 4, \foreignTerm{stack}: [].
+    \item Operasikan -4 $\times$ 4, dan \foreignTerm{push}, \foreignTerm{stack}: [-16]
+    \newline
+  \end{itemize}
+\end{enumerate}
+
+Jadi  $1 \ 2 \ 3 + \ - \ 4 \ \times = -16$
+\end{frame}
+
+\begin{frame}
+\frametitle{Implementasi \foreignTerm{Stack}}
+\begin{itemize}
+  \item Anda dapat mengimplementasikan \foreignTerm{stack} menggunakan \foreignTerm{singly linked list}.
+  \item \foreignTerm{Node} yang perlu Anda simpan cukup \foreignTerm{head} saja (atau \foreignTerm{tail} saja), berhubung penyisipan/penghapusan selalu dilakukan di bagian tersebut.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Alternatif Implementasi \foreignTerm{Stack}}
+\begin{itemize}
+  \item Alternatif yang seringkali lebih mudah adalah menggunakan sebuah \foreignTerm{array} dan variabel penunjuk.
+  \item Variabel penunjuk ini menyatakan indeks \foreignTerm{array} yang menjadi elemen paling atas \foreignTerm{stack}, dan bergerak maju/mundur sesuai dengan perintah \foreignTerm{push}/\foreignTerm{pop}.
+  \item Seluruh operasi dapat dilakukan dalam $O(1)$.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Alternatif Implementasi Stack (lanj.)}
+\begin{codebox}
+\Procname{$\proc{initializeStack}(maxSize)$}
+\li \Comment Buat array $stack$ berukuran $maxSize$
+\li $topOfStack \gets 0$
+\end{codebox}
+
+\begin{codebox}
+\Procname{$\proc{push}(item)$}
+\li $topOfStack \gets topOfStack + 1$
+\li $stack[topOfStack] \gets item$
+\end{codebox}
+
+\begin{codebox}
+\Procname{$\proc{pop}()$}
+\li $topOfStack \gets topOfStack - 1$
+\end{codebox}
+
+\begin{codebox}
+\Procname{$\proc{top}()$}
+\li \Return $stack[topOfStack]$
+\end{codebox}
 
 \end{frame}
 
 \begin{frame}
-\frametitle{Pembahasan Soal}
-
-Setelah mengenali struktur data stack, maka kita sudah dapat menjawab soal sebelumnya dengan efisien.
+\frametitle{Alternatif Implementasi Stack (lanj.)}
 \begin{itemize}
-  \item Lakukan iterasi tiap karakter pada string tersebut
-  \item Untuk karakter selain huruf 'c', maka masukkan ke stack yang dimiliki
-  \item jika karakter sekarang adalah 'c', maka ada kemungkinan bahwa string terakhir adalah "abc". Oleh karena itu, cek 2 elemen teratas dari stack, apakah 'b' dan 'a'.
-  \item Jika tidak, maka masukkan 'c' kedalam stack.
-  \item Jika iya, maka terdapat 1 penghapusan, lalu pop huruf 'b' dan 'a' dari stack.
+  \item Pastikan nilai $maxSize$ sama dengan maksimal operasi \foreignTerm{push} yang mungkin dilakukan.
+  \item Pada operasi \foreignTerm{pop}, kita tidak benar-benar menghapus elemennya, melainkan hanya variabel penunjuknya yang "dimundurkan".
 \end{itemize}
-Kompleksitas total adalah O(N) yang cukup efisien karena pada tiap karakter, kita hanya memasukkan kedalam stack atau mengecek 2 elemen teratas dari stack. Di sini, N merupakan panjang string awal.
 \end{frame}
+%\begin{frame}
+%\frametitle{Pembahasan Soal}
+%
+%Setelah mengenali struktur data stack, maka kita sudah dapat menjawab soal sebelumnya dengan efisien.
+%\begin{itemize}
+%  \item Lakukan iterasi tiap karakter pada string tersebut
+%  \item Untuk karakter selain huruf 'c', maka masukkan ke stack yang dimiliki
+%  \item jika karakter sekarang adalah 'c', maka ada kemungkinan bahwa string terakhir adalah "abc". Oleh karena itu, cek 2 elemen teratas dari stack, apakah 'b' dan 'a'.
+%  \item Jika tidak, maka masukkan 'c' kedalam stack.
+%  \item Jika iya, maka terdapat 1 penghapusan, lalu pop huruf 'b' dan 'a' dari stack.
+%\end{itemize}
+%Kompleksitas total adalah O(N) yang cukup efisien karena pada tiap karakter, kita hanya memasukkan kedalam stack atau mengecek 2 elemen teratas dari stack. Di sini, N merupakan panjang string awal.
+%\end{frame}
 
 \section{Queue}
 \frame{\sectionpage}
 
 \begin{frame}
 \frametitle{Mengenal Queue}
-
-Apakah anda pernah melihat antrian pembelian? Tentu saja pernah bukan?
-\newline
-\newline
-Struktur Data Queue mirip dengan analogi antrian tersebut. Saat seorang ingin masuk ke antrian, maka orang tersebut harus mengantri dari belakang. Sementara itu, orang yang dilayani terlebih dahulu adalah orang yang paling depan.
-
-\begin{figure}
-  \centering
-  \includegraphics[width=8 cm]{asset/queue.png}
-\end{figure}
+\begin{itemize}
+  \item Apakah anda pernah melihat antrian pembelian?
+  \item Struktur data \foreignTerm{queue} mirip dengan analogi antrian tersebut.
+  \item Saat seorang ingin masuk ke antrian, maka orang tersebut harus mengantri dari belakang. \item Sementara itu, orang yang dilayani terlebih dahulu adalah orang yang paling depan.
+\end{itemize}
 \end{frame}
 
 \begin{frame}
 \frametitle{Mengenal Queue (lanj.)}
-
-Queue memiliki sifat yang berbeda dengan stack, yaitu FIFO (First In First Out). Hal ini disebabkan elemen yang pertama masuk kedalam queue (First In) akan keluar dari queue terlebih dahulu (First Out).\newline\newline
-Queue memiliki beberapa operasi yang dapat dilakukan:
 \begin{itemize}
-  \item Push, yaitu memasukkan elemen baru kedalam indeks paling akhir dari queue
-  \item Pop, yaitu mengeluarkan elemen paling depan dari queue
-  \item Front, yaitu melihat elemen yang paling depan dari queue tersebut
+  \item Struktur data \foreignTerm{queue} menyimpan informasi dalam bentuk antrian.
+  \item Informasi yang baru dimasukkan ke paling belakang antrian.
+  \item Hanya informasi paling depan yang bisa diakses/dihapus pada setiap waktunya.
+  \item Oleh karena itu struktur data \foreignTerm{queue} disebut memiliki sifat FIFO (First In First Out).
 \end{itemize}
-\end{frame}
-
-\section{Binary Search Tree}
-\frame{\sectionpage}
-
-\begin{frame}
-\frametitle{Soal Pemanasan}
-Misalkan Anda diberi problem yang mana terdapat 2 macam query, yaitu insert suatu angka dan cari suatu angka. Perintah insert adalah memasukan angka tersebut ke struktur data. Perintah cari berarti mencari angka yang diinput dalam struktur data yang ada. Jika angka tersebut ada, print 1, jika tidak ada print 0.
-\newline\newline
-Cara yang paling mudah adalah untuk tiap operasi insert, maka masukkan angka tersebut ke array indeks paling akhir. Lalu, untuk operasi cari, maka lakukan linear search pada array. Namun, operasi pencarian ini kurang efisien karena butuh O(n) untuk mencari angka tersebut.
-\end{frame}
-
-\begin{frame}
-\frametitle{Mengenal Binary Search Tree}
-Untuk memperkecil kompleksitas problem tersebut, maka kita perlu belajar mengenai Binary Search Tree. Binary Search Tree merupakan struktur data yang cukup berbeda dengan struktur data yang sebelumnya. Berikut adalah ilustrasi sekilas mengenai binary search tree
 
 \begin{figure}
   \centering
-  \includegraphics[width=4 cm]{asset/bst.png}
+  \includegraphics[width=7 cm]{asset/queue.png}
 \end{figure}
 \end{frame}
 
 \begin{frame}
-\frametitle{Mengenal BST (lanj.)}
-Berdasarkan ilustrasi diatas, maka dapat disimpulkan beberapa hal berikut:
+\frametitle{Operasi Queue}
+
+\foreignTerm{Queue} memiliki beberapa operasi yang dapat dilakukan:
 \begin{itemize}
-  \item Tiap node pada BST memiliki sebuah nilai dan 2 pointer ke anaknya (anak kiri dan anak kanan).
-  \item Semua node yang berada di sebelah kiri suatu node pasti memiliki nilai yang lebih kecil daripada node sekarang.
-  \item Semua node yang berada di sebelah kanan suatu node pasti memiliki nilai yang lebih besar daripada node sekarang.
-  \item Node yang paling atas merupakan node \alert{root} yang merupakan satu-satunya node yang dapat diakses secara langsung
+  \item \foreignTerm{Push}, yaitu memasukkan elemen baru ke bagian akhir antrian.
+  \item \foreignTerm{Pop}, yaitu mengeluarkan elemen paling depan antrian.
+  \item \foreignTerm{Front}, yaitu mengakses elemen yang paling depan antrian.
 \end{itemize}
 \end{frame}
 
 \begin{frame}
-\frametitle{Operasi Insert pada BST}
-
-Dengan adanya sifat-sifat BST di atas, maka proses insert dapat dimulai dari node root. Lakukan hal berikut hingga menemukan node NULL.
+\frametitle{Aplikasi Queue}
 \begin{itemize}
-  \item Jika nilai pada node sekarang lebih besar daripada nilai yang akan diinsert, maka pergi ke anak kiri dari node sekarang.
-  \item Jika nilai pada node sekarang lebih kecil dari nilai yang akan diinsert, maka pergi ke anak kanan dari node sekarang.\newline
+  \item Sesuai namanya, pada komputer \foreignTerm{queue} digunakan untuk berbagai hal yang memerlukan antrian.
+  \item Misalnya antrian berkas-berkas yang akan diunduh dari internet untuk ditampilkan pada \foreignTerm{browser} Anda.
+  \item \foreignTerm{Queue} akan sering kita gunakan ketika sudah memasuki materi graf.
+  \item Tepatnya ketika melakukan \foreignTerm{Breadth First Search}.
 \end{itemize}
-
-Jika node sekarang NULL, maka buat node baru dengan anak kiri dan anak kanan adalah NULL. Jangan lupa untuk memasukkan nilai yang diinsert ke node tersebut.
-\end{frame}
-
-\begin{frame}[fragile]
-\frametitle{Pseudocode Insert pada BST}
-
-\begin{lstlisting}
-
-node* insert (node* currNode, int value)
-
-    if currNode = NULL:
-        currNode = new Node
-        currNode.val = value
-        currNode.left_child = NULL
-        currNode.right_child = NULL
-  
-    else if currNode.val > value:
-        currNode.left_child =
-        insert(currNode.left_child, value)
-  
-    else:
-        currNode.right_child = 
-        insert(currNode.right_child, value)
-    
-    return currNode
-    
-\end{lstlisting}
 \end{frame}
 
 \begin{frame}
-\frametitle{Operasi Find pada BST}
-
-Dengan adanya sifat-sifat BST di atas, maka proses find dapat dimulai dari node root. Lakukan hal berikut hingga menemukan angka yang dicari atau menemukan node NULL.
+\frametitle{Implementasi Queue}
 \begin{itemize}
-  \item Jika nilai pada node sekarang lebih besar daripada nilai yang akan diinsert, maka pergi ke anak kiri dari node sekarang.
-  \item Jika nilai pada node sekarang lebih kecil dari nilai yang akan diinsert, maka pergi ke anak kanan dari node sekarang.\newline
+  \item Anda dapat mengimplementasikan \foreignTerm{queue} menggunakan \foreignTerm{singly linked list}.
+  \item Anda dapat menyimpan \foreignTerm{node} \foreignTerm{head} dan \foreignTerm{tail}.
+  \item Setiap \foreignTerm{push}, sisipkan elemen sesudah \foreignTerm{tail}.
+  \item Setiap \foreignTerm{pop}, hapus \foreignTerm{node} \foreignTerm{head}.
 \end{itemize}
-Jika value dari node sekarang sesuai dengan yang dicari, berarti angka yang dicari ditemukan dalam BST.
-\newline\newline
-Jika node sekarang NULL, maka angka yang dicari tidak ditemukan dalam BST.
-\end{frame}
-
-\begin{frame}[fragile]
-\frametitle{Pseudocode Insert pada BST}
-
-\begin{lstlisting}
-
-int insert (node* currNode, int value)
-
-    if currNode = NULL:
-        return 0
-    
-    else if currNode.val = value:
-        return 1
-        
-    else if currNode.val > value:
-        return insert(currNode.left_child, value)
-        
-    else:
-        return insert(currNode.right_child,value)
-    
-\end{lstlisting}
 \end{frame}
 
 \begin{frame}
-\frametitle{Pembahasan Soal}
+\frametitle{Alternatif Implementasi Queue}
+\begin{itemize}
+  \item Lagi-lagi, alternatif yang seringkali lebih mudah adalah menggunakan sebuah \foreignTerm{array} dan dua variabel penunjuk.
+  \item Variabel penunjuk ini menyatakan indeks \foreignTerm{array} yang menjadi elemen paling depan dan belakang \foreignTerm{queue}.
+  \item Kedua variabel penunjuk ini selalu bergerak maju.
+  \item Seluruh operasi dapat dilakukan dalam $O(1)$.
+\end{itemize}
+\end{frame}
 
-Setelah mengenai BST, maka untuk menyelesaikan masalah sebelumnya kita dapat menggunakan BST. Untuk proses insert, maka gunakan proses insert yang terdapat pada BST. Untuk proses find, juga gunakan proses find yang terdapat pada BST.
-\newline\newline
-Dengan demikian, kompleksitas dari insert dan find keduanya adalah sesuai dengan tinggi dari BST. Solusi ini lebih efisien daripada menggunakan array dan harus mencari seluruh isi array
+\begin{frame}
+\frametitle{Alternatif Implementasi Queue (lanj.)}
+\begin{codebox}
+\Procname{$\proc{initializeQueue}(maxSize)$}
+\li \Comment Buat array $queue$ berukuran $maxSize$
+\li $head \gets 1$
+\li $tail \gets 0$
+\end{codebox}
+
+\begin{codebox}
+\Procname{$\proc{push}(item)$}
+\li $tail \gets tail + 1$
+\li $queue[tail] \gets item$
+\end{codebox}
+
+\begin{codebox}
+\Procname{$\proc{pop}()$}
+\li $head \gets head + 1$
+\end{codebox}
+
+\begin{codebox}
+\Procname{$\proc{front}()$}
+\li \Return $queue[head]$
+\end{codebox}
+\end{frame}
+
+\begin{frame}
+\frametitle{Alternatif Implementasi Queue (lanj.)}
+\begin{itemize}
+  \item Kelemahan dari implementasi ini adalah beberapa elemen di bagian awal \foreignTerm{array} tidak digunakan kembali.
+  \item Misalnya telah dilakukan 15 kali \foreignTerm{push}, dan 11 kali \foreignTerm{pop}.
+  \item Sebanyak 11 elemen pertama pada \foreignTerm{array} tidak akan digunakan kembali.
+  \item Ini adalah pemborosan, karena aslinya hanya terdapat 4 elemen di dalam \foreignTerm{queue}.
+  \item Meskipun demikian, dalam dunia kompetisi hal ini masih dapat diterima.
+  \item Pastikan nilai $maxSize$ sama dengan maksimal operasi \foreignTerm{push} yang mungkin dilakukan.
+\end{itemize}
+\end{frame}
+
+%\section{Binary Search Tree}
+%\frame{\sectionpage}
+%
+%\begin{frame}
+%\frametitle{Motivasi}
+%\begin{itemize}
+%  \item Anda diberikan sejumlah perintah.
+%  \item Terdapat 2 macam perintah, yaitu:
+%  \begin{enumerate}
+%    \item Simpan suatu angka $x$.
+%    \item Cari apakah suatu angka $x$ pernah disimpan.
+%  \end{enumerate}
+%  \item Bagaimana Anda akan menyelesaikan masalah ini?
+%\end{itemize}
+%\end{frame}
+%
+%\begin{frame}
+%\frametitle{Solusi Sederhana}
+%Cara yang paling mudah adalah:
+%\begin{itemize}
+%  \item Untuk tiap operasi menyimpan, masukkan angka tersebut ke dalam array.
+%  \item Untuk operasi cari, lakukan linear search pada array.
+%  \newline
+%\end{itemize}
+%Operasi pencarian ini kurang efisien karena butuh $O(N)$ untuk mencari angka tersebut.
+%\end{frame}
+%
+%\begin{frame}
+%\frametitle{Solusi Lainnya}
+%Cara lainnya adalah:
+%\begin{itemize}
+%  \item Untuk tiap operasi menyimpan, masukkan angka tersebut ke dalam array sedemikian sehingga array selalu dalam keadaan terurut.
+%  \item Hal ini dapat dilakukan dengan prosedur seperti pada insertion sort.
+%  \item Untuk operasi cari, lakukan binary search pada array.
+%  \newline
+%\end{itemize}
+%Namun kini operasi menyimpan menjadi kurang efisien karena butuh $O(N)$ untuk melakukan "insertion" dan menjaga array tetap terurut.
+%\end{frame}
+%
+%\begin{frame}
+%\frametitle{Mengenal Binary Search Tree}
+%\begin{itemize}
+%  \item Untuk menyelesaikan masalah tersebut secara lebih efisien, kita dapat menggunakan Binary Search Tree (BST).
+%  \item BST merupakan struktur data yang cukup berbeda dengan struktur data yang sebelumnya kita pelajari.
+%\end{itemize}
+%
+%\begin{figure}
+%  \centering
+%  \includegraphics[width=4 cm]{asset/bst.png}
+%\end{figure}
+%\end{frame}
+%
+%\begin{frame}
+%\frametitle{Mengenal BST (lanj.)}
+%Aturan BST:
+%\begin{itemize}
+%  \item Tiap node pada BST memiliki sebuah nilai dan 2 pointer ke anaknya, yaitu anak kiri dan anak kanan.
+%  \item Semua node yang berada di sebelah kiri suatu node pasti memiliki nilai yang lebih kecil daripada node sekarang.
+%  \item Semua node yang berada di sebelah kanan suatu node pasti memiliki nilai yang lebih besar daripada node sekarang.
+%  \item Node yang paling atas merupakan node \alert{root} yang merupakan satu-satunya node yang dapat diakses secara langsung
+%\end{itemize}
+%\end{frame}
+%
+%\begin{frame}
+%\frametitle{Operasi Insert pada BST}
+%
+%Dengan adanya sifat-sifat BST di atas, maka proses insert dapat dimulai dari node root. Lakukan hal berikut hingga menemukan node NULL.
+%\begin{itemize}
+%  \item Jika nilai pada node sekarang lebih besar daripada nilai yang akan diinsert, maka pergi ke anak kiri dari node sekarang.
+%  \item Jika nilai pada node sekarang lebih kecil dari nilai yang akan diinsert, maka pergi ke anak kanan dari node sekarang.\newline
+%\end{itemize}
+%
+%Jika node sekarang NULL, maka buat node baru dengan anak kiri dan anak kanan adalah NULL. Jangan lupa untuk memasukkan nilai yang diinsert ke node tersebut.
+%\end{frame}
+%
+%\begin{frame}[fragile]
+%\frametitle{Pseudocode Insert pada BST}
+%
+%\begin{lstlisting}
+%
+%node* insert (node* currNode, int value)
+%
+%    if currNode = NULL:
+%        currNode = new Node
+%        currNode.val = value
+%        currNode.left_child = NULL
+%        currNode.right_child = NULL
+%
+%    else if currNode.val > value:
+%        currNode.left_child =
+%        insert(currNode.left_child, value)
+%
+%    else:
+%        currNode.right_child =
+%        insert(currNode.right_child, value)
+%
+%    return currNode
+%
+%\end{lstlisting}
+%\end{frame}
+%
+%\begin{frame}
+%\frametitle{Operasi Find pada BST}
+%
+%Dengan adanya sifat-sifat BST di atas, maka proses find dapat dimulai dari node root. Lakukan hal berikut hingga menemukan angka yang dicari atau menemukan node NULL.
+%\begin{itemize}
+%  \item Jika nilai pada node sekarang lebih besar daripada nilai yang akan diinsert, maka pergi ke anak kiri dari node sekarang.
+%  \item Jika nilai pada node sekarang lebih kecil dari nilai yang akan diinsert, maka pergi ke anak kanan dari node sekarang.\newline
+%\end{itemize}
+%Jika value dari node sekarang sesuai dengan yang dicari, berarti angka yang dicari ditemukan dalam BST.
+%\newline\newline
+%Jika node sekarang NULL, maka angka yang dicari tidak ditemukan dalam BST.
+%\end{frame}
+%
+%\begin{frame}[fragile]
+%\frametitle{Pseudocode Insert pada BST}
+%
+%\begin{lstlisting}
+%
+%int insert (node* currNode, int value)
+%
+%    if currNode = NULL:
+%        return 0
+%
+%    else if currNode.val = value:
+%        return 1
+%
+%    else if currNode.val > value:
+%        return insert(currNode.left_child, value)
+%
+%    else:
+%        return insert(currNode.right_child,value)
+%
+%\end{lstlisting}
+%\end{frame}
+%
+%\begin{frame}
+%\frametitle{Pembahasan Soal}
+%
+%Setelah mengenai BST, maka untuk menyelesaikan masalah sebelumnya kita dapat menggunakan BST. Untuk proses insert, maka gunakan proses insert yang terdapat pada BST. Untuk proses find, juga gunakan proses find yang terdapat pada BST.
+%\newline\newline
+%Dengan demikian, kompleksitas dari insert dan find keduanya adalah sesuai dengan tinggi dari BST. Solusi ini lebih efisien daripada menggunakan array dan harus mencari seluruh isi array
+%\end{frame}
+
+\begin{frame}
+\frametitle{Penutup}
+\begin{itemize}
+  \item Struktur data yang baru kita pelajari ini merupakan struktur data dasar.
+  \item Pada lain kesempatan, kita akan mempelajari struktur data yang lebih kompleks dan manfaatnya lebih "berasa", seperti \foreignTerm{Heap} untuk \foreignTerm{Priority Queue}, \foreignTerm{Binary Search Tree} untuk kamus, dan \foreignTerm{Segment Tree} untuk \foreignTerm{Dynamic Range Query}.
+\end{itemize}
 \end{frame}
 
 \end{document}
