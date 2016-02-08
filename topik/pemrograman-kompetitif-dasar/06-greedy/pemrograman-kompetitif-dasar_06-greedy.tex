@@ -25,14 +25,14 @@
 	\begin{itemize}
 
 		\item Solusi optimal dari persoalan dapat ditentukan dari solusi optimal sub-persoalan tersebut
-		\item Pada setiap sub-persoalan, ada suatu langkah yang bisa dilakukan yang na langkah tersebut menghasilkan solusi maksimum pada sub-persoalan tersebut. Langkah ini disebut juga \foreignTerm{greedy choice}. 
+		\item Pada setiap sub-persoalan, ada suatu langkah yang bisa dilakukan yang mana langkah tersebut menghasilkan solusi maksimum pada sub-persoalan tersebut. Langkah ini disebut juga \foreignTerm{greedy choice}. 
 	\end{itemize}
 \end{frame}
 
 \begin{frame}
 	\frametitle{Contoh Soal: Activity Selection}
 	\begin{itemize}
-		\item Diberikan $N$ buah aktivitas. Aktifitas ke-$i = <a_i.start, a_i.end>$,  dimulai pada waktu $a_i.start$ dan berakhir pada waktu $a_i.end$
+		\item Diberikan $N$ buah aktivitas. Aktivitas ke-$i = <a_i.start, a_i.end>$,  dimulai pada waktu $a_i.start$ dan berakhir pada waktu $a_i.end$
 		\item Pada setiap satuan waktu, Anda dapat mengikuti paling banyak satu aktivitas.
 		\item Anda ingin mengatur jadwal sedemikian sehingga Anda bisa ikut aktivitas sebanyak mungkin.
 		\item Sebagai contoh, diberikan 4 buah aktivitas: $[ <1, 3> , <2, 6>, <4, 7>,  <8, 9> ]$. Anda dapat hadir di 3 aktivitas berbeda yang tidak saling tindih, yaitu $<1, 3>, <4, 7>, dan <8, 9>$. 
@@ -47,9 +47,9 @@
 	
 	\begin{itemize}
 		\item Kita definisikan $f(t)$ sebagai jumlah aktivitas terbanyak yang dapat diikuti dari waktu ke-0 sampai waktu ke-$t$.
-		\item Jika kita hendak memilih suatu aktifitas $<t' , t>$, maka kita dapat menghitung nilai $f(t) = 1 + f(t' - 1)$ 
+		\item Jika kita hendak memilih suatu aktivitas $<t' , t>$, maka kita dapat menghitung nilai $f(t) = 1 + f(t' - 1)$ 
 		\item Artinya, untuk dapat menemukan solusi optimal pada $f(t)$, kita perlu menentukan solusi optimal untuk waktu-waktu yang lebih awal.
-		\item Solusi akhir dari persoalan ini adalah $f(max(e))$, yang na $max(e)$ adalah nilai $a_i.end$ terbesar dari semua pilihan aktivitas yang ada.
+		\item Solusi akhir dari persoalan ini adalah $f(max(e))$, yang mana $max(e)$ adalah nilai $a_i.end$ terbesar dari semua pilihan aktivitas yang ada.
 	\end{itemize}
 \end{frame}
 
@@ -58,8 +58,8 @@
 		
 	\begin{itemize}
 		\item Asumsikan kita sudah menemukan solusi untuk $f(t)$. 
-		\item Kita memiliki beberapa pilihan aktivitas yang dapat dipilih, yang na waktu mulai aktivitas tersebut harus lebih besar dari $t$.
-		\item  \foreignTerm{Greedy choice} untuk permasalah ini adalah dengan memilih aktivitas ke-$k$ yang na aktivitas tersebut memiliki waktu selesai yang paling cepat. 
+		\item Kita memiliki beberapa pilihan aktivitas yang dapat dipilih, yang mana waktu mulai aktivitas tersebut harus lebih besar dari $t$.
+		\item  \foreignTerm{Greedy choice} untuk permasalah ini adalah dengan memilih aktivitas ke-$k$ yang mana aktivitas tersebut memiliki waktu selesai yang paling cepat. 
 		\item Kita bisa hitung solusi dari sub-problem yang lebih besar yaitu $f(a_k.end) = f(t) + 1$. Kita bisa perbarui nilai $t$ menjadi $a_k.end$.
 		\item Jika pada waktu $t$ sudah tidak ada lagi aktivitas yang dapat dipilih, maka nilai $f(t)$ merupakan solusi akhir.
 	\end{itemize}
@@ -80,11 +80,11 @@
 
 \begin{frame}
 	\frametitle{Contoh Soal: Activity Selection (solusi)}
-	Memilih aktivitas dengan durasi paling singkat
+	Memilih aktivitas dengan waktu mulai paling awal
 	\begin{itemize}
-		\item Pilihan ini juga tidak menghasilkan solusi optimal.
-		\item Bisajadi aktivitas dengan durasi paling singkat ini memotong dua aktivitas lain.
-		\item Contoh kasus: $[ <1,10>, <9, 11> , <11, 20> ]$. Aktivitas paling singkat ialah $<9, 11>$. Namun dengan memilih aktivitas tersebut, kita kehilangan kesempatan untuk mengambil aktivitas $<1, 10> dan <11, 20> $
+		\item Pilihan ini tidak menghasilkan solusi optimal.
+		\item Bisa jadi ada aktivitas  yang mulai lebih awal, namun memiliki durasi yang sangat panjang sehingga menyita waktu
+		\item Contoh kasus: $[ <1,5>, <2, 3> , <4, 5> ]$. Aktivitas paling singkat ialah $<1, 5>$. Namun dengan memilih aktivitas tersebut, kita kehilangan kesempatan untuk mengambil aktivitas $<2, 3> dan <4, 5> $
 	\end{itemize}
 \end{frame}
 
@@ -93,7 +93,7 @@
 	Memilih aktivitas dengan durasi paling singkat
 	\begin{itemize}
 		\item Pilihan ini juga tidak menghasilkan solusi optimal.
-		\item Bisajadi aktivitas dengan durasi paling singkat ini memotong dua aktivitas lain.
+		\item Bisa jadi aktivitas dengan durasi paling singkat ini memotong dua aktivitas lain.
 		\item Contoh kasus: $[ <1,10>, <9, 11> , <11, 20> ]$. Aktivitas paling singkat ialah $<9, 11>$. Namun dengan memilih aktivitas tersebut, kita kehilangan kesempatan untuk mengambil aktivitas $<1, 10> dan <11, 20> $
 	\end{itemize}
 \end{frame}
@@ -147,7 +147,7 @@
 	\frametitle{permasalahan pada algoritma \foreignTerm{greedy}}
 	\begin{itemize}
 		\item Pembuktian kebenaran algoritma \foreignTerm{greedy} tidaklah mudah.
-		\item Biasanya akan ada beberapa pilihan  \foreignTerm{greedy choice} yang ada, yang na tidak semuanya bisa menghasilkan solusi optimal.
+		\item Biasanya akan ada beberapa pilihan  \foreignTerm{greedy choice} yang ada, yang mana tidak semuanya bisa menghasilkan solusi optimal.
 		\item Untuk contoh soal  \foreignTerm{activity selection}, ada beberapa pilihan  \foreignTerm{greedy choice} antara lain:
 		\begin{itemize}
 			\item memilih aktivitas dengan waktu mulai paling awal
@@ -163,7 +163,7 @@
 	\begin{itemize}
 		\item Ketika menemukan suatu \foreignTerm{greedy choice}, sangat dianjurkan untuk menguji kebenaran dari pilihan tersebut sebelum diimplementasikan.
 		\item Pengujian yang dapat dilakukan adalah dengan mencoba membuat contoh-contoh kasus yang mungkin dapat menggagalkan \foreignTerm{greedy choice} tersebut. Teknik ini biasa disebut \foreignTerm{proof by counter-example}.
-		\item Jika ditemukan satu saja contoh kasus yang na \foreignTerm{greedy choice} yang diajukan tidak menghasilkan solusi optimal, maka \foreignTerm{greedy choice} tersebut dinyatakan salah.
+		\item Jika ditemukan satu saja contoh kasus yang mana \foreignTerm{greedy choice} yang diajukan tidak menghasilkan solusi optimal, maka \foreignTerm{greedy choice} tersebut dinyatakan salah.
 	\end{itemize}
 \end{frame}
 
