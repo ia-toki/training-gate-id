@@ -62,7 +62,7 @@ Berdasarkan bobot dari edgenya, graph juga terbagi menjadi 2:
 \begin{frame}
 \frametitle{Representasi Graph pada Pemrograman}
 
-Graph dapat direpesentasikan dalam pemrograman menggunakan 2 metode, yaitu adjacency matrix dan adjacency list.
+Graph biasanya direpesentasikan dalam pemrograman menggunakan 2 metode, yaitu adjacency matrix dan adjacency list. Masing-masing representasi memiliki keuntungan dan kerugiannya masing-masing. Oleh karena itu, penggunaan representasi graph sangat bergantung dengan masalah yang sedang kita hadapi.
 \end{frame}
 
 \begin{frame}
@@ -104,6 +104,128 @@ Adjacency List
 \end{frame}
 
 \begin{frame}
+\frametitle{Keuntungan dan Kerugian Representasi Graph}
+
+\begin{itemize}
+	\item Adjacency Matrix memakan lebih banyak memori. Hal ini dikarenakan adjacency matrix menyimpan keterangan dari satu node ke semua node. Sedangkan dalam adjacency list, suatu node hanya menyimpan keterangan mengenai node lain yang memiliki edge. Oleh karena itu, adjacency list lebih baik digunakan ketika edge yang terdapat tidak teralu banyak.
+	\item Untuk melakukan pengecekan atau perubahan edge dari A ke B, pada adjacency matrix dapat dilakukan dengan hanya melihat dan mengubah matrix[A][B]. Sedangkan pada adjacency list, kita harus mengiterasi seluruh elemen pada list[A]
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Keuntungan dan Kerugian Representasi Graph (lanj.)}
+\begin{itemize}
+	\item Jika ada edge dari A ke B yang akan dibuang, maka pada adjacency matrix kita hanya perlu mengubah nilai Matrix[A][B]. Sedangkan pada adjacency list, harus dilakukan iterasi terlebih dahulu untuk mencari edge tersebut, lalu menghapusnya juga lebih rumit karena harus menggeser seluruh elemen setelahnya.
+	\item Untuk mencari tetangga-tetangganya, maka pada adjacency matrix perlu dilakukan iterasi terhadap seluruh node yagn ada. Sementara itu, pada adjacency list hanya perlu dilakukan iterasi pada list yang isinya merupakan tetangga dari node yang bersangkutan.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Graph Traversal}
+
+Sekarang kita telah mengetahui bagaimana cara menyimpan graph dalam pemrograman. Namun, representasi tersebut belum berguna karena kita belum dapat mencari informasi dari representasi tersebut.\newline\newline
+Kali ini kita akan belajar mengenai \alert{Graph Traversal}, yaitu penelusuran pada graph. Misalkan kita diberikan suatu graph. Lalu, kita ditanya apakah dari node A bisa pergi ke node B menggunakan edge yang ada? Untuk mendapatkan jawabannya, kita tentu harus menelusuri graph tersebut dari node A.\newline\newline
+Terdapat 2 metode yang digunakan untuk menelusuri graph, yaitu BFS dan DFS.
+\end{frame}
+
+\begin{frame}
+\frametitle{DFS}
+
+\alert{DFS} merupakan singkatan dari Depth-First Search. Berdasarkan namanya, dapat disimpulkan bahwa DFS akan mencari node-node yang lebih dalam(depth-first) terlebih dahulu. Sebagai contoh misal terdapat graph seperti berikut
+
+\begin{figure}
+	\centering
+	\includegraphics[width=6 cm]{asset/dfs.png}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+\frametitle{DFS (lanj.)}
+Dalam gambar di atas, angka menunjukkan urutan node tersebut dikunjungi. Node 1 akan dikunjungi pertama. Lalu, menuju node 2, dan seterusnya. Dapat dilihat bahwa DFS akan mencoba menelusuri node-node yang dalam terlebih dahulu.
+\newline\newline
+Node yang dekat dengan root (seperti node 7 dan 8) akan dikunjungi setelah DFS selesai mengunjungi node yang lebih dalam (node 3,4, dan 5).
+\end{frame}
+
+\begin{frame}
+\frametitle{BFS}
+
+\alert{BFS} merupakan singkatan dari Breadth-First Search. Berdasarkan namanya, dapat disimpulkan bahwa BFS akan menelusuri node pada graph sesuai dengan layernya. Semakin dekat dengan node awal, maka node tersebut akan dikunjungi terlebih dahulu. Begitu pula sebaliknya. Sebagai contoh misal terdapat graph seperti berikut
+
+\begin{figure}
+	\centering
+	\includegraphics[width=6 cm]{asset/bfs.png}
+\end{figure}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{BFS (lanj.)}
+
+Berdasarkan ilustrasi di atas, dapat kita lihat bahwa node yang dekat dengan node 1 akan dikunjungi terlebih dahulu. Sementara itu, node yang jauh akan dikunjungi terakhir, seperti node 9 dan 11 yang berjarak 3 dengan node 1.
+\newline\newline
+Setelah mengetahui konsep BFS dan DFS, kita akan mulai mempelajari implementasinya dalam pemrograman. Dalam potongan kode selanjutnya, akan diberikan contoh kode DFS dan BFS pada unweighted graph yang disimpan menggunakan adjacency matrix.
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Implementasi DFS}
+DFS dapat diimplementasikan menggunakan rekursi atau dengan bantuan struktur data stack. Berikut adalah implementasi DFS rekursi\newline
+\begin{lstlisting}
+integer AdjMatrix[N][N]
+boolean flag[N]
+set flag = false
+flag[1] = true
+
+procedure DFS(integer currNode):
+  for i=1 to N
+    <@\textcolor{mygreen}{//check apakah ada edge dan belum pernah dikunjungi}@>
+    if AdjMatrix[currNode][i]==1 and flag[i]==false
+      flag[i] = true
+      DFS(i)
+end
+				
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Implementasi DFS (lanj.)}
+Berikut adalah potongan kode untuk implementasi DFS menggunakan stack\newline
+\begin{lstlisting}
+integer AdjMatrix[N][N]
+boolean flag[N]
+set flag = false
+stack <integer> s
+
+s.push(1), flag[1] = true
+while s is not empty
+  integer currNode = s.top()
+  s.pop()
+  for i=1 to N
+    if AdjMatrix[currNode][i]==1 and flag[i]==false
+      flag[i] = true
+      s.push(i)
+				
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Implementasi BFS}
+BFS membutuhkan bantuan struktur data queue. Berikut adalah potongan kodenya\newline
+\begin{lstlisting}
+integer AdjMatrix[N][N]
+boolean flag[N]
+set flag = false
+queue <integer> q
+
+q.push(1), flag[1] = true
+while q is not empty
+  integer currNode = q.front()
+  q.pop()
+  for i=1 to N
+    if AdjMatrix[currNode][i]==1 and flag[i]==false
+      flag[i] = true
+      q.push(i)
+				
+\end{lstlisting}
 \end{frame}
 
 \end{document}
