@@ -228,4 +228,65 @@ while q is not empty
 \end{lstlisting}
 \end{frame}
 
+\begin{frame}
+\frametitle{Contoh Permasalahan}
+Pak Dengklek tinggal di kota A. Suatu hari, beliau ingin pergi ke kota B. Terdapat beberapa jalan yang menghubungkan kota-kota dalam negara tempat beliau tinggal. Namun, karena beliau sudah tua, Pak Dengklek ingin melewati jalan seminimal mungkin untuk sampai ke kota B.
+\newline\newline
+Diberikan keterangan mengenai kota A, kota B, dan jalan-jalan yang terdapat dalam negara Pak Dengklek, outputkan berapa jalan minimal yang beliau harus lewati untuk pergi dari kota A ke kota B!
+\end{frame}
+
+\begin{frame}
+\frametitle{Pembahasan Permasalahan}
+Permasalahan di atas dapat diselesaikan menggunakan BFS. Karena sifat BFS yang menelusuri node per layer, maka dapat disimpulkan bahwa jika suatu node terkunjungi, maka pasti jarak yang ditempuh merupakan jarak terpendek dari node awal. Hal ini berlaku pada unweighted graph yang edgenya tidak memiliki bobot.
+\newline\newline
+Dengan demikian, permasalahan di atas dapat diselesaikan dengan menggunakan BFS. Pada slide selanjutnya akan diberikan contoh implementasi untuk menyelesaikan permasalahan jarak terpendek tersebut!
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Implementasi Permasalahan}
+
+\begin{lstlisting}
+integer AdjMatrix[N][N] , A , B , jarak = -1
+queue < (integer,integer) > q
+<@\textcolor{mygreen}{//Queue menyimpan node yang dikunjungi dan jarak dari A}@>
+q.push({A,0}), flag[A] = true
+while q is not empty
+  (integer,integer) currNode = q.front()
+  q.pop()
+  <@\textcolor{mygreen}{//Cek jika telah sampai di kota B}@>
+  if currNode.first == B
+    jarak = currNode.second, break
+  for i=1 to N
+    if AdjMatrix[currNode.first][i]==1 and flag[i]==false
+      flag[i] = true
+      q.push({i,currNode.second+1})
+if jarak!=-1
+  print jarak
+else
+  print 'Tidak dapat ke kota B'		
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}
+\frametitle{Tree}
+\foreignTerm{Tree} merupakan bentuk khusus dari graph. Tree merupakan graph yang mana seluruh nodenya terhubung (tidak ada node yang tidak dapat dikunjungi dari node lain) dan tidak terdapat cycle. Oleh karena itu, jumlah edge dalam sebuah tree pasti berjumlah sebanyak node-1.
+
+\includegraphics[width=4 cm]{asset/not-tree.png}
+\hspace{\fill}
+\includegraphics[width=4 cm]{asset/tree.png}
+\newline\newline
+Pada gambar di atas, gambar kiri bukan sebuah tree karena memiliki cycle, sedangkan gambar kanan merupakan tree. 
+\end{frame}
+
+\begin{frame}
+\frametitle{Directed Acyclic Graph}
+\foreignTerm{Directed Acyclic Graph (DAG)} merupakan bentuk khusus dari directed graph. DAG tidak memiliki direct cycle. Berbeda dengan tree dimana setiap node pasti dapat mencapai node lainnya, sifat tersebut tidak berlaku pada DAG.
+
+\includegraphics[width=4 cm]{asset/dag.png}
+\hspace{\fill}
+\includegraphics[width=4 cm]{asset/not-dag.png}
+\newline\newline
+Pada gambar di atas, gambar kiri merupakan DAG, sedangkan gambar kanan bukan DAG karena memiliki cycle
+\end{frame}
+
 \end{document}
