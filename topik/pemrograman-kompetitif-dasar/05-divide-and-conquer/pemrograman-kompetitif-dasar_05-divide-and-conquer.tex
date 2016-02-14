@@ -22,7 +22,7 @@
 
 \begin{frame}
 \frametitle{Konsep}
-Secara umum, \foreignTerm{divide and conquer} terdiri dari tiga tahap:
+Secara umum, \fDivideAndConquer terdiri dari tiga tahap:
 \begin{itemize}
   \item \newTerm{Divide}: membagi masalah yang besar menjadi masalah yang lebih kecil.
   \item \newTerm{Conquer}: ketika masalah sudah cukup kecil untuk diselesaikan, langsung selesaikan.
@@ -39,32 +39,32 @@ Secara umum, \foreignTerm{divide and conquer} terdiri dari tiga tahap:
 
 \begin{frame}
 \frametitle{Studi Kasus 1: Merge Sort}
-\foreignTerm{Merge Sort}: algoritma pengurutan O($N \log{N}$).
+\fMergeSort: algoritma pengurutan O($N \log{N}$).
 \newline
 \newline
 Prinsip kerja algoritma ini adalah:
 \begin{itemize}
-  \item \foreignTerm{Divide}: jika array yang akan diurutkan berukuran besar, bagi menjadi dua array sama besar.
-  \item \foreignTerm{Conquer}: ketika array sudah cukup kecil untuk diurutkan, lakukan pengurutan.
-  \item \foreignTerm{Combine}: dari dua array yang telah terurut, gabungkan menjadi sebuah array terurut.
+  \item \foreignTerm{Divide}: jika \farray yang akan diurutkan berukuran besar, bagi menjadi dua \farray sama besar.
+  \item \foreignTerm{Conquer}: ketika \farray sudah cukup kecil untuk diurutkan, lakukan pengurutan.
+  \item \foreignTerm{Combine}: dari dua \farray yang telah terurut, gabungkan menjadi sebuah \farray terurut.
 \end{itemize}
 \end{frame}
 
 \begin{frame}
 \frametitle{Contoh Eksekusi Merge Sort}
-Kapan suatu array dianggap cukup kecil untuk dapat diurutkan secara langsung?
+Kapan suatu \farray dianggap cukup kecil untuk dapat diurutkan secara langsung?
 \newline
 \begin{itemize}
-  \item Sederhana, yaitu ketika panjang array itu tinggal \emph{satu}.
-  \item Tentu saja, array dengan panjang satu \emp{sudah pasti} terurut.
+  \item Sederhana, yaitu ketika panjang \farray itu tinggal \emph{satu}.
+  \item Tentu saja, \farray dengan panjang satu \emp{sudah pasti} terurut.
   \newline
 \end{itemize}
-Jadi selama array yang hendak diurutkan masih memiliki panjang lebih dari satu, bagi array itu menjadi dua.
+Jadi selama \farray yang hendak diurutkan masih memiliki panjang lebih dari satu, bagi \farray itu menjadi dua.
 \end{frame}
 
 \begin{frame}
 \frametitle{Contoh Eksekusi Merge Sort (lanj.)}
-Array yang dimiliki masih terlalu besar, belah menjadi dua.
+\fArray yang dimiliki masih terlalu besar, belah menjadi dua.
 \begin{figure}
   \centering
   \includegraphics[width=10 cm]{asset/merge-sort-demo-1.pdf}
@@ -91,9 +91,9 @@ Masih belum cukup kecil, belah lagi.
 
 \begin{frame}
 \frametitle{Contoh Eksekusi Merge Sort (lanj.)}
-Kini kita memiliki "array" yang panjangnya hanya satu.\newline
+Kini kita memiliki \farray yang panjangnya hanya satu.\newline
 
-Secara definisi, "array" ini telah terurut.
+Secara definisi, \farray ini telah terurut.
 \begin{figure}
   \centering
   \includegraphics[width=10 cm]{asset/merge-sort-demo-4.pdf}
@@ -120,7 +120,7 @@ Gabungkan lagi.
 
 \begin{frame}
 \frametitle{Contoh Eksekusi Merge Sort (lanj.)}
-Gabungkan lagi dan akhirnya didapatkan array terurut.
+Gabungkan lagi dan akhirnya didapatkan \farray terurut.
 \begin{figure}
   \centering
   \includegraphics[width=10 cm]{asset/merge-sort-demo-7.pdf}
@@ -129,7 +129,7 @@ Gabungkan lagi dan akhirnya didapatkan array terurut.
 
 \begin{frame}
 \frametitle{Menggabungkan Dua Array Terurut}
-Bagaimana cara menggabungkan dua array yang telah terurut?
+Bagaimana cara menggabungkan dua \farray yang telah terurut?
 \begin{figure}
   \centering
   \includegraphics[width=10 cm]{asset/merge-array-pair-1.pdf}
@@ -138,7 +138,7 @@ Bagaimana cara menggabungkan dua array yang telah terurut?
 
 \begin{frame}
 \frametitle{Menggabungkan Dua Array Terurut (lanj.)}
-Observasi: elemen terkecil dari array gabungan pasti salah satu dari elemen terkecil array yang terurut. Lebih tepatnya, yang memiliki nilai lebih kecil.
+Observasi: elemen terkecil dari \farray gabungan pasti salah satu dari elemen terkecil \farray yang terurut. Lebih tepatnya, yang memiliki nilai lebih kecil.
 \begin{figure}
   \centering
   \includegraphics[width=10 cm]{asset/merge-array-pair-2.pdf}
@@ -147,7 +147,7 @@ Observasi: elemen terkecil dari array gabungan pasti salah satu dari elemen terk
 
 \begin{frame}
 \frametitle{Menggabungkan Dua Array Terurut (lanj.)}
-Ulangi hal serupa sampai salah satu atau kedua array habis.
+Ulangi hal serupa sampai salah satu atau kedua \farray habis.
 
 \begin{figure}
   \centering
@@ -189,7 +189,7 @@ Ulangi hal serupa sampai salah satu atau kedua array habis.
 
 \begin{frame}
 \frametitle{Menggabungkan Dua Array Terurut (lanj.)}
-Ketika salah satu array telah habis, array yang masih bersisa tinggal ditempelkan di akhir array gabungan.
+Ketika salah satu \farray telah habis, \farray yang masih bersisa tinggal ditempelkan di akhir \farray gabungan.
 \begin{figure}
   \centering
   \includegraphics[width=10 cm]{asset/merge-array-pair-8.pdf}
@@ -208,7 +208,7 @@ Selesai proses menggabungkan.
 \begin{frame}
 \frametitle{Analisis Menggabungkan Dua Array Terurut}
 \begin{itemize}
-  \item Misalkan kedua array terurut yang akan digabung adalah $A$ dan $B$.
+  \item Misalkan kedua \farray terurut yang akan digabung adalah $A$ dan $B$.
   \item Pada setiap langkah, salah satu dari elemen $A$ atau $B$ dipindahkan.
   \item Total terdapat $|A| + |B|$ proses, sehingga kompleksitasnya $O(|A| + |B|)$.
 \end{itemize}
@@ -217,8 +217,8 @@ Selesai proses menggabungkan.
 \begin{frame}
 \frametitle{Analisis Algoritma Merge Sort}
 \begin{itemize}
-  \item Misalkan $N$ menyatakan ukuran dari array.
-  \item Dengan sifat membagi dua secara terus-menerus, kedalaman rekursif dari Merge Sort adalah $O(\log{N})$
+  \item Misalkan $N$ menyatakan ukuran dari \farray.
+  \item Dengan sifat membagi dua secara terus-menerus, kedalaman rekursif dari \fMergeSort adalah $O(\log{N})$
   \item Untuk setiap kedalaman, dilakukan aktivitas \foreignTerm{divide} dan \foreignTerm{combine}.
   \item \foreignTerm{Divide} dan \foreignTerm{conquer} selalu bekerja dalam $O(1)$.
 \end{itemize}
@@ -233,8 +233,8 @@ Selesai proses menggabungkan.
 \begin{itemize}
   \item Kedalaman 1, proses \foreignTerm{combine} bekerja dalam $O(2 \times \frac{N}{2})$
   \item Kedalaman 2, proses \foreignTerm{combine} bekerja dalam $O(4 \times \frac{N}{4})$
-  \item Kedalaman 3, proses \foreignTerm{combine} bekerja dalam $O(8 \times \frac{N}{8})$  
-  \item ...  
+  \item Kedalaman 3, proses \foreignTerm{combine} bekerja dalam $O(8 \times \frac{N}{8})$
+  \item ...
 \end{itemize}
 \end{frame}
 
@@ -242,9 +242,9 @@ Selesai proses menggabungkan.
 \frametitle{Analisis Algoritma Merge Sort (lanj.)}
 \begin{itemize}
   \item Mudah untuk disadari bahwa keseluruhan proses untuk setiap kedalaman bekerja dalam $O(N)$.
-  \item Karena kedalaman maksimal adalah $O(\log{N})$, kompleksitas akhir \foreignTerm{Merge Sort} adalah $O(N \log{N})$.
+  \item Karena kedalaman maksimal adalah $O(\log{N})$, kompleksitas akhir \fMergeSort adalah $O(N \log{N})$.
   \item Jauh lebih cepat dari algoritma pengurutan $O(N^2)$ seperti \foreignTerm{Bubble Sort}.
-  \item \foreignTerm{Merge Sort} mampu mengurutkan array dengan ratusan ribu elemen dalam waktu singkat.
+  \item \fMergeSort mampu mengurutkan \farray dengan ratusan ribu elemen dalam waktu singkat.
 \end{itemize}
 \end{frame}
 
@@ -261,7 +261,7 @@ Mengurutkan $arr[left..right]$:
 \Procname{$\proc{mergeSort}(arr[], left, right)$}
 \li \If $left \isequal right$ \Then
 \li   \Comment Tinggal 1 elemen, sudah pasti terurut
-\li \Else 
+\li \Else
 \li   $mid \gets (left + right)$ div $2$
 \li   $\proc{mergeSort}(arr, left, mid)$
 \li   $\proc{mergeSort}(arr, mid+1, right)$
@@ -335,19 +335,19 @@ Menggabungkan $arr[aLeft..aRight]$ dengan $arr[bLeft..bRight]$ yang telah teruru
 %\begin{frame}[fragile]
 %\frametitle{Analisis Merge Sort Secara Rekursif}
 %\begin{itemize}
-%  \item Umumnya \foreignTerm{Divide and Conquer} memiliki sifat rekursif secara alami.
+%  \item Umumnya \fDivideAndConquer memiliki sifat rekursif secara alami.
 %  \item Misalkan kita selalu membagi masalah menjadi dua, maka bentuk umumnya:
-%  
+%
 %\begin{lstlisting}
 %solve(problem)
 %  if (problem cukup kecil)
 %    return conquer(problem)
 %  else
 %    [subproblem1, subproblem2] := divide(problem)
-%    
+%
 %    solve(subproblem1)
 %    solve(subproblem2)
-%    
+%
 %    return combine(subproblem1, subproblem2)
 %\end{lstlisting}
 %\end{itemize}
@@ -357,26 +357,26 @@ Menggabungkan $arr[aLeft..aRight]$ dengan $arr[bLeft..bRight]$ yang telah teruru
 %\frametitle{Analisis Merge Sort Secara Rekursif (lanj.)}
 %\begin{itemize}
 %  \item Analisis algoritma juga dapat dilakukan secara rekursif.
-%  \item Misalkan $T(N)}$ menyatakan kompleksitas 
+%  \item Misalkan $T(N)}$ menyatakan kompleksitas
 %\end{itemize}
 %\end{frame}
 
 \begin{frame}
 \frametitle{Studi Kasus 2: Mencari Nilai Terbesar}
 \begin{itemize}
-  \item Diberikan sebuah array $A$ yang memiliki $N$ bilangan.
+  \item Diberikan sebuah \farray $A$ yang memiliki $N$ bilangan.
   \item Cari nilai terbesar yang ada pada $A$!\newline
   \item Masalah ini mudah diselesaikan dengan perulangan biasa.
-  \item Namun coba kita selesaikan dengan \foreignTerm{divide and conquer}.\end{itemize}
+  \item Namun coba kita selesaikan dengan \fDivideAndConquer.\end{itemize}
 \end{frame}
 
 \begin{frame}
 \frametitle{Studi Kasus 2: Mencari Nilai Terbesar (lanj.)}
 Pertama kita definisikan tahap-tahapnya:
 \begin{itemize}
-  \item \foreignTerm{Divide}: jika array berukuran besar, bagi menjadi dua subarray.
-  \item \foreignTerm{Conquer}: ketika array hanya berisi satu elemen, nilai terbesarnya pasti elemen tersebut.
-  \item \foreignTerm{Combine}: nilai terbesar dari array adalah maksimum dari nilai terbesar di subarray pertama dan nilai terbesar di subarray kedua.
+  \item \foreignTerm{Divide}: jika \farray berukuran besar, bagi menjadi dua subarray.
+  \item \foreignTerm{Conquer}: ketika \farray hanya berisi satu elemen, nilai terbesarnya pasti elemen tersebut.
+  \item \foreignTerm{Combine}: nilai terbesar dari \farray adalah maksimum dari nilai terbesar di subarray pertama dan nilai terbesar di subarray kedua.
 \end{itemize}
 \end{frame}
 
@@ -386,7 +386,7 @@ Pertama kita definisikan tahap-tahapnya:
 \Procname{$\proc{findMax}(arr[], left, right)$}
 \li \If $left \isequal right$ \Then
 \li   \Return $arr[left]$
-\li \Else 
+\li \Else
 \li   $mid \gets (left + right)$ div $2$
 \li   $leftMax \gets \proc{findMax}(arr, left, mid)$
 \li   $rightMax \gets \proc{findMax}(arr, mid+1, right)$
@@ -419,9 +419,9 @@ Pertama kita definisikan tahap-tahapnya:
 \begin{frame}
 \frametitle{Penutup}
 \begin{itemize}
-  \item \foreignTerm{Divide and Conquer} merupakan salah satu strategi dalam penyelesaian masalah.
+  \item \fDivideAndConquer merupakan salah satu strategi dalam penyelesaian masalah.
   \item Konsep ini banyak digunakan pada struktur data lanjutan dan komputasional geometri.
-  \item Jika suatu masalah dapat dibelah menjadi beberapa masalah yang lebih kecil dan serupa, kemudian hasil dari masing-masing penyelesaiannya dapat digabungkan, maka \foreignTerm{Divide and Conquer} dapat digunakan.
+  \item Jika suatu masalah dapat dibelah menjadi beberapa masalah yang lebih kecil dan serupa, kemudian hasil dari masing-masing penyelesaiannya dapat digabungkan, maka \fDivideAndConquer dapat digunakan.
 \end{itemize}
 \end{frame}
 
