@@ -13,10 +13,10 @@
 \begin{frame}
 \frametitle{Pengenalan}
 \begin{itemize}
-  \item Kadang permasalahan lebih mudah diselesaikan jika dibagi-bagi menjadi masalah yang lebih kecil.
-  \item Masalah lebih kecil kemudian diselesaikan secara individual.
+  \item Kadang permasalahan lebih mudah diselesaikan jika dibagi menjadi beberapa masalah yang lebih kecil.
+  \item Masalah lebih kecil kemudian diselesaikan secara independen.
   \item Hasilnya digabungkan menjadi solusi untuk masalah yang lebih besar.
-  \item Strategi ini digunakan Belanda pada masa penjajahan, yang biasa dipelajari sebagai \foreignTerm{divide et impera}.
+  \item Strategi ini digunakan Belanda pada masa penjajahan, biasa dipelajari sebagai \foreignTerm{divide et impera}.
 \end{itemize}
 \end{frame}
 
@@ -51,7 +51,7 @@ Prinsip kerja algoritma ini adalah:
 \end{frame}
 
 \begin{frame}
-\frametitle{Studi Kasus 1: Merge Sort (lanj.)}
+\frametitle{Contoh Eksekusi Merge Sort}
 Kapan suatu array dianggap cukup kecil untuk dapat diurutkan secara langsung?
 \newline
 \begin{itemize}
@@ -63,7 +63,7 @@ Jadi selama array yang hendak diurutkan masih memiliki panjang lebih dari satu, 
 \end{frame}
 
 \begin{frame}
-\frametitle{Studi Kasus 1: Merge Sort (lanj.)}
+\frametitle{Contoh Eksekusi Merge Sort (lanj.)}
 Array yang dimiliki masih terlalu besar, belah menjadi dua.
 \begin{figure}
   \centering
@@ -72,7 +72,7 @@ Array yang dimiliki masih terlalu besar, belah menjadi dua.
 \end{frame}
 
 \begin{frame}
-\frametitle{Studi Kasus 1: Merge Sort (lanj.)}
+\frametitle{Contoh Eksekusi Merge Sort (lanj.)}
 Masih belum cukup kecil, belah lagi.
 \begin{figure}
   \centering
@@ -81,7 +81,7 @@ Masih belum cukup kecil, belah lagi.
 \end{frame}
 
 \begin{frame}
-\frametitle{Studi Kasus 1: Merge Sort (lanj.)}
+\frametitle{Contoh Eksekusi Merge Sort (lanj.)}
 Masih belum cukup kecil, belah lagi.
 \begin{figure}
   \centering
@@ -90,7 +90,7 @@ Masih belum cukup kecil, belah lagi.
 \end{frame}
 
 \begin{frame}
-\frametitle{Studi Kasus 1: Merge Sort (lanj.)}
+\frametitle{Contoh Eksekusi Merge Sort (lanj.)}
 Kini kita memiliki "array" yang panjangnya hanya satu.\newline
 
 Secara definisi, "array" ini telah terurut.
@@ -101,7 +101,7 @@ Secara definisi, "array" ini telah terurut.
 \end{frame}
 
 \begin{frame}
-\frametitle{Studi Kasus 1: Merge Sort (lanj.)}
+\frametitle{Contoh Eksekusi Merge Sort (lanj.)}
 Gabungkan hasil pembelahan sebelumnya.
 \begin{figure}
   \centering
@@ -110,7 +110,7 @@ Gabungkan hasil pembelahan sebelumnya.
 \end{frame}
 
 \begin{frame}
-\frametitle{Studi Kasus 1: Merge Sort (lanj.)}
+\frametitle{Contoh Eksekusi Merge Sort (lanj.)}
 Gabungkan lagi.
 \begin{figure}
   \centering
@@ -119,7 +119,7 @@ Gabungkan lagi.
 \end{frame}
 
 \begin{frame}
-\frametitle{Studi Kasus 1: Merge Sort (lanj.)}
+\frametitle{Contoh Eksekusi Merge Sort (lanj.)}
 Gabungkan lagi dan akhirnya didapatkan array terurut.
 \begin{figure}
   \centering
@@ -128,7 +128,7 @@ Gabungkan lagi dan akhirnya didapatkan array terurut.
 \end{frame}
 
 \begin{frame}
-\frametitle{Studi Kasus 1: Merge Sort (lanj.)}
+\frametitle{Menggabungkan Dua Array Terurut}
 Bagaimana cara menggabungkan dua array yang telah terurut?
 \begin{figure}
   \centering
@@ -137,7 +137,7 @@ Bagaimana cara menggabungkan dua array yang telah terurut?
 \end{frame}
 
 \begin{frame}
-\frametitle{Menggabungkan Dua Array Terurut}
+\frametitle{Menggabungkan Dua Array Terurut (lanj.)}
 Observasi: elemen terkecil dari array gabungan pasti salah satu dari elemen terkecil array yang terurut. Lebih tepatnya, yang memiliki nilai lebih kecil.
 \begin{figure}
   \centering
@@ -220,7 +220,7 @@ Selesai proses menggabungkan.
   \item Misalkan $N$ menyatakan ukuran dari array.
   \item Dengan sifat membagi dua secara terus-menerus, kedalaman rekursif dari Merge Sort adalah $O(\log{N})$
   \item Untuk setiap kedalaman, dilakukan aktivitas \foreignTerm{divide} dan \foreignTerm{combine}.
-  \item \foreignTerm{Divide} selalu bekerja dalam $O(1)$.
+  \item \foreignTerm{Divide} dan \foreignTerm{conquer} selalu bekerja dalam $O(1)$.
 \end{itemize}
 \end{frame}
 
@@ -283,6 +283,7 @@ Menggabungkan $arr[aLeft..aRight]$ dengan $arr[bLeft..bRight]$ yang telah teruru
 \li $tIndex \gets 1$
 \li $aIndex \gets aLeft$
 \li $bIndex \gets bLeft$
+\li $...$
 \end{codebox}
 \end{frame}
 
@@ -291,7 +292,8 @@ Menggabungkan $arr[aLeft..aRight]$ dengan $arr[bLeft..bRight]$ yang telah teruru
 \begin{frame}
 \frametitle{Contoh Implementasi (lanj.)}
 \begin{codebox}
-\setcounter{codelinenumber}{5}
+\setcounter{codelinenumber}{4}
+\li $...$
 \li \Comment Selama kedua subarray masih ada isinya, ambil yang terkecil
 \li \While $(aIndex \leq aRight)$ and $(bIndex \leq bRight)$ \Do
 \li   \If $temp[aIndex] < temp[bIndex]$ \Then
@@ -303,6 +305,7 @@ Menggabungkan $arr[aLeft..aRight]$ dengan $arr[bLeft..bRight]$ yang telah teruru
       \End
 \li   $tIndex \gets tIndex + 1$
     \End
+\li $...$
 \end{codebox}
 \end{frame}
 
@@ -311,7 +314,8 @@ Menggabungkan $arr[aLeft..aRight]$ dengan $arr[bLeft..bRight]$ yang telah teruru
 \begin{frame}
 \frametitle{Contoh Implementasi (lanj.)}
 \begin{codebox}
-\setcounter{codelinenumber}{14}
+\setcounter{codelinenumber}{13}
+\li $...$
 \li \Comment Masukkan subarray yang masih bersisa
 \li \Comment Hanya salah satu dari kedua while ini yang akan dieksekusi
 \li \While $(aIndex \leq aRight)$ \Do
@@ -370,33 +374,54 @@ Menggabungkan $arr[aLeft..aRight]$ dengan $arr[bLeft..bRight]$ yang telah teruru
 \frametitle{Studi Kasus 2: Mencari Nilai Terbesar (lanj.)}
 Pertama kita definisikan tahap-tahapnya:
 \begin{itemize}
-  \item \foreignTerm{Divide}: jika array berukuran besar, bagi menjadi dua subarray sama besar.
+  \item \foreignTerm{Divide}: jika array berukuran besar, bagi menjadi dua subarray.
   \item \foreignTerm{Conquer}: ketika array hanya berisi satu elemen, nilai terbesarnya pasti elemen tersebut.
   \item \foreignTerm{Combine}: nilai terbesar dari array adalah maksimum dari nilai terbesar di subarray pertama dan nilai terbesar di subarray kedua.
 \end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]
-\frametitle{Implementasi Algoritma}
-\begin{lstlisting}
-function solve(left, right)
-  if (left = right)
-    return A[left]
-  else
-    mid := (left + right) div 2
-
-    leftMax := solve(left, mid)
-    rightMax := solve(mid+1, right)
-
-    return max(leftMax, rightMax)
-\end{lstlisting}
+\begin{frame}
+\frametitle{Contoh Implementasi}
+\begin{codebox}
+\Procname{$\proc{findMax}(arr[], left, right)$}
+\li \If $left \isequal right$ \Then
+\li   \Return $arr[left]$
+\li \Else 
+\li   $mid \gets (left + right)$ div $2$
+\li   $leftMax \gets \proc{findMax}(arr, left, mid)$
+\li   $rightMax \gets \proc{findMax}(arr, mid+1, right)$
+\li   \Return $\func{max}(leftMax, rightMax)$
+    \End
+\end{codebox}
 \end{frame}
 
 \begin{frame}
 \frametitle{Analisis Algoritma Mencari Nilai Terbesar}
+\begin{figure}
+  \centering
+  \includegraphics[width=8 cm]{asset/find-max-complexity.pdf}
+\end{figure}
 \begin{itemize}
   \item Setiap operasi \foreignTerm{divide}, \foreignTerm{conquer}, dan \foreignTerm{combine} bekerja dalam $O(1)$.
   \item Ketiga operasi tersebut dilaksanakan sebanyak\\1 + 2 + 4 + 8 + ... + $2^L$ kali, dengan $2^L$ mendekati $N$.
+  \item Sehingga totalnya dilaksanakan sekitar $2^{L+1} - 1 = 2N$ operasi.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Analisis Algoritma Mencari Nilai Terbesar (lanj.)}
+\begin{itemize}
+  \item Kompleksitas akhirnya adalah $O(N)$.
+  \item Ternyata strategi ini tidak lebih baik dari mencari nilai maksimum satu per satu
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Penutup}
+\begin{itemize}
+  \item \foreignTerm{Divide and Conquer} merupakan salah satu strategi dalam penyelesaian masalah.
+  \item Konsep ini banyak digunakan pada struktur data lanjutan dan komputasional geometri.
+  \item Jika suatu masalah dapat dibelah menjadi beberapa masalah yang lebih kecil dan serupa, kemudian hasil dari masing-masing penyelesaiannya dapat digabungkan, maka \foreignTerm{Divide and Conquer} dapat digunakan.
 \end{itemize}
 \end{frame}
 
