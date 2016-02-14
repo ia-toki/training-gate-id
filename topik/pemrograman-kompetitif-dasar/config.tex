@@ -5,6 +5,7 @@
 \usepackage{graphics}
 \usepackage{multirow}
 \usepackage{tabto}
+\usepackage{xspace}
 
 \usepackage{tikz}
 \usepackage{clrscode3e}
@@ -46,3 +47,9 @@
 \newcommand{\newTerm}[1]{\alert{\textbf{#1}}}
 \newcommand{\emp}[1]{\alert{#1}}
 \newcommand{\statement}[1]{"#1"}
+
+% Getting tired of writing \foreignTerm all the time
+\newcommand{\farray}{\foreignTerm{array}\xspace}
+\newcommand{\fArray}{\foreignTerm{Array}\xspace}
+\newcommand{\fDivideAndConquer}{\foreignTerm{Divide and Conquer}\xspace}
+\newcommand{\fMergeSort}{\foreignTerm{Merge Sort}\xspace}
