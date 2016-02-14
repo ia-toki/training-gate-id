@@ -294,7 +294,7 @@ Menggabungkan $arr[aLeft..aRight]$ dengan $arr[bLeft..bRight]$ yang telah teruru
 \begin{codebox}
 \setcounter{codelinenumber}{4}
 \li $...$
-\li \Comment Selama kedua subarray masih ada isinya, ambil yang terkecil
+\li \Comment Selama kedua \fsubarray masih ada isinya, ambil yang terkecil
 \li \While $(aIndex \leq aRight)$ and $(bIndex \leq bRight)$ \Do
 \li   \If $temp[aIndex] < temp[bIndex]$ \Then
 \li     $arr[tIndex] \gets temp[aIndex]$
@@ -316,7 +316,7 @@ Menggabungkan $arr[aLeft..aRight]$ dengan $arr[bLeft..bRight]$ yang telah teruru
 \begin{codebox}
 \setcounter{codelinenumber}{13}
 \li $...$
-\li \Comment Masukkan subarray yang masih bersisa
+\li \Comment Masukkan \fsubarray yang masih bersisa
 \li \Comment Hanya salah satu dari kedua while ini yang akan dieksekusi
 \li \While $(aIndex \leq aRight)$ \Do
 \li   $arr[tIndex] \gets temp[aIndex]$
@@ -330,6 +330,19 @@ Menggabungkan $arr[aLeft..aRight]$ dengan $arr[bLeft..bRight]$ yang telah teruru
     \End
 \li \Comment selesai penggabungan
 \end{codebox}
+\end{frame}
+
+\begin{frame}
+\frametitle{Catatan Tentang Merge Sort}
+\begin{itemize}
+  \item \fMergeSort memiliki sifat \foreignTerm{stable}.
+  \item Artinya jika dua elemen $a_1$ dan $a_2$:
+  \begin{itemize}
+    \item memiliki yang nilai sama
+    \item sebelum diurutkan $a_1$ terletak sebelum $a_2$
+  \end{itemize}
+  maka setelah diurutkan $a_1$ tetap terletak sebelum $a_2$.
+\end{itemize}
 \end{frame}
 
 %\begin{frame}[fragile]
@@ -374,9 +387,9 @@ Menggabungkan $arr[aLeft..aRight]$ dengan $arr[bLeft..bRight]$ yang telah teruru
 \frametitle{Studi Kasus 2: Mencari Nilai Terbesar (lanj.)}
 Pertama kita definisikan tahap-tahapnya:
 \begin{itemize}
-  \item \foreignTerm{Divide}: jika \farray berukuran besar, bagi menjadi dua subarray.
+  \item \foreignTerm{Divide}: jika \farray berukuran besar, bagi menjadi dua \fsubarray.
   \item \foreignTerm{Conquer}: ketika \farray hanya berisi satu elemen, nilai terbesarnya pasti elemen tersebut.
-  \item \foreignTerm{Combine}: nilai terbesar dari \farray adalah maksimum dari nilai terbesar di subarray pertama dan nilai terbesar di subarray kedua.
+  \item \foreignTerm{Combine}: nilai terbesar dari \farray adalah maksimum dari nilai terbesar di \fsubarray pertama dan nilai terbesar di \fsubarray kedua.
 \end{itemize}
 \end{frame}
 
