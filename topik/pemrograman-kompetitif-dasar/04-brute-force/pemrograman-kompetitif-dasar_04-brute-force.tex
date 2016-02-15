@@ -14,10 +14,34 @@
 \frametitle{Pendahuluan}
 Melalui dokumen ini, kalian akan:
 \begin{itemize}
-  \item Mempelajari konsep pencarian \foreignTerm{brute force}
-  \item Mampu mengerjakan persoalan dengan pendekatan \foreignTerm{brute force}
+  \item Mempelajari konsep \fBruteForce.
+  \item Mampu mengerjakan persoalan dengan pendekatan \fBruteForce.
 \end{itemize}
+\end{frame}
 
+\begin{frame}
+\frametitle{Konsep}
+\begin{itemize}
+  \item \fBruteForce bukan suatu algoritma khusus, melainkan suatu strategi penyelesaian masalah.
+  \item Sebutan lainnya adalah \fCompleteSearch dan \fExhaustiveSearch.
+  \item Prinsip dari strategi ini hanya satu, yaitu...
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Konsep (lanj.)}
+\begin{center}
+  \huge Coba semua kemungkinan,\\ambil yang terbaik!
+\end{center}
+\end{frame}
+
+\begin{frame}
+\frametitle{Sifat Brute Force}
+\begin{itemize}
+  \item \fBruteForce \emp{menjamin} solusi pasti benar, karena seluruh kemungkinan dijelajahi.
+  \item Akibatnya, umumnya \fBruteForce bekerja dengan lambat.
+  \item Terutama ketika banyak kemungkinan solusi yang perlu dicoba.
+\end{itemize}
 \end{frame}
 
 \begin{frame}
@@ -35,83 +59,103 @@ Batasan:
   \item $1 \leq K \leq 10^9$
   \item $1 \leq a_i \leq 10^9$
 \end{itemize}
-
 \end{frame}
 
 \begin{frame}
 \frametitle{Solusi}
 \begin{itemize}
   \item Untuk setiap elemen, kita memiliki 2 pilihan yaitu memilih elemen tersebut atau tidak memilihnya.
+  \item Kita akan menelusuri semua kemungkinan pilihan.
   \item Jika jumlahan dari elemen-elemen yang dipilih sama dengan $K$, maka terdapat solusi.
+  \item Hal ini dapat dengan mudah diimplementasikan secara rekursif.
 \end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]
-\frametitle{Solusi (Lanj.)}
-\begin{lstlisting}
-solve(pos, sum):
-  if pos > n then
-    if sum == K then
-      return true
-    else
-      return false
+\begin{frame}
+\frametitle{Performa?}
+\begin{itemize}
+  \item Terdapat $2^N$ kemungkinan konfigurasi "pilih - tidak pilih".
+  \item Kompleksitas solusi adalah $O(2^N)$.
+  \item Untuk nilai $N$ terbesar, $2^N = 2^{15} = 32.768$.
+  \item Masih jauh di bawah 100 juta, yaitu banyaknya operasi komputer per detik pada umumnya.
+\end{itemize}
+\end{frame}
 
-  return solve(pos + 1, sum) 
-      or solve(pos + 1, sum + a[pos])
+\begin{frame}
+\frametitle{Implementasi}
+\begin{codebox}
+\Procname{$\proc{solve}(i, sum, N, K)$}
+\li \If $i > N$ \Then
+\li   \Return $(sum \isequal K)$
+\li \Else 
+\li   $noPick \gets \proc{solve}(i+1, sum, N, K)$
+\li   $pick \gets \proc{solve}(i+1, sum + a_i, N, K)$
+\li   \Comment Cukup setidaknya salah satu bernilai $true$
+\li   \Return $noPick$ or $pick$
+    \End
+\end{codebox}
 
-if solve(1,0) == true then
-  print "YA"
-else
-  print "TIDAK"
-\end{lstlisting}
+\begin{codebox}
+\Procname{$\proc{solveSubsetSum}(a, N, K)$}
+\li $result \gets \proc{solve}(1, 0, N, K)$
+\li \Comment Cetak keluaran sesuai nilai $result$
+\end{codebox}
 \end{frame}
 
 \begin{frame}
 \frametitle{Optimisasi}
-Bisakah solusi tersebut menjadi lebih cepat?
-gunakan \newTerm{pruning}!
-
-\begin{block}{Pruning}
-  Merupakan optimisasi dengan mengurangi \foreignTerm{search space} dengan cara menghindari pencarian pada jawaban yang pasti salah.
-\end{block}
-\end{frame}
-
-\begin{frame}[fragile]
-\frametitle{Solusi Optimasi}
-\begin{lstlisting}
-solve(pos, sum):
-  if sum > K then
-    return false
-
-  if pos > n then
-    if sum == K then
-      return true
-    else
-      return false
-
-  return solve(pos + 1, sum) 
-      or solve(pos + 1, sum + a[pos])
-
-if solve(1,0) == true then
-  print "YA"
-else
-  print "TIDAK"
-\end{lstlisting}
-\end{frame}
-
-\begin{frame}
-\frametitle{Penjelasan}
 \begin{itemize}
-  \item Karena semua $a_i$ bernilai positif, maka \id{sum} tidak akan menjadi lebih kecil.
-  \item Karena itu, bila \id{sum} sudah lebih besar dari \id{K} bisa dipastikan tidak akan tercapai sebuah solusi
+  \item Bisakah solusi tersebut menjadi lebih cepat?
+  \item Perhatikan kasus ketika nilai $sum$ telah melebihi $K$.
+  \item Karena semua $a_i$ bernilai positif, maka $sum$ tidak akan mengecil.
+  \item Karena itu, bila $sum$ sudah melebihi $K$, \emp{dipastikan} tidak akan tercapai sebuah solusi.
 \end{itemize}
 \end{frame}
 
 \begin{frame}
-\frametitle{TODO Konten}
+\frametitle{Solusi Optimisasi}
+\begin{codebox}
+\Procname{$\proc{solve}(i, sum, N, K)$}
+\li \If $sum > K$ \Then
+\li   \Return $false$
+    \End
+\zi
+\li \If $i > N$ \Then
+\li   \Return $(sum \isequal K)$
+\li \Else 
+\li   $noPick \gets \proc{solve}(i+1, sum, N, K)$
+\li   $pick \gets \proc{solve}(i+1, sum + a_i, N, K)$
+\li   \Comment Cukup setidaknya salah satu bernilai $true$
+\li   \Return $noPick$ or $pick$
+    \End
+\end{codebox}
+\end{frame}
+
+\begin{frame}
+\frametitle{Pruning}
+Hal ini biasa disebut sebagai \newTerm{pruning}.
+\begin{block}{Pruning}
+  Merupakan optimisasi dengan mengurangi ruang pencarian dengan cara menghindari pencarian yang sudah pasti salah.
+\end{block}
+\end{frame}
+
+\begin{frame}
+\frametitle{Pruning (lanj.)}
 \begin{itemize}
-  \item Berikan contoh lagi yang lebih sulit, dan tunjukkan bahwa kadang2 kita harus pintar dalam menentukan apa yang mau di-brute force
-  \item Ajarkan untuk hitung kompleksitasnya. Kalau cukup untuk AC, langsung coding aja
+  \item Meskipun mengurangi ruang pencarian, \fpruning umumnya tidak mengurangi kompleksitas solusi.
+  \item Pada kasus ini, solusi dapat dianggap tetap bekerja dalam $O(2^N)$.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Penutup}
+\begin{itemize}
+  \item Ide dari \fBruteForce biasanya sederhana, Anda hanya perlu menjelajahi seluruh kemungkinan solusi.
+  \item Biasanya merupakan ide pertama yang didapatkan saat menghadapi masalah.
+  \item Lakukan analisis algoritma, jika kompleksitasnya cukup, maka \fBruteForce saja :)
+  \item Bila tidak cukup cepat, coba lakukan observasi. 
+  \item Bisa jadi kita dapat melakukan \fBruteForce dari "sudut pandang yang lain" dan lebih cepat.
+  \item Bila tidak berhasil juga, baru coba pikirkan strategi lainnya.
 \end{itemize}
 \end{frame}
 
