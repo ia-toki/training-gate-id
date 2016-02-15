@@ -4,6 +4,7 @@
 \author{Tim Olimpiade Komputer Indonesia}
 \date{}
 
+\usepackage{verbatim}
 \lstset{escapeinside={<@}{@>},belowskip=\baselineskip}
 \definecolor{mygreen}{rgb}{0, 0.597, 0.199}
 
@@ -27,7 +28,7 @@ Melalui dokumen ini, kalian akan:
 
 \begin{frame}
 \frametitle{Mengenal Graph}
-Graph merupakan struktur data yang terdiri dari \alert{node/vertex} dan \alert{edge}. Node direpresentasikan dengan bentuk lingkaran dan edge direpresentasikan dengan bentuk garis pada ilustrasi dibawah ini.
+Graph merupakan struktur data yang terdiri dari \alert{node/vertex} dan \alert{edge}. Node direpresentasikan dengan bentuk lingkaran dan edge direpresentasikan dengan bentuk garis pada ilustrasi di bawah ini.
 
 \begin{figure}
   \centering
@@ -37,7 +38,7 @@ Graph merupakan struktur data yang terdiri dari \alert{node/vertex} dan \alert{e
 
 \begin{frame}
 \frametitle{Mengenal Graph (lanj.)}
-Melalui ilustrasi diatas, dapat disimpulkan bahwa edge memiliki fungsi untuk menghubungkan antar-node. \alert{Degree} sebuah node didefinisikan sebagai jumlah edge yang terhubung pada node tersebut.\newline\newline
+Melalui ilustrasi di atas, dapat disimpulkan bahwa edge memiliki fungsi untuk menghubungkan antar-node. \alert{Degree} sebuah node didefinisikan sebagai jumlah edge yang terhubung pada node tersebut.\newline\newline
 Pada contoh graph di atas, maka degree node A adalah 4, degree node B adalah 3, dan seterusnya. Degree node dalam graph bisa berapa saja, tidak seperti binary search tree yang pasti hanya dapat memiliki maksimal 2 anak dan 1 parent. 
 \end{frame}
 
@@ -45,7 +46,7 @@ Pada contoh graph di atas, maka degree node A adalah 4, degree node B adalah 3, 
 \frametitle{Jenis-jenis Graph}
 Berdasarkan hubungan antar node, graph terbagi menjadi 2:
 \begin{itemize}
-  \item Directed graph, yaitu graph satu arah. Di graph jenis ini, jika terdapat edge dari A ke B, maka belum tentu terdapat edge dari B ke A. Contoh graph ini adalah kota-kota sebagai nodenya dan jalan 1 arah sebagai edgenya.
+  \item Directed graph, yaitu graph satu arah. Pada graph jenis ini, jika terdapat edge dari A ke B, maka belum tentu terdapat edge dari B ke A. Contoh graph ini adalah kota-kota sebagai nodenya dan jalan 1 arah sebagai edgenya.
   \item Undirected graph, yaitu graph dua arah. Dalam graph ini, jika terdapat edge dari A ke B, maka pasti juga terdapat edge dari B ke A. Contoh graph jenis ini adalah kota-kota sebagai nodenya dan jalan 2 arah sebagai edgenya.
 \end{itemize}
 \end{frame}
@@ -62,7 +63,7 @@ Berdasarkan bobot dari edgenya, graph juga terbagi menjadi 2:
 \begin{frame}
 \frametitle{Representasi Graph pada Pemrograman}
 
-Graph biasanya direpesentasikan dalam pemrograman menggunakan 2 metode, yaitu adjacency matrix dan adjacency list. Masing-masing representasi memiliki keuntungan dan kerugiannya masing-masing. Oleh karena itu, penggunaan representasi graph sangat bergantung dengan masalah yang sedang kita hadapi.
+Graph biasanya direpesentasikan dalam pemrograman menggunakan 3 metode, yaitu adjacency matrix, adjacency list, dan edge list. Masing-masing representasi memiliki keuntungan dan kerugiannya masing-masing. Oleh karena itu, penggunaan representasi graph sangat bergantung dengan masalah yang sedang kita hadapi.
 \end{frame}
 
 \begin{frame}
@@ -75,8 +76,17 @@ Awalnya, seluruh elemen matrix berisi nilai 0 yang menandakan bahwa tidak terdap
 \begin{frame}
 \frametitle{Adjacency List}
 
-Pada adjacency list, graph disimpan dalam array of lists. Tiap list berisi keterangan mengenai edge yang terdapat dalam suatu node. Ukuran dari array merupakan N yang mana N merupaka banyaknya node/vertex. \newline\newline
+Pada adjacency list, graph disimpan dalam array of lists. Tiap list berisi keterangan mengenai edge yang terdapat dalam suatu node. Ukuran dari array merupakan N yang mana N merupakan banyaknya node/vertex. \newline\newline
 Awalnya, seluruh list tidak memiliki isi yang menandakan bahwa belum terdapat edge dalam graph tersebut. Pada unweighted graph, jika terdapat edge dari node A ke node B, maka, masukkan B kedalam list A. Pada weighted graph, jika terdapat edge dari node A ke node B dengan bobot C, maka masukkan \{B,C\} kedalam list A. Di sini isi dari list terdapat 2 item, yaitu node yang dituju beserta bobotnya
+\end{frame}
+
+\begin{frame}
+\frametitle{Edge List}
+
+Pada edge list, seluruh keterangan mengenai edge dimasukkan kedalam sebuah list. Berbeda dengan adjacency list, pada edge list kita hanya membutuhkan sebuah list (bukan array of list).
+\newline\newline
+List yang telah disediakan pertama dikosongkan terlebih dahulu. Setelah itu, jika terdapat edge dari A ke B, masukkan \{A,B\} ke dalam list tersebut. 
+
 \end{frame}
 
 
@@ -103,6 +113,45 @@ Adjacency List
 \end{lstlisting}
 \end{frame}
 
+\begin{frame}[fragile]
+\frametitle{Pseudocode Representasi Graph (lanj.)}
+
+Edge List
+\begin{lstlisting}
+  List<{integer,integer}> EdgeList
+  
+  <@\textcolor{mygreen}{//edge dari 1 ke 4 pada undirected unweighted graph}@>
+  EdgeList.push({1,4})
+  
+  List<{integer,integer,integer}> WeightedList
+  
+  <@\textcolor{mygreen}{//edge dari 2 ke 3 dengan bobot 5 pada undirected graph}@>
+  WeightedList.push({2,3,5})
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}
+\frametitle{Keuntungan dan Kerugian Representasi Graph}
+Misalkan graph kita memiliki V vertex dan E edge. Kita ingin melihat kompleksitas yang dibutuhkan berbagai jenis representasi graph pada suatu node yang mana node tersebut memiliki jumlah tetangga sebanyak K.
+{\fontsize{9}{10}\selectfont\renewcommand{\arraystretch}{1.75}
+\begin{center}
+ \begin{tabular}{||c|c c c c||} 
+ \hline
+ Representasi & TambahEdge & HapusEdge & DaftarTetangga & CekHubungan \\ [0.5ex] 
+ \hline\hline
+ Adj.Matrix & konstan & konstan & N & konstan\\ 
+ \hline
+ Adj.List & konstan & K & K & K\\
+ \hline
+ Edge List & konstan & E & E & E\\
+ \hline
+\end{tabular}
+\end{center}
+}
+Tabel di atas menjelaskan kompleksitas yang dibutuhkan untuk melakukan proses-proses dalam graph
+\end{frame}
+
+\begin{comment}
 \begin{frame}
 \frametitle{Keuntungan dan Kerugian Representasi Graph}
 
@@ -119,6 +168,7 @@ Adjacency List
   \item Untuk mencari tetangga-tetangganya, maka pada adjacency matrix perlu dilakukan iterasi terhadap seluruh node yagn ada. Sementara itu, pada adjacency list hanya perlu dilakukan iterasi pada list yang isinya merupakan tetangga dari node yang bersangkutan.
 \end{itemize}
 \end{frame}
+\end{comment}
 
 \begin{frame}
 \frametitle{Graph Traversal}
@@ -280,7 +330,7 @@ Pada gambar di atas, gambar kiri bukan sebuah tree karena memiliki cycle, sedang
 
 \begin{frame}
 \frametitle{Directed Acyclic Graph}
-\foreignTerm{Directed Acyclic Graph (DAG)} merupakan bentuk khusus dari directed graph. DAG tidak memiliki direct cycle. Berbeda dengan tree dimana setiap node pasti dapat mencapai node lainnya, sifat tersebut tidak berlaku pada DAG.
+\foreignTerm{Directed Acyclic Graph (DAG)} merupakan bentuk khusus dari directed graph. DAG tidak memiliki direct cycle. Berbeda dengan tree yang mana setiap node pasti dapat mencapai node lainnya, sifat tersebut tidak berlaku pada DAG.
 
 \includegraphics[width=4 cm]{asset/dag.png}
 \hspace{\fill}
