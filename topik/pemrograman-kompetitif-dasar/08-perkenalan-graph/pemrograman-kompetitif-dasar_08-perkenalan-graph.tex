@@ -38,8 +38,14 @@ Graph merupakan struktur data yang terdiri dari \alert{node/vertex} dan \alert{e
 
 \begin{frame}
 \frametitle{Mengenal Graph (lanj.)}
-Melalui ilustrasi di atas, dapat disimpulkan bahwa edge memiliki fungsi untuk menghubungkan antar-node. \alert{Degree} sebuah node didefinisikan sebagai jumlah edge yang terhubung pada node tersebut.\newline\newline
-Pada contoh graph di atas, maka degree node A adalah 4, degree node B adalah 3, dan seterusnya. Degree node dalam graph bisa berapa saja, tidak seperti binary search tree yang pasti hanya dapat memiliki maksimal 2 anak dan 1 parent. 
+\begin{itemize}
+  \item Edge berfungsi untuk menghubungkan antar node
+  \item \alert{Degree} sebuah node merupakan jumlah edge yang terhubung pada node tersebut
+  \item Pada contoh ilustrasi graph di slide sebelumnya, degree node A = 4, degree node B = 3, dan seterusnya.
+  \item Tidak ada syarat khusus mengenai degree pada suatu graph.
+  \item Berbeda dengan tree yang mana maksimal memiliki 2 children dan 1 parent
+\end{itemize}
+
 \end{frame}
 
 \begin{frame}
@@ -63,29 +69,50 @@ Berdasarkan bobot dari edgenya, graph juga terbagi menjadi 2:
 \begin{frame}
 \frametitle{Representasi Graph pada Pemrograman}
 
-Graph biasanya direpesentasikan dalam pemrograman menggunakan 3 metode, yaitu adjacency matrix, adjacency list, dan edge list. Masing-masing representasi memiliki keuntungan dan kerugiannya masing-masing. Oleh karena itu, penggunaan representasi graph sangat bergantung dengan masalah yang sedang kita hadapi.
+\begin{itemize}
+  \item Dalam pemrograman, dibutuhkan sebuah struktur data agar data mengenai graph dapat disimpan dan diolah.
+  \item Dapat direpresentasikan menggunakan 3 metode, yaitu adjacency matrix, adjacency list, dan edge list.
+  \item Masing-masing representasi memiliki keuntungan dan kerugiannya masing-masing.
+  \item Penggunaan representasi graph bergantung dengan masalah yang sedang dihadapi
+\end{itemize}
 \end{frame}
 
 \begin{frame}
 \frametitle{Adjacency Matrix}
 
-Pada adjacency matrix, kita harus menyediakan array 2 dimensi dengan ukuran N x N yang mana N merupakan banyaknya node/vertex. \newline\newline
-Awalnya, seluruh elemen matrix berisi nilai 0 yang menandakan bahwa tidak terdapat edge. Pada unweighted graph, jika terdapat edge dari node A ke node B, maka kita ganti isi dari $matrix[A][B] = 1$. Misal pada weighted graph dan terdapat edge dari A ke B dengan bobot C, maka update $matrix[A][B] = C$.
+\begin{itemize}
+  \item Membutuhkan struktur data array 2 dimensi dengan ukuran N x N yang mana N merupakan banyaknya \foreignTerm{node/vertex}
+  \item Seluruh elemen pada matrix diinisialisasi dengan suatu angka (misalnya angka nol)
+  \item Angka nol tersebut menyatakan tidak ada edge
+  \item Misal terdapat edge dari A ke B pada unweighted graph, ganti isi $matrix[A][B] = 1$
+  \item Misal terdapat edge dari A ke B dengan bobot C, maka ganti isi $matrix[A][B] = C$
+\end{itemize}
+
 \end{frame}
 
 \begin{frame}
 \frametitle{Adjacency List}
-
-Pada adjacency list, graph disimpan dalam array of lists. Tiap list berisi keterangan mengenai edge yang terdapat dalam suatu node. Ukuran dari array merupakan N yang mana N merupakan banyaknya node/vertex. \newline\newline
-Awalnya, seluruh list tidak memiliki isi yang menandakan bahwa belum terdapat edge dalam graph tersebut. Pada unweighted graph, jika terdapat edge dari node A ke node B, maka, masukkan B kedalam list A. Pada weighted graph, jika terdapat edge dari node A ke node B dengan bobot C, maka masukkan \{B,C\} kedalam list A. Di sini isi dari list terdapat 2 item, yaitu node yang dituju beserta bobotnya
+\begin{itemize}
+  \item Membutuhkan struktur data array of lists.
+  \item Tiap list berisi keterangan mengenai edge yang terdapat dalam suatu node.
+  \item Ukuran dari array merupakan N yang mana N merupakan banyaknya node/vertex
+  \item Inisialisasi seluruh list kosong, yang menandakan bahwa belum terdapat edge dalam graph tersebut.
+  \item Misal terdapat edge dari A ke B pada unweighted graph, maka masukkan B kedalam list A.
+  \item Misal terdapat edge dari A ke B dengan bobot C, masukkan \{B,C\} kedalam list A.
+\end{itemize}
 \end{frame}
 
 \begin{frame}
 \frametitle{Edge List}
 
-Pada edge list, seluruh keterangan mengenai edge dimasukkan kedalam sebuah list. Berbeda dengan adjacency list, pada edge list kita hanya membutuhkan sebuah list (bukan array of list).
-\newline\newline
-List yang telah disediakan pertama dikosongkan terlebih dahulu. Setelah itu, jika terdapat edge dari A ke B, masukkan \{A,B\} ke dalam list tersebut. 
+\begin{itemize}
+  \item Membutuhkan struktur data sebuah list.
+  \item Seluruh keterangan edge dimasukkan kedalam list tersebut.
+  \item Berbeda dengan adjacency list yang membutuhkan array of list, pada edge list hanya dibutuhkan satu buah list.
+  \item Inisialisasikan list tersebut kosong.
+  \item Misal terdapat edge dari A ke B pada unweighted graph, masukkan \{A,B\} kedalam list tersebut
+  \item Misal terdapat edge dari A ke B dengan bobot C, maka masukkan \{A,B,C\} kedalam list tersebut
+\end{itemize}
 
 \end{frame}
 
@@ -173,9 +200,13 @@ Tabel di atas menjelaskan kompleksitas yang dibutuhkan untuk melakukan proses-pr
 \begin{frame}
 \frametitle{Graph Traversal}
 
-Sekarang kita telah mengetahui bagaimana cara menyimpan graph dalam pemrograman. Namun, representasi tersebut belum berguna karena kita belum dapat mencari informasi dari representasi tersebut.\newline\newline
-Kali ini kita akan belajar mengenai \alert{Graph Traversal}, yaitu penelusuran pada graph. Misalkan kita diberikan suatu graph. Lalu, kita ditanya apakah dari node A bisa pergi ke node B menggunakan edge yang ada? Untuk mendapatkan jawabannya, kita tentu harus menelusuri graph tersebut dari node A.\newline\newline
-Terdapat 2 metode yang digunakan untuk menelusuri graph, yaitu BFS dan DFS.
+\begin{itemize}
+  \item Representasi Graph saja belum berguna karena belum dapat mencari informasi mengenai suatu graph
+  \item \alert{Graph Traversal} merupakan penelusuran node-node pada suatu graph.
+  \item Contoh permasalahannya adalah diberikan node A dan node B, ditanya apakah dari node A bisa pergi ke node B menggunakan edge yang ada?
+  \item Permasalahan tersebut dapat diselesaikan menggunakan graph traversal.
+  \item Terdapat 2 metode yang dapat digunakan, yaitu DFS dan BFS.
+\end{itemize}
 \end{frame}
 
 \begin{frame}
@@ -191,9 +222,12 @@ Terdapat 2 metode yang digunakan untuk menelusuri graph, yaitu BFS dan DFS.
 
 \begin{frame}
 \frametitle{DFS (lanj.)}
-Dalam gambar di atas, angka menunjukkan urutan node tersebut dikunjungi. Node 1 akan dikunjungi pertama. Lalu, menuju node 2, dan seterusnya. Dapat dilihat bahwa DFS akan mencoba menelusuri node-node yang dalam terlebih dahulu.
-\newline\newline
-Node yang dekat dengan root (seperti node 7 dan 8) akan dikunjungi setelah DFS selesai mengunjungi node yang lebih dalam (node 3,4, dan 5).
+\begin{itemize}
+  \item Angka pada gambar di atas menunjukkan urutan node tersebut dikunjungi. (Node 1 dikunjungi pertama, node 2 dikunjungi kedua, dan seterusnya)
+  \item Dari urutan pengunjungan node pada gambar, dapat dililhat bahwa DFS akan mencoba menelusuri node-node yang dalam terlebih dahulu
+  \item Node yang dekat dengan node awal (seperti node 7 dan 8) akan dikunjungi setelah DFS selesai mengunjungi node yang lebih dalam (seperti node 3,4, dan 5)
+  \item Dalam pemrograman, DFS dapat dilakukan menggunakan rekursi atau dengan bantuan struktur data \foreignTerm{stack}
+\end{itemize}
 \end{frame}
 
 \begin{frame}
@@ -210,10 +244,13 @@ Node yang dekat dengan root (seperti node 7 dan 8) akan dikunjungi setelah DFS s
 
 \begin{frame}
 \frametitle{BFS (lanj.)}
-
-Berdasarkan ilustrasi di atas, dapat kita lihat bahwa node yang dekat dengan node 1 akan dikunjungi terlebih dahulu. Sementara itu, node yang jauh akan dikunjungi terakhir, seperti node 9 dan 11 yang berjarak 3 dengan node 1.
-\newline\newline
-Setelah mengetahui konsep BFS dan DFS, kita akan mulai mempelajari implementasinya dalam pemrograman. Dalam potongan kode selanjutnya, akan diberikan contoh kode DFS dan BFS pada unweighted graph yang disimpan menggunakan adjacency matrix.
+\begin{itemize}
+  \item Angka pada gambar di atas menunjukkan urutan node tersebut dikunjungi. (Node 1 dikunjungi pertama, node 2 dikunjungi kedua, dan seterusnya)
+  \item Dapat disimpulkan bahwa BFS akan mencoba mengunjungi node-node yang lebih dekat dengan node awal terlebih dahulu.
+  \item Node yang jauh dengan node awal akan dikunjungi terakhir.
+  \item Dalam pemrograman, BFS dapat dilakukan menggunakan bantuan struktur data \foreignTerm{queue}
+  \item Slide selanjutnya akan menjelaskan implementasi DFS dan BFS pada unweighted graph yang direpresentasikan menggunakan adjacency matrix
+\end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]
@@ -319,7 +356,11 @@ else
 
 \begin{frame}
 \frametitle{Tree}
-\foreignTerm{Tree} merupakan bentuk khusus dari graph. Tree merupakan graph yang mana seluruh nodenya terhubung (tidak ada node yang tidak dapat dikunjungi dari node lain) dan tidak terdapat cycle. Oleh karena itu, jumlah edge dalam sebuah tree pasti berjumlah sebanyak node-1.
+\begin{itemize}
+  \item \foreignTerm{Tree} merupakan bentuk khusus dari graph
+  \item Seluruh node pada tree terhubung (tidak ada node yang tidak dapat dikunjungi dari node lain) dan tidak terdapat \alert{cycle}
+  \item Jumlah edge dalam sebuah tree pasti berjumlah sebanyak (Node - 1)
+\end{itemize}
 
 \includegraphics[width=4 cm]{asset/not-tree.png}
 \hspace{\fill}
@@ -330,7 +371,11 @@ Pada gambar di atas, gambar kiri bukan sebuah tree karena memiliki cycle, sedang
 
 \begin{frame}
 \frametitle{Directed Acyclic Graph}
-\foreignTerm{Directed Acyclic Graph (DAG)} merupakan bentuk khusus dari directed graph. DAG tidak memiliki direct cycle. Berbeda dengan tree yang mana setiap node pasti dapat mencapai node lainnya, sifat tersebut tidak berlaku pada DAG.
+\begin{itemize}
+  \item \foreignTerm{Directed Acyclic Graph (DAG)} merupakan bentuk khusus dari directed graph.
+  \item DAG tidak memiliki \alert{direct cycle}
+  \item Berbeda dengan tree yang mana setiap nodenya harus dapat dicapai node lainnya, sifat tersebut tidak berlaku pada DAG
+\end{itemize}
 
 \includegraphics[width=4 cm]{asset/dag.png}
 \hspace{\fill}
