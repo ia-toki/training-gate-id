@@ -46,10 +46,9 @@ Melalui dokumen ini, kalian akan:
 
 \begin{frame}
 \frametitle{Soal: Subset Sum}
-Deskripsi:
 \begin{itemize}
-  \item Diberikan $N$ buah integer $(a_1, a_2, ..., a_N)$ dan integer $K$
-  \item Apakah terdapat subset dari integer-integer tersebut sehingga jumlahan dari elemen subset tersebut sama dengan $K$? 
+  \item Diberikan $N$ buah bilangan $(a_1, a_2, ..., a_N)$ dan bilangan $K$
+  \item Apakah terdapat subset dari bilangan-bilangan tersebut sehingga jumlahan dari elemen subset tersebut sama dengan $K$? 
   \item Bila iya, maka keluarkan "YA". Selain itu keluarkan "TIDAK"
 \end{itemize}
 
@@ -144,6 +143,94 @@ Hal ini biasa disebut sebagai \newTerm{pruning}.
 \begin{itemize}
   \item Meskipun mengurangi ruang pencarian, \fpruning umumnya tidak mengurangi kompleksitas solusi.
   \item Pada kasus ini, solusi dapat dianggap tetap bekerja dalam $O(2^N)$.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Soal: Mengatur Persamaan}
+\begin{itemize}
+  \item Diberikan $N$ buah bilangan $(a_1, a_2, ..., a_N)$.
+  \item Diberikan sebuah persamaan: $p + q + r = 0$.
+  \item Nilai $p$, $q$, dan $r$ harus merupakan anggota $\{ a_1, a_2, ..., a_N \}$
+  \item Berapa banyak ($p, q, r$) berbeda yang memenuhi persamaan tersebut?
+\end{itemize}
+
+Batasan:
+\begin{itemize} 
+  \item $1 \leq N \leq 2.000$
+  \item $-10^5 \leq a_i \leq 10^5$
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Solusi Sederhana}
+Masukkan nilai-nilai $\{ a_1, a_2, ..., a_N \}$ ke $p$, $q$, dan $r$, lalu periksa apakah persamaannya terpenuhi.
+
+\begin{codebox}
+\Procname{$\proc{countTriplet}(a, N)$}
+\li $count \gets 0$
+\li \For $i \gets 1$ \To $N$ \Do
+\li   \For $j \gets 1$ \To $N$ \Do
+\li     \For $k \gets 1$ \To $N$ \Do
+\li       $p \gets a_i$
+\li       $q \gets a_j$
+\li       $r \gets a_k$
+\li       \If $(p + q + r) \isequal 0$ \Then
+\li         $count \gets count + 1$.
+          \End
+        \End
+      \End
+    \End
+\li \Return $count$
+\end{codebox}
+\end{frame}
+
+\begin{frame}
+\frametitle{Solusi Sederhana (lanj.)}
+\begin{itemize}
+  \item Kompleksitas waktu cara ini adalah $O(N^3)$.
+  \item Tentunya terlalu besar untuk nilai $N$ mencapai 2.000.
+  \item Ada cara yang lebih baik?
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Observasi}
+\begin{itemize}
+  \item Jika kita sudah menentukan nilai $p$ dan $q$, maka nilai $r$ haruslah $-(p + q)$.
+  \item Jadi cukup tentukan nilai $p$ dan $q$, lalu periksa apakah nilai $-(p + q)$ ada pada bilangan-bilangan yang diberikan.
+  \item Pemeriksaan ini dapat dilakukan dengan \fBinarySearch.
+  \item Kompleksitas solusi menjadi $O(N^2 \log{N})$
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Solusi Lebih Baik}
+\begin{codebox}
+\Procname{$\proc{countTripletFast}(a, N)$}
+\li $count \gets 0$
+\li \For $i \gets 1$ \To $N$ \Do
+\li   \For $j \gets 1$ \To $N$ \Do
+\li       $p \gets a_i$
+\li       $q \gets a_j$
+\li       $r \gets -(p + q)$
+\li       \If $\proc{exist}(a, N, r)$ \Then
+\li         $count \gets count + 1$.
+          \End
+        \End
+      \End
+    \End
+\li \Return $count$
+\end{codebox}
+
+Dengan $\proc{exist}(a, N, r)$ adalah algoritma \fBinarySearch untuk memeriksa keberadaan $r$ di $\{ a_1, a_2, ..., a_N \}$.
+\end{frame}
+
+\begin{frame}
+\frametitle{Solusi Lebih Baik (lanj.)}
+\begin{itemize}
+  \item Kompleksitas $O(N^2 \log{N})$ sudah cukup untuk $N$ yang mencapai 2.000.
+  \item Dari sini kita belajar bahwa optimisasi pada pencarian kadang diperlukan, meskipun ide dasarnya adalah \fBruteForce.
 \end{itemize}
 \end{frame}
 
