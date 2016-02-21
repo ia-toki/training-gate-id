@@ -1,0 +1,571 @@
+\input{../config.tex}
+\usepackage{tikz}
+
+\title{Kombinatorik}
+\author{Tim Olimpiade Komputer Indonesia}
+\date{}
+
+\begin{document}
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+\begin{frame}
+\frametitle{Pendahuluan}
+Melalui dokumen ini, kalian akan:
+\begin{itemize}
+  \item Mempelajari \newTerm{aturan perkalian} dan \newTerm{aturan penjumlahan}.
+  \item Mempelajari \newTerm{permutasi}.
+  \item Mempelajari \newTerm{kombinasi}.
+  \item Memahami \newTerm{segitiga pascal}.
+\end{itemize}
+\end{frame}
+
+\section{Aturan Perkalian dan Aturan Penjumlahan}
+\frame{\sectionpage}
+
+\begin{frame}
+\frametitle{Permasalahan 1}
+\begin{itemize}
+  \item Terdapat 3 buah kota yaitu A, B, dan C.
+  \item Kota A dan kota B terhubung oleh 3 jalur berbeda yaitu e1, e2, dan e3.
+  \item Sedangkan kota B dan kota C terhubung oleh 2 jalur berbeda yaitu e4 dan e5.
+  \item Berapa banyak cara berbeda untuk menuju kota C dari kota A?
+  \item Ilustrasi : 
+  \newline
+  \begin{tikzpicture}[auto, node distance=3cm, every loop/.style={},
+                      thick,main node/.style={circle,draw,font=\sffamily\Large\bfseries}]
+  
+    \node[main node] (1) {A};
+    \node[main node] (2) [right of=1] {B};
+    \node[main node] (3) [right of=2] {C};
+  
+    \path[every node/.style={font=\sffamily\small}]
+      (1) edge[bend left] node {e1} (2)
+      	  edge node {e2} (2)
+          edge[bend right] node {e3} (2)
+      (2) edge[bend left] node {e4} (3)
+          edge[bend right] node {e5} (3);
+  \end{tikzpicture}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Solusi Awal}
+\begin{itemize}
+  \item Apabila kita hitung satu per satu, maka cara yang berbeda untuk menuju kota C dari kota A adalah sebagai berikut :
+  \begin{itemize}
+    \item Melalui \foreignTerm{jalur e1} kemudian \foreignTerm{jalur e4}
+    \item Melalui \foreignTerm{jalur e1} kemudian \foreignTerm{jalur e5}
+    \item Melalui \foreignTerm{jalur e2} kemudian \foreignTerm{jalur e4}
+    \item Melalui \foreignTerm{jalur e2} kemudian \foreignTerm{jalur e5}
+    \item Melalui \foreignTerm{jalur e3} kemudian \foreignTerm{jalur e4}
+    \item Melalui \foreignTerm{jalur e3} kemudian \foreignTerm{jalur e5}
+  \end{itemize}
+  \item Dengan kata lain, terdapat 6 cara berbeda untuk menuju kota C dari kota A.
+  \item Tetapi, apabila jumlah kota dan jalur yang ada sangatlah banyak, kita tidak mungkin menulis satu per satu cara yang berbeda. Karena itulah kita gunakan \newTerm{Aturan Perkalian}.
+\end{itemize}
+\end{frame} 
+
+\begin{frame}
+\frametitle{Aturan Perkalian}
+\begin{itemize}
+  \item Apabila suatu proses dapat dibagi menjadi \foreignTerm{N sub-proses berbeda} dimana terdapat $a_{i}$ cara untuk menyelesaikan sub-proses ke-i.
+  \item Banyak cara yang berbeda untuk menyelesaikan proses tersebut adalah $a_{1} \times a_{2} \times a_{3} \times ... \times a_{i}$.	
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Solusi dengan Aturan Perkalian}
+\begin{itemize}
+  \item Jika kita anggap bahwa banyak cara dari kota A menuju kota B merupakan sub-proses pertama, dimana terdapat 3 cara untuk menyelesaikan sub-proses tersebut.
+  \item Kita anggap pula bahwa banyak cara dari kota B menuju kota C merupakan sub-proses kedua, dimana terdapat 2 cara untuk menyelesaikan sub-proses tersebut.
+  \item Karena perjalanan dari kota A menuju kota B dan dari kota B menuju kota C merupakan 2 sub-proses yang berbeda, maka kita dapat gunakan aturan perkalian.
+  \item Banyak cara berbeda dari kota A menuju kota C adalah $3 \times 2 = 6$.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Permasalahan 2}
+\begin{itemize}
+  \item Permasalahan ini merupakan lanjutan dari \newTerm{Permasalahan 1}. Deskripsi permasalahan, jumlah kota dan jalur serta susunan jalur yang ada sama persis dengan permasalahan tersebut.
+  \item Apabila kita tambahkan 1 jalur lagi, yaitu e6 yang menghubungkan kota A dan C.
+  \item Berapa banyak cara berbeda untuk menuju kota C dari kota A?
+  \item Ilustrasi :
+  \newline
+  \begin{tikzpicture}[auto, node distance=3cm, every loop/.style={},
+                        thick,main node/.style={circle,draw,font=\sffamily\Large\bfseries}]
+    
+      \node[main node] (1) {A};
+      \node[main node] (2) [right of=1] {B};
+      \node[main node] (3) [right of=2] {C};
+    
+      \path[every node/.style={font=\sffamily\small}]
+        (1) edge[bend left] node {e1} (2)
+        	edge node {e2} (2)
+            edge[bend right] node {e3} (2)
+        (2) edge[bend left] node {e4} (3)
+            edge[bend right] node {e5} (3)
+        (3) edge[bend left] node {e6} (1);
+    \end{tikzpicture}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Analisa Permasalahan}
+\begin{itemize}
+  \item Dengan menulis satu per satu setiap cara, maka terdapat 7 cara yang berbeda, yaitu 6 cara sesuai dengan permasalahan sebelumnya, ditambah dengan \foreignTerm{menggunakan jalur e6}.
+  \item Apabila kita menggunakan Aturan Perkalian, maka didapatkan banyak cara yang berbeda adalah $3 \times 2 \times 1 = 6$ dimana solusi tersebut tidaklah tepat.
+  \item Kita tidak dapat menggunakan Aturan Perkalian dalam permasalahan ini, dikarenakan antara perjalanan dari kota A menuju kota C melalui kota B dengan tanpa melalui kota B merupakan 2 proses yang berbeda.
+  \item Oleh karena itu, kita dapat menggunakan \newTerm{Aturan Penjumlahan}.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Aturan Penjumlahan}
+\begin{itemize}
+  \item Apabila suatu proses dapat dibagi menjadi \foreignTerm{N himpunan proses berbeda} yaitu $H_{1}, H_{2}, H_{3}, ... , H_{N}$ dimana setiap himpunannya \foreignTerm{saling lepas} (tidak beririsan).
+  \item Banyak cara yang berbeda untuk menyelesaikan proses tersebut adalah $|H_{1}| + |H_{2}| + |H_{3}| + ... + |H_{i}|$ dimana $|H_{i}|$ merupakan banyaknya cara berbeda untuk menyelesaikan proses ke-i.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Solusi dengan Aturan Penjumlahan}
+\begin{itemize}
+  \item Proses perjalanan dari kota A menuju kota C dapat kita bagi menjadi 2 himpunan proses yang berbeda, yaitu dari kota A menuju kota C melalui kota B, dan dari kota A langsung menuju kota C.
+  \item Banyak cara dari kota A menuju kota C melalui kota B dapat kita dapatkan dengan Aturan Perkalian seperti yang dibahas pada permasalahan sebelumnya, yaitu 6 cara berbeda.
+  \item Banyak cara dari kota A langsung menuju kota C adalah 1 cara, yaitu melalui jalur e6.
+  \item Dengan \foreignTerm{Aturan Penjumlahan}, banyak cara berbeda dari kota A menuju kota C adalah $6 + 1 = 7$ cara berbeda.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Hati-Hati!}
+\begin{itemize}
+  \item Apabila terdapat irisan dari himpunan proses tersebut, maka solusi yang kita dapatkan dengan Aturan Penjumlahan menjadi tidak tepat, dikarenakan solusi dalam irisan tersebut terhitung 2 kali.
+  \item Agar solusi tersebut menjadi tepat, gunakan \newTerm{Prinsip Inklusi-Eksklusi} pada materi \foreignTerm{Teori Himpunan}.
+\end{itemize}
+\end{frame}
+
+\section{Permutasi}
+\frame{\sectionpage}
+
+\begin{frame}
+\frametitle{Notasi Faktorial}
+\begin{itemize}
+  \item Perlu diperhatikan bahwa faktorial dari N ($N!$) merupakan hasil perkalian dari semua bilangan asli kurang dari atau sama dengan N.
+  \item $N! = N \times (N-1) \times (N-2) \times ... \times 3 \times 2 \times 1$, dimana $O! = 1$.
+  \item Contoh : $5! = 5 \times 4 \times 3 \times 2 \times 1 = 120$.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Redundansi}
+\begin{itemize}
+  \item Redundansi sering disebut juga dengan \foreignTerm{Aturan Pembagian}.
+  \item Apabila terdapat K susunan cara yang kita anggap berbeda dan seharusnya merupakan 1 cara yang sama, maka kita dapat membagi total keseluruhan cara dengan K, sehingga K cara tersebut dianggap sama sebagai 1 cara.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Contoh Redundansi}
+\begin{itemize}
+  \item Banyak kata berbeda yang disusun dari huruf-huruf penyusun "TOKI" adalah $4!$ (menggunakan aturan perkalian).
+  \item Apabila kita ganti soal tersebut, yaitu kata berbeda yang disusun dari huruf-huruf penyusun "BACA", solusi $4!$ merupakan solusi yang salah.
+  \item Hal ini disebabkan karena terdapat 2 buah huruf 'A'. Sebagai contoh : $BA_{1}CA_{2}$ dan $BA_{2}CA_{1}$ pada dasarnya merupakan kata yang sama.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Contoh Redundansi (lanj.)}
+\begin{itemize}
+  \item Terdapat 2! cara yang kita anggap berbeda tetapi seharusnya merupakan cara yang sama, yaitu penggunaan $A_{1}A_{2}$ dan $A_{2}A_{1}$.
+  \item Sehingga banyak kata berbeda yang dapat kita bentuk dari huruf-huruf penyusun kata "BACA" adalah $\frac{4!}{2!} = \frac{24}{2} = 12$ kata berbeda.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Permasalahan 1}
+\begin{itemize}
+  \item Terdapat 5 anak (sebut saja A, B, C, D, dan E) yang sedang mengikuti sebuah kompetisi.
+  \item Dalam kompetisi tersebut akan diambil 3 peserta sebagai pemenang.
+  \item Berapa banyak susunan pemenang yang berbeda dari kelima orang tersebut?
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Solusi Awal}
+\begin{itemize}
+  \item Anggap bahwa kita mengambil semua anak sebagai pemenang, sehingga terdapat $5! = 120$ susunan pemenang yang berbeda (ABCDE, ABCED, ABDCE, ..., EDCBA).
+  \item Apabila kita hanya mengambil 3 peserta saja, perhatikan bahwa terdapat 2 cara yang kita anggap berbeda dimana seharusnya merupakan cara yang sama. Contoh : (ABC)DE dan (ABC)ED merupakan cara yang sama, karena 3 peserta yang menang adalah A, B, dan C.
+  \item Dengan menggunakan prinsip \foreignTerm{Redundansi}, maka banyak susunan pemenang yang berbeda adalah $\frac{5!}{2!} = \frac{120}{2} = 60$ susunan berbeda.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Solusi Secara Umum}
+\begin{itemize}
+  \item Apabila terdapat N anak, dan kita mengambil semua anak sebagai pemenang, maka terdapat $N!$ susunan cara berbeda.
+  \item Tetapi apabila kita hanya mengambil R anak saja, maka akan terdapat $(N-R)!$ susunan yang kita anggap berbeda dimana seharusnya merupakan satu cara yang sama.
+  \item Secara umum dengan prinsip Redundansi, banyak susunan berbeda adalah $\frac{N!}{(N-R)!}$.
+  \item Rumus itulah yang kita kenal dengan istilah \newTerm{Permutasi}.
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Permutasi}
+\begin{itemize}
+  \item Apabila terdapat \foreignTerm{n objek} dan kita akan mengambil \foreignTerm{r objek} dari n objek tersebut dimana $r<n$ dan \foreignTerm{urutan pengambilan diperhitungkan}.
+  \item Banyak cara pengambilan yang berbeda adalah Permutasi r terhadap n : 
+  \item $P(n,r) = _{n}P_{r} = P^{n}_{r} = \frac{n!}{(n-r)!}$.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Algoritma next\_permutation}
+\begin{itemize}
+  \item Apabila kita ingin melakukan permutasi r terhadap n, maka kita dapat mencari semua kemungkinan yang ada dengan menggunakan \foreignTerm{Algoritma next\_permutation}.
+  \item Contoh : apabila kita memiliki array $A={1,2,3,4}$ dan kita ingin melakukan permutasi dengan mengambil 3 angka dari array tersebut, maka semua kemungkinan yang ada adalah $(1,2,3), (1,2,4), (1,3,2), ..., (4,3,2)$.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Prosedur dari next\_permutation}
+\begin{itemize}
+  \item Jika jumlah objek dalam permutasi kita belum sama dengan r
+  \begin{enumerate}
+    \item Iterasi dari 1 hingga n.
+    \item Apabila bilangan tersebut belum kita gunakan, maka kita dapat mencoba menggunakan bilangan tersebut.
+    \item Tetapi jika bilangan tersebut sudah kita gunakan, maka abaikan bilangan tersebut.
+  \end{enumerate}
+  \item Jika jumlah objek dalam permutasi kita sudah sama dengan r
+  \begin{enumerate}
+    \item Artinya sudah kita dapatkan 1 cara dari permutasi tersebut.
+    \item Kita bisa mencetaknya/menyimpannya dalam array.
+  \end{enumerate}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Implementasi dari next\_permutation}
+\begin{itemize}
+  \item Implementasi dari algoritma tersebut menggunakan teknik \newTerm{Recursive Backtracking}.
+  \item Kita dapat menyimpan objek dalam permutasi kita menggunakan struktur data \foreignTerm{stack}.
+  \item Kita dapat menyimpan angka yang belum/sudah kita gunakan dengan \foreignTerm{Array of boolean}.
+  \item Apabila kita menemukan angka yang belum kita gunakan, maka rekursi ke state selanjutnya dimana jumlah objek dalam stack kita telah bertambah 1.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Implementasi next\_permutation (lanj.)}
+\begin{codebox}
+\Procname{$\proc{next\_permutation}(current)$}
+\li \Comment Input berupa array $data$ berukuran n
+\li \Comment Sediakan array of boolean $used$ berukuran n
+\li \Comment Sediakan array $object$ berukuran n
+\li \Comment Inisialisasi array $used$ dengan $false$
+\li \If $current \neq r$
+    \Then
+\li   \For $i \gets 1$ \To $n$
+      \Do
+\li     \If $not$ $used[i]$
+        \Then
+\li       $used[i] \gets true$
+\li       $object[current] \gets data[i]$
+\li       $next\_permutation(current+1)$
+\li       $used[i] \gets false$
+        \End
+      \End
+    \End
+\li \Else
+    \Then
+\li   \Return $object$
+\end{codebox}
+\end{frame}
+
+\begin{frame}
+\frametitle{Kompleksitas dari next\_permutation}
+\begin{itemize}
+  \item Apabila kita tidak menyimpan hasil dari permutasi kita, maka diperlukan memori sebesar O(N) untuk array of boolean.
+  \item Banyak permutasi yang ada adalah $P^{n}_{r}$ dimana setiap permutasinya kita mengiterasi sebanyak N kali.
+  \item Sehingga, kompleksitas waktu dari algoritma ini adalah $O(N \times P^{n}_{r})$.
+  \item Apabila r = n, maka kompleksitas waktu dari algoritma ini adalah $O(N \times N!)$.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Permasalahan 2}
+\begin{itemize}
+  \item Permasalahan ini sejenis dengan contoh pada Redundansi.
+  \item Berapa banyak kata berbeda yang disusun dari huruf-huruf penyusun kata "MEGAGIGA"?
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Solusi Awal}
+\begin{itemize}
+  \item Terdapat 8 huruf, sehingga banyak kata yang dapat disusun adalah $8!$.
+  \item Terdapat 3 huruf 'G' sehingga terdapat 6 kata yang kita anggap berbeda ($G_{1}G_{2}G_{3}, G_{1}G_{3}G_{2}, ...,G_{3}G_{2}G_{1}$) dimana seharusnya keenam kata tersebut merupakan kata yang sama.
+  \item Dengan prinsip Redundansi, maka banyak kata yang dapat disusun mengingat kesamaan kata pada huruf G adalah $\frac{8!}{3!}$.
+  \item Perlu kita perhatikan pula bahwa terdapat 2 huruf A, sehingga dengan cara yang sama akan didapatkan banyak kata yang berbeda adalah $\frac{8!}{(3! \times 2!)}$.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Solusi Secara Umum}
+\begin{itemize}
+  \item Terdapat N huruf, sehingga banyak kata yang dapat kita susun adalah $N!$.
+  \item Apabila terdapat K huruf dimana setiap hurufnya memiliki $R_{i}$ huruf yang sama, maka dengan prinsip Redundansi banyak kata berbeda yang dapat disusun adalah $\frac{N!}{(R_{1}! \times R_{2}! \times R_{3}! \times ... \times R_{K}!)}$.
+  \item Rumus itulah yang kita kenal dengan \newTerm{Permutasi Elemen Berulang}.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Permutasi Elemen Berulang}
+\begin{itemize}
+  \item Apabila terdapat n objek dan terdapat k objek dimana setiap objeknya memiliki $r_{i}$ elemen yang berulang, maka banyaknya cara berbeda dalam menyusun objek tersebut adalah :
+  \item $P^{n}_{r_{1},r_{2},r_{3},...,r{k}} = \frac{n!}{(r_{1}! \times r_{2}! \times r_{3}! \times ... \times r_{k}!)}$ 
+  \item Syarat untuk menggunakan rumus tersebut adalah jika $r_{1} + r_{2} + r_{3} + ... + r_{k} \leq n$.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Permasalahan 3}
+\begin{itemize}
+  \item Terdapat 4 anak, sebut saja A, B, C, dan D.
+  \item Berapa banyak susunan posisi duduk yang berbeda apabila mereka duduk melingkar?
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Solusi Awal}
+\begin{itemize}
+  \item Banyak susunan posisi duduk yang berbeda apabila mereka duduk seperti biasa (tidak melingkar) adalah $4! = 120$.
+  \item Perhatikan bahwa posisi duduk ABCD, BCDA, CDAB, dan DABC merupakan susunan yang sama apabila mereka duduk melingkar, dikarenakan susunan tersebut merupakan rotasi dari susunan yang lainnya.
+  \item Dengan kata lain terdapat 4 cara yang kita anggap berbeda dimana seharusnya hanya dihitung sebagai 1 cara yang sama.
+  \item Dengan prinsip Redundansi, banyak susunan posisi duduk yang berbeda adalah $\frac{120}{4} = 30$ susunan berbeda.
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Solusi Secara Umum}
+\begin{itemize}
+  \item Banyak susunan posisi duduk yang berbeda apabila N anak seperti biasa (tidak melingkar) adalah $N!$.
+  \item Dengan analisa yang sama, akan terdapat N cara yang kita anggap berbeda (pada posisi duduk tidak melingkar) dimana seharusnya dihitung sebagai 1 cara yang sama (pada posisi duduk melingkar).
+  \item Dengan prinsip Redundansi, banyak susunan posisi duduk yang berbeda adalah $\frac{N!}{N} = (N-1)!$ susunan berbeda.
+  \item Rumus itulah yang kita kenal dengan istilah \newTerm{Permutasi Siklis}.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Permutasi Siklis}
+\begin{itemize}
+  \item Permutasi Siklis adalah Permutasi yang disusun melingkar.
+  \item Banyaknya susunan yang berbeda dari Permutasi siklis terhadap n objek adalah :
+  \item $P^{n}_{(siklis)} = (n-1)!$
+\end{itemize}
+\end{frame}
+
+\section{Kombinasi}
+\frame{\sectionpage}
+
+\begin{frame}
+\frametitle{Permasalahan 1}
+\begin{itemize}
+  \item Terdapat 5 siswa (sebut saja A, B, C, D, dan E) dimana akan dipilih 3 siswa untuk mengikuti kompetisi.
+  \item Berapa banyak susunan tim berbeda yang dapat dibentuk?
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Solusi Awal}
+\begin{itemize}
+  \item Solusi ini berbeda dengan Permutasi, karena susunan ABC dan BAC merupakan susunan yang sama, yaitu 1 tim terdiri dari A, B, dan C.
+  \item Apabila kita anggap bahwa mereka merupakan susunan yang berbeda, maka banyak susunan tim adalah $P^{5}_{2} = \frac{120}{2} = 60$.
+  \item Untuk setiap susunan yang terdiri dari anggota yang sama akan terhitung 6 susunan berbeda dimana seharusnya hanya dihitung sebagai 1 susunan yang sama.
+  \item Contoh : ABC, ACB, BAC, BCA, CAB, CBA merupakan 1 susunan yang sama.
+  \item Oleh karena itu dengan prinsip Redundansi, banyaknya susunan tim yang berbeda adalah $\frac{60}{6} = 10$ susunan berbeda.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Solusi Secara Umum}
+\begin{itemize}
+  \item Apabila terdapat N siswa dan akan kita ambil R siswa untuk dibentuk sebagai 1 tim, maka banyak susunan berbeda adalah sebagai berikut :
+  \item Apabila kita anggap bahwa mereka merupakan susunan yang berbeda, maka banyak susunan tim adalah $P^{N}_{R}$.
+  \item Untuk setiap susunan yang terdiri dari anggota yang sama akan terhitung R! susunan berbeda dimana seharusnya hanya dihitung sebagai 1 susunan yang sama.
+  \item Oleh karena itu dengan prinsip Redundansi, banyaknya susunan tim yang berbeda adalah $\frac{P^{N}_{R}}{R!} = \frac{N!}{(N-R)! \times R!}$ susunan berbeda.
+  \item Rumus itulah yang kita kenal dengan istilah \newTerm{Kombinasi}.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Kombinasi}
+\begin{itemize}
+  \item Apabila terdapat \foreignTerm{n objek} dan kita akan mengambil \foreignTerm{r objek} dari n objek tersebut dimana $r<n$ dan \foreignTerm{urutan pengambilan tidak diperhitungkan}.
+  \item Banyak cara pengambilan yang berbeda adalah Kombinasi r terhadap n : 
+  \item $C(n,r) = _{n}C_{r} = C^{n}_{r} = \frac{n!}{(n-r)! \times r!}$.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Permasalahan 2}
+\begin{itemize}
+  \item Pak Dengklek ingin membeli kue pada toko kue, dimana toko tersebut menjual 3 jenis kue, yaitu rasa coklat, strawberry, dan kopi.
+  \item Apabila Pak Dengklek ingin membeli 4 buah kue, maka berapa banyak susunan kue berbeda yang Pak Dengklek dapat beli?
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Analisa Permasalahan}
+\begin{itemize}
+  \item Dapat kita lihat bahwa jika kita membeli coklat-strawberry dengan strawberry-coklat akan menghasilkan susunan yang sama, dengan kata lain permasalahan ini merupakan permasalahan \foreignTerm{Kombinasi}.
+  \item Akan tetapi, kita dapat membeli suatu jenis kue beberapa kali atau bahkan tidak membeli sama sekali.
+  \item Apabila kita sederhanakan permasalahan tersebut dalam model matematika, maka permasalahan tersebut menjadi :
+  \item Banyaknya kemungkinan nilai A, B, dan C dimana $A + B + C = 4$ dan $A,B,C \geq 0$.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Solusi}
+\begin{itemize}
+  \item Kita dapat membagi 4 kue tersebut menjadi 3 bagian, dimana bagian kiri merupakan A, bagian tengah merupakan B, dan bagian kanan merupakan C.
+  \item Contoh : $(o|o|oo)$ melambangkan 1 kue A, 1 kue B, dan 2 kue C.
+  \item Contoh Lain : $(ooo|o|)$ melambangkan 3 kue A, 1 kue B, dan 0 kue C.
+  \item Dengan kata lain, semua susunan yang mungkin adalah $(oooo||)$, $(ooo|o|)$, $(oo|oo|)$, ..., $(||oooo)$ yang tidak lain merupakan $C^{6}_{2} = \frac{6!}{4! \times 2!} = 15$ susunan berbeda.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Solusi secara umum}
+\begin{itemize}
+  \item Berapa banyak susunan nilai berbeda dari $X_{1}, X_{2}, X_{3}, ..., X_{n}$ dimana $X_{1} + X_{2} + X_{3} + ... + X_{n} = r$.
+  \item Untuk membagi n kue tersebut menjadi r bagian, maka akan dibutuhkan r-1 buah pembatas, sehingga akan terdapat n+r-1 buah objek, dimana kita akan memilih n-1 objek.
+  \item Dengan kata lain, banyaknya susunan nilai yang berbeda adalah $C^{n+r-1}_{n-1}$.
+  \item Rumus itulah yang kita kenal dengan istilah \newTerm{Kombinasi dengan Pengulangan}.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Kombinasi dengan Pengulangan}
+\begin{itemize}
+  \item Terdapat n jenis objek dimana kita akan mengambil r objek, dan \foreignTerm{tiap objeknya dapat tidak diambil / diambil lebih dari 1 kali}.
+  \item Banyak cara berbeda yang memenuhi syarat tersebut adalah sebagai berikut :
+  \item $C^{n+r-1}_{n-1} = C^{n+r-1}_{r} = \frac{(n+r-1)!}{(n-1)! \times r!}$.
+  \item Keterangan : dikarenakan setiap objek dapat diambil lebih dari 1 kali, maka r tidak harus kurang dari atau sama dengan n.
+\end{itemize}
+\end{frame}
+
+\section{Segitiga Pascal}
+\frame{\sectionpage}
+
+\begin{frame}
+\frametitle{Segitiga Pascal}
+\begin{itemize}
+  \item Segitiga Pascal merupakan susunan dari Koefisien Binomial dalam bentuk segitiga.
+  \item Nilai dari baris ke-n suku ke-r adalah :
+  \item $A_{ij} = C^{n}_{r}$.
+  \item Contoh Segitiga Pascal :
+  \begin{itemize} 
+    \item Baris ke-1 : 1
+    \item Baris ke-2 : 1 1
+    \item Baris ke-3 : 1 2 1
+    \item Baris ke-4 : 1 3 3 1
+    \item Baris ke-5 : 1 4 6 4 1
+  \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Analisa}
+\begin{itemize}
+  \item Diberikan suatu himpunan semesta $S = {X_{1},X_{2},...,X_{n}}$. Berapa banyak cara berbeda apabila kita mengambil r objek dari S?
+  \item Kita bagi 2 kasus, yaitu :
+  \begin{itemize}
+    \item Kasus 1 : Apabila kita menggunakan $X_{n}$, sehingga kita memilih r-1 objek dari himpunan $A = {X_{1},X_{2},X_{3},...,X_{n-1}}$, 1 objek sisanya merupakan $X_{n}$. Banyak cara berbeda dari kasus ini adalah $C^{n-1}_{r-1}$.
+    \item Kasus 2 : Apabila kita tidak menggunakan $X_{n}$, sehingga kita memilih r objek dari himpunan $A = {X_{1},X_{2},X_{3},...,X_{n}}$, 1 objek sisanya merupakan $X_{n}$. Banyak cara berbeda dari kasus ini adalah $C^{n-1}_{r}$.
+  \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Analisa (lanj.)}
+\begin{itemize}
+  \item Pada dasarnya apabila kita menggunakan rumus kombinasi, maka kita akan memilih r objek dari n objek, sehingga banyak cara berbeda secara keseluruhan adalah $C^{n}_{r}$.
+  \item Dengan aturan penjumlahan dari kasus 1 dan kasus 2, kita dapatkan $C^{n}_{r} = C^{n-1}_{r-1} + C^{n-1}_{r}$.
+  \item Dengan kata lain, dalam koefisien binomial pada segitiga pascal, akan berlaku :
+  \item $A_{(n)(r)} = A_{(n-1)(r-1)} + A_{(n-1)(r)}$.
+  \item Persamaan itulah yang sering kita gunakan dalam membuat segitiga pascal.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Analisa (lanj.)}
+\begin{itemize}
+  \item Dalam dunia pemrograman, persamaan tersebut dapat kita gunakan untuk pre-komputasi semua nilai dari $C^{n}_{r}$ yang nantinya akan kita butuhkan.
+  \item Untuk mencari nilai dari $C^{n}_{r}$, karena kita perlu mencari nilai faktorial dari n, sehingga kompleksitasinya O(N).
+  \item Apabila kita gunakan iterasi untuk mencari nilai dari $C^{n}_{r}$ untuk pre-komputasi semua nilai kombinasi yang mungkin (dimana kurang lebihnya akan ada $N^{2}$ perhitungan), kompleksitasnya akan menjadi $O(N^{3})$.
+  \item Dengan menggunakan persamaan $A_{(n)(r)} = A_{(n-1)(r-1)} + A_{(n-1)(r)}$ dimana kompleksitasnya adalah O(1), maka secara keseluruhan kompleksitasnya akan menjadi $O(N^{2})$ menjadikan solusi ini jauh lebih cepat.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Implementasi Segitiga Pascal}
+\begin{enumerate}
+  \item Kita gunakan konsep \newTerm{Dynamic Programming} dengan implementasi \newTerm{Bottom-Up}
+  \item Untuk menyimpan semua nilai dari kombinasi tersebut akan dibutuhkan array 2-dimensi dimana A[n][r] menyimpan nilai kombinasi r terhadap n.
+  \item Nilai dari A[0][0] adalah 1.
+  \item Iterasi i dari 1 hingga n
+  \begin{enumerate}
+    \item Iterasi j dari 0 hingga n
+    \begin{enumerate}
+      \item Jika $j = 0$ atau $j = n$, maka $A[i][j] = 1$
+      \item Selain itu, $A[i][j] = A[i-1][j-1] + A[i-1][j]$
+    \end{enumerate}
+  \end{enumerate}
+\end{enumerate}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Implementasi Segitiga Pascal (lanj.)}
+\begin{codebox}
+\Procname{$\proc{segitiga\_pascal}(baris)$}
+\li \Comment Sediakan array 2-dimensi $C$ berukuran $baris \times baris$
+\li \Comment Perhatikan bahwa index array $C$ pada contoh ini dimulai dari 0.
+\li $C[0][0] \gets 1$
+\li \For $i \gets 1$ \To $baris$
+    \Do
+\li   \For $j \gets 0$ \To $baris$
+      \Do
+\li     \If $j = 0$ $or$ $j = baris$
+        \Then
+\li       $C[i][j] \gets 1$
+\li     \Else
+\li       $C[n][r] = C[n-1][r-1] + C[n-1][r]$
+        \End
+      \End
+    \End
+\end{codebox}
+\end{frame}
+
+\begin{frame}
+\frametitle{Penggunaan Segitiga Pascal}
+\begin{itemize}
+  \item Dalam bidang matematika, segitiga pascal merupakan kumpulan dari koefisien binomial yang dapat digunakan dalam Binomial Newton $(x+y)^{n} = \sum\limits_{r=0}^{n} a_{r} x^{n-r} y^{r}$ dimana $a_{r}$ merupakan bilangan dalam segitiga pascal baris ke-n suku ke-r.
+  \item Dalam bidang programming, algoritma dari segitiga pascal dapat digunakan untuk mencari semua nilai dari kombinasi r terhadap n dengan kompleksitas waktu $O(N^{2})$ dan memori yang dibutuhkan adalah $O(N^{2})$.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Penutup}
+\begin{itemize}
+  \item Penutup sementara krn bingung mau isi apa...
+  \item Materi ini berisi mengenai Kombinatorik Dasar dan implementasinya yang umum digunakan dalam pemrograman kompetitif.
+  \item Selamat berlatih dan semoga sukses!
+\end{itemize}
+\end{frame}
+
+\end{document}
