@@ -7,175 +7,342 @@
 \begin{document}
 
 \begin{frame}
-	\titlepage
+  \titlepage
 \end{frame}
 
 \begin{frame}
-	\frametitle{Pendahuluan}
-	Melalui dokumen ini, kalian akan:
-	\begin{itemize}
-		\item Memahami konsep \foreignTerm{greedy}
-		\item Menyelesaikan beberapa contoh persoalan \foreignTerm{greedy} sederhana
-	\end{itemize}
-\end{frame}
-	
-\begin{frame}
-	\frametitle{Greedy}
-	Suatu persoalan dapat diselesaikan dengan teknik \foreignTerm{greedy} jika persoalan tersebut memiliki memiliki dua properti berikut:
-	\begin{itemize}
-
-		\item Solusi optimal dari persoalan dapat ditentukan dari solusi optimal sub-persoalan tersebut
-		\item Pada setiap sub-persoalan, ada suatu langkah yang bisa dilakukan yang mana langkah tersebut menghasilkan solusi maksimum pada sub-persoalan tersebut. Langkah ini disebut juga \foreignTerm{greedy choice}. 
-	\end{itemize}
+  \frametitle{Pendahuluan}
+  Melalui dokumen ini, kalian akan:
+  \begin{itemize}
+    \item Memahami konsep \fGreedy.
+    \item Menyelesaikan beberapa contoh persoalan \fGreedy sederhana.
+  \end{itemize}
 \end{frame}
 
 \begin{frame}
-	\frametitle{Contoh Soal: Activity Selection}
-	\begin{itemize}
-		\item Diberikan $N$ buah aktivitas. Aktivitas ke-$i = <a_i.start, a_i.end>$,  dimulai pada waktu $a_i.start$ dan berakhir pada waktu $a_i.end$
-		\item Pada setiap satuan waktu, Anda dapat mengikuti paling banyak satu aktivitas.
-		\item Anda ingin mengatur jadwal sedemikian sehingga Anda bisa ikut aktivitas sebanyak mungkin.
-		\item Sebagai contoh, diberikan 4 buah aktivitas: $[ <1, 3> , <2, 6>, <4, 7>,  <8, 9> ]$. Anda dapat hadir di 3 aktivitas berbeda yang tidak saling tindih, yaitu $<1, 3>, <4, 7>, dan <8, 9>$. 
-	\end{itemize}
-\end{frame}
-
-
-
-\begin{frame}
-	\frametitle{Contoh Soal: Activity Selection (solusi)}
-	Solusi dari persoalan ini bisa diperoleh dari solusi sub-persoalan yang lebih kecil:
-	
-	\begin{itemize}
-		\item Kita definisikan $f(t)$ sebagai jumlah aktivitas terbanyak yang dapat diikuti dari waktu ke-0 sampai waktu ke-$t$.
-		\item Jika kita hendak memilih suatu aktivitas $<t' , t>$, maka kita dapat menghitung nilai $f(t) = 1 + f(t' - 1)$ 
-		\item Artinya, untuk dapat menemukan solusi optimal pada $f(t)$, kita perlu menentukan solusi optimal untuk waktu-waktu yang lebih awal.
-		\item Solusi akhir dari persoalan ini adalah $f(max(e))$, yang mana $max(e)$ adalah nilai $a_i.end$ terbesar dari semua pilihan aktivitas yang ada.
-	\end{itemize}
+  \frametitle{Greedy}
+  \begin{center}
+    \fGreedy merupakan sebuah teknik dalam strategi penyelesaian masalah, bukan suatu algoritma khusus.
+  \end{center}
 \end{frame}
 
 \begin{frame}
-	\frametitle{Contoh Soal: Activity Selection (solusi)}
-		
-	\begin{itemize}
-		\item Asumsikan kita sudah menemukan solusi untuk $f(t)$. 
-		\item Kita memiliki beberapa pilihan aktivitas yang dapat dipilih, yang mana waktu mulai aktivitas tersebut harus lebih besar dari $t$.
-		\item  \foreignTerm{Greedy choice} untuk permasalah ini adalah dengan memilih aktivitas ke-$k$ yang mana aktivitas tersebut memiliki waktu selesai yang paling cepat. 
-		\item Kita bisa hitung solusi dari sub-problem yang lebih besar yaitu $f(a_k.end) = f(t) + 1$. Kita bisa perbarui nilai $t$ menjadi $a_k.end$.
-		\item Jika pada waktu $t$ sudah tidak ada lagi aktivitas yang dapat dipilih, maka nilai $f(t)$ merupakan solusi akhir.
-	\end{itemize}
+  \frametitle{Konsep Greedy}
+  Suatu persoalan dapat diselesaikan dengan teknik \fGreedy jika persoalan tersebut memiliki memiliki properti berikut:
+  \begin{itemize}
+    \item Solusi optimal dari persoalan dapat ditentukan dari solusi optimal sub-persoalan tersebut.
+    \item Pada setiap sub-persoalan, ada suatu langkah yang bisa dilakukan yang mana langkah tersebut menghasilkan solusi optimal pada sub-persoalan tersebut. Langkah ini disebut juga \fGreedyChoice.
+  \end{itemize}
 \end{frame}
 
 \begin{frame}
-	\frametitle{Contoh Soal: Activity Selection (solusi)}
-	Mencari \foreignTerm{greedy choice} yang tepat
-	\\~
-	\\
-	Pada paparan sebelumnya, kita memilih aktivitas yang memiliki waktu selesai paling cepat. Apakah ada pilihan  \foreignTerm{greedy choice} yang lainnya? Perhatikan pilihan berikut:
-	\begin{itemize}
-		\item Memilih aktivitas dengan waktu mulai paling awal
-		\item Memilih aktivitas dengan durasi paling singkat
-		\item Memilih aktivitas dengan waktu akhir paling awal
-	\end{itemize}
+  \frametitle{Contoh Soal: Activity Selection}
+  \begin{itemize}
+    \item Diberikan $N$ buah aktivitas.
+    \item Aktivitas ke-$i$ dinyatakan dalam $<a_i.start, a_i.end>$.
+    \item Artinya, aktivitas ini dimulai pada waktu $a_i.start$ dan berakhir pada waktu $a_i.end$.
+    \item Pada setiap satuan waktu, Anda dapat mengikuti paling banyak satu aktivitas.
+    \item Anda ingin mengatur jadwal sedemikian sehingga Anda bisa ikut aktivitas sebanyak mungkin.
+  \end{itemize}
 \end{frame}
 
 \begin{frame}
-	\frametitle{Contoh Soal: Activity Selection (solusi)}
-	Memilih aktivitas dengan waktu mulai paling awal
-	\begin{itemize}
-		\item Pilihan ini tidak menghasilkan solusi optimal.
-		\item Bisa jadi ada aktivitas  yang mulai lebih awal, namun memiliki durasi yang sangat panjang sehingga menyita waktu
-		\item Contoh kasus: $[ <1,5>, <2, 3> , <4, 5> ]$. Aktivitas paling singkat ialah $<1, 5>$. Namun dengan memilih aktivitas tersebut, kita kehilangan kesempatan untuk mengambil aktivitas $<2, 3> dan <4, 5> $
-	\end{itemize}
+  \frametitle{Contoh Activity Selection}
+  \begin{itemize}
+    \item Sebagai contoh, diberikan 4 buah aktivitas: $[ <1, 3> , <2, 6>, <5, 7>,  <8, 9> ]$. \item Anda dapat hadir di 3 aktivitas berbeda yang tidak saling tindih, yaitu $<1, 3>, <5, 7>, dan <8, 9>$.
+  \end{itemize}
+
+  \begin{figure}
+    \includegraphics[width=6.5cm]{asset/activity-selection.pdf}
+  \end{figure}
 \end{frame}
 
 \begin{frame}
-	\frametitle{Contoh Soal: Activity Selection (solusi)}
-	Memilih aktivitas dengan durasi paling singkat
-	\begin{itemize}
-		\item Pilihan ini juga tidak menghasilkan solusi optimal.
-		\item Bisa jadi aktivitas dengan durasi paling singkat ini memotong dua aktivitas lain.
-		\item Contoh kasus: $[ <1,10>, <9, 11> , <11, 20> ]$. Aktivitas paling singkat ialah $<9, 11>$. Namun dengan memilih aktivitas tersebut, kita kehilangan kesempatan untuk mengambil aktivitas $<1, 10> dan <11, 20> $
-	\end{itemize}
+  \frametitle{Solusi Activity Selection}
+  \begin{itemize}
+    \item Misalkan kegiatan pertama yang kita ikuti adalah kegiatan ke-$x$.
+    \item Kegiatan selanjutnya yang diikuti haruslah memiliki waktu awal $\geq a_x.end$.
+    \item Lebih jauh lagi, ternyata kita mendapat persoalan yang serupa, hanya saja ukurannya lebih kecil.
+    \item Dengan kata lain, kita memperoleh sub-persoalan.
+  \end{itemize}
+
+  \begin{figure}
+    \includegraphics[width=6.5cm]{asset/activity-selection-subproblem.pdf}
+  \end{figure}
+\end{frame}
+
+%\begin{frame}
+%  \frametitle{Solusi Activity Selection (lanj.)}
+%  Solusi dari persoalan ini bisa diperoleh dari solusi sub-persoalan yang lebih kecil:
+%
+%  \begin{itemize}
+%    \item Kita definisikan $f(t)$ sebagai jumlah aktivitas terbanyak yang dapat diikuti dari waktu ke-1 sampai waktu ke-$t$.
+%    \item Jika kita memilih suatu aktivitas $<t' , t>$, maka nilai $f(t) = 1 + f(t' - 1)$
+%  \end{itemize}
+%\end{frame}
+%
+%\begin{frame}
+%  \frametitle{Solusi Activity Selection (lanj.)}
+%  \begin{itemize}
+%    \item Artinya, untuk dapat menemukan solusi optimal pada $f(t)$, kita perlu menentukan solusi optimal untuk waktu-waktu yang lebih awal.
+%    \item Solusi akhir dari persoalan ini adalah $f(max_e)$, yang mana $max_e$ adalah nilai $a_i.end$ terbesar dari semua pilihan aktivitas yang ada.
+%    \item Kita memiliki beberapa pilihan aktivitas yang dapat dipilih, yang mana waktu mulai aktivitas tersebut harus lebih besar dari $t$.
+%    \item  \foreignTerm{Greedy choice} untuk permasalah ini adalah dengan memilih aktivitas ke-$k$ yang mana aktivitas tersebut memiliki waktu selesai yang paling cepat.
+%    \item Kita bisa hitung solusi dari sub-problem yang lebih besar yaitu $f(a_k.end) = f(t) + 1$. Kita bisa perbarui nilai $t$ menjadi $a_k.end$.
+%    \item Jika pada waktu $t$ sudah tidak ada lagi aktivitas yang dapat dipilih, maka nilai $f(t)$ merupakan solusi akhir.
+%  \end{itemize}
+%\end{frame}
+
+\begin{frame}
+  \frametitle{Solusi Activity Selection (lanj.)}
+  Pertanyaan: aktivitas mana yg akan pertama kali dipilih?\newline
+
+  Perhatikan pilihan berikut:
+  \begin{itemize}
+    \item Memilih aktivitas dengan waktu mulai paling awal.
+    \item Memilih aktivitas dengan durasi paling singkat.
+    \item Memilih aktivitas dengan waktu akhir paling awal.
+  \end{itemize}
 \end{frame}
 
 \begin{frame}
-	\frametitle{Contoh Soal: Activity Selection (solusi)}
-	Memilih aktivitas dengan waktu akhir paling awal
-	\begin{itemize}
-		\item Pilihan ini akan menghasilkan solusi optimal.
-		\item Dengan memilih aktivitas yang selesai lebih awal, kita mempunyai sisa waktu lebih banyak, untuk memilih aktivitas lainnya.
-	\end{itemize}
+  \frametitle{Memilih Aktivitas Pertama}
+  Memilih aktivitas dengan waktu mulai paling awal:
+  \begin{itemize}
+    \item Bisa jadi ada aktivitas yang mulai lebih awal, tetapi memiliki durasi yang sangat panjang sehingga menyita waktu.
+    \item Memilih aktivitas yang mulai paling awal \emp{belum pasti} optimal.
+  \end{itemize}
+
+  \begin{figure}
+    \includegraphics[width=9 cm]{asset/activity-selection-choice-1.pdf}
+  \end{figure}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Memilih Aktivitas Pertama (lanj.)}
+  Memilih aktivitas dengan durasi paling singkat:
+  \begin{itemize}
+    \item Bisa jadi aktivitas dengan durasi paling singkat ini memotong dua aktivitas lain yang sebenarnya dapat kita ikuti.
+    \item Pilihan ini juga \emp{belum pasti} menghasilkan solusi optimal.
+  \end{itemize}
+
+  \begin{figure}
+    \includegraphics[width=9 cm]{asset/activity-selection-choice-2.pdf}
+  \end{figure}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Memilih Aktivitas Pertama (lanj.)}
+  Memilih aktivitas dengan waktu akhir paling awal:
+  \begin{itemize}
+    \item Dengan memilih aktivitas yang selesai lebih awal, kita mempunyai sisa waktu lebih banyak untuk aktivitas lainnya.
+    \item Tanpa peduli kapan aktivitas ini mulai atau berapa durasinya, memilih yang selesai lebih awal \emp{pasti menguntungkan}.
+    \item Pilihan ini adalah merupakan \fGreedyChoice, yang \emp{selalu} menghasilkan solusi optimal.
+  \end{itemize}
+
+  \begin{figure}
+    \includegraphics[width=9 cm]{asset/activity-selection-choice-3.pdf}
+  \end{figure}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Penyelesaian Activity Selection}
+  \begin{itemize}
+    \item Kini kita dapat menentukan aktivitas yang akan diikuti pertama kali.
+    \item Selanjutnya kita mendapatkan sub-persoalan, yang ternyata dapat diselesaikan dengan cara serupa!
+  \end{itemize}
+  \begin{figure}
+    \includegraphics[width=6.5cm]{asset/activity-selection-subproblem.pdf}
+  \end{figure}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Contoh Eksekusi Activity Selection}
+  Berikut contoh cara pemilihan aktivitas yang optimal.
+  \begin{figure}
+    \includegraphics[width=10cm]{asset/activity-selection-algo-1.pdf}
+  \end{figure}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Contoh Eksekusi Activity Selection (lanj.)}
+  Dimulai dari memilih aktivitas pertama.
+  \begin{figure}
+    \includegraphics[width=10cm]{asset/activity-selection-algo-2.pdf}
+  \end{figure}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Contoh Eksekusi Activity Selection (lanj.)}
+  Selanjutnya kita mendapatkan sub-persoalan.
+
+  Beberapa aktivitas kini tidak dapat dipilih lagi.
+  \begin{figure}
+    \includegraphics[width=10cm]{asset/activity-selection-algo-3.pdf}
+  \end{figure}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Contoh Eksekusi Activity Selection (lanj.)}
+  Masalah yang kita hadapi serupa dengan masalah sebelumnya.
+
+  Kita tinggal memilih aktivitas yang berakhir paling awal.
+  \begin{figure}
+    \includegraphics[width=10cm]{asset/activity-selection-algo-4.pdf}
+  \end{figure}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Contoh Eksekusi Activity Selection (lanj.)}
+  Kembali kita mendapatkan sub-persoalan....
+  \begin{figure}
+    \includegraphics[width=10cm]{asset/activity-selection-algo-5.pdf}
+  \end{figure}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Contoh Eksekusi Activity Selection (lanj.)}
+  Pilih lagi aktivitas yang berakhir paling awal.
+  \begin{figure}
+    \includegraphics[width=10cm]{asset/activity-selection-algo-6.pdf}
+  \end{figure}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Contoh Eksekusi Activity Selection (lanj.)}
+  Didapatkan lagi sub-persoalan....
+  \begin{figure}
+    \includegraphics[width=10cm]{asset/activity-selection-algo-7.pdf}
+  \end{figure}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Contoh Eksekusi Activity Selection (lanj.)}
+  Pilih lagi aktivitas yang berakhir paling awal.
+  \begin{figure}
+    \includegraphics[width=10cm]{asset/activity-selection-algo-8.pdf}
+  \end{figure}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Contoh Eksekusi Activity Selection (lanj.)}
+  Selesai!
+
+  Tidak ada cara lain yang memberikan hasil lebih optimal.
+  \begin{figure}
+    \includegraphics[width=10cm]{asset/activity-selection-algo-9.pdf}
+  \end{figure}
 \end{frame}
 
 \begin{frame} [fragile]
-	\frametitle{Contoh Soal: Activity Selection (Pseudocode)}
-	\begin{lstlisting}
-	f = 0
-	t = -1
-	sort(a)  // sort menaik berdasarkan a[i].end
-	for i = 1 to N
-		if (t >= a[i].start)
-			continue
-		f = f + 1
-		t = a[i].end
-	return f
-	\end{lstlisting}
-	Nilai $f$ bisa disimpan dengan satu variabel saja, karena ketika kita sudah memiliki nilai $f(a_i.end)$, nilai $f(t)$ sudah tidak diperlukan lagi.
-\end{frame}
-
-
-\begin{frame}
-	\frametitle{permasalahan pada algoritma \foreignTerm{greedy}}
-	Perhatikan contoh soal berikut:
-	\begin{itemize}
-		\item Anda ingin menukar uang $\$12$ dengan pecahan koin $\$5$, $\$2$, dan $\$1$.
-		\item Anda ingin menukar dengan jumlah koin sekecil mungkin.
-	\end{itemize}
-	\textit{Greedy choice} yang bisa dilakukan adalah dengan memilih pecahan koin dengan nominal terbesar yang mungkin untuk tiap sub-persoalan. Pertama-tama kita pilih pecahan $\$5$, sehingga tersisa $\$7$ lagi yang harus dipecah. Selanjutnya kita pilih $\$5$ lagi dan menyisakan $\$2$ untuk dipecah. Akhirnya, kita pilih $\$2$ sebagai pecahan terakhir. Solusi dari kasus ini adalah dengan menggunakan 3 keping koin.
+  \frametitle{Implementasi Solusi Activity Selection}
+  \begin{codebox}
+    \Procname{$\proc{solveActivitySelection}(a[], N)$}
+    \li \Comment Urutkan $a$ secara menaik berdasarkan $a[i].end$
+    \li $\proc{sortByEndingTime}(a, N)$
+    \zi
+    \li $selectedCount \gets 0$
+    \li $startTime \gets 1$
+    \li \For $i \gets 1$ \To $N$ \Do
+    \li   \If $(a[i].start >= startTime)$ \Then
+    \li     $selectedCount \gets selectedCount + 1$
+    \li     $startTime \gets a[i].end + 1$
+          \End
+        \End
+    \li \Return $selectedCount$
+  \end{codebox}
 \end{frame}
 
 \begin{frame}
-	\frametitle{permasalahan pada algoritma \foreignTerm{greedy}}
-	\begin{itemize}
-		\item Dengan soal yang sama, bagaimana jika pecahan koin yang tersedia bernilai $\$5$, $\$4$, dan $\$1$?
-		\item Dengan algoritma \foreignTerm{greedy}, kita akan menukar  $\$12$ dengan pecahan $\$5$, $\$5$, $\$1$, dan $\$1$. Padahal ada solusi yang lebih baik, yaitu menggunakan 3 keping koin pecahan $\$4$.
-		\item Pada kasus tersebut, \textit{greedy choice} yang tidak selalu dapat menghasilkan solusi optimal. Permasalahan ini tidak dapat diselesaikan oleh algoritma \foreignTerm{greedy}.
-	\end{itemize}
+  \frametitle{Analisis Kompleksitas}
+  \begin{itemize}
+    \item Mengurutkan aktivitas berdasarkan waktu berakhirnya dapat dilakukan dalam $O(N \log{N})$, jika \fQuickSort digunakan.
+    \item Setelah diurutkan, pemilihan aktivitas dapat dilakukan dalam $O(N)$.
+    \item Kompleksitas akhirnya $O(N \log{N})$.
+    \item Cepat dan efisien!
+  \end{itemize}
 \end{frame}
 
 \begin{frame}
-	\frametitle{permasalahan pada algoritma \foreignTerm{greedy}}
-	\begin{itemize}
-		\item Pembuktian kebenaran algoritma \foreignTerm{greedy} tidaklah mudah.
-		\item Biasanya akan ada beberapa pilihan  \foreignTerm{greedy choice} yang ada, yang mana tidak semuanya bisa menghasilkan solusi optimal.
-		\item Untuk contoh soal  \foreignTerm{activity selection}, ada beberapa pilihan  \foreignTerm{greedy choice} antara lain:
-		\begin{itemize}
-			\item memilih aktivitas dengan waktu mulai paling awal
-			\item memilih aktivitas dengan waktu selesai paling awal
-			\item memilih aktivitas dengan durasi paling cepat
-		\end{itemize}
-		\item Namun, hanya pilihan nomor 2 yang menghasilkan solusi optimal.
-	\end{itemize}
+  \frametitle{Selingan}
+  \begin{itemize}
+    \item \fGreedyChoice memungkinkan kita untuk memilih suatu keputusan yang dijamin akan menghasilkan solusi optimal, tanpa peduli ke depannya seperti apa.
+    \item Hal ini memberi kesan "rakus", yaitu hanya mementingkan masalah yang sedang dihadapi dan selalu mengambil keputusan terbaik saat ini.
+    \item Inilah sebabnya teknik ini dinamakan \fGreedy.
+  \end{itemize}
 \end{frame}
 
 \begin{frame}
-	\frametitle{permasalahan pada algoritma \foreignTerm{greedy}}
-	\begin{itemize}
-		\item Ketika menemukan suatu \foreignTerm{greedy choice}, sangat dianjurkan untuk menguji kebenaran dari pilihan tersebut sebelum diimplementasikan.
-		\item Pengujian yang dapat dilakukan adalah dengan mencoba membuat contoh-contoh kasus yang mungkin dapat menggagalkan \foreignTerm{greedy choice} tersebut. Teknik ini biasa disebut \foreignTerm{proof by counter-example}.
-		\item Jika ditemukan satu saja contoh kasus yang mana \foreignTerm{greedy choice} yang diajukan tidak menghasilkan solusi optimal, maka \foreignTerm{greedy choice} tersebut dinyatakan salah.
-	\end{itemize}
+  \frametitle{Permasalahan pada Algoritma \fGreedy}
+  Perhatikan contoh soal berikut:
+  \begin{itemize}
+    \item Anda ingin menukar uang $\$12$ dengan pecahan koin $\$5$, $\$2$, dan $\$1$.
+    \item Anda ingin menukar dengan jumlah koin sekecil mungkin.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Permasalahan pada Algoritma \fGreedy}
+  \begin{itemize}
+    \item \fGreedyChoice yang terpikirkan adalah dengan memilih pecahan koin dengan nominal terbesar yang mungkin untuk tiap sub-persoalan.
+    \item Pertama kita pilih pecahan $\$5$, sehingga tersisa $\$7$ lagi yang harus dipecah.
+    \item Selanjutnya kita pilih $\$5$ lagi dan menyisakan $\$2$ untuk dipecah.
+    \item Akhirnya, kita pilih $\$2$ sebagai pecahan terakhir.
+    \item Solusi dari kasus ini adalah dengan menggunakan 3 keping koin.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Permasalahan pada Algoritma \fGreedy (lanj.)}
+  \begin{center}
+    Dengan soal yang sama, bagaimana jika pecahan koin yang tersedia bernilai $\$5$, $\$4$, dan $\$1$?
+  \end{center}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Permasalahan pada Algoritma \fGreedy (lanj.)}
+  \begin{itemize}
+    \item Dengan algoritma \fGreedy, kita akan menukar  $\$12$ dengan pecahan $\$5$, $\$5$, $\$1$, dan $\$1$.
+    \item Padahal ada solusi yang lebih baik, yaitu menggunakan 3 keping koin pecahan $\$4$.
+    \item Pada kasus tersebut, \fGreedyChoice yang tidak selalu dapat menghasilkan solusi optimal.
+    \item Permasalahan ini tidak dapat diselesaikan oleh algoritma \fGreedy.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Permasalahan pada Algoritma \fGreedy (lanj.)}
+  \begin{itemize}
+    \item Pembuktian kebenaran algoritma \fGreedy tidaklah mudah.
+    \item Biasanya akan ada beberapa pilihan  \fGreedyChoice yang ada, yang mana tidak semuanya bisa menghasilkan solusi optimal.
+    \item Ketika menemukan suatu \fGreedyChoice, sangat dianjurkan untuk menguji kebenaran dari pilihan tersebut sebelum diimplementasikan.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Permasalahan pada Algoritma \fGreedy (lanj.)}
+  \begin{itemize}
+    \item Pengujian yang dapat dilakukan adalah dengan mencoba membuat contoh kasus yang dapat menggagalkan \fGreedyChoice tersebut.
+    \item Teknik ini biasa disebut \foreignTerm{proof by counter-example}.
+    \item Jika ditemukan satu saja contoh kasus yang mana \fGreedyChoice yang diajukan tidak menghasilkan solusi optimal, maka \fGreedyChoice tersebut dinyatakan salah.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Saran}
+  \begin{itemize}
+    \item Algoritma \fGreedy terkadang mudah untuk dipikirkan dan mudah untuk diimplementasikan, namun sulit untuk dibuktikan kebenarannya.
+    \item Pembuktian kebenaran algoritma \fGreedy bisa jadi membutuhkan pembuktian matematis yang kompleks dan memakan waktu.
+    \item Pada suasana kompetisi, intuisi dan pengalaman sangat membantu untuk menyelesaikan soal bertipe \fGreedy
+    \item Berhati-hati dan telili saat mengerjakan soal bertipe \fGreedy. Perhatikan setiap detil yang ada, karena  bisa berakibat fatal.
+  \end{itemize}
 \end{frame}
 
 \begin{frame}
 \frametitle{Penutup}
-\begin{itemize}
-		\item Algoritma \textit{greedy} terkadang mudah untuk dipikirkan dan mudah untuk diimplementasikan, namun sulit untuk dibuktikan kebenarannya.
-		\item Pembuktian kebenaran algoritma \foreignTerm{greedy} bisa jadi membutuhkan pembuktian matematis yang kompleks dan memakan waktu. 
-		\item Pada suasana kompetisi, intuisi dan pengalaman sangat membantu untuk menyelesaikan soal bertipe \foreignTerm{greedy}
-		\item  berhati-hati dan telili saat mengerjakan soal bertipe \foreignTerm{greedy}. Perhatikan setiap detil yang ada, karena  bisa berakibat fatal.
-		
-\end{itemize}
+  \begin{itemize}
+    \item Untuk dapat menguasai \fGreedy, Anda perlu banyak berlatih dan berpikir secara cerdik.
+    \item Selamat berlatih untuk mengasah "kerakusan" Anda :)
+  \end{itemize}
 \end{frame}
 
 \end{document}
