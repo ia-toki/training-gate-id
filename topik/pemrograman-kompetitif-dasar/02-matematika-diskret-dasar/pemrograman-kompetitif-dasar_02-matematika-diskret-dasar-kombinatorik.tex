@@ -32,7 +32,7 @@ Melalui dokumen ini, kalian akan:
   \item Kota A dan kota B terhubung oleh 3 jalur berbeda yaitu $e_{1}$, $e_{2}$, dan $e_{3}$.
   \item Sedangkan kota B dan kota C terhubung oleh 2 jalur berbeda yaitu $e_{4}$ dan $e_{5}$.
   \item Berapa banyak cara berbeda untuk menuju kota C dari kota A?
-  \item Ilustrasi : 
+  \item Ilustrasi: 
   \newline
   \begin{tikzpicture}[auto, node distance=3cm, every loop/.style={},
                       thick,main node/.style={circle,draw,font=\sffamily\Large\bfseries}]
@@ -156,7 +156,7 @@ Melalui dokumen ini, kalian akan:
 \begin{itemize}
   \item Perlu diperhatikan bahwa faktorial dari N ($N!$) merupakan hasil perkalian dari semua bilangan asli kurang dari atau sama dengan N.
   \item $N! = N \times (N-1) \times (N-2) \times ... \times 3 \times 2 \times 1$, dimana $O! = 1$.
-  \item Contoh : $5! = 5 \times 4 \times 3 \times 2 \times 1 = 120$.
+  \item Contoh: $5! = 5 \times 4 \times 3 \times 2 \times 1 = 120$.
 \end{itemize}
 \end{frame}
 
@@ -173,7 +173,7 @@ Melalui dokumen ini, kalian akan:
 \begin{itemize}
   \item Banyak kata berbeda yang disusun dari huruf-huruf penyusun "TOKI" adalah $4!$ (menggunakan aturan perkalian).
   \item Apabila kita ganti soal tersebut, yaitu kata berbeda yang disusun dari huruf-huruf penyusun "BACA", solusi $4!$ merupakan solusi yang salah.
-  \item Hal ini disebabkan karena terdapat 2 buah huruf 'A'. Sebagai contoh : $BA_{1}CA_{2}$ dan $BA_{2}CA_{1}$ pada dasarnya merupakan kata yang sama.
+  \item Hal ini disebabkan karena terdapat 2 buah huruf 'A'. Sebagai contoh: $BA_{1}CA_{2}$ dan $BA_{2}CA_{1}$ pada dasarnya merupakan kata yang sama.
 \end{itemize}
 \end{frame}
 
@@ -198,7 +198,7 @@ Melalui dokumen ini, kalian akan:
 \frametitle{Solusi Awal}
 \begin{itemize}
   \item Anggap bahwa kita mengambil semua anak sebagai pemenang, sehingga terdapat $5! = 120$ susunan pemenang yang berbeda (ABCDE, ABCED, ABDCE, ..., EDCBA).
-  \item Apabila kita hanya mengambil 3 peserta saja, perhatikan bahwa terdapat 2 cara yang kita anggap berbeda dimana seharusnya merupakan cara yang sama. Contoh : (ABC)DE dan (ABC)ED merupakan cara yang sama, karena 3 peserta yang menang adalah A, B, dan C.
+  \item Apabila kita hanya mengambil 3 peserta saja, perhatikan bahwa terdapat 2 cara yang kita anggap berbeda dimana seharusnya merupakan cara yang sama. Contoh: (ABC)DE dan (ABC)ED merupakan cara yang sama, karena 3 peserta yang menang adalah A, B, dan C.
   \item Dengan menggunakan prinsip \foreignTerm{Redundansi}, maka banyak susunan pemenang yang berbeda adalah $\frac{5!}{2!} = \frac{120}{2} = 60$ susunan berbeda.
 \end{itemize}
 \end{frame}
@@ -218,7 +218,7 @@ Melalui dokumen ini, kalian akan:
 \frametitle{Permutasi}
 \begin{itemize}
   \item Apabila terdapat \foreignTerm{n objek} dan kita akan mengambil \foreignTerm{r objek} dari n objek tersebut dimana $r<n$ dan \foreignTerm{urutan pengambilan diperhitungkan}.
-  \item Banyak cara pengambilan yang berbeda adalah Permutasi r terhadap n : 
+  \item Banyak cara pengambilan yang berbeda adalah Permutasi r terhadap n: 
   \item $P(n,r) = _{n}P_{r} = P^{n}_{r} = \frac{n!}{(n-r)!}$.
 \end{itemize}
 \end{frame}
@@ -227,7 +227,7 @@ Melalui dokumen ini, kalian akan:
 \frametitle{Algoritma next\_permutation}
 \begin{itemize}
   \item Apabila kita ingin melakukan permutasi r terhadap n, maka kita dapat mencari semua kemungkinan yang ada dengan menggunakan \foreignTerm{Algoritma next\_permutation}.
-  \item Contoh : apabila kita memiliki array $A={1,2,3,4}$ dan kita ingin melakukan permutasi dengan mengambil 3 angka dari array tersebut, maka semua kemungkinan yang ada adalah $(1,2,3), (1,2,4), (1,3,2), ..., (4,3,2)$.
+  \item Contoh: apabila kita memiliki array $A={1,2,3,4}$ dan kita ingin melakukan permutasi dengan mengambil 3 angka dari array tersebut, maka semua kemungkinan yang ada adalah $(1,2,3), (1,2,4), (1,3,2), ..., (4,3,2)$.
 \end{itemize}
 \end{frame}
 
@@ -386,7 +386,7 @@ Melalui dokumen ini, kalian akan:
   \item Solusi ini berbeda dengan Permutasi, karena susunan ABC dan BAC merupakan susunan yang sama, yaitu 1 tim terdiri dari A, B, dan C.
   \item Apabila kita anggap bahwa mereka merupakan susunan yang berbeda, maka banyak susunan tim adalah $P^{5}_{2} = \frac{120}{2} = 60$.
   \item Untuk setiap susunan yang terdiri dari anggota yang sama akan terhitung 6 susunan berbeda dimana seharusnya hanya dihitung sebagai 1 susunan yang sama.
-  \item Contoh : ABC, ACB, BAC, BCA, CAB, CBA merupakan 1 susunan yang sama.
+  \item Contoh: ABC, ACB, BAC, BCA, CAB, CBA merupakan 1 susunan yang sama.
   \item Oleh karena itu dengan prinsip Redundansi, banyaknya susunan tim yang berbeda adalah $\frac{60}{6} = 10$ susunan berbeda.
 \end{itemize}
 \end{frame}
@@ -406,7 +406,7 @@ Melalui dokumen ini, kalian akan:
 \frametitle{Kombinasi}
 \begin{itemize}
   \item Apabila terdapat \foreignTerm{n objek} dan kita akan mengambil \foreignTerm{r objek} dari n objek tersebut dimana $r<n$ dan \foreignTerm{urutan pengambilan tidak diperhitungkan}.
-  \item Banyak cara pengambilan yang berbeda adalah Kombinasi r terhadap n : 
+  \item Banyak cara pengambilan yang berbeda adalah Kombinasi r terhadap n: 
   \item $C(n,r) = _{n}C_{r} = C^{n}_{r} = \frac{n!}{(n-r)! \times r!}$.
 \end{itemize}
 \end{frame}
@@ -434,8 +434,8 @@ Melalui dokumen ini, kalian akan:
 \begin{itemize}
   \item Kita dapat membagi 4 kue tersebut menjadi 3 bagian. Untuk mempermudah ilustrasi tersebut, kita gunakan lambang o yang berarti kue, dan $|$ yang berarti pembatas.
   \item Bagian kiri merupakan kue A, bagian tengah merupakan kue B, dan bagian kanan merupakan kue C.
-  \item Contoh : $(o|o|oo)$ melambangkan 1 kue A, 1 kue B, dan 2 kue C.
-  \item Contoh Lain : $(oo|oo|)$ melambangkan 2 kue A, 2 kue B, dan 0 kue C.
+  \item Contoh: $(o|o|oo)$ melambangkan 1 kue A, 1 kue B, dan 2 kue C.
+  \item Contoh Lain: $(oo|oo|)$ melambangkan 2 kue A, 2 kue B, dan 0 kue C.
   \item Dengan kata lain, semua susunan yang mungkin adalah $(oooo||)$, $(ooo|o|)$, $(oo|oo|)$, ..., $(||oooo)$ yang tidak lain merupakan $C^{6}_{2} = \frac{6!}{4! \times 2!} = 15$ susunan berbeda.
 \end{itemize}
 \end{frame}
@@ -456,7 +456,7 @@ Melalui dokumen ini, kalian akan:
   \item Terdapat n jenis objek dimana kita akan mengambil r objek, dan \foreignTerm{tiap objeknya dapat tidak diambil / diambil lebih dari 1 kali}.
   \item Banyak cara berbeda yang memenuhi syarat tersebut adalah sebagai berikut :
   \item $C^{n+r-1}_{n-1} = C^{n+r-1}_{r} = \frac{(n+r-1)!}{(n-1)! \times r!}$.
-  \item Keterangan : dikarenakan setiap objek dapat diambil lebih dari 1 kali, maka r tidak harus kurang dari atau sama dengan n.
+  \item Keterangan: dikarenakan setiap objek dapat diambil lebih dari 1 kali, maka r tidak harus kurang dari atau sama dengan n.
 \end{itemize}
 \end{frame}
 
@@ -471,11 +471,11 @@ Melalui dokumen ini, kalian akan:
   \item $A_{ij} = C^{n}_{r}$.
   \item Contoh Segitiga Pascal :
   \begin{itemize} 
-    \item Baris ke-1 : 1
-    \item Baris ke-2 : 1 1
-    \item Baris ke-3 : 1 2 1
-    \item Baris ke-4 : 1 3 3 1
-    \item Baris ke-5 : 1 4 6 4 1
+    \item Baris ke-1: 1
+    \item Baris ke-2: 1 1
+    \item Baris ke-3: 1 2 1
+    \item Baris ke-4: 1 3 3 1
+    \item Baris ke-5: 1 4 6 4 1
   \end{itemize}
 \end{itemize}
 \end{frame}
@@ -486,8 +486,8 @@ Melalui dokumen ini, kalian akan:
   \item Diberikan suatu himpunan semesta $S = {X_{1},X_{2},...,X_{n}}$. Berapa banyak cara berbeda apabila kita mengambil r objek dari S?
   \item Kita bagi 2 kasus, yaitu :
   \begin{itemize}
-    \item Kasus 1 : Apabila kita menggunakan $X_{n}$, sehingga kita memilih r-1 objek dari himpunan $A = {X_{1},X_{2},X_{3},...,X_{n-1}}$, 1 objek sisanya merupakan $X_{n}$. Banyak cara berbeda dari kasus ini adalah $C^{n-1}_{r-1}$.
-    \item Kasus 2 : Apabila kita tidak menggunakan $X_{n}$, sehingga kita memilih r objek dari himpunan $A = {X_{1},X_{2},X_{3},...,X_{n}}$, 1 objek sisanya merupakan $X_{n}$. Banyak cara berbeda dari kasus ini adalah $C^{n-1}_{r}$.
+    \item Kasus 1: Apabila kita menggunakan $X_{n}$, sehingga kita memilih r-1 objek dari himpunan $A = {X_{1},X_{2},X_{3},...,X_{n-1}}$, 1 objek sisanya merupakan $X_{n}$. Banyak cara berbeda dari kasus ini adalah $C^{n-1}_{r-1}$.
+    \item Kasus 2: Apabila kita tidak menggunakan $X_{n}$, sehingga kita memilih r objek dari himpunan $A = {X_{1},X_{2},X_{3},...,X_{n}}$, 1 objek sisanya merupakan $X_{n}$. Banyak cara berbeda dari kasus ini adalah $C^{n-1}_{r}$.
   \end{itemize}
 \end{itemize}
 \end{frame}
