@@ -29,8 +29,8 @@ Melalui dokumen ini, kalian akan:
 \frametitle{Permasalahan 1}
 \begin{itemize}
   \item Terdapat 3 buah kota yaitu A, B, dan C.
-  \item Kota A dan kota B terhubung oleh 3 jalur berbeda yaitu e1, e2, dan e3.
-  \item Sedangkan kota B dan kota C terhubung oleh 2 jalur berbeda yaitu e4 dan e5.
+  \item Kota A dan kota B terhubung oleh 3 jalur berbeda yaitu $e_{1}$, $e_{2}$, dan $e_{3}$.
+  \item Sedangkan kota B dan kota C terhubung oleh 2 jalur berbeda yaitu $e_{4}$ dan $e_{5}$.
   \item Berapa banyak cara berbeda untuk menuju kota C dari kota A?
   \item Ilustrasi : 
   \newline
@@ -42,11 +42,11 @@ Melalui dokumen ini, kalian akan:
     \node[main node] (3) [right of=2] {C};
   
     \path[every node/.style={font=\sffamily\small}]
-      (1) edge[bend left] node {e1} (2)
-      	  edge node {e2} (2)
-          edge[bend right] node {e3} (2)
-      (2) edge[bend left] node {e4} (3)
-          edge[bend right] node {e5} (3);
+      (1) edge[bend left] node {$e_{1}$} (2)
+      	  edge node {$e_{2}$} (2)
+          edge[bend right] node {$e_{3}$} (2)
+      (2) edge[bend left] node {$e_{4}$} (3)
+          edge[bend right] node {$e_{5}$} (3);
   \end{tikzpicture}
 \end{itemize}
 \end{frame}
@@ -56,12 +56,12 @@ Melalui dokumen ini, kalian akan:
 \begin{itemize}
   \item Apabila kita hitung satu per satu, maka cara yang berbeda untuk menuju kota C dari kota A adalah sebagai berikut :
   \begin{itemize}
-    \item Melalui \foreignTerm{jalur e1} kemudian \foreignTerm{jalur e4}
-    \item Melalui \foreignTerm{jalur e1} kemudian \foreignTerm{jalur e5}
-    \item Melalui \foreignTerm{jalur e2} kemudian \foreignTerm{jalur e4}
-    \item Melalui \foreignTerm{jalur e2} kemudian \foreignTerm{jalur e5}
-    \item Melalui \foreignTerm{jalur e3} kemudian \foreignTerm{jalur e4}
-    \item Melalui \foreignTerm{jalur e3} kemudian \foreignTerm{jalur e5}
+    \item Melalui \foreignTerm{jalur $e_{1}$} kemudian \foreignTerm{jalur $e_{4}$}
+    \item Melalui \foreignTerm{jalur $e_{1}$} kemudian \foreignTerm{jalur $e_{5}$}
+    \item Melalui \foreignTerm{jalur $e_{2}$} kemudian \foreignTerm{jalur $e_{4}$}
+    \item Melalui \foreignTerm{jalur $e_{2}$} kemudian \foreignTerm{jalur $e_{5}$}
+    \item Melalui \foreignTerm{jalur $e_{3}$} kemudian \foreignTerm{jalur $e_{4}$}
+    \item Melalui \foreignTerm{jalur $e_{3}$} kemudian \foreignTerm{jalur $e_{5}$}
   \end{itemize}
   \item Dengan kata lain, terdapat 6 cara berbeda untuk menuju kota C dari kota A.
   \item Tetapi, apabila jumlah kota dan jalur yang ada sangatlah banyak, kita tidak mungkin menulis satu per satu cara yang berbeda. Karena itulah kita gunakan \newTerm{Aturan Perkalian}.
@@ -90,7 +90,7 @@ Melalui dokumen ini, kalian akan:
 \frametitle{Permasalahan 2}
 \begin{itemize}
   \item Permasalahan ini merupakan lanjutan dari \newTerm{Permasalahan 1}. Deskripsi permasalahan, jumlah kota dan jalur serta susunan jalur yang ada sama persis dengan permasalahan tersebut.
-  \item Apabila kita tambahkan 1 jalur lagi, yaitu e6 yang menghubungkan kota A dan C.
+  \item Apabila kita tambahkan 1 jalur lagi, yaitu $e_{6}$ yang menghubungkan kota A dan C.
   \item Berapa banyak cara berbeda untuk menuju kota C dari kota A?
   \item Ilustrasi :
   \newline
@@ -102,12 +102,12 @@ Melalui dokumen ini, kalian akan:
       \node[main node] (3) [right of=2] {C};
     
       \path[every node/.style={font=\sffamily\small}]
-        (1) edge[bend left] node {e1} (2)
-        	edge node {e2} (2)
-            edge[bend right] node {e3} (2)
-        (2) edge[bend left] node {e4} (3)
-            edge[bend right] node {e5} (3)
-        (3) edge[bend left] node {e6} (1);
+        (1) edge[bend left] node {$e_{1}$} (2)
+        	edge node {$e_{2}$} (2)
+            edge[bend right] node {$e_{3}$} (2)
+        (2) edge[bend left] node {$e_{4}$} (3)
+            edge[bend right] node {$e_{5}$} (3)
+        (3) edge[bend left] node {$e_{6}$} (1);
     \end{tikzpicture}
 \end{itemize}
 \end{frame}
@@ -115,7 +115,7 @@ Melalui dokumen ini, kalian akan:
 \begin{frame}
 \frametitle{Analisa Permasalahan}
 \begin{itemize}
-  \item Dengan menulis satu per satu setiap cara, maka terdapat 7 cara yang berbeda, yaitu 6 cara sesuai dengan permasalahan sebelumnya, ditambah dengan \foreignTerm{menggunakan jalur e6}.
+  \item Dengan menulis satu per satu setiap cara, maka terdapat 7 cara yang berbeda, yaitu 6 cara sesuai dengan permasalahan sebelumnya, ditambah dengan \foreignTerm{menggunakan jalur $e_{6}$}.
   \item Apabila kita menggunakan Aturan Perkalian, maka didapatkan banyak cara yang berbeda adalah $3 \times 2 \times 1 = 6$ dimana solusi tersebut tidaklah tepat.
   \item Kita tidak dapat menggunakan Aturan Perkalian dalam permasalahan ini, dikarenakan antara perjalanan dari kota A menuju kota C melalui kota B dengan tanpa melalui kota B merupakan 2 proses yang berbeda.
   \item Oleh karena itu, kita dapat menggunakan \newTerm{Aturan Penjumlahan}.
@@ -135,7 +135,7 @@ Melalui dokumen ini, kalian akan:
 \begin{itemize}
   \item Proses perjalanan dari kota A menuju kota C dapat kita bagi menjadi 2 himpunan proses yang berbeda, yaitu dari kota A menuju kota C melalui kota B, dan dari kota A langsung menuju kota C.
   \item Banyak cara dari kota A menuju kota C melalui kota B dapat kita dapatkan dengan Aturan Perkalian seperti yang dibahas pada permasalahan sebelumnya, yaitu 6 cara berbeda.
-  \item Banyak cara dari kota A langsung menuju kota C adalah 1 cara, yaitu melalui jalur e6.
+  \item Banyak cara dari kota A langsung menuju kota C adalah 1 cara, yaitu melalui jalur $e_{6}$.
   \item Dengan \foreignTerm{Aturan Penjumlahan}, banyak cara berbeda dari kota A menuju kota C adalah $6 + 1 = 7$ cara berbeda.
 \end{itemize}
 \end{frame}
@@ -144,7 +144,7 @@ Melalui dokumen ini, kalian akan:
 \frametitle{Hati-Hati!}
 \begin{itemize}
   \item Apabila terdapat irisan dari himpunan proses tersebut, maka solusi yang kita dapatkan dengan Aturan Penjumlahan menjadi tidak tepat, dikarenakan solusi dalam irisan tersebut terhitung 2 kali.
-  \item Agar solusi tersebut menjadi tepat, gunakan \newTerm{Prinsip Inklusi-Eksklusi} pada materi \foreignTerm{Teori Himpunan}.
+  \item Agar solusi tersebut menjadi tepat, gunakan \textcolor{blue}{\href{https://en.wikipedia.org/wiki/Inclusion-exclusion\_principle}{Prinsip Inklusi-Eksklusi}} pada \textcolor{blue}{\href{https://id.wikipedia.org/wiki/Himpunan}{Teori Himpunan}}.
 \end{itemize}
 \end{frame}
 
@@ -432,9 +432,10 @@ Melalui dokumen ini, kalian akan:
 \begin{frame}
 \frametitle{Solusi}
 \begin{itemize}
-  \item Kita dapat membagi 4 kue tersebut menjadi 3 bagian, dimana bagian kiri merupakan A, bagian tengah merupakan B, dan bagian kanan merupakan C.
+  \item Kita dapat membagi 4 kue tersebut menjadi 3 bagian. untuk mempermudah ilustrasi tersebut, kita gunakan lambang o yang berarti kue, dan $|$ yang berarti pembatas.
+  \item Bagian kiri merupakan kue A, bagian tengah merupakan kue B, dan bagian kanan merupakan kue C.
   \item Contoh : $(o|o|oo)$ melambangkan 1 kue A, 1 kue B, dan 2 kue C.
-  \item Contoh Lain : $(ooo|o|)$ melambangkan 3 kue A, 1 kue B, dan 0 kue C.
+  \item Contoh Lain : $(oo|oo|)$ melambangkan 2 kue A, 2 kue B, dan 0 kue C.
   \item Dengan kata lain, semua susunan yang mungkin adalah $(oooo||)$, $(ooo|o|)$, $(oo|oo|)$, ..., $(||oooo)$ yang tidak lain merupakan $C^{6}_{2} = \frac{6!}{4! \times 2!} = 15$ susunan berbeda.
 \end{itemize}
 \end{frame}
@@ -515,7 +516,7 @@ Melalui dokumen ini, kalian akan:
 \begin{frame}
 \frametitle{Implementasi Segitiga Pascal}
 \begin{enumerate}
-  \item Kita gunakan konsep \newTerm{Dynamic Programming} dengan implementasi \newTerm{Bottom-Up}
+  \item Kita gunakan iterasi untuk mencari semua nilai dari kombinasi r terhadap n.
   \item Untuk menyimpan semua nilai dari kombinasi tersebut akan dibutuhkan array 2-dimensi dimana A[n][r] menyimpan nilai kombinasi r terhadap n.
   \item Nilai dari A[0][0] adalah 1.
   \item Iterasi i dari 1 hingga n
@@ -562,8 +563,8 @@ Melalui dokumen ini, kalian akan:
 \begin{frame}
 \frametitle{Penutup}
 \begin{itemize}
-  \item Penutup sementara krn bingung mau isi apa...
   \item Materi ini berisi mengenai Kombinatorik Dasar dan implementasinya yang umum digunakan dalam pemrograman kompetitif.
+  \item Dengan materi ini, Anda diharapkan dapat menggunakan konsep kombinatorik yang ada.
   \item Selamat berlatih dan semoga sukses!
 \end{itemize}
 \end{frame}
