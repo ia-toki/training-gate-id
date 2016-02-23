@@ -97,22 +97,23 @@ Melalui dokumen ini, kalian akan:
 
 \begin{frame}
 \frametitle{Solusi rekursif}
+Kita implementasikan $f(x)$ sebagai fungsi $\proc{solve}(x)$:
 \begin{codebox}
-\Procname{$\proc{f}(x)$}
+\Procname{$\proc{solve}(x)$}
 \li \If $(x \isequal 0)$ \Then
 \li   \Return $0$
 \li \Else
 \li   $best \gets \infty$
 \li   \For $k \gets 1$ \To $M$ \Do
 \li     \If $(a_k \leq x)$ \Then
-\li       $best \gets \min(best, \proc{f}(x - a_k) + 1)$
+\li       $best \gets \min(best, \proc{solve}(x - a_k) + 1)$
         \End
       \End
 \li   \Return $best$
     \End
 \end{codebox}
 
-Jawaban akhirnya ada pada $f(N)$.
+Jawaban akhirnya ada pada $\proc{solve}(N)$.
 \end{frame}
 
 \begin{frame}
@@ -255,7 +256,7 @@ Jika diperhatikan, ternyata banyak $f(x)$ yang dihitung berkali-kali. Sebagai co
 \begin{frame}
 \frametitle{Solusi rekursif}
 \begin{codebox}
-\Procname{$\proc{f}(x)$}
+\Procname{$\proc{solve}(x)$}
 \li \If $(x \isequal 0)$ \Then
 \li   \Return $0$
 \li \ElseIf $hasComputed[x]$ \Then
@@ -265,7 +266,7 @@ Jika diperhatikan, ternyata banyak $f(x)$ yang dihitung berkali-kali. Sebagai co
 \li   $best \gets \infty$
 \li   \For $k \gets 1$ \To $M$ \Do
 \li     \If $(a_k \leq x)$ \Then
-\li       $best \gets \min(best, \proc{f}(x - a_k) + 1)$
+\li       $best \gets \min(best, \proc{solve}(x - a_k) + 1)$
         \End
       \End
 \li   \Comment Catat hasilnya      
@@ -331,7 +332,7 @@ Terdapat dua cara mengimplementasikan DP
 \frametitle{Cara lain}
 Secara bottom up, kita hitung semua nilai $f(x)$ untuk semua nilai $x$ dari $0$ sampai $N$ secara menaik.
 \begin{codebox}
-\Procname{$\proc{solve}(N)$}
+\Procname{$\proc{solve}()$}
 \li $f[0] \gets 0$
 \li \For $x \gets 1$ \To $N$ \Do
 \li   $best \gets \infty$
@@ -386,78 +387,137 @@ Bottom Up
 \begin{frame} 
 \frametitle{Contoh Soal 1: Knapsack}
 \begin{itemize}
-  \item Diberikan $N$ buah barang. Barang ke-$i$ memiliki harga $v_i$ rupiah dan memiliki berat $w_i$ gram. Kita memiliki tas yang berkapasitas $G$ gram. 
-  \item Kita ingin memasukan beberapa barang kedalam tas sedemikian sehingga jumlah berat dari barang-barang yang kita masukan tidak lebih dari kapasitas tas dan jumlah harga dari barang-barang yang kita masukan sebanyak mungkin.
+  \item Diberikan $N$ buah barang. 
+  \item Barang ke-$i$ memiliki harga $v_i$ rupiah dan berat $w_i$ gram. 
+  \item Kita memiliki tas yang berkapasitas $G$ gram. 
+  \item Kita ingin memasukan beberapa barang kedalam tas, sedemikian sehingga jumlah berat dari barang-barang yang kita masukan tidak lebih dari kapasitas tas dan jumlah harganya sebanyak mungkin.
+\end{itemize}
+\end{frame}
+
+\begin{frame} 
+\frametitle{Observasi}
+\begin{itemize}
+  \item Untuk setiap barang, kita harus memutuskan apakah barang ini diambil atau tidak.
+  \item Jika diambil, kapasitas tas kita berkurang, dan harga barang yang kita dapatkan bertambah.
+  \item Jika tidak diambil, tidak terjadi perubahan.
 \end{itemize}
 \end{frame}
 
 \begin{frame} 
 \frametitle{Contoh Soal 1: Knapsack (Solusi)}
 \begin{itemize}
-  \item Marilah kita definisikan sebuah fungsi $g(x,y)$ adalah jumlah harga maksimum yang mungkin diperoleh, jika kita hanya mempunyai barang ke-$1$ sampai ke-$x$ dan kapasitas tas kita adalah $y$ gram.
-  \item Untuk menghitung fungsi $g(x,y)$ kita bisa mencoba-coba apakah kita akan memasukan barang ke-$x$ ke tas.
+  \item Definisikan sebuah fungsi $g(x,y)$ sebagai jumlah harga maksimum yang mungkin diperoleh, jika kita hanya mempunyai barang ke-$1$ sampai ke-$x$ dan kapasitas tas kita adalah $y$ gram.
+  \item Untuk menghitung fungsi $g(x,y)$ kita bisa mencoba-coba apakah kita akan memasukan barang ke-$x$ ke tas atau tidak.
+\end{itemize}
+\end{frame}
+
+\begin{frame} 
+\frametitle{Contoh Soal 1: Knapsack (Solusi)}
+\begin{itemize}
+  \item Jika kita memasukan barang ke-$x$ ke tas, maka kita akan menyisakan barang ke-$1$ sampai ke-$(x-1)$ dan sisa kapasitas tas adalah $y-w_x$. 
+  \item Harga barang yang didapatkan pada kasus ini adalah $g(x-1,y-w_x)$ ditambah dengan harga yang kita peroleh pada barang ke-$x$.
+  \item Dapat dituliskan $g(x, y) = g(x-1, y-w_x) + v_x$.
+  \item Kasus ini hanya boleh dipertimbangkan jika $y \geq w_x$.
+\end{itemize}
+\end{frame}
+
+\begin{frame} 
+\frametitle{Contoh Soal 1: Knapsack (Solusi)}
+\begin{itemize}
+  \item Jika kita tidak memasukan barang ke-$x$ ke tas, maka kita akan menyisakan barang ke-$1$ sampai ke-$(x-1)$ dan sisa kapasitas tas masih tetap $y$.
+  \item Harga barang didapatkan pada kasus ini adalah $g(x-1,y)$, tanpa tambahan apapun (kita tidak mengambil barang ke-$x$).
+  \item Dapat dituliskan $g(x, y) = g(x-1, y)$.
+\end{itemize}
+\end{frame}
+
+\begin{frame} 
+\frametitle{Contoh Soal 1: Knapsack (Solusi)}
+\begin{itemize}
+  \item Dari kedua pilihan keputusan tersebut, kita tertarik dengan yang menghasilkan nilai terbesar.
+  \item Cukup bandingkan mana yang lebih besar, antara:
   \begin{itemize}
-  \item Jika kita memasukan barang ke-$x$ ke tas, maka kita akan menyisakan barang ke-$1$ sampai ke-$x-1$ dan sisa kapasitas tas adalah $y-w_x$. Kita dapat menghitung jumlah harga maksimum pada kasus ini pada $g(x-1,y-w_x)$ ditambah dengan harga yang kita peroleh pada barang ke-$x$. Kasus ini hanya boleh dipertimbangkan jika $y \geq w_x$.
-  \item Jika kita tidak memasukan barang ke-$x$ ke tas, maka kita akan menyisakan barang ke-$1$ sampai ke-$x-1$ dan sisa kapasitas tas masih tetap $y$, sehingga jumlah harga maksimumnya adalah $g(x-1,y)$ tanpa tambahan apapun, karena kita tidak mengambil barang ke-$x$.
+    \item $g(x-1, y-w_x) + v_x$, atau
+    \item $g(x-1, y)$
   \end{itemize}
+  \item Dapat dituliskan: $g(x, y) = \max(g(x-1,y-w_x)+v_x,g(x-1,y))$. \newline
+  \item Kembali ditekankan bahwa pilihan memasukkan barang ke-$x$ hanya boleh dipertimbangkan jika $y \geq w_x$.
+\end{itemize}
+\end{frame}
+
+\begin{frame} 
+\frametitle{Contoh Soal 1: Knapsack (Solusi)}
+\begin{itemize}
+  \item Jika $x=0$, maka berarti tidak ada lagi barang yang tersedia. 
+  \item Ini berarti $g(x,y) = 0$.
+  \item Kasus ini menjadi \fbasecase.
 \end{itemize}
 \end{frame}
 
 \begin{frame} 
 \frametitle{Contoh Soal 1: Knapsack (Solusi (lanj.))}
+$g(x,y)$ dapat dirumuskan sebagai berikut:
+\begin{small}
+\[g(x,y) = \left\{\begin{array}{lr}
+    0, & x = 0\\
+    g(x-1,y), & x > 0 \wedge y < w_x\\
+    \max(g(x-1,y-w_x)+v_x,g(x-1,y)), & x > 0 \wedge y \geq w_x\\
+    \end{array}\right.\]
+\end{small}
+\end{frame}
+
+\begin{frame} 
+\frametitle{Contoh Soal 1: Knapsack (Solusi (lanj.))}
 \begin{itemize}
-  \item Jika $x=0$, maka $g(x,y)$ berarti tidak ada sisa barang yang tersedia. Ini berarti $g(x,y) = 0$.
-  \item Sehingga, $g(x,y)$ dapat dirumuskan sebagai berikut
-  % Rumus ini mungkin saja panjang dan mungkin saja tidak dapat dicakup pada slide
-  \begin{small}
-  \[g(x,y) = \left\{\begin{array}{lr}
-        0, & x = 0\\
-        g(x-1,y), & x > 0 \wedge y < w_x\\
-        \max(g(x-1,y-w_x)+v_x,g(x-1,y)), & x > 0 \wedge y \geq w_x\\
-        \end{array}\right\}\]
-  \end{small}
-  \item Terdapat $O(N)$ nilai berbeda untuk nilai $x$ dan $O(G)$ nilai berbeda untuk nilai $y$ pada $g(x,y)$. Dibutuhkan $O(1)$ iterasi untuk menghitung $g(x,y)$. Sehingga untuk menghitung seluruh nilai $g(x,y)$ untuk seluruh $x$ dan $y$ dibutuhkan waktu $O(NG)$.
+  \item Terdapat $O(N)$ nilai berbeda untuk nilai $x$ dan $O(G)$ nilai berbeda untuk nilai $y$ pada $g(x,y)$.
+  \item Dibutuhkan $O(1)$ untuk menghitung $g(x,y)$. 
+  \item Sehingga untuk menghitung seluruh nilai $g(x,y)$ untuk seluruh $x$ dan $y$ dibutuhkan waktu $O(NG)$.
 \end{itemize}
 \end{frame}
 
-\begin{frame} [fragile]
+\begin{frame}
 \frametitle{Contoh Soal 1: Knapsack (Pseudocode)}
-  Berikut adalah contoh implementasi menggunakan rekursi diatas dan memoisasi.
-  \begin{lstlisting}
-    function g(x,y)
-      if (x == 0)
-        return 0
-      if (sudahDihitung[x][y])
-        return hasilHitungan[x][y]
-      hasil = g(x-1,y)
-      if (y >= w[x]) hasil = max(hasil, g(x-1,y-w[x]) + v[x])
-      sudahDihitung[x][y] = true
-      hasilHitungan[x][y] = hasil
-      return hasil
-  \end{lstlisting}
-  Hasil jawaban terdapat pada 
-  \begin{lstlisting}
-    g(N, G)
-  \end{lstlisting}
-  karena pada awalnya kita memiliki seluruh barang dari barang ke-$1$ sampai barang ke-$N$ dan kapasitas tas adalah $G$ gram.
+Kita implementasikan $g(x, y)$ sebagai fungsi $\proc{solve}(x,y)$:
+\begin{codebox}
+\Procname{$\proc{solve}(x, y)$}
+\li \If $(x \isequal 0)$ \Then
+\li   \Return $0$
+\li \ElseIf $hasComputed[x][y]$ \Then
+\li   \Return $memo[x][y]$ 
+\li \Else
+\li   $best \gets \proc{solve}(x-1, y)$
+\li   \If $(y \geq w[x])$ \Then
+\li     $best \gets \max(best, \proc{solve}(x - 1, y-w[x]) + v[x])$
+      \End  
+\li   $hasComputed[x][y] \gets true$
+\li   $memo[x][y] \gets best$
+\li   \Return $best$
+    \End
+\end{codebox}
+
+Jawaban ada pada $\proc{solve}(N, G)$
 \end{frame}
 
-\begin{frame} [fragile]
-\frametitle{Contoh Soal 1: Knapsack (Pseudocode (lanj.))}
-  Berikut adalah contoh implementasi menggunakan solusi \foreignTerm{bottom up}.
-  \begin{lstlisting}
-    for j in [0, G]
-      g[0][j] = 0
-    for i in [1,N]
-      for j in [0,G]
-        g[i][j] = g[i-1][j]
-        if (j >= w[i])
-          g[i][j] = max(g[i][j], g[i-1][j-w[x]] + v[x])
-  \end{lstlisting}
-  Hasil jawaban terdapat pada
-  \begin{lstlisting}
-    g[N][G]
-  \end{lstlisting}
+\begin{frame}
+\frametitle{Contoh Soal 1: Knapsack (Pseudocode)}
+\begin{codebox}
+\Procname{$\proc{solve}()$}
+\li \For $y \gets 0$ \To $G$ \Do
+\li   $g[0][y] \gets 0$ \Comment Base case...
+    \End
+\zi
+\li \Comment Isi "tabel" dari kasus yang kecil ke besar
+\li \For $x \gets 1$ \To $N$ \Do
+\li   \For $y \gets 0$ \To $G$ \Do
+\li     $best \gets g[x-1][y]$
+\li     \If $(y \geq w[x])$ \Then
+\li       $best \gets \max(best, g[x - 1][y-w[x]] + v[x])$
+        \End  
+\li     $g[x][y] \gets best$
+      \End
+    \End    
+\li \Return $g[N][G]$
+    \End
+\end{codebox}
 \end{frame}
 
 \begin{frame}
