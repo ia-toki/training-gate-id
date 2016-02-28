@@ -348,9 +348,176 @@ Nilai dari $f(x)$ disimpan dalam \farray $f[x]$.
 \end{codebox}
 \end{frame}
 
+\begin{frame} 
+\frametitle{Kompleksitas?}
+\begin{itemize}
+  \item Dengan mudah Anda dapat memperhatikan bahwa kompleksitas solusi dengan \fbottomup adalah $O(NM)$.
+  \item Kompleksitas ini sama seperti dengan cara \ftopdown.
+  \item Kenyataannya, sebenarnya keduanya merupakan algoritma \emp{yang sama}, hanya berbeda di arah pencarian jawaban.
+\end{itemize}
+\end{frame}
+
 \begin{frame}
 \frametitle{Mengisi "Tabel"}
-TODO: simulasi isi tabel bottom up
+Cara \fbottomup yang dijelaskan sebelumnya terkesan seperti "mengisi tabel".\newline
+
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+\hline $x$ & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 \\ 
+\hline $f(x)$ &  &  &  &  &  &  &  &  &  &  & & & \\ 
+\hline 
+\end{tabular} 
+\end{frame}
+
+\begin{frame}
+\frametitle{Mengisi "Tabel" (lanj.)}
+Awalnya, diisi $f(0) \gets 0$.\newline
+
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+\hline $x$ & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 \\ 
+\hline $f(x)$ &  0 &  &  &  &  &  &  &  &  &  & & & \\ 
+\hline 
+\end{tabular} 
+\end{frame}
+
+\begin{frame}
+\frametitle{Mengisi "Tabel" (lanj.)}
+Berikutnya, diisi $f(1)$.
+
+Satu-satunya pilihan adalah menukarkan dengan koin 1, karena kita tidak bisa menggunakan koin 6 atau 10. Jadi:
+
+$f(1) = f(1-1) + 1 = f(0) + 1$
+\newline
+
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+\hline $x$ & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 \\ 
+\hline $f(x)$ &  0 & 1 &  &  &  &  &  &  &  &  & & & \\ 
+\hline 
+\end{tabular} 
+\newline \newline \newline Masuk akal, untuk membayar 1 memang kita membutuhkan 1 koin.
+\end{frame}
+
+\begin{frame}
+\frametitle{Mengisi "Tabel" (lanj.)}
+Hal serupa terjadi ketika kita mengisi $f(2), f(3), f(4), dan f(5)$.
+
+Satu-satunya pilihan adalah menukarkan dengan koin 1, karena kita tidak bisa menggunakan koin 6 atau 10.\newline
+
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+\hline $x$ & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 \\ 
+\hline $f(x)$ &  0 & 1 & 2 & 3 & 4 & 5 &  &  &  &  & & & \\ 
+\hline 
+\end{tabular} 
+\end{frame}
+
+\begin{frame}
+\frametitle{Mengisi "Tabel" (lanj.)}
+Berikutnya adalah mengisi $f(6)$.
+
+Terdapat pilihan untuk menggunakan koin 1 atau 6 terlebih dahulu, sehingga:
+\begin{align*}
+  f(6) &= \min(f(6-1) + 1, f(6-6) + 1) \\
+  &= \min(f(5) + 1, f(0) + 1) \\
+  &= \min(5 + 1, 0 + 1) \\
+  &= \min(6, 1) \\
+  &= 1
+\end{align*}
+\end{frame}
+
+\begin{frame}
+\frametitle{Mengisi "Tabel" (lanj.)}
+Memang benar, untuk membayar 6 kita hanya membutuhkan 1 koin.\newline
+
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+\hline $x$ & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 \\ 
+\hline $f(x)$ &  0 & 1 & 2 & 3 & 4 & 5 & 1 &  &  &  & & & \\ 
+\hline 
+\end{tabular} 
+\end{frame}
+
+\begin{frame}
+\frametitle{Mengisi "Tabel" (lanj.)}
+Lakukan hal serupa untuk $x = 7$ sampai $x = 9$.\newline
+
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+\hline $x$ & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 \\ 
+\hline $f(x)$ &  0 & 1 & 2 & 3 & 4 & 5 & 1 & 2 & 3 & 4 & & & \\ 
+\hline 
+\end{tabular} 
+\end{frame}
+
+\begin{frame}
+\frametitle{Mengisi "Tabel" (lanj.)}
+Berikutnya adalah mengisi $f(10)$.
+
+Terdapat pilihan untuk menggunakan koin 1, 6, atau 10 terlebih dahulu, sehingga:
+\begin{align*}
+  f(10) &= \min(f(10-1) + 1, \ f(10-6) + 1, \ f(10-10) + 1) \\
+  &= \min(f(9) + 1, \ f(4) + 1, \ f(0) + 1) \\
+  &= \min(4 + 1, \ 4 + 1, \ 0 + 1) \\
+  &= \min(5, 5, 1) \\
+  &= 1
+\end{align*}
+\end{frame}
+
+\begin{frame}
+\frametitle{Mengisi "Tabel" (lanj.)}
+Kembali, memang benar bahwa untuk membayar 10 kita hanya membutuhkan 1 koin, yaitu langsung menggunakan koin 10 \\ (tanpa 1 dan 6).\newline
+
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+\hline $x$ & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 \\ 
+\hline $f(x)$ &  0 & 1 & 2 & 3 & 4 & 5 & 1 & 2 & 3 & 4 & 1 & & \\ 
+\hline 
+\end{tabular} 
+\end{frame}
+
+\begin{frame}
+\frametitle{Mengisi "Tabel" (lanj.)}
+Berikutnya adalah mengisi $f(11)$.
+
+\begin{align*}
+  f(11) &= \min(f(11-1) + 1, \ f(11-6) + 1, \ f(11-10) + 1) \\
+  &= \min(f(10) + 1, \ f(5) + 1, \ f(1) + 1) \\
+  &= \min(1 + 1, \ 5 + 1, \ 1 + 1) \\
+  &= \min(2, 6, 2) \\
+  &= 2
+\end{align*}
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+\hline $x$ & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 \\ 
+\hline $f(x)$ &  0 & 1 & 2 & 3 & 4 & 5 & 1 & 2 & 3 & 4 & 1 & 2 & \\ 
+\hline 
+\end{tabular} 
+\end{frame}
+
+\begin{frame}
+\frametitle{Mengisi "Tabel" (lanj.)}
+Terakhir, isi $f(12)$.
+\begin{align*}
+  f(12) &= \min(f(12-1) + 1, \ f(12-6) + 1, \ f(12-10) + 1) \\
+  &= \min(f(11) + 1, \ f(6) + 1, \ f(2) + 1) \\
+  &= \min(2 + 1, \ 1 + 1, \ 2 + 1) \\
+  &= \min(3, 2, 3) \\
+  &= 2
+\end{align*}
+
+Dari sini, terlihat bahwa menggunakan koin 10 terlebih dahulu (pilihan paling kanan) mengakibatkan banyaknya koin yang dibutuhkan adalah 3.\newline
+
+Sementara menggunakan koin 6 terlebih dahulu (pilihan tengah) mengakibatkan banyaknya koin yang dibutuhkan adalah 2.
+\end{frame}
+
+\begin{frame}
+\frametitle{Mengisi "Tabel" (lanj.)}
+Jadi kita selesai mengisi "tabel" DP.\newline
+
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+\hline $x$ & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 \\ 
+\hline $f(x)$ &  0 & 1 & 2 & 3 & 4 & 5 & 1 & 2 & 3 & 4 & 1 & 2 & 2 \\ 
+\hline 
+\end{tabular}
+\newline \newline
+\begin{itemize}
+  \item Jika Anda menggunakan \ftopdown, pada akhirnya tabel $memo$ juga akan berisi nilai-nilai ini.
+  \item Coba implementasikan secara \ftopdown dan \fbottomup dan lihat hasilnya!
+\end{itemize}
 \end{frame}
 
 \begin{frame}
