@@ -16,7 +16,7 @@
 Melalui dokumen ini, kalian akan:
 \begin{itemize}
   \item Memahami konsep \foreignTerm{Dynamic Programming} (DP).
-  \item Menyelesaikan beberapa contoh persoalan DP sederhana.
+  \item Menyelesaikan contoh persoalan DP sederhana.
 \end{itemize}
 \end{frame}
 
@@ -30,7 +30,7 @@ Melalui dokumen ini, kalian akan:
 \end{frame}
 
 \begin{frame}
-\frametitle{Motivasi (lanj.)}
+\frametitle{Solusi Greedy}
 \begin{itemize}
   \item Mari kita coba menyelesaikan masalah ini secara \fGreedy.
   \item Salah satu algoritma \fGreedy yang mungkin adalah dengan menggunakan koin terbesar yang $\leq$ sisa uang yang harus dibayar.
@@ -38,7 +38,7 @@ Melalui dokumen ini, kalian akan:
 \end{frame}
 
 \begin{frame}
-\frametitle{Motivasi (lanj.)}
+\frametitle{Solusi Greedy (lanj.)}
 \begin{itemize}
   \item Misalkan kita memiliki nominal koin 1 rupiah, 6 rupiah, dan 10 rupiah dan ingin membayar 12 rupiah.
   \item Dengan algoritma sebelumnya, kita akan menggunakan koin 10 rupiah terlebih dahulu. 
@@ -58,7 +58,7 @@ Melalui dokumen ini, kalian akan:
 \end{frame}
 
 \begin{frame}
-\frametitle{Observasi}
+\frametitle{Observasi (lanj.)}
 \begin{itemize}
   \item Perhatikan bahwa penukaran $N - a_k$ merupakan suatu sub-persoalan yang serupa dengan persoalan awalnya.
   \item Artinya, cara yang sama untuk menyelesaikan sub-persoalan dapat digunakan.
@@ -67,7 +67,7 @@ Melalui dokumen ini, kalian akan:
 \end{frame}
 
 \begin{frame}
-\frametitle{Solusi rekursif}
+\frametitle{Solusi Rekursif}
 \begin{itemize}
   \item Definisikan sebuah fungsi $f(x)$ sebagai banyaknya koin minimum yang dibutuhkan untuk membayar $x$ rupiah.
   \item Kita dapat mencoba-coba koin yang ingin kita gunakan.
@@ -78,7 +78,7 @@ Melalui dokumen ini, kalian akan:
 \end{frame}
 
 \begin{frame}
-\frametitle{Solusi rekursif}
+\frametitle{Solusi Rekursif (lanj.)}
 \begin{itemize}
   \item Dari semua kemungkinan $a_k$, mana pilihan yang terbaik?
   \item Pilihan yang terbaik akan memberikan nilai $f(x - a_k) + 1$ sekecil mungkin.
@@ -87,7 +87,7 @@ Melalui dokumen ini, kalian akan:
 \end{frame}
 
 \begin{frame}
-\frametitle{Solusi rekursif}
+\frametitle{Solusi Rekursif (lanj.)}
 \begin{itemize}
   \item Jika $f(x)$ dihitung secara rekursif, apa yang menjadi \fbasecase?
   \item Kasus terkecilnya adalah $f(0)$, yang artinya kita hendak membayar 0 rupiah.
@@ -97,6 +97,15 @@ Melalui dokumen ini, kalian akan:
 
 \begin{frame}
 \frametitle{Solusi rekursif}
+Secara matematis, hubungan rekursif ini dituliskan:
+\[f(x) = \left\{\begin{array}{lr}
+    0, & n = 0\\
+    \min_{1 \leq k \leq M, a_k \leq x} {f(x - a_k) + 1}, & n > 0\\
+    \end{array}\right. \]
+\end{frame}
+
+\begin{frame}
+\frametitle{Implementasi Solusi Rekursif}
 Kita implementasikan $f(x)$ sebagai fungsi $\proc{solve}(x)$:
 \begin{codebox}
 \Procname{$\proc{solve}(x)$}
@@ -114,17 +123,6 @@ Kita implementasikan $f(x)$ sebagai fungsi $\proc{solve}(x)$:
 \end{codebox}
 
 Jawaban akhirnya ada pada $\proc{solve}(N)$.
-\end{frame}
-
-\begin{frame}
-\frametitle{Solusi rekursif}
-\begin{itemize}
-  \item Secara matematis, dituliskan:
-   \[f(x) = \left\{\begin{array}{lr}
-        0, & n = 0\\
-        \min_{1 \leq k \leq M, a_k \leq x} {f(x - a_k) + 1}, & n > 0\\
-        \end{array}\right. \]
- \end{itemize}
 \end{frame}
 
 \begin{frame} [fragile]
@@ -191,6 +189,7 @@ Berikut untuk $f(12)$ dengan nominal koin 1, 6, dan 10 rupiah.
 \frametitle{Solusi rekursif (lanj.)}
 \begin{itemize}
   \item Biasanya solusi eksponensial berjalan sangat lambat.
+  \item Cobalah Anda hitung nilai $O(N^M)$ dengan $N=3$ dan $M=100$, untuk menyadari betapa lambatnya solusi ini!
   \item Kita tidak ingin memiliki solusi eksponensial pada pemrograman kompetitif, kecuali pada soal-soal tertentu dimana tidak terdapat solusi polinomial. 
   \item Karena itu, kita harus melakukan sebuah optimisasi.
 \end{itemize}
@@ -244,7 +243,7 @@ Jika diperhatikan, ternyata banyak $f(x)$ yang dihitung berkali-kali. Sebagai co
 \end{frame}
 
 \begin{frame}
-\frametitle{Optimisasi}
+\frametitle{Optimisasi (lanj.)}
 \begin{itemize}
   \item Perhatikan bahwa hanya ada $N + 1$ kemungkinan $x$ untuk $f(x)$, yaitu $0$ sampai $N$.
   
@@ -254,7 +253,7 @@ Jika diperhatikan, ternyata banyak $f(x)$ yang dihitung berkali-kali. Sebagai co
 \end{frame}
 
 \begin{frame}
-\frametitle{Solusi rekursif}
+\frametitle{Solusi Rekursif dengan Memoisasi}
 \begin{codebox}
 \Procname{$\proc{solve}(x)$}
 \li \If $(x \isequal 0)$ \Then
@@ -278,7 +277,7 @@ Jika diperhatikan, ternyata banyak $f(x)$ yang dihitung berkali-kali. Sebagai co
 \end{frame}
 
 \begin{frame}
-\frametitle{Optimisasi}
+\frametitle{Solusi Rekursif dengan Memoisasi (lanj.)}
 \begin{itemize}
   \item Untuk menghitung suatu nilai $f(x)$, kita membutuhkan $O(M)$ iterasi.
   \item Sehingga untuk menghitung nilai $f(x)$ untuk seluruh $x$, kita membutuhkan $O(NM)$ operasi.
@@ -329,8 +328,10 @@ Terdapat dua cara mengimplementasikan DP
 \end{frame}
 
 \begin{frame}
-\frametitle{Cara lain}
-Secara bottom up, kita hitung semua nilai $f(x)$ untuk semua nilai $x$ dari $0$ sampai $N$ secara menaik.
+\frametitle{Solusi Coin Change dengan Bottom Up}
+Secara \fbottomup, kita hitung semua nilai $f(x)$ untuk \newline semua nilai $x$ dari $0$ sampai $N$ secara menaik.
+
+Nilai dari $f(x)$ disimpan dalam \farray $f[x]$.
 \begin{codebox}
 \Procname{$\proc{solve}()$}
 \li $f[0] \gets 0$
@@ -348,7 +349,7 @@ Secara bottom up, kita hitung semua nilai $f(x)$ untuk semua nilai $x$ dari $0$ 
 \end{frame}
 
 \begin{frame}
-\frametitle{Top Down dan Bottom Up}
+\frametitle{Mengisi "Tabel"}
 TODO: simulasi isi tabel bottom up
 \end{frame}
 
@@ -365,7 +366,7 @@ Top Down
 \end{frame}
 
 \begin{frame}
-\frametitle{Top Down dan Bottom Up}
+\frametitle{Top Down dan Bottom Up (lanj.)}
 Bottom Up
 \begin{itemize}
   \item Tidak mengalami perlambatan dari \foverhead pemanggilan fungsi.
@@ -376,7 +377,7 @@ Bottom Up
 \end{frame}
 
 \begin{frame}
-\frametitle{Top Down dan Bottom Up}
+\frametitle{Top Down dan Bottom Up (lanj.)}
 \begin{itemize}
   \item Beberapa orang lebih alami untuk menggunakan \ftopdown, sementara sisanya lebih terbiasa dengan \fbottomup.
   \item Bergantung dari cara berpikir Anda, salah satunya mungkin lebih mudah Anda pelajari.
@@ -384,366 +385,12 @@ Bottom Up
 \end{itemize}
 \end{frame}
 
-\begin{frame} 
-\frametitle{Contoh Soal 1: Knapsack}
-\begin{itemize}
-  \item Diberikan $N$ buah barang. 
-  \item Barang ke-$i$ memiliki harga $v_i$ rupiah dan berat $w_i$ gram. 
-  \item Kita memiliki tas yang berkapasitas $G$ gram. 
-  \item Kita ingin memasukan beberapa barang kedalam tas, sedemikian sehingga jumlah berat dari barang-barang yang kita masukan tidak lebih dari kapasitas tas dan jumlah harganya sebanyak mungkin.
-\end{itemize}
-\end{frame}
-
-\begin{frame} 
-\frametitle{Observasi}
-\begin{itemize}
-  \item Untuk setiap barang, kita harus memutuskan apakah barang ini diambil atau tidak.
-  \item Jika diambil, kapasitas tas kita berkurang, dan harga barang yang kita dapatkan bertambah.
-  \item Jika tidak diambil, tidak terjadi perubahan.
-\end{itemize}
-\end{frame}
-
-\begin{frame} 
-\frametitle{Contoh Soal 1: Knapsack (Solusi)}
-\begin{itemize}
-  \item Definisikan sebuah fungsi $g(x,y)$ sebagai jumlah harga maksimum yang mungkin diperoleh, jika kita hanya mempunyai barang ke-$1$ sampai ke-$x$ dan kapasitas tas kita adalah $y$ gram.
-  \item Untuk menghitung fungsi $g(x,y)$ kita bisa mencoba-coba apakah kita akan memasukan barang ke-$x$ ke tas atau tidak.
-\end{itemize}
-\end{frame}
-
-\begin{frame} 
-\frametitle{Contoh Soal 1: Knapsack (Solusi)}
-\begin{itemize}
-  \item Jika kita memasukan barang ke-$x$ ke tas, maka kita akan menyisakan barang ke-$1$ sampai ke-$(x-1)$ dan sisa kapasitas tas adalah $y-w_x$. 
-  \item Harga barang yang didapatkan pada kasus ini adalah $g(x-1,y-w_x)$ ditambah dengan harga yang kita peroleh pada barang ke-$x$.
-  \item Dapat dituliskan $g(x, y) = g(x-1, y-w_x) + v_x$.
-  \item Kasus ini hanya boleh dipertimbangkan jika $y \geq w_x$.
-\end{itemize}
-\end{frame}
-
-\begin{frame} 
-\frametitle{Contoh Soal 1: Knapsack (Solusi)}
-\begin{itemize}
-  \item Jika kita tidak memasukan barang ke-$x$ ke tas, maka kita akan menyisakan barang ke-$1$ sampai ke-$(x-1)$ dan sisa kapasitas tas masih tetap $y$.
-  \item Harga barang didapatkan pada kasus ini adalah $g(x-1,y)$, tanpa tambahan apapun (kita tidak mengambil barang ke-$x$).
-  \item Dapat dituliskan $g(x, y) = g(x-1, y)$.
-\end{itemize}
-\end{frame}
-
-\begin{frame} 
-\frametitle{Contoh Soal 1: Knapsack (Solusi)}
-\begin{itemize}
-  \item Dari kedua pilihan keputusan tersebut, kita tertarik dengan yang menghasilkan nilai terbesar.
-  \item Cukup bandingkan mana yang lebih besar, antara:
-  \begin{itemize}
-    \item $g(x-1, y-w_x) + v_x$, atau
-    \item $g(x-1, y)$
-  \end{itemize}
-  \item Dapat dituliskan: $g(x, y) = \max(g(x-1,y-w_x)+v_x,g(x-1,y))$. \newline
-  \item Kembali ditekankan bahwa pilihan memasukkan barang ke-$x$ hanya boleh dipertimbangkan jika $y \geq w_x$.
-\end{itemize}
-\end{frame}
-
-\begin{frame} 
-\frametitle{Contoh Soal 1: Knapsack (Solusi)}
-\begin{itemize}
-  \item Jika $x=0$, maka berarti tidak ada lagi barang yang tersedia. 
-  \item Ini berarti $g(x,y) = 0$.
-  \item Kasus ini menjadi \fbasecase.
-\end{itemize}
-\end{frame}
-
-\begin{frame} 
-\frametitle{Contoh Soal 1: Knapsack (Solusi (lanj.))}
-$g(x,y)$ dapat dirumuskan sebagai berikut:
-\begin{small}
-\[g(x,y) = \left\{\begin{array}{lr}
-    0, & x = 0\\
-    g(x-1,y), & x > 0 \wedge y < w_x\\
-    \max(g(x-1,y-w_x)+v_x,g(x-1,y)), & x > 0 \wedge y \geq w_x\\
-    \end{array}\right.\]
-\end{small}
-\end{frame}
-
-\begin{frame} 
-\frametitle{Contoh Soal 1: Knapsack (Solusi (lanj.))}
-\begin{itemize}
-  \item Terdapat $O(N)$ nilai berbeda untuk nilai $x$ dan $O(G)$ nilai berbeda untuk nilai $y$ pada $g(x,y)$.
-  \item Dibutuhkan $O(1)$ untuk menghitung $g(x,y)$. 
-  \item Sehingga untuk menghitung seluruh nilai $g(x,y)$ untuk seluruh $x$ dan $y$ dibutuhkan waktu $O(NG)$.
-\end{itemize}
-\end{frame}
-
-\begin{frame}
-\frametitle{Contoh Soal 1: Knapsack (Pseudocode)}
-Kita implementasikan $g(x, y)$ sebagai fungsi $\proc{solve}(x,y)$:
-\begin{codebox}
-\Procname{$\proc{solve}(x, y)$}
-\li \If $(x \isequal 0)$ \Then
-\li   \Return $0$
-\li \ElseIf $hasComputed[x][y]$ \Then
-\li   \Return $memo[x][y]$ 
-\li \Else
-\li   $best \gets \proc{solve}(x-1, y)$
-\li   \If $(y \geq w[x])$ \Then
-\li     $best \gets \max(best, \proc{solve}(x - 1, y-w[x]) + v[x])$
-      \End  
-\li   $hasComputed[x][y] \gets true$
-\li   $memo[x][y] \gets best$
-\li   \Return $best$
-    \End
-\end{codebox}
-
-Jawaban ada pada $\proc{solve}(N, G)$
-\end{frame}
-
-\begin{frame}
-\frametitle{Contoh Soal 1: Knapsack (Pseudocode)}
-\begin{codebox}
-\Procname{$\proc{solve}()$}
-\li \For $y \gets 0$ \To $G$ \Do
-\li   $g[0][y] \gets 0$ \Comment Base case...
-    \End
-\zi
-\li \Comment Isi "tabel" dari kasus yang kecil ke besar
-\li \For $x \gets 1$ \To $N$ \Do
-\li   \For $y \gets 0$ \To $G$ \Do
-\li     $best \gets g[x-1][y]$
-\li     \If $(y \geq w[x])$ \Then
-\li       $best \gets \max(best, g[x - 1][y-w[x]] + v[x])$
-        \End  
-\li     $g[x][y] \gets best$
-      \End
-    \End    
-\li \Return $g[N][G]$
-    \End
-\end{codebox}
-\end{frame}
-
-\begin{frame}
-\frametitle{Contoh Soal 2: Memotong Kayu}
-\begin{itemize}
-  \item Kita akan memotong sebuah batang kayu dengan panjang $M$ meter pada $N$ titik menjadi $N+1$ bagian.
-  \item Titik ke-$i$ berada di $L_i$ meter dari ujung kiri.
-  \item Untuk memotong sebatang kayu menjadi dua, kita memerlukan usaha \alert{sebesar panjang kayu yang sedang kita potong}.
-  \item Cari urutan pemotongan sedemikian sehingga total usaha yang dibutuhkan minimum!
-\end{itemize}
-\end{frame}
-
-\begin{frame}
-\frametitle{Contoh Soal 2: Memotong Kayu}
-Sebagai contoh, terdapat sebuah kayu dengan panjang 10 meter dan terdapat 3 titik potongan pada 2 meter, 4 meter, dan 7 meter dari ujung kiri.
-\begin{figure}
-  \includegraphics[width=10cm]{asset/cutting-stick-1.pdf}
-\end{figure}
-\end{frame}
-
-\begin{frame}
-\frametitle{Contoh Soal 2: Memotong Kayu}
-Kita bisa memotong pada titik 2, titik 4, lalu titik 7 dan memerlukan usaha 10 + 8 + 6 = 24.
-\begin{figure}
-  \includegraphics[width=10cm]{asset/cutting-stick-2.pdf}
-\end{figure}
-\end{frame}
-
-\begin{frame}
-\frametitle{Contoh Soal 2: Memotong Kayu}
-Cara lain adalah memotong pada titik 4, titik 2, lalu titik 7 dan memerlukan usaha 10 + 4 + 6 = 20.
-\begin{figure}
-  \includegraphics[width=10cm]{asset/cutting-stick-3.pdf}
-\end{figure}
-\end{frame}
-
-\begin{frame}
-\frametitle{Contoh Soal 2: Memotong Kayu (Solusi)}
-\begin{itemize}
-  \item Apakah strategi \fGreedy dengan memotong "setengah-tengahnya" selalu menghasilkan solusi optimal?
-  \item Bagaimana dengan kasus jika $M = 2000$ dan $L = [1, 2, 3, 4, 5, 1000]$?
-  \item Kita akan coba menggunakan DP untuk persoalan ini.
-\end{itemize}
-\end{frame}
-
-\begin{frame}
-\frametitle{Contoh Soal 2: Memotong Kayu (Solusi)}
-\begin{itemize}
-  \item Untuk pemotongan pertama, terdapat $N$ pilihan lokasi pemotongan.
-  \item Jika kita memotong di posisi $L_x$, maka didapatkan dua batang.
-  \item Batang pertama perlu dipotong di titik $L_1, L_2, ..., L_{x-1}$ dan batang kedua di $L_{x+1}, L_{x+2}, ..., L_N$.
-  \item Ternyata kita mendapatkan sub-persoalan yang serupa.
-  \item Pemotongan bisa dilanjutkan secara rekursif, dan kita pilih posisi pemotongan yang ke depannya membutuhkan usaha terkecil.
-\end{itemize}
-\end{frame}
-
-\begin{frame}
-\frametitle{Contoh Soal 2: Memotong Kayu (Solusi)}
-\begin{itemize}
-  \item Definisikan sebuah fungsi $g(x,y)$ sebagai jumlah usaha minimum yang mungkin diperoleh, jika kita hanya perlu memotong di $L_{x}, L_{x+1}, ..., L_{y}$.
-  \item Untuk menghitung $g(x,y)$ kita dapat mencoba titik mana yang kita potong pertama kali.
-  \item Jika kita memotong di $L_k$ $(x \leq k \leq y)$, maka kita akan mendapatkan dua potongan.
-\end{itemize}
-\begin{figure}
-  \includegraphics[width=10cm]{asset/cutting-stick-4.pdf}
-\end{figure}
-\end{frame}
-
-\begin{frame}
-\frametitle{Contoh Soal 2: Memotong Kayu (Solusi)}
-\begin{figure}
-  \includegraphics[width=10cm]{asset/cutting-stick-4.pdf}
-\end{figure}
-\begin{itemize}
-  \item Total usaha yang dibutuhkan jika kita melakukan pemotongan di $L_k$ adalah jumlah dari:
-  \begin{itemize}
-    \item Total usaha minimum dari potongan pertama, yaitu $g(x,k-1)$.
-    \item Total usaha minimum dari potongan kedua, yaitu $g(k+1,y)$.
-    \item Usaha untuk pemotongan ini, yaitu $L_{y+1} - L_{x-1}$.
-  \end{itemize}
-  \item Untuk mempermudah, asumsikan $L_0 = 0$ dan $L_{N+1} = M$.
-\end{itemize}
-\end{frame}
-
-\begin{frame} 
-\frametitle{Contoh Soal 2: Memotong Kayu (Solusi (lanj.))}
-\begin{itemize}
-  \item Ketika $x>y$, artinya sudah tidak ada pemotongan yang perlu dilakukan.
-  \item Dengan demikian, usaha yang dibutuhkan adalah 0, atau $g(x,y) = 0$.
-\end{itemize}
-\end{frame}
-
-\begin{frame} 
-\frametitle{Contoh Soal 2: Memotong Kayu (Solusi (lanj.))}
-Dapat dirumuskan:
-\begin{small}
-\[g(x,y) = \left\{\begin{array}{lr}
-    0, & x>y\\
-    \min_{x \leq k \leq y} g(x,k-1) + g(k+1,y) + (L_{y+1} - L_{x-1}), & x \leq y \\
-    \end{array}\right.\]
-\end{small}
-\end{frame}
-
-\begin{frame} 
-\frametitle{Contoh Soal 2: Memotong Kayu (Solusi (lanj.))}
-\begin{itemize}
-  \item Terdapat $O(N)$ nilai berbeda untuk nilai $x$ dan $O(N)$ nilai berbeda untuk nilai $y$ pada $g(x,y)$.
-  \item Dibutuhkan iterasi sebanyak $O(N)$ untuk menghitung $g(x,y)$. 
-  \item Sehingga untuk menghitung seluruh nilai $g(x,y)$ untuk seluruh $x$ dan $y$ dibutuhkan waktu $O(N^3)$.
-\end{itemize}
-\end{frame}
-
-\begin{frame}
-\frametitle{Contoh Soal 1: Knapsack (Pseudocode)}
-Kita implementasikan $g(x, y)$ sebagai fungsi $\proc{solve}(x,y)$:
-\begin{small}
-\begin{codebox}
-\Procname{$\proc{solve}(x, y)$}
-\li \If $(x > y)$ \Then
-\li   \Return $0$
-\li \ElseIf $hasComputed[x][y]$ \Then
-\li   \Return $memo[x][y]$ 
-\li \Else
-\li   $best \gets \infty$
-\li   $cost \gets L[y+1] - L[x-1]$
-\li   \For $k \gets x$ \To $y$ \Do
-\li     $best \gets \min(best, \proc{solve}(x,k-1) + \proc{solve}(k+1, y) + cost)$
-      \End  
-\li   $hasComputed[x][y] \gets true$
-\li   $memo[x][y] \gets best$
-\li   \Return $best$
-    \End
-\end{codebox}
-\end{small}
-Jawaban ada pada $\proc{solve}(1, N)$
-\end{frame}
-
-\begin{frame}
-\frametitle{Contoh Soal 1: Knapsack (Pseudocode)}
-\begin{small}
-\begin{codebox}
-\Procname{$\proc{solve}()$}
-\li \Comment Inisialisasi base case
-\li \For $x \gets 0$ \To $N+1$ \Do
-\li   \For $y \gets 0$ \To $x-1$ \Do
-\li     $g[x][y] \gets 0$
-      \End
-    \End
-\zi
-\li \Comment Isi "tabel" mulai dari kasus yang kecil
-\li \For $gap \gets 0$ \To $N$ \Do
-\li   \For $x \gets 1$ \To $N-gap$ \Do
-\li     $y \gets x + gap$
-\li     $best \gets \infty$
-\li     $cost \gets L[y+1] - L[x-1]$
-\li     \For $k \gets x$ \To $y$ \Do
-\li       $best \gets \min(best, g[x][k-1] + g[k+1][y] + cost)$
-        \End  
-\li     $g[x][y] \gets best$
-      \End
-    \End
-\zi
-\li \Return $g[1][N]$
-\end{codebox}
-\end{small}
-\end{frame}
-
 \begin{frame}
 \frametitle{Penutup}
-\begin{itemize}
-  \item Perhatikan bahwa pada metode \fbottomup, pengisian "tabel" dilakukan secara "tidak biasa".
-  \item Kita perlu mengisi mulai dari:
-  \begin{itemize}
-    \item $g[1][1], g[2][2], ..., g[N][N]$,
-    \item lalu $g[1][2], g[2][3], ..., g[N-1][N]$,
-    \item lalu $g[1][3], g[2][4], ..., g[N-2][N]$,
-    \item lalu $g[1][4], g[2][5], ..., g[N-3][N]$,    
-    \item dan seterusnya sampai $g[1][N]$.
-  \end{itemize}
-  \item Ingat bahwa pengisian "tabel" harus dilakukan dari kasus yang kecil ke besar.
-  \item Definisi "kasus kecil" pada masalah ini adalah kayu dengan titik-titik pemotongan yang lebih sedikit.
-\end{itemize}
-\end{frame}
-
-\begin{frame}
-\frametitle{Penutup}
-\begin{itemize}
-  \item Perhatikan bahwa pada metode \fbottomup, pengisian "tabel" dilakukan secara "tidak biasa".
-  \item Kita perlu mengisi mulai dari:
-  \begin{itemize}
-    \item $g[1][1], g[2][2], ..., g[N][N]$,
-    \item lalu $g[1][2], g[2][3], ..., g[N-1][N]$,
-    \item lalu $g[1][3], g[2][4], ..., g[N-2][N]$,
-    \item lalu $g[1][4], g[2][5], ..., g[N-3][N]$,    
-    \item dan seterusnya sampai $g[1][N]$.
-  \end{itemize}
-  \item Ingat bahwa pengisian "tabel" harus dilakukan dari kasus yang kecil ke besar.
-  \item Definisi "kasus kecil" pada masalah ini adalah kayu dengan titik-titik pemotongan yang lebih sedikit.
-\end{itemize}
-\end{frame}
-
-\begin{frame}
-\frametitle{Penutup}
-\begin{itemize}
-  \item Dari contoh ini kita mempelajari bahwa urutan pengisian "tabel" pada DP \fbottomup tidak selalu biasa.
-  \item Jika urutan pengisiannya salah, maka hasil akhir yang didapatkan juga bisa jadi salah.
-  \item Hal in terjadi ketika kita hendak menyelesaikan kasus yang besar, tetapi hasil untuk kasus-kasus yang lebih kecil belum tersedia.
-  \item Untuk mengetahui urutan pengisian "tabel", Anda perlu mengamati apa definisi "kasus kecil" pada masalah yang dihadapi.
-\end{itemize}
-\end{frame}
-
-\begin{frame}
-\frametitle{Ringkasan}
 \begin{itemize}
   \item Terdapat dua versi DP, yaitu \ftopdown dan \fbottomup.
   \item Keduanya memiliki keuntungan dan kerugian, pilih yang tepat sesuai dengan kebutuhan soal.
   \item Kunci dari mengerjakan soal DP adalah mengidentifikasi pilihan keputusan yang bisa diambil, dan merumuskannya menjadi rumus rekursif.
-\end{itemize}
-\end{frame}
-
-\begin{frame}
-\frametitle{Penutup}
-\begin{itemize}
-  \item DP merupakan topik yang cukup luas untuk dibicarakan.
-  \item Banyak berlatih mengerjakan soal DP dapat melatih kita untuk mendapatkan rumus DP yang sesuai dengan masalah yang dihadapi.
-  \item Topik optimisasi lainnya pada DP akan dibahas pada kesempatan yang lain.  
 \end{itemize}
 \end{frame}
 
