@@ -15,56 +15,124 @@
 \frametitle{Pendahuluan}
 Melalui dokumen ini, kalian akan:
 \begin{itemize}
-  \item Memahami konsep \foreignTerm{dynamic programming}
-  \item Menyelesaikan beberapa contoh persoalan \foreignTerm{dynamic programming} sederhana
+  \item Memahami konsep \foreignTerm{Dynamic Programming} (DP).
+  \item Menyelesaikan contoh persoalan DP sederhana.
 \end{itemize}
 \end{frame}
 
 \begin{frame}
 \frametitle{Motivasi}
 \begin{itemize}
-  \item Kita akan memulai pembelajaran ini dengan mencoba menyelesaikan sebuah problem klasik.
-  \item Diberikan nominal-nominal koin yang tersedia dan nominal uang yang ingin kita bayar. Asumsikan kita memiliki tak hingga koin untuk setiap nominal koin yang ada. Tentukan berapa banyaknya minimal koin yang harus kita berikan untuk membayar tepat uang yang ingin kita bayar.
+  \item Diberikan $M$ jenis koin, masing-masing jenis bernilai $a_1, a_2, ..., a_M$ rupiah.
+  \item Asumsikan terdapat tak hingga koin untuk setiap nominal koin yang ada. 
+  \item Tentukan berapa banyaknya minimal koin untuk membayar sebesar $N$ rupiah!
 \end{itemize}
 \end{frame}
 
 \begin{frame}
-\frametitle{Motivasi (lanj.)}
+\frametitle{Solusi Greedy}
 \begin{itemize}
-  \item Marilah kita mencoba menyelesaikan masalah ini menggunakan algoritma \foreignTerm{greedy}. Karena kita ingin meminimalisasi banyaknya koin yang ingin kita bayar, maka salah satu algoritma \foreignTerm{greedy} yang mungkin adalah dengan menggunakan koin dengan nominal terbesar yang masih tidak lebih besar daripada sisa uang yang harus dibayar.
-   \item Namun algoritma \foreignTerm{greedy} ini tidaklah benar.
- \end{itemize}
+  \item Mari kita coba menyelesaikan masalah ini secara \fGreedy.
+  \item Salah satu algoritma \fGreedy yang mungkin adalah dengan menggunakan koin terbesar yang $\leq$ sisa uang yang harus dibayar.
+\end{itemize}
 \end{frame}
 
 \begin{frame}
-\frametitle{Motivasi (lanj.)}
+\frametitle{Solusi Greedy (lanj.)}
 \begin{itemize}
-  \item Misalkan kita memiliki nominal koin 1 rupiah, 6 rupiah, dan 10 rupiah dan kita ingin membayar 12 rupiah.
-  \item Jika kita menggunakan algoritma \foreignTerm{greedy}, maka kita akan menggunakan koin 10 rupiah terlebih dahulu. Karena tersisa 2 rupiah, berikutnya kita akan menggunakan 2 koin 1 rupiah, sehingga totalnya kita menggunakan 3 koin.
-   \item Namun, kita bisa menggunakan lebih sedikit koin dengan hanya menggunakan 2 koin 6 rupiah.
- \end{itemize}
+  \item Misalkan kita memiliki nominal koin 1 rupiah, 6 rupiah, dan 10 rupiah dan ingin membayar 12 rupiah.
+  \item Dengan algoritma sebelumnya, kita akan menggunakan koin 10 rupiah terlebih dahulu. 
+  \item Karena tersisa 2 rupiah, berikutnya kita akan menggunakan 2 koin 1 rupiah, sehingga totalnya kita menggunakan 3 koin.
+  \item Namun, ada solusi lebih baik: 2 koin 6 rupiah.
+  \item Algoritma \fGreedy ini tidak memberikan solusi terbaik.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Observasi}
+\begin{itemize}
+  \item Untuk membayar $N$ rupiah, kita dapat memilih salah satu koin terlebih dahulu.
+  \item Jika nilai koin itu adalah $a_k$, maka sisa uang uang perlu kita bayar adalah $N-a_k$.
+  \item Dalam kasus ini, terdapat $M$ pilihan koin untuk $a_k$.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Observasi (lanj.)}
+\begin{itemize}
+  \item Perhatikan bahwa penukaran $N - a_k$ merupakan suatu sub-persoalan yang serupa dengan persoalan awalnya.
+  \item Artinya, cara yang sama untuk menyelesaikan sub-persoalan dapat digunakan.
+  \item Kita akan menggunakan strategi penyelesaian secara rekursif.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Solusi Rekursif}
+\begin{itemize}
+  \item Definisikan sebuah fungsi $f(x)$ sebagai banyaknya koin minimum yang dibutuhkan untuk membayar $x$ rupiah.
+  \item Kita dapat mencoba-coba koin yang ingin kita gunakan.
+  \item Jika suatu koin $a_k$ digunakan, maka kita membutuhkan $f(x-a_k)$ koin ditambah satu koin $a_k$.
+  \item Atau dapat ditulis $f(x) = f(x-a_k) + 1$
+  \item Pencarian nilai $f(x-a_k)$ dilakukan secara rekursif, kita kembali mencoba-coba koin yang ingin digunakan.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Solusi Rekursif (lanj.)}
+\begin{itemize}
+  \item Dari semua kemungkinan $a_k$, mana pilihan yang terbaik?
+  \item Pilihan yang terbaik akan memberikan nilai $f(x - a_k) + 1$ sekecil mungkin.
+  \item Jadi kita cukup mencoba semua kemungkinan $a_k$, dan ambil yang hasil $f(x - a_k) + 1$ terkecil.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Solusi Rekursif (lanj.)}
+\begin{itemize}
+  \item Jika $f(x)$ dihitung secara rekursif, apa yang menjadi \fbasecase?
+  \item Kasus terkecilnya adalah $f(0)$, yang artinya kita hendak membayar 0 rupiah.
+  \item Membayar 0 rupiah tidak membutuhkan satu pun koin, sehinga $f(0) = 0$.
+\end{itemize}
 \end{frame}
 
 \begin{frame}
 \frametitle{Solusi rekursif}
-\begin{itemize}
-  \item Soal ini dapat diselesaikan menggunakan rekursi.
-  \item Marilah kita definisikan sebuah fungsi $f(x)$ adalah banyaknya koin minimum yang dibutuhkan untuk membayar $x$ rupiah.
-  \item Katakan $A_{1..n}$ adalah nominal-nominal koin yang tersedia.
-  \item Marilah kita mencoba-coba koin berikutnya yang ingin kita gunakan.
-  \item Jika $A_k \leq x$ maka kita dapat menggunakan koin dengan nominal $A_k$. Jika kita menggunakan koin dengan nominal $A_k$, maka kita akan menyisakan $x - A_k$ rupiah, sehingga kita akan membutuhkan $f(x-A_k)$ koin dan ditambah satu koin $A_k$.
-   \item Sehingga 
-   \[f(x) = \left\{\begin{array}{lr}
-        0, & n = 0\\
-        \min_{1 \leq i \leq N, A_i \leq x} {f(x - A_i) + 1}, & n > 0\\
-        \end{array}\right\}\]
- \end{itemize}
+Secara matematis, hubungan rekursif ini dituliskan:
+\[f(x) = \left\{\begin{array}{lr}
+    0, & n = 0\\
+    \min_{1 \leq k \leq M, a_k \leq x} {f(x - a_k) + 1}, & n > 0\\
+    \end{array}\right. \]
+\end{frame}
+
+\begin{frame}
+\frametitle{Implementasi Solusi Rekursif}
+Kita implementasikan $f(x)$ sebagai fungsi $\proc{solve}(x)$:
+\begin{codebox}
+\Procname{$\proc{solve}(x)$}
+\li \If $(x \isequal 0)$ \Then
+\li   \Return $0$
+\li \Else
+\li   $best \gets \infty$
+\li   \For $k \gets 1$ \To $M$ \Do
+\li     \If $(a_k \leq x)$ \Then
+\li       $best \gets \min(best, \proc{solve}(x - a_k) + 1)$
+        \End
+      \End
+\li   \Return $best$
+    \End
+\end{codebox}
+
+Jawaban akhirnya ada pada $\proc{solve}(N)$.
 \end{frame}
 
 \begin{frame} [fragile]
 \frametitle{Solusi rekursif (lanj.)}
-Marilah kita melihat pohon rekursi yang dihasilkan oleh fungsi $f$ ini. Sebagai contoh, berikut pohon rekursi dari $f(12)$ dengan nominal koin 1, 6, dan 10 rupiah.
-\scalebox{.5}{
+Mari kita lihat pohon rekursi yang dihasilkan oleh fungsi $f$. 
+
+Berikut untuk $f(12)$ dengan nominal koin 1, 6, dan 10 rupiah.
+
+\begin{center}
+\scalebox{0.9}{
 \Tree [.$f(12)$
   [.$f(2)$
     [.$f(1)$
@@ -75,12 +143,7 @@ Marilah kita melihat pohon rekursi yang dihasilkan oleh fungsi $f$ ini. Sebagai 
     [.$f(0)$ ]
     [.$f(5)$
       [.$f(4)$
-        [.$f(3)$
-          [.$f(2)$
-            [.$f(1)$
-              [.$f(0)$ ]
-            ]
-          ]
+        [.$...$
         ]
       ]
     ]
@@ -91,310 +154,410 @@ Marilah kita melihat pohon rekursi yang dihasilkan oleh fungsi $f$ ini. Sebagai 
     ]
     [.$f(5)$
       [.$f(4)$
-        [.$f(3)$
-          [.$f(2)$
-            [.$f(1)$
-              [.$f(0)$ ]
-            ]
-          ]
+        [.$...$          
         ]
       ]
     ]
     [.$f(10)$ 
-      [.$f(0)$ ]
-      [.$f(4)$
-        [.$f(3)$
-          [.$f(2)$
-            [.$f(1)$
-              [.$f(0)$ ]
-            ]
-          ]
-        ]
+      [.$f(0)$ 
+        [.$...$ ]      
       ]
-      [.$f(9)$
-        [.$f(3)$
-          [.$f(2)$
-            [.$f(1)$
-              [.$f(0)$ ]
-            ]
-          ]
-        ]
-        [.$f(8)$
-          [.$f(2)$
-            [.$f(1)$
-              [.$f(0)$ ]
-            ]
-          ]
-          [.$f(7)$
-            [.$f(1)$
-              [.$f(0)$ ]
-            ]
-            [.$f(6)$
-              [.$f(0)$ ]
-              [.$f(5)$ 
-                [.$f(4)$ ...
-                ]
-              ]
-            ]
-          ]
-        ]
+      [.$f(4)$ 
+        [.$...$ ]      
+      ]
+      [.$f(9)$ 
+        [.$...$ ]      
       ]
     ]
   ]
 ]
 }
+\end{center}
 \end{frame}
 
 \begin{frame}
 \frametitle{Solusi rekursif (lanj.)}
 \begin{itemize}
-  \item Jika diperhatikan pada pohon rekursi, banyak \foreignTerm{node} yang memiliki $N$ anak pohon, yang mana $N$ adalah banyaknya nominal koin yang ada.
-  \item Karena itu, jika kita ingin menghitung nilai $f(M)$, kita akan memiliki pohon rekursi yang memiliki kira-kira $N^M$ \foreignTerm{node} dengan menggunakan aturan perkalian.
-  \item Karena itu, solusi kita akan membutuhkan kira-kira $O(N^M)$ operasi, yang mana banyaknya operasi ini eksponensial terhadap $N$ atau $M$.
-  \item Biasanya solusi eksponensial berjalan sangat lambat dan kita tidak ingin memiliki solusi eksponensial pada \foreignTerm{competitive programming}, kecuali pada soal-soal tertentu dimana tidak terdapat solusi polinomial. 
+  \item Jika diperhatikan pada pohon rekursi, terdapat $O(M)$ cabang untuk setiap pemanggilan $f$.
+  \item Untuk menghitung nilai $f(N)$, kita akan memiliki pohon rekursi yang kira-kira sedalam $O(N)$.
+  \item Berarti kira-kira dilakukan $O(N^M)$ pemanggilan fungsi.
+  \item Karena itu, solusi ini membutuhkan $O(N^M)$ operasi, yang mana banyaknya operasi ini eksponensial terhadap $N$ atau $M$.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Solusi rekursif (lanj.)}
+\begin{itemize}
+  \item Biasanya solusi eksponensial berjalan sangat lambat.
+  \item Cobalah Anda hitung nilai $O(N^M)$ dengan $N=3$ dan $M=100$, untuk menyadari betapa lambatnya solusi ini!
+  \item Kita tidak ingin memiliki solusi eksponensial pada pemrograman kompetitif, kecuali pada soal-soal tertentu dimana tidak terdapat solusi polinomial. 
   \item Karena itu, kita harus melakukan sebuah optimisasi.
 \end{itemize}
 \end{frame}
 
 \begin{frame}
 \frametitle{Optimisasi}
+Jika diperhatikan, ternyata banyak $f(x)$ yang dihitung berkali-kali. Sebagai contoh, $f(5)$ dan $f(4)$.
+\begin{center}
+\scalebox{0.8}{
+\Tree [.$f(12)$
+  [.$f(2)$
+    [.$f(1)$
+      [.$f(0)$ ]
+    ]
+  ]
+  [.$f(6)$
+    [.$f(0)$ ]
+    [.$f(5)$
+      [.$f(4)$
+        [.$...$
+        ]
+      ]
+    ]
+  ]
+  [.$f(11)$
+    [.$f(1)$
+      [.$f(0)$ ]
+    ]
+    [.$f(5)$
+      [.$f(4)$
+        [.$...$          
+        ]
+      ]
+    ]
+    [.$f(10)$ 
+      [.$f(0)$ 
+        [.$...$ ]      
+      ]
+      [.$f(4)$ 
+        [.$...$ ]      
+      ]
+      [.$f(9)$ 
+        [.$...$ ]      
+      ]
+    ]
+  ]
+]
+}
+\end{center}
+\end{frame}
+
+\begin{frame}
+\frametitle{Optimisasi (lanj.)}
 \begin{itemize}
-  \item Jika diperhatikan ternyata banyak $f(x)$ yang dihitung berkali-kali. Ini menyebabkan solusi berjalan sangat lambat.
-  \item Ternyata hanya ada $M + 1$ kemungkinan isi $x$ untuk $f(x)$ yaitu $0$ sampai $M$, yang mana $M$ adalah nominal koin yang dibayarkan pada awalnya.
-  \item Kita dapat melakukan \newTerm{memoisasi}, yang mana kita menyimpan hasil nilai $f(x)$ setelah menghitung nilai $f(x)$ agar jika kita memerlukan nilai $f(x)$ pada masa depannya, kita tidak perlu menghitungnya kembali.
-  \item Untuk menghitung sebuah nilai $f(x)$, kita membutuhkan $N$ iterasi, yang mana $N$ adalah banyaknya nominal koin yang ada.
-  \item Sehingga untuk menghitung nilai $f(x)$ untuk seluruh $x$, kita membutuhkan $O(NM)$ operasi, yang mana banyaknya operasi ini polinomial terhadap $N$ dan $M$ dan jauh lebih cepat daripada solusi rekursif sebelumnya.
+  \item Perhatikan bahwa hanya ada $N + 1$ kemungkinan $x$ untuk $f(x)$, yaitu $0$ sampai $N$.
+  
+  \item Kita dapat melakukan \newTerm{memoisasi}, yaitu mencatat hasil perhitungan $f(x)$ setelah menghitungnya.
+  \item Jika suatu ketika kita kembali memerlukan nilai $f(x)$, kita tidak perlu menghitungnya kembali.
 \end{itemize}
 \end{frame}
 
-\begin{frame} [fragile]
-\frametitle{Pseudocode Optimisasi}
-\begin{lstlisting}
-   function f(x)
-     if (remainingCoins == 0)
-       return 0
-     if (sudahDihitung[x])
-       return hasilHitungan[x]
-     hasil = INFINITY
-     for i in [1, N]
-       if (x >= A[i])
-         result = min(result, f(x - A[i])
-     sudahDihitung[x] = true
-     hasilHitungan[x] = hasil
-     return hasil
-\end{lstlisting}
+\begin{frame}
+\frametitle{Solusi Rekursif dengan Memoisasi}
+\begin{codebox}
+\Procname{$\proc{solve}(x)$}
+\li \If $(x \isequal 0)$ \Then
+\li   \Return $0$
+\li \ElseIf $hasComputed[x]$ \Then
+\li   \Comment Langsung kembalikan
+\li   \Return $memo[x]$ 
+\li \Else
+\li   $best \gets \infty$
+\li   \For $k \gets 1$ \To $M$ \Do
+\li     \If $(a_k \leq x)$ \Then
+\li       $best \gets \min(best, \proc{solve}(x - a_k) + 1)$
+        \End
+      \End
+\li   \Comment Catat hasilnya      
+\li   $hasComputed[x] \gets true$
+\li   $memo[x] \gets best$
+\li   \Return $best$
+    \End
+\end{codebox}
 \end{frame}
 
-\begin{frame} [fragile]
-\frametitle{Cara lain}
+\begin{frame}
+\frametitle{Solusi Rekursif dengan Memoisasi (lanj.)}
 \begin{itemize}
-  \item Cara lain untuk mengerjakan soal ini adalah dengan menghitung semua nilai $f(x)$ untuk semua nilai $x$ dari $0$ sampai $M$ secara menaik.
-  \item Dengan cara ini, kita dapat menghitung nilai $f(x)$ tanpa perlu menghitung nilai-nilai $f$ yang lain, karena semua nilai $f$ yang diperlukan untuk menghitung $f(x)$ sudah pernah dihitung.
-\begin{lstlisting}
-  f[0] = 0
-  for i in [1,M]
-    f[i] = INFINITY
-    for j in [1,N]
-      if (i >= A[j])
-        f[i] = min(f[i], f[i - A[j]])
-\end{lstlisting}
-  \item Solusi ini biasanya disebut \newTerm{bottom up}, karena kita menghitung mulai dari bawah (dari yang paling kecil) lalu ke atas. Sedangkan solusi yang sebelumnya biasanya disebut \newTerm{top down}, karena kita menghitung mulai dari atas ke bawah.
+  \item Untuk menghitung suatu nilai $f(x)$, kita membutuhkan $O(M)$ iterasi.
+  \item Sehingga untuk menghitung nilai $f(x)$ untuk seluruh $x$, kita membutuhkan $O(NM)$ operasi.
+  \item Banyaknya operasi ini polinomial terhadap $N$ dan $M$, dan \\ \emp{jauh lebih cepat} daripada solusi rekursif sebelumnya.
 \end{itemize}
 \end{frame}
 
 \begin{frame} 
 \frametitle{Dynamic Programming}
 \begin{itemize}
-  \item \newTerm{Dynamic Programming} (biasanya disingkat DP) adalah metode penyelesaian sebuah persoalan dengan menyelesaikan sub-persoalan (persoalan yang sama namun lebih kecil) dan menghitung solusi sub-persoalan tersebut hanya sekali dengan menyimpan solusinya di memori.
-  \item Jika sub-persoalan tersebut diperlukan kembali pada masa depan, maka kita dapat hanya mengakses nilainya dari memori.
-  \item Biasanya soal-soal DP diselesaikan dengan mempelajari sub-persoalan apa saja yang dibutuhkan untuk menyelesaikan sebuah persoalan.
-  \item Jika sebuah persoalan adalah persoalan optimisasi, maka biasanya kita mencoba semua kemungkinan solusi sub-problem yang dihasilkan, dan  mengambil kemungkinan yang hasilnya paling optimal. 
+  \item Merupakan metode penyelesaian persoalan yang melibatkan pengambilan keputusan dengan memanfaatkan informasi dari penyelesaian sub-persoalan yang sama namun lebih kecil
+  \item Solusi sub-persoalan tersebut hanya dihitung satu kali dan disimpan di memori.
+  \item Jika sebuah persoalan adalah masalah optimisasi, maka biasanya kita mencoba semua kemungkinan solusi sub-problem yang dihasilkan, dan  mengambil yang hasilnya paling optimal. 
 \end{itemize}
 \end{frame}
 
 \begin{frame} 
-\frametitle{Contoh Soal 1: Knapsack}
+\frametitle{Dynamic Programming}
+Terdapat dua cara mengimplementasikan DP
 \begin{itemize}
-  \item Diberikan $N$ buah barang. Barang ke-$i$ memiliki harga $v_i$ rupiah dan memiliki berat $w_i$ gram. Kita memiliki tas yang berkapasitas $G$ gram. 
-  \item Kita ingin memasukan beberapa barang kedalam tas sedemikian sehingga jumlah berat dari barang-barang yang kita masukan tidak lebih dari kapasitas tas dan jumlah harga dari barang-barang yang kita masukan sebanyak mungkin.
+  \item \newTerm{\fTopdown}: diimplementasikan secara rekursif sambil mencatat nilai yang sudah ditemukan (memoisasi).
+  \item \newTerm{\fBottomup}: diimplementasikan secara iteratif dengan menghitung mulai dari kasus yang kecil ke besar.
+  \newline
 \end{itemize}
 \end{frame}
 
 \begin{frame} 
-\frametitle{Contoh Soal 1: Knapsack (Solusi)}
+\frametitle{Top Down}
 \begin{itemize}
-  \item Marilah kita definisikan sebuah fungsi $g(x,y)$ adalah jumlah harga maksimum yang mungkin diperoleh, jika kita hanya mempunyai barang ke-$1$ sampai ke-$x$ dan kapasitas tas kita adalah $y$ gram.
-  \item Untuk menghitung fungsi $g(x,y)$ kita bisa mencoba-coba apakah kita akan memasukan barang ke-$x$ ke tas.
-  \begin{itemize}
-  \item Jika kita memasukan barang ke-$x$ ke tas, maka kita akan menyisakan barang ke-$1$ sampai ke-$x-1$ dan sisa kapasitas tas adalah $y-w_x$. Kita dapat menghitung jumlah harga maksimum pada kasus ini pada $g(x-1,y-w_x)$ ditambah dengan harga yang kita peroleh pada barang ke-$x$. Kasus ini hanya boleh dipertimbangkan jika $y \geq w_x$.
-  \item Jika kita tidak memasukan barang ke-$x$ ke tas, maka kita akan menyisakan barang ke-$1$ sampai ke-$x-1$ dan sisa kapasitas tas masih tetap $y$, sehingga jumlah harga maksimumnya adalah $g(x-1,y)$ tanpa tambahan apapun, karena kita tidak mengambil barang ke-$x$.
-  \end{itemize}
+  \item Cara yang sebelumnya kita gunakan adalah \ftopdown.
+  \item Kata memoisasi berasal dari "memo", yang artinya catatan.
+  \item Pada \ftopdown, penyelesaian masalah dimulai dari kasus yang besar.
+  \item Untuk menyelesaikan kasus yang besar, dibutuhkan solusi dari kasus yang lebih kecil.
+  \item Karena solusi kasus yang lebih kecil belum ada, maka kita akan mencarinya terlebih dahulu, lalu mencatat hasilnya.
+  \item Hal ini dilakukan secara rekursif.
 \end{itemize}
 \end{frame}
 
 \begin{frame} 
-\frametitle{Contoh Soal 1: Knapsack (Solusi (lanj.))}
+\frametitle{Bottom Up}
 \begin{itemize}
-  \item Jika $x=0$, maka $g(x,y)$ berarti tidak ada sisa barang yang tersedia. Ini berarti $g(x,y) = 0$.
-  \item Sehingga, $g(x,y)$ dapat dirumuskan sebagai berikut
-  % Rumus ini mungkin saja panjang dan mungkin saja tidak dapat dicakup pada slide
-  \begin{small}
-  \[g(x,y) = \left\{\begin{array}{lr}
-        0, & x = 0\\
-        g(x-1,y), & x > 0 \wedge y < w_x\\
-        \max(g(x-1,y-w_x)+v_x,g(x-1,y)), & x > 0 \wedge y \geq w_x\\
-        \end{array}\right\}\]
-  \end{small}
-  \item Terdapat $O(N)$ nilai berbeda untuk nilai $x$ dan $O(G)$ nilai berbeda untuk nilai $y$ pada $g(x,y)$. Dibutuhkan $O(1)$ iterasi untuk menghitung $g(x,y)$. Sehingga untuk menghitung seluruh nilai $g(x,y)$ untuk seluruh $x$ dan $y$ dibutuhkan waktu $O(NG)$.
-\end{itemize}
-\end{frame}
-
-\begin{frame} [fragile]
-\frametitle{Contoh Soal 1: Knapsack (Pseudocode)}
-  Berikut adalah contoh implementasi menggunakan rekursi diatas dan memoisasi.
-  \begin{lstlisting}
-    function g(x,y)
-      if (x == 0)
-        return 0
-      if (sudahDihitung[x][y])
-        return hasilHitungan[x][y]
-      hasil = g(x-1,y)
-      if (y >= w[x]) hasil = max(hasil, g(x-1,y-w[x]) + v[x])
-      sudahDihitung[x][y] = true
-      hasilHitungan[x][y] = hasil
-      return hasil
-  \end{lstlisting}
-  Hasil jawaban terdapat pada 
-  \begin{lstlisting}
-    g(N, G)
-  \end{lstlisting}
-  karena pada awalnya kita memiliki seluruh barang dari barang ke-$1$ sampai barang ke-$N$ dan kapasitas tas adalah $G$ gram.
-\end{frame}
-
-\begin{frame} [fragile]
-\frametitle{Contoh Soal 1: Knapsack (Pseudocode (lanj.))}
-  Berikut adalah contoh implementasi menggunakan solusi \foreignTerm{bottom up}.
-  \begin{lstlisting}
-    for j in [0, G]
-      g[0][j] = 0
-    for i in [1,N]
-      for j in [0,G]
-        g[i][j] = g[i-1][j]
-        if (j >= w[i])
-          g[i][j] = max(g[i][j], g[i-1][j-w[x]] + v[x])
-  \end{lstlisting}
-  Hasil jawaban terdapat pada
-  \begin{lstlisting}
-    g[N][G]
-  \end{lstlisting}
-\end{frame}
-
-\begin{frame}
-\frametitle{Contoh Soal 2: Memotong Kayu}
-\begin{itemize}
-  \item Kita harus memotong-motong sebuah batang kayu dengan panjang $M$ meter pada $N$ titik menjadi $N+1$ bagian. Titik ke-$i$ berada di $L_i$ meter dari sebuah ujung.
-  \item Untuk memotong sebatang kayu menjadi dua, kita memerlukan usaha sebanyak panjang kayu yang sedang kita potong.
-  \item Sebagai contoh, terdapat sebuah kayu dengan panjang 10 meter dan terdapat 3 titik potongan pada 2 meter, 4 meter, dan 7 meter dari sebuah ujung. Kita bisa memotong pada titik 2, titik 4, lalu titik 7 dan memerlukan usaha 10 + 8 + 6 = 24. Cara lain adalah memotong pada titik 4, titik 2, lalu titik 7 dan memerlukan usaha 10 + 4 + 6 = 20.
-  \item Kita harus mencari urutan pemotongan sedemikian sehingga total usaha yang dibutuhkan minimum.
+  \item Pada \fbottomup, penyelesaian masalah dimulai dari kasus yang kecil.
+  \item Ketika merumuskan formula rekursif, kita mengetahui jawaban kasus yang paling kecil, yaitu \fbasecase.
+  \item Informasi ini digunakan untuk menyelesaikan kasus yang \\ lebih besar.
+  \item Biasanya dianalogikan dengan pengisian "tabel DP".
+  \item Hal ini dilakukan secara iteratif.
 \end{itemize}
 \end{frame}
 
 \begin{frame}
-\frametitle{Contoh Soal 2: Memotong Kayu (Solusi)}
-\begin{itemize}
-  \item Marilah kita definisikan sebuah fungsi $g(x,y)$ adalah jumlah usaha minimum yang mungkin diperoleh, jika kita hanya perlu memotong potongan-potongan dari potongan ke-$x$ sampai ke-$y$.
-  \item Untuk menghitung fungsi $g(x,y)$ kita bisa mencoba-coba potongan manakah yang kita potong pertama kali.
-  \item Jika kita memotong potongan ke-$k$ $(x \leq k \leq y)$, maka kita akan mendapatkan dua potongan. Total usaha minimum dari potongan pertama adalah $g(x,k-1)$ dan total usaha minimum dari potongan kedua adalah $g(k+1,y)$ dan usaha yang dibutuhkan dari potongan pertama adalah panjang potongan saat ini, yaitu $L_{y+1} - L_{x-1}$, dengan $L_0 = 0$ dan $L_{N+1} = M$.
-\end{itemize}
+\frametitle{Solusi Coin Change dengan Bottom Up}
+Secara \fbottomup, kita hitung semua nilai $f(x)$ untuk \newline semua nilai $x$ dari $0$ sampai $N$ secara menaik.
+
+Nilai dari $f(x)$ disimpan dalam \farray $f[x]$.
+\begin{codebox}
+\Procname{$\proc{solve}()$}
+\li $f[0] \gets 0$
+\li \For $x \gets 1$ \To $N$ \Do
+\li   $best \gets \infty$
+\li   \For $k \gets 1$ \To $M$ \Do
+\li     \If $(a_k \leq x)$ \Then
+\li       $best \gets \min(best, f[x - a_k] + 1)$
+        \End
+      \End
+\li   $f[x] \gets best$
+    \End
+\li \Return $f[N]$
+\end{codebox}
 \end{frame}
 
 \begin{frame} 
-\frametitle{Contoh Soal 2: Memotong Kayu (Solusi (lanj.))}
+\frametitle{Kompleksitas?}
 \begin{itemize}
-  \item Jika $x>y$, maka $g(x,y)$ berarti tidak ada potongan kayu yang tersisa. Ini berarti $g(x,y) = 0$.
-  \item Sehingga, $g(x,y)$ dapat dirumuskan sebagai berikut
-  % Rumus ini mungkin saja panjang dan mungkin saja tidak dapat dicakup pada slide
-  \begin{small}
-  \[g(x,y) = \left\{\begin{array}{lr}
-        0, & x>y\\
-        \min_{x \leq i \leq y} g(x,i-1) + g(i+1,y) + (L_{y+1} - L_{x-1}) & x \leq y \\
-        \end{array}\right\}\]
-  \end{small}
-  \item Terdapat $O(N)$ nilai berbeda untuk nilai $x$ dan $O(N)$ nilai berbeda untuk nilai $y$ pada $g(x,y)$. Dibutuhkan $O(N)$ iterasi untuk menghitung $g(x,y)$. Sehingga untuk menghitung seluruh nilai $g(x,y)$ untuk seluruh $x$ dan $y$ dibutuhkan waktu $O(N^3)$.
+  \item Dengan mudah Anda dapat memperhatikan bahwa kompleksitas solusi dengan \fbottomup adalah $O(NM)$.
+  \item Kompleksitas ini sama seperti dengan cara \ftopdown.
+  \item Kenyataannya, sebenarnya keduanya merupakan algoritma \emp{yang sama}, hanya berbeda di arah pencarian jawaban.
 \end{itemize}
 \end{frame}
 
-\begin{frame} [fragile]
-\frametitle{Contoh Soal 2: Memotong Kayu (Pseudocode)}
-  Berikut adalah contoh implementasi menggunakan rekursi diatas dan memoisasi.
-  % Kode ini mungkin saja panjang dan mungkin saja tidak dapat dicakup pada slide, sehingga beberapa baris (seperti if(x > y) return 0) harus dibuat satu line
-  \begin{lstlisting}
-    function g(x,y)
-      if (x > y) return 0
-      if (sudahDihitung[x][y]) return hasilHitungan[x][y]
-      hasil = INFINITY
-      for i in range[x,y]
-        hasil = min(hasil, g(x,i-1) + g(i+1,y))
-      hasil = hasil + L[y+1] - L[x-1]
-      sudahDihitung[x][y] = true
-      hasilHitungan[x][y] = hasil
-      return hasil
-  \end{lstlisting}
-  Hasil jawaban terdapat pada 
-  \begin{lstlisting}
-    g(1, N)
-  \end{lstlisting}
-  karena pada awalnya kita harus memotong seluruh titik potongan dari potongan ke-$1$ sampai potongan ke-$N$.
+\begin{frame}
+\frametitle{Mengisi "Tabel"}
+Cara \fbottomup yang dijelaskan sebelumnya terkesan seperti "mengisi tabel".\newline
+
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+\hline $x$ & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 \\ 
+\hline $f(x)$ &  &  &  &  &  &  &  &  &  &  & & & \\ 
+\hline 
+\end{tabular} 
 \end{frame}
 
-\begin{frame} [fragile]
-\frametitle{Contoh Soal 2: Memotong Kayu (Pseudocode (lanj.))}
-  Berikut adalah contoh implementasi menggunakan solusi \foreignTerm{bottom up}. Perhatikan urutan pengisian tabel $g$
-  \begin{lstlisting}
-    L[0] = 0, L[N+1] = M
-    for i in [0,N+1]
-      for j in [0,N+1]
-        if (i > j) g[i][j] = 0
-    for dif in [0,N]
-      for i in [1, N - dif]
-        j = i + dif
-        g[i][j] = INFINITY
-	for k in [i,j]
-	  g[i][j] = min(g[i][j], g[i][k-1] + g[k+1][j])
-	g[i][j] += L[j+1] - L[i-1]
-  \end{lstlisting}
-  Hasil jawaban terdapat pada
-  \begin{lstlisting}
-    g[1][N]
-  \end{lstlisting}
+\begin{frame}
+\frametitle{Mengisi "Tabel" (lanj.)}
+Awalnya, diisi $f(0) \gets 0$.\newline
+
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+\hline $x$ & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 \\ 
+\hline $f(x)$ &  0 &  &  &  &  &  &  &  &  &  & & & \\ 
+\hline 
+\end{tabular} 
+\end{frame}
+
+\begin{frame}
+\frametitle{Mengisi "Tabel" (lanj.)}
+Berikutnya, diisi $f(1)$.
+
+Satu-satunya pilihan adalah menukarkan dengan koin 1, karena kita tidak bisa menggunakan koin 6 atau 10. Jadi:
+
+$f(1) = f(1-1) + 1 = f(0) + 1$
+\newline
+
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+\hline $x$ & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 \\ 
+\hline $f(x)$ &  0 & 1 &  &  &  &  &  &  &  &  & & & \\ 
+\hline 
+\end{tabular} 
+\newline \newline \newline Masuk akal, untuk membayar 1 memang kita membutuhkan 1 koin.
+\end{frame}
+
+\begin{frame}
+\frametitle{Mengisi "Tabel" (lanj.)}
+Hal serupa terjadi ketika kita mengisi $f(2), f(3), f(4), dan f(5)$.
+
+Satu-satunya pilihan adalah menukarkan dengan koin 1, karena kita tidak bisa menggunakan koin 6 atau 10.\newline
+
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+\hline $x$ & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 \\ 
+\hline $f(x)$ &  0 & 1 & 2 & 3 & 4 & 5 &  &  &  &  & & & \\ 
+\hline 
+\end{tabular} 
+\end{frame}
+
+\begin{frame}
+\frametitle{Mengisi "Tabel" (lanj.)}
+Berikutnya adalah mengisi $f(6)$.
+
+Terdapat pilihan untuk menggunakan koin 1 atau 6 terlebih dahulu, sehingga:
+\begin{align*}
+  f(6) &= \min(f(6-1) + 1, f(6-6) + 1) \\
+  &= \min(f(5) + 1, f(0) + 1) \\
+  &= \min(5 + 1, 0 + 1) \\
+  &= \min(6, 1) \\
+  &= 1
+\end{align*}
+\end{frame}
+
+\begin{frame}
+\frametitle{Mengisi "Tabel" (lanj.)}
+Memang benar, untuk membayar 6 kita hanya membutuhkan 1 koin.\newline
+
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+\hline $x$ & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 \\ 
+\hline $f(x)$ &  0 & 1 & 2 & 3 & 4 & 5 & 1 &  &  &  & & & \\ 
+\hline 
+\end{tabular} 
+\end{frame}
+
+\begin{frame}
+\frametitle{Mengisi "Tabel" (lanj.)}
+Lakukan hal serupa untuk $x = 7$ sampai $x = 9$.\newline
+
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+\hline $x$ & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 \\ 
+\hline $f(x)$ &  0 & 1 & 2 & 3 & 4 & 5 & 1 & 2 & 3 & 4 & & & \\ 
+\hline 
+\end{tabular} 
+\end{frame}
+
+\begin{frame}
+\frametitle{Mengisi "Tabel" (lanj.)}
+Berikutnya adalah mengisi $f(10)$.
+
+Terdapat pilihan untuk menggunakan koin 1, 6, atau 10 terlebih dahulu, sehingga:
+\begin{align*}
+  f(10) &= \min(f(10-1) + 1, \ f(10-6) + 1, \ f(10-10) + 1) \\
+  &= \min(f(9) + 1, \ f(4) + 1, \ f(0) + 1) \\
+  &= \min(4 + 1, \ 4 + 1, \ 0 + 1) \\
+  &= \min(5, 5, 1) \\
+  &= 1
+\end{align*}
+\end{frame}
+
+\begin{frame}
+\frametitle{Mengisi "Tabel" (lanj.)}
+Kembali, memang benar bahwa untuk membayar 10 kita hanya membutuhkan 1 koin, yaitu langsung menggunakan koin 10 \\ (tanpa 1 dan 6).\newline
+
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+\hline $x$ & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 \\ 
+\hline $f(x)$ &  0 & 1 & 2 & 3 & 4 & 5 & 1 & 2 & 3 & 4 & 1 & & \\ 
+\hline 
+\end{tabular} 
+\end{frame}
+
+\begin{frame}
+\frametitle{Mengisi "Tabel" (lanj.)}
+Berikutnya adalah mengisi $f(11)$.
+
+\begin{align*}
+  f(11) &= \min(f(11-1) + 1, \ f(11-6) + 1, \ f(11-10) + 1) \\
+  &= \min(f(10) + 1, \ f(5) + 1, \ f(1) + 1) \\
+  &= \min(1 + 1, \ 5 + 1, \ 1 + 1) \\
+  &= \min(2, 6, 2) \\
+  &= 2
+\end{align*}
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+\hline $x$ & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 \\ 
+\hline $f(x)$ &  0 & 1 & 2 & 3 & 4 & 5 & 1 & 2 & 3 & 4 & 1 & 2 & \\ 
+\hline 
+\end{tabular} 
+\end{frame}
+
+\begin{frame}
+\frametitle{Mengisi "Tabel" (lanj.)}
+Terakhir, isi $f(12)$.
+\begin{align*}
+  f(12) &= \min(f(12-1) + 1, \ f(12-6) + 1, \ f(12-10) + 1) \\
+  &= \min(f(11) + 1, \ f(6) + 1, \ f(2) + 1) \\
+  &= \min(2 + 1, \ 1 + 1, \ 2 + 1) \\
+  &= \min(3, 2, 3) \\
+  &= 2
+\end{align*}
+
+Dari sini, terlihat bahwa menggunakan koin 10 terlebih dahulu (pilihan paling kanan) mengakibatkan banyaknya koin yang dibutuhkan adalah 3.\newline
+
+Sementara menggunakan koin 6 terlebih dahulu (pilihan tengah) mengakibatkan banyaknya koin yang dibutuhkan adalah 2.
+\end{frame}
+
+\begin{frame}
+\frametitle{Mengisi "Tabel" (lanj.)}
+Jadi kita selesai mengisi "tabel" DP.\newline
+
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+\hline $x$ & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 \\ 
+\hline $f(x)$ &  0 & 1 & 2 & 3 & 4 & 5 & 1 & 2 & 3 & 4 & 1 & 2 & 2 \\ 
+\hline 
+\end{tabular}
+\newline \newline
+\begin{itemize}
+  \item Jika Anda menggunakan \ftopdown, pada akhirnya tabel $memo$ juga akan berisi nilai-nilai ini.
+  \item Coba implementasikan secara \ftopdown dan \fbottomup dan lihat hasilnya!
+\end{itemize}
 \end{frame}
 
 \begin{frame}
 \frametitle{Top Down dan Bottom Up}
-Dua versi DP masing-masing memiliki keuntungan dan kerugian masing-masing.
+Top Down
 \begin{itemize}
-  \item Top Down
-  \begin{itemize}
-    \item Keuntungan: Sebuah transformasi natural dari formula rekursif. Urutan pengisian tabel tidak penting.
-    \item Keuntungan: Hanya menghitung nilai dari fungsi jika hanya diperlukan.
-    \item Kerugian : Pemanggilan fungsi yang berkali-kali mungkin saja membuat kode lebih lambat.
-  \end{itemize}
-  \item Bottom Up
-  \begin{itemize}
-    \item Keuntungan : Kode mungkin saja lebih cepat karena tidak membutuhkan pemanggilan fungsi yang berkali-kali.
-    \item Kerugian : Harus memikirkan urutan pengisian nilai tabel. 
-    \item Kerugian : Semua tabel harus diisi nilainya walaupun tidak dibutuhkan akhirnya.
-  \end{itemize}
+  \item Sebuah transformasi natural dari formula rekursif, biasanya mudah diimplementasikan.
+  \item Urutan pengisian tabel tidak penting.
+  \item Hanya menghitung nilai dari fungsi jika hanya diperlukan.
+  \item Ketika seluruh tabel memo pada akhirnya terisi, bisa saja lebih lambat karena adanya 
+  \foverhead pemanggilan fungsi.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Top Down dan Bottom Up (lanj.)}
+Bottom Up
+\begin{itemize}
+  \item Tidak mengalami perlambatan dari \foverhead pemanggilan fungsi.
+  \item Memungkinkan penggunaan teknik DP lanjutan seperti \foreignTerm{flying table}, kombinasi dengan struktur data \foreignTerm{tree}, dsb.
+  \item Harus memikirkan urutan pengisian nilai tabel.
+  \item Semua tabel harus diisi nilainya walaupun tidak dibutuhkan akhirnya.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Top Down dan Bottom Up (lanj.)}
+\begin{itemize}
+  \item Beberapa orang lebih alami untuk menggunakan \ftopdown, sementara sisanya lebih terbiasa dengan \fbottomup.
+  \item Bergantung dari cara berpikir Anda, salah satunya mungkin lebih mudah Anda pelajari.
+  \item Untuk orang yang telah berpengalaman, penggunaan \fbottomup dan \ftopdown dapat disesuaikan dengan soal yang dihadapi.
 \end{itemize}
 \end{frame}
 
 \begin{frame}
 \frametitle{Penutup}
 \begin{itemize}
-  \item DP merupakan topik yang cukup luas untuk dibicarakan.
-  \item Terdapat dua versi DP, yaitu \foreignTerm{bottom up} dan \foreignTerm{top down}. Keduanya memiliki keuntungan dan kerugian masing-masing. Kita harus bisa memilih versi yang tepat sesuai dengan kebutuhan soal.
-  \item Kunci dari mengerjakan soal DP adalah mendapatkan \foreignTerm{state} dan rekurens dari solusi DP. 
-  \item Banyak latihan mengerjakan soal DP dapat melatih kita untuk mendapatkan rumus DP yang sesuai.
+  \item Terdapat dua versi DP, yaitu \ftopdown dan \fbottomup.
+  \item Keduanya memiliki keuntungan dan kerugian, pilih yang tepat sesuai dengan kebutuhan soal.
+  \item Kunci dari mengerjakan soal DP adalah mengidentifikasi pilihan keputusan yang bisa diambil, dan merumuskannya menjadi rumus rekursif.
 \end{itemize}
 \end{frame}
 
