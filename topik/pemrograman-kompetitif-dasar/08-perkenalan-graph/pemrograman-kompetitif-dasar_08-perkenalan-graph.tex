@@ -1,10 +1,11 @@
 \input{../config.tex}
 
-\title{Perkenalan Graph}
+\title{Perkenalan \fGraph}
 \author{Tim Olimpiade Komputer Indonesia}
 \date{}
 
 \usepackage{verbatim}
+\usepackage{multicol}
 \lstset{escapeinside={<@}{@>},belowskip=\baselineskip}
 \definecolor{mygreen}{rgb}{0, 0.597, 0.199}
 
@@ -18,169 +19,381 @@
 \frametitle{Pendahuluan}
 Melalui dokumen ini, kalian akan:
 \begin{itemize}
-  \item Mengenal konsep dan terminologi graph
-  \item Mengetahui jenis-jenis graph
-  \item Mengenal representasi graph pada pemrograman
-  \item Mengenal metode-metode yang digunakan dalam graph
+  \item Mengenal konsep dan terminologi \fgraph.
+  \item Mengetahui jenis-jenis \fgraph.
+  \item Mengenal representasi \fgraph pada pemrograman.
+  \item Mengenal metode-metode yang digunakan dalam \fgraph.
 \end{itemize}
-
 \end{frame}
 
 \begin{frame}
-\frametitle{Mengenal Graph}
-Graph merupakan struktur data yang terdiri dari \alert{node/vertex} dan \alert{edge}. Node direpresentasikan dengan bentuk lingkaran dan edge direpresentasikan dengan bentuk garis pada ilustrasi di bawah ini.
+\frametitle{Motivasi}
+\begin{itemize}
+  \item Diberikan sebuah struktur kota dan jalan.
+  \item Terdapat $V$ kota, dan $E$ ruas jalan.
+  \item Setiap ruas jalan menghubungkan dua kota.
+  \item Diberikan kota awal, tentukan berapa banyak ruas jalan paling sedikit yang perlu dilalui untuk mencapai suatu kota tujuan!
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Pertanyaan}
+\begin{center}
+  \large Bagaimana cara merepresentasikan struktur perkotaan dan jalan pada pemrograman?
+\end{center}
+\end{frame}
+
+\begin{frame}
+\frametitle{Mengenal \fGraph}
+\fGraph adalah struktur yang terdiri dari \alert{\fnode/\foreignTerm{vertex}} dan \alert{\fedge.}\newline
+
+\fNode direpresentasikan dengan bentuk lingkaran dan \fedge direpresentasikan dengan bentuk garis pada ilustrasi berikut:
 
 \begin{figure}
   \centering
-  \includegraphics[width=6 cm]{asset/graph.pdf}
+  \includegraphics[width=4 cm]{asset/graph.pdf}
 \end{figure}
 \end{frame}
 
 \begin{frame}
-\frametitle{Mengenal Graph (lanj.)}
+\frametitle{Mengenal \fGraph (lanj.)}
 \begin{itemize}
-  \item Edge berfungsi untuk menghubungkan antar node
-  \item \alert{Degree} sebuah node merupakan jumlah edge yang terhubung pada node tersebut
-  \item Pada contoh ilustrasi graph di slide sebelumnya, degree node A = 4, degree node B = 3, dan seterusnya.
-  \item Tidak ada syarat khusus mengenai degree pada suatu graph.
-  \item Berbeda dengan tree yang mana maksimal memiliki 2 children dan 1 parent
+  \item \fEdge merupakan penghubung antar \fnode.
+  \item \alert{\fDegree} suatu \fnode merupakan jumlah \fedge yang terhubung pada \fnode tersebut
+  \item Pada contoh ilustrasi berikut, \fdegree \fnode A = 4, \fdegree \fnode B = 3, dan \fdegree \fnode C = 5.
 \end{itemize}
-
+\begin{figure}
+  \centering
+  \includegraphics[width=4 cm]{asset/graph.pdf}
+\end{figure}
 \end{frame}
 
 \begin{frame}
-\frametitle{Jenis-jenis Graph}
-Berdasarkan hubungan antar node, graph terbagi menjadi 2:
+\frametitle{Jenis-jenis \fGraph}
+Berdasarkan hubungan antar \fnode:
 \begin{itemize}
-  \item Directed graph, yaitu graph satu arah. Pada graph jenis ini, jika terdapat edge dari A ke B, maka belum tentu terdapat edge dari B ke A. Contoh graph ini adalah kota-kota sebagai nodenya dan jalan 1 arah sebagai edgenya.
-  \item Undirected graph, yaitu graph dua arah. Dalam graph ini, jika terdapat edge dari A ke B, maka pasti juga terdapat edge dari B ke A. Contoh graph jenis ini adalah kota-kota sebagai nodenya dan jalan 2 arah sebagai edgenya.
+  \item \foreignTerm{Undirected} \fgraph (dua arah): \fedge dari A ke B dapat ditelusuri dari A ke B dan B ke A. 
+  \item \foreignTerm{Directed} \fgraph (satu arah): \fedge dari A ke B hanya dapat ditelusuri dari dari A ke B.
 \end{itemize}
+\begin{figure}
+  \centering
+  \includegraphics[width=4 cm]{asset/unweighted-undirected.pdf}
+  \ \ \ \ \ \ % If this works, this ain't stupid
+  \includegraphics[width=4 cm]{asset/unweighted-directed.pdf}
+  
+  \foreignTerm{Undirected} dan \foreignTerm{directed} \fgraph.
+\end{figure}
 \end{frame}
 
 \begin{frame}
-\frametitle{Jenis-jenis Graph (lanj.)}
-Berdasarkan bobot dari edgenya, graph juga terbagi menjadi 2:
+\frametitle{Jenis-jenis \fGraph (lanj.)}
+Berdasarkan bobot dari \fedge:
 \begin{itemize}
-  \item Unweighted Graph, yaitu graph yang mana edgenya tidak memiliki value, sehingga semua edge memiliki weight 1 dan hanya bermakna bahwa memang terdapat hubungan antar node yang dihubungkannya.
-  \item Weighted Graph, yaitu graph yang mana edgenya memiliki bobot yang berbeda-beda. Bobot pada edge ini seringkali berupa biaya atau jarak yang harus ditempuh jika menggunakan edge tersebut.
+  \item \foreignTerm{Unweighted} \fGraph, yaitu \fgraph dengan \fedge yang bobotnya seragam dan hanya bermakna terdapat hubungan antar \fnode.
+  \item \foreignTerm{Weighted} \fGraph, yaitu \fgraph dengan \fedge yang dapat memiliki bobot berbeda-beda. Bobot pada \fedge ini bisa jadi berupa biaya, jarak, atau waktu yang harus ditempuh jika menggunakan \fedge tersebut.
 \end{itemize}
+\begin{figure}
+  \centering
+  \includegraphics[width=4 cm]{asset/unweighted-undirected.pdf}
+  \ \ \ \ \ \ % If this works, this ain't stupid
+  \includegraphics[width=4 cm]{asset/weighted-undirected.pdf}
+  
+  \foreignTerm{Unweighted} dan \foreignTerm{weighted} \fgraph.
+\end{figure}
 \end{frame}
 
 \begin{frame}
-\frametitle{Representasi Graph pada Pemrograman}
+\frametitle{Jenis-jenis \fGraph (lanj.)}
+Tentu saja, suatu \fgraph dapat memiliki kombinasi dari sifat-sifat tersebut.
+
+Misalnya \foreignTerm{weighted directed graph}:
+\newline
+\begin{figure}
+  \centering
+  \includegraphics[width=5 cm]{asset/weighted-directed.pdf}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+\frametitle{Representasi \fGraph pada Pemrograman}
 
 \begin{itemize}
-  \item Dalam pemrograman, dibutuhkan sebuah struktur data agar data mengenai graph dapat disimpan dan diolah.
-  \item Dapat direpresentasikan menggunakan 3 metode, yaitu adjacency matrix, adjacency list, dan edge list.
-  \item Masing-masing representasi memiliki keuntungan dan kerugiannya masing-masing.
-  \item Penggunaan representasi graph bergantung dengan masalah yang sedang dihadapi
+  \item Dalam pemrograman, dibutuhkan sebuah struktur agar data mengenai \fgraph dapat disimpan dan diolah.
+  \item Representasi yang akan kita pelajari adalah \fadjacencymatrix, \fadjacencylist, dan \fadjacencylist.
+  \item Masing-masing representasi memiliki keuntungan dan kerugiannya.
+  \item Penggunaan representasi \fgraph bergantung dengan masalah yang sedang dihadapi
 \end{itemize}
 \end{frame}
 
 \begin{frame}
 \frametitle{Adjacency Matrix}
-
 \begin{itemize}
-  \item Membutuhkan struktur data array 2 dimensi dengan ukuran N x N yang mana N merupakan banyaknya \foreignTerm{node/vertex}
-  \item Seluruh elemen pada matrix diinisialisasi dengan suatu angka (misalnya angka nol)
-  \item Angka nol tersebut menyatakan tidak ada edge
-  \item Misal terdapat edge dari A ke B pada unweighted graph, ganti isi $matrix[A][B] = 1$
-  \item Misal terdapat edge dari A ke B dengan bobot C, maka ganti isi $matrix[A][B] = C$
+  \item Kita akan menggunakan matriks dengan ukuran $N \times N$ dengan $N$ merupakan banyaknya \fnode.
+  \item Pada \foreignTerm{unweighted} \fgraph:
+  \begin{itemize}
+    \item Jika terdapat \fedge dari A ke B, maka $matrix[A][B] = 1$. 
+    \item Jika tidak ada, maka $matrix[A][B] = 0$.
+  \end{itemize}
 \end{itemize}
 
+\begin{center}
+\begin{multicols}{2}
+  $\begin{array}{c|cccc}
+      & A & B & C & D \\ \hline
+    A & 0 & 1 & 1 & 1 \\
+    B & 1 & 0 & 0 & 0 \\
+    C & 0 & 0 & 0 & 1 \\
+    D & 0 & 0 & 0 & 0
+  \end{array}$
+  \break
+  \begin{figure}
+    \includegraphics[width=4 cm]{asset/unweighted-directed.pdf}
+  \end{figure}
+\end{multicols} 
+\end{center}
+\end{frame}
+
+\begin{frame}
+\frametitle{Adjacency Matrix}
+\begin{itemize}
+  \item Pada \foreignTerm{weighted} \fgraph:
+  \begin{itemize}
+    \item Jika terdapat \fedge dari A ke B dengan bobot w, maka $matrix[A][B] = w$. 
+    \item Jika tidak ada, maka dapat ditulis $matrix[A][B] = \infty$.
+  \end{itemize}
+\end{itemize}
+
+\begin{center}
+\begin{multicols}{2}
+  $\begin{array}{c|cccc}
+      & A & B & C & D \\ \hline
+    A & \infty & 3 & 2 & 5 \\
+    B & 1 & \infty & \infty & \infty \\
+    C & \infty & \infty & \infty & 8 \\
+    D & \infty & \infty & \infty & \infty
+  \end{array}$
+  \break
+  \begin{figure}
+    \includegraphics[width=4 cm]{asset/weighted-directed.pdf}
+  \end{figure}
+\end{multicols} 
+\end{center}
+\end{frame}
+
+\begin{frame}
+\frametitle{Adjacency Matrix}
+\begin{itemize}
+  \item Pada \foreignTerm{undirected} \fgraph, \fadjacencymatrix simetris terhadap diagonalnya.
+  \item Representasi ini mudah diimplementasikan.
+  \item Menambah atau menghapus \fedge dapat dilakukan dalam $O(1)$.
+  \item Untuk memeriksa apakah dua \fnode terhubung juga dapat dilakukan dalam $O(1)$.
+  \item Untuk mendapatkan daftar tetangga dari suatu \fnode, dapat dilakukan iterasi $O(V)$, dengan $V$ adalah banyaknya \fnode.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Adjacency Matrix}
+\begin{itemize}
+  \item Kekurangan dari representasi ini adalah boros memori.
+  \item Memori yang dibutuhkan selalu $O(V^2)$, tidak dapat digunakan untuk \fgraph dengan \fnode mencapai ratusan ribu.
+  \item Jika banyaknya \fedge jauh lebih sedikit dari $O(V^2)$, maka banyak memori yang terbuang.
+\end{itemize}
 \end{frame}
 
 \begin{frame}
 \frametitle{Adjacency List}
 \begin{itemize}
-  \item Membutuhkan struktur data array of lists.
-  \item Tiap list berisi keterangan mengenai edge yang terdapat dalam suatu node.
-  \item Ukuran dari array merupakan N yang mana N merupakan banyaknya node/vertex
-  \item Inisialisasi seluruh list kosong, yang menandakan bahwa belum terdapat edge dalam graph tersebut.
-  \item Misal terdapat edge dari A ke B pada unweighted graph, maka masukkan B kedalam list A.
-  \item Misal terdapat edge dari A ke B dengan bobot C, masukkan \{B,C\} kedalam list A.
+  \item Merupakan salah satu alternatif representasi \fgraph.
+  \item Untuk setiap \fnode, buat sebuath \flist yang berisi keterangan mengenai tetangga \fnode tersebut.
+  \item Misalnya untuk \foreignTerm{unweighted} \fgraph, kita cukup menyimpan \fnode-\fnode tetangga untuk setiap \fnode.
+\end{itemize}
+\begin{center}
+\begin{multicols}{2}
+  $\begin{array}{r|l}
+    A & [B, C, D] \\
+    B & [A] \\
+    C & [D] \\
+    D & [\ ]
+  \end{array}$
+  \break
+  \begin{figure}
+    \includegraphics[width=4 cm]{asset/unweighted-directed.pdf}
+  \end{figure}
+\end{multicols} 
+\end{center}
+\end{frame}
+
+\begin{frame}
+\frametitle{Adjacency List}
+\begin{itemize}
+  \item Untuk \foreignTerm{weighted} \fgraph, kita dapat menyimpan \fnode-\fnode tetangga beserta bobotnya.
+\end{itemize}
+\begin{center}
+\begin{multicols}{2}
+  $\begin{array}{r|l}
+    A & [<B,3> , <C,2>, <D,5>] \\
+    B & [<A,1>] \\
+    C & [<D,8>] \\
+    D & [\ ]
+  \end{array}$
+  \break
+  \begin{figure}
+    \includegraphics[width=4 cm]{asset/weighted-directed.pdf}
+  \end{figure}
+\end{multicols} 
+\end{center}
+\end{frame}
+
+\begin{frame}
+\frametitle{Adjacency List}
+\begin{itemize}
+  \item Kita dapat menggunakan struktur data \foreignTerm{array of lists}.
+  \item Tiap \flist berisi keterangan mengenai tetangga suatu \fnode.
+  \item Ukuran dari \farray merupakan $V$, yang mana $V$ merupakan banyaknya \fnode.
+  \item Dengan menggunakan \flist, banyaknya memori yang digunakan untuk setiap \fnode hanya sebatas banyak tetangganya.
+  \item Secara keseluruhan jika \fgraph memiliki $E$ \fedge, maka total memori yang dibutuhkan adalah $O(E)$.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Adjacency List}
+\begin{itemize}
+  \item Kompleksitas menambah \fedge adalah $O(1)$, dan menghapus adalah $O(K)$ dengan $K$ adalah banyaknya tetangga dari \fnode yang \fedge-nya dihapus.
+  \item Memeriksa apakah dua \fnode terhubung oleh \fedge juga dilakukan dalam $O(K)$.
+  \item Demikian juga untuk mendapatkan daftar tetangga dari \fnode, kompleksitasnya adalah $O(K)$. Perhatikan bahwa pencarian daftar tetangga ini sudah paling efisien.
 \end{itemize}
 \end{frame}
 
 \begin{frame}
 \frametitle{Edge List}
-
 \begin{itemize}
-  \item Membutuhkan struktur data sebuah list.
-  \item Seluruh keterangan edge dimasukkan kedalam list tersebut.
-  \item Berbeda dengan adjacency list yang membutuhkan array of list, pada edge list hanya dibutuhkan satu buah list.
-  \item Inisialisasikan list tersebut kosong.
-  \item Misal terdapat edge dari A ke B pada unweighted graph, masukkan \{A,B\} kedalam list tersebut
-  \item Misal terdapat edge dari A ke B dengan bobot C, maka masukkan \{A,B,C\} kedalam list tersebut
+  \item Sesuai namanya, kita merepresentasikan \fgraph dengan sebuah \flist.
+  \item Seluruh keterangan \fedge dimasukkan kedalam \flist tersebut.
+  \item Berbeda dengan \fadjacencylist yang membutuhkan \foreignTerm{array of list}, representasi ini hanya butuh sebuah \flist.
 \end{itemize}
-
-\end{frame}
-
-
-\begin{frame}[fragile]
-\frametitle{Pseudocode Representasi Graph}
-
-Adjacency Matrix
-\begin{lstlisting}
-  integer AdjMatrix[N][N]
-  set AdjMatrix = 0
-  
-  <@\textcolor{mygreen}{//edge dari 1 ke 4 pada undirected unweighted graph}@>
-  AdjMatrix[1][4] = 1
-  AdjMatrix[4][1] = 1
-\end{lstlisting}
-Adjacency List
-\begin{lstlisting}
-  List<integer> AdjList[N]
-  
-  <@\textcolor{mygreen}{//edge dari 1 ke 4 pada undirected unweighted graph}@>
-  AdjList[1].push(4)
-  AdjList[4].push(1)
-  
-\end{lstlisting}
-\end{frame}
-
-\begin{frame}[fragile]
-\frametitle{Pseudocode Representasi Graph (lanj.)}
-
-Edge List
-\begin{lstlisting}
-  List<{integer,integer}> EdgeList
-  
-  <@\textcolor{mygreen}{//edge dari 1 ke 4 pada undirected unweighted graph}@>
-  EdgeList.push({1,4})
-  
-  List<{integer,integer,integer}> WeightedList
-  
-  <@\textcolor{mygreen}{//edge dari 2 ke 3 dengan bobot 5 pada undirected graph}@>
-  WeightedList.push({2,3,5})
-\end{lstlisting}
+\begin{center}
+\begin{multicols}{2}
+  $\begin{array}{l}
+    <A, B>, \\
+    <A, C>, \\
+    <A, D>, \\
+    <B, A>, \\
+    <C, D> 
+  \end{array}$
+  \break
+  \begin{figure}
+    \includegraphics[width=4 cm]{asset/unweighted-directed.pdf}
+  \end{figure}
+\end{multicols} 
+\end{center}
 \end{frame}
 
 \begin{frame}
-\frametitle{Keuntungan dan Kerugian Representasi Graph}
-Misalkan graph kita memiliki V vertex dan E edge. Kita ingin melihat kompleksitas yang dibutuhkan berbagai jenis representasi graph pada suatu node yang mana node tersebut memiliki jumlah tetangga sebanyak K.
+\frametitle{Edge List}
+\begin{itemize}
+  \item Untuk \foreignTerm{weighted} \fgraph, kita juga menyimpan bobot dari setiap \fedge.
+\end{itemize}
+\begin{center}
+\begin{multicols}{2}
+  $\begin{array}{l}
+    <A, B, 3>, \\
+    <A, C, 2>, \\
+    <A, D, 5>, \\
+    <B, A, 1>, \\
+    <C, D, 8> 
+  \end{array}$
+  \break
+  \begin{figure}
+    \includegraphics[width=4 cm]{asset/weighted-directed.pdf}
+  \end{figure}
+\end{multicols} 
+\end{center}
+\end{frame}
+
+\begin{frame}
+\frametitle{Edge List}
+\begin{itemize}
+  \item Untuk implementasinya, kita membutuhkan struktur data sebuah \flist (atau \farray).
+  \item Jelas bahwa memori yang dibutuhkan adalah $O(E)$, dengan $E$ adalah banyaknya \fedge pada keseluruhan \fgraph.
+  \newline
+  \item Pada beberapa kasus, digunakan struktur data \foreignTerm{Binary Search Tree} untuk menyimpan daftar \fedge, yang memungkinkan implementasinya lebih efisien.
+  Namun untuk saat ini kita tidak mempelajari hal tersebut.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Adjacency List}
+\begin{itemize}
+  \item Kompleksitas menambah \fedge adalah $O(1)$.
+  \item Bergantung dari implementasi, kompleksitas menghapus \fedge dan memeriksa keterhubungan sepasang \fnode bisa berupa $O(\log{E})$ sampai $O(E)$.
+  \item Demikian juga untuk mendapatkan daftar tetangga dari \fnode, kompleksitasnya bisa berkisar antara $O(K)$ sampai $O(E)$, dengan $K$ adalah banyaknya tetangga dari \fnode tersebut.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Keuntungan dan Kerugian Representasi \fGraph}
+Untuk \fgraph dengan $V$ \fnode dan $E$ \fedge: 
 {\fontsize{9}{10}\selectfont\renewcommand{\arraystretch}{1.75}
 \begin{center}
- \begin{tabular}{||c|c c c c||} 
+ \begin{tabular}{||r|c c c||} 
  \hline
- Representasi & TambahEdge & HapusEdge & DaftarTetangga & CekHubungan \\ [0.5ex] 
+ & \foreignTerm{Adj.Matrix} & \foreignTerm{Adj.List} & \foreignTerm{Edge List}\\
  \hline\hline
- Adj.Matrix & konstan & konstan & N & konstan\\ 
- \hline
- Adj.List & konstan & K & K & K\\
- \hline
- Edge List & konstan & E & E & E\\
+ Tambah \fedge & $O(1)$ & $O(1)$ & $O(1)$ \\ \hline
+ Hapus \fedge & $O(1)$ & $O(K)$ & $O(E)$ \\ \hline
+ Cek keterhubungan & $O(1)$ & $O(K)$ & $O(E)$ \\ \hline
+ Daftar tetangga & $O(V)$ & $O(K)$ & $O(E)$ \\ \hline
+ Kebutuhan memori & $O(V^2)$ & $O(E)$ & $O(E)$ \\ [0.5ex] 
  \hline
 \end{tabular}
 \end{center}
 }
-Tabel di atas menjelaskan kompleksitas yang dibutuhkan untuk melakukan proses-proses dalam graph
+Dengan $K$ adalah banyaknya \fnode yang bertetangga dengan \fnode yang sedang kita periksa.
 \end{frame}
+
+%\begin{frame}[fragile]
+%\frametitle{Pseudocode Representasi \fGraph}
+%
+%Adjacency Matrix
+%\begin{lstlisting}
+%  integer AdjMatrix[N][N]
+%  set AdjMatrix = 0
+%  
+%  <@\textcolor{mygreen}{//edge dari 1 ke 4 pada undirected unweighted graph}@>
+%  AdjMatrix[1][4] = 1
+%  AdjMatrix[4][1] = 1
+%\end{lstlisting}
+%Adjacency List
+%\begin{lstlisting}
+%  List<integer> AdjList[N]
+%  
+%  <@\textcolor{mygreen}{//edge dari 1 ke 4 pada undirected unweighted graph}@>
+%  AdjList[1].push(4)
+%  AdjList[4].push(1)
+%  
+%\end{lstlisting}
+%\end{frame}
+%
+%\begin{frame}[fragile]
+%\frametitle{Pseudocode Representasi \fGraph (lanj.)}
+%
+%Edge List
+%\begin{lstlisting}
+%  List<{integer,integer}> EdgeList
+%  
+%  <@\textcolor{mygreen}{//edge dari 1 ke 4 pada undirected unweighted graph}@>
+%  EdgeList.push({1,4})
+%  
+%  List<{integer,integer,integer}> WeightedList
+%  
+%  <@\textcolor{mygreen}{//edge dari 2 ke 3 dengan bobot 5 pada undirected graph}@>
+%  WeightedList.push({2,3,5})
+%\end{lstlisting}
+%\end{frame}
 
 \begin{comment}
 \begin{frame}
-\frametitle{Keuntungan dan Kerugian Representasi Graph}
+\frametitle{Keuntungan dan Kerugian Representasi \fGraph}
 
 \begin{itemize}
   \item Adjacency Matrix memakan lebih banyak memori. Hal ini dikarenakan adjacency matrix menyimpan keterangan dari satu node ke semua node. Sedangkan dalam adjacency list, suatu node hanya menyimpan keterangan mengenai node lain yang memiliki edge. Oleh karena itu, adjacency list lebih baik digunakan ketika edge yang terdapat tidak teralu banyak.
@@ -189,7 +402,7 @@ Tabel di atas menjelaskan kompleksitas yang dibutuhkan untuk melakukan proses-pr
 \end{frame}
 
 \begin{frame}
-\frametitle{Keuntungan dan Kerugian Representasi Graph (lanj.)}
+\frametitle{Keuntungan dan Kerugian Representasi \fGraph (lanj.)}
 \begin{itemize}
   \item Jika ada edge dari A ke B yang akan dibuang, maka pada adjacency matrix kita hanya perlu mengubah nilai Matrix[A][B]. Sedangkan pada adjacency list, harus dilakukan iterasi terlebih dahulu untuk mencari edge tersebut, lalu menghapusnya juga lebih rumit karena harus menggeser seluruh elemen setelahnya.
   \item Untuk mencari tetangga-tetangganya, maka pada adjacency matrix perlu dilakukan iterasi terhadap seluruh node yagn ada. Sementara itu, pada adjacency list hanya perlu dilakukan iterasi pada list yang isinya merupakan tetangga dari node yang bersangkutan.
@@ -198,13 +411,13 @@ Tabel di atas menjelaskan kompleksitas yang dibutuhkan untuk melakukan proses-pr
 \end{comment}
 
 \begin{frame}
-\frametitle{Graph Traversal}
+\frametitle{\fGraph Traversal}
 
 \begin{itemize}
-  \item Representasi Graph saja belum berguna karena belum dapat mencari informasi mengenai suatu graph
-  \item \alert{Graph Traversal} merupakan penelusuran node-node pada suatu graph.
+  \item Representasi \fGraph saja belum berguna karena belum dapat mencari informasi mengenai suatu \fgraph
+  \item \alert{\fGraph Traversal} merupakan penelusuran node-node pada suatu \fgraph.
   \item Contoh permasalahannya adalah diberikan node A dan node B, ditanya apakah dari node A bisa pergi ke node B menggunakan edge yang ada?
-  \item Permasalahan tersebut dapat diselesaikan menggunakan graph traversal.
+  \item Permasalahan tersebut dapat diselesaikan menggunakan \fgraph traversal.
   \item Terdapat 2 metode yang dapat digunakan, yaitu DFS dan BFS.
 \end{itemize}
 \end{frame}
@@ -212,7 +425,7 @@ Tabel di atas menjelaskan kompleksitas yang dibutuhkan untuk melakukan proses-pr
 \begin{frame}
 \frametitle{DFS}
 
-\alert{DFS} merupakan singkatan dari Depth-First Search. Berdasarkan namanya, dapat disimpulkan bahwa DFS akan mencari node-node yang lebih dalam(depth-first) terlebih dahulu. Sebagai contoh misal terdapat graph seperti berikut
+\alert{DFS} merupakan singkatan dari Depth-First Search. Berdasarkan namanya, dapat disimpulkan bahwa DFS akan mencari node-node yang lebih dalam(depth-first) terlebih dahulu. Sebagai contoh misal terdapat \fgraph seperti berikut
 
 \begin{figure}
   \centering
@@ -233,7 +446,7 @@ Tabel di atas menjelaskan kompleksitas yang dibutuhkan untuk melakukan proses-pr
 \begin{frame}
 \frametitle{BFS}
 
-\alert{BFS} merupakan singkatan dari Breadth-First Search. Berdasarkan namanya, dapat disimpulkan bahwa BFS akan menelusuri node pada graph sesuai dengan layernya. Semakin dekat dengan node awal, maka node tersebut akan dikunjungi terlebih dahulu. Begitu pula sebaliknya. Sebagai contoh misal terdapat graph seperti berikut
+\alert{BFS} merupakan singkatan dari Breadth-First Search. Berdasarkan namanya, dapat disimpulkan bahwa BFS akan menelusuri node pada \fgraph sesuai dengan layernya. Semakin dekat dengan node awal, maka node tersebut akan dikunjungi terlebih dahulu. Begitu pula sebaliknya. Sebagai contoh misal terdapat \fgraph seperti berikut
 
 \begin{figure}
   \centering
@@ -249,7 +462,7 @@ Tabel di atas menjelaskan kompleksitas yang dibutuhkan untuk melakukan proses-pr
   \item Dapat disimpulkan bahwa BFS akan mencoba mengunjungi node-node yang lebih dekat dengan node awal terlebih dahulu.
   \item Node yang jauh dengan node awal akan dikunjungi terakhir.
   \item Dalam pemrograman, BFS dapat dilakukan menggunakan bantuan struktur data \foreignTerm{queue}
-  \item Slide selanjutnya akan menjelaskan implementasi DFS dan BFS pada unweighted graph yang direpresentasikan menggunakan adjacency matrix
+  \item Slide selanjutnya akan menjelaskan implementasi DFS dan BFS pada unweighted \fgraph yang direpresentasikan menggunakan adjacency matrix
 \end{itemize}
 \end{frame}
 
@@ -324,7 +537,7 @@ Diberikan keterangan mengenai kota A, kota B, dan jalan-jalan yang terdapat dala
 
 \begin{frame}
 \frametitle{Pembahasan Permasalahan}
-Permasalahan di atas dapat diselesaikan menggunakan BFS. Karena sifat BFS yang menelusuri node per layer, maka dapat disimpulkan bahwa jika suatu node terkunjungi, maka pasti jarak yang ditempuh merupakan jarak terpendek dari node awal. Hal ini berlaku pada unweighted graph yang edgenya tidak memiliki bobot.
+Permasalahan di atas dapat diselesaikan menggunakan BFS. Karena sifat BFS yang menelusuri node per layer, maka dapat disimpulkan bahwa jika suatu node terkunjungi, maka pasti jarak yang ditempuh merupakan jarak terpendek dari node awal. Hal ini berlaku pada unweighted \fgraph yang edgenya tidak memiliki bobot.
 \newline\newline
 Dengan demikian, permasalahan di atas dapat diselesaikan dengan menggunakan BFS. Pada slide selanjutnya akan diberikan contoh implementasi untuk menyelesaikan permasalahan jarak terpendek tersebut!
 \end{frame}
@@ -357,7 +570,7 @@ else
 \begin{frame}
 \frametitle{Tree}
 \begin{itemize}
-  \item \foreignTerm{Tree} merupakan bentuk khusus dari graph
+  \item \foreignTerm{Tree} merupakan bentuk khusus dari \fgraph
   \item Seluruh node pada tree terhubung (tidak ada node yang tidak dapat dikunjungi dari node lain) dan tidak terdapat \alert{cycle}
   \item Jumlah edge dalam sebuah tree pasti berjumlah sebanyak (Node - 1)
 \end{itemize}
@@ -370,9 +583,9 @@ Pada gambar di atas, gambar kiri bukan sebuah tree karena memiliki cycle, sedang
 \end{frame}
 
 \begin{frame}
-\frametitle{Directed Acyclic Graph}
+\frametitle{Directed Acyclic \fGraph}
 \begin{itemize}
-  \item \foreignTerm{Directed Acyclic Graph (DAG)} merupakan bentuk khusus dari directed graph.
+  \item \foreignTerm{Directed Acyclic \fGraph (DAG)} merupakan bentuk khusus dari directed \fgraph.
   \item DAG tidak memiliki \alert{direct cycle}
   \item Berbeda dengan tree yang mana setiap nodenya harus dapat dicapai node lainnya, sifat tersebut tidak berlaku pada DAG
 \end{itemize}
