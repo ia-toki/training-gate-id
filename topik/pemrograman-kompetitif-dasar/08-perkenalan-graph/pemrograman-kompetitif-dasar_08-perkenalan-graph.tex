@@ -43,6 +43,9 @@ Melalui dokumen ini, kalian akan:
 \end{center}
 \end{frame}
 
+\section{Perkenalan Graph}
+\frame{\sectionpage}
+
 \begin{frame}
 \frametitle{Mengenal \fGraph}
 \fGraph adalah struktur yang terdiri dari \alert{\fnode/\foreignTerm{vertex}} dan \alert{\fedge.}\newline
@@ -258,6 +261,15 @@ Misalnya \foreignTerm{weighted directed graph}:
 \begin{frame}
 \frametitle{Adjacency List}
 \begin{itemize}
+  \item \fList yang dimaksud bisa berupa \foreignTerm{Linked List} atau \foreignTerm{Resizable Array}.
+  \item Bagi pengguna C++ atau Java, struktur \flist yang dapat digunakan adalah Vector atau ArrayList.
+  \item Untuk pengguna C atau Pascal, struktur \foreignTerm{Linked List} perlu dibuat terlebih dahulu.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Adjacency List}
+\begin{itemize}
   \item Kompleksitas menambah \fedge adalah $O(1)$, dan menghapus adalah $O(K)$ dengan $K$ adalah banyaknya tetangga dari \fnode yang \fedge-nya dihapus.
   \item Memeriksa apakah dua \fnode terhubung oleh \fedge juga dilakukan dalam $O(K)$.
   \item Demikian juga untuk mendapatkan daftar tetangga dari \fnode, kompleksitasnya adalah $O(K)$. Perhatikan bahwa pencarian daftar tetangga ini sudah paling efisien.
@@ -316,7 +328,7 @@ Misalnya \foreignTerm{weighted directed graph}:
   \item Untuk implementasinya, kita membutuhkan struktur data sebuah \flist (atau \farray).
   \item Jelas bahwa memori yang dibutuhkan adalah $O(E)$, dengan $E$ adalah banyaknya \fedge pada keseluruhan \fgraph.
   \newline
-  \item Pada beberapa kasus, digunakan struktur data \foreignTerm{Binary Search Tree} untuk menyimpan daftar \fedge, yang memungkinkan implementasinya lebih efisien.
+  \item Pada beberapa kasus, dilakukan pengurutan terhadap \fedgelist atau digunakan struktur data \foreignTerm{Binary Search Tree}, yang memungkinkan implementasinya lebih efisien.
   Namun untuk saat ini kita tidak mempelajari hal tersebut.
 \end{itemize}
 \end{frame}
@@ -326,7 +338,7 @@ Misalnya \foreignTerm{weighted directed graph}:
 \begin{itemize}
   \item Kompleksitas menambah \fedge adalah $O(1)$.
   \item Bergantung dari implementasi, kompleksitas menghapus \fedge dan memeriksa keterhubungan sepasang \fnode bisa berupa $O(\log{E})$ sampai $O(E)$.
-  \item Demikian juga untuk mendapatkan daftar tetangga dari \fnode, kompleksitasnya bisa berkisar antara $O(K)$ sampai $O(E)$, dengan $K$ adalah banyaknya tetangga dari \fnode tersebut.
+  \item Demikian juga untuk mendapatkan daftar tetangga dari \fnode, kompleksitasnya bisa berkisar antara $O(\log{E} + K)$ sampai $O(E)$, dengan $K$ adalah banyaknya tetangga dari \fnode tersebut.
 \end{itemize}
 \end{frame}
 
@@ -410,12 +422,15 @@ Dengan $K$ adalah banyaknya \fnode yang bertetangga dengan \fnode yang sedang ki
 \end{frame}
 \end{comment}
 
+\section{Graph Traversal}
+\frame{\sectionpage}
+
 \begin{frame}
 \frametitle{\fGraph Traversal}
 
 \begin{itemize}
   \item Representasi \fGraph saja belum berguna karena belum dapat mencari informasi mengenai suatu \fgraph
-  \item \alert{\fGraph Traversal} merupakan penelusuran node-node pada suatu \fgraph.
+  \item \alert{\fGraph Traversal} merupakan penelusuran \fnode-\fnode pada suatu \fgraph.
   \item Contoh permasalahannya adalah diberikan node A dan node B, ditanya apakah dari node A bisa pergi ke node B menggunakan edge yang ada?
   \item Permasalahan tersebut dapat diselesaikan menggunakan \fgraph traversal.
   \item Terdapat 2 metode yang dapat digunakan, yaitu DFS dan BFS.
@@ -423,109 +438,203 @@ Dengan $K$ adalah banyaknya \fnode yang bertetangga dengan \fnode yang sedang ki
 \end{frame}
 
 \begin{frame}
-\frametitle{DFS}
+\frametitle{\fGraph Traversal}
+\begin{itemize}
+  \item Representasi \fGraph saja belum berguna karena belum dapat mencari informasi mengenai suatu \fgraph
+  \item \alert{\fGraph Traversal} merupakan penelusuran \fnode-\fnode pada suatu \fgraph.
+\end{itemize}
+\end{frame}
 
-\alert{DFS} merupakan singkatan dari Depth-First Search. Berdasarkan namanya, dapat disimpulkan bahwa DFS akan mencari node-node yang lebih dalam(depth-first) terlebih dahulu. Sebagai contoh misal terdapat \fgraph seperti berikut
+\begin{frame}
+\frametitle{\fGraph Traversal}
+\begin{itemize}
+  \item Diberikan \fnode A dan \fnode B, apakah dari \fnode A kita dapat pergi ke \fnode B dengan \fedge yang ada?
+  \item Permasalahan tersebut dapat diselesaikan menggunakan \fgraphtraversal.
+  \newline
+  \item Terdapat 2 metode yang dapat digunakan, yaitu \newTerm{DFS} dan \newTerm{BFS}.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{DFS: Depth-First Search}
+Penelusuran dilakukan terhadap \fnode yang lebih dalam terlebih dahulu (\foreignTerm{depth-first}). 
+
+Sebagai contoh, misal terdapat \fgraph berikut:
 
 \begin{figure}
   \centering
-  \includegraphics[width=5 cm]{asset/dfs.pdf}
+  \includegraphics[width=4 cm]{asset/plain.pdf}
 \end{figure}
+\end{frame}
+
+\begin{frame}
+\frametitle{DFS: Depth-First Search}
+Penelusuran secara DFS akan dilakukan dengan cara berikut:
+\begin{figure}
+  \centering
+  \includegraphics[width=4 cm]{asset/dfs.pdf}
+\end{figure}
+\begin{itemize}
+  \item Angka pada \fnode menunjukkan urutan \fnode tersebut dikunjungi.
+  \item \fNode 1 dikunjungi pertama, \fnode 2 dikunjungi kedua, dan seterusnya).
+\end{itemize}
 \end{frame}
 
 \begin{frame}
 \frametitle{DFS (lanj.)}
-\begin{itemize}
-  \item Angka pada gambar di atas menunjukkan urutan node tersebut dikunjungi. (Node 1 dikunjungi pertama, node 2 dikunjungi kedua, dan seterusnya)
-  \item Dari urutan pengunjungan node pada gambar, dapat dililhat bahwa DFS akan mencoba menelusuri node-node yang dalam terlebih dahulu
-  \item Node yang dekat dengan node awal (seperti node 7 dan 8) akan dikunjungi setelah DFS selesai mengunjungi node yang lebih dalam (seperti node 3,4, dan 5)
-  \item Dalam pemrograman, DFS dapat dilakukan menggunakan rekursi atau dengan bantuan struktur data \foreignTerm{stack}
-\end{itemize}
-\end{frame}
-
-\begin{frame}
-\frametitle{BFS}
-
-\alert{BFS} merupakan singkatan dari Breadth-First Search. Berdasarkan namanya, dapat disimpulkan bahwa BFS akan menelusuri node pada \fgraph sesuai dengan layernya. Semakin dekat dengan node awal, maka node tersebut akan dikunjungi terlebih dahulu. Begitu pula sebaliknya. Sebagai contoh misal terdapat \fgraph seperti berikut
-
 \begin{figure}
   \centering
-  \includegraphics[width=5 cm]{asset/bfs.pdf}
+  \includegraphics[width=4 cm]{asset/dfs.pdf}
 \end{figure}
-
-\end{frame}
-
-\begin{frame}
-\frametitle{BFS (lanj.)}
 \begin{itemize}
-  \item Angka pada gambar di atas menunjukkan urutan node tersebut dikunjungi. (Node 1 dikunjungi pertama, node 2 dikunjungi kedua, dan seterusnya)
-  \item Dapat disimpulkan bahwa BFS akan mencoba mengunjungi node-node yang lebih dekat dengan node awal terlebih dahulu.
-  \item Node yang jauh dengan node awal akan dikunjungi terakhir.
-  \item Dalam pemrograman, BFS dapat dilakukan menggunakan bantuan struktur data \foreignTerm{queue}
-  \item Slide selanjutnya akan menjelaskan implementasi DFS dan BFS pada unweighted \fgraph yang direpresentasikan menggunakan adjacency matrix
+  \item Dapat dilihat bahwa DFS mencoba menelusuri \fnode yang dalam terlebih dahulu.
+  \item \fNode yang dekat dengan \fnode pertama (seperti \fnode 7 dan 8) akan dikunjungi setelah DFS selesai mengunjungi \fnode yang lebih dalam (seperti \fnode 3, 4, dan 5)
+  \item Dalam pemrograman, DFS biasa dilakukan dengan rekursi atau struktur data \foreignTerm{stack}
 \end{itemize}
 \end{frame}
+
 
 \begin{frame}[fragile]
 \frametitle{Implementasi DFS}
-DFS dapat diimplementasikan menggunakan rekursi atau dengan bantuan struktur data stack. Berikut adalah implementasi DFS rekursi\newline
-\begin{lstlisting}
-integer AdjMatrix[N][N]
-boolean flag[N]
-set flag = false
-flag[1] = true
-
-procedure DFS(integer currNode):
-  for i=1 to N
-    <@\textcolor{mygreen}{//check apakah ada edge dan belum pernah dikunjungi}@>
-    if AdjMatrix[currNode][i]==1 and flag[i]==false
-      flag[i] = true
-      DFS(i)
-end
-        
-\end{lstlisting}
+%\begin{lstlisting}
+%integer AdjMatrix[N][N]
+%boolean flag[N]
+%set flag = false
+%flag[1] = true
+%
+%procedure DFS(integer currNode):
+%  for i=1 to N
+%    <@\textcolor{mygreen}{//check apakah ada edge dan belum pernah dikunjungi}@>
+%    if AdjMatrix[currNode][i]==1 and flag[i]==false
+%      flag[i] = true
+%      DFS(i)
+%end        
+%\end{lstlisting}
+Asumsikan:
+\begin{itemize}
+  \item Setiap \fnode dinomori dari 1 sampai $V$
+  \item $adj(x)$ menyatakan himpunan tetangga dari \fnode $x$.
+  \item $visit[x]$ bernilai $true$ hanya jika $x$ telah dikunjungi.
+\end{itemize}
+\begin{codebox}
+  \Procname{$\proc{DFS}(currNode)$}
+  \li \textbf{Print} "mengunjungi $currNode$"
+  \li \For \textbf{each} $adjNode \in adj(currNode)$ \Do
+  \li   \If \textbf{not} $visit[adjNode]$ \Then
+  \li     $visit[adjNode] \gets true$
+  \li     $\proc{DFS}(adjNode)$
+        \End
+      \End
+\end{codebox}
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{Implementasi DFS (lanj.)}
-Berikut adalah potongan kode untuk implementasi DFS menggunakan stack\newline
-\begin{lstlisting}
-integer AdjMatrix[N][N]
-boolean flag[N]
-set flag = false
-stack <integer> s
+Berikut contoh implementasi DFS menggunakan \foreignTerm{stack}.
+%\begin{lstlisting}
+%integer AdjMatrix[N][N]
+%boolean flag[N]
+%set flag = false
+%stack <integer> s
+%
+%s.push(1), flag[1] = true
+%while s is not empty
+%  integer currNode = s.top()
+%  s.pop()
+%  for i=1 to N
+%    if AdjMatrix[currNode][i]==1 and flag[i]==false
+%      flag[i] = true
+%      s.push(i)
+%        
+%\end{lstlisting}
+\begin{codebox}
+  \Procname{$\proc{DFS}()$}
+  \li \Comment Inisialisasi $stack$ sebagai stack kosong.
+  \li $stack.push(initialNode)$
+  \li $visit[initialNode] \gets true$
+  \li \While \textbf{not} $stack.empty()$ \Do
+  \li   $currNode \gets stack.top()$
+  \li   $stack.pop()$
+  \li   \textbf{Print} "mengunjungi $currNode$"
+  \li   \For \textbf{each} $adjNode \in adj(currNode)$ \Do
+  \li     \If \textbf{not} $visit[adjNode]$ \Then
+  \li       $visit[adjNode] \gets true$
+  \li       $stack.push(adjNode)$
+          \End
+        \End
+      \End
+\end{codebox}
+\end{frame}
 
-s.push(1), flag[1] = true
-while s is not empty
-  integer currNode = s.top()
-  s.pop()
-  for i=1 to N
-    if AdjMatrix[currNode][i]==1 and flag[i]==false
-      flag[i] = true
-      s.push(i)
-        
-\end{lstlisting}
+\begin{frame}
+\frametitle{BFS: Breadth-First Search}
+Penelusuran \fnode pada \fgraph dilakukan lapis demi lapis. 
+
+Semakin dekat suatu \fnode dengan \fnode awal, \fnode tersebut akan dikunjungi terlebih dahulu. 
+
+\begin{figure}
+  \centering
+  \includegraphics[width=4 cm]{asset/bfs.pdf}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+\frametitle{BFS (lanj.)}
+\begin{figure}
+  \centering
+  \includegraphics[width=4 cm]{asset/bfs.pdf}
+\end{figure}
+\begin{itemize}
+  \item Angka pada gambar menunjukkan urutan \fnode tersebut dikunjungi.
+  \item Dalam pemrograman, BFS biasa diimplementasikan dengan bantuan struktur data \foreignTerm{queue}.
+\end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{Implementasi BFS}
-BFS membutuhkan bantuan struktur data queue. Berikut adalah potongan kodenya\newline
-\begin{lstlisting}
-integer AdjMatrix[N][N]
-boolean flag[N]
-set flag = false
-queue <integer> q
+%BFS membutuhkan bantuan struktur data queue. Berikut adalah potongan kodenya\newline
+%\begin{lstlisting}
+%integer AdjMatrix[N][N]
+%boolean flag[N]
+%set flag = false
+%queue <integer> q
+%
+%q.push(1), flag[1] = true
+%while q is not empty
+%  integer currNode = q.front()
+%  q.pop()
+%  for i=1 to N
+%    if AdjMatrix[currNode][i]==1 and flag[i]==false
+%      flag[i] = true
+%      q.push(i)
+%        
+%\end{lstlisting}
+\begin{codebox}
+  \Procname{$\proc{BFS}()$}
+  \li \Comment Inisialisasi $queue$ sebagai queue kosong.
+  \li $queue.push(initialNode)$
+  \li $visit[initialNode] \gets true$
+  \li \While \textbf{not} $queue.empty()$ \Do
+  \li   $currNode \gets queue.front()$
+  \li   $queue.pop()$
+  \li   \textbf{Print} "mengunjungi $currNode$"
+  \li   \For \textbf{each} $adjNode \in adj(currNode)$ \Do
+  \li     \If \textbf{not} $visit[adjNode]$ \Then
+  \li       $visit[adjNode] \gets true$
+  \li       $queue.push(adjNode)$
+          \End
+        \End
+      \End
+\end{codebox}
+\end{frame}
 
-q.push(1), flag[1] = true
-while q is not empty
-  integer currNode = q.front()
-  q.pop()
-  for i=1 to N
-    if AdjMatrix[currNode][i]==1 and flag[i]==false
-      flag[i] = true
-      q.push(i)
-        
-\end{lstlisting}
+\begin{frame}
+\frametitle{Contoh Permasalahan}
+\begin{itemize}
+  \item Baik DFS maupun BFS sama-sama mengunjungi setiap \fnode tepat satu kali, dengan memanfaatkan seluruh \fedge.
+  \item Kompleksitas dari kedua metode adalah $O(V + E)$.
+  \item Penggunaan DFS atau BFS dapat disesuaikan dengan persoalan yang dihadapi.
+\end{itemize}
 \end{frame}
 
 \begin{frame}
