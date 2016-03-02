@@ -632,78 +632,136 @@ Semakin dekat suatu \fnode dengan \fnode awal, \fnode tersebut akan dikunjungi t
 \frametitle{Contoh Permasalahan}
 \begin{itemize}
   \item Baik DFS maupun BFS sama-sama mengunjungi setiap \fnode tepat satu kali, dengan memanfaatkan seluruh \fedge.
-  \item Kompleksitas dari kedua metode adalah $O(V + E)$.
+  \item Kompleksitas dari kedua metode adalah:
+  \begin{itemize}
+    \item $O(V^2)$, jika digunakan \fadjacencymatrix.
+    \item $O(V + E)$, jika digunakan \fadjacencylist.
+    \newline
+  \end{itemize}
   \item Penggunaan DFS atau BFS dapat disesuaikan dengan persoalan yang dihadapi.
 \end{itemize}
 \end{frame}
 
 \begin{frame}
 \frametitle{Contoh Permasalahan}
-Pak Dengklek tinggal di kota A. Suatu hari, beliau ingin pergi ke kota B. Terdapat beberapa jalan yang menghubungkan kota-kota dalam negara tempat beliau tinggal. Namun, karena beliau sudah tua, Pak Dengklek ingin melewati jalan seminimal mungkin untuk sampai ke kota B.
+Pak Dengklek tinggal di kota A. Suatu hari, beliau ingin pergi ke kota B. Terdapat beberapa ruas jalan yang menghubungkan kota-kota dalam negara tempat beliau tinggal. Namun karena sudah tua, Pak Dengklek ingin melewati sesedikit mungkin ruas jalan untuk sampai ke kota B.
 \newline\newline
-Diberikan keterangan mengenai kota A, kota B, dan jalan-jalan yang terdapat dalam negara Pak Dengklek, outputkan berapa jalan minimal yang beliau harus lewati untuk pergi dari kota A ke kota B!
+Diberikan informasi mengenai struktur kota dan ruas jalan, tentukan berapa banyak ruas jalan yang perlu beliau lewati untuk pergi dari kota A ke kota B!
 \end{frame}
 
 \begin{frame}
 \frametitle{Pembahasan Permasalahan}
-Permasalahan di atas dapat diselesaikan menggunakan BFS. Karena sifat BFS yang menelusuri node per layer, maka dapat disimpulkan bahwa jika suatu node terkunjungi, maka pasti jarak yang ditempuh merupakan jarak terpendek dari node awal. Hal ini berlaku pada unweighted \fgraph yang edgenya tidak memiliki bobot.
-\newline\newline
-Dengan demikian, permasalahan di atas dapat diselesaikan dengan menggunakan BFS. Pada slide selanjutnya akan diberikan contoh implementasi untuk menyelesaikan permasalahan jarak terpendek tersebut!
+\begin{itemize}
+  \item Permasalahan ini dapat diselesaikan dengan BFS. 
+  \item Karena sifat BFS yang menelusuri \fnode lapis demi lapis, maka dapat disimpulkan jika suatu \fnode dikunjungi, maka jarak yang ditempuh dari awal sampai \fnode tersebut pasti jarak terpendek.
+  \item Hal ini selalu benar untuk segala \foreignTerm{unweighted} \fgraph, BFS selalu menemukan \foreignTerm{shortest path} dari suatu \fnode ke seluruh \fnode lainnya.
+\end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{Implementasi Permasalahan}
+%\begin{lstlisting}
+%integer AdjMatrix[N][N] , A , B , jarak = -1
+%queue < (integer,integer) > q
+%<@\textcolor{mygreen}{//Queue menyimpan node yang dikunjungi dan jarak dari A}@>
+%q.push({A,0}), flag[A] = true
+%while q is not empty
+%  (integer,integer) currNode = q.front()
+%  q.pop()
+%  <@\textcolor{mygreen}{//Cek jika telah sampai di kota B}@>
+%  if currNode.first == B
+%    jarak = currNode.second, break
+%  for i=1 to N
+%    if AdjMatrix[currNode.first][i]==1 and flag[i]==false
+%      flag[i] = true
+%      q.push({i,currNode.second+1})
+%if jarak!=-1
+%  print jarak
+%else
+%  print 'Tidak dapat ke kota B'    
+%\end{lstlisting}
+\begin{codebox}
+  \Procname{$\proc{shortestPath}(A, B)$}
+  \li \Comment Inisialisasi $queue$ sebagai queue kosong.
+  \li \Comment Inisialisasi array $visitTime$ dengan -1.
+  \li $queue.push(A)$
+  \li $visitTime[A] \gets 0$
+  \li \While \textbf{not} $queue.empty()$ \Do
+  \li   $currNode \gets queue.front()$
+  \li   $queue.pop()$
+  \li   \For \textbf{each} $adjNode \in adj(currNode)$ \Do
+  \li     \Comment Jika $adjNode$ belum pernah dikunjungi...
+  \li     \If $visitTime[adjNode] \isequal -1$ \Then
+  \li       $visitTime[adjNode] \gets visitTime[currNode] + 1$
+  \li       $queue.push(adjNode)$
+          \End
+        \End
+      \End
+  \li \Return $visitTime[B]$
+\end{codebox}
+\end{frame}
 
-\begin{lstlisting}
-integer AdjMatrix[N][N] , A , B , jarak = -1
-queue < (integer,integer) > q
-<@\textcolor{mygreen}{//Queue menyimpan node yang dikunjungi dan jarak dari A}@>
-q.push({A,0}), flag[A] = true
-while q is not empty
-  (integer,integer) currNode = q.front()
-  q.pop()
-  <@\textcolor{mygreen}{//Cek jika telah sampai di kota B}@>
-  if currNode.first == B
-    jarak = currNode.second, break
-  for i=1 to N
-    if AdjMatrix[currNode.first][i]==1 and flag[i]==false
-      flag[i] = true
-      q.push({i,currNode.second+1})
-if jarak!=-1
-  print jarak
-else
-  print 'Tidak dapat ke kota B'    
-\end{lstlisting}
+\section{Macam-Macam Graph}
+\frame{\sectionpage}
+
+\begin{frame}
+\frametitle{Macam-Macam Graph}
+\begin{itemize}
+  \item Terdapat \fGraph yang memiliki suatu karakteristik khusus, sehingga penyelesaian masalah yang melibatkan \fgraph ini dapat memanfaatkan karakter tersebut.
+  \item Contoh macam-macam \fgraph adalah \newTerm{Tree}, \newTerm{Directed Asyclic Graph}, dan \newTerm{Bipartite Graph}.
+  \item Kali ini kita akan menyinggung \fTree dan \foreignTerm{Directed Asyclic Graph}.
+\end{itemize}
 \end{frame}
 
 \begin{frame}
 \frametitle{Tree}
 \begin{itemize}
-  \item \foreignTerm{Tree} merupakan bentuk khusus dari \fgraph
-  \item Seluruh node pada tree terhubung (tidak ada node yang tidak dapat dikunjungi dari node lain) dan tidak terdapat \alert{cycle}
-  \item Jumlah edge dalam sebuah tree pasti berjumlah sebanyak (Node - 1)
+  \item \fTree merupakan bentuk khusus dari \fgraph.
+  \item Seluruh \fnode pada \ftree terhubung (tidak ada \fnode yang tidak dapat dikunjungi dari \fnode lain) dan tidak terdapat \alert{cycle}.
+  \item Jumlah \fedge dalam sebuah \ftree pasti $V-1$, dengan $V$ adalah banyaknya \fnode.
 \end{itemize}
+\begin{center}
+  \includegraphics[width=3.5 cm]{asset/plain.pdf}
+\end{center}
+\end{frame}
 
+\begin{frame}
+\frametitle{Tree}
 \includegraphics[width=3.5 cm]{asset/not-tree.pdf}
 \hspace{\fill}
 \includegraphics[width=4 cm]{asset/tree.pdf}
 \newline\newline
-Pada gambar di atas, gambar kiri bukan sebuah tree karena memiliki cycle, sedangkan gambar kanan merupakan tree. 
+Gambar kiri bukan \ftree karena memiliki \foreignTerm{cycle}, sedangkan gambar kanan merupakan \ftree. 
 \end{frame}
 
 \begin{frame}
 \frametitle{Directed Acyclic \fGraph}
 \begin{itemize}
-  \item \foreignTerm{Directed Acyclic \fGraph (DAG)} merupakan bentuk khusus dari directed \fgraph.
-  \item DAG tidak memiliki \alert{direct cycle}
-  \item Berbeda dengan tree yang mana setiap nodenya harus dapat dicapai node lainnya, sifat tersebut tidak berlaku pada DAG
+  \item \foreignTerm{Directed Acyclic \fGraph (DAG)} merupakan bentuk khusus dari \foreignTerm{directed} \fgraph.
+  \item DAG tidak memiliki \alert{cycle}.
+  \item Berbeda dengan \ftree yang mana setiap \fnode harus dapat dikunjungi dari \fnode lainnya, sifat tersebut tidak berlaku pada DAG.
 \end{itemize}
+\begin{center}
+  \includegraphics[width=4 cm]{asset/dag.pdf}
+\end{center}
+\end{frame}
 
+\begin{frame}
+\frametitle{Directed Acyclic \fGraph}
 \includegraphics[width=4 cm]{asset/dag.pdf}
 \hspace{\fill}
 \includegraphics[width=5 cm]{asset/not-dag.pdf}
 \newline\newline
-Pada gambar di atas, gambar kiri merupakan DAG, sedangkan gambar kanan bukan DAG karena memiliki cycle
+Pada gambar di atas, gambar kiri merupakan DAG, sedangkan gambar kanan bukan DAG karena memiliki \foreignTerm{cycle}.
+\end{frame}
+
+\begin{frame}
+\frametitle{Penutup}
+\begin{itemize}
+  \item Hampir setiap kompetisi pasti memiliki soal yang bertemakan \fgraph.
+  \item Mampu menguasai dasar penyelesaian masalah \fgraph menjadi kemampuan penting dalam dunia kompetisi.
+  \item Selamat berlatih dengan soal-soal yang diberikan.
+\end{itemize}
 \end{frame}
 
 \end{document}
