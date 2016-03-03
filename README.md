@@ -3,13 +3,26 @@
 [![Build Status](https://travis-ci.org/ia-toki/training-gate-id.svg?branch=master)](https://travis-ci.org/ia-toki/training-gate-id)
 
 ## Daftar Isi
-* [Tentang TLX Training Gate](#tentang-toki-training-gate)
-* [Tujuan Dibuatnya TLX Training Gate](#tujuan-dibuatnya-toki-training-gate)
 * [Silabus Pembelajaran](#silabus-pembelajaran)
 * [Link Unduh](#link-unduh)
-* [Setup Latex](#setup-latex)
+* [Tentang TLX Training Gate](#tentang-toki-training-gate)
+* [Latar Belakang](#latar-belakang)
+* [Tujuan Dibuatnya TLX Training Gate](#tujuan-dibuatnya-toki-training-gate)
 * [Skema Kontribusi](#skema-kontribusi)
+* [Setup Latex](#setup-latex)
 * [Lisensi](#lisensi)
+
+## Silabus Pembelajaran
+
+Saat ini, Training Gate telah berisi dua topik (*course*):
+
+1.  [**Pemrograman Dasar**](https://github.com/ia-toki/training-gate-id/blob/master/topik/pemrograman-dasar/SILABUS.md).
+2.  [**Pemrograman Kompetitif Dasar**](https://github.com/ia-toki/training-gate-id/blob/master/topik/pemrograman-kompetitif-dasar/SILABUS.md).
+
+Topik Pemrograman Dasar ini terdiri dari beberapa bab. Setiap bab terdiri atas materi-materi yang diwujudkan dalam sebuah slide presentasi.
+
+## Link Unduh
+Materi dalam bentuk PDF yang sejauh ini sudah dibuat bisa diakses [di sini](https://github.com/ia-toki/training-gate-id-pdf/archive/master.zip).
 
 ## Tentang TLX Training Gate
 Diinisiasi oleh Ikatan Alumni Tim Olimpiade Komputer Indonesia (IA TOKI), TLX Training Gate merupakan proyek e-learning untuk belajar pemrograman kompetitif yang ditujukan bagi pelajar Indonesia.
@@ -24,29 +37,21 @@ Sebagai tujuan jangka pendek: mempermudah siswa-siswi Indonesia untuk belajar pe
 
 Sebagai tujuan jangka panjang: diharapkan pengembangan TLX Training Gate dilakukan hingga materi pembelajaran lanjut, seperti materi Pelatihan Nasional (Pelatnas) TOKI. Dengan demikian, setiap siswa-siswi di Indonesia berkesempatan untuk mempelajari apa yang didapatkan saat Pelatnas TOKI.
 
-## Silabus Pembelajaran
-
-Saat ini, Training Gate hanya berisi sebuah topik (*course*): **Pemrograman Dasar**.
-
-Topik Pemrograman Dasar ini terdiri dari beberapa bab. Setiap bab terdiri atas materi-materi yang diwujudkan dalam sebuah slide presentasi.
-
-Silabus untuk topik Pemrograman Dasar dapat diakses [di sini](https://github.com/ia-toki/training-gate-id/blob/master/topik/pemrograman-dasar/SILABUS.md).
-
-## Link Unduh
-Materi dalam bentuk PDF yang sejauh ini sudah dibuat bisa diakses [di sini](https://github.com/ia-toki/training-gate-id-pdf/archive/master.zip). 
-
 ## Pengembangan
 
 Untuk jangka panjang, direncanakan TLX Training Gate mendukung setidaknya topik-topik berikut:
 
-1. Pemrograman Kompetitif Dasar (topik yang harus dikuasai sesuai [silabus](http://www.toki.or.id/download/seri-buku-toki/Kisi-Kisi%20dan%20Materi%20Uji%20Olimpiade%20Sains%20Bidang%20Informatika%20Komputer.pdf) Olimpiade Sains Nasional bidang Informatika).
-2. Algoritma Graf (*shortest path*, *minimum spanning tree*, dan *network flow*)
-3. Algoritma String (*string matching*, *hashing*, *suffix array*)
-4. Struktur Data Lanjut (*disjoint set*, *binary search tree*, *segment tree*, dan *range tree*)
-5. Pemrograman Dinamis Lanjut
-6. Komputasional Geometri Dasar
+1. Algoritma Graf (*shortest path*, *minimum spanning tree*, dan *network flow*)
+2. Algoritma String (*string matching*, *hashing*, *suffix array*)
+3. Struktur Data Lanjut (*disjoint set*, *binary search tree*, *segment tree*, dan *range tree*)
+4. Pemrograman Dinamis Lanjut
+5. Komputasional Geometri Dasar
 
 Untuk membuat topik-topik tersebut, tentunya dibutuhkan waktu dan tenaga yang besar. Anda dapat berkontribusi untuk pengembangan materi pembelajaran ini dan membantu tercapainya tujuan TLX Training Gate.
+
+## Skema Kontribusi
+
+Baca sepenuhnya [di sini](https://github.com/ia-toki/training-gate-id/blob/master/CONTRIBUTING.md).
 
 ## Setup Latex
 
@@ -58,10 +63,6 @@ Jika Anda tertarik untuk mengembangkan atau memodifikasi TLX Training Gate, Anda
 4. Jalankan script `setup.sh` dengan akses root. Script ini akan meng-install theme beamer bernama tokitex dan meng-install package CTAN yang dibutuhkan.
 5. Untuk mencoba melakukan kompilasi, cd ke folder repository TLX Training Gate Anda, lalu jalankan `make`.
 6. Setelah dijalankan, akan muncul sebuah folder bernama `target` yang berisi berkas hasil kompilasi. Selain berkas PDF terdapat pula berkas lainnya yang bisa Anda abaikan. Apabila seluruh PDF ter-compile dengan benar, berarti Anda sudah melakukan setup Latex untuk TLX Training Gate dengan benar.
-
-## Skema Kontribusi
-
-Baca sepenuhnya [di sini](https://github.com/ia-toki/training-gate-id/blob/master/CONTRIBUTING.md).
 
 ## Lisensi
 
@@ -79,3 +80,4 @@ Dengan ketentuan sebagai berikut:
 - **ShareAlike**: Apabila Anda memodifikasi materi-materi ini, Anda harus mendistribusikannya kembali dengan lisensi yang sama. Hal ini dapat dilakukan dengan cara melakukan *fork* repositori ini dan melakukan *commit* modifikasi-modifikasi yang Anda lakukan di sana.
 
 Untuk penjelasan lebih lanjut mengenai lisensi ini, silakan membuka tautan lisensi di atas.
+
