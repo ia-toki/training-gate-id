@@ -23,10 +23,10 @@ Melalui dokumen ini, kalian akan:
 \begin{frame} 
 \frametitle{Contoh Soal 1: Knapsack}
 \begin{itemize}
-  \item Diberikan $N$ buah barang. 
+  \item Diberikan $N$ buah barang, dinomori dari 1 sampai $N$. 
   \item Barang ke-$i$ memiliki harga $v_i$ rupiah dan berat $w_i$ gram. 
   \item Kita memiliki tas yang berkapasitas $G$ gram. 
-  \item Kita ingin memasukan beberapa barang kedalam tas, sedemikian sehingga jumlah berat dari barang-barang yang kita masukan tidak lebih dari kapasitas tas dan jumlah harganya sebanyak mungkin.
+  \item Kita ingin memasukkan beberapa barang kedalam tas, sedemikian sehingga jumlah berat dari barang-barang yang kita masukan tidak lebih dari kapasitas tas dan jumlah harganya sebanyak mungkin.
 \end{itemize}
 \end{frame}
 
@@ -42,15 +42,15 @@ Melalui dokumen ini, kalian akan:
 \begin{frame} 
 \frametitle{Formulasi}
 \begin{itemize}
-  \item Definisikan sebuah fungsi $g(x,y)$ sebagai jumlah harga maksimum yang mungkin diperoleh, jika kita hanya mempunyai barang ke-$1$ sampai ke-$x$ dan kapasitas tas kita adalah $y$ gram.
-  \item Untuk menghitung fungsi $g(x,y)$ kita bisa mencoba-coba apakah kita akan memasukan barang ke-$x$ ke tas atau tidak.
+  \item Definisikan sebuah fungsi $g(x,y)$ sebagai jumlah harga maksimum yang mungkin diperoleh, jika kita hanya mempunyai barang ke-$1$ sampai ke-$x$ dan sisa kapasitas tas kita adalah $y$ gram.
+  \item Untuk menghitung fungsi $g(x,y)$ kita bisa mencoba-coba apakah kita akan memasukkan barang ke-$x$ ke tas atau tidak.
 \end{itemize}
 \end{frame}
 
 \begin{frame} 
 \frametitle{Formulasi Rekurens}
 \begin{itemize}
-  \item Jika kita memasukan barang ke-$x$ ke tas, maka kita akan menyisakan barang ke-$1$ sampai ke-$(x-1)$ dan sisa kapasitas tas adalah $y-w_x$. 
+  \item Jika kita memasukkan barang ke-$x$ ke tas, maka kita akan menyisakan barang ke-$1$ sampai ke-$(x-1)$ dan sisa kapasitas tas menjadi $y-w_x$. 
   \item Harga barang yang didapatkan pada kasus ini adalah $g(x-1,y-w_x)$ ditambah dengan harga yang kita peroleh pada barang ke-$x$.
   \item Dapat dituliskan $g(x, y) = g(x-1, y-w_x) + v_x$.
   \item Kasus ini hanya boleh dipertimbangkan jika $y \geq w_x$.
@@ -60,7 +60,7 @@ Melalui dokumen ini, kalian akan:
 \begin{frame} 
 \frametitle{Formulasi Rekurens (lanj.)}
 \begin{itemize}
-  \item Jika kita tidak memasukan barang ke-$x$ ke tas, maka kita akan menyisakan barang ke-$1$ sampai ke-$(x-1)$ dan sisa kapasitas tas masih tetap $y$.
+  \item Jika kita tidak memasukkan barang ke-$x$ ke tas, maka kita akan menyisakan barang ke-$1$ sampai ke-$(x-1)$ dan sisa kapasitas tas masih tetap $y$.
   \item Harga barang didapatkan pada kasus ini adalah $g(x-1,y)$, tanpa tambahan apapun (kita tidak mengambil barang ke-$x$).
   \item Dapat dituliskan $g(x, y) = g(x-1, y)$.
 \end{itemize}
@@ -160,7 +160,7 @@ Jawaban ada pada $\proc{solve}(N, G)$
 \frametitle{Contoh Soal 2: Memotong Kayu \newline {\small Diadopsi dari UVa 10003 - Cutting Sticks}}
 \begin{itemize}
   \item Kita akan memotong sebuah batang kayu dengan panjang $M$ meter pada $N$ titik menjadi $N+1$ bagian.
-  \item Titik ke-$i$ berada di $L_i$ meter dari ujung kiri.
+  \item Titik ke-$i$ berada di $L_i$ meter dari ujung kiri, dengan $1 \leq i \leq N$.
   \item Untuk memotong sebatang kayu menjadi dua, kita memerlukan usaha \alert{sebesar panjang kayu yang sedang kita potong}.
   \item Cari urutan pemotongan sedemikian sehingga total usaha yang dibutuhkan minimum!
 \end{itemize}

@@ -25,7 +25,7 @@ Melalui dokumen ini, kalian akan:
 \begin{itemize}
   \item Diberikan $M$ jenis koin, masing-masing jenis bernilai $a_1, a_2, ..., a_M$ rupiah.
   \item Asumsikan terdapat tak hingga koin untuk setiap nominal koin yang ada. 
-  \item Tentukan berapa banyaknya minimal koin untuk membayar sebesar $N$ rupiah!
+  \item Tentukan berapa banyaknya minimum koin untuk membayar sebesar $N$ rupiah!
 \end{itemize}
 \end{frame}
 
@@ -190,7 +190,7 @@ Berikut untuk $f(12)$ dengan nominal koin 1, 6, dan 10 rupiah.
 \begin{itemize}
   \item Biasanya solusi eksponensial berjalan sangat lambat.
   \item Cobalah Anda hitung nilai $O(N^M)$ dengan $N=3$ dan $M=100$, untuk menyadari betapa lambatnya solusi ini!
-  \item Kita tidak ingin memiliki solusi eksponensial pada pemrograman kompetitif, kecuali pada soal-soal tertentu dimana tidak terdapat solusi polinomial. 
+  \item Kita tidak ingin memiliki solusi eksponensial pada pemrograman kompetitif, kecuali pada soal-soal tertentu  yang tidak memiliki solusi polinomial. 
   \item Karena itu, kita harus melakukan sebuah optimisasi.
 \end{itemize}
 \end{frame}
@@ -288,7 +288,7 @@ Jika diperhatikan, ternyata banyak $f(x)$ yang dihitung berkali-kali. Sebagai co
 \begin{frame} 
 \frametitle{Dynamic Programming}
 \begin{itemize}
-  \item Merupakan metode penyelesaian persoalan yang melibatkan pengambilan keputusan dengan memanfaatkan informasi dari penyelesaian sub-persoalan yang sama namun lebih kecil
+  \item Merupakan metode penyelesaian persoalan yang melibatkan pengambilan keputusan dengan memanfaatkan informasi dari penyelesaian sub-persoalan yang sama namun lebih kecil.
   \item Solusi sub-persoalan tersebut hanya dihitung satu kali dan disimpan di memori.
   \item Jika sebuah persoalan adalah masalah optimisasi, maka biasanya kita mencoba semua kemungkinan solusi sub-problem yang dihasilkan, dan  mengambil yang hasilnya paling optimal. 
 \end{itemize}
@@ -558,6 +558,7 @@ Bottom Up
   \item Terdapat dua versi DP, yaitu \ftopdown dan \fbottomup.
   \item Keduanya memiliki keuntungan dan kerugian, pilih yang tepat sesuai dengan kebutuhan soal.
   \item Kunci dari mengerjakan soal DP adalah mengidentifikasi pilihan keputusan yang bisa diambil, dan merumuskannya menjadi rumus rekursif.
+  \item Anda perlu banyak latihan soal DP untuk menjadi terbiasa dengan melakukan formulasi rekursif ini.
 \end{itemize}
 \end{frame}
 
