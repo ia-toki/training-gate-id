@@ -72,7 +72,7 @@ Melalui dokumen ini, kalian akan:
 \end{frame}
 
 \begin{frame}
-\frametitle{Jenis-jenis \fGraph}
+\frametitle{Jenis \fGraph}
 Berdasarkan hubungan antar \fnode:
 \begin{itemize}
   \item \foreignTerm{Undirected} \fgraph (dua arah): \fedge dari A ke B dapat ditelusuri dari A ke B dan B ke A. 
@@ -89,7 +89,7 @@ Berdasarkan hubungan antar \fnode:
 \end{frame}
 
 \begin{frame}
-\frametitle{Jenis-jenis \fGraph (lanj.)}
+\frametitle{Jenis \fGraph (lanj.)}
 Berdasarkan bobot dari \fedge:
 \begin{itemize}
   \item \foreignTerm{Unweighted} \fGraph, yaitu \fgraph dengan \fedge yang bobotnya seragam dan hanya bermakna terdapat hubungan antar \fnode.
@@ -106,7 +106,7 @@ Berdasarkan bobot dari \fedge:
 \end{frame}
 
 \begin{frame}
-\frametitle{Jenis-jenis \fGraph (lanj.)}
+\frametitle{Jenis \fGraph (lanj.)}
 Tentu saja, suatu \fgraph dapat memiliki kombinasi dari sifat-sifat tersebut.
 
 Misalnya \foreignTerm{weighted directed graph}:
@@ -157,7 +157,7 @@ Misalnya \foreignTerm{weighted directed graph}:
 \end{frame}
 
 \begin{frame}
-\frametitle{Adjacency Matrix}
+\frametitle{Adjacency Matrix (lanj.)}
 \begin{itemize}
   \item Pada \foreignTerm{weighted} \fgraph:
   \begin{itemize}
@@ -184,7 +184,7 @@ Misalnya \foreignTerm{weighted directed graph}:
 \end{frame}
 
 \begin{frame}
-\frametitle{Adjacency Matrix}
+\frametitle{Analisis Adjacency Matrix}
 \begin{itemize}
   \item Pada \foreignTerm{undirected} \fgraph, \fadjacencymatrix simetris terhadap diagonalnya.
   \item Representasi ini mudah diimplementasikan.
@@ -195,7 +195,7 @@ Misalnya \foreignTerm{weighted directed graph}:
 \end{frame}
 
 \begin{frame}
-\frametitle{Adjacency Matrix}
+\frametitle{Kekurangan Adjacency Matrix}
 \begin{itemize}
   \item Kekurangan dari representasi ini adalah boros memori.
   \item Memori yang dibutuhkan selalu $O(V^2)$, tidak dapat digunakan untuk \fgraph dengan \fnode mencapai ratusan ribu.
@@ -227,7 +227,7 @@ Misalnya \foreignTerm{weighted directed graph}:
 \end{frame}
 
 \begin{frame}
-\frametitle{Adjacency List}
+\frametitle{Adjacency List (lanj.)}
 \begin{itemize}
   \item Untuk \foreignTerm{weighted} \fgraph, kita dapat menyimpan \fnode-\fnode tetangga beserta bobotnya.
 \end{itemize}
@@ -248,7 +248,7 @@ Misalnya \foreignTerm{weighted directed graph}:
 \end{frame}
 
 \begin{frame}
-\frametitle{Adjacency List}
+\frametitle{Implementasi Adjacency List}
 \begin{itemize}
   \item Kita dapat menggunakan struktur data \foreignTerm{array of lists}.
   \item Tiap \flist berisi keterangan mengenai tetangga suatu \fnode.
@@ -259,7 +259,7 @@ Misalnya \foreignTerm{weighted directed graph}:
 \end{frame}
 
 \begin{frame}
-\frametitle{Adjacency List}
+\frametitle{Implementasi Adjacency List (lanj.)}
 \begin{itemize}
   \item \fList yang dimaksud bisa berupa \foreignTerm{Linked List} atau \foreignTerm{Resizable Array}.
   \item Bagi pengguna C++ atau Java, struktur \flist yang dapat digunakan adalah Vector atau ArrayList.
@@ -268,7 +268,7 @@ Misalnya \foreignTerm{weighted directed graph}:
 \end{frame}
 
 \begin{frame}
-\frametitle{Adjacency List}
+\frametitle{Analisis Adjacency List}
 \begin{itemize}
   \item Kompleksitas menambah \fedge adalah $O(1)$, dan menghapus adalah $O(K)$ dengan $K$ adalah banyaknya tetangga dari \fnode yang \fedge-nya dihapus.
   \item Memeriksa apakah dua \fnode terhubung oleh \fedge juga dilakukan dalam $O(K)$.
@@ -301,7 +301,7 @@ Misalnya \foreignTerm{weighted directed graph}:
 \end{frame}
 
 \begin{frame}
-\frametitle{Edge List}
+\frametitle{Edge List (lanj.)}
 \begin{itemize}
   \item Untuk \foreignTerm{weighted} \fgraph, kita juga menyimpan bobot dari setiap \fedge.
 \end{itemize}
@@ -323,7 +323,7 @@ Misalnya \foreignTerm{weighted directed graph}:
 \end{frame}
 
 \begin{frame}
-\frametitle{Edge List}
+\frametitle{Implementasi Edge List}
 \begin{itemize}
   \item Untuk implementasinya, kita membutuhkan struktur data sebuah \flist (atau \farray).
   \item Jelas bahwa memori yang dibutuhkan adalah $O(E)$, dengan $E$ adalah banyaknya \fedge pada keseluruhan \fgraph.
@@ -334,7 +334,7 @@ Misalnya \foreignTerm{weighted directed graph}:
 \end{frame}
 
 \begin{frame}
-\frametitle{Adjacency List}
+\frametitle{Analisis Edge List}
 \begin{itemize}
   \item Kompleksitas menambah \fedge adalah $O(1)$.
   \item Bergantung dari implementasi, kompleksitas menghapus \fedge dan memeriksa keterhubungan sepasang \fnode bisa berupa $O(\log{E})$ sampai $O(E)$.
@@ -427,18 +427,6 @@ Dengan $K$ adalah banyaknya \fnode yang bertetangga dengan \fnode yang sedang ki
 
 \begin{frame}
 \frametitle{\fGraph Traversal}
-
-\begin{itemize}
-  \item Representasi \fGraph saja belum berguna karena belum dapat mencari informasi mengenai suatu \fgraph
-  \item \alert{\fGraph Traversal} merupakan penelusuran \fnode-\fnode pada suatu \fgraph.
-  \item Contoh permasalahannya adalah diberikan node A dan node B, ditanya apakah dari node A bisa pergi ke node B menggunakan edge yang ada?
-  \item Permasalahan tersebut dapat diselesaikan menggunakan \fgraph traversal.
-  \item Terdapat 2 metode yang dapat digunakan, yaitu DFS dan BFS.
-\end{itemize}
-\end{frame}
-
-\begin{frame}
-\frametitle{\fGraph Traversal}
 \begin{itemize}
   \item Representasi \fGraph saja belum berguna karena belum dapat mencari informasi mengenai suatu \fgraph
   \item \alert{\fGraph Traversal} merupakan penelusuran \fnode-\fnode pada suatu \fgraph.
@@ -446,7 +434,7 @@ Dengan $K$ adalah banyaknya \fnode yang bertetangga dengan \fnode yang sedang ki
 \end{frame}
 
 \begin{frame}
-\frametitle{\fGraph Traversal}
+\frametitle{\fGraph Traversal (lanj.)}
 \begin{itemize}
   \item Diberikan \fnode A dan \fnode B, apakah dari \fnode A kita dapat pergi ke \fnode B dengan \fedge yang ada?
   \item Permasalahan tersebut dapat diselesaikan menggunakan \fgraphtraversal.
@@ -468,7 +456,7 @@ Sebagai contoh, misal terdapat \fgraph berikut:
 \end{frame}
 
 \begin{frame}
-\frametitle{DFS: Depth-First Search}
+\frametitle{DFS: Depth-First Search (lanj.)}
 Penelusuran secara DFS akan dilakukan dengan cara berikut:
 \begin{figure}
   \centering
@@ -481,7 +469,7 @@ Penelusuran secara DFS akan dilakukan dengan cara berikut:
 \end{frame}
 
 \begin{frame}
-\frametitle{DFS (lanj.)}
+\frametitle{Penelusuran DFS}
 \begin{figure}
   \centering
   \includegraphics[width=4 cm]{asset/dfs.pdf}
@@ -495,7 +483,7 @@ Penelusuran secara DFS akan dilakukan dengan cara berikut:
 
 
 \begin{frame}[fragile]
-\frametitle{Implementasi DFS}
+\frametitle{Implementasi DFS (Rekursif)}
 %\begin{lstlisting}
 %integer AdjMatrix[N][N]
 %boolean flag[N]
@@ -529,8 +517,7 @@ Asumsikan:
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{Implementasi DFS (lanj.)}
-Berikut contoh implementasi DFS menggunakan \foreignTerm{stack}.
+\frametitle{Implementasi DFS (Stack)}
 %\begin{lstlisting}
 %integer AdjMatrix[N][N]
 %boolean flag[N]
@@ -579,7 +566,7 @@ Semakin dekat suatu \fnode dengan \fnode awal, \fnode tersebut akan dikunjungi t
 \end{frame}
 
 \begin{frame}
-\frametitle{BFS (lanj.)}
+\frametitle{Penelusuran BFS}
 \begin{figure}
   \centering
   \includegraphics[width=4 cm]{asset/bfs.pdf}
@@ -629,7 +616,7 @@ Semakin dekat suatu \fnode dengan \fnode awal, \fnode tersebut akan dikunjungi t
 \end{frame}
 
 \begin{frame}
-\frametitle{Contoh Permasalahan}
+\frametitle{Analisis Kompleksitas}
 \begin{itemize}
   \item Baik DFS maupun BFS sama-sama mengunjungi setiap \fnode tepat satu kali, dengan memanfaatkan seluruh \fedge.
   \item Kompleksitas dari kedua metode adalah:
@@ -643,14 +630,14 @@ Semakin dekat suatu \fnode dengan \fnode awal, \fnode tersebut akan dikunjungi t
 \end{frame}
 
 \begin{frame}
-\frametitle{Contoh Permasalahan}
+\frametitle{Contoh Permasalahan (lanj.)}
 Pak Dengklek tinggal di kota A. Suatu hari, beliau ingin pergi ke kota B. Terdapat beberapa ruas jalan yang menghubungkan kota-kota dalam negara tempat beliau tinggal. Namun karena sudah tua, Pak Dengklek ingin melewati sesedikit mungkin ruas jalan untuk sampai ke kota B.
 \newline\newline
 Diberikan informasi mengenai struktur kota dan ruas jalan, tentukan berapa banyak ruas jalan yang perlu beliau lewati untuk pergi dari kota A ke kota B!
 \end{frame}
 
 \begin{frame}
-\frametitle{Pembahasan Permasalahan}
+\frametitle{Solusi}
 \begin{itemize}
   \item Permasalahan ini dapat diselesaikan dengan BFS. 
   \item Karena sifat BFS yang menelusuri \fnode lapis demi lapis, maka dapat disimpulkan jika suatu \fnode dikunjungi, maka jarak yang ditempuh dari awal sampai \fnode tersebut pasti jarak terpendek.
@@ -659,7 +646,7 @@ Diberikan informasi mengenai struktur kota dan ruas jalan, tentukan berapa banya
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{Implementasi Permasalahan}
+\frametitle{Implementasi Solusi}
 %\begin{lstlisting}
 %integer AdjMatrix[N][N] , A , B , jarak = -1
 %queue < (integer,integer) > q
@@ -726,7 +713,7 @@ Diberikan informasi mengenai struktur kota dan ruas jalan, tentukan berapa banya
 \end{frame}
 
 \begin{frame}
-\frametitle{Tree}
+\frametitle{Contoh Tree}
 \includegraphics[width=3.5 cm]{asset/not-tree.pdf}
 \hspace{\fill}
 \includegraphics[width=4 cm]{asset/tree.pdf}
@@ -747,7 +734,7 @@ Gambar kiri bukan \ftree karena memiliki \foreignTerm{cycle}, sedangkan gambar k
 \end{frame}
 
 \begin{frame}
-\frametitle{Directed Acyclic \fGraph}
+\frametitle{Contoh Directed Acyclic \fGraph}
 \includegraphics[width=4 cm]{asset/dag.pdf}
 \hspace{\fill}
 \includegraphics[width=5 cm]{asset/not-dag.pdf}
