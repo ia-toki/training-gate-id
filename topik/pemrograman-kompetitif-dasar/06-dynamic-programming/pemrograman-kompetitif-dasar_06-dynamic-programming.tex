@@ -180,8 +180,8 @@ Berikut untuk $f(12)$ dengan nominal koin 1, 6, dan 10 rupiah.
 \begin{itemize}
   \item Jika diperhatikan pada pohon rekursi, terdapat $O(M)$ cabang untuk setiap pemanggilan $f$.
   \item Untuk menghitung nilai $f(N)$, kita akan memiliki pohon rekursi yang kira-kira sedalam $O(N)$.
-  \item Berarti kira-kira dilakukan $O(N^M)$ pemanggilan fungsi.
-  \item Karena itu, solusi ini membutuhkan $O(N^M)$ operasi, yang mana banyaknya operasi ini eksponensial terhadap $N$ atau $M$.
+  \item Berarti kira-kira dilakukan $O(M^N)$ pemanggilan fungsi.
+  \item Karena itu, solusi ini membutuhkan $O(M^N)$ operasi, yang mana banyaknya operasi ini eksponensial.
 \end{itemize}
 \end{frame}
 
@@ -189,7 +189,7 @@ Berikut untuk $f(12)$ dengan nominal koin 1, 6, dan 10 rupiah.
 \frametitle{Solusi rekursif (lanj.)}
 \begin{itemize}
   \item Biasanya solusi eksponensial berjalan sangat lambat.
-  \item Cobalah Anda hitung nilai $O(N^M)$ dengan $N=3$ dan $M=100$, untuk menyadari betapa lambatnya solusi ini!
+  \item Cobalah Anda hitung nilai $O(M^N)$ dengan $M=3$ dan $N=100$, untuk menyadari betapa lambatnya solusi ini!
   \item Kita tidak ingin memiliki solusi eksponensial pada pemrograman kompetitif, kecuali pada soal-soal tertentu  yang tidak memiliki solusi polinomial. 
   \item Karena itu, kita harus melakukan sebuah optimisasi.
 \end{itemize}
