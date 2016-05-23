@@ -147,8 +147,8 @@ Deskripsi:
   \begin{lstlisting}
     for i := 1 to N-1 do begin
       for j := 1 to N-i do begin
-        if (h[i] > h[j]) then begin
-          swap(h[i], h[j]); (* tukar isi h[i] dengan h[j] *)
+        if (h[j] > h[j+1]) then begin
+          swap(h[j], h[j+1]); (* tukar h[j] dengan h[j+1] *)
         end;
       end;
     end;
@@ -294,8 +294,9 @@ Deskripsi:
       pos := i;
       
       (* selama belum tepat, giring ke belakang *)
-      while ((pos > 1) and (h[pos] < h[pos-1]) do begin
+      while ((pos > 1) and (h[pos] < h[pos-1])) do begin
         swap(h[pos], h[pos-1]);
+        pos := pos - 1;
       end;
     end;
   \end{lstlisting}
