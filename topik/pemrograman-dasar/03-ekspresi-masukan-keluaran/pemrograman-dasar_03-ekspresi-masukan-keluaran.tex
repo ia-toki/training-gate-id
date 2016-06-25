@@ -234,6 +234,26 @@ Contoh:
 \end{itemize}
 \end{frame}
 
+\begin{frame}[fragile]
+\frametitle{Operasi Relasional pada Floating Point}
+\begin{itemize}
+  \item Karena komputer tidak dapat secara sempurna menyimpan nilai \textit{floating point}, Anda perlu hati-hati saat membandingkan dua bilangan riil.
+  \item Ekspresi berikut mungkin saja bernilai \textbf{FALSE}:
+  \begin{lstlisting}
+  (0.1 + 0.2) = 0.3
+  \end{lstlisting}
+  \item Sebab 0.1 + 0.2 bisa saja bernilai \textbf{0.30000000000000001}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Operasi Relasional pada Floating Point (lanj.)}
+\begin{itemize}
+  \item Untuk memeriksa kesamaan antara dua nilai \textit{floating point}, biasanya dilibatkan suatu nilai toleransi.
+  \item Misalnya, kedua nilai dianggap sama apabila selisih mereka kurang dari $10^{-8}$.
+\end{itemize}
+\end{frame}
+
 \begin{frame}
 \frametitle{Operasi Relasional (lanj.)}
 \begin{itemize}
