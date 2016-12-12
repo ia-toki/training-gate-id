@@ -17,6 +17,8 @@ Untuk kontribusi semacam poin 1 sampai poin 4, Anda perlu [menuliskan isu](#menu
 
 # Menuliskan Isu
 
+Anda dapat menuliskan isu yang berhubungan dengan **materi pembelajaran**. Untuk isu terkait dengan soal, harap kunjungi [halaman berikut](https://github.com/ia-toki/Training-TLX).
+
 Seluruh masukan yang Anda berikan dituliskan pada [GitHub Issue Tracker](https://github.com/ia-toki/training-gate-id/issues). Untuk menuliskan isu, Anda perlu memiliki akun [GitHub](http://github.com/). Beberapa hal yang perlu diperhatikan:
 
 1. Periksa apakah isu yang akan Anda angkat sudah pernah dikerjakan. Caranya dengan mengacu pada [branch master](https://github.com/ia-toki/training-gate-id) dan memastikan isu yang akan Anda angkat masih perlu diselesaikan.
