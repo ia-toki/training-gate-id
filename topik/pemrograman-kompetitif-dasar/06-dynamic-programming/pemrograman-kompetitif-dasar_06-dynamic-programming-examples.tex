@@ -42,27 +42,27 @@ Melalui dokumen ini, kalian akan:
 \begin{frame} 
 \frametitle{Formulasi}
 \begin{itemize}
-  \item Definisikan sebuah fungsi $g(x,y)$ sebagai jumlah harga maksimum yang mungkin diperoleh, jika kita hanya mempunyai barang ke-$1$ sampai ke-$x$ dan sisa kapasitas tas kita adalah $y$ gram.
-  \item Untuk menghitung fungsi $g(x,y)$ kita bisa mencoba-coba apakah kita akan memasukkan barang ke-$x$ ke tas atau tidak.
+  \item Definisikan sebuah fungsi $g(i,c)$ sebagai jumlah harga maksimum yang mungkin diperoleh, jika kita hanya mempunyai barang ke-$1$ sampai ke-$i$ dan sisa kapasitas tas kita adalah $c$ gram.
+  \item Untuk menghitung fungsi $g(i,c)$ kita bisa mencoba-coba apakah kita akan memasukkan barang ke-$i$ ke tas atau tidak.
 \end{itemize}
 \end{frame}
 
 \begin{frame} 
 \frametitle{Formulasi Rekurens}
 \begin{itemize}
-  \item Jika kita memasukkan barang ke-$x$ ke tas, maka kita akan menyisakan barang ke-$1$ sampai ke-$(x-1)$ dan sisa kapasitas tas menjadi $y-w_x$. 
-  \item Harga barang yang didapatkan pada kasus ini adalah $g(x-1,y-w_x)$ ditambah dengan harga yang kita peroleh pada barang ke-$x$.
-  \item Dapat dituliskan $g(x, y) = g(x-1, y-w_x) + v_x$.
-  \item Kasus ini hanya boleh dipertimbangkan jika $y \geq w_x$.
+  \item Jika kita memasukkan barang ke-$i$ ke tas, maka kita akan menyisakan barang ke-$1$ sampai ke-$(i-1)$ dan sisa kapasitas tas menjadi $c-w_i$. 
+  \item Harga barang yang didapatkan pada kasus ini adalah $g(i-1,c-w_i)$ ditambah dengan harga yang kita peroleh pada barang ke-$i$.
+  \item Dapat dituliskan $g(i, c) = g(i-1, c-w_i) + v_i$.
+  \item Kasus ini hanya boleh dipertimbangkan jika $c \geq w_i$.
 \end{itemize}
 \end{frame}
 
 \begin{frame} 
 \frametitle{Formulasi Rekurens (lanj.)}
 \begin{itemize}
-  \item Jika kita tidak memasukkan barang ke-$x$ ke tas, maka kita akan menyisakan barang ke-$1$ sampai ke-$(x-1)$ dan sisa kapasitas tas masih tetap $y$.
-  \item Harga barang didapatkan pada kasus ini adalah $g(x-1,y)$, tanpa tambahan apapun (kita tidak mengambil barang ke-$x$).
-  \item Dapat dituliskan $g(x, y) = g(x-1, y)$.
+  \item Jika kita tidak memasukkan barang ke-$i$ ke tas, maka kita akan menyisakan barang ke-$1$ sampai ke-$(i-1)$ dan sisa kapasitas tas masih tetap $c$.
+  \item Harga barang didapatkan pada kasus ini adalah $g(i-1,c)$, tanpa tambahan apapun (kita tidak mengambil barang ke-$i$).
+  \item Dapat dituliskan $g(i, c) = g(i-1, c)$.
 \end{itemize}
 \end{frame}
 
@@ -72,31 +72,31 @@ Melalui dokumen ini, kalian akan:
   \item Dari kedua pilihan keputusan tersebut, kita tertarik dengan yang menghasilkan nilai terbesar.
   \item Cukup bandingkan mana yang lebih besar, antara:
   \begin{itemize}
-    \item $g(x-1, y-w_x) + v_x$, atau
-    \item $g(x-1, y)$
+    \item $g(i-1, c-w_i) + v_i$, atau
+    \item $g(i-1, c)$
   \end{itemize}
-  \item Dapat dituliskan: $g(x, y) = \max(g(x-1,y-w_x)+v_x,g(x-1,y))$. \newline
-  \item Kembali ditekankan bahwa pilihan memasukkan barang ke-$x$ hanya boleh dipertimbangkan jika $y \geq w_x$.
+  \item Dapat dituliskan: $g(i, c) = \max(g(i-1,c-w_i)+v_i,g(i-1,c))$. \newline
+  \item Kembali ditekankan bahwa pilihan memasukkan barang ke-$i$ hanya boleh dipertimbangkan jika $c \geq w_i$.
 \end{itemize}
 \end{frame}
 
 \begin{frame} 
 \frametitle{Formulasi Base Case}
 \begin{itemize}
-  \item Jika $x=0$, maka berarti tidak ada lagi barang yang tersedia. 
-  \item Ini berarti $g(x,y) = 0$.
+  \item Jika $i=0$, maka berarti tidak ada lagi barang yang tersedia. 
+  \item Ini berarti $g(i,c) = 0$.
   \item Kasus ini menjadi \fbasecase.
 \end{itemize}
 \end{frame}
 
 \begin{frame} 
 \frametitle{Formulasi Akhir}
-$g(x,y)$ dapat dirumuskan sebagai berikut:
+$g(i,c)$ dapat dirumuskan sebagai berikut:
 \begin{small}
-\[g(x,y) = \left\{\begin{array}{lr}
-    0, & x = 0\\
-    g(x-1,y), & x > 0 \wedge y < w_x\\
-    \max(g(x-1,y-w_x)+v_x,g(x-1,y)), & x > 0 \wedge y \geq w_x\\
+\[g(i,c) = \left\{\begin{array}{lr}
+    0, & i = 0\\
+    g(i-1,c), & i > 0 \wedge c < w_i\\
+    \max(g(i-1,c-w_i)+v_i,g(i-1,c)), & i > 0 \wedge c \geq w_i\\
     \end{array}\right.\]
 \end{small}
 \end{frame}
@@ -104,28 +104,28 @@ $g(x,y)$ dapat dirumuskan sebagai berikut:
 \begin{frame} 
 \frametitle{Analisis Kompleksitas}
 \begin{itemize}
-  \item Terdapat $O(N)$ nilai berbeda untuk nilai $x$ dan $O(G)$ nilai berbeda untuk nilai $y$ pada $g(x,y)$.
-  \item Dibutuhkan $O(1)$ untuk menghitung $g(x,y)$. 
-  \item Sehingga untuk menghitung seluruh nilai $g(x,y)$ untuk seluruh $x$ dan $y$ dibutuhkan waktu $O(NG)$.
+  \item Terdapat $O(N)$ nilai berbeda untuk nilai $i$ dan $O(G)$ nilai berbeda untuk nilai $c$ pada $g(i,c)$.
+  \item Dibutuhkan $O(1)$ untuk menghitung $g(i,c)$. 
+  \item Sehingga untuk menghitung seluruh nilai $g(i,c)$ untuk seluruh $i$ dan $c$ dibutuhkan waktu $O(NG)$.
 \end{itemize}
 \end{frame}
 
 \begin{frame}
 \frametitle{Solusi Top Down}
-Kita implementasikan $g(x, y)$ sebagai fungsi $\proc{solve}(x,y)$:
+Kita implementasikan $g(i, c)$ sebagai fungsi $\proc{solve}(i,c)$:
 \begin{codebox}
-\Procname{$\proc{solve}(x, y)$}
-\li \If $(x \isequal 0)$ \Then
+\Procname{$\proc{solve}(i, c)$}
+\li \If $(i \isequal 0)$ \Then
 \li   \Return $0$
-\li \ElseIf $hasComputed[x][y]$ \Then
-\li   \Return $memo[x][y]$ 
+\li \ElseIf $hasComputed[i][c]$ \Then
+\li   \Return $memo[i][c]$ 
 \li \Else
-\li   $best \gets \proc{solve}(x-1, y)$
-\li   \If $(y \geq w[x])$ \Then
-\li     $best \gets \max(best, \proc{solve}(x - 1, y-w[x]) + v[x])$
+\li   $best \gets \proc{solve}(i-1, c)$
+\li   \If $(c \geq w[i])$ \Then
+\li     $best \gets \max(best, \proc{solve}(i - 1, c-w[i]) + v[i])$
       \End  
-\li   $hasComputed[x][y] \gets true$
-\li   $memo[x][y] \gets best$
+\li   $hasComputed[i][c] \gets true$
+\li   $memo[i][c] \gets best$
 \li   \Return $best$
     \End
 \end{codebox}
@@ -137,18 +137,18 @@ Jawaban ada pada $\proc{solve}(N, G)$
 \frametitle{Solusi Bottom Up}
 \begin{codebox}
 \Procname{$\proc{solve}()$}
-\li \For $y \gets 0$ \To $G$ \Do
-\li   $g[0][y] \gets 0$ \Comment Base case...
+\li \For $c \gets 0$ \To $G$ \Do
+\li   $g[0][c] \gets 0$ \Comment Base case...
     \End
 \zi
 \li \Comment Isi "tabel" dari kasus yang kecil ke besar
-\li \For $x \gets 1$ \To $N$ \Do
-\li   \For $y \gets 0$ \To $G$ \Do
-\li     $best \gets g[x-1][y]$
-\li     \If $(y \geq w[x])$ \Then
-\li       $best \gets \max(best, g[x - 1][y-w[x]] + v[x])$
+\li \For $i \gets 1$ \To $N$ \Do
+\li   \For $c \gets 0$ \To $G$ \Do
+\li     $best \gets g[i-1][c]$
+\li     \If $(c \geq w[i])$ \Then
+\li       $best \gets \max(best, g[i - 1][c-w[i]] + v[i])$
         \End  
-\li     $g[x][y] \gets best$
+\li     $g[i][c] \gets best$
       \End
     \End    
 \li \Return $g[N][G]$
@@ -203,8 +203,8 @@ Cara lain adalah memotong pada titik 4, titik 2, lalu titik 7 dan memerlukan usa
 \frametitle{Observasi}
 \begin{itemize}
   \item Untuk pemotongan pertama, terdapat $N$ pilihan lokasi pemotongan.
-  \item Jika kita memotong di posisi $L_x$, maka didapatkan dua batang.
-  \item Batang pertama perlu dipotong di titik $L_1, L_2, ..., L_{x-1}$ dan batang kedua di $L_{x+1}, L_{x+2}, ..., L_N$.
+  \item Jika kita memotong di posisi $L_m$, maka didapatkan dua batang.
+  \item Batang pertama perlu dipotong di titik $L_1, L_2, ..., L_{m-1}$ dan batang kedua di $L_{m+1}, L_{m+2}, ..., L_N$.
   \item Ternyata kita mendapatkan sub-persoalan yang serupa.
   \item Pemotongan bisa dilanjutkan secara rekursif, dan kita pilih posisi pemotongan yang ke depannya membutuhkan usaha terkecil.
 \end{itemize}
@@ -213,9 +213,9 @@ Cara lain adalah memotong pada titik 4, titik 2, lalu titik 7 dan memerlukan usa
 \begin{frame}
 \frametitle{Formulasi Rekurens}
 \begin{itemize}
-  \item Definisikan sebuah fungsi $g(x,y)$ sebagai jumlah usaha minimum yang mungkin diperoleh, jika kita hanya perlu memotong di $L_{x}, L_{x+1}, ..., L_{y}$.
-  \item Untuk menghitung $g(x,y)$ kita dapat mencoba titik mana yang kita potong pertama kali.
-  \item Jika kita memotong di $L_k$ $(x \leq k \leq y)$, maka kita akan mendapatkan dua potongan.
+  \item Definisikan sebuah fungsi $g(l,r)$ sebagai jumlah usaha minimum yang mungkin diperoleh, jika kita hanya perlu memotong di $L_{l}, L_{l+1}, ..., L_{r}$.
+  \item Untuk menghitung $g(l,r)$ kita dapat mencoba titik mana yang kita potong pertama kali.
+  \item Jika kita memotong di $L_m$ $(l \leq m \leq r)$, maka kita akan mendapatkan dua potongan.
 \end{itemize}
 \begin{figure}
   \includegraphics[width=10cm]{asset/cutting-stick-4.pdf}
@@ -228,11 +228,11 @@ Cara lain adalah memotong pada titik 4, titik 2, lalu titik 7 dan memerlukan usa
   \includegraphics[width=10cm]{asset/cutting-stick-4.pdf}
 \end{figure}
 \begin{itemize}
-  \item Total usaha yang dibutuhkan jika kita melakukan pemotongan di $L_k$ adalah jumlah dari:
+  \item Total usaha yang dibutuhkan jika kita melakukan pemotongan di $L_m$ adalah jumlah dari:
   \begin{itemize}
-    \item Total usaha minimum dari potongan pertama, yaitu $g(x,k-1)$.
-    \item Total usaha minimum dari potongan kedua, yaitu $g(k+1,y)$.
-    \item Usaha untuk pemotongan ini, yaitu $L_{y+1} - L_{x-1}$.
+    \item Total usaha minimum dari potongan pertama, yaitu $g(l,m-1)$.
+    \item Total usaha minimum dari potongan kedua, yaitu $g(m+1,r)$.
+    \item Usaha untuk pemotongan ini, yaitu $L_{r+1} - L_{l-1}$.
   \end{itemize}
   \item Untuk mempermudah, asumsikan $L_0 = 0$ dan $L_{N+1} = M$.
 \end{itemize}
@@ -241,8 +241,8 @@ Cara lain adalah memotong pada titik 4, titik 2, lalu titik 7 dan memerlukan usa
 \begin{frame} 
 \frametitle{Formulasi Base Case}
 \begin{itemize}
-  \item Ketika $x>y$, artinya sudah tidak ada pemotongan yang perlu dilakukan.
-  \item Dengan demikian, usaha yang dibutuhkan adalah 0, atau $g(x,y) = 0$.
+  \item Ketika $l>r$, artinya sudah tidak ada pemotongan yang perlu dilakukan.
+  \item Dengan demikian, usaha yang dibutuhkan adalah 0, atau $g(l,r) = 0$.
 \end{itemize}
 \end{frame}
 
@@ -250,9 +250,9 @@ Cara lain adalah memotong pada titik 4, titik 2, lalu titik 7 dan memerlukan usa
 \frametitle{Formulasi Akhir}
 Dapat dirumuskan:
 \begin{small}
-\[g(x,y) = \left\{\begin{array}{lr}
-    0, & x>y\\
-    \min_{x \leq k \leq y} g(x,k-1) + g(k+1,y) + (L_{y+1} - L_{x-1}), & x \leq y \\
+\[g(l,r) = \left\{\begin{array}{lr}
+    0, & l>r\\
+    \min_{l \leq m \leq r} g(l,m-1) + g(m+1,r) + (L_{r+1} - L_{l-1}), & l \leq r \\
     \end{array}\right.\]
 \end{small}
 \end{frame}
@@ -260,30 +260,30 @@ Dapat dirumuskan:
 \begin{frame} 
 \frametitle{Analisis Kompleksitas}
 \begin{itemize}
-  \item Terdapat $O(N)$ nilai berbeda untuk nilai $x$ dan $O(N)$ nilai berbeda untuk nilai $y$ pada $g(x,y)$.
-  \item Dibutuhkan iterasi sebanyak $O(N)$ untuk menghitung $g(x,y)$. 
-  \item Sehingga untuk menghitung seluruh nilai $g(x,y)$ untuk seluruh $x$ dan $y$ dibutuhkan waktu $O(N^3)$.
+  \item Terdapat $O(N)$ nilai berbeda untuk nilai $l$ dan $O(N)$ nilai berbeda untuk nilai $r$ pada $g(l,r)$.
+  \item Dibutuhkan iterasi sebanyak $O(N)$ untuk menghitung $g(l,r)$. 
+  \item Sehingga untuk menghitung seluruh nilai $g(l,r)$ untuk seluruh $l$ dan $r$ dibutuhkan waktu $O(N^3)$.
 \end{itemize}
 \end{frame}
 
 \begin{frame}
 \frametitle{Solusi Top Down}
-Kita implementasikan $g(x, y)$ sebagai fungsi $\proc{solve}(x,y)$:
+Kita implementasikan $g(l, r)$ sebagai fungsi $\proc{solve}(l,r)$:
 \begin{small}
 \begin{codebox}
-\Procname{$\proc{solve}(x, y)$}
-\li \If $(x > y)$ \Then
+\Procname{$\proc{solve}(l, r)$}
+\li \If $(l > r)$ \Then
 \li   \Return $0$
-\li \ElseIf $hasComputed[x][y]$ \Then
-\li   \Return $memo[x][y]$ 
+\li \ElseIf $hasComputed[l][r]$ \Then
+\li   \Return $memo[l][r]$ 
 \li \Else
 \li   $best \gets \infty$
-\li   $cost \gets L[y+1] - L[x-1]$
-\li   \For $k \gets x$ \To $y$ \Do
-\li     $best \gets \min(best, \proc{solve}(x,k-1) + \proc{solve}(k+1, y) + cost)$
+\li   $cost \gets L[r+1] - L[l-1]$
+\li   \For $m \gets l$ \To $r$ \Do
+\li     $best \gets \min(best, \proc{solve}(l,m-1) + \proc{solve}(m+1, r) + cost)$
       \End  
-\li   $hasComputed[x][y] \gets true$
-\li   $memo[x][y] \gets best$
+\li   $hasComputed[l][r] \gets true$
+\li   $memo[l][r] \gets best$
 \li   \Return $best$
     \End
 \end{codebox}
@@ -297,22 +297,22 @@ Jawaban ada pada $\proc{solve}(1, N)$
 \begin{codebox}
 \Procname{$\proc{solve}()$}
 \li \Comment Inisialisasi base case
-\li \For $x \gets 0$ \To $N+1$ \Do
-\li   \For $y \gets 0$ \To $x-1$ \Do
-\li     $g[x][y] \gets 0$
+\li \For $l \gets 0$ \To $N+1$ \Do
+\li   \For $r \gets 0$ \To $l-1$ \Do
+\li     $g[l][r] \gets 0$
       \End
     \End
 \zi
 \li \Comment Isi "tabel" mulai dari kasus yang kecil
 \li \For $gap \gets 0$ \To $N$ \Do
-\li   \For $x \gets 1$ \To $N-gap$ \Do
-\li     $y \gets x + gap$
+\li   \For $l \gets 1$ \To $N-gap$ \Do
+\li     $r \gets l + gap$
 \li     $best \gets \infty$
-\li     $cost \gets L[y+1] - L[x-1]$
-\li     \For $k \gets x$ \To $y$ \Do
-\li       $best \gets \min(best, g[x][k-1] + g[k+1][y] + cost)$
+\li     $cost \gets L[r+1] - L[l-1]$
+\li     \For $m \gets l$ \To $r$ \Do
+\li       $best \gets \min(best, g[l][m-1] + g[m+1][r] + cost)$
         \End  
-\li     $g[x][y] \gets best$
+\li     $g[l][r] \gets best$
       \End
     \End
 \zi
