@@ -193,6 +193,41 @@ Parameter e sebenarnya tidak harus ada, sehingga bisa saja ditulis:
 \end{itemize}
 \end{frame}
 
+\begin{frame}[fragile]
+\frametitle{Operasi Tambahan: chr dan ord}
+\begin{block}{chr(i)}
+Merupakan fungsi yang mengembalikan karakter dari kode ASCII i.
+\end{block}
+\begin{block}{ord(c)}
+Merupakan fungsi yang mengembalikan nilai ASCII dari karakter c.
+\end{block}
+Contoh:
+\begin{lstlisting}
+  writeln(chr(65));       (* mencetak 'A' *)
+  writeln(chr(66));       (* mencetak 'B' *)
+  writeln(chr(49));       (* mencetak '1' *)
+  writeln(ord('A'));      (* mencetak 65 *)
+  writeln(ord('a'));      (* mencetak 97 *)
+  writeln(ord('1'));      (* mencetak 49 *)
+  writeln(chr(ord('a'))); (* mencetak 'a' *)
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Operasi Tambahan: chr dan ord (lanj.)}
+\begin{itemize}
+  \item Kita dapat mengolah string dengan memproses karakternya satu per satu.
+  \item chr dan ord dapat digunakan untuk mengubah karakter suatu string.
+  \item Contoh:
+  \begin{lstlisting}
+    s := 'toki';
+    for i := 1 to length(s) do begin
+      s[i] := chr(ord(s[i]) - ord('a') + ord('A'));
+    end;
+    writeln(s);	(* mencetak 'TOKI' *)
+  \end{lstlisting}
+\end{itemize}
+\end{frame}
 
 \section{Wujud Asli String}
 \frame{\sectionpage}
