@@ -118,36 +118,40 @@ Berikut contoh operasinya dan perilaku yang diharapkan:
 \frametitle{Tree}
 \begin{itemize}
   \item Seperti yang telah dipelajari, \ftree merupakan suatu \fgraph yang setiap \fnode-nya saling terhubung dan tidak memiliki \foreignTerm{cycle}.
-  
-  TODO: GAMBAR TREE
 \end{itemize}
+\begin{figure}
+  \includegraphics[width=7cm]{asset/tree.pdf}
+\end{figure}
 \end{frame}
 
 \begin{frame}
 \frametitle{Rooted Tree}
 \begin{itemize}
   \item Suatu \ftree yang memiliki akar, atau \fnode yang berada di paling atas disebut sebagai \foreignTerm{rooted-tree}.
-  
-  TODO: GAMBAR ROOTED TREE
 \end{itemize}
+\begin{figure}
+  \includegraphics[width=7cm]{asset/rooted-tree.pdf}
+\end{figure}
 \end{frame}
 
 \begin{frame}
 \frametitle{Binary Tree}
 \begin{itemize}
   \item Suatu \foreignTerm{rooted-tree} yang setiap \fnode-nya memiliki 0, 1, atau 2 anak disebut dengan \foreignTerm{Binary Tree}.
-  
-  TODO: GAMBAR Binary TREE
 \end{itemize}
+\begin{figure}
+  \includegraphics[width=7cm]{asset/binary-tree.pdf}
+\end{figure}
 \end{frame}
 
 \begin{frame}
 \frametitle{Full Binary Tree}
 \begin{itemize}
   \item Suatu \foreignTerm{binary tree} yang seluruh \fnode-nya memiliki 2 anak, kecuali tingkat paling bawah yang tidak memiliki anak, disebut dengan \foreignTerm{Full Binary Tree}
-  
-  TODO: GAMBAR FULL TREE
 \end{itemize}
+\begin{figure}
+  \includegraphics[width=7cm]{asset/full-binary-tree.pdf}
+\end{figure}
 \end{frame}
 
 \begin{frame}
@@ -156,9 +160,26 @@ Berikut contoh operasinya dan perilaku yang diharapkan:
 \begin{itemize}
   \item Seluruh \fnode-nya memiliki 2 anak, kecuali tingkat paling bawah.
   \item Tingkat paling bawahnya dapat terisi sebagian, tetapi harus terisi dari kiri ke kanan.
-  
-  TODO: GAMBAR COMPLETE TREE
 \end{itemize}
+\begin{figure}
+  \includegraphics[width=7cm]{asset/complete-binary-tree.pdf}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+\frametitle{Bukan Complete Binary Tree}
+Berikut bukan \foreignTerm{Complete Binary Tree}, sebab elemen di tingkat paling bawah tidak berisi dari kiri ke kanan (terdapat lubang).
+\begin{figure}
+  \includegraphics[width=7cm]{asset/not-complete-binary-tree-1.pdf}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+\frametitle{Bukan Complete Binary Tree}
+Berikut juga bukan \foreignTerm{Complete Binary Tree}, sebab terdapat \fnode tanpa 2 anak pada tingkat bukan paling bawah.
+\begin{figure}
+  \includegraphics[width=7cm]{asset/not-complete-binary-tree-2.pdf}
+\end{figure}
 \end{frame}
 
 \begin{frame}
@@ -173,7 +194,17 @@ Struktur data \pbinaryHeap memiliki sifat:
 
 \begin{frame}
 \frametitle{Contoh Binary Heap}
-TODO: GAMBAR BINARY HEAP DAN YANG BUKAN
+\begin{figure}
+  \includegraphics[width=9cm]{asset/heap.pdf}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+\frametitle{Contoh Bukan Binary Heap}
+Bukan binary heap.
+\begin{figure}
+  \includegraphics[width=9cm]{asset/not-heap.pdf}
+\end{figure}
 \end{frame}
 
 \begin{frame}
@@ -197,9 +228,44 @@ Melakukan \foreignTerm{push} pada \pbinaryHeap dilakukan dengan 2 tahap:
 
 \begin{frame}
 \frametitle{Operasi Push}
-Sebagai contoh, misalkan hendak ditambahkan elemen bernilai TODO ke suatu \pbinaryHeap berikut:
-TODO: GAMBAR
+Sebagai contoh, misalkan hendak ditambahkan elemen bernilai 8 ke suatu \pbinaryHeap berikut:
+\begin{figure}
+  \includegraphics[width=9cm]{asset/heap.pdf}
+\end{figure}
 \end{frame}
+
+\begin{frame}
+\frametitle{Operasi Push (lanj.)}
+Tambahkan \fnode.
+\begin{figure}
+  \includegraphics[width=9cm]{asset/push-1.pdf}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+\frametitle{Operasi Push (lanj.)}
+Karena orang tua-nya memiliki nilai lebih kecil, tukar nilainya.
+\begin{figure}
+  \includegraphics[width=9cm]{asset/push-2.pdf}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+\frametitle{Operasi Push (lanj.)}
+Karena orang tua-nya masih memiliki nilai lebih kecil, tukar lagi.
+\begin{figure}
+  \includegraphics[width=9cm]{asset/push-3.pdf}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+\frametitle{Operasi Push (lanj.)}
+Orang tua-nya sudah memiliki nilai yang lebih besar.\newline Operasi push selesai.
+\begin{figure}
+  \includegraphics[width=9cm]{asset/push-4.pdf}
+\end{figure}
+\end{frame}
+
 
 \begin{frame}
 \frametitle{Operasi Pop}
@@ -211,7 +277,53 @@ Melakukan \foreignTerm{pop} pada \pbinaryHeap dilakukan dengan 2 tahap:
 \end{itemize}
 \end{frame}
 
-% TODO: CONTOH
+\begin{frame}
+\frametitle{Operasi Pop (lanj.)}
+Misalkan akan dilakukan pop pada \pheap berikut:
+\begin{figure}
+  \includegraphics[width=9cm]{asset/pop-1.pdf}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+\frametitle{Operasi Pop (lanj.)}
+Tukar elemen pada \foreignTerm{root} dengan elemen terakhir pada \foreignTerm{complete binary tree}.
+\begin{figure}
+  \includegraphics[width=9cm]{asset/pop-2.pdf}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+\frametitle{Operasi Pop (lanj.)}
+Buang elemen terakhir.
+\begin{figure}
+  \includegraphics[width=9cm]{asset/pop-3.pdf}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+\frametitle{Operasi Pop (lanj.)}
+Perbaiki struktur \pheap dengan menukar elemen pada \foreignTerm{root} dengan anaknya yang bernilai \textbf{terbesar}.
+\begin{figure}
+  \includegraphics[width=9cm]{asset/pop-4.pdf}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+\frametitle{Operasi Pop (lanj.)}
+Karena masih terdapat anaknya yang lebih besar, tukar lagi.
+\begin{figure}
+  \includegraphics[width=9cm]{asset/pop-5.pdf}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+\frametitle{Operasi Pop (lanj.)}
+Kini sudah tidak ada anak yang bernilai lebih besar, operasi pop selesai.
+\begin{figure}
+  \includegraphics[width=9cm]{asset/pop-6.pdf}
+\end{figure}
+\end{frame}
 
 \begin{frame}
 \frametitle{Operasi Top}
@@ -323,7 +435,7 @@ TODO
 \begin{frame}
 \frametitle{Penutup}
 \begin{itemize}
-  \item TODO
+  \item TODO: kasih tau heapify gak diajarin
 \end{itemize}
 \end{frame}
 
