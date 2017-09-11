@@ -1,0 +1,231 @@
+\input{../config.tex}
+
+\title{Struktur Data Non Linear: \newline Heap}
+\author{Tim Olimpiade Komputer Indonesia}
+\date{}
+
+\begin{document}
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+\begin{frame}
+\frametitle{Pendahuluan}
+Melalui dokumen ini, kalian akan:
+\begin{itemize}
+  \item Mengenal dan mengimplementasikan struktur data \pheap.
+  \item Mengetahui mengapa diperlukan \pheap
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Motivasi}
+Anda diberikan sejumlah operasi. Setiap operasi dapat berbentuk salah satu dari:
+\begin{itemize}
+  \item add($x$): simpan bilangan $x$.
+  \item getMax(): dapatkan bilangan terbesar yang saat ini masih disimpan.
+  \item deleteMax(): hapus bilangan terbesar dari penyimpanan.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Motivasi}
+Berikut contoh operasinya dan perilaku yang diharapkan:
+\begin{itemize}
+  \item add(5), bilangan yang disimpan: [5].
+  \item add(7), bilangan yang disimpan: [5, 7].
+  \item add(3), bilangan yang disimpan: [5, 7, 3].
+  \item getMax(), laporkan bahwa 7 merupakan bilangan terbesar.
+  \item deleteMax(), bilangan yang disimpan: [5, 3].
+  \item getMax(), laporkan bahwa 5 merupakan bilangan terbesar.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Solusi Sederhana}
+\begin{itemize}
+  \item Solusi paling mudah adalah membuat sebuah \farray besar dan variabel yang menunjukkan posisi terakhir elemen pada \farray.
+  \item Untuk setiap operasi add($x$), tambahkan elemen \farray, geser variabel penunjuk, lalu urutkan data. 
+  \item Operasi getMax() dapat dilayani dengan mengembalikan elemen terbesar.
+  \item Operasi deleteMax() dapat dilayani dengan menggeser variabel penunjuk.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Analisis Solusi Sederhana}
+\begin{itemize}
+  \item Misalkan $N$ menyatakan banyaknya elemen pada \farray.
+  \item Dengan cara ini, operasi add($x$) berlangsung dalam $O(N \log{N})$, apabila pengurutannya menggunakan \progTerm{Quicksort}.
+  \item Operasi getMax() dan deleteMax() berlangsung dalam $O(1)$.
+  \newline
+  \item Perhatikan bahwa pengurutan akan lebih efisien jika digunakan \progTerm{Insertion Sort}, sehingga kompleksitas add($x$) menjadi $O(N)$.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Analisis Solusi Sederhana}
+\begin{table}[ht]
+  \begin{tabular}{|l|l|}
+    \hline Operasi  & Kompleksitas\\
+    \hline  add($x$) & $O(N)$  \\
+    \hline  getMax() & $O(1)$ \\
+    \hline  deleteMax() & $O(1)$ \\
+    \hline
+  \end{tabular}
+\end{table}  
+\end{frame}
+
+\begin{frame}
+\frametitle{Masalah Solusi Sederhana}
+\begin{itemize}
+  \item Solusi sederhana ini tidak efisien ketika banyak dilakukan operasi add($x$).
+  \item Kita akan mempelajari bagaimana \pheap mengatasi masalah ini secara efisien.
+\end{itemize}
+\end{frame}
+
+\section{Pengenalan Heap}
+\frame{\sectionpage}
+
+\begin{frame}
+\frametitle{Heap}
+\begin{itemize}
+  \item \pHeap merupakan struktur data yang umum dikenal pada ilmu komputer.
+  \item Nama \pheap sendiri berasal dari Bahasa Inggris, yang berarti "gundukan". 
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Operasi Heap}
+\pHeap mendukung operasi:
+\begin{itemize}
+  \item \progTerm{Push}, yaitu memasukan elemen baru ke penyimpanan.
+  \item \progTerm{Pop}, yaitu membuang elemen \textbf{terbesar} dari penyimpanan.
+  \item \progTerm{Top}, yaitu mengakses elemen \textbf{terbesar} dari penyimpanan. 
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Cara Kerja Heap}
+\begin{itemize}
+  \item \pHeap dapat diimplementasikan dengan berbagai cara.
+  \item Kita akan mempelajari salah satunya, yaitu \pBinaryHeap.
+  \item Sebelum itu, diperlukan pengetahuan mengenai \progTerm{tree}.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Tree}
+\begin{itemize}
+  \item Seperti yang telah dipelajari, \ftree merupakan suatu \fgraph yang setiap \fnode-nya saling terhubung dan tidak memiliki \foreignTerm{cycle}.
+  
+  TODO: GAMBAR TREE
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Rooted Tree}
+\begin{itemize}
+  \item Suatu \ftree yang memiliki akar, atau \fnode yang berada di paling atas disebut sebagai \foreignTerm{rooted-tree}.
+  
+  TODO: GAMBAR ROOTED TREE
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Binary Tree}
+\begin{itemize}
+  \item Suatu \foreignTerm{rooted-tree} yang setiap \fnode-nya memiliki 0, 1, atau 2 anak disebut dengan \foreignTerm{Binary Tree}.
+  
+  TODO: GAMBAR Binary TREE
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Full Binary Tree}
+\begin{itemize}
+  \item Suatu \foreignTerm{binary tree} yang seluruh \fnode-nya memiliki 2 anak, kecuali tingkat paling bawah yang tidak memiliki anak, disebut dengan \foreignTerm{Full Binary Tree}
+  
+  TODO: GAMBAR FULL TREE
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Complete Binary Tree}
+\foreignTerm{Complete Binary Tree} adalah \foreignTerm{binary tree} yang:
+\begin{itemize}
+  \item Seluruh \fnode-nya memiliki 2 anak, kecuali tingkat paling bawah.
+  \item Tingkat paling bawahnya dapat terisi sebagian, tetapi harus terisi dari kiri ke kanan.
+  
+  TODO: GAMBAR COMPLETE TREE
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Struktur Binary Heap}
+Struktur data \pbinaryHeap memiliki sifat:
+\begin{itemize}
+  \item Berstruktur \foreignTerm{complete binary tree}.
+  \item Setiap \fnode merepresentasikan elemen yang disimpan pada \pheap.
+  \item Setiap \fnode memiliki nilai yang \textbf{lebih besar} daripada \fnode anak-anaknya.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Contoh Binary Heap}
+TODO: GAMBAR BINARY HEAP DAN YANG BUKAN
+\end{frame}
+
+\begin{frame}
+\frametitle{Mengapa Harus Demikian?}
+\begin{itemize}
+  \item Struktur seperti ini menjamin operasi-operasi yang dilayani \pheap dapat dilakukan secara efisien.
+  \item Misalkan $N$ adalah banyaknya elemen yang sedang disimpan.
+  \item Operasi \progTerm{push} dan \progTerm{pop} bekerja dalam $O(\log{N})$, sementara \progTerm{top} bekerja dalam $O(1)$.
+  \item Kita akan melihat satu per satu bagaimana operasi tersebut dilaksanakan.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Operasi Push}
+Melakukan \foreignTerm{push} pada \pbinaryHeap dilakukan dengan 2 tahap:
+\begin{itemize}
+  \item Tambahkan \fnode baru di posisi yang memenuhi aturan \foreignTerm{complete binary tree}.
+  \item Selama elemen \fnode yang merupakan orang tua langsung dari elemen ini memiliki nilai yang lebih kecil, tukar nilai elemen kedua \fnode tersebut.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Operasi Push}
+Sebagai contoh, misalkan hendak ditambahkan elemen bernilai TODO ke suatu \pbinaryHeap berikut:
+TODO: GAMBAR
+\end{frame}
+
+\begin{frame}
+\frametitle{Operasi Pop}
+\begin{itemize}
+  \item TODO
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Operasi Top}
+\begin{itemize}
+  \item TODO
+\end{itemize}
+\end{frame}
+
+\section{Implementasi Binary Heap}
+\frame{\sectionpage}
+
+\begin{frame}
+\frametitle{Penutup}
+\begin{itemize}
+  \item Struktur data yang baru kita pelajari ini merupakan struktur data dasar.
+  \item Pada lain kesempatan, kita akan mempelajari struktur data yang lebih kompleks dan manfaatnya lebih "berasa", seperti \foreignTerm{Heap} untuk \foreignTerm{Priority Queue}, \foreignTerm{Binary Search Tree} untuk kamus, dan \foreignTerm{Segment Tree} untuk \foreignTerm{Dynamic Range Query}.
+\end{itemize}
+\end{frame}
+
+\end{document}
+
+
