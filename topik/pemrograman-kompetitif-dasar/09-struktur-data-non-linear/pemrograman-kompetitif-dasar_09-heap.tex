@@ -66,8 +66,8 @@ Berikut contoh operasinya dan perilaku yang diharapkan:
 \begin{frame}
 \frametitle{Analisis Solusi Sederhana}
 \begin{table}[ht]
-  \begin{tabular}{|l|l|}
-    \hline Operasi  & Kompleksitas\\
+  \begin{tabular}{|l|c|}
+    \hline Operasi  & Dengan Sorting\\
     \hline  add($x$) & $O(N)$  \\
     \hline  getMax() & $O(1)$ \\
     \hline  deleteMax() & $O(1)$ \\
@@ -203,26 +203,127 @@ TODO: GAMBAR
 
 \begin{frame}
 \frametitle{Operasi Pop}
+Melakukan \foreignTerm{pop} pada \pbinaryHeap dilakukan dengan 2 tahap:
 \begin{itemize}
-  \item TODO
+  \item Tukar posisi elemen pada \foreignTerm{root} dengan elemen terakhir mengikuti aturan \foreignTerm{complete binary tree}.
+  \item Buang elemen terakhir \pbinaryHeap, yang telah berisi elemen dari \foreignTerm{root}.
+  \item Selama elemen yang ditukar ke posisi \foreignTerm{root} memiliki anak langsung yang berelemen lebih besar, tukar elemen tersebut dengan salah anaknya yang memiliki elemen \textbf{terbesar}. 
 \end{itemize}
 \end{frame}
+
+% TODO: CONTOH
 
 \begin{frame}
 \frametitle{Operasi Top}
 \begin{itemize}
-  \item TODO
+  \item Operasi ini sebenarnya sesederhana mengembalikan elemen pada \foreignTerm{root} \pbinaryHeap.
+  \item Kompleksitas operasi ini adalah $O(1)$.
 \end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Analisis Solusi dengan Heap}
+Penerapan \pheap pada persoalan motivasi:
+\begin{table}[ht]
+  \begin{tabular}{|l|c|c|}
+    \hline Operasi  & Dengan Sorting & Dengan Heap \\
+    \hline  add($x$) & $O(N)$ & $O(\log{N})$\\
+    \hline  getMax() & $O(1)$ & $O(1)$\\
+    \hline  deleteMax() & $O(1)$ & $O(\log{N})$\\
+    \hline
+  \end{tabular}
+\end{table}  
+
+Kini seluruh operasi dapat dilakukan dengan efisien.
 \end{frame}
 
 \section{Implementasi Binary Heap}
 \frame{\sectionpage}
 
 \begin{frame}
+\frametitle{Membuat Tree}
+\begin{itemize}
+  \item Pada dasarnya, \ftree merupakan \fgraph.
+  \item Merepresentasikan \ftree pada implementasi program dapat menggunakan teknik representasi \fgraph yang telah dipelajari sebelumnya.
+  \item Namun, untuk \ftree dengan kondisi tertentu, kita dapat menggunakan representasi yang lebih sederhana.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Representasi Complete Binary Tree}
+\begin{itemize}
+  \item Kedengarannya kurang masuk akal, tetapi \foreignTerm{complete binary tree} dapat direpresentasikan dengan sebuah \farray.
+  \item Misalkan \farray ini bersifat \foreignTerm{zero-based}, yaitu dimulai dari indeks 0.
+  \item Elemen pada indeks ke-$i$ menyatakan elemen pada \fnode ke-$i$.
+  \item Anak kiri dari \fnode ke-$i$ adalah \fnode ke-$(2i+1)$. 
+  \item Anak kanan dari \fnode ke-$i$ adalah \fnode ke-$(2i+2)$. 
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Representasi Complete Binary Tree (lanj.)}
+TODO: GAMBAR REPRESENTASI ARRAY
+\end{frame}
+
+\begin{frame}
+\frametitle{Representasi Complete Binary Tree (lanj.)}
+\begin{itemize}
+  \item Dengan logika yang serupa, orang tua dari \fnode ke-$i$ adalah \fnode ke-$\lfloor\frac{i-1}{2}\rfloor$
+  \item Apabila Anda memutuskan untuk menggunakan \foreignTerm{one-based}, berarti rumusnya menjadi:
+  \begin{itemize}
+    \item Anak kiri: $2i$.
+    \item Anak kanan: $2i+1$.
+    \item Orang tua: $\lfloor \frac{i}{2} \rfloor$
+  \end{itemize}
+  \item Representasi ini sangat mempermudah implementasi \pbinaryHeap.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Implementasi Push}
+TODO
+\end{frame}
+
+\begin{frame}
+\frametitle{Implementasi Pop}
+TODO
+\end{frame}
+
+\begin{frame}
+\frametitle{Implementasi Top}
+TODO
+\end{frame}
+
+\begin{frame}
+\frametitle{Catatan Implementasi}
+\begin{itemize}
+  \item Tentu saja, Anda dapat membuat \pheap dengan urutan yang terbalik, yaitu elemen terkecilnya di atas.
+  \item Dengan demikian, operasi yang didukung adalah mencari atau menghapus elemen terkecil.
+  \item Biasanya \pheap dengan sifat ini disebut dengan \progTerm{min-heap}, sementara \pheap dengan elemen terbesar di atas disebut dengan \progTerm{max-heap}.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Manfaat Heap}
+\begin{itemize}
+  \item Pada ilmu komputer, \pheap dapat digunakan sebagai \textit{priority queue}, yaitu antrian yang terurut menurut suatu kriteria.
+  \item Sifat \pheap juga dapat digunakan untuk optimisasi suatu algoritma. Contoh paling nyatanya adalah untuk mempercepat algoritma \progTerm{Dijkstra}.
+  \item Berbagai solusi persoalan \progTerm{greedy} juga dapat diimplementasikan secara efisien dengan \pheap.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Library Heap}
+\begin{itemize}
+  \item Bagi pengguna C++, struktur data "priority\_queue" dari include algorithm merupakan struktur data \pheap.
+  \item Bagi pengguna Pascal, Anda perlu mengimplementasikan \pheap sendiri.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
 \frametitle{Penutup}
 \begin{itemize}
-  \item Struktur data yang baru kita pelajari ini merupakan struktur data dasar.
-  \item Pada lain kesempatan, kita akan mempelajari struktur data yang lebih kompleks dan manfaatnya lebih "berasa", seperti \foreignTerm{Heap} untuk \foreignTerm{Priority Queue}, \foreignTerm{Binary Search Tree} untuk kamus, dan \foreignTerm{Segment Tree} untuk \foreignTerm{Dynamic Range Query}.
+  \item TODO
 \end{itemize}
 \end{frame}
 
