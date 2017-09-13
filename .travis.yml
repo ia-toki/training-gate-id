@@ -7,7 +7,7 @@ before_install:
     - wget launchpadlibrarian.net/128239195/latexmk_4.35-0ubuntu1_all.deb
 
 install:
-    - sudo apt-get install texlive-latex-recommended texlive-latex-extra texlive-fonts-recommended
+    - sudo apt-get install texlive-latex-recommended texlive-latex-extra texlive-fonts-recommended texlive-lang-other
     - sudo dpkg -i latexmk_4.35-0ubuntu1_all.deb
     - sudo ./setup.sh
 
