@@ -148,6 +148,7 @@ Berikut contoh operasinya dan perilaku yang diharapkan:
 \frametitle{Full Binary Tree}
 \begin{itemize}
   \item Suatu \foreignTerm{binary tree} yang seluruh \fnode-nya memiliki 2 anak, kecuali tingkat paling bawah yang tidak memiliki anak, disebut dengan \foreignTerm{Full Binary Tree}
+  \item Bila banyaknya \fnode adalah $N$, maka ketinggiannya adalah $O(\log{N})$.
 \end{itemize}
 \begin{figure}
   \includegraphics[width=7cm]{asset/full-binary-tree.pdf}
@@ -164,6 +165,9 @@ Berikut contoh operasinya dan perilaku yang diharapkan:
 \begin{figure}
   \includegraphics[width=7cm]{asset/complete-binary-tree.pdf}
 \end{figure}
+\begin{itemize}
+  \item Bila banyaknya \fnode adalah $N$, maka ketinggiannya \\ adalah $O(\log{N})$.
+\end{itemize}
 \end{frame}
 
 \begin{frame}
@@ -266,6 +270,15 @@ Orang tua-nya sudah memiliki nilai yang lebih besar.\newline Operasi push selesa
 \end{figure}
 \end{frame}
 
+\begin{frame}
+\frametitle{Kompleksitas Push}
+\begin{itemize}
+  \item Kasus terburuk terjadi ketika pertukaran yang terjadi paling banyak.
+  \item Hal ini terjadi ketika elemen yang dimasukkan merupakan nilai yang paling besar pada \pheap.
+  \item Banyaknya pertukaran yang terjadi sebanding dengan kedalaman dari \foreignTerm{compete binary tree}.
+  \item Kompleksitas untuk operasi \foreignTerm{push} adalah $O(\log{N})$.
+\end{itemize}
+\end{frame}
 
 \begin{frame}
 \frametitle{Operasi Pop}
@@ -326,6 +339,16 @@ Kini sudah tidak ada anak yang bernilai lebih besar, operasi pop selesai.
 \end{frame}
 
 \begin{frame}
+\frametitle{Kompleksitas Pop}
+\begin{itemize}
+  \item Kasus terburuk juga terjadi ketika pertukaran yang terjadi paling banyak.
+  \item Hal ini terjadi ketika elemen yang ditempatkan di \foreignTerm{root} cukup kecil, sehingga perlu ditukar sampai ke tingkat paling bawah.
+  \item Banyaknya pertukaran yang terjadi sebanding dengan kedalaman dari \foreignTerm{compete binary tree}.
+  \item Kompleksitas untuk operasi \foreignTerm{pop} adalah $O(\log{N})$.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
 \frametitle{Operasi Top}
 \begin{itemize}
   \item Operasi ini sebenarnya sesederhana mengembalikan elemen pada \foreignTerm{root} \pbinaryHeap.
@@ -374,13 +397,15 @@ Kini seluruh operasi dapat dilakukan dengan efisien.
 
 \begin{frame}
 \frametitle{Representasi Complete Binary Tree (lanj.)}
-TODO: GAMBAR REPRESENTASI ARRAY
+\begin{figure}
+  \includegraphics[width=6cm]{asset/heap-array.pdf}
+\end{figure}
 \end{frame}
 
 \begin{frame}
 \frametitle{Representasi Complete Binary Tree (lanj.)}
 \begin{itemize}
-  \item Dengan logika yang serupa, orang tua dari \fnode ke-$i$ adalah \fnode ke-$\lfloor\frac{i-1}{2}\rfloor$
+  \item Dengan logika yang serupa, orang tua dari \fnode ke-$i$ adalah \fnode ke-$\lfloor\frac{i-1}{2}\rfloor$.
   \item Apabila Anda memutuskan untuk menggunakan \foreignTerm{one-based}, berarti rumusnya menjadi:
   \begin{itemize}
     \item Anak kiri: $2i$.
@@ -392,18 +417,84 @@ TODO: GAMBAR REPRESENTASI ARRAY
 \end{frame}
 
 \begin{frame}
+\frametitle{Representasi Array}
+\begin{itemize}
+  \item Karena panjang \farray dapat bertambah atau berkurang, diperlukan \farray yang ukurannya dinamis.
+  \item Pada contoh ini, kita akan menggunakan \farray berukuran statis dan sebuah variabel yang menyatakan ukuran \farray saat ini.
+  \item Berikut prosedur untuk inisialisasi, dengan asumsi $maxSize$ menyatakan ukuran terbesar pada \pheap yang mungkin.
+\end{itemize}
+\begin{codebox}
+\Procname{$\proc{initializeHeap}(maxSize)$}
+\li \Comment Buat array $arr$ berukuran $maxSize$
+\li $size \gets 0$
+\end{codebox}
+\end{frame}
+
+\begin{frame}
+\frametitle{Implementasi Fungsi Pembantu}
+Buat juga beberapa fungsi yang akan membantu mempermudah penulisan kode.
+\begin{codebox}
+\Procname{$\proc{getParent}(x)$}
+\li \Return $\proc{floor}((x-1) / 2)$
+\end{codebox}
+
+\begin{codebox}
+\Procname{$\proc{getLeft}(x)$}
+\li \Return $2x + 1$
+\end{codebox}
+
+\begin{codebox}
+\Procname{$\proc{getRight}(x)$}
+\li \Return $2x + 2$
+\end{codebox}
+\end{frame}
+
+\begin{frame}
 \frametitle{Implementasi Push}
-TODO
+\begin{codebox}
+\Procname{$\proc{push}(val)$}
+\li $i \gets size$
+\li $arr[i] \gets val$
+\li \While $(i > 0) \land (arr[i] > arr[\proc{getParent}(i)])$  \Do
+\li   $\proc{swap}(arr[i], arr[\proc{getParent}(i)])$
+\li   $i \gets \proc{getParent}(i)$
+    \End
+\li $size \gets size + 1$
+\end{codebox}
 \end{frame}
 
 \begin{frame}
 \frametitle{Implementasi Pop}
-TODO
+\begin{codebox}
+\Procname{$\proc{pop}()$}
+\li $swap(arr[0], arr[size-1])$
+\li $i \gets 0$
+\li $swapped \gets true$
+\li \While $swapped$  \Do
+\li   $maxIdx \gets i$
+\li   \If $(\proc{getLeft}(i) < size) \land (arr[maxIdx] < arr[\proc{getLeft}(i)])$ \Then
+\li     $maxIdx \gets \proc{getLeft}(i)$
+      \End
+\li   \If $(\proc{getRight}(i) < size) \land (arr[maxIdx] < arr[\proc{getRight}(i)])$ \Then
+\li     $maxIdx \gets \proc{getRight}(i)$
+      \End
+\li   $\proc{swap}(arr[i], arr[maxIdx])$
+\li   $swapped \gets (maxIdx \ne i)$ 
+\Comment $true$ bila terjadi pertukaran
+\li   $i = maxIdx$
+    \End
+\li $size \gets size - 1$
+\end{codebox}
 \end{frame}
 
 \begin{frame}
 \frametitle{Implementasi Top}
-TODO
+\begin{codebox}
+\Procname{$\proc{top}()$}
+\li \Return $arr[size-1]$
+\end{codebox}
+
+... sangat sederhana
 \end{frame}
 
 \begin{frame}
@@ -435,7 +526,9 @@ TODO
 \begin{frame}
 \frametitle{Penutup}
 \begin{itemize}
-  \item TODO: kasih tau heapify gak diajarin
+  \item Dengan mempelajari \pheap, Anda memperdalam pemahaman tentang bagaimana penggunaan struktur data yang tepat dapat membantu menyelesaikan persoalan tertentu.
+  \item Terdapat bagian yang tidak dibahas pada tulisan ini, yaitu tentang pembuatan \pheap dari sebuah \farray berisi $N$ bilangan dalam $O(N)$.
+  \item Pembaca yang tertarik dapat membaca lebih lanjut pada \href{https://en.wikipedia.org/wiki/Heap\_\%28data\_structure\%29}{\underline{tulisan berikut}}.
 \end{itemize}
 \end{frame}
 
