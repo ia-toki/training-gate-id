@@ -112,7 +112,9 @@ Kompleksitas check mencapai $O(N^2)$ apabila \fgraphtraversal dilakukan secara n
   \item Setiap elemen perlu menyimpan \foreignTerm{pointer} ke elemen yang merupakan perwakilannya.
   \item \foreignTerm{Pointer} yang ditunjuk oleh suatu perwakilan kelompok adalah dirinya sendiri.
 \end{itemize}
-TODO: GAMBAR SUKU2 BERTINGKAT
+\begin{figure}
+  \includegraphics[width=4cm]{asset/djs.pdf}
+\end{figure}
 \end{frame}
 
 \begin{frame}
@@ -121,7 +123,9 @@ TODO: GAMBAR SUKU2 BERTINGKAT
   \item Karena pada awalnya setiap elemen membentuk kelompoknya sendiri, maka awalnya setiap \foreignTerm{pointer} ini menunjuk pada dirinya sendiri.
   \item Untuk mempermudah, mari kita sebut \foreignTerm{pointer} ini sebagai \textbf{parent}.
 \end{itemize}
-TODO: GAMBAR MASING2 JOMBLO
+\begin{figure}
+  \includegraphics[width=5cm]{asset/djs-init.pdf}
+\end{figure}
 \end{frame}
 
 \begin{frame}
@@ -144,7 +148,9 @@ Cukup sederhana, yaitu setiap elemen menunjuk ke dirinya sendiri.
 \begin{itemize}
   \item Ketika kelompok dua elemen perlu digabungkan, ubah \foreignTerm{parent} dari salah satu perwakilan kelompok ke kelompok lainnya.
 \end{itemize}
-TODO: GAMBAR KETUA TUNDUK
+\begin{figure}
+  \includegraphics[width=5cm]{asset/djs-join-1.pdf}
+\end{figure}
 \end{frame}
 
 \begin{frame}
@@ -152,7 +158,9 @@ TODO: GAMBAR KETUA TUNDUK
 \begin{itemize}
   \item Perhatikan bahwa yang perlu diubah adalah \foreignTerm{parent} dari perwakilan kelompok suatu elemen, bukan elemen itu sendiri.
 \end{itemize}
-TODO: GAMBAR KETUA TUNDUK 2
+\begin{figure}
+  \includegraphics[width=7cm]{asset/djs-join-2.pdf}
+\end{figure}
 \end{frame}
 
 \begin{frame}
@@ -187,10 +195,11 @@ Fungsi $\proc{findRepresentative}(x)$ dapat diimplementasikan secara rekursif, y
 \frametitle{Kekurangan findRepresentative}
 \begin{itemize}
   \item Fungsi $\proc{findRepresentative}$ memiliki kompleksitas sebesar $O(L)$, dengan $L$ adalah panjangnya jalur dari elemen $x$ sampai elemen perwakilan kelompoknya.
-  \item Pada umumnya, $L = O(N)$.
-  \item Artinya fungsi $\proc{findRepresentative}$ dan $\proc{join}$ memiliki kompleksitas $O(N)$, yang tidak efisien bila dipanggil berkali-kali.
+  \item Ketika $L$ mendekati $N$, fungsi ini tidak efisien bila dipanggil berkali-kali.
 \end{itemize}
-TODO: GAMBAR RANTAI PANJANG + L
+\begin{figure}
+  \includegraphics[width=3cm]{asset/chain-long.pdf}
+\end{figure}
 \end{frame}
 
 \begin{frame}
@@ -199,7 +208,9 @@ TODO: GAMBAR RANTAI PANJANG + L
   \item Kita dapat menerapkan teknik \textbf{"path compression"}, yaitu mengubah nilai \foreignTerm{parent} dari setiap elemen yang dilalui \textbf{langsung} ke elemen perwakilan kelompok.
   \item Hal ini menjamin untuk pemanggilan $\proc{findRepresentative}$ berikutnya pada elemen yang bersangkutan bekerja secara lebih efisien.
 \end{itemize}
-TODO: PATH COMPRESSION
+\begin{figure}
+  \includegraphics[width=3cm]{asset/chain-compressed.pdf}
+\end{figure}
 \end{frame}
 
 \begin{frame}
@@ -224,7 +235,9 @@ Tambahkan pencatatan elemen perwakilan kelompok untuk setiap elemen yang dilalui
   \item Apabila seluruh \foreignTerm{parent} elemen sudah dikenakan \foreignTerm{path compression}, maka setiap elemen langsung menunjuk ke elemen perwakilan kelompoknya.
   \item Artinya, kini fungsi $\proc{findRepresentative}$ bekerja dalam $O(1)$.
 \end{itemize}
-TODO: KELOMPOK FLAT
+\begin{figure}
+  \includegraphics[width=10cm]{asset/djs-flat.pdf}
+\end{figure}
 \end{frame}
 
 \begin{frame}
