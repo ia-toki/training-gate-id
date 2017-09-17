@@ -1,0 +1,265 @@
+\input{../config.tex}
+
+\title{Komputasi Geometri Dasar}
+\author{Tim Olimpiade Komputer Indonesia}
+\date{}
+
+\begin{document}
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+\begin{frame}
+\frametitle{Pendahuluan}
+Melalui dokumen ini, kalian akan:
+\begin{itemize}
+  \item Mengetahui dasar-dasar geometri yang digunakan pada kompetisi pemrograman.
+  \item Mengingat kembali definisi-definisi matematis elemen geometri.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Titik}
+\begin{itemize}
+  \item Titik merupakan elemen mendasar pada dunia geometri.
+  \item Titik dapat didefinisikan pada 2 dimensi, 3 dimensi, atau lebih.
+  \item Pada persoalan pemrograman, umumnya titik didefinisikan pada bidang 2 dimensi.
+  \item Pada bidang 2 dimensi, titik dapat dianggap berada pada suatu koordinat ($x$, $y$).
+  \item Representasi titik pada program dapat diwujudkan dengan kelompok data yang menyimpan nilai $x$ dan $y$.
+  \item Kelompok data ini misalnya \progTerm{record} (Pascal), \progTerm{struct} (C) atau \progTerm{class} (C++/Java).
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Garis}
+\begin{itemize}
+  \item Garis merupakan himpunan seluruh titik ($x$, $y$), yang memenuhi suatu persamaan $Ax + By = C$, dengan $A, B,$ dan $C$ merupakan suatu bilangan riil.
+  \item Bentuk lain dari persamaan garis yang umum adalah $y = mx + c$, dengan $m$ dan $c$ suatu bilangan riil.
+\end{itemize}  
+\begin{figure}
+  \includegraphics[width=6cm]{asset/line.pdf}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+\frametitle{Garis (lanj.)}
+\begin{itemize}
+  \item Untuk merepresentasikan garis, kita dapat membuat kelompok data yang menyimpan nilai $<A, B, C>$, atau $<m, c>$, bergantung pada persamaan yang Anda gunakan. 
+  \item Apabila ditelusuri, kedua persamaan ini sebenarnya berkaitan:
+\begin{eqnarray*}
+Ax + By &=& C \\
+By &=& C - Ax \\
+y &=& \frac{C}{B} - \frac{A}{B}x \\
+y &=& \left(-\frac{A}{B}\right)x + \frac{C}{B} 
+\end{eqnarray*}
+  \item Jadi $m = -\frac{A}{B}$ dan $c = \frac{C}{B}$.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Garis Vertikal }
+\begin{itemize}
+  \item Hati-hati saat merepresentasikan garis vertikal, misalnya $x = 3$.
+  \item Representasi $Ax + By = C$ dapat merepresentasikannya, yaitu dengan $A=1, B=0, C=3$.
+\end{itemize}
+\begin{figure}
+  \includegraphics[width=6cm]{asset/vertical-line.pdf}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+\frametitle{Garis Vertikal (lanj.)}
+\begin{itemize}
+  \item Sementara representasi $y = mx + c$ memiliki kesulitan, karena nilai $m$ yang tidak terdefinisi:
+\begin{eqnarray*}
+m &=& -\frac{A}{B} \\
+&=& -\frac{1}{0}
+\end{eqnarray*}
+  \item Untuk kasus yang mungkin terdapat garis vertikal, representasi $Ax + By = C$ lebih disarankan.
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Segmen Garis}
+\begin{itemize}
+  \item Segmen garis merupakan garis yang terdefinisi dari suatu titik $(x_1, y_1)$ ke titik $(x_2, y_2)$
+  \item Perhatikan bahwa berbeda dengan segmen garis, garis memiliki panjang yang tak berhingga.
+  \item Segmen garis dapat direpresentasikan dengan dua titik, yaitu ujung-ujungnya.
+\end{itemize}
+\begin{figure}
+  \includegraphics[width=6cm]{asset/line-vs-line-segment.pdf}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+\frametitle{Jarak Euclidean}
+\begin{itemize}
+  \item Jarak Euclidean adalah definisi jarak yang umum digunakan pada bidang 2 dimensi atau ruang 3 dimensi.
+  \item Jarak pada bidang 2 dimensi dari dua titik A(x, y) dan B(x, y) adalah:
+
+  \(dist(A, B) = \sqrt{(A.x - B.x)^2 + (A.y - B.y)^2} \)
+  \item Anda dapat menggunakan rumus ini untuk mengetahui panjang dari segmen garis.
+\end{itemize}
+\begin{figure}
+  \includegraphics[width=6cm]{asset/euclidean.pdf}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+\frametitle{Segitiga}
+\begin{itemize}
+  \item Merupakan bidang 2 dimensi yang paling mendasar.
+  \item Segitiga terdiri dari 3 titik sudut, yang mana antar titik sudut terhubung oleh segmen garis.
+  \item Berdasarkan panjang segmen garisnya, segitiga dapat berupa segitiga sama kaki, sama sisi, siku-siku, atau sembarang.
+\end{itemize}
+\begin{figure}
+  \includegraphics[width=6cm]{asset/triangles.pdf}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+\frametitle{Teorema Pythagoras}
+\begin{itemize}
+  \item Pada segitiga siku-siku, kita dapat mengetahui panjang sisi miringnya menggunakan rumus Teorema Pythagoras.
+  
+  \(a^2 + b^2 = c^2\)
+\end{itemize}
+\begin{figure}
+  \includegraphics[width=1.5cm]{asset/pythagoras.pdf}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+\frametitle{Luas Segitiga}
+\begin{itemize}
+  \item Rumus klasik dari luas segitiga dengan panjang alas $a$ dan tinggi $t$ adalah:\newline
+  
+  \(\displaystyle L = \frac{a \times t}{2}\)
+\end{itemize}
+\begin{figure}
+  \includegraphics[width=3cm]{asset/triangle-area.pdf}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+\frametitle{Luas Segitiga (Rumus Heron)}
+\begin{itemize}
+  \item Ada kalanya kita tidak tahu tinggi dari segitiga, sehingga rumus sebelumnya tidak dapat digunakan.
+  \item Alternatif lain adalah menggunakan Rumus Heron, yaitu:\newline
+    
+  \(\displaystyle L = \sqrt{s(s-a)(s-b)(s-c)} \) \newline 
+  
+  dengan \(\displaystyle s = \frac{a+b+c}{2}\)
+  
+\end{itemize}
+\begin{figure}
+  \includegraphics[width=2.5cm]{asset/triangle-heron.pdf}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+\frametitle{Sudut Segitiga}
+\begin{itemize}
+  \item Jumlah sudut-sudut pada suatu segitiga adalah $180^{\circ}$.
+\end{itemize}
+\begin{figure}
+  \includegraphics[width=2.5cm]{asset/triangle-angle.pdf}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+\frametitle{Segi-N}
+\begin{itemize}
+  \item Untuk segi-$N$, jumlah sudut-sudutnya adalah $180(N - 2)^{\circ}$.
+  \item Misalnya untuk segi-4, jumlah sudut-sudutnya adalah $180(4 - 2)^{\circ} = 360^{\circ}$
+\end{itemize}
+\begin{figure}
+  \includegraphics[width=5cm]{asset/quadrangle-angle.pdf}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+\frametitle{Lingkaran}
+\begin{itemize}
+  \item Lingkaran dengan titik pusat $(x_p, y_p)$ dan jari-jari $r$ merupakan himpunan seluruh titik $(x, y)$ yang memenuhi $(x - x_p)^2 + (y - y_p)^2 = r^2$.
+\end{itemize}
+\begin{figure}
+  \includegraphics[width=6cm]{asset/circle.pdf}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+\frametitle{Properti Lingkaran}
+\begin{itemize}
+  \item Luas dari lingkaran dengan jari-jari $r$ adalah $\pi r^2$.
+  \item Keliling dari lingkaran dengan jari-jari $r$ adalah $2\pi r$.
+  \item Diameter lingkaran merupakan dua kali jari-jari, atau $2r$.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Tentang Pi}
+\begin{itemize}
+  \item Pi merupakan konstanta dalam matematika, dan digunakan dalam pencarian luas atau keliling lingkaran.
+  \item Hati-hati! Nilai Pi \textbf{tidak sama dengan} \(\displaystyle \frac{22}{7}\).
+  \item Penggunaan \(\displaystyle \frac{22}{7}\) hanyalah aproksimasi dari nilai Pi yang sesungguhnya.
+\end{itemize}
+\begin{eqnarray*}
+\pi &=& 3.14159265359.. \\
+\\
+\frac{22}{7} &=& 3.14285714285..
+\end{eqnarray*}
+\end{frame}
+
+\begin{frame}
+\frametitle{Tentang Pi (lanj.)}
+\begin{itemize}
+  \item Untuk perhitungan pada kompetisi pemrograman, Anda dapat menggunakan nilai Pi yang diberikan pada soal.
+  \item Jika soal tidak memberikan nilai Pi yang digunakan, Anda dapat mencarinya dengan fungsi \foreignTerm{arc-cosinus}, yaitu fungsi pada trigonometri.
+  \item Nilai Pi didapatkan dari:
+  \begin{itemize}
+    \item Pascal: $arccos(-1)$
+    \item C++: $acos(-1)$ (memerlukan include cmath)
+  \end{itemize}
+  \item Trigonometri sendiri tidak termasuk dalam silabus kompetisi pemrograman tingkat SMA, sehingga Anda tidak perlu memperdalamnya.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Pesan Tentang Presisi}
+\begin{itemize}
+  \item Sebisa mungkin, gunakan tipe data bilangan bulat.
+  \item Apabila Anda terpaksa menggunakan tipe data bilangan riil, seperti \progTerm{real} atau \progTerm{double}, terapkan kiat-kiat yang telah Anda pelajari pada pemrograman dasar.
+  \item Sebagai contoh, untuk membandingkan dua bilangan, periksa apakah selisih absolut dari kedua bilangan lebih kecil dari suatu nilai toleransi, yang biasa disebut \textit{epsilon} ($\epsilon$).
+  \begin{codebox}
+  \Procname{$\proc{isEqual}(a, b)$}
+     \Return $\proc{abs}(a - b) < \epsilon$
+  \end{codebox}
+  \item Nilai toleransi yang biasa digunakan adalah $10^{-12}$.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Penutup}
+\begin{itemize}
+  \item Komputasi geometri merupakan topik yang sangat luas, dan baru kita bahas sebagian kecil.
+  \item Pada kesempatan yang lain, kita akan mempelajari teknik merepresentasikan elemen geometri menggunakan konsep matematika yang lebih kompleks, yaitu vektor.
+\end{itemize}
+\end{frame}
+
+% NEXT:
+%vektor
+%dot product
+%cross product
+%luas segitiga dari 3 titik
+%CCW test
+%line segment intersection
+%line segment intersection getPoint
+%poligon
+%poligon konveks / non
+%poligon area
+%titik dalam poligon
+%graham's scan
+\end{document}
