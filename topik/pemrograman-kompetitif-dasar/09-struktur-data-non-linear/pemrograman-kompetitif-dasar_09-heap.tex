@@ -428,6 +428,7 @@ Kini seluruh operasi dapat dilakukan dengan efisien.
 \li \Comment Buat array $arr$ berukuran $maxSize$
 \li $size \gets 0$
 \end{codebox}
+*$arr$ dan $size$ merupakan variabel global, yaitu \farray dan variabel yang menyatakan ukurannya saat ini.
 \end{frame}
 
 \begin{frame}
@@ -467,7 +468,8 @@ Buat juga beberapa fungsi yang akan membantu mempermudah penulisan kode.
 \frametitle{Implementasi Pop}
 \begin{codebox}
 \Procname{$\proc{pop}()$}
-\li $swap(arr[0], arr[size-1])$
+\li $\proc{swap}(arr[0], arr[size-1])$
+\li $size \gets size - 1$
 \li $i \gets 0$
 \li $swapped \gets true$
 \li \While $swapped$  \Do
@@ -483,7 +485,6 @@ Buat juga beberapa fungsi yang akan membantu mempermudah penulisan kode.
 \Comment $true$ bila terjadi pertukaran
 \li   $i = maxIdx$
     \End
-\li $size \gets size - 1$
 \end{codebox}
 \end{frame}
 
@@ -491,10 +492,138 @@ Buat juga beberapa fungsi yang akan membantu mempermudah penulisan kode.
 \frametitle{Implementasi Top}
 \begin{codebox}
 \Procname{$\proc{top}()$}
-\li \Return $arr[size-1]$
+  \Return $arr[size-1]$
 \end{codebox}
 
 ... sangat sederhana
+\end{frame}
+
+\begin{frame}
+\frametitle{Pembuatan Heap}
+Ketika Anda memiliki data $N$ elemen, dan hendak dimasukkan ke dalam \pheap, Anda dapat:
+\begin{enumerate}
+  \item Membuat \pheap kosong, lalu melakukan \foreignTerm{push} satu per satu hingga seluruh data dimuat \pheap. Kompleksitasnya $O(N \log{N})$.
+  \item Membuat \farray dengan $N$ elemen, lalu \farray ini dibuat menjadi \pheap dalam $O(N)$. Caranya akan dijelaskan pada bagian berikutnya.
+\end{enumerate}
+\end{frame}
+
+\begin{frame}
+\frametitle{Pembuatan Heap Secara Efisien}
+Untuk membuat \pheap dari $N$ elemen, caranya adalah:
+\begin{enumerate}
+  \item Buat \farray dengan $N$ elemen, lalu isi \farray ini dengan elemen-elemen yang akan dimasukkan pada \pheap.
+  \item Untuk semua \fnode, mulai dari tingkat kedua dari paling bawah:
+  \begin{itemize}
+    \item Misalkan \fnode ini adalah \fnode $x$.
+    \item Pastikan \fsubtree yang bermula pada \fnode $x$ \textbf{membentuk \pheap} dengan operasi baru, yaitu \textbf{heapify}.
+  \end{itemize}
+\end{enumerate}
+\end{frame}
+
+\begin{frame}
+\frametitle{Operasi Heapify}
+\begin{itemize}
+  \item \textbf{Heapify} adalah operasi untuk membentuk sebuah \pheap yang bermula pada suatu \fnode, dengan asumsi anak kiri dan anak kanan \fnode tersebut sudah membentuk \pheap.
+\end{itemize}
+\begin{figure}
+  \includegraphics[width=6cm]{asset/heapify.pdf}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+\frametitle{Operasi Heapify (lanj.)}
+\begin{itemize}
+  \item Berhubung kedua anak telah membentuk \pheap, kita cukup memindahkan elemen \foreignTerm{root} ke posisi yang tepat.
+  \item Jika elemen \foreignTerm{root} sudah lebih besar daripada elemen anaknya, tidak ada yang perlu dilakukan.
+  \item Sementara bila elemen \foreignTerm{root} lebih kecil daripada salah satu elemen anaknya, tukar elemennya dengan elemen salah satu anaknya yang \textbf{paling besar}.
+  \item Kegiatan ini sebenarnya sangat mirip dengan yang kita lakukan pada operasi \textbf{pop}.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Operasi Heapify (lanj.)}
+\begin{codebox}
+\Procname{$\proc{heapify}(rootIdx)$}
+\li $i \gets rootIdx$
+\li $swapped \gets true$
+\li \While $swapped$  \Do
+\li   $maxIdx \gets i$
+\li   \If $(\proc{getLeft}(i) < size) \land (arr[maxIdx] < arr[\proc{getLeft}(i)])$ \Then
+\li     $maxIdx \gets \proc{getLeft}(i)$
+      \End
+\li   \If $(\proc{getRight}(i) < size) \land (arr[maxIdx] < arr[\proc{getRight}(i)])$ \Then
+\li     $maxIdx \gets \proc{getRight}(i)$
+      \End
+\li   $\proc{swap}(arr[i], arr[maxIdx])$
+\li   $swapped \gets (maxIdx \ne i)$ 
+\Comment $true$ bila terjadi pertukaran
+\li   $i = maxIdx$
+    \End
+\end{codebox}
+\end{frame}
+
+\begin{frame}
+\frametitle{Operasi Heapify (lanj.)}
+Operasi \foreignTerm{pop} sendiri dapat kita sederhanakan menjadi:
+\begin{codebox}
+\Procname{$\proc{pop}()$}
+\li $\proc{swap}(arr[0], arr[size-1])$
+\li $size \gets size - 1$
+\li $\proc{heapify}(0)$
+\end{codebox}
+\end{frame}
+
+\begin{frame}
+\frametitle{Kompleksitas Heapify}
+\begin{itemize}
+  \item Sekali melakukan \foreignTerm{heapify}, kasus terburuknya adalah elemen \foreignTerm{root} dipindahkan hingga ke paling bawah \ftree.
+  \item Jadi kompleksitasnya adalah $O(H)$, dengan $H$ adalah ketinggian dari \foreignTerm{complete binary tree}.
+  \item Berhubung $H = O(\log{N})$, dengan $N$ adalah banyaknya elemen pada \pheap, kompleksitas \foreignTerm{heapify} adalah $O(\log{N})$.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Implementasi Pembangunan Heap Secara Efisien}
+\begin{itemize}
+  \item Setelah memahami \foreignTerm{heapify}, kita dapat menulis prosedur pembangunan \pheap dari \farray $A$ berisi $N$ elemen secara efisien.
+  \item Elemen terakhir yang berada pada tingkat kedua paling bawah dapat ditemukan dengan mudah, yaitu elemen dengan indeks $N/2$ dibulatkan ke bawah dan dikurangi 1.
+\end{itemize}
+\begin{codebox}
+\Procname{$\proc{makeHeap}(N)$}
+\li $\proc{initializeHeap}(N)$
+\li \For $i \gets 0$ \To $N-1$ \Do
+\li   $arr[size] \gets A[i]$
+\li   $size \gets size + 1$
+    \End
+\li \For $i \gets \lfloor N/2 \rfloor - 1$ \To $0$ \Do
+\li   $\proc{heapify}(i)$
+    \End
+\end{codebox}
+% 7 = 2
+% 8 = 3
+% 9 = 3
+% 10 = 4
+% 11 = 4
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Ilustrasi Pembangunan Heap Secara Efisien}
+Angka pada \fnode menyatakan urutan pelaksanaan \foreignTerm{heapify}.
+\begin{figure}
+  \includegraphics[width=6cm]{asset/make-heap.pdf}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+\frametitle{Analisis Pembangunan Heap Secara Efisien}
+\begin{itemize}
+  \item Dilakukan $N/2$ kali operasi \foreignTerm{heapify}, yang masing-masing $O(\log{N})$.
+  \item Kompleksitasnya terkesan $O(N \log{N})$.
+  \item Namun pada kasus ini, sebenarnya setiap \foreignTerm{heapify} tidak benar-benar $O(\log{N})$.
+  \item Kenyataannya, banyak operasi \foreignTerm{heapify} yang dilakukan pada tingkat bawah, yang relatif lebih cepat dari \foreignTerm{heapify} pada tingkat di atas.
+  \item Perhitungan secara matematis membuktikan bahwa kompleksitas keseluruhan \proc{makeHeap} adalah $O(N)$.
+\end{itemize}
 \end{frame}
 
 \begin{frame}
@@ -503,6 +632,7 @@ Buat juga beberapa fungsi yang akan membantu mempermudah penulisan kode.
   \item Tentu saja, Anda dapat membuat \pheap dengan urutan yang terbalik, yaitu elemen terkecilnya di atas.
   \item Dengan demikian, operasi yang didukung adalah mencari atau menghapus elemen terkecil.
   \item Biasanya \pheap dengan sifat ini disebut dengan \progTerm{min-heap}, sementara \pheap dengan elemen terbesar di atas disebut dengan \progTerm{max-heap}.
+  \item Agar lebih rapi, Anda dapat menggunakan \progTerm{struct} (C) atau \progTerm{class} (C++) pada implementasi \pheap.
 \end{itemize}
 \end{frame}
 
@@ -527,8 +657,7 @@ Buat juga beberapa fungsi yang akan membantu mempermudah penulisan kode.
 \frametitle{Penutup}
 \begin{itemize}
   \item Dengan mempelajari \pheap, Anda memperdalam pemahaman tentang bagaimana penggunaan struktur data yang tepat dapat membantu menyelesaikan persoalan tertentu.
-  \item Terdapat bagian yang tidak dibahas pada tulisan ini, yaitu tentang pembuatan \pheap dari sebuah \farray berisi $N$ bilangan dalam $O(N)$.
-  \item Pembaca yang tertarik dapat membaca lebih lanjut pada \href{https://en.wikipedia.org/wiki/Heap\_\%28data\_structure\%29}{\underline{tulisan berikut}}.
+  \item \pHeap dapat digunakan untuk pengurutan yang efisien, dan akan dibahas pada bagian berikutnya.
 \end{itemize}
 \end{frame}
 
