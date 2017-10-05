@@ -14,8 +14,8 @@
 \frametitle{Pendahuluan}
 Melalui dokumen ini, kalian akan:
 \begin{itemize}
-  \item Mempelajari konsep \fBruteForce.
-  \item Mampu mengerjakan persoalan dengan pendekatan \fBruteForce.
+  \item Mempelajari konsep \fbruteForce.
+  \item Mampu mengerjakan persoalan dengan pendekatan \fbruteForce.
 \end{itemize}
 \end{frame}
 
@@ -31,7 +31,7 @@ Melalui dokumen ini, kalian akan:
 \begin{frame}
 \frametitle{Konsep (lanj.)}
 \begin{center}
-  \huge Coba semua kemungkinan,\\ambil yang terbaik!
+  \huge coba semua kemungkinan!
 \end{center}
 \end{frame}
 
@@ -39,7 +39,7 @@ Melalui dokumen ini, kalian akan:
 \frametitle{Sifat Brute Force}
 \begin{itemize}
   \item \fBruteForce \emp{menjamin} solusi pasti benar, karena seluruh kemungkinan dijelajahi.
-  \item Akibatnya, umumnya \fBruteForce bekerja dengan lambat.
+  \item Akibatnya, umumnya \fbruteForce bekerja dengan lambat.
   \item Terutama ketika banyak kemungkinan solusi yang perlu dicoba.
 \end{itemize}
 \end{frame}
@@ -47,9 +47,9 @@ Melalui dokumen ini, kalian akan:
 \begin{frame}
 \frametitle{Soal: Subset Sum}
 \begin{itemize}
-  \item Diberikan $N$ buah bilangan $(a_1, a_2, ..., a_N)$ dan bilangan $K$
-  \item Apakah terdapat subset dari bilangan-bilangan tersebut sehingga jumlahan dari elemen subset tersebut sama dengan $K$? 
-  \item Bila iya, maka keluarkan "YA". Selain itu keluarkan "TIDAK"
+  \item Diberikan $N$ buah bilangan $\{a_1, a_2, ..., a_N\}$ dan bilangan $K$.
+  \item Apakah terdapat subhimpunan sedemikian sehingga jumlahan dari elemen-elemennya sama dengan $K$? 
+  \item Bila ya, maka keluarkan "YA". Selain itu keluarkan "TIDAK".
 \end{itemize}
 
 Batasan:
@@ -63,7 +63,7 @@ Batasan:
 \begin{frame}
 \frametitle{Solusi}
 \begin{itemize}
-  \item Untuk setiap elemen, kita memiliki 2 pilihan yaitu memilih elemen tersebut atau tidak memilihnya.
+  \item Untuk setiap elemen, kita memiliki 2 pilihan, yaitu memilih elemen tersebut atau tidak memilihnya.
   \item Kita akan menelusuri semua kemungkinan pilihan.
   \item Jika jumlahan dari elemen-elemen yang dipilih sama dengan $K$, maka terdapat solusi.
   \item Hal ini dapat dengan mudah diimplementasikan secara rekursif.
@@ -73,32 +73,31 @@ Batasan:
 \begin{frame}
 \frametitle{Performa?}
 \begin{itemize}
-  \item Terdapat $2^N$ kemungkinan konfigurasi "pilih - tidak pilih".
+  \item Terdapat $2^N$ kemungkinan konfigurasi "pilih/tidak pilih".
   \item Kompleksitas solusi adalah $O(2^N)$.
   \item Untuk nilai $N$ terbesar, $2^N = 2^{15} = 32.768$.
-  \item Masih jauh di bawah 100 juta, yaitu banyaknya operasi komputer per detik pada umumnya.
+  \item Masih jauh di bawah 100 juta, yaitu banyaknya operasi komputer perdetik pada umumnya.
 \end{itemize}
 \end{frame}
 
 \begin{frame}
 \frametitle{Implementasi}
 \begin{codebox}
-\Procname{$\proc{solve}(i, sum, N, K)$}
+\Procname{$\proc{solve}(i, sum)$}
 \li \If $i > N$ \Then
 \li   \Return $(sum \isequal K)$
-\li \Else 
-\li   $noPick \gets \proc{solve}(i+1, sum, N, K)$
-\li   $pick \gets \proc{solve}(i+1, sum + a_i, N, K)$
-\li   \Comment Cukup setidaknya salah satu bernilai $true$
-\li   \Return $noPick$ or $pick$
     \End
+\zi
+\li $option1 \gets \proc{solve}(i+1, sum + a_i)$ \Comment Pilih elemen $a_i$
+\li $option2 \gets \proc{solve}(i+1, sum)$ \Comment Tidak pilih elemen $a_i$
+\li \Return $option1$ or $option2$
 \end{codebox}
 
 \begin{codebox}
-\Procname{$\proc{solveSubsetSum}(a, N, K)$}
-\li $result \gets \proc{solve}(1, 0, N, K)$
-\li \Comment Cetak keluaran sesuai nilai $result$
+\Procname{$\proc{solveSubsetSum}()$}
+\li \Return $\proc{solve}(1, 0)$
 \end{codebox}
+
 \end{frame}
 
 \begin{frame}
@@ -112,21 +111,20 @@ Batasan:
 \end{frame}
 
 \begin{frame}
-\frametitle{Solusi Optimisasi}
+\frametitle{Solusi Teroptimisasi}
 \begin{codebox}
-\Procname{$\proc{solve}(i, sum, N, K)$}
+\Procname{$\proc{solve}(i, sum)$}
+\li \If $i > N$ \Then
+\li   \Return $(sum \isequal K)$
+    \End
+\zi
 \li \If $sum > K$ \Then
 \li   \Return $false$
     \End
 \zi
-\li \If $i > N$ \Then
-\li   \Return $(sum \isequal K)$
-\li \Else 
-\li   $noPick \gets \proc{solve}(i+1, sum, N, K)$
-\li   $pick \gets \proc{solve}(i+1, sum + a_i, N, K)$
-\li   \Comment Cukup setidaknya salah satu bernilai $true$
-\li   \Return $noPick$ or $pick$
-    \End
+\li $option1 \gets \proc{solve}(i+1, sum + a_i)$ \Comment Pilih elemen $a_i$
+\li $option2 \gets \proc{solve}(i+1, sum)$ \Comment Tidak pilih elemen $a_i$
+\li \Return $option1$ or $option2$
 \end{codebox}
 \end{frame}
 
@@ -142,6 +140,7 @@ Hal ini biasa disebut sebagai \newTerm{pruning}.
 \frametitle{Pruning (lanj.)}
 \begin{itemize}
   \item Meskipun mengurangi ruang pencarian, \fpruning umumnya tidak mengurangi kompleksitas solusi.
+  \item Sebab, biasanya terdapat kasus yang mana \fpruning tidak mengurangi ruang pencarian secara signifikan.
   \item Pada kasus ini, solusi dapat dianggap tetap bekerja dalam $O(2^N)$.
 \end{itemize}
 \end{frame}
@@ -149,10 +148,9 @@ Hal ini biasa disebut sebagai \newTerm{pruning}.
 \begin{frame}
 \frametitle{Soal: Mengatur Persamaan}
 \begin{itemize}
-  \item Diberikan $N$ buah bilangan $(a_1, a_2, ..., a_N)$.
   \item Diberikan sebuah persamaan: $p + q + r = 0$.
-  \item Nilai $p$, $q$, dan $r$ harus merupakan anggota $\{ a_1, a_2, ..., a_N \}$
-  \item Berapa banyak ($p, q, r$) berbeda yang memenuhi persamaan tersebut?
+  \item Masing-masing dari $p$, $q$, dan $r$ harus merupakan anggota dari $\{ a_1, a_2, ..., a_N \}$
+  \item Berapa banyak triplet ($p, q, r$) berbeda yang memenuhi persamaan tersebut?
 \end{itemize}
 
 Batasan:
@@ -164,10 +162,9 @@ Batasan:
 
 \begin{frame}
 \frametitle{Solusi Sederhana}
-Masukkan nilai-nilai $\{ a_1, a_2, ..., a_N \}$ ke $p$, $q$, dan $r$, lalu periksa apakah persamaannya terpenuhi.
 
 \begin{codebox}
-\Procname{$\proc{countTriplet}(a, N)$}
+\Procname{$\proc{countTriplets}()$}
 \li $count \gets 0$
 \li \For $i \gets 1$ \To $N$ \Do
 \li   \For $j \gets 1$ \To $N$ \Do
@@ -176,7 +173,7 @@ Masukkan nilai-nilai $\{ a_1, a_2, ..., a_N \}$ ke $p$, $q$, dan $r$, lalu perik
 \li       $q \gets a_j$
 \li       $r \gets a_k$
 \li       \If $(p + q + r) \isequal 0$ \Then
-\li         $count \gets count + 1$.
+\li         $count \gets count + 1$
           \End
         \End
       \End
@@ -188,9 +185,9 @@ Masukkan nilai-nilai $\{ a_1, a_2, ..., a_N \}$ ke $p$, $q$, dan $r$, lalu perik
 \begin{frame}
 \frametitle{Solusi Sederhana (lanj.)}
 \begin{itemize}
-  \item Kompleksitas waktu cara ini adalah $O(N^3)$.
+  \item Kompleksitas waktu solusi ini adalah $O(N^3)$.
   \item Tentunya terlalu besar untuk nilai $N$ mencapai 2.000.
-  \item Ada cara yang lebih baik?
+  \item Ada solusi yang lebih baik?
 \end{itemize}
 \end{frame}
 
@@ -207,15 +204,15 @@ Masukkan nilai-nilai $\{ a_1, a_2, ..., a_N \}$ ke $p$, $q$, dan $r$, lalu perik
 \begin{frame}
 \frametitle{Solusi Lebih Baik}
 \begin{codebox}
-\Procname{$\proc{countTripletFast}(a, N)$}
+\Procname{$\proc{countTripletsFast}()$}
 \li $count \gets 0$
 \li \For $i \gets 1$ \To $N$ \Do
 \li   \For $j \gets 1$ \To $N$ \Do
 \li       $p \gets a_i$
 \li       $q \gets a_j$
 \li       $r \gets -(p + q)$
-\li       \If $\proc{exist}(a, N, r)$ \Then
-\li         $count \gets count + 1$.
+\li       \If $\proc{exists}(r)$ \Then
+\li         $count \gets count + 1$
           \End
         \End
       \End
@@ -223,25 +220,25 @@ Masukkan nilai-nilai $\{ a_1, a_2, ..., a_N \}$ ke $p$, $q$, dan $r$, lalu perik
 \li \Return $count$
 \end{codebox}
 
-Dengan $\proc{exist}(a, N, r)$ adalah algoritma \fBinarySearch untuk memeriksa keberadaan $r$ di $\{ a_1, a_2, ..., a_N \}$.
+dengan $\proc{exists}(r)$ adalah algoritma \fBinarySearch untuk memeriksa keberadaan $r$ di $\{ a_1, a_2, ..., a_N \}$ (tentunya setelah diurutkan).
 \end{frame}
 
 \begin{frame}
 \frametitle{Solusi Lebih Baik (lanj.)}
 \begin{itemize}
   \item Kompleksitas $O(N^2 \log{N})$ sudah cukup untuk $N$ yang mencapai 2.000.
-  \item Dari sini kita belajar bahwa optimisasi pada pencarian kadang diperlukan, meskipun ide dasarnya adalah \fBruteForce.
+  \item Dari sini kita belajar bahwa optimisasi pada pencarian kadang diperlukan, meskipun ide dasarnya adalah \fbruteForce.
 \end{itemize}
 \end{frame}
 
 \begin{frame}
 \frametitle{Penutup}
 \begin{itemize}
-  \item Ide dari \fBruteForce biasanya sederhana, Anda hanya perlu menjelajahi seluruh kemungkinan solusi.
+  \item Ide dari \fbruteForce biasanya sederhana: Anda hanya perlu menjelajahi seluruh kemungkinan solusi.
   \item Biasanya merupakan ide pertama yang didapatkan saat menghadapi masalah.
-  \item Lakukan analisis algoritma, jika kompleksitasnya cukup, maka \fBruteForce saja :)
+  \item Lakukan analisis algoritma, jika kompleksitasnya cukup, maka \fbruteForce saja :)
   \item Bila tidak cukup cepat, coba lakukan observasi. 
-  \item Bisa jadi kita dapat melakukan \fBruteForce dari "sudut pandang yang lain" dan lebih cepat.
+  \item Bisa jadi kita dapat melakukan \fbruteForce dari "sudut pandang yang lain" dan lebih cepat.
   \item Bila tidak berhasil juga, baru coba pikirkan strategi lainnya.
 \end{itemize}
 \end{frame}
