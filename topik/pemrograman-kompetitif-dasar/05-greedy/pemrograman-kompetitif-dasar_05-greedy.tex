@@ -14,8 +14,8 @@
   \frametitle{Pendahuluan}
   Melalui dokumen ini, kalian akan:
   \begin{itemize}
-    \item Memahami konsep \fGreedy.
-    \item Menyelesaikan beberapa contoh persoalan \fGreedy sederhana.
+    \item Memahami konsep \fgreedy.
+    \item Menyelesaikan beberapa contoh persoalan \fgreedy sederhana.
   \end{itemize}
 \end{frame}
 
@@ -28,10 +28,10 @@
 
 \begin{frame}
   \frametitle{Konsep Greedy}
-  Suatu persoalan dapat diselesaikan dengan teknik \fGreedy jika persoalan tersebut memiliki memiliki properti berikut:
+  Suatu persoalan dapat diselesaikan dengan teknik \fgreedy jika persoalan tersebut memiliki memiliki sifat berikut:
   \begin{itemize}
-    \item Solusi optimal dari persoalan dapat ditentukan dari solusi optimal sub-persoalan tersebut.
-    \item Pada setiap sub-persoalan, ada suatu langkah yang bisa dilakukan yang mana langkah tersebut menghasilkan solusi optimal pada sub-persoalan tersebut. Langkah ini disebut juga \fGreedyChoice.
+    \item Solusi optimal dari persoalan dapat ditentukan dari solusi optimal subpersoalan tersebut.
+    \item Pada setiap subpersoalan, ada suatu langkah yang bisa dilakukan yang mana langkah tersebut menghasilkan solusi optimal pada subpersoalan tersebut. Langkah ini disebut juga \newTerm{\fgreedyChoice}.
   \end{itemize}
 \end{frame}
 
@@ -39,7 +39,7 @@
   \frametitle{Contoh Soal: Activity Selection}
   \begin{itemize}
     \item Diberikan $N$ buah aktivitas.
-    \item Aktivitas ke-$i$ dinyatakan dalam $<a_i.start, a_i.end>$.
+    \item Aktivitas ke-$i$ dinyatakan dalam $(a_i.start, a_i.end)$.
     \item Artinya, aktivitas ini dimulai pada waktu $a_i.start$ dan berakhir pada waktu $a_i.end$.
     \item Pada setiap satuan waktu, Anda dapat mengikuti paling banyak satu aktivitas.
     \item Anda ingin mengatur jadwal sedemikian sehingga Anda bisa ikut aktivitas sebanyak mungkin.
@@ -49,7 +49,7 @@
 \begin{frame}
   \frametitle{Contoh Activity Selection}
   \begin{itemize}
-    \item Sebagai contoh, diberikan 4 buah aktivitas: $[ <1, 3> , <2, 6>, <5, 7>,  <8, 9> ]$. \item Anda dapat hadir di 3 aktivitas berbeda yang tidak saling tindih, yaitu $<1, 3>, <5, 7>, dan <8, 9>$.
+    \item Sebagai contoh, diberikan 4 buah aktivitas: $[ (1, 3) , (2, 6), (5, 7),  (8, 9) ]$. \item Anda dapat hadir di 3 aktivitas berbeda yang tidak saling tindih, yaitu $(1, 3), (5, 7), dan (8, 9)$.
   \end{itemize}
 
   \begin{figure}
@@ -63,7 +63,7 @@
     \item Misalkan kegiatan pertama yang kita ikuti adalah kegiatan ke-$x$.
     \item Kegiatan selanjutnya yang diikuti haruslah memiliki waktu awal $\geq a_x.end$.
     \item Lebih jauh lagi, ternyata kita mendapat persoalan yang serupa, hanya saja ukurannya lebih kecil.
-    \item Dengan kata lain, kita memperoleh sub-persoalan.
+    \item Dengan kata lain, kita memperoleh subpersoalan.
   \end{itemize}
 
   \begin{figure}
@@ -73,7 +73,7 @@
 
 %\begin{frame}
 %  \frametitle{Solusi Activity Selection (lanj.)}
-%  Solusi dari persoalan ini bisa diperoleh dari solusi sub-persoalan yang lebih kecil:
+%  Solusi dari persoalan ini bisa diperoleh dari solusi subpersoalan yang lebih kecil:
 %
 %  \begin{itemize}
 %    \item Kita definisikan $f(t)$ sebagai jumlah aktivitas terbanyak yang dapat diikuti dari waktu ke-1 sampai waktu ke-$t$.
@@ -137,7 +137,7 @@
   \begin{itemize}
     \item Dengan memilih aktivitas yang selesai lebih awal, kita mempunyai sisa waktu lebih banyak untuk aktivitas lainnya.
     \item Tanpa peduli kapan aktivitas ini mulai atau berapa durasinya, memilih yang selesai lebih awal \emp{pasti menguntungkan}.
-    \item Pilihan ini adalah merupakan \fGreedyChoice, yang \emp{selalu} menghasilkan solusi optimal.
+    \item Pilihan ini adalah merupakan \fgreedyChoice, yang \emp{selalu} menghasilkan solusi optimal.
   \end{itemize}
 
   \begin{figure}
@@ -149,7 +149,7 @@
   \frametitle{Penyelesaian Activity Selection}
   \begin{itemize}
     \item Kini kita dapat menentukan aktivitas yang akan diikuti pertama kali.
-    \item Selanjutnya kita mendapatkan sub-persoalan, yang ternyata dapat diselesaikan dengan cara serupa!
+    \item Selanjutnya kita mendapatkan subpersoalan, yang ternyata dapat diselesaikan dengan cara serupa!
   \end{itemize}
   \begin{figure}
     \includegraphics[width=6.5cm]{asset/activity-selection-subproblem.pdf}
@@ -174,7 +174,7 @@
 
 \begin{frame}
   \frametitle{Contoh Eksekusi Activity Selection (lanj.)}
-  Selanjutnya kita mendapatkan sub-persoalan.
+  Selanjutnya kita mendapatkan subpersoalan.
 
   Beberapa aktivitas kini tidak dapat dipilih lagi.
   \begin{figure}
@@ -194,7 +194,7 @@
 
 \begin{frame}
   \frametitle{Contoh Eksekusi Activity Selection (lanj.)}
-  Kembali kita mendapatkan sub-persoalan....
+  Kembali kita mendapatkan subpersoalan....
   \begin{figure}
     \includegraphics[width=10cm]{asset/activity-selection-algo-5.pdf}
   \end{figure}
@@ -210,7 +210,7 @@
 
 \begin{frame}
   \frametitle{Contoh Eksekusi Activity Selection (lanj.)}
-  Didapatkan lagi sub-persoalan....
+  Didapatkan lagi subpersoalan....
   \begin{figure}
     \includegraphics[width=10cm]{asset/activity-selection-algo-7.pdf}
   \end{figure}
@@ -256,7 +256,7 @@
 \begin{frame}
   \frametitle{Analisis Kompleksitas}
   \begin{itemize}
-    \item Mengurutkan aktivitas berdasarkan waktu berakhirnya dapat dilakukan dalam $O(N \log{N})$, jika \fQuickSort digunakan.
+    \item Mengurutkan aktivitas berdasarkan waktu berakhirnya dapat dilakukan dalam $O(N \log{N})$.
     \item Setelah diurutkan, pemilihan aktivitas dapat dilakukan dalam $O(N)$.
     \item Kompleksitas akhirnya $O(N \log{N})$.
     \item Cepat dan efisien!
@@ -268,7 +268,7 @@
   \begin{itemize}
     \item \fGreedyChoice memungkinkan kita untuk memilih suatu keputusan yang dijamin akan menghasilkan solusi optimal, tanpa peduli ke depannya seperti apa.
     \item Hal ini memberi kesan "rakus", yaitu hanya mementingkan masalah yang sedang dihadapi dan selalu mengambil keputusan terbaik saat ini.
-    \item Inilah sebabnya teknik ini dinamakan \fGreedy.
+    \item Inilah sebabnya teknik ini dinamakan \fgreedy.
   \end{itemize}
 \end{frame}
 
@@ -284,7 +284,7 @@
 \begin{frame}
   \frametitle{Permasalahan pada Algoritma \fGreedy}
   \begin{itemize}
-    \item \fGreedyChoice yang terpikirkan adalah dengan memilih pecahan koin dengan nominal terbesar yang mungkin untuk tiap sub-persoalan.
+    \item \fGreedyChoice yang terpikirkan adalah dengan memilih pecahan koin dengan nominal terbesar yang mungkin untuk tiap subpersoalan.
     \item Pertama kita pilih pecahan $\$5$, sehingga tersisa $\$7$ lagi yang harus dipecah.
     \item Selanjutnya kita pilih $\$5$ lagi dan menyisakan $\$2$ untuk dipecah.
     \item Akhirnya, kita pilih $\$2$ sebagai pecahan terakhir.
@@ -302,45 +302,46 @@
 \begin{frame}
   \frametitle{Permasalahan pada Algoritma \fGreedy (lanj.)}
   \begin{itemize}
-    \item Dengan algoritma \fGreedy, kita akan menukar  $\$12$ dengan pecahan $\$5$, $\$5$, $\$1$, dan $\$1$.
+    \item Dengan algoritma \fgreedy, kita akan menukar  $\$12$ dengan pecahan $\$5$, $\$5$, $\$1$, dan $\$1$.
     \item Padahal ada solusi yang lebih baik, yaitu menggunakan 3 keping koin pecahan $\$4$.
-    \item Pada kasus tersebut, \fGreedyChoice yang tidak selalu dapat menghasilkan solusi optimal.
-    \item Permasalahan ini tidak dapat diselesaikan oleh algoritma \fGreedy.
+    \item Pada kasus tersebut, \fgreedyChoice yang tidak selalu dapat menghasilkan solusi optimal.
+    \item Permasalahan ini tidak dapat diselesaikan oleh algoritma \fgreedy.
   \end{itemize}
 \end{frame}
 
 \begin{frame}
   \frametitle{Permasalahan pada Algoritma \fGreedy (lanj.)}
   \begin{itemize}
-    \item Pembuktian kebenaran algoritma \fGreedy tidaklah mudah.
-    \item Biasanya akan ada beberapa pilihan  \fGreedyChoice yang ada, yang mana tidak semuanya bisa menghasilkan solusi optimal.
-    \item Ketika menemukan suatu \fGreedyChoice, sangat dianjurkan untuk menguji kebenaran dari pilihan tersebut sebelum diimplementasikan.
+    \item Pembuktian kebenaran algoritma \fgreedy tidaklah mudah.
+    \item Biasanya akan ada beberapa pilihan  \fgreedyChoice yang ada, yang mana tidak semuanya bisa menghasilkan solusi optimal.
+    \item Ketika menemukan suatu \fgreedyChoice, sangat dianjurkan untuk menguji kebenaran dari pilihan tersebut sebelum diimplementasikan.
   \end{itemize}
 \end{frame}
 
 \begin{frame}
   \frametitle{Permasalahan pada Algoritma \fGreedy (lanj.)}
   \begin{itemize}
-    \item Pengujian yang dapat dilakukan adalah dengan mencoba membuat contoh kasus yang dapat menggagalkan \fGreedyChoice tersebut.
-    \item Teknik ini biasa disebut \foreignTerm{proof by counter-example}.
-    \item Jika ditemukan satu saja contoh kasus yang mana \fGreedyChoice yang diajukan tidak menghasilkan solusi optimal, maka \fGreedyChoice tersebut dinyatakan salah.
+    \item Pengujian yang dapat dilakukan adalah dengan mencoba membuat contoh kasus yang dapat menggagalkan \fgreedyChoice tersebut.
+    \item Teknik ini biasa disebut \foreignTerm{proof by counterexample}.
+    \item Jika ditemukan satu saja contoh kasus yang mana \fgreedyChoice yang diajukan tidak menghasilkan solusi optimal, maka \fgreedyChoice tersebut dinyatakan salah.
+    \item Namun, bila Anda tidak bisa menemukan \foreignTerm{counterexample}, \emp{belum tentu} algoritma Anda benar.
   \end{itemize}
 \end{frame}
 
 \begin{frame}
 \frametitle{Saran}
   \begin{itemize}
-    \item Algoritma \fGreedy terkadang mudah untuk dipikirkan dan mudah untuk diimplementasikan, namun sulit untuk dibuktikan kebenarannya.
-    \item Pembuktian kebenaran algoritma \fGreedy bisa jadi membutuhkan pembuktian matematis yang kompleks dan memakan waktu.
-    \item Pada suasana kompetisi, intuisi dan pengalaman sangat membantu untuk menyelesaikan soal bertipe \fGreedy
-    \item Berhati-hati dan telili saat mengerjakan soal bertipe \fGreedy. Perhatikan setiap detil yang ada, karena  bisa berakibat fatal.
+    \item Algoritma \fgreedy terkadang mudah untuk dipikirkan dan mudah untuk diimplementasikan, namun sulit untuk dibuktikan kebenarannya.
+    \item Pembuktian kebenaran algoritma \fgreedy bisa jadi membutuhkan pembuktian matematis yang kompleks dan memakan waktu.
+    \item Pada suasana kompetisi, intuisi dan pengalaman sangat membantu untuk menyelesaikan soal bertipe \fgreedy.
+    \item Berhati-hati dan telili saat mengerjakan soal bertipe \fgreedy. Perhatikan setiap detil yang ada, karena  bisa berakibat fatal.
   \end{itemize}
 \end{frame}
 
 \begin{frame}
 \frametitle{Penutup}
   \begin{itemize}
-    \item Untuk dapat menguasai \fGreedy, Anda perlu banyak berlatih dan berpikir secara cerdik.
+    \item Untuk dapat menguasai \fgreedy, Anda perlu banyak berlatih dan berpikir secara cerdik.
     \item Selamat berlatih untuk mengasah "kerakusan" Anda :)
   \end{itemize}
 \end{frame}
