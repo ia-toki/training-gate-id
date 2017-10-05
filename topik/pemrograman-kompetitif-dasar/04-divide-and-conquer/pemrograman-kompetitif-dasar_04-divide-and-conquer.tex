@@ -11,21 +11,21 @@
 \end{frame}
 
 \begin{frame}
-\frametitle{Pengenalan}
+\frametitle{Perkenalan}
 \begin{itemize}
-  \item Kadang permasalahan lebih mudah diselesaikan jika dibagi menjadi beberapa masalah yang lebih kecil.
+  \item Terkadang, permasalahan lebih mudah diselesaikan jika dibagi menjadi beberapa masalah yang lebih kecil.
   \item Masalah lebih kecil kemudian diselesaikan secara independen.
   \item Hasilnya digabungkan menjadi solusi untuk masalah yang lebih besar.
-  \item Strategi ini digunakan Belanda pada masa penjajahan, biasa dipelajari sebagai \foreignTerm{divide et impera}.
+  \item Strategi ini digunakan Belanda pada masa penjajahan, biasa dipelajari pada sejarah sebagai \foreignTerm{devide et impera}.
 \end{itemize}
 \end{frame}
 
 \begin{frame}
 \frametitle{Konsep}
-Secara umum, \fDivideAndConquer terdiri dari tiga tahap:
+Secara umum, \fdivideAndConquer terdiri dari tiga tahap:
 \begin{itemize}
-  \item \newTerm{Divide}: membagi masalah yang besar menjadi masalah yang lebih kecil.
-  \item \newTerm{Conquer}: ketika masalah sudah cukup kecil untuk diselesaikan, langsung selesaikan.
+  \item \newTerm{Divide}: membagi masalah yang besar menjadi masalah-masalah yang lebih kecil.
+  \item \newTerm{Conquer}: ketika sebuah masalah sudah cukup kecil untuk diselesaikan, langsung selesaikan.
   \item \newTerm{Combine}: menggabungkan solusi dari masalah-masalah yang lebih kecil menjadi solusi untuk masalah yang besar.
 \end{itemize}
 \end{frame}
@@ -39,7 +39,7 @@ Secara umum, \fDivideAndConquer terdiri dari tiga tahap:
 
 \begin{frame}
 \frametitle{Studi Kasus 1: Merge Sort}
-\fMergeSort: algoritma pengurutan O($N \log{N}$).
+\newTerm{\fMergeSort}: algoritma pengurutan O($N \log{N}$).
 \newline
 \newline
 Prinsip kerja algoritma ini adalah:
@@ -91,9 +91,9 @@ Masih belum cukup kecil, belah lagi.
 
 \begin{frame}
 \frametitle{Contoh Eksekusi Merge Sort (lanj.)}
-Kini kita memiliki \farray yang panjangnya hanya satu.\newline
+Kini kita memiliki \farray-\farray yang panjangnya hanya satu.\newline
 
-Secara definisi, \farray ini telah terurut.
+Secara definisi, masing-masing \farray telah terurut.
 \begin{figure}
   \centering
   \includegraphics[width=10 cm]{asset/merge-sort-demo-4.pdf}
@@ -218,9 +218,9 @@ Selesai proses menggabungkan.
 \frametitle{Analisis Algoritma Merge Sort}
 \begin{itemize}
   \item Misalkan $N$ menyatakan ukuran dari \farray.
-  \item Dengan sifat membagi dua secara terus-menerus, kedalaman rekursif dari \fMergeSort adalah $O(\log{N})$
+  \item Dengan sifat membagi dua secara terus-menerus, kedalaman rekursif dari \fmergeSort adalah $O(\log{N})$
   \item Untuk setiap kedalaman, dilakukan aktivitas \foreignTerm{divide} dan \foreignTerm{combine}.
-  \item \foreignTerm{Divide} dan \foreignTerm{conquer} selalu bekerja dalam $O(1)$.
+  \item Proses \foreignTerm{divide} dan proses \foreignTerm{conquer} selalu bekerja dalam $O(1)$.
 \end{itemize}
 \end{frame}
 
@@ -242,8 +242,8 @@ Selesai proses menggabungkan.
 \frametitle{Analisis Algoritma Merge Sort (lanj.)}
 \begin{itemize}
   \item Mudah untuk disadari bahwa keseluruhan proses untuk setiap kedalaman bekerja dalam $O(N)$.
-  \item Karena kedalaman maksimal adalah $O(\log{N})$, kompleksitas akhir \fMergeSort adalah $O(N \log{N})$.
-  \item Jauh lebih cepat dari algoritma pengurutan $O(N^2)$ seperti \foreignTerm{Bubble Sort}.
+  \item Karena kedalaman maksimal adalah $O(\log{N})$, kompleksitas akhir \fmergeSort adalah $O(N \log{N})$.
+  \item Jauh lebih cepat dari algoritma pengurutan $O(N^2)$ seperti \foreignTerm{bubble sort}.
   \item \fMergeSort mampu mengurutkan \farray dengan ratusan ribu elemen dalam waktu singkat.
 \end{itemize}
 \end{frame}
@@ -336,7 +336,7 @@ Menggabungkan $arr[aLeft..aRight]$ dengan $arr[bLeft..bRight]$ yang telah teruru
 \frametitle{Catatan Tentang Merge Sort}
 \begin{itemize}
   \item \fMergeSort memiliki sifat \foreignTerm{stable}.
-  \item Artinya jika dua elemen $a_1$ dan $a_2$:
+  \item Artinya jika dua elemen $a_1$ dan $a_2$ memenuhi:
   \begin{itemize}
     \item memiliki yang nilai sama
     \item sebelum diurutkan $a_1$ terletak sebelum $a_2$
@@ -345,42 +345,13 @@ Menggabungkan $arr[aLeft..aRight]$ dengan $arr[bLeft..bRight]$ yang telah teruru
 \end{itemize}
 \end{frame}
 
-%\begin{frame}[fragile]
-%\frametitle{Analisis Merge Sort Secara Rekursif}
-%\begin{itemize}
-%  \item Umumnya \fDivideAndConquer memiliki sifat rekursif secara alami.
-%  \item Misalkan kita selalu membagi masalah menjadi dua, maka bentuk umumnya:
-%
-%\begin{lstlisting}
-%solve(problem)
-%  if (problem cukup kecil)
-%    return conquer(problem)
-%  else
-%    [subproblem1, subproblem2] := divide(problem)
-%
-%    solve(subproblem1)
-%    solve(subproblem2)
-%
-%    return combine(subproblem1, subproblem2)
-%\end{lstlisting}
-%\end{itemize}
-%\end{frame}
-%
-%\begin{frame}
-%\frametitle{Analisis Merge Sort Secara Rekursif (lanj.)}
-%\begin{itemize}
-%  \item Analisis algoritma juga dapat dilakukan secara rekursif.
-%  \item Misalkan $T(N)}$ menyatakan kompleksitas
-%\end{itemize}
-%\end{frame}
-
 \begin{frame}
 \frametitle{Studi Kasus 2: Mencari Nilai Terbesar}
 \begin{itemize}
   \item Diberikan sebuah \farray $A$ yang memiliki $N$ bilangan.
   \item Cari nilai terbesar yang ada pada $A$!\newline
   \item Masalah ini mudah diselesaikan dengan perulangan biasa.
-  \item Namun coba kita selesaikan dengan \fDivideAndConquer.\end{itemize}
+  \item Namun, coba kita selesaikan dengan \fdivideAndConquer.\end{itemize}
 \end{frame}
 
 \begin{frame}
@@ -425,7 +396,8 @@ Pertama kita definisikan tahap-tahapnya:
 \frametitle{Analisis Algoritma Mencari Nilai Terbesar (lanj.)}
 \begin{itemize}
   \item Kompleksitas akhirnya adalah $O(N)$.
-  \item Ternyata strategi ini tidak lebih baik dari mencari nilai maksimum satu per satu
+  \item Ternyata, strategi ini tidak lebih baik dari mencari nilai maksimum satu per satu.
+  \item Kesimpulannya, \fdivideAndConquer \emp{tidak selalu} dapat mengurangi kompleksitas solusi naif.
 \end{itemize}
 \end{frame}
 
@@ -433,8 +405,8 @@ Pertama kita definisikan tahap-tahapnya:
 \frametitle{Penutup}
 \begin{itemize}
   \item \fDivideAndConquer merupakan salah satu strategi dalam penyelesaian masalah.
-  \item Konsep ini banyak digunakan pada struktur data lanjutan dan komputasional geometri.
-  \item Jika suatu masalah dapat dibelah menjadi beberapa masalah yang lebih kecil dan serupa, kemudian hasil dari masing-masing penyelesaiannya dapat digabungkan, maka \fDivideAndConquer dapat digunakan.
+  \item Konsep ini banyak digunakan pada struktur data lanjutan dan geometri komputasional.
+  \item Jika suatu masalah dapat dibelah menjadi beberapa masalah yang lebih kecil dan serupa, kemudian hasil dari masing-masing penyelesaiannya dapat digabungkan, maka \fdivideAndConquer dapat digunakan.
 \end{itemize}
 \end{frame}
 

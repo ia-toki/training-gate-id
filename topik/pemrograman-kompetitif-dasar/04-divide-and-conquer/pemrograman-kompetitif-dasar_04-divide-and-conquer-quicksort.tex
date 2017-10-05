@@ -13,8 +13,8 @@
 \begin{frame}
 \frametitle{Pengenalan}
 \begin{itemize}
-  \item Selain \fMergeSort, ada algoritma pengurutan yang bekerja dalam $O(N \log{N})$, salah satunya \fQuickSort.
-  \item \fQuickSort menggunakan prinsip \fDivideAndConquer dalam pengurutan.
+  \item Selain \fmergeSort, ada algoritma pengurutan yang bekerja dalam $O(N \log{N})$, salah satunya \newTerm{\fquickSort}.
+  \item \fQuickSort menggunakan prinsip \fdivideAndConquer dalam pengurutan.
 \end{itemize}
 \end{frame}
 
@@ -34,7 +34,7 @@
 \frametitle{Konsep (lanj.)}
 \begin{itemize}
   \item Tempatkan seluruh elemen yang $\leq 5$ di bagian kiri \farray, dan yang $> 5$ di bagian kanan.
-  \item Urutannya elemen setelah pemindahan tidak penting.
+  \item Urutan elemennya setelah pemindahan tidak penting.
 \end{itemize}
 \begin{figure}
   \centering
@@ -45,7 +45,7 @@
 \begin{frame}
 \frametitle{Konsep (lanj.)}
 \begin{itemize}
-  \item Lakukan \fQuickSort serupa untuk bagian kiri dan kanan secara rekursif.
+  \item Lakukan \fquickSort serupa untuk bagian kiri dan kanan secara rekursif.
   \item Suatu ketika, seluruh \farray menjadi terurut.
 \end{itemize}
 \begin{figure}
@@ -56,18 +56,18 @@
 
 \begin{frame}
 \frametitle{Konsep (lanj.)}
-Jika dikaitkan dengan \fDivideAndConquer:
+Jika dikaitkan dengan \fdivideAndConquer:
 \begin{itemize}
   \item \foreignTerm{Divide}: partisi \farray menjadi dua seperti yang dijelaskan sebelumnya.
   \item \foreignTerm{Conquer}: ketika \farray tinggal satu elemen, berarti sudah terurut.
-  \item \foreignTerm{Combine}: tempelkan hasil \fQuickSort bagian kiri dan kanan.
+  \item \foreignTerm{Combine}: tempelkan hasil \fquickSort bagian kiri dan kanan.
 \end{itemize}
 \end{frame}
 
 \begin{frame}
 \frametitle{Partisi}
 \begin{itemize}
-  \item Bagian utama dari \fQuickSort adalah proses partisi (bagian \foreignTerm{divide}).
+  \item Bagian utama dari \fquickSort adalah proses partisi (bagian \foreignTerm{divide}).
   \item Sebelum melakukan partisi, pilih suatu elemen yang akan dijadikan \fpivot (=pijakan).
   \item Nantinya, akan dilakukan partisi supaya seluruh elemen yang $\leq pivot$ berada di bagian kiri, dan yang $> pivot$ di bagian kanan.
   \item Untuk saat ini, kita akan menggunakan elemen di tengah \farray $pivot$.
@@ -225,7 +225,7 @@ Perhatikan bahwa seluruh elemen yang $\leq pivot$ berada di kiri, dan sisanya di
 
 \begin{frame}
 \frametitle{Integrasi ke Quicksort}
-Setelah kita mengimplementasikan algoritma partisi, mengintegrasikan ke \fQuickSort cukup mudah.
+Setelah kita mengimplementasikan algoritma partisi, mengintegrasikan ke \fquickSort cukup mudah.
 \begin{codebox}
 \Procname{$\proc{quicksort}(arr[], left, right)$}
 \li \If $left \geq right$ \Then 
@@ -245,8 +245,8 @@ Setelah kita mengimplementasikan algoritma partisi, mengintegrasikan ke \fQuickS
 \begin{frame}
 \frametitle{Analisis Algoritma Quicksort}
 \begin{itemize}
-  \item Pada setiap kedalaman rekursif, \farray hasil partisi belum tentu memiliki ukuran yang sama.
-  \item Hasil partisi bergantung pada nilai \emp{pivot} yang kita pilih.
+  \item Pada setiap kedalaman rekursi, \farray hasil partisi belum tentu memiliki ukuran yang sama.
+  \item Hasil partisi bergantung pada nilai pivot yang kita pilih.
   \item Kita anggap dulu hasil partisi selalu membelah \farray menjadi dua \fsubarray sama besar.
 \end{itemize}
 \end{frame}
@@ -254,17 +254,17 @@ Setelah kita mengimplementasikan algoritma partisi, mengintegrasikan ke \fQuickS
 \begin{frame}
 \frametitle{Analisis Algoritma Quicksort (lanj.)}
 \begin{itemize}
-  \item Ternyata kejadiannya menjadi seperti \fMergeSort.
+  \item Ternyata analisisnya mirip seperti \fmergeSort.
   \item Kompleksitasnya adalah $O(N \log{N})$
 \end{itemize}
 
 \end{frame}
 
 \begin{frame}
-\frametitle{Analisis Algoritma Quicksort: Best Case}
+\frametitle{Analisis Algoritma Quicksort: Kasus Terbaik}
 \begin{itemize}
   \item Pembelahan menjadi dua \fsubarray sama besar menjamin kedalaman rekursif \emp{sedangkal mungkin}.
-  \item Sehingga untuk kasus terbaik, jalannya algoritma menjadi seperti \fMergeSort dan bekerja dalam $O(N \log{N})$.
+  \item Sehingga untuk kasus terbaik, jalannya algoritma menjadi seperti \fmergeSort dan bekerja dalam $O(N \log{N})$.
 \end{itemize}
 \begin{figure}
   \centering
@@ -273,7 +273,7 @@ Setelah kita mengimplementasikan algoritma partisi, mengintegrasikan ke \fQuickS
 \end{frame}
   
 \begin{frame}
-\frametitle{Analisis Algoritma Quicksort: Average Case}
+\frametitle{Analisis Algoritma Quicksort: Kasus Rata-Rata}
 \begin{itemize}
   \item Pada kebanyakan kasus, ukuran hasil partisi berbeda.
   \item Secara rata-rata kompleksitasnya masih dapat dianggap $O(N \log{N})$.
@@ -285,9 +285,9 @@ Setelah kita mengimplementasikan algoritma partisi, mengintegrasikan ke \fQuickS
 \end{frame}
 
 \begin{frame}
-\frametitle{Analisis Algoritma Quicksort: Worst Case}
+\frametitle{Analisis Algoritma Quicksort: Kasus Terburuk}
 \begin{itemize}
-  \item Kasus paling buruk, ukuran hasil partisi sangat timpang.
+  \item Kasus paling buruk: ukuran hasil partisi sangat timpang.
   \item Akibatnya, kedalaman rekursif mendekati $N$.
   \item Kompleksitasnya menjadi $O(N^2)$.
 \end{itemize}
@@ -301,7 +301,7 @@ Setelah kita mengimplementasikan algoritma partisi, mengintegrasikan ke \fQuickS
 \frametitle{Analisis Algoritma Quicksort (lanj.)}
 \begin{itemize}
   \item Tidak perlu khawatir, peluang terjadinya kasus terburuk sangat-sangat-amat-lah  kecil.
-  \item Artinya, dijamin 99,9999\% bahwa \fQuickSort akan berjalan dengan sangat cepat.
+  \item Artinya, pada sebagian besar kasus, \fquickSort akan berjalan dengan sangat cepat.
 \end{itemize}
 \end{frame}
 
@@ -313,14 +313,13 @@ Terdapat beberapa strategi pemilihan $pivot$ untuk mencegah hasil partisi yang t
   \item Pilih median dari elemen paling depan, tengah, dan paling belakang.
   \newline
 \end{itemize}
-Cara pertama umum digunakan pada kontes pemrograman rutin seperti \textcolor{blue}{\href{http://codeforces.com/}{Codeforces}}.
 \end{frame}
 
 \begin{frame}
 \frametitle{Stable Sort}
 \begin{itemize}
   \item \fQuickSort memiliki sifat \emp{tidak} \foreignTerm{stable}.
-  \item Artinya jika dua elemen $a_1$ dan $a_2$:
+  \item Artinya jika dua elemen $a_1$ dan $a_2$ memenuhi:
   \begin{itemize}
     \item memiliki yang nilai sama
     \item sebelum diurutkan $a_1$ terletak sebelum $a_2$
@@ -332,7 +331,7 @@ Cara pertama umum digunakan pada kontes pemrograman rutin seperti \textcolor{blu
 \begin{frame}
 \frametitle{Penutup}
 \begin{itemize}
-  \item Terdapat jiwa \fDivideAndConquer pada algoritma \fQuickSort.
+  \item Terdapat jiwa \fdivideAndConquer pada algoritma \fquickSort.
   \item Kita telah mempelajari algoritma pengurutan yang efisien lainnya.
 \end{itemize}
 \end{frame}
