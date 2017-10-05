@@ -1,6 +1,6 @@
 \input{../config.tex}
 
-\title{Perkenalan}
+\title{Perkenalan Pemrograman Kompetitif Dasar}
 \author{Tim Olimpiade Komputer Indonesia}
 \date{}
 
@@ -19,8 +19,8 @@ Anda diharapkan telah menguasai pemrograman dasar dan mampu:
 \begin{itemize}
   \item Mengetahui setidaknya satu bahasa pemrograman.
   \item Mampu membaca dan menulis program.
-  \item Mampu memahami \newTerm{pseudocode}.
 \end{itemize}
+Mulai bab ini, semua kode program akan dituliskan dalam \newTerm{pseudocode}.
 \end{frame}
 
 \begin{frame}
@@ -57,52 +57,22 @@ Anda diharapkan telah menguasai pemrograman dasar dan mampu:
 \begin{frame}
 \frametitle{Tentang Pemrograman Kompetitif}
 \begin{block}{Pemrograman Kompetitif}
-\foreignTerm{Competitive programming is solving well-defined problems by writing computer programs under specified limits.}
-
--Ashar Fuadi-
+Adalah penyelesaian soal yang terdefinisi dengan jelas dengan menulis program komputer dalam batasan-batasan tertentu (memori dan waktu).
 \end{block}
 \end{frame}
 
 \begin{frame}
 \frametitle{Tentang Pemrograman Kompetitif (lanj.)}
+Peserta ditantang untuk:
 \begin{itemize}
-  \item Pemrograman kompetitif sering dijadikan ajang "adu otak" dan asah kemampuan \foreignTerm{problem solving}.
-  \item Peserta ditantang untuk:
-  \begin{itemize}
-    \item Menganalisa permasalahan
-    \item Merancang algoritma solusi
-    \item Menuliskannya dalam bentuk program
-  \end{itemize}
+  \item Menganalisis permasalahan
+  \item Merancang algoritma solusi
+  \item Menuliskannya dalam bentuk program
 \end{itemize}
 \end{frame}
 
 \begin{frame}
-\frametitle{Ajang Pemrograman Kompetitif - Nasional}
-\begin{itemize}
-  \item Di Indonesia, pemrograman kompetitif menjadi konsep dalam Olimpiade Sains Nasional (OSN) bidang komputer/informatika.
-  \item Selain OSN, terdapat kompetisi tingkat nasional yang diselenggarakan beberapa Universitas di Indonesia, seperti CompFest (UI), NPC (ITS), BNPCHS (Binus), dan ILPC (Ubaya).
-  \item Sebagai sarana berlatih, ada juga TOKI Open Contest yang biasa dilaksanakan per bulan.
-\end{itemize}
-\end{frame}
-
-\begin{frame}
-\frametitle{Ajang Pemrograman Kompetitif - Internasional}
-\begin{itemize}
-  \item International Olympiad in Informatics (IOI) merupakan kompetisi bagi siswa SMA dari seluruh dunia.
-  \item Untuk mahasiswa, terdapat ACM-ICPC (ACM International Collegiate Programming Contest) yang pesertanya terdiri dari tim-tim beranggotakan tiga orang.
-\end{itemize}
-\end{frame}
-
-\begin{frame}
-\frametitle{Ajang Pemrograman Kompetitif - Lainnya}
-\begin{itemize}
-  \item Terdapat pula kompetisi tingkat regional yang diselenggarakan bagi negara-negara dalam suatu bagian, seperti Asia-Pacific Informatics Olympiad (APIO).
-  \item Untuk sekedar hobi dan latihan rutin, Anda dapat mengikuti \textcolor{blue}{\href{http://codeforces.com/}{Codeforces}}, \textcolor{blue}{\href{https://www.topcoder.com/}{Topcoder}}, dan \textcolor{blue}{\href{https://www.codechef.com/}{Codechef}}.
-\end{itemize}
-\end{frame}
-
-\begin{frame}
-\frametitle{Contoh Pemrograman Kompetitif}
+\frametitle{Tentang Pemrograman Kompetitif (lanj.)}
 \begin{itemize}
   \item Masalah yang diberikan adalah \foreignTerm{well-defined problems}.
   \item \foreignTerm{Well-defined problem} adalah sebuah masalah yang telah terdefinsi dengan baik, seperti asumsi yang diperlukan dan batasan masalah.
@@ -114,7 +84,7 @@ Anda diharapkan telah menguasai pemrograman dasar dan mampu:
 \begin{frame}
 \frametitle{Contoh Soal Pemrograman Kompetitif}
 \begin{itemize}
-  \item Terdapat $N$ buah ruangan yang dinomori dari 1 sampai $N$
+  \item Terdapat $N$ buah ruangan yang dinomori dari 1 hingga $N$
   \item Ruangan ke-$i$ memiliki sebuah lampu dan sebuah tombol.
   \item Bila tombol itu ditekan, keadaan lampu pada seluruh ruangan ke-$x$ akan berubah (dari mati menjadi menyala, atau sebaliknya), yang mana $x$ habis dibagi $i$.
   \item Contoh, bila $N$ = 10 dan tombol di ruangan ke-2 ditekan, maka keadaan lampu pada ruangan 2, 4, 6, 8, dan 10 akan berubah.
@@ -135,9 +105,10 @@ Anda diharapkan telah menguasai pemrograman dasar dan mampu:
 \frametitle{Solusi Naif}
 Salah satu cara penyelesaiannya adalah dengan mensimulasikan skenario pada deskripsi soal:
 \begin{itemize}
-  \item Mulai dengan ruangan ke-1, dipastikan keadaan lampu pada ruangan ke-$N$ akan berubah ($N$ habis dibagi 1).
-  \item Lanjut ke ruangan ke-2, periksa apakah 2 habis membagi $N$. Bila ya, ubah keadaan lampunya.
-  \item Lanjut ke ruangan ke-3, periksa apakah 3 habis membagi $N$. Bila ya, ubah keadaan lampunya.
+  \item Kita cukup memperhatikan lampu pada ruangan ke-$N$ saja.
+  \item Mulai dari ruangan ke-1, dipastikan keadaan lampu pada ruangan ke-$N$ akan berubah ($N$ habis dibagi 1).
+  \item Lanjut ke ruangan ke-2, periksa apakah 2 habis membagi $N$. Bila ya, ubah keadaan lampu ke-$N$.
+  \item Lanjut ke ruangan ke-3, periksa apakah 3 habis membagi $N$. Bila ya, ubah keadaan lampu ke-$N$.
   \item ... dan seterusnya sampai ruangan ke-$N$.
 \end{itemize}
 \end{frame}
@@ -145,7 +116,7 @@ Salah satu cara penyelesaiannya adalah dengan mensimulasikan skenario pada deskr
 \begin{frame}
 \frametitle{Solusi Naif (lanj.)}
 \begin{itemize}
-  \item Setelah selesai disimulasikan, tinggal keadaan lampu ruangan ke-N dan cetak jawabannya.
+  \item Setelah selesai disimulasikan, periksa keadaan lampu ruangan ke-$N$ dan cetak jawabannya.
   \item Kompleksitas solusi ini adalah $O(N)$, dan hanya akan bekerja untuk nilai $N$ yang kecil.
   \item Untuk $N$ yang lebih besar, misalnya $N = 10^9$, kemungkinan besar diperlukan waktu lebih dari 1 detik.
 \end{itemize}
@@ -155,7 +126,7 @@ Salah satu cara penyelesaiannya adalah dengan mensimulasikan skenario pada deskr
 \frametitle{Solusi yang Lebih Baik}
 \begin{itemize}
   \item Dengan observasi, yang sebenarnya perlu dilakukan adalah memeriksa banyaknya pembagi dari $N$.
-  \item Apabila banyaknya pembagi ganjil, berarti pada akhirnya lampu di ruangan ke-$N$ akan menyala.
+  \item Apabila banyaknya pembagi ganjil, berarti pada akhirnya lampu di ruangan ke-$N$ akan menyala (mengapa?).
   \item Bila genap, berarti lampu di ruangan ke-$N$ akan tetap mati.
 \end{itemize}
 \end{frame}
@@ -163,7 +134,7 @@ Salah satu cara penyelesaiannya adalah dengan mensimulasikan skenario pada deskr
 \begin{frame}
 \frametitle{Solusi yang Lebih Baik (lanj.)}
 \begin{itemize}
-  \item Untuk mencari banyaknya pembagi dari N dengan lebih efisien, lakukan faktorisasi prima terlebih dahulu.
+  \item Untuk mencari banyaknya pembagi dari $N$ dengan lebih efisien, lakukan faktorisasi prima terlebih dahulu.
   \item Misalkan $N$ = 12, maka faktorisasi primanya adalah $2^2 \times 3$.
   \newline
   \item Untuk menjadi pembagi dari 12, suatu bilangan hanya boleh:
@@ -191,8 +162,8 @@ Sebagai contoh, berikut daftar seluruh pembagi dari 12:
 \begin{frame}
 \frametitle{Solusi yang Lebih Baik (lanj.)}
 \begin{itemize}
-  \item Banyaknya pembagi dari 12 sebenarnya sama saja dengan banyaknya kombinasi yang bisa dipilih dari {$2^0$, $2^1$, $2^2$} dan {$3^0$, $3^1$}.
-  \item Banyaknya kombinasi sama dengan mengkalikan banyaknya elemen pada tiap-tiap himpunan.
+  \item Banyaknya pembagi dari 12 sebenarnya sama saja dengan banyaknya kombinasi yang bisa dipilih dari $\lbrace 2^0$, $2^1$, $2^2\rbrace $ dan $\lbrace 3^0$, $3^1\rbrace$.
+  \item Banyaknya kombinasi sama dengan mengalikan banyaknya elemen pada tiap-tiap himpunan.
   \item Sehingga banyaknya cara ada $3 \times 2 = 6$ cara.
 \end{itemize}
 \end{frame}
@@ -221,16 +192,25 @@ Sebagai contoh, berikut daftar seluruh pembagi dari 12:
     \newline
   \end{center}
   \item Jadi cukup faktorkan $N$, lalu periksa banyak pembaginya.
-  \item Faktorisasi bilangan bisa diimplementasikan dengan efisien dan 1 detik cukup untuk $N$ sampai $10^{14}$.
+  \item Faktorisasi bilangan bisa diimplementasikan dalam $O(\sqrt{N})$ dan 1 detik cukup untuk $N$ sampai $10^{14}$.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Ajang Pemrograman Kompetitif}
+\begin{itemize}
+  \item Olimpiade Sains Nasional (OSN) bidang komputer/informatika merupakan kompetisi tingkat nasional di Indonesia.
+  \item International Olympiad in Informatics (IOI) merupakan kompetisi tingkat internasional bagi siswa SMA dari seluruh dunia.
+  \item Untuk mahasiswa, terdapat ACM-ICPC (ACM International Collegiate Programming Contest) yang pesertanya terdiri dari tim-tim beranggotakan tiga orang.
 \end{itemize}
 \end{frame}
 
 \begin{frame}
 \frametitle{Manfaat Pemrograman Kompetitif}
 \begin{itemize}
-  \item Mengasah kemampuan menganalisa permasalahan dan pemecahan masalah.
-  \item Bertemu dengan teman-teman sehobi!
-  \item Kadang, soal \foreignTerm{interview} untuk masuk ke perusahaan teknologi terkemuka juga membutuhkan kemampuan \foreignTerm{problem solving}.
+  \item Mengasah kemampuan memecahkan masalah.
+  \item Bertemu dengan teman-teman sehobi.
+  \item Biasanya, wawancara untuk masuk ke perusahaan teknologi terkemuka menggunakan soal-soal pemrograman kompetitif.
 \end{itemize}
 \end{frame}
 
@@ -244,8 +224,7 @@ Sebagai contoh, berikut daftar seluruh pembagi dari 12:
 \begin{frame}
 \frametitle{Latihan}
 \begin{itemize}
-  \item Sebagai pemanasan, silakan mengerjakan soal latihan yang diberikan.
-  \item Baca juga beberapa materi pengayaan yang diberikan.
+  \item Sebagai pemanasan, silakan mengerjakan soal-soal latihan yang diberikan.
 \end{itemize}
 \end{frame}
 
