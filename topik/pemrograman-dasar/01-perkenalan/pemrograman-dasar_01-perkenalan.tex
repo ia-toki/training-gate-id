@@ -1,6 +1,6 @@
 \input{../config.tex}
 
-\title{Halo Dunia}
+\title{Perkenalan Pemrograman Pascal}
 \author{Tim Olimpiade Komputer Indonesia}
 \date{}
 
@@ -68,7 +68,7 @@ Melalui dokumen ini, kalian akan:
 \frametitle{Bagaimana Komputer Menjalankan Program? (lanj.)}
 \begin{itemize}
   \item Perlu ada penerjemahan bahasa pemrograman tingkat tinggi ke tingkat rendah, sehingga mesin dapat mengerti instruksi yang diberikan.
-  \item Penerjemahan ini biasa dilakukan oleh program yang berperan sebagai kompilator, intepreter, atau keduanya. Dalam hal ini kita hanya akan membahas tentang kompilator.
+  \item Penerjemahan ini biasa dilakukan oleh program yang berperan sebagai kompilator, \textit{interpreter}, atau keduanya. Dalam hal ini kita hanya akan membahas tentang kompilator.
 \end{itemize}
 \end{frame}
 
@@ -77,17 +77,8 @@ Melalui dokumen ini, kalian akan:
 \begin{itemize}
   \item Merupakan program komputer yang dapat menerjemahkan bahasa pemrograman tingkat tinggi ke bahasa mesin.
   \item Hasil terjemahan ini dapat dimengerti oleh mesin, sehingga dapat dieksekusi oleh komputer denga mudah.
-  \item Aktivitas menerjemahkan ini disebut dengan kompilasi.
+  \item Aktivitas menerjemahkan ini disebut dengan \textbf{kompilasi}.
   \item Siklus kerja jika kita menggunakan kompilator adalah: tulis~program $\rightarrow$ kompilasi $\rightarrow$ eksekusi.
-\end{itemize}
-\end{frame}
-
-\begin{frame}
-\frametitle{Mengapa Pascal?}
-\begin{itemize}
-  \item Mudah dibaca dan dikelola dibandingkan dengan bahasa C/C++.
-  \item Mudah untuk melakukan kompilasi.
-  \item Kompilasi berjalan dengan cepat.
 \end{itemize}
 \end{frame}
 
@@ -96,7 +87,6 @@ Melalui dokumen ini, kalian akan:
 \begin{itemize}
   \item Merupakan salah satu kompilator Pascal yang populer.
   \item Program kompilator Free Pascal beserta dokumentasinya tersedia gratis.
-  \item Free Pascal merupakan kompilator resmi yang dipakai pada IOI (\textit{International Olympiad in Informatics}/Olimpiade Informatika Internasional).
   \item Free Pascal memenuhi standar dalam bahasa Pascal.
 \end{itemize}
 \end{frame}
@@ -108,11 +98,7 @@ Melalui dokumen ini, kalian akan:
 \frametitle{Instalasi Free Pascal (Windows)}
 \begin{itemize}
   \item Seluruh petunjuk instalasi yang akan diberikan ini akan dilakukan pada sistem operasi Windows 7.
-  \item Proses instalasi berikut akan menghasilkan dua hal muncul pada komputer kalian, yaitu:
-  \begin{itemize}
-    \item Kompilator Free Pascal.
-    \item IDE (\textit{Integrated Development Environment}) bawaan dari Free Pascal. IDE ini bisa dianggap sebagai sebuah lingkungan tempat kalian memprogram nantinya.
-  \end{itemize}
+  \item Proses instalasi berikut akan memasang kompilator Free Pascal.
 \end{itemize}
 \end{frame}
 
@@ -170,19 +156,9 @@ Melalui dokumen ini, kalian akan:
 \end{frame}
 
 \begin{frame}
-\frametitle{Instalasi Free Pascal (Windows) (lanj.)}
-\begin{itemize}
-  \item Jika kalian menjalankan program Free Pascal, tampilan berikut akan muncul:
-  \begin{figure}
-    \includegraphics[width=9cm]{asset/fpc_11.PNG}
-  \end{figure}
-\end{itemize}
-\end{frame}
-
-\begin{frame}
 \frametitle{Lingkungan Pemrograman}
 \begin{itemize}
-  \item Sejauh ini, memprogram dengan Free Pascal sudah bisa dilakukan.
+  \item Sebenarnya Free Pascal memiliki IDE (lingkungan pemrograman) sendiri.
   \item Namun, memprogram langsung dari IDE Free Pascal biasanya kurang nyaman; banyak keterbatasannya meskipun ada beberapa keuntungannya (seperti fitur \textit{debugging}).
   \item Untuk itu, kami memperkenalkan penggunaan \textit{text editor} yang cukup populer, yaitu Notepad++.
   \item Kalian akan menulis kode di Notepad++, lalu melakukan kompilasi dan eksekusi program di \textit{command line}. 
@@ -201,7 +177,7 @@ Melalui dokumen ini, kalian akan:
 \begin{frame}
 \frametitle{Instalasi Notepad++ (Windows)}
 \begin{itemize}
-  \item Buka kembali \textit{browser} kalian, dan kunjungi http://notepad-plus-plus.org/download/v6.7.html
+  \item Buka kembali \textit{browser} kalian, dan kunjungi http://notepad-plus-plus.org/download/
   \begin{figure}
     \includegraphics[width=6cm]{asset/npp_1.PNG}
   \end{figure}
@@ -250,8 +226,8 @@ Melalui dokumen ini, kalian akan:
 \begin{frame}
 \frametitle{Kompilasi Program Pascal}
 \begin{itemize}
-  \item Buka cmd, yang bisa dilakukan dengan cara menekan tombol winkey+r, lalu isikan "cmd" pada kotak dialog yang muncul, dan tekan enter.
-  \item Pergi ke direktori tempat halo.pas disimpan, gunakan perintah "cd .." untuk mundur ke direktori \textit{parent} dan "cd $<$nama folder$>$" untuk maju ke direktori $<$nama folder$>$.
+  \item Buka cmd, yang bisa dilakukan dengan cara menekan tombol winkey+r, lalu isikan "\texttt{cmd}" pada kotak dialog yang muncul, dan tekan enter.
+  \item Pergi ke direktori tempat halo.pas disimpan, gunakan perintah "\texttt{cd ..}" untuk mundur ke direktori \textit{parent} dan "\texttt{cd $<$nama folder$>$}" untuk maju ke direktori $<$nama folder$>$.
   \begin{figure}
     \includegraphics[width=7cm]{asset/hello_2.PNG}
   \end{figure}
@@ -261,44 +237,30 @@ Melalui dokumen ini, kalian akan:
 \begin{frame}
 \frametitle{Kompilasi Program Pascal (lanj.)}
 \begin{itemize}
-  \item Ketikkan "fpc halo.pas" pada cmd.
+  \item Ketikkan "\texttt{fpc halo.pas}" pada cmd.
   \item Perhatikan bahwa mungkin akan muncul pesan kesalahan seperti berikut ini:
   \begin{figure}
     \includegraphics[width=7cm]{asset/cmd_0.PNG}
   \end{figure}
-  \item Jika ini terjadi, artinya perlu pengaturan \textit{path} FPC terlebih dahulu.
-\end{itemize}
-\end{frame}
-
-\begin{frame}[fragile]
-\frametitle{Kompilasi Program Pascal (lanj.)}
-\begin{itemize}
-  \item Ketikkan "fpc halo.pas" pada cmd.
-  \item Perhatikan bahwa mungkin akan muncul pesan kesalahan seperti berikut ini:
-\end{itemize}
-\begin{quote}
-'fpc' is not recognized as an internal or external command, operable program or batch file.
-\end{quote}
-\begin{itemize}
-  \item Jika ini terjadi, artinya perlu pengaturan \textit{path} FPC pada \textit{environment variable} terlebih dahulu.
+  \item Jika ini terjadi, artinya perlu pengaturan \textit{path} FPC pada \textit{Environment Variable} terlebih dahulu.
 \end{itemize}
 \end{frame}
 
 \begin{frame}
-\frametitle{Pengaturan \textit{environment variable}}
+\frametitle{Pengaturan \textit{Environment Variable}}
 \begin{itemize}
-  \item Klik kanan pada "my computer", lalu pilih \textit{properties}. Akan muncul tampilan sebagai berikut:
+  \item Klik kanan pada \textit{My Computer}, lalu pilih \textit{Properties}. Akan muncul tampilan sebagai berikut:
   \begin{figure}
     \includegraphics[width=10cm]{asset/path_1.PNG}
   \end{figure}
-  \item Pilih \textit{advanced system settings} di bagian kiri.
+  \item Pilih \textit{Advanced system settings} di bagian kiri.
 \end{itemize}
 \end{frame}
 
 \begin{frame}
-\frametitle{Pengaturan \textit{environment variable} (lanj.)}
+\frametitle{Pengaturan \textit{Environment Variable} (lanj.)}
 \begin{itemize}
-  \item Pilih tab \textit{advance}, lalu tekan tombol \textit{environment variable}.
+  \item Pilih tab \textit{Advanced}, lalu tekan tombol \textit{Environment Variables...}.
   \begin{figure}
     \includegraphics[width=6cm]{asset/path_2.PNG}
   \end{figure}
@@ -306,7 +268,7 @@ Melalui dokumen ini, kalian akan:
 \end{frame}
 
 \begin{frame}
-\frametitle{Pengaturan \textit{environment variable} (lanj.)}
+\frametitle{Pengaturan \textit{Environment Variable} (lanj.)}
 \begin{itemize}
   \item Kemudian akan muncul tampilan sebagai berikut:
   \begin{figure}
@@ -316,22 +278,22 @@ Melalui dokumen ini, kalian akan:
 \end{frame}
 
 \begin{frame}
-\frametitle{Pengaturan \textit{environment variable} (lanj.)}
+\frametitle{Pengaturan \textit{Environment Variable} (lanj.)}
 \begin{itemize}
-  \item Pada bagian \textit{system variables}, pilih \textit{Path} lalu tekan tombol \textit{edit}. Jika kalian tidak bisa menemukannya, maka tekan tombol \textit{new}.
+  \item Pada bagian \textit{System variables}, pilih \textit{Path} lalu tekan tombol \textit{Edit...}. Jika kalian tidak bisa menemukannya, maka tekan tombol \textit{New...}.
   \item Isikan direktori tempat Free Pascal kalian disimpan. Pastikan direktori yang kalian isi lengkap, contohnya:
   \begin{figure}
     \includegraphics[width=6cm]{asset/path_4.PNG}
   \end{figure}
-  \item Tekan \textit{ok} hingga seluruh kotak dialog tertutup.
+  \item Tekan \textit{OK} hingga seluruh kotak dialog tertutup.
 \end{itemize}
 \end{frame}
 
 \begin{frame}
-\frametitle{Pengaturan \textit{environment variable} (lanj.)}
+\frametitle{Pengaturan \textit{Environment Variable} (lanj.)}
 \begin{itemize}
   \item Tutup cmd yang telah terbuka, lalu buka kembali.
-  \item Pergi ke direktori tempat halo.pas disimpan dan ketikkan "fpc halo.pas".
+  \item Pergi ke direktori tempat halo.pas disimpan dan ketikkan "\texttt{fpc halo.pas}".
   \item Pastikan muncul tulisan seperti berikut:
   \begin{figure}
     \includegraphics[width=9cm]{asset/hello_3.PNG}
@@ -343,8 +305,8 @@ Melalui dokumen ini, kalian akan:
 \begin{frame}
 \frametitle{Kompilasi Program Pascal (lanj.)}
 \begin{itemize}
-  \item Ketikkan "halo" pada cmd, yang artinya menjalankan program "halo.pas" yang sudah dikompilasi.
-  \item Pastikan tulisan "halo dunia" tercetak di cmd!
+  \item Ketikkan "\texttt{halo}" pada cmd, yang artinya menjalankan program "halo.pas" yang sudah dikompilasi.
+  \item Pastikan tulisan "\texttt{halo dunia}" tercetak di cmd!
   \begin{figure}
     \includegraphics[width=9cm]{asset/hello_4.PNG}
   \end{figure}
