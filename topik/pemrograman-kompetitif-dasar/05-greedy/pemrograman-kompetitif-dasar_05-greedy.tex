@@ -22,7 +22,7 @@
 \begin{frame}
   \frametitle{Greedy}
   \begin{center}
-    \fGreedy merupakan sebuah teknik dalam strategi penyelesaian masalah, bukan suatu algoritma khusus.
+    \newTerm{\fGreedy} merupakan sebuah teknik dalam strategi penyelesaian masalah, bukan suatu algoritma khusus.
   \end{center}
 \end{frame}
 
@@ -276,36 +276,37 @@
   \frametitle{Permasalahan pada Algoritma \fGreedy}
   Perhatikan contoh soal berikut:
   \begin{itemize}
-    \item Anda ingin menukar uang $\$12$ dengan pecahan koin $\$5$, $\$2$, dan $\$1$.
-    \item Anda ingin menukar dengan jumlah koin sekecil mungkin.
+    \item Anda ingin menukar uang Rp12.000 dengan lembaran uang kertas Rp5.000, Rp2.000, dan Rp1.000.
+    \item Anda ingin menukar dengan jumlah lembaran sesedikit mungkin.
   \end{itemize}
 \end{frame}
 
 \begin{frame}
   \frametitle{Permasalahan pada Algoritma \fGreedy}
   \begin{itemize}
-    \item \fGreedyChoice yang terpikirkan adalah dengan memilih pecahan koin dengan nominal terbesar yang mungkin untuk tiap subpersoalan.
-    \item Pertama kita pilih pecahan $\$5$, sehingga tersisa $\$7$ lagi yang harus dipecah.
-    \item Selanjutnya kita pilih $\$5$ lagi dan menyisakan $\$2$ untuk dipecah.
-    \item Akhirnya, kita pilih $\$2$ sebagai pecahan terakhir.
-    \item Solusi dari kasus ini adalah dengan menggunakan 3 keping koin.
+    \item \fGreedyChoice yang terpikirkan adalah dengan memilih lembarandengan nominal terbesar yang mungkin untuk tiap subpersoalan.
+    \item Pertama kita pilih lembaran 5000, sehingga tersisa 7000 lagi yang harus dipecah.
+    \item Selanjutnya kita pilih 5000 lagi dan menyisakan 2000 untuk dipecah.
+    \item Akhirnya, kita pilih 2000 sebagai pecahan terakhir.
+    \item Solusi dari kasus ini adalah dengan menggunakan 3 lembaran.
   \end{itemize}
 \end{frame}
 
 \begin{frame}
   \frametitle{Permasalahan pada Algoritma \fGreedy (lanj.)}
   \begin{center}
-    Dengan soal yang sama, bagaimana jika pecahan koin yang tersedia bernilai $\$5$, $\$4$, dan $\$1$?
+    Dengan soal yang sama, bagaimana jika lembaran rupiah yang beredar bernilai  Rp5.000, \emp{Rp4.000}, dan Rp1.000?
   \end{center}
 \end{frame}
 
 \begin{frame}
   \frametitle{Permasalahan pada Algoritma \fGreedy (lanj.)}
   \begin{itemize}
-    \item Dengan algoritma \fgreedy, kita akan menukar  $\$12$ dengan pecahan $\$5$, $\$5$, $\$1$, dan $\$1$.
-    \item Padahal ada solusi yang lebih baik, yaitu menggunakan 3 keping koin pecahan $\$4$.
+    \item Dengan algoritma \fgreedy, kita akan menukar  12000 dengan lembaran 5000, 5000, 1000, dan 1000.
+    \item Padahal ada solusi yang lebih baik, yaitu menggunakan 3 lembaran 4000.
     \item Pada kasus tersebut, \fgreedyChoice yang tidak selalu dapat menghasilkan solusi optimal.
     \item Permasalahan ini tidak dapat diselesaikan oleh algoritma \fgreedy.
+    \item (Permasalahan ini bisa diselesaikan dengan algoritma \textit{dynamic programming}, yang akan dibahas pada materi berikutnya.)
   \end{itemize}
 \end{frame}
 
