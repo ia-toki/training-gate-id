@@ -223,16 +223,16 @@ Contoh: $6, 14, 20, 25$.
 \end{frame}
 
 \begin{frame}
-\frametitle{Sieve of Erathostenes}
+\frametitle{Sieve of Eratosthenes}
 \begin{itemize}
-  \item Terdapat solusi yang lebih cepat untuk membangkitkan bilangan prima, yaitu \newTerm{Sieve of Erathostenes}.
+  \item Terdapat solusi yang lebih cepat untuk membangkitkan bilangan prima, yaitu \newTerm{Sieve of Eratosthenes}.
   \item Ide utama utama dari algoritma ini adalah mengeliminasi bilangan-bilangan dari calon bilangan prima.
   \item Yang akan kita eliminasi adalah bilangan komposit.
 \end{itemize}
 \end{frame}
 
 \begin{frame}
-\frametitle{Sieve of Erathostenes (lanj.)}
+\frametitle{Sieve of Eratosthenes (lanj.)}
 \begin{itemize}
   \item Kita tahu bahwa suatu bilangan komposit $c$ dapat dinyatakan sebagai $c = p \times q$, dengan $p$ suatu bilangan prima.
   \item Seandainya kita mengetahui suatu bilangan prima, kita dapat mengeliminasi kelipatan-kelipatan bilangan tersebut dari calon bilangan prima.
@@ -241,7 +241,7 @@ Contoh: $6, 14, 20, 25$.
 \end{frame}
 
 \begin{frame}
-\frametitle{Prosedur Sieve of Erathostenes}
+\frametitle{Prosedur Sieve of Eratosthenes}
 \begin{enumerate}
   \item Awalnya seluruh bilangan bulat dari 2 hingga N belum dieliminasi.
   \item Lakukan iterasi dari 2 hingga N:
@@ -253,7 +253,7 @@ Contoh: $6, 14, 20, 25$.
 \end{frame}
 
 \begin{frame}
-\frametitle{Implementasi Sieve of Erathostenes}
+\frametitle{Implementasi Sieve of Eratosthenes}
 \begin{itemize}
   \item Kita dapat menggunakan \textit{array} \textit{boolean} untuk menyimpan informasi apakah suatu bilangan telah tereliminasi.
   \item Jika kita ingin mencari bilangan prima yang $\leq N$, maka diperlukan memori sebesar $O(N)$.
@@ -262,9 +262,9 @@ Contoh: $6, 14, 20, 25$.
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{Implementasi Sieve of Erathostenes (lanj.)}
+\frametitle{Implementasi Sieve of Eratosthenes (lanj.)}
 \begin{codebox}
-\Procname{$\proc{sieveOfErathostenes}(N)$}
+\Procname{$\proc{sieveOfEratosthenes}(N)$}
 \li \Comment Siapkan \textit{array boolean} $eleminated$ berukuran N
 \li \Comment Inisialisasi \textit{array} $eleminated$ dengan $false$
 \li $primeList \gets \{\}$
@@ -287,7 +287,7 @@ Contoh: $6, 14, 20, 25$.
 \end{frame}
 
 \begin{frame}
-\frametitle{Implementasi Sieve of Erathostenes (lanj.)}
+\frametitle{Implementasi Sieve of Eratosthenes (lanj.)}
 \begin{itemize}
   \item Perhatikan baris ke-7 yang berisi $j = i \times i$.
   \item Di sini, $j$ menyatakan kelipatan $i$ yang akan dieliminasi.
