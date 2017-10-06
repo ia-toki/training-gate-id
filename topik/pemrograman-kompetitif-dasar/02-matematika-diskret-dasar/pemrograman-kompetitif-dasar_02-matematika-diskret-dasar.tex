@@ -15,9 +15,9 @@
 Melalui dokumen ini, kalian akan:
 \begin{itemize}
   \item Mempelajari \newTerm{aritmetika modular}.
-  \item Mempelajari bilangan prima.
-  \item Memahami FPB dan KPK.
+  \item Mempelajari bilangan prima dan \newTerm{uji keprimaan}.
   \item Mempelajari algoritma \newTerm{prime generation}.
+  \item Memahami FPB dan KPK.
   \item Mempelajari dan memanfaatkan \newTerm{pigeonhole principle}.
 \end{itemize}
 \end{frame}
@@ -194,7 +194,7 @@ Contoh: $6, 14, 20, 25$.
 \frame{\sectionpage}
 
 \begin{frame}
-\frametitle{Cara Naif}
+\frametitle{Solusi Naif}
 \begin{itemize}
   \item Misalkan kita ingin mengetahui himpunan bilangan prima yang tidak lebih dari $N$.
   \item Kita dapat membangkitkan bilangan prima dengan iterasi dan uji keprimaan.
@@ -207,7 +207,7 @@ Contoh: $6, 14, 20, 25$.
 \end{frame}
 
 \begin{frame}
-\frametitle{Cara Naif (lanj.)}
+\frametitle{Solusi Naif (lanj.)}
 \begin{codebox}
 \Procname{$\proc{simplePrimeGeneration}(N)$}
 \li $primeList \gets \{\}$
@@ -235,7 +235,7 @@ Contoh: $6, 14, 20, 25$.
 \frametitle{Sieve of Erathostenes (lanj.)}
 \begin{itemize}
   \item Kita tahu bahwa suatu bilangan komposit $c$ dapat dinyatakan sebagai $c = p \times q$, dengan $p$ suatu bilangan prima.
-  \item Seandainya kita mengetahui suatu bilangan prima, kita dapat mengeliminasi kelipatan bilangan tersebut dari calon bilangan prima.
+  \item Seandainya kita mengetahui suatu bilangan prima, kita dapat mengeliminasi kelipatan-kelipatan bilangan tersebut dari calon bilangan prima.
   \item Contoh: jika diketahui 7 adalah bilangan prima, maka 14, 21, 28, ... dieliminasi dari calon bilangan prima.
 \end{itemize}
 \end{frame}
@@ -255,9 +255,9 @@ Contoh: $6, 14, 20, 25$.
 \begin{frame}
 \frametitle{Implementasi Sieve of Erathostenes}
 \begin{itemize}
-  \item Kita dapat menggunakan \textit{array} \progTerm{boolean} untuk menyimpan informasi apakah suatu bilangan telah tereliminasi.
+  \item Kita dapat menggunakan \textit{array} \textit{boolean} untuk menyimpan informasi apakah suatu bilangan telah tereliminasi.
   \item Jika kita ingin mencari bilangan prima yang $\leq N$, maka diperlukan memori sebesar $O(N)$.
-  \item Melalui perhitungan matematis, kompleksitas waktu solusi ini $O(N\;log\;log\;N)$.
+  \item Melalui perhitungan matematis, kompleksitas waktu solusi ini adalah $O(N\;log\;log\;N)$.
 \end{itemize}
 \end{frame}
 
@@ -334,7 +334,7 @@ Contoh: $6, 14, 20, 25$.
   \item Untuk mencari FPB suatu bilangan, menggunakan pohon faktor cukup merepotkan.
   \item Kita perlu mencari faktor prima bilangan tersebut, dan jika faktor primanya besar, tentu akan menghabiskan banyak waktu.
   \item Terdapat algoritma yang dapat mencari $FPB(a,b)$ dalam $O(\log{(\min{(a,b)})})$.
-  \item Algoritma ini bernama Algoritma Euclid.
+  \item Algoritma ini bernama \newTerm{Algoritma Euclid}.
 \end{itemize}
 \end{frame}
 
@@ -390,7 +390,7 @@ Contoh: $6, 14, 20, 25$.
   \item Batasan
   \begin{itemize}
     \item $1 \leq N \leq 10^{5}$
-    \item \textit{Array} hanya berisi bilangan bulat non-negatif.
+    \item \textit{Array} $A$ hanya berisi bilangan bulat non-negatif.
   \end{itemize}
 \end{itemize}
 \end{frame}
@@ -407,7 +407,7 @@ Contoh: $6, 14, 20, 25$.
 \begin{itemize}
   \item Mari kita coba mengerjakan versi lebih mudah dari soal ini:
   Bagaimana jika yang diminta subbarisan, bukan subhimpunan?
-  \item Anggap \textit{array}-nya bernama $A$ dan dimulai dari indeks 1 (\foreignTerm{one-based}).
+  \item Anggap \textit{array} $A$ dimulai dari indeks 1 (\foreignTerm{one-based}).
   \item Misalkan kita memiliki fungsi $sum(k) = \sum\limits_{i=1}^k A[i]$.
   \item Untuk $sum(0)$, sesuai definisi nilainya adalah $0$.
 \end{itemize}
