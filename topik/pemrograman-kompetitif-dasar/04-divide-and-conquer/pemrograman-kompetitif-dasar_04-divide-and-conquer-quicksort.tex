@@ -58,9 +58,9 @@
 \frametitle{Konsep (lanj.)}
 Jika dikaitkan dengan \fdivideAndConquer:
 \begin{itemize}
-  \item \foreignTerm{Divide}: partisi \farray menjadi dua seperti yang dijelaskan sebelumnya.
-  \item \foreignTerm{Conquer}: ketika \farray tinggal satu elemen, berarti sudah terurut.
-  \item \foreignTerm{Combine}: tempelkan hasil \fquickSort bagian kiri dan kanan.
+  \item \foreignTerm{divide}: partisi \farray menjadi dua seperti yang dijelaskan sebelumnya.
+  \item \foreignTerm{conquer}: ketika \farray tinggal satu elemen, berarti sudah terurut.
+  \item \foreignTerm{combine}: tempelkan hasil \fquickSort bagian kiri dan kanan.
 \end{itemize}
 \end{frame}
 
@@ -321,8 +321,8 @@ Terdapat beberapa strategi pemilihan $pivot$ untuk mencegah hasil partisi yang t
   \item \fQuickSort memiliki sifat \emp{tidak} \foreignTerm{stable}.
   \item Artinya jika dua elemen $a_1$ dan $a_2$ memenuhi:
   \begin{itemize}
-    \item memiliki yang nilai sama
-    \item sebelum diurutkan $a_1$ terletak sebelum $a_2$
+    \item memiliki yang nilai sama, dan
+    \item sebelum diurutkan $a_1$ terletak sebelum $a_2$,
   \end{itemize}
   maka setelah diurutkan \emp{tidak} dijamin $a_1$ tetap terletak sebelum $a_2$.
 \end{itemize}

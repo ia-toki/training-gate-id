@@ -22,11 +22,11 @@
 
 \begin{frame}
 \frametitle{Konsep}
-Secara umum, \fdivideAndConquer terdiri dari tiga tahap:
+Secara umum, \newTerm{\fdivideAndConquer} terdiri dari tiga tahap:
 \begin{itemize}
-  \item \newTerm{Divide}: membagi masalah yang besar menjadi masalah-masalah yang lebih kecil.
-  \item \newTerm{Conquer}: ketika sebuah masalah sudah cukup kecil untuk diselesaikan, langsung selesaikan.
-  \item \newTerm{Combine}: menggabungkan solusi dari masalah-masalah yang lebih kecil menjadi solusi untuk masalah yang besar.
+  \item \newTerm{divide}: membagi masalah yang besar menjadi masalah-masalah yang lebih kecil.
+  \item \newTerm{conquer}: ketika sebuah masalah sudah cukup kecil untuk diselesaikan, langsung selesaikan.
+  \item \newTerm{combine}: menggabungkan solusi dari masalah-masalah yang lebih kecil menjadi solusi untuk masalah yang besar.
 \end{itemize}
 \end{frame}
 
@@ -44,9 +44,9 @@ Secara umum, \fdivideAndConquer terdiri dari tiga tahap:
 \newline
 Prinsip kerja algoritma ini adalah:
 \begin{itemize}
-  \item \foreignTerm{Divide}: jika \farray yang akan diurutkan berukuran besar, bagi menjadi dua \farray sama besar.
-  \item \foreignTerm{Conquer}: ketika \farray sudah cukup kecil untuk diurutkan, lakukan pengurutan.
-  \item \foreignTerm{Combine}: dari dua \farray yang telah terurut, gabungkan menjadi sebuah \farray terurut.
+  \item \foreignTerm{divide}: jika \farray yang akan diurutkan berukuran besar, bagi menjadi dua \farray sama besar.
+  \item \foreignTerm{conquer}: ketika \farray sudah cukup kecil untuk diurutkan, lakukan pengurutan.
+  \item \foreignTerm{combine}: dari dua \farray yang telah terurut, gabungkan menjadi sebuah \farray terurut.
 \end{itemize}
 \end{frame}
 
@@ -335,11 +335,11 @@ Menggabungkan $arr[aLeft..aRight]$ dengan $arr[bLeft..bRight]$ yang telah teruru
 \begin{frame}
 \frametitle{Catatan Tentang Merge Sort}
 \begin{itemize}
-  \item \fMergeSort memiliki sifat \foreignTerm{stable}.
+  \item \fMergeSort memiliki sifat \newTerm{\foreignTerm{stable}}.
   \item Artinya jika dua elemen $a_1$ dan $a_2$ memenuhi:
   \begin{itemize}
-    \item memiliki yang nilai sama
-    \item sebelum diurutkan $a_1$ terletak sebelum $a_2$
+    \item memiliki yang nilai sama, dan
+    \item sebelum diurutkan $a_1$ terletak sebelum $a_2$,
   \end{itemize}
   maka setelah diurutkan $a_1$ tetap terletak sebelum $a_2$.
 \end{itemize}
