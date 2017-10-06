@@ -15,7 +15,7 @@
 \frametitle{Pendahuluan}
 Melalui dokumen ini, kita akan:
 \begin{itemize}
-  \item Mempelajari \newTerm{aturan perkalian} dan \newTerm{aturan penjumlahan}.
+  \item Mempelajari \newTerm{aturan perkalian}, \newTerm{penjumlahan}, dan \newTerm{pembagian}.
   \item Mempelajari \newTerm{permutasi}.
   \item Mempelajari \newTerm{kombinasi}.
   \item Memahami \newTerm{segitiga pascal}.
@@ -89,7 +89,7 @@ Melalui dokumen ini, kita akan:
 \begin{frame}
 \frametitle{Contoh Soal 2}
 \begin{itemize}
-  \item Contoh soal ini merupakan lanjutan dari \newTerm{Contoh Soal 1}.
+  \item Contoh soal ini merupakan lanjutan dari Contoh Soal 1.
   \item Deskripsi soal, jumlah kota dan jalur serta susunan jalur yang ada sama persis dengan soal tersebut.
   \item Tambahkan 1 jalur lagi, yaitu $e_{6}$ yang menghubungkan kota A dan C.
   \item Berapa banyak cara berbeda untuk menuju kota C dari kota A?
@@ -170,15 +170,15 @@ Melalui dokumen ini, kita akan:
 \end{frame}
 
 \begin{frame}
-\frametitle{Redundansi}
+\frametitle{Aturan Pembagian}
 \begin{itemize}
-  \item Redundansi sering disebut juga dengan \newTerm{aturan pembagian}.
+  \item \newTerm{Aturan pembagian} terkadang disebut juga sebagai redundansi.
   \item Apabila terdapat $K$ susunan cara berbeda yang kita anggap merupakan 1 cara yang sama, maka kita dapat membagi total keseluruhan cara dengan $K$, sehingga $K$ cara tersebut dianggap sama sebagai 1 cara.
 \end{itemize}
 \end{frame}
 
 \begin{frame}
-\frametitle{Contoh Redundansi}
+\frametitle{Contoh Aturan Pembagian}
 \begin{itemize}
   \item Banyak kata berbeda yang disusun dari huruf-huruf penyusun "TOKI" adalah $4!$ (menggunakan aturan perkalian).
   \item Apabila kita ganti soal tersebut, yaitu kata berbeda yang disusun dari huruf-huruf penyusun "BACA", solusi $4!$ merupakan solusi yang salah.
@@ -187,7 +187,7 @@ Melalui dokumen ini, kita akan:
 \end{frame}
 
 \begin{frame}
-\frametitle{Contoh Redundansi (lanj.)}
+\frametitle{Contoh Aturan Pembagian (lanj.)}
 \begin{itemize}
   \item Terdapat 2! cara berbeda tetapi yang kita anggap sama, yaitu penggunaan $A_{1}A_{2}$ dan $A_{2}A_{1}$.
   \item Sehingga banyak kata berbeda yang dapat kita bentuk dari huruf-huruf penyusun kata "BACA" adalah $\frac{4!}{2!} = \frac{24}{2} = 12$ kata berbeda.
@@ -382,12 +382,12 @@ Melalui dokumen ini, kita akan:
   \item Kita ingin mencari banyaknya susunan nilai berbeda dari $X_{1}, X_{2}, X_{3}, ..., X_{r}$ yang mana $X_{1} + X_{2} + X_{3} + ... + X_{r} = n$.
   \item Untuk membagi $n$ objek tersebut menjadi $r$ bagian, maka akan dibutuhkan $r-1$ buah pembatas, sehingga akan terdapat $n+r-1$ buah objek, yang mana kita akan memilih $r-1$ objek untuk menjadi simbol \texttt{|}.
   \item Dengan kata lain, banyaknya susunan nilai yang berbeda adalah $C^{n+r-1}_{r-1}$.
-  \item Inilah yang kita kenal dengan istilah \newTerm{kombinasi dengan pengulangan}.
+  \item Inilah yang kita kenal dengan istilah \newTerm{kombinasi dengan perulangan}.
 \end{itemize}
 \end{frame}
 
 \begin{frame}
-\frametitle{Kombinasi dengan Pengulangan}
+\frametitle{Kombinasi dengan Perulangan}
 \begin{itemize}
   \item Misalkan terdapat $r$ jenis objek dan kita akan mengambil $n$ objek, dengan tiap jenisnya dapat diambil 0 atau beberapa kali.
   \item Banyaknya cara berbeda yang memenuhi syarat tersebut adalah sebagai berikut:
@@ -401,7 +401,7 @@ Melalui dokumen ini, kita akan:
 \begin{frame}
 \frametitle{Segitiga Pascal}
 \begin{itemize}
-  \item Segitiga Pascal merupakan susunan dari koefisien-koefisien binomial dalam bentuk segitiga.
+  \item \newTerm{Segitiga Pascal} merupakan susunan dari koefisien-koefisien binomial dalam bentuk segitiga.
   \item Nilai dari baris ke-$n$ suku ke-$r$ adalah $C^{n}_{r}$.
   \item Contoh Segitiga Pascal:
   \begin{itemize} 
@@ -473,7 +473,7 @@ Melalui dokumen ini, kita akan:
 \begin{frame}
 \frametitle{Penutup}
 \begin{itemize}
-  \item Materi ini berisi mengenai Kombinatorika Dasar dan implementasinya yang umum digunakan dalam pemrograman kompetitif.
+  \item Materi ini berisi mengenai kombinatorika dasar dan implementasinya yang umum digunakan dalam pemrograman kompetitif.
   \item Dengan materi ini, Anda diharapkan dapat menggunakan konsep kombinatorika yang ada.
 \end{itemize}
 \end{frame}
