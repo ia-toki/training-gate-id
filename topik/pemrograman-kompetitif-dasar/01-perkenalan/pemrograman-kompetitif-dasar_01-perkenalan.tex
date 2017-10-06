@@ -15,20 +15,21 @@
 Selamat datang di topik \newTerm{Pemrograman Kompetitif Dasar}!
 \newline
 \newline
-Anda diharapkan telah menguasai pemrograman dasar dan mampu:
+Anda diharapkan telah menguasai materi pemrograman dasar, dan:
 \begin{itemize}
   \item Mengetahui setidaknya satu bahasa pemrograman.
   \item Mampu membaca dan menulis program.
 \end{itemize}
-Mulai bab ini, semua kode program akan dituliskan dalam \newTerm{pseudocode}.
+~\newline
+Mulai dari bab ini, seluruh kode program akan dituliskan dalam \newTerm{pseudocode}.
 \end{frame}
 
 \begin{frame}
 \frametitle{Pseudocode}
 \begin{itemize}
-  \item Merupakan bahasa informal serupa dengan bahasa pemrograman untuk mendeskripsikan program.
+  \item Merupakan \emp{bahasa informal} yang mirip dengan bahasa pemrograman untuk mendeskripsikan program.
   \item Biasa digunakan pada materi pembelajaran algoritma.
-  \item Pseudocode sendiri bukanlah bahasa pemrograman sungguhan.
+  \item \textit{Pseudocode} sendiri bukanlah bahasa pemrograman sungguhan.
 \end{itemize}
 \end{frame}
 
@@ -47,10 +48,13 @@ Mulai bab ini, semua kode program akan dituliskan dalam \newTerm{pseudocode}.
       \End
     \End
 \end{codebox}
+\end{frame}
 
+\begin{frame}
+\frametitle{Pseudocode (lanj.)}
 \begin{itemize}
-  \item Memahami pseudocode pada awalnya mungkin sulit.
-  \item Seiring berjalannya waktu, Anda akan terbiasa dan memahami betapa mudahnya menggunakan pseudocode.
+  \item Memahami \textit{pseudocode} pada awalnya mungkin sulit.
+  \item Seiring berjalannya waktu, Anda akan terbiasa memahami dan menggunakan \textit{pseudocode} dengan mudah.
 \end{itemize}
 \end{frame}
 
@@ -74,9 +78,9 @@ Peserta ditantang untuk:
 \begin{frame}
 \frametitle{Tentang Pemrograman Kompetitif (lanj.)}
 \begin{itemize}
-  \item Masalah yang diberikan adalah \foreignTerm{well-defined problems}.
-  \item \foreignTerm{Well-defined problem} adalah sebuah masalah yang telah terdefinsi dengan baik, seperti asumsi yang diperlukan dan batasan masalah.
-  \item Solusi atas masalah ditulis dalam bentuk program program dan memenuhi batas-batas yang ditentukan.
+  \item Masalah yang diberikan selalu terdefinisi dengan jelas (\foreignTerm{well-defined}).
+  \item Contohnya, batasan masalah dan asumsi yang diperlukan diberikan dengan akurat dan tidak ambigu.
+  \item Solusi ditulis dalam bentuk program program dan memenuhi batas-batas yang ditentukan.
   \item Batas yang ditentukan: waktu, memori, dan lainnya.
 \end{itemize}
 \end{frame}
@@ -84,7 +88,7 @@ Peserta ditantang untuk:
 \begin{frame}
 \frametitle{Contoh Soal Pemrograman Kompetitif}
 \begin{itemize}
-  \item Terdapat $N$ buah ruangan yang dinomori dari 1 hingga $N$
+  \item Terdapat $N$ ruangan yang dinomori dari 1 hingga $N$.
   \item Ruangan ke-$i$ memiliki sebuah lampu dan sebuah tombol.
   \item Bila tombol itu ditekan, keadaan lampu pada seluruh ruangan ke-$x$ akan berubah (dari mati menjadi menyala, atau sebaliknya), yang mana $x$ habis dibagi $i$.
   \item Contoh, bila $N$ = 10 dan tombol di ruangan ke-2 ditekan, maka keadaan lampu pada ruangan 2, 4, 6, 8, dan 10 akan berubah.
@@ -97,7 +101,7 @@ Peserta ditantang untuk:
 \begin{itemize}
   \item Batas waktu: 1 detik.
   \item Batas memori: 32 MB.
-  \item Diketahui $1 \leq N \leq 10^{14}$.
+  \item Nilai $N$ dijamin selalu memenuhi $1 \leq N \leq 10^{14}$.
 \end{itemize}
 \end{frame}
 
@@ -109,7 +113,7 @@ Salah satu cara penyelesaiannya adalah dengan mensimulasikan skenario pada deskr
   \item Mulai dari ruangan ke-1, dipastikan keadaan lampu pada ruangan ke-$N$ akan berubah ($N$ habis dibagi 1).
   \item Lanjut ke ruangan ke-2, periksa apakah 2 habis membagi $N$. Bila ya, ubah keadaan lampu ke-$N$.
   \item Lanjut ke ruangan ke-3, periksa apakah 3 habis membagi $N$. Bila ya, ubah keadaan lampu ke-$N$.
-  \item ... dan seterusnya sampai ruangan ke-$N$.
+  \item ... dan seterusnya hingga ruangan ke-$N$.
 \end{itemize}
 \end{frame}
 
@@ -119,24 +123,24 @@ Salah satu cara penyelesaiannya adalah dengan mensimulasikan skenario pada deskr
   \item Setelah selesai disimulasikan, periksa keadaan lampu ruangan ke-$N$ dan cetak jawabannya.
   \item Kompleksitas solusi ini adalah $O(N)$, dan hanya akan bekerja untuk nilai $N$ yang kecil.
   \item Untuk $N$ yang lebih besar, misalnya $N = 10^9$, kemungkinan besar diperlukan waktu lebih dari 1 detik.
+  \item Solusi ini tidak akan mendapatkan nilai penuh, atau bahkan 0, tergantung skema penilaian yang digunakan.
 \end{itemize}
 \end{frame}
 
 \begin{frame}
 \frametitle{Solusi yang Lebih Baik}
 \begin{itemize}
-  \item Dengan observasi, yang sebenarnya perlu dilakukan adalah memeriksa banyaknya pembagi dari $N$.
+  \item Dengan sedikit observasi, yang sebenarnya perlu dilakukan adalah menghitung banyaknya pembagi dari $N$.
   \item Apabila banyaknya pembagi ganjil, berarti pada akhirnya lampu di ruangan ke-$N$ akan menyala (mengapa?).
-  \item Bila genap, berarti lampu di ruangan ke-$N$ akan tetap mati.
+  \item Bila genap, berarti lampu di ruangan ke-$N$ akan mati.
 \end{itemize}
 \end{frame}
 
 \begin{frame}
 \frametitle{Solusi yang Lebih Baik (lanj.)}
 \begin{itemize}
-  \item Untuk mencari banyaknya pembagi dari $N$ dengan lebih efisien, lakukan faktorisasi prima terlebih dahulu.
+  \item Untuk menghitung banyaknya pembagi dari $N$ dengan efisien, lakukan faktorisasi prima terlebih dahulu.
   \item Misalkan $N$ = 12, maka faktorisasi primanya adalah $2^2 \times 3$.
-  \newline
   \item Untuk menjadi pembagi dari 12, suatu bilangan hanya boleh:
   \begin{itemize}
     \item Memiliki faktor 2 maksimal sebanyak 2.
@@ -164,7 +168,8 @@ Sebagai contoh, berikut daftar seluruh pembagi dari 12:
 \begin{itemize}
   \item Banyaknya pembagi dari 12 sebenarnya sama saja dengan banyaknya kombinasi yang bisa dipilih dari $\lbrace 2^0$, $2^1$, $2^2\rbrace $ dan $\lbrace 3^0$, $3^1\rbrace$.
   \item Banyaknya kombinasi sama dengan mengalikan banyaknya elemen pada tiap-tiap himpunan.
-  \item Sehingga banyaknya cara ada $3 \times 2 = 6$ cara.
+  \item Sehingga, banyaknya cara adalah $3 \times 2 = 6$ cara.
+  \item Dengan demikian, banyaknya pembagi dari 12 adalah 6.
 \end{itemize}
 \end{frame}
 
@@ -191,17 +196,18 @@ Sebagai contoh, berikut daftar seluruh pembagi dari 12:
     $(1+p_1) \times (1+p_2) \times (1+p_3) \times ... \times (1+p_k)$
     \newline
   \end{center}
-  \item Jadi cukup faktorkan $N$, lalu periksa banyak pembaginya.
-  \item Faktorisasi bilangan bisa diimplementasikan dalam $O(\sqrt{N})$ dan 1 detik cukup untuk $N$ sampai $10^{14}$.
+  \item Sehingga, cukup faktorkan $N$, lalu hitung banyak pembaginya dengan rumus tersebut.
+  \item Faktorisasi bilangan dapat diimplementasikan dalam $O(\sqrt{N})$.
+  \item 1 detik cukup untuk $N$ sampai $10^{14}$.
 \end{itemize}
 \end{frame}
 
 \begin{frame}
 \frametitle{Ajang Pemrograman Kompetitif}
 \begin{itemize}
-  \item Olimpiade Sains Nasional (OSN) bidang komputer/informatika merupakan kompetisi tingkat nasional di Indonesia.
-  \item International Olympiad in Informatics (IOI) merupakan kompetisi tingkat internasional bagi siswa SMA dari seluruh dunia.
-  \item Untuk mahasiswa, terdapat ACM-ICPC (ACM International Collegiate Programming Contest) yang pesertanya terdiri dari tim-tim beranggotakan tiga orang.
+  \item Olimpiade Sains Nasional (\newTerm{OSN}) bidang komputer/informatika merupakan kompetisi tingkat nasional di Indonesia.
+  \item International Olympiad in Informatics (\newTerm{IOI}) merupakan kompetisi tingkat internasional bagi siswa SMA dari seluruh dunia.
+  \item Untuk mahasiswa, terdapat ACM International Collegiate Programming Contest (\newTerm{ACM-ICPC}) yang pesertanya terdiri dari tim-tim beranggotakan tiga orang.
 \end{itemize}
 \end{frame}
 
@@ -222,7 +228,7 @@ Sebagai contoh, berikut daftar seluruh pembagi dari 12:
 \end{frame}
 
 \begin{frame}
-\frametitle{Latihan}
+\frametitle{Penutup}
 \begin{itemize}
   \item Sebagai pemanasan, silakan mengerjakan soal-soal latihan yang diberikan.
 \end{itemize}
