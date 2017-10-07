@@ -42,8 +42,8 @@ Melalui dokumen ini, kalian akan:
 \begin{frame} 
 \frametitle{Formulasi}
 \begin{itemize}
-  \item Definisikan sebuah fungsi $g(i,c)$ sebagai jumlah harga maksimum yang mungkin diperoleh, jika kita hanya mempunyai barang ke-$1$ sampai ke-$i$ dan sisa kapasitas tas kita adalah $c$ gram.
-  \item Untuk menghitung fungsi $g(i,c)$ kita bisa mencoba-coba apakah kita akan memasukkan barang ke-$i$ ke tas atau tidak.
+  \item Definisikan sebuah fungsi $dp(i,c)$ sebagai jumlah harga maksimum yang mungkin diperoleh, jika kita hanya mempunyai barang ke-$1$ sampai ke-$i$ dan sisa kapasitas tas kita adalah $c$ gram.
+  \item Untuk menghitung fungsi $dp(i,c)$ kita bisa mencoba-coba apakah kita akan memasukkan barang ke-$i$ ke tas atau tidak.
 \end{itemize}
 \end{frame}
 
@@ -51,8 +51,8 @@ Melalui dokumen ini, kalian akan:
 \frametitle{Formulasi Rekurens}
 \begin{itemize}
   \item Jika kita memasukkan barang ke-$i$ ke tas, maka kita akan menyisakan barang ke-$1$ sampai ke-$(i-1)$ dan sisa kapasitas tas menjadi $c-w_i$. 
-  \item Harga barang yang didapatkan pada kasus ini adalah $g(i-1,c-w_i)$ ditambah dengan harga yang kita peroleh pada barang ke-$i$.
-  \item Dapat dituliskan $g(i, c) = g(i-1, c-w_i) + v_i$.
+  \item Harga barang yang didapatkan pada kasus ini adalah $dp(i-1,c-w_i)$ ditambah dengan harga yang kita peroleh pada barang ke-$i$.
+  \item Dapat dituliskan $dp(i, c) = dp(i-1, c-w_i) + v_i$.
   \item Kasus ini hanya boleh dipertimbangkan jika $c \geq w_i$.
 \end{itemize}
 \end{frame}
@@ -61,8 +61,8 @@ Melalui dokumen ini, kalian akan:
 \frametitle{Formulasi Rekurens (lanj.)}
 \begin{itemize}
   \item Jika kita tidak memasukkan barang ke-$i$ ke tas, maka kita akan menyisakan barang ke-$1$ sampai ke-$(i-1)$ dan sisa kapasitas tas masih tetap $c$.
-  \item Harga barang didapatkan pada kasus ini adalah $g(i-1,c)$, tanpa tambahan apapun (kita tidak mengambil barang ke-$i$).
-  \item Dapat dituliskan $g(i, c) = g(i-1, c)$.
+  \item Harga barang didapatkan pada kasus ini adalah $dp(i-1,c)$, tanpa tambahan apapun (kita tidak mengambil barang ke-$i$).
+  \item Dapat dituliskan $dp(i, c) = dp(i-1, c)$.
 \end{itemize}
 \end{frame}
 
@@ -72,10 +72,10 @@ Melalui dokumen ini, kalian akan:
   \item Dari kedua pilihan keputusan tersebut, kita tertarik dengan yang menghasilkan nilai terbesar.
   \item Cukup bandingkan mana yang lebih besar, antara:
   \begin{itemize}
-    \item $g(i-1, c-w_i) + v_i$, atau
-    \item $g(i-1, c)$
+    \item $dp(i-1, c-w_i) + v_i$, atau
+    \item $dp(i-1, c)$
   \end{itemize}
-  \item Dapat dituliskan: $g(i, c) = \max(g(i-1,c-w_i)+v_i,g(i-1,c))$. \newline
+  \item Dapat dituliskan: $dp(i, c) = \max(dp(i-1,c-w_i)+v_i,dp(i-1,c))$. \newline
   \item Kembali ditekankan bahwa pilihan memasukkan barang ke-$i$ hanya boleh dipertimbangkan jika $c \geq w_i$.
 \end{itemize}
 \end{frame}
@@ -84,19 +84,19 @@ Melalui dokumen ini, kalian akan:
 \frametitle{Formulasi Base Case}
 \begin{itemize}
   \item Jika $i=0$, maka berarti tidak ada lagi barang yang tersedia. 
-  \item Ini berarti $g(i,c) = 0$.
+  \item Ini berarti $dp(i,c) = 0$.
   \item Kasus ini menjadi \fbasecase.
 \end{itemize}
 \end{frame}
 
 \begin{frame} 
 \frametitle{Formulasi Akhir}
-$g(i,c)$ dapat dirumuskan sebagai berikut:
+$dp(i,c)$ dapat dirumuskan sebagai berikut:
 \begin{small}
-\[g(i,c) = \left\{\begin{array}{lr}
+\[dp(i,c) = \left\{\begin{array}{lr}
     0, & i = 0\\
-    g(i-1,c), & i > 0 \wedge c < w_i\\
-    \max(g(i-1,c-w_i)+v_i,g(i-1,c)), & i > 0 \wedge c \geq w_i\\
+    dp(i-1,c), & i > 0 \wedge c < w_i\\
+    \max(dp(i-1,c-w_i)+v_i,dp(i-1,c)), & i > 0 \wedge c \geq w_i\\
     \end{array}\right.\]
 \end{small}
 \end{frame}
@@ -104,54 +104,57 @@ $g(i,c)$ dapat dirumuskan sebagai berikut:
 \begin{frame} 
 \frametitle{Analisis Kompleksitas}
 \begin{itemize}
-  \item Terdapat $O(N)$ nilai berbeda untuk nilai $i$ dan $O(G)$ nilai berbeda untuk nilai $c$ pada $g(i,c)$.
-  \item Dibutuhkan $O(1)$ untuk menghitung $g(i,c)$. 
-  \item Sehingga untuk menghitung seluruh nilai $g(i,c)$ untuk seluruh $i$ dan $c$ dibutuhkan waktu $O(NG)$.
+  \item Terdapat $O(N)$ nilai berbeda untuk nilai $i$ dan $O(G)$ nilai berbeda untuk nilai $c$ pada $dp(i,c)$.
+  \item Dibutuhkan $O(1)$ untuk menghitung $dp(i,c)$. 
+  \item Sehingga untuk menghitung seluruh nilai $dp(i,c)$ untuk seluruh $i$ dan $c$ dibutuhkan waktu $O(NG)$.
 \end{itemize}
 \end{frame}
 
 \begin{frame}
-\frametitle{Solusi Top Down}
-Kita implementasikan $g(i, c)$ sebagai fungsi $\proc{solve}(i,c)$:
+\frametitle{Solusi Top-Down}
+Kita implementasikan $dp(i, c)$ sebagai fungsi $\proc{solve}(i,c)$:
 \begin{codebox}
 \Procname{$\proc{solve}(i, c)$}
 \li \If $(i \isequal 0)$ \Then
 \li   \Return $0$
-\li \ElseIf $hasComputed[i][c]$ \Then
+    \End
+\li \If $computed[i][c]$ \Then
 \li   \Return $memo[i][c]$ 
-\li \Else
-\li   $best \gets \proc{solve}(i-1, c)$
-\li   \If $(c \geq w[i])$ \Then
-\li     $best \gets \max(best, \proc{solve}(i - 1, c-w[i]) + v[i])$
-      \End  
-\li   $hasComputed[i][c] \gets true$
-\li   $memo[i][c] \gets best$
-\li   \Return $best$
+    \End
+\li $best \gets \proc{solve}(i-1, c)$
+\li \If $(c \geq w[i])$ \Then
+\li   $best \gets \max(best, \proc{solve}(i - 1, c-w[i]) + v[i])$
+    \End  
+\li $computed[i][c] \gets true$
+\li $memo[i][c] \gets best$
+\li \Return $best$
     \End
 \end{codebox}
 
-Jawaban ada pada $\proc{solve}(N, G)$
+Jawaban akhirnya ada pada $\proc{solve}(N, G)$.
 \end{frame}
 
 \begin{frame}
-\frametitle{Solusi Bottom Up}
+\frametitle{Solusi Bottom-Up}
 \begin{codebox}
 \Procname{$\proc{solve}()$}
+\li \Comment Base case
 \li \For $c \gets 0$ \To $G$ \Do
-\li   $g[0][c] \gets 0$ \Comment Base case...
+\li   $dp[0][c] \gets 0$
     \End
 \zi
 \li \Comment Isi "tabel" dari kasus yang kecil ke besar
 \li \For $i \gets 1$ \To $N$ \Do
 \li   \For $c \gets 0$ \To $G$ \Do
-\li     $best \gets g[i-1][c]$
+\li     $best \gets dp[i-1][c]$
 \li     \If $(c \geq w[i])$ \Then
-\li       $best \gets \max(best, g[i - 1][c-w[i]] + v[i])$
+\li       $best \gets \max(best, dp[i - 1][c-w[i]] + v[i])$
         \End  
-\li     $g[i][c] \gets best$
+\li     $dp[i][c] \gets best$
       \End
     \End    
-\li \Return $g[N][G]$
+\zi    
+\li \Return $dp[N][G]$
     \End
 \end{codebox}
 \end{frame}
@@ -193,7 +196,7 @@ Cara lain adalah memotong pada titik 4, titik 2, lalu titik 7 dan memerlukan usa
 \begin{frame}
 \frametitle{Solusi Greedy?}
 \begin{itemize}
-  \item Apakah strategi \fGreedy dengan memotong "setengah-tengahnya" selalu menghasilkan solusi optimal?
+  \item Apakah strategi \fgreedy dengan memotong "setengah-tengahnya" selalu menghasilkan solusi optimal?
   \item Bagaimana dengan kasus jika $M = 2000$ dan $L = [1, 2, 3, 4, 5, 1000]$?
   \item Kita akan coba menggunakan DP untuk persoalan ini.
 \end{itemize}
@@ -213,8 +216,8 @@ Cara lain adalah memotong pada titik 4, titik 2, lalu titik 7 dan memerlukan usa
 \begin{frame}
 \frametitle{Formulasi Rekurens}
 \begin{itemize}
-  \item Definisikan sebuah fungsi $g(l,r)$ sebagai jumlah usaha minimum yang mungkin diperoleh, jika kita hanya perlu memotong di $L_{l}, L_{l+1}, ..., L_{r}$.
-  \item Untuk menghitung $g(l,r)$ kita dapat mencoba titik mana yang kita potong pertama kali.
+  \item Definisikan sebuah fungsi $dp(l,r)$ sebagai jumlah usaha minimum yang mungkin diperoleh, jika kita hanya perlu memotong di $L_{l}, L_{l+1}, ..., L_{r}$.
+  \item Untuk menghitung $dp(l,r)$ kita dapat mencoba titik mana yang kita potong pertama kali.
   \item Jika kita memotong di $L_m$ $(l \leq m \leq r)$, maka kita akan mendapatkan dua potongan.
 \end{itemize}
 \begin{figure}
@@ -230,8 +233,8 @@ Cara lain adalah memotong pada titik 4, titik 2, lalu titik 7 dan memerlukan usa
 \begin{itemize}
   \item Total usaha yang dibutuhkan jika kita melakukan pemotongan di $L_m$ adalah jumlah dari:
   \begin{itemize}
-    \item Total usaha minimum dari potongan pertama, yaitu $g(l,m-1)$.
-    \item Total usaha minimum dari potongan kedua, yaitu $g(m+1,r)$.
+    \item Total usaha minimum dari potongan pertama, yaitu $dp(l,m-1)$.
+    \item Total usaha minimum dari potongan kedua, yaitu $dp(m+1,r)$.
     \item Usaha untuk pemotongan ini, yaitu $L_{r+1} - L_{l-1}$.
   \end{itemize}
   \item Untuk mempermudah, asumsikan $L_0 = 0$ dan $L_{N+1} = M$.
@@ -242,7 +245,7 @@ Cara lain adalah memotong pada titik 4, titik 2, lalu titik 7 dan memerlukan usa
 \frametitle{Formulasi Base Case}
 \begin{itemize}
   \item Ketika $l>r$, artinya sudah tidak ada pemotongan yang perlu dilakukan.
-  \item Dengan demikian, usaha yang dibutuhkan adalah 0, atau $g(l,r) = 0$.
+  \item Dengan demikian, usaha yang dibutuhkan adalah 0, atau $dp(l,r) = 0$.
 \end{itemize}
 \end{frame}
 
@@ -250,9 +253,9 @@ Cara lain adalah memotong pada titik 4, titik 2, lalu titik 7 dan memerlukan usa
 \frametitle{Formulasi Akhir}
 Dapat dirumuskan:
 \begin{small}
-\[g(l,r) = \left\{\begin{array}{lr}
+\[dp(l,r) = \left\{\begin{array}{lr}
     0, & l>r\\
-    \min_{l \leq m \leq r} g(l,m-1) + g(m+1,r) + (L_{r+1} - L_{l-1}), & l \leq r \\
+    \min_{l \leq m \leq r} dp(l,m-1) + dp(m+1,r) + (L_{r+1} - L_{l-1}), & l \leq r \\
     \end{array}\right.\]
 \end{small}
 \end{frame}
@@ -260,35 +263,35 @@ Dapat dirumuskan:
 \begin{frame} 
 \frametitle{Analisis Kompleksitas}
 \begin{itemize}
-  \item Terdapat $O(N)$ nilai berbeda untuk nilai $l$ dan $O(N)$ nilai berbeda untuk nilai $r$ pada $g(l,r)$.
-  \item Dibutuhkan iterasi sebanyak $O(N)$ untuk menghitung $g(l,r)$. 
-  \item Sehingga untuk menghitung seluruh nilai $g(l,r)$ untuk seluruh $l$ dan $r$ dibutuhkan waktu $O(N^3)$.
+  \item Terdapat $O(N)$ nilai berbeda untuk nilai $l$ dan $O(N)$ nilai berbeda untuk nilai $r$ pada $dp(l,r)$.
+  \item Dibutuhkan iterasi sebanyak $O(N)$ untuk menghitung $dp(l,r)$. 
+  \item Sehingga untuk menghitung seluruh nilai $dp(l,r)$ untuk seluruh $l$ dan $r$ dibutuhkan waktu $O(N^3)$.
 \end{itemize}
 \end{frame}
 
 \begin{frame}
-\frametitle{Solusi Top Down}
-Kita implementasikan $g(l, r)$ sebagai fungsi $\proc{solve}(l,r)$:
+\frametitle{Solusi Top-Down}
+Kita implementasikan $dp(l, r)$ sebagai fungsi $\proc{solve}(l,r)$:
 \begin{small}
 \begin{codebox}
 \Procname{$\proc{solve}(l, r)$}
 \li \If $(l > r)$ \Then
 \li   \Return $0$
-\li \ElseIf $hasComputed[l][r]$ \Then
+   \End
+\li \If $computed[l][r]$ \Then
 \li   \Return $memo[l][r]$ 
-\li \Else
-\li   $best \gets \infty$
-\li   $cost \gets L[r+1] - L[l-1]$
-\li   \For $m \gets l$ \To $r$ \Do
-\li     $best \gets \min(best, \proc{solve}(l,m-1) + \proc{solve}(m+1, r) + cost)$
-      \End  
-\li   $hasComputed[l][r] \gets true$
-\li   $memo[l][r] \gets best$
-\li   \Return $best$
-    \End
+\li \End
+\li $best \gets \infty$
+\li $cost \gets L[r+1] - L[l-1]$
+\li \For $m \gets l$ \To $r$ \Do
+\li   $best \gets \min(best, \proc{solve}(l,m-1) + \proc{solve}(m+1, r) + cost)$
+    \End  
+\li $computed[l][r] \gets true$
+\li $memo[l][r] \gets best$
+\li \Return $best$
 \end{codebox}
 \end{small}
-Jawaban ada pada $\proc{solve}(1, N)$
+Jawaban akhirnya ada pada $\proc{solve}(1, N)$.
 \end{frame}
 
 \begin{frame}
@@ -296,10 +299,10 @@ Jawaban ada pada $\proc{solve}(1, N)$
 \begin{small}
 \begin{codebox}
 \Procname{$\proc{solve}()$}
-\li \Comment Inisialisasi base case
+\li \Comment Base case
 \li \For $l \gets 0$ \To $N+1$ \Do
 \li   \For $r \gets 0$ \To $l-1$ \Do
-\li     $g[l][r] \gets 0$
+\li     $dp[l][r] \gets 0$
       \End
     \End
 \zi
@@ -310,13 +313,13 @@ Jawaban ada pada $\proc{solve}(1, N)$
 \li     $best \gets \infty$
 \li     $cost \gets L[r+1] - L[l-1]$
 \li     \For $m \gets l$ \To $r$ \Do
-\li       $best \gets \min(best, g[l][m-1] + g[m+1][r] + cost)$
+\li       $best \gets \min(best, dp[l][m-1] + dp[m+1][r] + cost)$
         \End  
-\li     $g[l][r] \gets best$
+\li     $dp[l][r] \gets best$
       \End
     \End
 \zi
-\li \Return $g[1][N]$
+\li \Return $dp[1][N]$
 \end{codebox}
 \end{small}
 \end{frame}
@@ -327,11 +330,11 @@ Jawaban ada pada $\proc{solve}(1, N)$
   \item Perhatikan bahwa pada metode \fbottomup, pengisian "tabel" dilakukan secara "tidak biasa".
   \item Kita perlu mengisi mulai dari:
   \begin{itemize}
-    \item $g[1][1], g[2][2], ..., g[N][N]$,
-    \item lalu $g[1][2], g[2][3], ..., g[N-1][N]$,
-    \item lalu $g[1][3], g[2][4], ..., g[N-2][N]$,
-    \item lalu $g[1][4], g[2][5], ..., g[N-3][N]$,    
-    \item dan seterusnya sampai $g[1][N]$.
+    \item $dp[1][1], dp[2][2], ..., dp[N][N]$,
+    \item lalu $dp[1][2], dp[2][3], ..., dp[N-1][N]$,
+    \item lalu $dp[1][3], dp[2][4], ..., dp[N-2][N]$,
+    \item lalu $dp[1][4], dp[2][5], ..., dp[N-3][N]$,    
+    \item dan seterusnya sampai $dp[1][N]$.
   \end{itemize}
   \item Ingat bahwa pengisian "tabel" harus dilakukan dari kasus yang kecil ke besar.
   \item Definisi "kasus kecil" pada masalah ini adalah kayu dengan titik-titik pemotongan yang lebih sedikit.

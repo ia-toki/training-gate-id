@@ -15,7 +15,7 @@
 \frametitle{Pendahuluan}
 Melalui dokumen ini, kalian akan:
 \begin{itemize}
-  \item Memahami konsep \foreignTerm{Dynamic Programming} (DP).
+  \item Memahami konsep \newTerm{\fdp} (DP).
   \item Menyelesaikan contoh persoalan DP sederhana.
 \end{itemize}
 \end{frame}
@@ -24,16 +24,17 @@ Melalui dokumen ini, kalian akan:
 \frametitle{Motivasi}
 \begin{itemize}
   \item Diberikan $M$ jenis koin, masing-masing jenis bernilai $a_1, a_2, ..., a_M$ rupiah.
-  \item Asumsikan terdapat tak hingga koin untuk setiap nominal koin yang ada. 
-  \item Tentukan berapa banyaknya minimum koin untuk membayar sebesar $N$ rupiah!
+  \item Asumsikan banyaknya koin untuk setiap nominal yang ada tak terbatas. 
+  \item Tentukan banyaknya koin paling sedikit untuk membayar \emp{tepat} sebesar $N$ rupiah!
+  \item (Persoalan ini biasa disebut dengan \foreignTerm{coin change}.)
 \end{itemize}
 \end{frame}
 
 \begin{frame}
 \frametitle{Solusi Greedy}
 \begin{itemize}
-  \item Mari kita coba menyelesaikan masalah ini secara \fGreedy.
-  \item Salah satu algoritma \fGreedy yang mungkin adalah dengan menggunakan koin terbesar yang $\leq$ sisa uang yang harus dibayar.
+  \item Mari kita coba menyelesaikan masalah ini secara \fgreedy.
+  \item Salah satu algoritma \fgreedy yang mungkin adalah dengan selalu menggunakan koin terbesar yang $\leq$ sisa uang yang harus dibayar.
 \end{itemize}
 \end{frame}
 
@@ -42,26 +43,27 @@ Melalui dokumen ini, kalian akan:
 \begin{itemize}
   \item Misalkan kita memiliki nominal koin 1 rupiah, 6 rupiah, dan 10 rupiah dan ingin membayar 12 rupiah.
   \item Dengan algoritma sebelumnya, kita akan menggunakan koin 10 rupiah terlebih dahulu. 
-  \item Karena tersisa 2 rupiah, berikutnya kita akan menggunakan 2 koin 1 rupiah, sehingga totalnya kita menggunakan 3 koin.
-  \item Namun, ada solusi lebih baik: 2 koin 6 rupiah.
-  \item Algoritma \fGreedy ini tidak memberikan solusi terbaik.
+  \item Karena tersisa 2 rupiah, berikutnya kita akan menggunakan 2 koin 1 rupiah, sehingga totalnya kita menggunakan \emp{3} koin.
+  \item Namun, ada solusi lebih baik: \emp{2} koin 6 rupiah.
+  \item Algoritma \fgreedy ini tidak memberikan solusi terbaik.
 \end{itemize}
 \end{frame}
 
 \begin{frame}
 \frametitle{Observasi}
 \begin{itemize}
-  \item Untuk membayar $N$ rupiah, kita dapat memilih salah satu koin terlebih dahulu.
-  \item Jika nilai koin itu adalah $a_k$, maka sisa uang uang perlu kita bayar adalah $N-a_k$.
-  \item Dalam kasus ini, terdapat $M$ pilihan koin untuk $a_k$.
+  \item Anggaplah kita membayar $N$ rupiah dengan koin-koin \emp{satu-persatu}.
+  \item Pastilah terdapat \emp{koin pertama} yang kita bayarkan.
+  \item Jika nilai koin itu adalah $a_k$, maka \emp{sisa uang} yang perlu kita bayar adalah $N-a_k$.
+  \item Dalam kasus ini, terdapat $M$ \emp{pilihan} koin untuk $a_k$.
 \end{itemize}
 \end{frame}
 
 \begin{frame}
 \frametitle{Observasi (lanj.)}
 \begin{itemize}
-  \item Perhatikan bahwa penukaran $N - a_k$ merupakan suatu sub-persoalan yang serupa dengan persoalan awalnya.
-  \item Artinya, cara yang sama untuk menyelesaikan sub-persoalan dapat digunakan.
+  \item Perhatikan bahwa penukaran $N - a_k$ merupakan suatu subpersoalan yang serupa dengan persoalan awalnya.
+  \item Artinya, cara yang sama untuk menyelesaikan subpersoalan dapat digunakan.
   \item Kita akan menggunakan strategi penyelesaian secara rekursif.
 \end{itemize}
 \end{frame}
@@ -69,8 +71,8 @@ Melalui dokumen ini, kalian akan:
 \begin{frame}
 \frametitle{Solusi Rekursif}
 \begin{itemize}
-  \item Definisikan sebuah fungsi $f(x)$ sebagai banyaknya koin minimum yang dibutuhkan untuk membayar $x$ rupiah.
-  \item Kita dapat mencoba-coba koin yang ingin kita gunakan.
+  \item Definisikan sebuah fungsi $f(x)$ sebagai banyaknya koin minimum yang dibutuhkan untuk membayar tepat $x$ rupiah.
+  \item Kita dapat mencoba-coba satu koin yang ingin kita gunakan.
   \item Jika suatu koin $a_k$ digunakan, maka kita membutuhkan $f(x-a_k)$ koin ditambah satu koin $a_k$.
   \item Atau dapat ditulis $f(x) = f(x-a_k) + 1$
   \item Pencarian nilai $f(x-a_k)$ dilakukan secara rekursif, kita kembali mencoba-coba koin yang ingin digunakan.
@@ -89,18 +91,18 @@ Melalui dokumen ini, kalian akan:
 \begin{frame}
 \frametitle{Solusi Rekursif (lanj.)}
 \begin{itemize}
-  \item Jika $f(x)$ dihitung secara rekursif, apa yang menjadi \fbasecase?
+  \item Jika $f(x)$ dihitung secara rekursif, apa yang menjadi \newTerm{\fbasecase}?
   \item Kasus terkecilnya adalah $f(0)$, yang artinya kita hendak membayar 0 rupiah.
   \item Membayar 0 rupiah tidak membutuhkan satu pun koin, sehinga $f(0) = 0$.
 \end{itemize}
 \end{frame}
 
 \begin{frame}
-\frametitle{Solusi rekursif}
+\frametitle{Solusi Rekursif (lanj.)}
 Secara matematis, hubungan rekursif ini dituliskan:
 \[f(x) = \left\{\begin{array}{lr}
-    0, & n = 0\\
-    \min_{1 \leq k \leq M, a_k \leq x} {f(x - a_k) + 1}, & n > 0\\
+    0, & x = 0\\
+    \min_{1 \leq k \leq M, a_k \leq x} {f(x - a_k) + 1}, & x > 0\\
     \end{array}\right. \]
 \end{frame}
 
@@ -111,22 +113,21 @@ Kita implementasikan $f(x)$ sebagai fungsi $\proc{solve}(x)$:
 \Procname{$\proc{solve}(x)$}
 \li \If $(x \isequal 0)$ \Then
 \li   \Return $0$
-\li \Else
-\li   $best \gets \infty$
-\li   \For $k \gets 1$ \To $M$ \Do
-\li     \If $(a_k \leq x)$ \Then
-\li       $best \gets \min(best, \proc{solve}(x - a_k) + 1)$
-        \End
+\li \End
+\li $best \gets \infty$
+\li \For $k \gets 1$ \To $M$ \Do
+\li   \If $(a_k \leq x)$ \Then
+\li     $best \gets \min(best, \proc{solve}(x - a_k) + 1)$
       \End
-\li   \Return $best$
     \End
+\li   \Return $best$
 \end{codebox}
 
 Jawaban akhirnya ada pada $\proc{solve}(N)$.
 \end{frame}
 
 \begin{frame} [fragile]
-\frametitle{Solusi rekursif (lanj.)}
+\frametitle{Solusi Rekursif (lanj.)}
 Mari kita lihat pohon rekursi yang dihasilkan oleh fungsi $f$. 
 
 Berikut untuk $f(12)$ dengan nominal koin 1, 6, dan 10 rupiah.
@@ -176,7 +177,7 @@ Berikut untuk $f(12)$ dengan nominal koin 1, 6, dan 10 rupiah.
 \end{frame}
 
 \begin{frame}
-\frametitle{Solusi rekursif (lanj.)}
+\frametitle{Solusi Rekursif (lanj.)}
 \begin{itemize}
   \item Jika diperhatikan pada pohon rekursi, terdapat $O(M)$ cabang untuk setiap pemanggilan $f$.
   \item Untuk menghitung nilai $f(N)$, kita akan memiliki pohon rekursi yang kira-kira sedalam $O(N)$.
@@ -186,7 +187,7 @@ Berikut untuk $f(12)$ dengan nominal koin 1, 6, dan 10 rupiah.
 \end{frame}
 
 \begin{frame}
-\frametitle{Solusi rekursif (lanj.)}
+\frametitle{Solusi Rekursif (lanj.)}
 \begin{itemize}
   \item Biasanya solusi eksponensial berjalan sangat lambat.
   \item Cobalah Anda hitung nilai $O(M^N)$ dengan $M=3$ dan $N=100$, untuk menyadari betapa lambatnya solusi ini!
@@ -258,21 +259,19 @@ Jika diperhatikan, ternyata banyak $f(x)$ yang dihitung berkali-kali. Sebagai co
 \Procname{$\proc{solve}(x)$}
 \li \If $(x \isequal 0)$ \Then
 \li   \Return $0$
-\li \ElseIf $hasComputed[x]$ \Then
-\li   \Comment Langsung kembalikan
-\li   \Return $memo[x]$ 
-\li \Else
-\li   $best \gets \infty$
-\li   \For $k \gets 1$ \To $M$ \Do
-\li     \If $(a_k \leq x)$ \Then
-\li       $best \gets \min(best, \proc{solve}(x - a_k) + 1)$
-        \End
-      \End
-\li   \Comment Catat hasilnya      
-\li   $hasComputed[x] \gets true$
-\li   $memo[x] \gets best$
-\li   \Return $best$
     \End
+\li \If $computed[x]$ \Then
+\li   \Return $memo[x]$ \Comment Langsung kembalikan
+\li \End
+\li $best \gets \infty$
+\li \For $k \gets 1$ \To $M$ \Do
+\li   \If $(a_k \leq x)$ \Then
+\li     $best \gets \min(best, \proc{solve}(x - a_k) + 1)$
+      \End
+    \End     
+\li $computed[x] \gets true$ \Comment Tandai bahwa sudah pernah dihitung 
+\li $memo[x] \gets best$
+\li \Return $best$
 \end{codebox}
 \end{frame}
 
@@ -288,8 +287,8 @@ Jika diperhatikan, ternyata banyak $f(x)$ yang dihitung berkali-kali. Sebagai co
 \begin{frame} 
 \frametitle{Dynamic Programming}
 \begin{itemize}
-  \item Merupakan metode penyelesaian persoalan yang melibatkan pengambilan keputusan dengan memanfaatkan informasi dari penyelesaian sub-persoalan yang sama namun lebih kecil.
-  \item Solusi sub-persoalan tersebut hanya dihitung satu kali dan disimpan di memori.
+  \item Merupakan metode penyelesaian persoalan yang melibatkan pengambilan keputusan dengan memanfaatkan informasi dari penyelesaian subpersoalan yang sama namun lebih kecil.
+  \item Solusi subpersoalan tersebut hanya dihitung satu kali dan disimpan di memori.
   \item Jika sebuah persoalan adalah masalah optimisasi, maka biasanya kita mencoba semua kemungkinan solusi sub-problem yang dihasilkan, dan  mengambil yang hasilnya paling optimal. 
 \end{itemize}
 \end{frame}
@@ -298,14 +297,14 @@ Jika diperhatikan, ternyata banyak $f(x)$ yang dihitung berkali-kali. Sebagai co
 \frametitle{Dynamic Programming}
 Terdapat dua cara mengimplementasikan DP
 \begin{itemize}
-  \item \newTerm{\fTopdown}: diimplementasikan secara rekursif sambil mencatat nilai yang sudah ditemukan (memoisasi).
-  \item \newTerm{\fBottomup}: diimplementasikan secara iteratif dengan menghitung mulai dari kasus yang kecil ke besar.
+  \item \newTerm{\ftopdown}: diimplementasikan secara rekursif sambil mencatat nilai yang sudah ditemukan (memoisasi).
+  \item \newTerm{\fbottomup}: diimplementasikan secara iteratif dengan menghitung mulai dari kasus yang kecil ke besar.
   \newline
 \end{itemize}
 \end{frame}
 
 \begin{frame} 
-\frametitle{Top Down}
+\frametitle{Top-Down}
 \begin{itemize}
   \item Cara yang sebelumnya kita gunakan adalah \ftopdown.
   \item Kata memoisasi berasal dari "memo", yang artinya catatan.
@@ -328,7 +327,7 @@ Terdapat dua cara mengimplementasikan DP
 \end{frame}
 
 \begin{frame}
-\frametitle{Solusi Coin Change dengan Bottom Up}
+\frametitle{Solusi dengan Bottom-Up}
 Secara \fbottomup, kita hitung semua nilai $f(x)$ untuk \newline semua nilai $x$ dari $0$ sampai $N$ secara menaik.
 
 Nilai dari $f(x)$ disimpan dalam \farray $f[x]$.
@@ -521,8 +520,8 @@ Jadi kita selesai mengisi "tabel" DP.\newline
 \end{frame}
 
 \begin{frame}
-\frametitle{Top Down dan Bottom Up}
-Top Down
+\frametitle{Top-Down dan Bottom-Up}
+\fTopdown
 \begin{itemize}
   \item Sebuah transformasi natural dari formula rekursif, biasanya mudah diimplementasikan.
   \item Urutan pengisian tabel tidak penting.
@@ -533,8 +532,8 @@ Top Down
 \end{frame}
 
 \begin{frame}
-\frametitle{Top Down dan Bottom Up (lanj.)}
-Bottom Up
+\frametitle{Top-Down dan Bottom-Up (lanj.)}
+\fBottomup
 \begin{itemize}
   \item Tidak mengalami perlambatan dari \foverhead pemanggilan fungsi.
   \item Memungkinkan penggunaan teknik DP lanjutan seperti \foreignTerm{flying table}, kombinasi dengan struktur data \foreignTerm{tree}, dsb.
@@ -544,7 +543,7 @@ Bottom Up
 \end{frame}
 
 \begin{frame}
-\frametitle{Top Down dan Bottom Up (lanj.)}
+\frametitle{Top-Down dan Bottom-Up (lanj.)}
 \begin{itemize}
   \item Beberapa orang lebih alami untuk menggunakan \ftopdown, sementara sisanya lebih terbiasa dengan \fbottomup.
   \item Bergantung dari cara berpikir Anda, salah satunya mungkin lebih mudah Anda pelajari.
