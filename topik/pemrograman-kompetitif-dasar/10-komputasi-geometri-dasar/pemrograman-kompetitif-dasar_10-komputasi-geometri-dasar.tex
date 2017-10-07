@@ -22,7 +22,7 @@ Melalui dokumen ini, kalian akan:
 \begin{frame}
 \frametitle{Titik}
 \begin{itemize}
-  \item Titik merupakan elemen mendasar pada dunia geometri.
+  \item \newTerm{Titik} merupakan elemen mendasar pada dunia geometri.
   \item Titik dapat didefinisikan pada 2 dimensi, 3 dimensi, atau lebih.
   \item Pada persoalan pemrograman, umumnya titik didefinisikan pada bidang 2 dimensi.
   \item Pada bidang 2 dimensi, titik dapat dianggap berada pada suatu koordinat ($x$, $y$).
@@ -34,7 +34,7 @@ Melalui dokumen ini, kalian akan:
 \begin{frame}
 \frametitle{Garis}
 \begin{itemize}
-  \item Garis merupakan himpunan seluruh titik ($x$, $y$), yang memenuhi suatu persamaan $Ax + By = C$, dengan $A, B,$ dan $C$ merupakan suatu bilangan riil.
+  \item \newTerm{Garis} merupakan himpunan seluruh titik ($x$, $y$), yang memenuhi suatu persamaan $Ax + By = C$, dengan $A, B,$ dan $C$ merupakan suatu bilangan riil.
   \item Bentuk lain dari persamaan garis yang umum adalah $y = mx + c$, dengan $m$ dan $c$ suatu bilangan riil.
 \end{itemize}  
 \begin{figure}
@@ -84,7 +84,7 @@ m &=& -\frac{A}{B} \\
 \begin{frame}
 \frametitle{Segmen Garis}
 \begin{itemize}
-  \item Segmen garis merupakan garis yang terdefinisi dari suatu titik $(x_1, y_1)$ ke titik $(x_2, y_2)$
+  \item \newTerm{Segmen garis} merupakan garis yang terdefinisi dari suatu titik $(x_1, y_1)$ ke titik $(x_2, y_2)$
   \item Perhatikan bahwa berbeda dengan segmen garis, garis memiliki panjang yang tak berhingga.
   \item Segmen garis dapat direpresentasikan dengan dua titik, yaitu ujung-ujungnya.
 \end{itemize}
@@ -96,7 +96,7 @@ m &=& -\frac{A}{B} \\
 \begin{frame}
 \frametitle{Jarak Euclidean}
 \begin{itemize}
-  \item Jarak Euclidean adalah definisi jarak yang umum digunakan pada bidang 2 dimensi atau ruang 3 dimensi.
+  \item \newTerm{Jarak Euclidean} adalah definisi jarak yang umum digunakan pada bidang 2 dimensi atau ruang 3 dimensi.
   \item Jarak pada bidang 2 dimensi dari dua titik A(x, y) dan B(x, y) adalah:
 
   \(dist(A, B) = \sqrt{(A.x - B.x)^2 + (A.y - B.y)^2} \)
@@ -110,7 +110,7 @@ m &=& -\frac{A}{B} \\
 \begin{frame}
 \frametitle{Segitiga}
 \begin{itemize}
-  \item Merupakan bidang 2 dimensi yang paling mendasar.
+  \item \newTerm{Segitiga} merupakan bangun 2 dimensi yang paling mendasar.
   \item Segitiga terdiri dari 3 titik sudut, yang mana antar titik sudut terhubung oleh segmen garis.
   \item Berdasarkan panjang segmen garisnya, segitiga dapat berupa segitiga sama kaki, sama sisi, siku-siku, atau sembarang.
 \end{itemize}
@@ -147,7 +147,7 @@ m &=& -\frac{A}{B} \\
 \frametitle{Luas Segitiga (Rumus Heron)}
 \begin{itemize}
   \item Ada kalanya kita tidak tahu tinggi dari segitiga, sehingga rumus sebelumnya tidak dapat digunakan.
-  \item Alternatif lain adalah menggunakan Rumus Heron, yaitu:\newline
+  \item Alternatif lain adalah menggunakan \newTerm{rumus Heron}, yaitu:\newline
     
   \(\displaystyle L = \sqrt{s(s-a)(s-b)(s-c)} \) \newline 
   
@@ -203,8 +203,8 @@ m &=& -\frac{A}{B} \\
 \frametitle{Tentang Pi}
 \begin{itemize}
   \item Pi merupakan konstanta dalam matematika, dan digunakan dalam pencarian luas atau keliling lingkaran.
-  \item Hati-hati! Nilai Pi \textbf{tidak sama dengan} \(\displaystyle \frac{22}{7}\).
-  \item Penggunaan \(\displaystyle \frac{22}{7}\) hanyalah aproksimasi dari nilai Pi yang sesungguhnya.
+  \item Hati-hati! Nilai pi \textbf{tidak sama dengan} \(\displaystyle \frac{22}{7}\).
+  \item Penggunaan \(\displaystyle \frac{22}{7}\) hanyalah aproksimasi dari nilai pi yang sesungguhnya.
 \end{itemize}
 \begin{eqnarray*}
 \pi &=& 3.14159265359.. \\
@@ -216,9 +216,9 @@ m &=& -\frac{A}{B} \\
 \begin{frame}
 \frametitle{Tentang Pi (lanj.)}
 \begin{itemize}
-  \item Untuk perhitungan pada kompetisi pemrograman, Anda dapat menggunakan nilai Pi yang diberikan pada soal.
-  \item Jika soal tidak memberikan nilai Pi yang digunakan, Anda dapat mencarinya dengan fungsi \foreignTerm{arc-cosinus}, yaitu fungsi pada trigonometri.
-  \item Nilai Pi didapatkan dari:
+  \item Untuk perhitungan pada kompetisi pemrograman, Anda dapat menggunakan nilai pi yang diberikan pada soal.
+  \item Jika soal tidak memberikan nilai pi yang digunakan, Anda dapat mencarinya dengan fungsi \foreignTerm{arc-cosinus}, yaitu fungsi pada trigonometri.
+  \item Nilai pi didapatkan dari:
   \begin{itemize}
     \item Pascal: $arccos(-1)$
     \item C++: $acos(-1)$ (memerlukan include cmath)
