@@ -1,6 +1,6 @@
 \input{../config.tex}
 
-\title{Struktur Data Non Linear: \newline Heap}
+\title{Struktur Data Nonlinear: \newline Heap}
 \author{Tim Olimpiade Komputer Indonesia}
 \date{}
 
@@ -56,10 +56,10 @@ Berikut contoh operasinya dan perilaku yang diharapkan:
 \frametitle{Analisis Solusi Sederhana}
 \begin{itemize}
   \item Misalkan $N$ menyatakan banyaknya elemen pada \farray.
-  \item Dengan cara ini, operasi add($x$) berlangsung dalam $O(N \log{N})$, apabila pengurutannya menggunakan \progTerm{Quicksort}.
+  \item Dengan cara ini, operasi add($x$) berlangsung dalam $O(N \log{N})$, apabila pengurutannya menggunakan \foreignTerm{quicksort}.
   \item Operasi getMax() dan deleteMax() berlangsung dalam $O(1)$.
   \newline
-  \item Perhatikan bahwa pengurutan akan lebih efisien jika digunakan \progTerm{Insertion Sort}, sehingga kompleksitas add($x$) menjadi $O(N)$.
+  \item Perhatikan bahwa pengurutan akan lebih efisien jika digunakan \foreignTerm{insertion sort}, sehingga kompleksitas add($x$) menjadi $O(N)$.
 \end{itemize}
 \end{frame}
 
@@ -67,8 +67,8 @@ Berikut contoh operasinya dan perilaku yang diharapkan:
 \frametitle{Analisis Solusi Sederhana}
 \begin{table}[ht]
   \begin{tabular}{|l|c|}
-    \hline Operasi  & Dengan Sorting\\
-    \hline  add($x$) & $O(N)$  \\
+    \hline Operasi  & Dengan sorting\\
+    \hline  add($x$) & $O(N log N)$  \\
     \hline  getMax() & $O(1)$ \\
     \hline  deleteMax() & $O(1)$ \\
     \hline
@@ -99,9 +99,9 @@ Berikut contoh operasinya dan perilaku yang diharapkan:
 \frametitle{Operasi Heap}
 \pHeap mendukung operasi:
 \begin{itemize}
-  \item \progTerm{Push}, yaitu memasukan elemen baru ke penyimpanan.
-  \item \progTerm{Pop}, yaitu membuang elemen \textbf{terbesar} dari penyimpanan.
-  \item \progTerm{Top}, yaitu mengakses elemen \textbf{terbesar} dari penyimpanan. 
+  \item \foreignTerm{push}, yaitu memasukan elemen baru ke penyimpanan.
+  \item \foreignTerm{pop}, yaitu membuang elemen \textbf{terbesar} dari penyimpanan.
+  \item \foreignTerm{top}, yaitu mengakses elemen \textbf{terbesar} dari penyimpanan. 
 \end{itemize}
 \end{frame}
 
@@ -109,15 +109,15 @@ Berikut contoh operasinya dan perilaku yang diharapkan:
 \frametitle{Cara Kerja Heap}
 \begin{itemize}
   \item \pHeap dapat diimplementasikan dengan berbagai cara.
-  \item Kita akan mempelajari salah satunya, yaitu \pBinaryHeap.
-  \item Sebelum itu, diperlukan pengetahuan mengenai \progTerm{tree}.
+  \item Kita akan mempelajari salah satunya, yaitu \pbinaryHeap.
+  \item Sebelum itu, diperlukan pengetahuan mengenai \ftree.
 \end{itemize}
 \end{frame}
 
 \begin{frame}
 \frametitle{Tree}
 \begin{itemize}
-  \item Seperti yang telah dipelajari, \ftree merupakan suatu \fgraph yang setiap \fnode-nya saling terhubung dan tidak memiliki \foreignTerm{cycle}.
+  \item Seperti yang telah dipelajari, \ftree merupakan suatu graf yang setiap \fnode-nya saling terhubung dan tidak memiliki \foreignTerm{cycle}.
 \end{itemize}
 \begin{figure}
   \includegraphics[width=7cm]{asset/tree.pdf}
@@ -127,7 +127,7 @@ Berikut contoh operasinya dan perilaku yang diharapkan:
 \begin{frame}
 \frametitle{Rooted Tree}
 \begin{itemize}
-  \item Suatu \ftree yang memiliki akar, atau \fnode yang berada di paling atas disebut sebagai \foreignTerm{rooted-tree}.
+  \item Suatu \ftree yang memiliki akar, atau \fnode yang berada di paling atas disebut sebagai \foreignTerm{rooted tree}.
 \end{itemize}
 \begin{figure}
   \includegraphics[width=7cm]{asset/rooted-tree.pdf}
@@ -137,7 +137,7 @@ Berikut contoh operasinya dan perilaku yang diharapkan:
 \begin{frame}
 \frametitle{Binary Tree}
 \begin{itemize}
-  \item Suatu \foreignTerm{rooted-tree} yang setiap \fnode-nya memiliki 0, 1, atau 2 anak disebut dengan \foreignTerm{Binary Tree}.
+  \item Suatu \foreignTerm{rooted tree} yang setiap \fnode-nya memiliki 0, 1, atau 2 anak disebut dengan \foreignTerm{binary tree}.
 \end{itemize}
 \begin{figure}
   \includegraphics[width=7cm]{asset/binary-tree.pdf}
@@ -147,7 +147,7 @@ Berikut contoh operasinya dan perilaku yang diharapkan:
 \begin{frame}
 \frametitle{Full Binary Tree}
 \begin{itemize}
-  \item Suatu \foreignTerm{binary tree} yang seluruh \fnode-nya memiliki 2 anak, kecuali tingkat paling bawah yang tidak memiliki anak, disebut dengan \foreignTerm{Full Binary Tree}
+  \item Suatu \foreignTerm{binary tree} yang seluruh \fnode-nya memiliki 2 anak, kecuali tingkat paling bawah yang tidak memiliki anak, disebut dengan \foreignTerm{full binary Tree}
   \item Bila banyaknya \fnode adalah $N$, maka ketinggiannya adalah $O(\log{N})$.
 \end{itemize}
 \begin{figure}
@@ -157,7 +157,7 @@ Berikut contoh operasinya dan perilaku yang diharapkan:
 
 \begin{frame}
 \frametitle{Complete Binary Tree}
-\foreignTerm{Complete Binary Tree} adalah \foreignTerm{binary tree} yang:
+\foreignTerm{Complete binary tree} adalah \foreignTerm{binary tree} yang:
 \begin{itemize}
   \item Seluruh \fnode-nya memiliki 2 anak, kecuali tingkat paling bawah.
   \item Tingkat paling bawahnya dapat terisi sebagian, tetapi harus terisi dari kiri ke kanan.
@@ -172,7 +172,7 @@ Berikut contoh operasinya dan perilaku yang diharapkan:
 
 \begin{frame}
 \frametitle{Bukan Complete Binary Tree}
-Berikut bukan \foreignTerm{Complete Binary Tree}, sebab elemen di tingkat paling bawah tidak berisi dari kiri ke kanan (terdapat lubang).
+Berikut bukan \foreignTerm{complete binary tree}, sebab elemen di tingkat paling bawah tidak berisi dari kiri ke kanan (terdapat lubang).
 \begin{figure}
   \includegraphics[width=7cm]{asset/not-complete-binary-tree-1.pdf}
 \end{figure}
@@ -180,7 +180,7 @@ Berikut bukan \foreignTerm{Complete Binary Tree}, sebab elemen di tingkat paling
 
 \begin{frame}
 \frametitle{Bukan Complete Binary Tree}
-Berikut juga bukan \foreignTerm{Complete Binary Tree}, sebab terdapat \fnode tanpa 2 anak pada tingkat bukan paling bawah.
+Berikut juga bukan \foreignTerm{complete binary tree}, sebab terdapat \fnode tanpa 2 anak pada tingkat bukan paling bawah.
 \begin{figure}
   \includegraphics[width=7cm]{asset/not-complete-binary-tree-2.pdf}
 \end{figure}
@@ -216,8 +216,8 @@ Bukan binary heap.
 \begin{itemize}
   \item Struktur seperti ini menjamin operasi-operasi yang dilayani \pheap dapat dilakukan secara efisien.
   \item Misalkan $N$ adalah banyaknya elemen yang sedang disimpan.
-  \item Operasi \progTerm{push} dan \progTerm{pop} bekerja dalam $O(\log{N})$, sementara \progTerm{top} bekerja dalam $O(1)$.
-  \item Kita akan melihat satu per satu bagaimana operasi tersebut dilaksanakan.
+  \item Operasi \foreignTerm{push} dan \foreignTerm{pop} bekerja dalam $O(\log{N})$, sementara \foreignTerm{top} bekerja dalam $O(1)$.
+  \item Kita akan melihat satu persatu bagaimana operasi tersebut dilaksanakan.
 \end{itemize}
 \end{frame}
 
@@ -248,7 +248,7 @@ Tambahkan \fnode.
 
 \begin{frame}
 \frametitle{Operasi Push (lanj.)}
-Karena orang tua-nya memiliki nilai lebih kecil, tukar nilainya.
+Karena \foreignTerm{parent}-nya memiliki nilai lebih kecil, tukar nilainya.
 \begin{figure}
   \includegraphics[width=9cm]{asset/push-2.pdf}
 \end{figure}
@@ -256,7 +256,7 @@ Karena orang tua-nya memiliki nilai lebih kecil, tukar nilainya.
 
 \begin{frame}
 \frametitle{Operasi Push (lanj.)}
-Karena orang tua-nya masih memiliki nilai lebih kecil, tukar lagi.
+Karena \foreignTerm{parent}-nya masih memiliki nilai lebih kecil, tukar lagi.
 \begin{figure}
   \includegraphics[width=9cm]{asset/push-3.pdf}
 \end{figure}
@@ -264,7 +264,7 @@ Karena orang tua-nya masih memiliki nilai lebih kecil, tukar lagi.
 
 \begin{frame}
 \frametitle{Operasi Push (lanj.)}
-Orang tua-nya sudah memiliki nilai yang lebih besar.\newline Operasi push selesai.
+\foreignTerm{Parent}-nya sudah memiliki nilai yang lebih besar.\newline Operasi \foreignTerm{push} selesai.
 \begin{figure}
   \includegraphics[width=9cm]{asset/push-4.pdf}
 \end{figure}
@@ -361,8 +361,8 @@ Kini sudah tidak ada anak yang bernilai lebih besar, operasi pop selesai.
 Penerapan \pheap pada persoalan motivasi:
 \begin{table}[ht]
   \begin{tabular}{|l|c|c|}
-    \hline Operasi  & Dengan Sorting & Dengan Heap \\
-    \hline  add($x$) & $O(N)$ & $O(\log{N})$\\
+    \hline Operasi  & Dengan sorting & Dengan Heap \\
+    \hline  add($x$) & $O(N log N)$ & $O(\log{N})$\\
     \hline  getMax() & $O(1)$ & $O(1)$\\
     \hline  deleteMax() & $O(1)$ & $O(\log{N})$\\
     \hline
@@ -378,7 +378,7 @@ Kini seluruh operasi dapat dilakukan dengan efisien.
 \begin{frame}
 \frametitle{Membuat Tree}
 \begin{itemize}
-  \item Representasi \ftree pada implementasi dapat menggunakan teknik representasi \fgraph yang telah dipelajari sebelumnya.
+  \item Representasi \ftree pada implementasi dapat menggunakan teknik representasi graf yang telah dipelajari sebelumnya.
   \item Namun, untuk \ftree dengan kondisi tertentu, kita dapat menggunakan representasi yang lebih sederhana.
   \item Terutama pada kasus ini, yang mana \ftree yang diperlukan adalah \foreignTerm{complete binary tree}.
 \end{itemize}
@@ -495,7 +495,7 @@ Buat juga beberapa fungsi yang akan membantu mempermudah penulisan kode.
   \Return $arr[size-1]$
 \end{codebox}
 
-... sangat sederhana
+... sangat sederhana.
 \end{frame}
 
 \begin{frame}
@@ -515,7 +515,7 @@ Untuk membuat \pheap dari $N$ elemen, caranya adalah:
   \item Untuk semua \fnode, mulai dari tingkat kedua dari paling bawah:
   \begin{itemize}
     \item Misalkan \fnode ini adalah \fnode $x$.
-    \item Pastikan \fsubtree yang bermula pada \fnode $x$ \textbf{membentuk \pheap} dengan operasi baru, yaitu \textbf{heapify}.
+    \item Pastikan \fsubtree yang bermula pada \fnode $x$ \textbf{membentuk \pheap} dengan operasi baru, yaitu \newTerm{heapify}.
   \end{itemize}
 \end{enumerate}
 \end{frame}
@@ -536,7 +536,7 @@ Untuk membuat \pheap dari $N$ elemen, caranya adalah:
   \item Berhubung kedua anak telah membentuk \pheap, kita cukup memindahkan elemen \foreignTerm{root} ke posisi yang tepat.
   \item Jika elemen \foreignTerm{root} sudah lebih besar daripada elemen anaknya, tidak ada yang perlu dilakukan.
   \item Sementara bila elemen \foreignTerm{root} lebih kecil daripada salah satu elemen anaknya, tukar elemennya dengan elemen salah satu anaknya yang \textbf{paling besar}.
-  \item Kegiatan ini sebenarnya sangat mirip dengan yang kita lakukan pada operasi \textbf{pop}.
+  \item Kegiatan ini sebenarnya sangat mirip dengan yang kita lakukan pada operasi \foreignTerm{pop}.
 \end{itemize}
 \end{frame}
 
@@ -631,7 +631,7 @@ Angka pada \fnode menyatakan urutan pelaksanaan \foreignTerm{heapify}.
 \begin{itemize}
   \item Tentu saja, Anda dapat membuat \pheap dengan urutan yang terbalik, yaitu elemen terkecilnya di atas.
   \item Dengan demikian, operasi yang didukung adalah mencari atau menghapus elemen terkecil.
-  \item Biasanya \pheap dengan sifat ini disebut dengan \progTerm{min-heap}, sementara \pheap dengan elemen terbesar di atas disebut dengan \progTerm{max-heap}.
+  \item Biasanya \pheap dengan sifat ini disebut dengan \newTerm{min-heap}, sementara \pheap dengan elemen terbesar di atas disebut dengan \newTerm{max-heap}.
   \item Agar lebih rapi, Anda dapat menggunakan \progTerm{struct} (C) atau \progTerm{class} (C++) pada implementasi \pheap.
 \end{itemize}
 \end{frame}
@@ -639,17 +639,16 @@ Angka pada \fnode menyatakan urutan pelaksanaan \foreignTerm{heapify}.
 \begin{frame}
 \frametitle{Manfaat Heap}
 \begin{itemize}
-  \item Pada ilmu komputer, \pheap dapat digunakan sebagai \textit{priority queue}, yaitu antrian yang terurut menurut suatu kriteria.
-  \item Sifat \pheap juga dapat digunakan untuk optimisasi suatu algoritma. Contoh paling nyatanya adalah untuk mempercepat algoritma \progTerm{Dijkstra}.
-  \item Berbagai solusi persoalan \progTerm{greedy} juga dapat diimplementasikan secara efisien dengan \pheap.
+  \item Pada ilmu komputer, \pheap dapat digunakan sebagai \textit{priority queue}, yaitu antrean yang terurut menurut suatu kriteria.
+  \item Sifat \pheap juga dapat digunakan untuk optimisasi suatu algoritma. Contoh paling nyatanya adalah untuk mempercepat algoritma Dijkstra.
+  \item Berbagai solusi persoalan \fgreedy juga dapat diimplementasikan secara efisien dengan \pheap.
 \end{itemize}
 \end{frame}
 
 \begin{frame}
 \frametitle{Library Heap}
 \begin{itemize}
-  \item Bagi pengguna C++, struktur data "priority\_queue" dari include algorithm merupakan struktur data \pheap.
-  \item Bagi pengguna Pascal, Anda perlu mengimplementasikan \pheap sendiri.
+  \item Bagi pengguna C++, struktur data \progTerm{priority\_queue} dari \textit{header} \progTerm{queue} merupakan struktur data \pheap.
 \end{itemize}
 \end{frame}
 

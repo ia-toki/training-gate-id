@@ -1,6 +1,6 @@
 \input{../config.tex}
 
-\title{Aplikasi Struktur Data Non Linear: \newline Heap Sort}
+\title{Aplikasi Struktur Data Nonlinear: \newline Heapsort}
 \author{Tim Olimpiade Komputer Indonesia}
 \date{}
 
@@ -14,14 +14,14 @@
 \frametitle{Pendahuluan}
 Melalui dokumen ini, kalian akan:
 \begin{itemize}
-  \item Menggunakan \pheap untuk \pHeapSort.
+  \item Menggunakan \pheap untuk \pheapsort.
   \item Mengamati bagaimana struktur data diaplikasikan dalam penyelesaian masalah.
 \end{itemize}
 \end{frame}
 
 \begin{frame}
 \frametitle{Kilas Balik}
-Ingat dengan \foreignTerm{Selection Sort}?\newline
+Ingat dengan \foreignTerm{selection sort}?\newline
 
 Berikut adalah algoritmanya:
 \begin{itemize}
@@ -33,14 +33,14 @@ Berikut adalah algoritmanya:
 \begin{frame}
 \frametitle{Kilas Balik (lanj.)}
 \begin{itemize}
-  \item Pencarian elemen terkecil pada \foreignTerm{Selection Sort} dilakukan dengan \foreignTerm{linear search}.
+  \item Pencarian elemen terkecil pada \foreignTerm{selection sort} dilakukan dengan \foreignTerm{linear search}.
   \item Sekarang kita telah mengetahui strategi pencarian elemen terbesar/terkecil dari sekumpulan data secara efisien.
-  \item Bagian pencarian elemen terkecil pada \foreignTerm{Selection Sort} dapat dioptimisasi menggunakan \pheap, dan algoritma pengurutan ini dinamakan \textbf{\pHeapSort}.
+  \item Bagian pencarian elemen terkecil pada \foreignTerm{selection sort} dapat dioptimisasi menggunakan \pheap, dan algoritma pengurutan ini dinamakan \newTerm{\pheapsort}.
 \end{itemize}
 \end{frame}
 
 \begin{frame}
-\frametitle{Heap Sort}
+\frametitle{Heapsort}
 Misalkan kita memiliki \farray $A$ berisi $N$ elemen yang hendak diurutkan menaik:
 \begin{enumerate}
   \item Muat seluruh elemen \farray $A$ pada \textbf{min-heap}, menggunakan \proc{makeHeap}.
@@ -53,18 +53,18 @@ Misalkan kita memiliki \farray $A$ berisi $N$ elemen yang hendak diurutkan menai
 \end{frame}
 
 \begin{frame}
-\frametitle{Analisis Heap Sort}
+\frametitle{Analisis Heapsort}
 \begin{itemize}
   \item Operasi \proc{makeHeap} bekerja dalam $O(N)$.
   \item Kemudian dilakukan $N$ kali \proc{pop}, sehingga kompleksitasnya $O(N\log{N})$.
-  \item Jadi kompleksitas akhir \pHeapSort adalah $O(N\log{N})$.
+  \item Jadi kompleksitas akhir \pheapsort adalah $O(N\log{N})$.
 \end{itemize}
 \end{frame}
 
 \begin{frame}
-\frametitle{Keuntungan Heap Sort}
+\frametitle{Keuntungan Heapsort}
 \begin{itemize}
-  \item \pHeapSort memiliki keuntungan yang sama dengan \foreignTerm{Selection Sort}, yaitu dapat melakukan \foreignTerm{partial sort}.
+  \item \pHeapsort memiliki keuntungan yang sama dengan \foreignTerm{selection sort}, yaitu dapat melakukan \foreignTerm{partial sort}.
   \item Artinya, bila Anda hanya membutuhkan $K$ elemen terkecil, Anda dapat berhenti setelah melakukan \proc{pop} sebanyak $K$ kali.
   \item Kompleksitasnya menjadi $O(N + K \log{N})$, yang lebih efisien ketika $K$ jauh lebih kecil dari $N$.
 \end{itemize}
@@ -73,9 +73,9 @@ Misalkan kita memiliki \farray $A$ berisi $N$ elemen yang hendak diurutkan menai
 \begin{frame}
 \frametitle{Penutup}
 \begin{itemize}
-  \item Kini Anda telah memahami 3 pengurutan dengan kompleksitas $O(N \log{N})$, setelah Quicksort dan Merge Sort.
-  \item Meskipun demikian, \pHeapSort lebih jarang digunakan untuk pengurutan $N$ data, karena implementasinya yang cukup rumit.
-  \item \pHeapSort hanya digunakan untuk kebutuhan tertentu, seperti \foreignTerm{partial sort}.
+  \item Kini Anda telah memahami 3 pengurutan dengan kompleksitas $O(N \log{N})$, setelah \foreignTerm{quicksort} dan \foreignTerm{merge sort}.
+  \item Meskipun demikian, \pheapsort lebih jarang digunakan untuk pengurutan $N$ data, karena implementasinya yang cukup rumit.
+  \item \pHeapsort hanya digunakan untuk kebutuhan tertentu, seperti \foreignTerm{partial sort}.
 \end{itemize}
 \end{frame}
 

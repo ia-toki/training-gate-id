@@ -1,6 +1,6 @@
 \input{../config.tex}
 
-\title{Struktur Data Non Linear: \newline Disjoint Set}
+\title{Struktur Data NonLinear: \newline Disjoint Set}
 \author{Tim Olimpiade Komputer Indonesia}
 \date{}
 
@@ -56,9 +56,9 @@ Dengan $N=5$, Berikut contoh operasinya dan perilaku yang diharapkan:
 \begin{frame}
 \frametitle{Solusi Sederhana}
 \begin{itemize}
-  \item Dengan konsep \fgraph, representasikan setiap orang sebagai \fnode.
+  \item Dengan konsep graf, representasikan setiap orang sebagai \fnode.
   \item Setiap operasi join dapat dianggap dengan penambahan \fedge.
-  \item Untuk operasi check, diperlukan \fgraphtraversal untuk memeriksa apakah kedua \fnode terhubung.
+  \item Untuk operasi check, diperlukan penjelajahan graf untuk memeriksa apakah kedua \fnode terhubung.
   \item Representasi graf yang paling efisien untuk keperluan ini adalah \fadjacencylist.
 \end{itemize}
 \end{frame}
@@ -69,11 +69,11 @@ Dengan $N=5$, Berikut contoh operasinya dan perilaku yang diharapkan:
   \begin{tabular}{|l|c|}
     \hline Operasi  & Solusi Sederhana \\
     \hline  join($a$, $b$) & $O(1)$  \\
-    \hline  check($a$, $b$) & $O(N)$ s/d $O(N^2)$\\
+    \hline  check($a$, $b$) & $O(N)$ s.d. $O(N^2)$\\
     \hline
   \end{tabular}
 \end{table}  
-Kompleksitas check mencapai $O(N^2)$ apabila \fgraphtraversal dilakukan secara naif dan seluruh kemungkinan \fedge dilalui.
+Kompleksitas check mencapai $O(N^2)$ apabila penjelajahan graf dilakukan secara naif dan seluruh kemungkinan \fedge dilalui.
 \end{frame}
 
 \begin{frame}
@@ -90,8 +90,8 @@ Kompleksitas check mencapai $O(N^2)$ apabila \fgraphtraversal dilakukan secara n
   \item \pDjs merupakan struktur data yang efisien untuk mengelompokkan elemen-elemen secara bertahap.
   \item Operasi yang didukung adalah:
   \begin{itemize}
-    \item \progTerm{Join}, yaitu menggabungkan kelompok dari sepasang elemen.
-    \item \progTerm{Check}, yaitu memeriksa apakah sepasang elemen berada di kelompok yang sama.
+    \item \foreignTerm{join}, yaitu menggabungkan kelompok dari sepasang elemen.
+    \item \foreignTerm{check}, yaitu memeriksa apakah sepasang elemen berada di kelompok yang sama.
   \end{itemize}
 \end{itemize}
 \end{frame}
@@ -121,7 +121,7 @@ Kompleksitas check mencapai $O(N^2)$ apabila \fgraphtraversal dilakukan secara n
 \frametitle{Cara Kerja Disjoint Set (lanj.)}
 \begin{itemize}
   \item Karena pada awalnya setiap elemen membentuk kelompoknya sendiri, maka awalnya setiap \foreignTerm{pointer} ini menunjuk pada dirinya sendiri.
-  \item Untuk mempermudah, mari kita sebut \foreignTerm{pointer} ini sebagai \textbf{parent}.
+  \item Untuk mempermudah, mari kita sebut \foreignTerm{pointer} ini sebagai \foreignTerm{parent}.
 \end{itemize}
 \begin{figure}
   \includegraphics[width=5cm]{asset/djs-init.pdf}
@@ -135,7 +135,7 @@ Berikut prosedur inisialisasi \pdjs untuk $N$ elemen. \newline
 Asumsikan \farray $par$ menyimpan indeks elemen yang ditunjuk sebagai \foreignTerm{parent} dari suatu elemen.
 \begin{codebox}
 \Procname{$\proc{initialize}()$}
-\li \For $i \gets 0$ \To $N-1$ \Comment Indeks elemen dimulai dari 0 (zero based)
+\li \For $i \gets 0$ \To $N-1$ \Comment Indeks elemen dimulai dari 0 (\textit{zero-based})
 \li \Do   $par[i] = i$ 
     \End
 \end{codebox}
@@ -164,8 +164,8 @@ Cukup sederhana, yaitu setiap elemen menunjuk ke dirinya sendiri.
 \end{frame}
 
 \begin{frame}
-\frametitle{Operasi Join (implementasi)}
-Secara sederhana, operasi join dapat dituliskan dalam prosedur:
+\frametitle{Operasi Join (Implementasi)}
+Secara sederhana, operasi \foreignTerm{join} dapat dituliskan dalam prosedur:
 
 \begin{codebox}
 \Procname{$\proc{join}(a, b)$}
@@ -205,7 +205,7 @@ Fungsi $\proc{findRepresentative}(x)$ dapat diimplementasikan secara rekursif, y
 \begin{frame}
 \frametitle{Memperbaiki findRepresentative}
 \begin{itemize}
-  \item Kita dapat menerapkan teknik \textbf{"path compression"}, yaitu mengubah nilai \foreignTerm{parent} dari setiap elemen yang dilalui \textbf{langsung} ke elemen perwakilan kelompok.
+  \item Kita dapat menerapkan teknik \foreignTerm{path compression}, yaitu mengubah nilai \foreignTerm{parent} dari setiap elemen yang dilalui \textbf{langsung} ke elemen perwakilan kelompok.
   \item Hal ini menjamin untuk pemanggilan $\proc{findRepresentative}$ berikutnya pada elemen yang bersangkutan bekerja secara lebih efisien.
 \end{itemize}
 \begin{figure}
@@ -273,7 +273,7 @@ Tambahkan pencatatan elemen perwakilan kelompok untuk setiap elemen yang dilalui
 \frametitle{Penutup}
 \begin{itemize}
   \item \pDjs merupakan struktur data yang sederhana dan mudah diimplementasikan.
-  \item Biasanya struktur data ini dipakai untuk membantu implementasi algoritma lainnya, seperti \progTerm{Minimum Spanning Tree Kruskal}.
+  \item Biasanya struktur data ini dipakai untuk membantu implementasi algoritma lainnya, seperti \foreignTerm{Minimum Spanning Tree Kruskal}.
   \item Setiap Anda mengingat operasi "gabung" dan "periksa", ingatlah \pdjs.
 \end{itemize}
 \end{frame}
