@@ -1,6 +1,6 @@
 \input{../config.tex}
 
-\title{Perkenalan \fGraph}
+\title{Perkenalan Graf}
 \author{Tim Olimpiade Komputer Indonesia}
 \date{}
 
@@ -19,10 +19,10 @@
 \frametitle{Pendahuluan}
 Melalui dokumen ini, kalian akan:
 \begin{itemize}
-  \item Mengenal konsep dan terminologi \fgraph.
-  \item Mengetahui jenis-jenis \fgraph.
-  \item Mengenal representasi \fgraph pada pemrograman.
-  \item Mengenal metode-metode yang digunakan dalam \fgraph.
+  \item Mengenal konsep dan terminologi graf.
+  \item Mengetahui jenis-jenis graf.
+  \item Mengenal representasi graf pada pemrograman.
+  \item Mengenal metode-metode yang digunakan dalam graf.
 \end{itemize}
 \end{frame}
 
@@ -43,12 +43,12 @@ Melalui dokumen ini, kalian akan:
 \end{center}
 \end{frame}
 
-\section{Perkenalan Graph}
+\section{Perkenalan Graf}
 \frame{\sectionpage}
 
 \begin{frame}
-\frametitle{Mengenal \fGraph}
-\fGraph adalah struktur yang terdiri dari \alert{\fnode/\foreignTerm{vertex}} dan \alert{\fedge.}\newline
+\frametitle{Mengenal Graf}
+Graf adalah struktur yang terdiri dari \newTerm{\fnode/\foreignTerm{vertex}} dan \newTerm{\fedge.}\newline
 
 \fNode direpresentasikan dengan bentuk lingkaran dan \fedge direpresentasikan dengan bentuk garis pada ilustrasi berikut:
 
@@ -59,7 +59,7 @@ Melalui dokumen ini, kalian akan:
 \end{frame}
 
 \begin{frame}
-\frametitle{Mengenal \fGraph (lanj.)}
+\frametitle{Mengenal Graf (lanj.)}
 \begin{itemize}
   \item \fEdge merupakan penghubung antar \fnode.
   \item \alert{\fDegree} suatu \fnode merupakan jumlah \fedge yang terhubung pada \fnode tersebut
@@ -72,11 +72,11 @@ Melalui dokumen ini, kalian akan:
 \end{frame}
 
 \begin{frame}
-\frametitle{Jenis \fGraph}
+\frametitle{Jenis Graf}
 Berdasarkan hubungan antar \fnode:
 \begin{itemize}
-  \item \foreignTerm{Undirected} \fgraph (dua arah): \fedge dari A ke B dapat ditelusuri dari A ke B dan B ke A. 
-  \item \foreignTerm{Directed} \fgraph (satu arah): \fedge dari A ke B hanya dapat ditelusuri dari dari A ke B.
+  \item \newTerm{Graf tak berarah}: \fedge dari A ke B dapat ditelusuri dari A ke B dan B ke A. 
+  \item \newTerm{Graf berarah}: \fedge dari A ke B hanya dapat ditelusuri dari dari A ke B.
 \end{itemize}
 \begin{figure}
   \centering
@@ -84,16 +84,16 @@ Berdasarkan hubungan antar \fnode:
   \ \ \ \ \ \ % If this works, this ain't stupid
   \includegraphics[width=4 cm]{asset/unweighted-directed.pdf}
   
-  \foreignTerm{Undirected} dan \foreignTerm{directed} \fgraph.
+  Graf tak berarah dan graf berarah
 \end{figure}
 \end{frame}
 
 \begin{frame}
-\frametitle{Jenis \fGraph (lanj.)}
+\frametitle{Jenis Graf (lanj.)}
 Berdasarkan bobot dari \fedge:
 \begin{itemize}
-  \item \foreignTerm{Unweighted} \fGraph, yaitu \fgraph dengan \fedge yang bobotnya seragam dan hanya bermakna terdapat hubungan antar \fnode.
-  \item \foreignTerm{Weighted} \fGraph, yaitu \fgraph dengan \fedge yang dapat memiliki bobot berbeda-beda. Bobot pada \fedge ini bisa jadi berupa biaya, jarak, atau waktu yang harus ditempuh jika menggunakan \fedge tersebut.
+  \item \newTerm{Graf tak berbobot}, yaitu graf dengan \fedge yang bobotnya seragam dan hanya bermakna terdapat hubungan antar \fnode.
+  \item \newTerm{Graf berbobot}, yaitu graf dengan \fedge yang dapat memiliki bobot berbeda-beda. Bobot pada \fedge ini bisa jadi berupa biaya, jarak, atau waktu yang harus ditempuh jika menggunakan \fedge tersebut.
 \end{itemize}
 \begin{figure}
   \centering
@@ -101,15 +101,15 @@ Berdasarkan bobot dari \fedge:
   \ \ \ \ \ \ % If this works, this ain't stupid
   \includegraphics[width=4 cm]{asset/weighted-undirected.pdf}
   
-  \foreignTerm{Unweighted} dan \foreignTerm{weighted} \fgraph.
+  Graf tak berbobot dan graf berbobot
 \end{figure}
 \end{frame}
 
 \begin{frame}
-\frametitle{Jenis \fGraph (lanj.)}
-Tentu saja, suatu \fgraph dapat memiliki kombinasi dari sifat-sifat tersebut.
+\frametitle{Jenis Graf (lanj.)}
+Tentu saja, suatu graf dapat memiliki kombinasi dari sifat-sifat tersebut.
 
-Misalnya \foreignTerm{weighted directed graph}:
+Misalnya graf berbobot berarah:
 \newline
 \begin{figure}
   \centering
@@ -118,13 +118,13 @@ Misalnya \foreignTerm{weighted directed graph}:
 \end{frame}
 
 \begin{frame}
-\frametitle{Representasi \fGraph pada Pemrograman}
+\frametitle{Representasi Graf pada Pemrograman}
 
 \begin{itemize}
-  \item Dalam pemrograman, dibutuhkan sebuah struktur agar data mengenai \fgraph dapat disimpan dan diolah.
+  \item Dalam pemrograman, dibutuhkan sebuah struktur agar data mengenai graf dapat disimpan dan diolah.
   \item Representasi yang akan kita pelajari adalah \fadjacencymatrix, \fadjacencylist, dan \fedgelist.
   \item Masing-masing representasi memiliki keuntungan dan kerugiannya.
-  \item Penggunaan representasi \fgraph bergantung dengan masalah yang sedang dihadapi
+  \item Penggunaan representasi graf bergantung dengan masalah yang sedang dihadapi.
 \end{itemize}
 \end{frame}
 
@@ -132,7 +132,7 @@ Misalnya \foreignTerm{weighted directed graph}:
 \frametitle{Adjacency Matrix}
 \begin{itemize}
   \item Kita akan menggunakan matriks dengan ukuran $N \times N$ dengan $N$ merupakan banyaknya \fnode.
-  \item Pada \foreignTerm{unweighted} \fgraph:
+  \item Pada graf berbobot:
   \begin{itemize}
     \item Jika terdapat \fedge dari A ke B, maka $matrix[A][B] = 1$. 
     \item Jika tidak ada, maka $matrix[A][B] = 0$.
@@ -159,7 +159,7 @@ Misalnya \foreignTerm{weighted directed graph}:
 \begin{frame}
 \frametitle{Adjacency Matrix (lanj.)}
 \begin{itemize}
-  \item Pada \foreignTerm{weighted} \fgraph:
+  \item Pada graf berbobot:
   \begin{itemize}
     \item Jika terdapat \fedge dari A ke B dengan bobot w, maka $matrix[A][B] = w$. 
     \item Jika tidak ada, maka dapat ditulis $matrix[A][B] = \infty$.
@@ -186,7 +186,7 @@ Misalnya \foreignTerm{weighted directed graph}:
 \begin{frame}
 \frametitle{Analisis Adjacency Matrix}
 \begin{itemize}
-  \item Pada \foreignTerm{undirected} \fgraph, \fadjacencymatrix simetris terhadap diagonalnya.
+  \item Pada graf tak berarah, \fadjacencymatrix simetris terhadap diagonalnya.
   \item Representasi ini mudah diimplementasikan.
   \item Menambah atau menghapus \fedge dapat dilakukan dalam $O(1)$.
   \item Untuk memeriksa apakah dua \fnode terhubung juga dapat dilakukan dalam $O(1)$.
@@ -198,7 +198,7 @@ Misalnya \foreignTerm{weighted directed graph}:
 \frametitle{Kekurangan Adjacency Matrix}
 \begin{itemize}
   \item Kekurangan dari representasi ini adalah boros memori.
-  \item Memori yang dibutuhkan selalu $O(V^2)$, tidak dapat digunakan untuk \fgraph dengan \fnode mencapai ratusan ribu.
+  \item Memori yang dibutuhkan selalu $O(V^2)$, tidak dapat digunakan untuk graf dengan \fnode mencapai ratusan ribu.
   \item Jika banyaknya \fedge jauh lebih sedikit dari $O(V^2)$, maka banyak memori yang terbuang.
 \end{itemize}
 \end{frame}
@@ -206,9 +206,9 @@ Misalnya \foreignTerm{weighted directed graph}:
 \begin{frame}
 \frametitle{Adjacency List}
 \begin{itemize}
-  \item Merupakan salah satu alternatif representasi \fgraph.
-  \item Untuk setiap \fnode, buat sebuath \flist yang berisi keterangan mengenai tetangga \fnode tersebut.
-  \item Misalnya untuk \foreignTerm{unweighted} \fgraph, kita cukup menyimpan \fnode-\fnode tetangga untuk setiap \fnode.
+  \item Merupakan salah satu alternatif representasi graf.
+  \item Untuk setiap \fnode, buat sebuah \flist yang berisi keterangan mengenai tetangga \fnode tersebut.
+  \item Misalnya untuk graf tak berbobot, kita cukup menyimpan \fnode-\fnode tetangga untuk setiap \fnode.
 \end{itemize}
 \begin{center}
 \begin{multicols}{2}
@@ -229,7 +229,7 @@ Misalnya \foreignTerm{weighted directed graph}:
 \begin{frame}
 \frametitle{Adjacency List (lanj.)}
 \begin{itemize}
-  \item Untuk \foreignTerm{weighted} \fgraph, kita dapat menyimpan \fnode-\fnode tetangga beserta bobotnya.
+  \item Untuk graf berbobot, kita dapat menyimpan \fnode-\fnode tetangga beserta bobotnya.
 \end{itemize}
 \begin{center}
 \begin{multicols}{2}
@@ -254,16 +254,16 @@ Misalnya \foreignTerm{weighted directed graph}:
   \item Tiap \flist berisi keterangan mengenai tetangga suatu \fnode.
   \item Ukuran dari \farray merupakan $V$, yang mana $V$ merupakan banyaknya \fnode.
   \item Dengan menggunakan \flist, banyaknya memori yang digunakan untuk setiap \fnode hanya sebatas banyak tetangganya.
-  \item Secara keseluruhan jika \fgraph memiliki $E$ \fedge, maka total memori yang dibutuhkan adalah $O(E)$.
+  \item Secara keseluruhan jika graf memiliki $E$ \fedge, maka total memori yang dibutuhkan adalah $O(E)$.
 \end{itemize}
 \end{frame}
 
 \begin{frame}
 \frametitle{Implementasi Adjacency List (lanj.)}
 \begin{itemize}
-  \item \fList yang dimaksud bisa berupa \foreignTerm{Linked List} atau \foreignTerm{Resizable Array}.
-  \item Bagi pengguna C++ atau Java, struktur \flist yang dapat digunakan adalah Vector atau ArrayList.
-  \item Untuk pengguna C atau Pascal, struktur \foreignTerm{Linked List} perlu dibuat terlebih dahulu.
+  \item \fList yang dimaksud bisa berupa \foreignTerm{linked list} atau \foreignTerm{resizable array}.
+  \item Bagi pengguna C++ atau Java, struktur \flist yang dapat digunakan adalah vector atau ArrayList.
+  \item Untuk pengguna C atau Pascal, struktur \foreignTerm{linked list} perlu dibuat terlebih dahulu.
 \end{itemize}
 \end{frame}
 
@@ -279,7 +279,7 @@ Misalnya \foreignTerm{weighted directed graph}:
 \begin{frame}
 \frametitle{Edge List}
 \begin{itemize}
-  \item Sesuai namanya, kita merepresentasikan \fgraph dengan sebuah \flist.
+  \item Sesuai namanya, kita merepresentasikan graf dengan sebuah \flist.
   \item Seluruh keterangan \fedge dimasukkan kedalam \flist tersebut.
   \item Berbeda dengan \fadjacencylist yang membutuhkan \foreignTerm{array of list}, representasi ini hanya butuh sebuah \flist.
 \end{itemize}
@@ -303,7 +303,7 @@ Misalnya \foreignTerm{weighted directed graph}:
 \begin{frame}
 \frametitle{Edge List (lanj.)}
 \begin{itemize}
-  \item Untuk \foreignTerm{weighted} \fgraph, kita juga menyimpan bobot dari setiap \fedge.
+  \item Untuk graf berbobot, kita juga menyimpan bobot dari setiap \fedge.
 \end{itemize}
 \begin{center}
 \begin{multicols}{2}
@@ -326,9 +326,9 @@ Misalnya \foreignTerm{weighted directed graph}:
 \frametitle{Implementasi Edge List}
 \begin{itemize}
   \item Untuk implementasinya, kita membutuhkan struktur data sebuah \flist (atau \farray).
-  \item Jelas bahwa memori yang dibutuhkan adalah $O(E)$, dengan $E$ adalah banyaknya \fedge pada keseluruhan \fgraph.
+  \item Jelas bahwa memori yang dibutuhkan adalah $O(E)$, dengan $E$ adalah banyaknya \fedge pada keseluruhan graf.
   \newline
-  \item Pada beberapa kasus, dilakukan pengurutan terhadap \fedgelist atau digunakan struktur data \foreignTerm{Binary Search Tree}, yang memungkinkan implementasinya lebih efisien.
+  \item Pada beberapa kasus, dilakukan pengurutan terhadap \fedgelist atau digunakan struktur data \foreignTerm{binary search tree}, yang memungkinkan implementasinya lebih efisien.
   Namun untuk saat ini kita tidak mempelajari hal tersebut.
 \end{itemize}
 \end{frame}
@@ -343,8 +343,8 @@ Misalnya \foreignTerm{weighted directed graph}:
 \end{frame}
 
 \begin{frame}
-\frametitle{Keuntungan dan Kerugian Representasi \fGraph}
-Untuk \fgraph dengan $V$ \fnode dan $E$ \fedge: 
+\frametitle{Keuntungan dan Kerugian Representasi Graf}
+Untuk graf dengan $V$ \fnode dan $E$ \fedge: 
 {\fontsize{9}{10}\selectfont\renewcommand{\arraystretch}{1.75}
 \begin{center}
  \begin{tabular}{||r|c c c||} 
@@ -364,7 +364,7 @@ Dengan $K$ adalah banyaknya \fnode yang bertetangga dengan \fnode yang sedang ki
 \end{frame}
 
 %\begin{frame}[fragile]
-%\frametitle{Pseudocode Representasi \fGraph}
+%\frametitle{Pseudocode Representasi Graf}
 %
 %Adjacency Matrix
 %\begin{lstlisting}
@@ -387,7 +387,7 @@ Dengan $K$ adalah banyaknya \fnode yang bertetangga dengan \fnode yang sedang ki
 %\end{frame}
 %
 %\begin{frame}[fragile]
-%\frametitle{Pseudocode Representasi \fGraph (lanj.)}
+%\frametitle{Pseudocode Representasi Graf (lanj.)}
 %
 %Edge List
 %\begin{lstlisting}
@@ -405,7 +405,7 @@ Dengan $K$ adalah banyaknya \fnode yang bertetangga dengan \fnode yang sedang ki
 
 \begin{comment}
 \begin{frame}
-\frametitle{Keuntungan dan Kerugian Representasi \fGraph}
+\frametitle{Keuntungan dan Kerugian Representasi Graf}
 
 \begin{itemize}
   \item Adjacency Matrix memakan lebih banyak memori. Hal ini dikarenakan adjacency matrix menyimpan keterangan dari satu node ke semua node. Sedangkan dalam adjacency list, suatu node hanya menyimpan keterangan mengenai node lain yang memiliki edge. Oleh karena itu, adjacency list lebih baik digunakan ketika edge yang terdapat tidak teralu banyak.
@@ -414,7 +414,7 @@ Dengan $K$ adalah banyaknya \fnode yang bertetangga dengan \fnode yang sedang ki
 \end{frame}
 
 \begin{frame}
-\frametitle{Keuntungan dan Kerugian Representasi \fGraph (lanj.)}
+\frametitle{Keuntungan dan Kerugian Representasi Graf (lanj.)}
 \begin{itemize}
   \item Jika ada edge dari A ke B yang akan dibuang, maka pada adjacency matrix kita hanya perlu mengubah nilai Matrix[A][B]. Sedangkan pada adjacency list, harus dilakukan iterasi terlebih dahulu untuk mencari edge tersebut, lalu menghapusnya juga lebih rumit karena harus menggeser seluruh elemen setelahnya.
   \item Untuk mencari tetangga-tetangganya, maka pada adjacency matrix perlu dilakukan iterasi terhadap seluruh node yagn ada. Sementara itu, pada adjacency list hanya perlu dilakukan iterasi pada list yang isinya merupakan tetangga dari node yang bersangkutan.
@@ -422,22 +422,22 @@ Dengan $K$ adalah banyaknya \fnode yang bertetangga dengan \fnode yang sedang ki
 \end{frame}
 \end{comment}
 
-\section{Graph Traversal}
+\section{Penjelajahan Graf}
 \frame{\sectionpage}
 
 \begin{frame}
-\frametitle{\fGraph Traversal}
+\frametitle{Penjelajahan Graf}
 \begin{itemize}
-  \item Representasi \fGraph saja belum berguna karena belum dapat mencari informasi mengenai suatu \fgraph
-  \item \alert{\fGraph Traversal} merupakan penelusuran \fnode-\fnode pada suatu \fgraph.
+  \item Representasi graf saja belum berguna karena belum dapat mencari informasi mengenai suatu graf
+  \item \alert{Penjelajahan graf} merupakan penelusuran \fnode-\fnode pada suatu graf.
 \end{itemize}
 \end{frame}
 
 \begin{frame}
-\frametitle{\fGraph Traversal (lanj.)}
+\frametitle{Penjelajahan Graf (lanj.)}
 \begin{itemize}
   \item Diberikan \fnode A dan \fnode B, apakah dari \fnode A kita dapat pergi ke \fnode B dengan \fedge yang ada?
-  \item Permasalahan tersebut dapat diselesaikan menggunakan \fgraphtraversal.
+  \item Permasalahan tersebut dapat diselesaikan menggunakan penjelajahan graf.
   \newline
   \item Terdapat 2 metode yang dapat digunakan, yaitu \newTerm{DFS} dan \newTerm{BFS}.
 \end{itemize}
@@ -447,7 +447,7 @@ Dengan $K$ adalah banyaknya \fnode yang bertetangga dengan \fnode yang sedang ki
 \frametitle{DFS: Depth-First Search}
 Penelusuran dilakukan terhadap \fnode yang lebih dalam terlebih dahulu (\foreignTerm{depth-first}). 
 
-Sebagai contoh, misal terdapat \fgraph berikut:
+Sebagai contoh, misal terdapat graf berikut:
 
 \begin{figure}
   \centering
@@ -477,7 +477,7 @@ Penelusuran secara DFS akan dilakukan dengan cara berikut:
 \begin{itemize}
   \item Dapat dilihat bahwa DFS mencoba menelusuri \fnode yang dalam terlebih dahulu.
   \item \fNode yang dekat dengan \fnode pertama (seperti \fnode 7 dan 8) akan dikunjungi setelah DFS selesai mengunjungi \fnode yang lebih dalam (seperti \fnode 3, 4, dan 5)
-  \item Dalam pemrograman, DFS biasa dilakukan dengan rekursi atau struktur data \foreignTerm{stack}
+  \item Dalam pemrograman, DFS biasa dilakukan dengan rekursi atau struktur data \foreignTerm{stack}.
 \end{itemize}
 \end{frame}
 
@@ -502,14 +502,14 @@ Asumsikan:
 \begin{itemize}
   \item Setiap \fnode dinomori dari 1 sampai $V$
   \item $adj(x)$ menyatakan himpunan tetangga dari \fnode $x$.
-  \item $visit[x]$ bernilai $true$ hanya jika $x$ telah dikunjungi.
+  \item $visited[x]$ bernilai $true$ hanya jika $x$ telah dikunjungi.
 \end{itemize}
 \begin{codebox}
-  \Procname{$\proc{DFS}(currNode)$}
-  \li \textbf{Print} "mengunjungi $currNode$"
-  \li \For \textbf{each} $adjNode \in adj(currNode)$ \Do
-  \li   \If \textbf{not} $visit[adjNode]$ \Then
-  \li     $visit[adjNode] \gets true$
+  \Procname{$\proc{DFS}(curNode)$}
+  \li \textbf{print} "mengunjungi $curNode$"
+  \li  $visited[curNode] \gets true$
+  \li \For \textbf{each} $adjNode \in adj(curNode)$ \Do
+  \li   \If \textbf{not} $visited[adjNode]$ \Then
   \li     $\proc{DFS}(adjNode)$
         \End
       \End
@@ -538,14 +538,14 @@ Asumsikan:
   \Procname{$\proc{DFS}()$}
   \li \Comment Inisialisasi $stack$ sebagai stack kosong.
   \li $stack.push(initialNode)$
-  \li $visit[initialNode] \gets true$
+  \li $visited[initialNode] \gets true$
   \li \While \textbf{not} $stack.empty()$ \Do
-  \li   $currNode \gets stack.top()$
+  \li   $curNode \gets stack.top()$
   \li   $stack.pop()$
-  \li   \textbf{Print} "mengunjungi $currNode$"
-  \li   \For \textbf{each} $adjNode \in adj(currNode)$ \Do
-  \li     \If \textbf{not} $visit[adjNode]$ \Then
-  \li       $visit[adjNode] \gets true$
+  \li   \textbf{print} "mengunjungi $curNode$"
+  \li    $visited[adjNode] \gets true$
+  \li   \For \textbf{each} $adjNode \in adj(curNode)$ \Do
+  \li     \If \textbf{not} $visited[adjNode]$ \Then
   \li       $stack.push(adjNode)$
           \End
         \End
@@ -555,7 +555,7 @@ Asumsikan:
 
 \begin{frame}
 \frametitle{BFS: Breadth-First Search}
-Penelusuran \fnode pada \fgraph dilakukan lapis demi lapis. 
+Penelusuran \fnode pada graf dilakukan lapis demi lapis. 
 
 Semakin dekat suatu \fnode dengan \fnode awal, \fnode tersebut akan dikunjungi terlebih dahulu. 
 
@@ -600,14 +600,14 @@ Semakin dekat suatu \fnode dengan \fnode awal, \fnode tersebut akan dikunjungi t
   \Procname{$\proc{BFS}()$}
   \li \Comment Inisialisasi $queue$ sebagai queue kosong.
   \li $queue.push(initialNode)$
-  \li $visit[initialNode] \gets true$
+  \li $visited[initialNode] \gets true$
   \li \While \textbf{not} $queue.empty()$ \Do
-  \li   $currNode \gets queue.front()$
+  \li   $curNode \gets queue.front()$
   \li   $queue.pop()$
-  \li   \textbf{Print} "mengunjungi $currNode$"
-  \li   \For \textbf{each} $adjNode \in adj(currNode)$ \Do
-  \li     \If \textbf{not} $visit[adjNode]$ \Then
-  \li       $visit[adjNode] \gets true$
+  \li   \textbf{print} "mengunjungi $curNode$"
+  \li   \For \textbf{each} $adjNode \in adj(curNode)$ \Do
+  \li     \If \textbf{not} $visited[adjNode]$ \Then
+  \li       $visited[adjNode] \gets true$
   \li       $queue.push(adjNode)$
           \End
         \End
@@ -641,7 +641,7 @@ Diberikan informasi mengenai struktur kota dan ruas jalan, tentukan berapa banya
 \begin{itemize}
   \item Permasalahan ini dapat diselesaikan dengan BFS. 
   \item Karena sifat BFS yang menelusuri \fnode lapis demi lapis, maka dapat disimpulkan jika suatu \fnode dikunjungi, maka jarak yang ditempuh dari awal sampai \fnode tersebut pasti jarak terpendek.
-  \item Hal ini selalu benar untuk segala \foreignTerm{unweighted} \fgraph, BFS selalu menemukan \foreignTerm{shortest path} dari suatu \fnode ke seluruh \fnode lainnya.
+  \item Hal ini selalu benar untuk segala graf tak berbobot, BFS selalu menemukan \foreignTerm{shortest path} dari suatu \fnode ke seluruh \fnode lainnya.
 \end{itemize}
 \end{frame}
 
@@ -674,12 +674,12 @@ Diberikan informasi mengenai struktur kota dan ruas jalan, tentukan berapa banya
   \li $queue.push(A)$
   \li $visitTime[A] \gets 0$
   \li \While \textbf{not} $queue.empty()$ \Do
-  \li   $currNode \gets queue.front()$
+  \li   $curNode \gets queue.front()$
   \li   $queue.pop()$
-  \li   \For \textbf{each} $adjNode \in adj(currNode)$ \Do
+  \li   \For \textbf{each} $adjNode \in adj(curNode)$ \Do
   \li     \Comment Jika $adjNode$ belum pernah dikunjungi...
   \li     \If $visitTime[adjNode] \isequal -1$ \Then
-  \li       $visitTime[adjNode] \gets visitTime[currNode] + 1$
+  \li       $visitTime[adjNode] \gets visitTime[curNode] + 1$
   \li       $queue.push(adjNode)$
           \End
         \End
@@ -688,22 +688,22 @@ Diberikan informasi mengenai struktur kota dan ruas jalan, tentukan berapa banya
 \end{codebox}
 \end{frame}
 
-\section{Macam-Macam Graph}
+\section{Macam-Macam Graf}
 \frame{\sectionpage}
 
 \begin{frame}
-\frametitle{Macam-Macam Graph}
+\frametitle{Macam-Macam Graf}
 \begin{itemize}
-  \item Terdapat \fGraph yang memiliki suatu karakteristik khusus, sehingga penyelesaian masalah yang melibatkan \fgraph ini dapat memanfaatkan karakter tersebut.
-  \item Contoh macam-macam \fgraph adalah \newTerm{Tree}, \newTerm{Directed Acyclic Graph}, dan \newTerm{Bipartite Graph}.
-  \item Kali ini kita akan menyinggung \fTree dan \foreignTerm{Directed Acyclic Graph}.
+  \item Terdapat Graf yang memiliki suatu karakteristik khusus, sehingga penyelesaian masalah yang melibatkan graf ini dapat memanfaatkan karakter tersebut.
+  \item Contoh macam-macam graf adalah \newTerm{tree}, \newTerm{directed acyclic graph}, dan \newTerm{bipartite graph}.
+  \item Kali ini kita akan menyinggung \ftree dan \foreignTerm{directed acyclic graph}.
 \end{itemize}
 \end{frame}
 
 \begin{frame}
 \frametitle{Tree}
 \begin{itemize}
-  \item \fTree merupakan bentuk khusus dari \fgraph.
+  \item \fTree merupakan bentuk khusus dari graf.
   \item Seluruh \fnode pada \ftree terhubung (tidak ada \fnode yang tidak dapat dikunjungi dari \fnode lain) dan tidak terdapat \alert{cycle}.
   \item Banyaknya \fedge dalam sebuah \ftree pasti $V-1$, dengan $V$ adalah banyaknya \fnode.
 \end{itemize}
@@ -722,9 +722,9 @@ Gambar kiri bukan \ftree karena memiliki \foreignTerm{cycle}, sedangkan gambar k
 \end{frame}
 
 \begin{frame}
-\frametitle{Directed Acyclic \fGraph}
+\frametitle{Directed Acyclic Graph}
 \begin{itemize}
-  \item \foreignTerm{Directed Acyclic \fGraph (DAG)} merupakan bentuk khusus dari \foreignTerm{directed} \fgraph.
+  \item \foreignTerm{directed acyclic graph (DAG)} merupakan bentuk khusus dari \foreignTerm{directed} graf.
   \item DAG tidak memiliki \alert{cycle}.
   \item Berbeda dengan \ftree yang mana setiap \fnode harus dapat dikunjungi dari \fnode lainnya, sifat tersebut tidak berlaku pada DAG.
 \end{itemize}
@@ -734,7 +734,7 @@ Gambar kiri bukan \ftree karena memiliki \foreignTerm{cycle}, sedangkan gambar k
 \end{frame}
 
 \begin{frame}
-\frametitle{Contoh Directed Acyclic \fGraph}
+\frametitle{Contoh Directed Acyclic Graph}
 \includegraphics[width=4 cm]{asset/dag.pdf}
 \hspace{\fill}
 \includegraphics[width=5 cm]{asset/not-dag.pdf}
@@ -745,9 +745,8 @@ Pada gambar di atas, gambar kiri merupakan DAG, sedangkan gambar kanan bukan DAG
 \begin{frame}
 \frametitle{Penutup}
 \begin{itemize}
-  \item Hampir setiap kompetisi pasti memiliki soal yang bertemakan \fgraph.
-  \item Mampu menguasai dasar penyelesaian masalah \fgraph menjadi kemampuan penting dalam dunia kompetisi.
-  \item Selamat berlatih dengan soal-soal yang diberikan.
+  \item Hampir setiap kompetisi pasti memiliki soal yang bertemakan graf.
+  \item Mampu menguasai dasar penyelesaian masalah graf menjadi kemampuan penting dalam dunia kompetisi.
 \end{itemize}
 \end{frame}
 
