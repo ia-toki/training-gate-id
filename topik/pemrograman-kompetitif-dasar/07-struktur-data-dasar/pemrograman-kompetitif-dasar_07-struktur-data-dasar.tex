@@ -61,7 +61,7 @@ Akses indeks secara sembarang ini biasa disebut sebagai \foreignTerm{random acce
 
 \begin{frame}
 \frametitle{Mengenal Linked List}
-\foreignTerm{Linked list} terdiri dari kumpulan \alert{\foreignTerm{node}}.\newline
+\foreignTerm{Linked list} terdiri dari kumpulan \newTerm{\foreignTerm{node}}.\newline
 
 \foreignTerm{Node} dapat diartikan sebagai sebuah titik yang nantinya dapat dihubungkan dengan \foreignTerm{node} lainnya.\newline
 
@@ -91,8 +91,8 @@ Sebuah \foreignTerm{node} menyimpan dua informasi:
 \frametitle{Jenis Linked List}
 Berdasarkan hubungannya dengan \foreignTerm{node} lain, \foreignTerm{linked list} terbagi menjadi 2 macam, yaitu:
 \begin{itemize}
-  \item \foreignTerm{Singly Linked List}: tiap \foreignTerm{node} hanya memiliki \foreignTerm{pointer} ke \foreignTerm{node} selanjutnya saja (next).
-  \item \foreignTerm{Doubly Linked List}: tiap \foreignTerm{node} memiliki \foreignTerm{pointer} ke \foreignTerm{node} selanjutnya (next) dan \foreignTerm{node} sebelumnya (prev).
+  \item \foreignTerm{singly linked list}: tiap \foreignTerm{node} hanya memiliki \foreignTerm{pointer} ke \foreignTerm{node} selanjutnya saja (next).
+  \item \foreignTerm{doubly linked list}: tiap \foreignTerm{node} memiliki \foreignTerm{pointer} ke \foreignTerm{node} selanjutnya (next) dan \foreignTerm{node} sebelumnya (prev).
   \newline
 \end{itemize}
 Pada pembahasan ini, kita akan menggunakan \foreignTerm{doubly linked list}.
@@ -119,7 +119,7 @@ Pada pembahasan ini, kita akan menggunakan \foreignTerm{doubly linked list}.
   \begin{codebox}
   \Procname{$\proc{get}(head, x)$}
   \li $current \gets head$
-  \li \For $i \gets 1$ \To $x$ \Do
+  \li \For $i \gets 2$ \To $x$ \Do
   \li   $current \gets current.next$
       \End
   \li \Return $current$
@@ -239,19 +239,6 @@ Diberikan $node$ yang bukan $head$ maupun $tail$, hapus dari \foreignTerm{linked
 \end{frame}
 
 \section{Stack}
-\frame{\sectionpage}
-
-%\begin{frame}
-%\frametitle{Soal Pemanasan}
-%
-%Misal kita mendapat soal sebagai berikut
-%\begin{itemize}
-%  \item Anda diberikan sebuah string misal "acaabcbcd"
-%  \item Cari string "abc" dalam string tersebut. Jika ditemukan maka hapus string "abc" tersebut, lalu ulangi pencarian.
-%  \item Pencarian berakhir ketika tidak terdapat string "abc" lagi. Outputkan total penghapusan yang berhasil dilakukan
-%  \item Contoh, pada string "acaabcbcd" terdapat sebuah string abc, dan hapus string tersebut menjadi "acabcd". Lalu, ditemukan lagi string abc dan hapus menjadi "acd". Karena tidak ditemukan lagi string "abc", maka output 2.
-%\end{itemize}
-%\end{frame}
 
 \begin{frame}
 \frametitle{Mengenal Stack}
@@ -286,9 +273,9 @@ Diberikan $node$ yang bukan $head$ maupun $tail$, hapus dari \foreignTerm{linked
 
 \foreignTerm{Stack} memiliki operasi sebagai berikut:
 \begin{itemize}
-  \item \foreignTerm{Push}, yaitu memasukan elemen baru ke bagian atas tumpukan.
-  \item \foreignTerm{Pop}, yaitu membuang elemen paling atas tumpukan.
-  \item \foreignTerm{Top}, yaitu mengakses elemen paling atas tumpukan.
+  \item \foreignTerm{push}, yaitu memasukkan elemen baru ke bagian atas tumpukan.
+  \item \foreignTerm{pop}, yaitu membuang elemen paling atas tumpukan.
+  \item \foreignTerm{top}, yaitu mengakses elemen paling atas tumpukan.
 \end{itemize}
 \end{frame}
 
@@ -306,22 +293,22 @@ Diberikan $node$ yang bukan $head$ maupun $tail$, hapus dari \foreignTerm{linked
 \begin{frame}
 \frametitle{Aplikasi Stack Lainnya}
 \begin{itemize}
-  \item \foreignTerm{Stack} juga digunakan pada kalkulator ekspresi matmatika dalam notasi postfix.
-  \item Notasi postfix adalah notasi penulisan ekspresi  matematika dengan urutan operand, operand, dan operator.
+  \item \foreignTerm{Stack} juga digunakan pada kalkulator ekspresi matmatika dalam notasi \textit{postfix}.
+  \item Notasi \textit{postfix} adalah notasi penulisan ekspresi  matematika dengan urutan operand, operand, dan operator.
   \item Contoh:
   \begin{itemize}
     \item "$1 \ 2 \ +$" bermakna "$1 + 2$"
     \item "$1 \ 2 \ 3 + \ -$" bermakna "$1 - (2 + 3)$"
     \item "$1 \ 2 \ 3 + \ - \ 4 \ \times$" bermakna "$(1 - (2 + 3)) \times 4$"
   \end{itemize}
-  \item Notasi yang biasa kita gunakan adalah notasi infix, yaitu dengan urutan operand, operator, dan operand.
+  \item Notasi yang biasa kita gunakan adalah notasi \textit{infix}, yaitu dengan urutan operand, operator, dan operand.
 \end{itemize}
 \end{frame}
 
 \begin{frame}
 \frametitle{Aplikasi Stack Lainnya (lanj.)}
 \begin{itemize}
-  \item Diberikan sebuah ekspresi dalam notasi postfix, nilai akhirnya dapat dicari dengan skema kerja \foreignTerm{stack}.
+  \item Diberikan sebuah ekspresi dalam notasi \textit{postfix}, nilai akhirnya dapat dicari dengan skema kerja \foreignTerm{stack}.
   \item Pada awalnya, inisialisasi sebuah \foreignTerm{stack} kosong.
   \item Proses ekspresi dari kiri ke kanan:
   \begin{enumerate}
@@ -420,19 +407,34 @@ Jadi  $1 \ 2 \ 3 + \ - \ 4 \ \times = -16$
   \item Pada operasi \foreignTerm{pop}, kita tidak benar-benar menghapus elemennya, melainkan hanya variabel penunjuknya yang "dimundurkan".
 \end{itemize}
 \end{frame}
-%\begin{frame}
-%\frametitle{Pembahasan Soal}
-%
-%Setelah mengenali struktur data stack, maka kita sudah dapat menjawab soal sebelumnya dengan efisien.
-%\begin{itemize}
-%  \item Lakukan iterasi tiap karakter pada string tersebut
-%  \item Untuk karakter selain huruf 'c', maka masukkan ke stack yang dimiliki
-%  \item jika karakter sekarang adalah 'c', maka ada kemungkinan bahwa string terakhir adalah "abc". Oleh karena itu, cek 2 elemen teratas dari stack, apakah 'b' dan 'a'.
-%  \item Jika tidak, maka masukkan 'c' kedalam stack.
-%  \item Jika iya, maka terdapat 1 penghapusan, lalu pop huruf 'b' dan 'a' dari stack.
-%\end{itemize}
-%Kompleksitas total adalah O(N) yang cukup efisien karena pada tiap karakter, kita hanya memasukkan kedalam stack atau mengecek 2 elemen teratas dari stack. Di sini, N merupakan panjang string awal.
-%\end{frame}
+
+\frame{\sectionpage}
+
+\begin{frame}
+\frametitle{Contoh Soal}
+
+\begin{itemize}
+  \item Anda diberikan sebuah string, misalnya \texttt{acaabcbcd}.
+  \item Cari string \texttt{abc} dalam string tersebut. Jika ditemukan maka hapus string \texttt{abc} tersebut, lalu ulangi pencarian.
+  \item Pencarian berakhir ketika tidak terdapat string \texttt{abc} lagi.
+  \item Tentukan total penghapusan yang berhasil dilakukan
+  \item Contoh, pada string \texttt{acaabcbcd} terdapat sebuah string \texttt{abc}, dan hapus string tersebut menjadi \texttt{acabcd}. Lalu, ditemukan lagi string \texttt{abc} dan hapus menjadi \texttt{acd}. Karena tidak ditemukan lagi string \texttt{abc}, maka jawabannya adalah 2.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Pembahasan Soal}
+
+\begin{itemize}
+  \item Lakukan iterasi setiap karakter pada string tersebut.
+  \item Untuk setiap karakter, \foreignTerm{push} ke dalam \foreignTerm{stack}.
+  \item Cek 3 karakter teratas pada \foreignTerm{stack}.
+  \item Jika 3 karakter teratas merupakan \texttt{abc}, artinya terdapat 1 penghapusan. Lalu \foreignTerm{pop} ketiga huruf tersebut dari \foreignTerm{stack}.
+\end{itemize}
+Pada soal ini, Anda harus dapat memodifikasi struktur data \foreignTerm{stack} agar Anda dapat melakukan operasi \foreignTerm{top} pada 3 elemen teratas.
+
+Kompleksitas total adalah $O(N)$, dengan $N$ merupakan panjang string.
+\end{frame}
 
 \section{Queue}
 \frame{\sectionpage}
@@ -440,17 +442,17 @@ Jadi  $1 \ 2 \ 3 + \ - \ 4 \ \times = -16$
 \begin{frame}
 \frametitle{Mengenal Queue}
 \begin{itemize}
-  \item Apakah anda pernah melihat antrian pembelian?
-  \item Struktur data \foreignTerm{queue} mirip dengan analogi antrian tersebut.
-  \item Saat seorang ingin masuk ke antrian, maka orang tersebut harus mengantri dari belakang. \item Sementara itu, orang yang dilayani terlebih dahulu adalah orang yang paling depan.
+  \item Apakah anda pernah melihat antrean pembelian?
+  \item Struktur data \foreignTerm{queue} mirip dengan analogi antrean tersebut.
+  \item Saat seorang ingin masuk ke antrean, maka orang tersebut harus mengantri dari belakang. \item Sementara itu, orang yang dilayani terlebih dahulu adalah orang yang paling depan.
 \end{itemize}
 \end{frame}
 
 \begin{frame}
 \frametitle{Mengenal Queue (lanj.)}
 \begin{itemize}
-  \item Struktur data \foreignTerm{queue} menyimpan informasi dalam bentuk antrian.
-  \item Informasi yang baru dimasukkan ke paling belakang antrian.
+  \item Struktur data \foreignTerm{queue} menyimpan informasi dalam bentuk antrean.
+  \item Informasi yang baru dimasukkan ke paling belakang antrean.
   \item Hanya informasi paling depan yang bisa diakses/dihapus pada setiap waktunya.
   \item Oleh karena itu struktur data \foreignTerm{queue} disebut memiliki sifat FIFO (First In First Out).
 \end{itemize}
@@ -466,19 +468,19 @@ Jadi  $1 \ 2 \ 3 + \ - \ 4 \ \times = -16$
 
 \foreignTerm{Queue} memiliki beberapa operasi yang dapat dilakukan:
 \begin{itemize}
-  \item \foreignTerm{Push}, yaitu memasukkan elemen baru ke bagian akhir antrian.
-  \item \foreignTerm{Pop}, yaitu mengeluarkan elemen paling depan antrian.
-  \item \foreignTerm{Front}, yaitu mengakses elemen yang paling depan antrian.
+  \item \foreignTerm{push}, yaitu memasukkan elemen baru ke bagian akhir antrean.
+  \item \foreignTerm{pop}, yaitu mengeluarkan elemen paling depan antrean.
+  \item \foreignTerm{front}, yaitu mengakses elemen yang paling depan antrean.
 \end{itemize}
 \end{frame}
 
 \begin{frame}
 \frametitle{Aplikasi Queue}
 \begin{itemize}
-  \item Sesuai namanya, pada komputer \foreignTerm{queue} digunakan untuk berbagai hal yang memerlukan antrian.
-  \item Misalnya antrian berkas-berkas yang akan diunduh dari internet untuk ditampilkan pada \foreignTerm{browser} Anda.
+  \item Sesuai namanya, pada komputer \foreignTerm{queue} digunakan untuk berbagai hal yang memerlukan antrean.
+  \item Misalnya antrean berkas-berkas yang akan diunduh dari internet untuk ditampilkan pada \foreignTerm{browser} Anda.
   \item \foreignTerm{Queue} akan sering kita gunakan ketika sudah memasuki materi graf.
-  \item Tepatnya ketika melakukan \foreignTerm{Breadth First Search}.
+  \item Tepatnya ketika melakukan \foreignTerm{breadth-first search}.
 \end{itemize}
 \end{frame}
 
@@ -688,7 +690,7 @@ Jadi  $1 \ 2 \ 3 + \ - \ 4 \ \times = -16$
 \frametitle{Penutup}
 \begin{itemize}
   \item Struktur data yang baru kita pelajari ini merupakan struktur data dasar.
-  \item Pada lain kesempatan, kita akan mempelajari struktur data yang lebih kompleks dan manfaatnya lebih "berasa", seperti \foreignTerm{Heap} untuk \foreignTerm{Priority Queue}, \foreignTerm{Binary Search Tree} untuk kamus, dan \foreignTerm{Segment Tree} untuk \foreignTerm{Dynamic Range Query}.
+  \item Pada lain kesempatan, kita akan mempelajari struktur data yang lebih kompleks dan manfaatnya lebih "berasa", seperti \foreignTerm{heap} untuk \foreignTerm{priority queue}, \foreignTerm{binary search tree} untuk kamus, dan \foreignTerm{segment tree} untuk \foreignTerm{dynamic range query}.
 \end{itemize}
 \end{frame}
 
