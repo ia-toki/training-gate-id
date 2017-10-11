@@ -275,7 +275,7 @@ Karena \foreignTerm{parent}-nya masih memiliki nilai lebih kecil, tukar lagi.
 \begin{itemize}
   \item Kasus terburuk terjadi ketika pertukaran yang terjadi paling banyak.
   \item Hal ini terjadi ketika elemen yang dimasukkan merupakan nilai yang paling besar pada \pheap.
-  \item Banyaknya pertukaran yang terjadi sebanding dengan kedalaman dari \foreignTerm{compete binary tree}.
+  \item Banyaknya pertukaran yang terjadi sebanding dengan kedalaman dari \foreignTerm{complete binary tree}.
   \item Kompleksitas untuk operasi \foreignTerm{push} adalah $O(\log{N})$.
 \end{itemize}
 \end{frame}
@@ -343,7 +343,7 @@ Kini sudah tidak ada anak yang bernilai lebih besar, operasi pop selesai.
 \begin{itemize}
   \item Kasus terburuk juga terjadi ketika pertukaran yang terjadi paling banyak.
   \item Hal ini terjadi ketika elemen yang ditempatkan di \foreignTerm{root} cukup kecil, sehingga perlu ditukar sampai ke tingkat paling bawah.
-  \item Banyaknya pertukaran yang terjadi sebanding dengan kedalaman dari \foreignTerm{compete binary tree}.
+  \item Banyaknya pertukaran yang terjadi sebanding dengan kedalaman dari \foreignTerm{complete binary tree}.
   \item Kompleksitas untuk operasi \foreignTerm{pop} adalah $O(\log{N})$.
 \end{itemize}
 \end{frame}
@@ -362,7 +362,7 @@ Penerapan \pheap pada persoalan motivasi:
 \begin{table}[ht]
   \begin{tabular}{|l|c|c|}
     \hline Operasi  & Dengan sorting & Dengan Heap \\
-    \hline  add($x$) & $O(N log N)$ & $O(\log{N})$\\
+    \hline  add($x$) & $O(N \log{N})$ & $O(\log{N})$\\
     \hline  getMax() & $O(1)$ & $O(1)$\\
     \hline  deleteMax() & $O(1)$ & $O(\log{N})$\\
     \hline
