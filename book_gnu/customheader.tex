@@ -1,0 +1,99 @@
+\usepackage{enumitem} % Customize lists
+\setlist{nolistsep} % Reduce spacing between bullet points and numbered lists
+
+\usepackage{booktabs} % Required for nicer horizontal rules in tables
+
+\usepackage{listings, lstautogobble}
+\usepackage{color}
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+  language=pascal,
+  aboveskip=1mm,
+  belowskip=1mm,
+  showstringspaces=false,
+  columns=fullflexible,
+  keepspaces=true,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  autogobble=true
+}
+
+
+% CUSTOM MODIFICATION
+\usepackage{xspace}
+\usepackage{amsmath}
+\usepackage{qtree}
+\usepackage{multicol}
+\usepackage{clrscode3e}
+
+\newcommand{\alert}[1]{{#1}}
+% Getting tired of writing \foreignTerm all the time
+\newcommand{\foreignTerm}[1]{\textit{#1}}
+\newcommand{\statement}[1]{\begin{quote}{#1}\end{quote}}
+\newcommand{\farray}{\foreignTerm{array}\xspace}
+\newcommand{\fArray}{\foreignTerm{Array}\xspace}
+\newcommand{\foverhead}{\foreignTerm{overhead}\xspace}
+\newcommand{\fOverhead}{\foreignTerm{Overhead}\xspace}
+\newcommand{\fsubarray}{\foreignTerm{subarray}\xspace}
+\newcommand{\fSubarray}{\foreignTerm{Subarray}\xspace}
+\newcommand{\fbasecase}{\foreignTerm{base case}\xspace}
+\newcommand{\fBasecase}{\foreignTerm{Base case}\xspace}
+\newcommand{\ftopdown}{\foreignTerm{top down}\xspace}
+\newcommand{\fTopdown}{\foreignTerm{Top down}\xspace}
+\newcommand{\fbottomup}{\foreignTerm{bottom up}\xspace}
+\newcommand{\fBottomup}{\foreignTerm{Bottom up}\xspace}
+\newcommand{\fpruning}{\foreignTerm{pruning}\xspace}
+\newcommand{\fPruning}{\foreignTerm{Pruning}\xspace}
+
+\newcommand{\fgraph}{\foreignTerm{graph}\xspace}
+\newcommand{\fGraph}{\foreignTerm{Graph}\xspace}
+\newcommand{\fnode}{\foreignTerm{node}\xspace}
+\newcommand{\fNode}{\foreignTerm{Node}\xspace}
+\newcommand{\fedge}{\foreignTerm{edge}\xspace}
+\newcommand{\fEdge}{\foreignTerm{Edge}\xspace}
+\newcommand{\fdegree}{\foreignTerm{degree}\xspace}
+\newcommand{\fDegree}{\foreignTerm{Degree}\xspace}
+\newcommand{\fadjacencylist}{\foreignTerm{adjacency list}\xspace}
+\newcommand{\fAdjacencylist}{\foreignTerm{Adjacency list}\xspace}
+\newcommand{\fadjacencymatrix}{\foreignTerm{adjacency matrix}\xspace}
+\newcommand{\fAdjacencymatrix}{\foreignTerm{Adjacency matrix}\xspace}
+\newcommand{\fedgelist}{\foreignTerm{edge list}\xspace}
+\newcommand{\fEdgelist}{\foreignTerm{Edge list}\xspace}
+\newcommand{\flist}{\foreignTerm{list}\xspace}
+\newcommand{\fList}{\foreignTerm{List}\xspace}
+\newcommand{\fgraphtraversal}{\foreignTerm{graph traversal}\xspace}
+\newcommand{\fGraphtraversal}{\foreignTerm{Graph traversal}\xspace}
+\newcommand{\ftree}{\foreignTerm{tree}\xspace}
+\newcommand{\fTree}{\foreignTerm{Tree}\xspace}
+\newcommand{\fsubtree}{\foreignTerm{subtree}\xspace}
+\newcommand{\fSubtree}{\foreignTerm{Subtree}\xspace}
+
+\newcommand{\fDivideAndConquer}{\foreignTerm{Divide and Conquer}\xspace}
+\newcommand{\fMergeSort}{\foreignTerm{Merge Sort}\xspace}
+\newcommand{\fQuickSort}{\foreignTerm{Quicksort}\xspace}
+\newcommand{\fpivot}{\foreignTerm{pivot}\xspace}
+\newcommand{\fPivot}{\foreignTerm{Pivot}\xspace}
+\newcommand{\fBruteForce}{\foreignTerm{Brute Force}\xspace}
+\newcommand{\fCompleteSearch}{\foreignTerm{Complete Search}\xspace}
+\newcommand{\fExhaustiveSearch}{\foreignTerm{Exhaustive Search}\xspace}
+\newcommand{\fBinarySearch}{\foreignTerm{Binary Search}\xspace}
+\newcommand{\fGreedy}{\foreignTerm{Greedy}\xspace}
+\newcommand{\fGreedyChoice}{\foreignTerm{Greedy Choice}\xspace}
+
+\newcommand{\pheap}{\foreignTerm{heap}\xspace}
+\newcommand{\pHeap}{\foreignTerm{Heap}\xspace}
+\newcommand{\pBinaryHeap}{\foreignTerm{Binary Heap}\xspace}
+\newcommand{\pbinaryHeap}{\foreignTerm{binary heap}\xspace}
+\newcommand{\pHeapSort}{\foreignTerm{Heap Sort}\xspace}
+\newcommand{\pdjs}{\foreignTerm{disjoint set}\xspace}
+\newcommand{\pDjs}{\foreignTerm{Disjoint set}\xspace}
+

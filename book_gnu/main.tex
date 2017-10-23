@@ -1,0 +1,312 @@
+% Copyright 2015 http://www.highschoolmathandchess.com/
+% This program is free software: you can redistribute it and/or modify
+%   it under the terms of the GNU General Public License as published by
+%    the Free Software Foundation, either version 3 of the License, or
+%    (at your option) any later version.
+%    This program is distributed in the hope that it will be useful,
+%   but WITHOUT ANY WARRANTY; without even the implied warranty of
+%   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+%    GNU General Public License for more details.
+%
+%    You should have received a copy of the GNU General Public License
+%    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+%
+% Hack of template provided by jqueralt on tex.stackexchange
+% http://tex.stackexchange.com/questions/107862/oreilly-template
+% original template in Catalan
+%
+%\documentclass[a4paper,twoside,11pt,BCOR1.0cm]{scrartcl}
+%\documentclass[a4paper,11pt,DIV11,BCOR0.0cm]{scrartcl}
+%\documentclass[a4paper, twoside, BCOR1.0cm, DIV11, abstracton]{scrartcl}
+%\documentclass[a4paper, twoside, twocolumn, BCOR1.0cm, 10pt, DIV12]{scrartcl}
+
+\documentclass[a4paper,%
+                             twoside,%
+                             BCOR1.0cm,%
+                             DIV11,%
+                             parskip=full,% separa els paràgrafs amb 1 línia en blanc
+                             %parskip=false,%no separa els paràgrafs però en sagna la 1a línia
+                             %toc=flat,%índex amb ítems sense sagnar
+                             11pt]{scrbook}
+\usepackage[top=3cm,bottom=3cm,left=3cm,right=3cm,headsep=10pt,a4paper]{geometry} % Page margins
+\usepackage[USenglish]{babel} 
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{xspace}
+
+%********************* tipus de lletra ****************************
+%\usepackage{mathpazo}
+%\usepackage{mathptmx} 
+%\usepackage{charter}
+%\usepackage{bookman}
+%\usepackage{kerkis}             
+%\usepackage{times}             
+%\usepackage{helvet}
+
+%\usepackage{anttor}       
+%\usepackage{albertus}          
+%\usepackage{arev}              
+\usepackage{bera}           
+%\usepackage{fourier}            
+%\usepackage{marigold}         
+
+\usepackage{pifont}
+\usepackage{amssymb}
+%********************
+\usepackage[dvipsnames]{xcolor}  % couleur
+\usepackage{graphicx}            % pictures
+\usepackage{pgf}
+\usepackage{tikz}
+\usepackage{listings}
+\usetikzlibrary{shapes}
+\usepackage{color}
+\input{customheader}
+%%%%%%%%%%%%
+
+\DeclareFixedFont{\numcap}{T1}{phv}{bx}{n}{3cm} %crea els números grans de l'etiqueta de capítol
+\DeclareFixedFont{\textcap}{T1}{phv}{bx}{n}{1.5cm} %crea les lletres grans del nom del capítol
+\DeclareFixedFont{\textaut}{T1}{phv}{bx}{n}{0.8cm} %crea les lletres grans del nom del capítol
+
+%% Opcions de Koma-script per formatar el text
+
+\addtokomafont{chapter}{\color{gray}\textcap}			    	% chapter  couleur
+\addtokomafont{section}{\color{white}}			                % section  couleur
+\addtokomafont{subsection}{\color{white}}		                % subsection  couleur
+\setkomafont{pagehead}{\sffamily\small}                                  %page font 
+\setkomafont{captionlabel}{\sffamily\small\bfseries}
+\setkomafont{caption}{\sffamily\small}			
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usetikzlibrary{calc,trees,positioning,arrows,chains,shapes.geometric,%
+    decorations.pathreplacing,decorations.pathmorphing,shapes,%
+    matrix,shapes.symbols}
+
+\tikzset{
+  punktchain/.style={
+    rectangle, 
+    rounded corners, 
+    % fill=black!10,
+    draw=black!20, thin,
+    %text width=10em, 
+    minimum height=3em, 
+    text centered},
+  peu/.style={
+    rectangle,
+    fill opacity=1,
+    %rounded corners, 
+    fill=white,
+    top  color=white,
+    draw=black!20, thin,
+    %text width=10em, 
+    %minimum height=3em, 
+    text centered},
+  line/.style={draw, thin, <-},
+  element/.style={
+    tape,
+    top  color=white,
+    bottom  color=blue!50!black!60!,
+    minimum width=8em,
+    draw=blue!40!black!90, very thick,
+    text width=10em, 
+    minimum height=3.5em, 
+    text centered, 
+    on chain},
+}
+
+\usepackage{scrpage2}			            % paquet de KOMA-Script per formatar pàgines
+\setlength{\headheight}{25pt}	      		    % assigna 25 points a l'alçada de la capçalera per fer espai
+\pagestyle{scrheadings}			           % estil de pàgina semblant a headings
+\setheadwidth{textwithmarginpar}	    	   % allarga l'encapçalament marge i marge del text fins a l'amplada de la pàgina
+%\setfootwidth{textwithmarginpar}               % allarga el peu per les dues bandes
+%\setfootwidth[0pt]{textwithmarginpar}		% allarga el peu només per una banda: text+marge dret
+%\setheadtopline{2pt}						% crea una línia sobre la capçalera
+\setheadsepline{.4pt}						% crea una línia sota la capçalera
+%\addtokomafont{headtopline}{\color{lightgray}}			% dóna  couleur gris a la línia sobre capçalera
+\addtokomafont{headsepline}{\color{lightgray}}			% dóna  couleur gris a la línia sota capçalera
+%\addtokomafont{pagenumber}{\color{gray}}			        % dóna  couleur als text del peu (números de pàgina+text)
+%\addtokomafont{pagehead}{\color{gray}}				% dóna  couleur al text de l'encapçalament
+
+
+%%%%%%% disposició de capçaleres i peus
+%\ihead[scrplain-inside ]{scrheadings-inside }
+%\chead[scrplain-centered ]{scrheadings-centered }
+%\ohead[scrplain-outside ]{scrheadings-outside }
+%\ifoot[scrplain-inside ]{scrheadings-inside }
+%\cfoot[scrplain-centered ]{scrheadings-centered }
+%\ofoot[scrplain-outside ]{scrheadings-outside }
+
+%% quadre per posar número de pàgina amb tikz:
+%\ofoot{\tikz[remember picture,overlay]{\node[fill opacity=1,peu] (peu) {\pagemark};}}
+%% per posar una l´inia amb tikz:
+%\ifoot{\tikz{\draw [black!20] (0,0) -- (15.5cm,0);}}
+
+%pàgina esquerra: ordre de processament: 1: \lefoot, 2: \cefoot, 3: \refoot 
+%\lefoot[scrplain-left-even ]{scrheadings-left-even }
+\lefoot{\color{black!40}{\hrulefill}}
+%\cefoot[scrplain-center-even ]{scrheadings-center-even }
+\cefoot{\parbox[c][.5in][c]{1cm}{\fcolorbox{black!40}{white}{\thepage}}}
+%\refoot[scrplain-right-even ]{scrheadings-right-even }
+\refoot{}
+
+%pàgina dreta: ordre de processament: 1: \lofoot,  2: \cofoot, 3: \rofoot
+%\lofoot[scrplain-left-odd ]{scrheadings-left-odd }
+\lofoot{\color{black!40}{\hrulefill}}
+%\cofoot[scrplain-center-odd ]{scrheadings-center-odd }
+\cofoot[{\color{black!40}{---}} {\thepage} {\color{black!40}{---}}]{\parbox[c][.5in][c]{1cm}{\fcolorbox{black!40}{white}{\thepage}}}
+%\rofoot[scrplain-right-odd ]{scrheadings-right-odd }
+\rofoot[]{}
+
+%\deftripstyle{name }[LO ][LI ]{HI }{HC }{HO }{FI }{FC }{FO }
+%\deftripstyle{packtpub}%
+%             {}%HI
+%             {}%HC
+%             {\tikz{\node[punktchain] (encapsalament) {\headmark};}}%HO
+%	         {\tikz{\draw [black!20] (0,0) -- (15.5cm,0);}}%FI
+%	         {}%FC
+%	         {\tikz[remember picture,overlay]{\node[fill opacity=1,peu] (peu) {\pagemark};}}%FO
+
+%\node[ball  color=red!20,circle,text=blue]{\headmark};
+%\node[punktchain] (peu) {\pagemark}
+%\draw (0,0) -- (3,1)
+%node[pos=0]{0} node[pos=0.5]{1/2} node[pos=0.9]{9/10};
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+% 
+\usepackage[pdftex,             
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=blue,
+    citecolor=blue,
+    pdftitle={Llibre amb estil},
+    pdfauthor={Joan Queralt Gil},
+    pdfsubject={tema},
+    pdfkeywords={Keyword1, Keyword 2},
+    bookmarks, bookmarksnumbered=true]{hyperref}
+
+% Control dels trencaments de línia
+\tolerance=4000
+\emergencystretch=20pt
+
+% Profunditat de la Taula de continguts
+\setcounter{secnumdepth}{3}
+
+% per canviar el format dels títols de seccions amb el paquet titlesec
+% idea treta de http://tex.stackexchange.com/questions/12266/section-title-gradient
+\usepackage{titlesec}
+
+%%%% definició del comandament titleformat:
+%\titleformat{command}[shape]%
+%  {format}%
+%  {label}%
+%  {sep}%the horizontal separation between label and title body
+%  {before}[after]%is code preceding/following the title body
+
+\titleformat{\chapter}[display]%              
+    {\usekomafont{sectioning} \usekomafont{chapter}\filleft}% formatar
+    {\numcap\textcolor[named]{gray}\thechapter}%
+    {1em}%
+    {}
+
+\titleformat{\section}[block]%              
+    {\usekomafont{sectioning}\usekomafont{section}%
+     %\tikz[overlay] \shade[left  color=blue!20,right  color=white] (0,-1ex) rectangle (\textwidth,1em);}%    
+     \tikz[overlay]  \fill[color=black,rounded corners=.2ex] (0,-1ex) rectangle (\textwidth-2cm,1em);}%  
+    { \thesection}%                   
+    {1em}%
+    {}
+
+\titleformat{\subsection}[block]%              
+    {\usekomafont{sectioning}\usekomafont{subsection}%
+     %\tikz[overlay] \shade[left color=blue!20,right color=white] (0,-1ex) rectangle (\textwidth,1em);}%    
+     %\tikz[overlay] \fill[color=black!25] (0,-1ex) rectangle (\textwidth,1em);}%  
+       \tikz[overlay] \fill[color=black!60] (0,-1ex) rectangle (\textwidth-2cm,1em);}%  
+    { \thesubsection}%                   
+    {1em}%
+    {}
+
+%%%%%%% text de farciment
+\usepackage{lipsum}
+%%%%%%%%%%%%%%%%%%%%
+
+%% Millores a les llistes amb el paquet enumitem
+%%Idees: http://tex.stackexchange.com/questions/18411/what-are-the-differences-between-using-paralist-vs-enumitem
+\usepackage{enumitem}
+%% noves llistes \newlist{nounom}{tipus=enumerate,itemize,description}{nivells de niament} 
+
+%llista compacta numerada en esquema (1. - 1.1 - 1.1.1 )sagnada a l'esquerra 0.5cm per indicar steps
+\newlist{steps}{enumerate}{4}
+\setlist[steps]{topsep=0pt,partopsep=0pt,itemsep=0pt,parsep=0pt,labelindent=0.5cm,leftmargin=*}
+\setlist[steps,1]{label*=\arabic*.}
+\setlist[steps,2]{label*=\arabic*.}
+\setlist[steps,3]{label*=\arabic*.}
+\setlist[steps,4]{label*=\arabic*.}
+
+%llista compacta amb vinyetes (ding del paquet pifont: \ding{52}) per indicar points sagnada a l'esquerra 0.5cm
+\newlist{points}{itemize}{4}
+\setlist[points]{topsep=0pt,partopsep=0pt,itemsep=0pt,parsep=0pt,labelindent=0.5cm,leftmargin=*}
+\setlist[points,1]{label=\tiny\ding{110}}
+\setlist[points,2]{label=\tiny\ding{108}}
+\setlist[points,3]{label=\tiny\ding{72}}
+\setlist[points,4]{label=\tiny\ding{117}}
+
+\newlist{goals}{itemize}{1}
+\setlist[goals]{topsep=0pt,partopsep=0pt,itemsep=0pt,parsep=0pt,labelindent=0.5cm,leftmargin=*}
+\setlist[goals,1]{label=\tiny$\blacktriangleright$}
+
+\newlist{attention}{itemize}{1}
+\setlist[attention]{topsep=0pt,partopsep=0pt,itemsep=0pt,parsep=0pt,labelindent=0.5cm,leftmargin=*}
+\setlist[attention,1]{label=\ding{224}}
+
+
+\newlist{arrows}{itemize}{4}
+\setlist[arrows]{topsep=0pt,partopsep=0pt,itemsep=0pt,parsep=0pt,labelindent=0.5cm,leftmargin=*}
+\setlist[arrows,1]{label=\tiny\ding{252}}
+\setlist[arrows,2]{label=\tiny\ding{212}}
+\setlist[arrows,3]{label=\tiny\ding{232}}
+\setlist[arrows,4]{label=\tiny\ding{217}}
+%%%%%%%%%%%%%%%%%%%%
+
+%% Paquet per fer les caixes i crides
+\usepackage[tikz]{bclogo}
+\newcommand\novaimatge{\includegraphics[width=14pt]{Remember}}
+\renewcommand\logowidth{14pt}
+
+%%% Taules
+\usepackage{colortbl}
+\arrayrulecolor{gray}
+\let\shline\hline
+\def\hline{\noalign{\vskip3pt}\shline\noalign{\vskip4pt}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%% Pàgina inicial
+\title{\textcap{Title of Document}}
+\author{
+    \textaut{Author}\\http://tex.stackexchange.com/questions/107862/oreilly-template
+}
+\date{\today}
+
+\maketitle
+%%%%%%%%%%%%%%%%%%%%%%
+\tableofcontents
+
+\input{chapterlist}
+
+\end{document}
+
+\begin{tiny}
+\begin{verbatim}
+
+\end{verbatim}
+\end{tiny}
+
+\titleformat{\section}[block]%              
+    {\usekomafont{sectioning}\usekomafont{section}%
+     \tikz[overlay]\shade[left color=blue!20,right color=white](0,-1ex)rectangle(\textwidth,1em);}%    
+    {\thesection}%                   
+    {1em}%
+    {}
+    
+         \begin{pgfonlayer}{background}
+            \shade[left color=blue!20,right color=white]let \p1=(counter.north),\p2=(content.north)in            (0,{max(\y1,\y2)})rectangle(content.south east);
+        \end{pgfonlayer}
