@@ -363,65 +363,6 @@ Untuk graf dengan $V$ \fnode dan $E$ \fedge:
 Dengan $K$ adalah banyaknya \fnode yang bertetangga dengan \fnode yang sedang kita periksa.
 \end{frame}
 
-%\begin{frame}[fragile]
-%\frametitle{Pseudocode Representasi Graf}
-%
-%Adjacency Matrix
-%\begin{lstlisting}
-%  integer AdjMatrix[N][N]
-%  set AdjMatrix = 0
-%  
-%  <@\textcolor{mygreen}{//edge dari 1 ke 4 pada undirected unweighted graph}@>
-%  AdjMatrix[1][4] = 1
-%  AdjMatrix[4][1] = 1
-%\end{lstlisting}
-%Adjacency List
-%\begin{lstlisting}
-%  List<integer> AdjList[N]
-%  
-%  <@\textcolor{mygreen}{//edge dari 1 ke 4 pada undirected unweighted graph}@>
-%  AdjList[1].push(4)
-%  AdjList[4].push(1)
-%  
-%\end{lstlisting}
-%\end{frame}
-%
-%\begin{frame}[fragile]
-%\frametitle{Pseudocode Representasi Graf (lanj.)}
-%
-%Edge List
-%\begin{lstlisting}
-%  List<{integer,integer}> EdgeList
-%  
-%  <@\textcolor{mygreen}{//edge dari 1 ke 4 pada undirected unweighted graph}@>
-%  EdgeList.push({1,4})
-%  
-%  List<{integer,integer,integer}> WeightedList
-%  
-%  <@\textcolor{mygreen}{//edge dari 2 ke 3 dengan bobot 5 pada undirected graph}@>
-%  WeightedList.push({2,3,5})
-%\end{lstlisting}
-%\end{frame}
-
-\begin{comment}
-\begin{frame}
-\frametitle{Keuntungan dan Kerugian Representasi Graf}
-
-\begin{itemize}
-  \item Adjacency Matrix memakan lebih banyak memori. Hal ini dikarenakan adjacency matrix menyimpan keterangan dari satu node ke semua node. Sedangkan dalam adjacency list, suatu node hanya menyimpan keterangan mengenai node lain yang memiliki edge. Oleh karena itu, adjacency list lebih baik digunakan ketika edge yang terdapat tidak teralu banyak.
-  \item Untuk melakukan pengecekan atau perubahan edge dari A ke B, pada adjacency matrix dapat dilakukan dengan hanya melihat dan mengubah matrix[A][B]. Sedangkan pada adjacency list, kita harus mengiterasi seluruh elemen pada list[A]
-\end{itemize}
-\end{frame}
-
-\begin{frame}
-\frametitle{Keuntungan dan Kerugian Representasi Graf (lanj.)}
-\begin{itemize}
-  \item Jika ada edge dari A ke B yang akan dibuang, maka pada adjacency matrix kita hanya perlu mengubah nilai Matrix[A][B]. Sedangkan pada adjacency list, harus dilakukan iterasi terlebih dahulu untuk mencari edge tersebut, lalu menghapusnya juga lebih rumit karena harus menggeser seluruh elemen setelahnya.
-  \item Untuk mencari tetangga-tetangganya, maka pada adjacency matrix perlu dilakukan iterasi terhadap seluruh node yagn ada. Sementara itu, pada adjacency list hanya perlu dilakukan iterasi pada list yang isinya merupakan tetangga dari node yang bersangkutan.
-\end{itemize}
-\end{frame}
-\end{comment}
-
 \section{Penjelajahan Graf}
 \frame{\sectionpage}
 
@@ -484,20 +425,6 @@ Penelusuran secara DFS akan dilakukan dengan cara berikut:
 
 \begin{frame}[fragile]
 \frametitle{Implementasi DFS (Rekursif)}
-%\begin{lstlisting}
-%integer AdjMatrix[N][N]
-%boolean flag[N]
-%set flag = false
-%flag[1] = true
-%
-%procedure DFS(integer currNode):
-%  for i=1 to N
-%    <@\textcolor{mygreen}{//check apakah ada edge dan belum pernah dikunjungi}@>
-%    if AdjMatrix[currNode][i]==1 and flag[i]==false
-%      flag[i] = true
-%      DFS(i)
-%end        
-%\end{lstlisting}
 Asumsikan:
 \begin{itemize}
   \item Setiap \fnode dinomori dari 1 sampai $V$
@@ -518,22 +445,6 @@ Asumsikan:
 
 \begin{frame}[fragile]
 \frametitle{Implementasi DFS (Stack)}
-%\begin{lstlisting}
-%integer AdjMatrix[N][N]
-%boolean flag[N]
-%set flag = false
-%stack <integer> s
-%
-%s.push(1), flag[1] = true
-%while s is not empty
-%  integer currNode = s.top()
-%  s.pop()
-%  for i=1 to N
-%    if AdjMatrix[currNode][i]==1 and flag[i]==false
-%      flag[i] = true
-%      s.push(i)
-%        
-%\end{lstlisting}
 \begin{codebox}
   \Procname{$\proc{DFS}()$}
   \li \Comment Inisialisasi $stack$ sebagai stack kosong.
@@ -579,23 +490,6 @@ Semakin dekat suatu \fnode dengan \fnode awal, \fnode tersebut akan dikunjungi t
 
 \begin{frame}[fragile]
 \frametitle{Implementasi BFS}
-%BFS membutuhkan bantuan struktur data queue. Berikut adalah potongan kodenya\newline
-%\begin{lstlisting}
-%integer AdjMatrix[N][N]
-%boolean flag[N]
-%set flag = false
-%queue <integer> q
-%
-%q.push(1), flag[1] = true
-%while q is not empty
-%  integer currNode = q.front()
-%  q.pop()
-%  for i=1 to N
-%    if AdjMatrix[currNode][i]==1 and flag[i]==false
-%      flag[i] = true
-%      q.push(i)
-%        
-%\end{lstlisting}
 \begin{codebox}
   \Procname{$\proc{BFS}()$}
   \li \Comment Inisialisasi $queue$ sebagai queue kosong.
@@ -647,26 +541,6 @@ Diberikan informasi mengenai struktur kota dan ruas jalan, tentukan berapa banya
 
 \begin{frame}[fragile]
 \frametitle{Implementasi Solusi}
-%\begin{lstlisting}
-%integer AdjMatrix[N][N] , A , B , jarak = -1
-%queue < (integer,integer) > q
-%<@\textcolor{mygreen}{//Queue menyimpan node yang dikunjungi dan jarak dari A}@>
-%q.push({A,0}), flag[A] = true
-%while q is not empty
-%  (integer,integer) currNode = q.front()
-%  q.pop()
-%  <@\textcolor{mygreen}{//Cek jika telah sampai di kota B}@>
-%  if currNode.first == B
-%    jarak = currNode.second, break
-%  for i=1 to N
-%    if AdjMatrix[currNode.first][i]==1 and flag[i]==false
-%      flag[i] = true
-%      q.push({i,currNode.second+1})
-%if jarak!=-1
-%  print jarak
-%else
-%  print 'Tidak dapat ke kota B'    
-%\end{lstlisting}
 \begin{codebox}
   \Procname{$\proc{shortestPath}(A, B)$}
   \li \Comment Inisialisasi $queue$ sebagai queue kosong.
