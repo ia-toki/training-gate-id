@@ -13,7 +13,7 @@
    height="1122.5197"
    id="svg2"
    version="1.1"
-   inkscape:version="0.92.1 unknown"
+   inkscape:version="0.48.4 r9939"
    sodipodi:docname="drawing.svg">
   <defs
      id="defs4">
@@ -64,9 +64,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.4418466"
-     inkscape:cx="460.44075"
-     inkscape:cy="848.15853"
+     inkscape:zoom="2.3391938"
+     inkscape:cx="284.62987"
+     inkscape:cy="756.81413"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -83,7 +83,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -107,7 +107,7 @@
            ry="1.5673281" />
         <path
            style="fill:none;stroke:#000000;stroke-width:0.75520003;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-           d="M 19.578507,30.13207 H 232.66978 m -213.091273,0 v -6 m 20,6 v -6 m 20,6 v -6 m 20,6 v -6 m 20,6 v -6 m 20.000003,6 v -6 m 20,6 v -6 m 20,6 v -6 m 20,6 v -6 m 20,6 v -6 m 20,6 v -6 m 13.09127,6 v -6"
+           d="m 19.578507,30.13207 213.091273,0 m -213.091273,0 0,-6 m 20,6 0,-6 m 20,6 0,-6 m 20,6 0,-6 m 20,6 0,-6 m 20.000003,6 0,-6 m 20,6 0,-6 m 20,6 0,-6 m 20,6 0,-6 m 20,6 0,-6 m 20,6 0,-6 m 13.09127,6 0,-6"
            id="path2999"
            inkscape:connector-curvature="0"
            inkscape:path-effect="#path-effect3001"
@@ -225,7 +225,7 @@
            inkscape:path-effect="#path-effect3846"
            inkscape:connector-curvature="0"
            id="path3820"
-           d="M 19.578507,149.2386 H 232.66978 m -213.091273,0 v -6 m 20,6 v -6 m 20,6 v -6 m 20,6 v -6 m 20,6 v -6 m 20.000003,6 v -6 m 20,6 v -6 m 20,6 v -6 m 20,6 v -6 m 20,6 v -6 m 20,6 v -6 m 13.09127,6 v -6"
+           d="m 19.578507,149.2386 213.091273,0 m -213.091273,0 0,-6 m 20,6 0,-6 m 20,6 0,-6 m 20,6 0,-6 m 20,6 0,-6 m 20.000003,6 0,-6 m 20,6 0,-6 m 20,6 0,-6 m 20,6 0,-6 m 20,6 0,-6 m 20,6 0,-6 m 13.09127,6 0,-6"
            style="fill:none;stroke:#000000;stroke-width:0.75520003;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
         <text
            transform="scale(0.9603303,1.0413084)"
@@ -464,7 +464,7 @@
            ry="1.5673281" />
         <path
            style="fill:none;stroke:#000000;stroke-width:0.75520003;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-           d="M 19.578507,352.80462 H 232.66978 m -213.091273,0 v -6 m 20,6 v -6 m 20,6 v -6 m 20,6 v -6 m 20,6 v -6 m 20.000003,6 v -6 m 20,6 v -6 m 20,6 v -6 m 20,6 v -6 m 20,6 v -6 m 20,6 v -6 m 13.09127,6 v -6"
+           d="m 19.578507,352.80462 213.091273,0 m -213.091273,0 0,-6 m 20,6 0,-6 m 20,6 0,-6 m 20,6 0,-6 m 20,6 0,-6 m 20.000003,6 0,-6 m 20,6 0,-6 m 20,6 0,-6 m 20,6 0,-6 m 20,6 0,-6 m 20,6 0,-6 m 13.09127,6 0,-6"
            id="path3884"
            inkscape:connector-curvature="0"
            inkscape:path-effect="#path-effect3922"
@@ -671,13 +671,14 @@
          id="text4111-9"
          y="415.58954"
          x="235.91086"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.80000019px;line-height:0%;font-family:'Droid Sans';-inkscape-font-specification:'Droid Sans';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1.06666672"
-         xml:space="preserve"><tspan
+         style="font-size:12.80000019px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:0%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Droid Sans;-inkscape-font-specification:Droid Sans"
+         xml:space="preserve"
+         sodipodi:linespacing="0%"><tspan
            y="415.58954"
            x="235.91086"
            id="tspan4113-4"
            sodipodi:role="line"
-           style="font-size:11.72025585px;line-height:1.25;stroke-width:1.06666672">+8</tspan></text>
+           style="font-size:11.72025585px;line-height:1.25">+4</tspan></text>
       <text
          id="text4115-8"
          y="450.78827"
@@ -1840,7 +1841,7 @@
          sodipodi:role="line"
          id="tspan4703"
          x="360.64862"
-         y="131.44879"></tspan></text>
+         y="131.44879" /></text>
     <text
        id="text5469-9"
        y="129.4594"
