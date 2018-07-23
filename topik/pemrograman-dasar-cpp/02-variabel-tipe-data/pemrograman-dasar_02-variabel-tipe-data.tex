@@ -1,0 +1,457 @@
+\input{../config.tex}
+
+\title{Variabel dan Tipe Data}
+\author{Tim Olimpiade Komputer Indonesia}
+\date{}
+
+\begin{document}
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+\begin{frame}
+\frametitle{Pendahuluan}
+Melalui dokumen ini, kalian akan:
+\begin{itemize}
+  \item Mengenal konsep variabel.
+  \item Mempelajari berbagai tipe data.
+  \item Mempelajari cara deklarasi variabel.
+  \item Mengenal operasi assignment.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Kilas Balik}
+\begin{itemize}
+  \item Mari kita lihat kembali program halo.pas.
+  \begin{lstlisting}
+#include <cstdio>
+
+int main() {
+  printf("halo dunia\n");
+}\end{lstlisting}
+  \item Pada program tersebut, terdapat kata kunci "\texttt{int main() \{}" dan "\texttt{\}}".
+  \item Kedua kata kunci tersebut blok program utama.
+  \item Ketika halo.cpp dieksekusi, seluruh perintah di blok program utama akan dieksekusi secara berurutan.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Baris Perintah Program}
+\begin{itemize}
+  \item Pada halo.cpp, satu-satunya perintah yang ada adalah \texttt{printf("halo dunia\textbackslash n");}
+  \item Pada C++, \texttt{printf(x)} merupakan fungsi untuk mencetak \texttt{x} ke layar. 
+  \item Dalam program ini, \texttt{x} = 'halo dunia\textbackslash n'.
+  \item '\textbackslash n' merupakan karakter "baris baru" atau "enter".
+\end{itemize}
+\end{frame}
+
+\section{Konsep Variabel}
+\frame{\sectionpage}
+
+\begin{frame}
+\frametitle{Perkenalan Variabel}
+\begin{block}{Variabel}
+   Merupakan istilah yang diadopsi dari dunia matematika, yang memetakan sebuah nama ke suatu nilai.
+\end{block}
+\end{frame}
+
+\begin{frame}
+\frametitle{Perkenalan Variabel (lanj.)}
+\begin{itemize}
+  \item Setiap kali suatu variabel digunakan dalam ekspresi matematika, yang diacu sebenarnya adalah nilai yang dipetakan oleh nama variabel tersebut.
+  \item Contoh: jika kita menyatakan $x=5$, maka hasil dari $3x^2 + x$ adalah $80$.
+  \item Dalam pemrograman, kita bisa membuat variabel, mengisikan nilai pada variabel, dan mengacu nilai yang dipetakan variabel tersebut.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Aturan Penamaan Variabel}
+\begin{itemize}
+  \item Variabel bebas diberi nama apapun, tetapi terbatas pada beberapa aturan berikut:
+  \begin{itemize}
+    \item Terdiri dari kombinasi karakter huruf, angka, dan underscore (\_).
+    \item Tidak boleh dimulai dengan angka.
+    \item Huruf kapital dan huruf kecil dianggap berbeda. Artinya "a1" dan "A1" dianggap merupakan dua variabel yang berbeda.
+    \item Tidak boleh merupakan \alert{\textit{reserved word}}. Contoh \textit{reserved word} pada C++: \textbf{int}, \textbf{if}, \textbf{while}, \textbf{for}, atau \textbf{switch}.
+  \end{itemize}
+  \item Contoh penulisan variabel yang tepat: \texttt{nilai}, \texttt{xKecil}, \texttt{y1}, \texttt{tambahan\_string}.
+  \item Contoh penulisan variabel yang salah: \texttt{2kar}, \texttt{wow!?}, \texttt{while}.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Aturan Penamaan Variabel (lanj.)}
+\begin{itemize}
+  \item Lebih jauh lagi, aturan ini berlaku pada seluruh penamaan \alert{\textit{identifier}}, yaitu nama variabel dan fungsi yang akan dipelajari selanjutnya.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Assignment}
+\begin{block}{Assignment}
+  Pengisian nilai yang diacu oleh variabel dengan suatu nilai disebut \alert{\textit{assignment}.}
+\end{block}
+\begin{itemize}
+  \item Operator untuk \textit{assignment} adalah =
+  \item Isikan ruas kiri dengan nama suatu variabel, dan ruas kanan dengan nilai yang ingin diisikan ke variabel tersebut.
+  \item Tipe data dari variabel dan nilai yang diacu \alert{harus sesuai}.
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]
+\frametitle{Contoh Program: assign.cpp}
+\begin{itemize}
+  \item Perhatikan contoh program assign.cpp berikut. Tuliskan, lalu jalankan program ini.
+  \begin{lstlisting}
+#include <cstdio>
+
+int x;
+
+int main() {
+  x = 12;
+  printf("Nilai = %d\n", x);
+}\end{lstlisting}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Penjelasan Program: assign.cpp}
+\begin{itemize}
+  \item Keluaran yang dihasilkan dari program itu adalah sebuah baris berisikan:
+\begin{lstlisting}
+Nilai = 12
+\end{lstlisting}
+  \item Pada program tersebut, \texttt{x} merupakan suatu variabel.
+  \item Variabel \texttt{x} didaftarkan terlebih dahulu dengan menuliskan \texttt{int x} di luar blok program utama.
+  \item Pada blok program utama, \texttt{x} diisi dengan nilai 12, lalu perintah \texttt{printf} dieksekusi.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Sekilas Tentang printf}
+\begin{itemize}
+  \item Untuk pencetakan, digunakan perintah berikut:
+\begin{lstlisting}
+printf("Nilai = %d\n", x);
+\end{lstlisting}
+  \item Untuk mencetak nilai dari variabel, diperlukan simbol sementara yang akan digantikan dengan nilai variabel.
+  \item Simbol sementara untuk variabel bertipe bilangan bulat seperti \texttt{x} adalah "\%d".
+  \item Variabel-variabel untuk menggantikan simbol sementara perlu dituliskan sesudah pola cetakan.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Contoh Program: assign2.pas}
+\begin{itemize}
+  \item Berikut adalah contoh program yang melibatkan beberapa variabel.
+\begin{lstlisting}
+#include <cstdio>
+
+int x;
+int y;
+
+int main() {
+  x = 12;
+  y = 123456;
+  printf("Nilai x = %d\n", x);
+  printf("Nilai y = %d\n", y);
+
+  x = 15;
+  printf("Sekarang nilai x = %d\n", x);
+}
+\end{lstlisting}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Penjelasan Program: assign2.pas}
+\begin{itemize}
+  \item Keluaran yang dihasilkan dari program itu adalah:
+  \begin{lstlisting}
+    Nilai x = 12
+    Nilai y = 123456
+    Sekarang nilai x = 15
+  \end{lstlisting}
+  \item Apa maksud dari kata kunci \textbf{int}? Dijelaskan pada bagian selanjutnya.
+\end{itemize}
+\end{frame}
+
+\section{Tipe Data Variabel}
+\frame{\sectionpage}
+
+\begin{frame}
+\frametitle{Tipe Data Variabel}
+\begin{itemize}
+  \item Setiap variabel pada C++ memiliki \alert{tipe data}.
+  \item Jenis tipe data dasar dari suatu variabel pada:
+  \begin{itemize}
+    \item Bilangan bulat.
+    \item Bilangan riil (bilangan bulat dan pecahan).
+    \item Karakter (merepresentasikan karakter, seperti 'a', 'b', '3', atau '?').
+    \item Nilai kebenaran, yaitu benar (\textbf{TRUE}) atau salah (\textbf{FALSE}).
+  \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Tipe Data: Bilangan Bulat}
+\begin{table}[ht]
+  \begin{tabular}{|c|c|c|}
+    \hline Nama  & Jangkauan  & Ukuran \\
+    \hline short & $-2^{15} .. 2^{15}-1$ & 2 byte\\
+    \hline unsigned short & $0 .. 2^{16}-1$ & 2 byte\\
+    \hline int & $-2^{31} .. 2^{31}-1$ & 4 byte\\
+    \hline unsigned int & $0 .. 2^{32}-1$ & 4 byte\\
+    \hline long long & $-2^{63} .. 2^{63}-1$ & 8 byte\\
+    \hline unsigned long long & $0 .. 2^{64}-1$ & 8 byte\\
+    \hline
+  \end{tabular}
+\end{table}
+\begin{itemize}
+  \item C++ menawarkan beberapa tipe data bilangan bulat yang variasinya terletak pada jangkauan nilai yang bisa direpresentasikan dan ukurannya pada memori.
+  \item Dalam memprogram, yang umum digunakan adalah \alert{\textbf{int}} dan \alert{\textbf{long long}}.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Tipe Data: Bilangan Riil}
+\begin{table}[ht]
+  \begin{tabular}{|c|c|c|c|}
+    \hline Nama  & Jangkauan (magnitudo) & Akurasi & Ukuran \\
+    \hline float & $1.5\times10^{-45} .. 3.4\times10^{38}$ & 7-8 digit & 4 byte\\
+    \hline double & $5.0\times10^{-324} .. 1.7\times10^{308}$ & 15-16 digit & 8 byte \\
+    \hline
+  \end{tabular}
+\end{table}
+\begin{itemize}
+  \item Biasa disebut dengan \textit{floating point}.
+  \item Tipe data \textit{floating point} bisa merepresentasikan negatif atau positif dari magnitudonya.
+  \item Pada pemrograman, umumnya tipe data \textit{floating point} dihindari karena kurang akurat. Representasi 3 pada \textit{floating point} bisa jadi 2.99999999999999 atau 3.000000000000001 karena keterbatasan pada struktur penyimpanan bilangan pecahan pada komputer.
+  \item Tipe yang umum digunakan adalah \alert{\textbf{double}}.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Tipe Data: Karakter}
+\begin{itemize}
+  \item Merupakan tipe data untuk merepresentasikan karakter menurut ASCII (\textit{American Standart Code for Information Interchange}).
+  \item Dalam ASCII, terdapat 128 karakter yang direpresentasikan dengan angka dari 0 sampai 127.
+  \item Misalnya, kode ASCII untuk karakter spasi (' ') adalah 32, huruf 'A' adalah 65, 'B' adalah 66, huruf 'a' adalah 97, dan huruf 'b' adalah 98.
+  \item Pada C++, tipe data ini dinyatakan sebagai \alert{\textbf{char}}, dengan ukuran 1 byte.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Tipe Data: Boolean}
+\begin{itemize}
+  \item Merupakan tipe data yang menyimpan nilai kebenaran, yaitu hanya \textbf{TRUE} atau \textbf{FALSE}.
+  \item Tipe data ini akan lebih terasa kebermanfaatannya ketika kita sudah mempelajari struktur percabangan dan \textbf{array}.
+  \item Pada Pascal, kalian dapat menggunakan tipe data \alert{\textbf{boolean}}.
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Deklarasi Variabel}
+\begin{itemize}
+  \item Deklarasi variabel adakah aktivitas mendaftarkan nama-nama dan tipe variabel yang akan digunakan.
+  \item Pada saat dideklarasi, setiap variabel perlu disertakan tipe datanya.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Deklarasi Variabel (lanj.)}
+\begin{itemize}
+  \item Pada C++, variabel dapat dideklarasikan di luar atau di dalam blok program.
+  \item Apabila variabel dideklarasikan di luar blok program, artinya variabel tersebut bersifat \foreignTerm{global}.
+  \item Tipe data dituliskan sebelum nama variabel, dipisahkan oleh spasi.
+
+  Contoh: "\texttt{int nilai}" atau "\texttt{double rerata}".
+  \item Beberapa variabel juga bisa dideklarasikan secara bersamaan jika memiliki tipe data yang sama. Contoh: "\texttt{double x, y}".
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]
+\frametitle{Contoh Program: tipedasar.pas}
+\begin{itemize}
+  \item Pahami program berikut ini dan coba jalankan!
+\begin{lstlisting}
+#include <cstdio>
+
+int p1, p2;
+double x, y;
+
+int main() {
+  p1 = 100;
+  p2 = p1;
+  printf("p1: %d, p2: %d\n", p1, p2);
+
+  x = 3.1418;
+  y = 234.432;
+  printf("x %lf\n", x);
+  printf("y %lf\n", y);
+}
+\end{lstlisting}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Penjelasan Program: tipedasar.pas}
+\begin{itemize}
+  \item Berikut adalah keluaran dari program tipedasar.pas:
+\begin{lstlisting}
+p1: 100, p2: 100
+x 3.141800
+y 234.432000
+\end{lstlisting}
+  \item Perhatikan bahwa perintah \texttt{p2 = p1} sama artinya dengan \\ \texttt{p2 = 100}, karena \texttt{p1} sendiri mengacu pada nilai 100.
+  \item Untuk mencetak variabel bertipe \texttt{double}, gunakan simbol "\texttt{\%lf}" (seperti "long float").
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Simbol Variabel pada printf}
+\begin{itemize}
+  \item Sejauh ini, kita mengenal bahwa "\texttt{\%d}" digunakan untuk mencetak \texttt{int}, dan "\texttt{\%lf}" untuk \texttt{double}.
+  \item Berikut tabel variabel beserta simbolnya:
+\end{itemize}
+\begin{table}[ht]
+  \begin{tabular}{|c|c|c|}
+    \hline Variabel  & Simbol \\
+    \hline short & \texttt{\%d} \\
+    \hline unsigned short & \texttt{\%u} \\
+    \hline int & \texttt{\%d} \\
+    \hline unsigned int & \texttt{\%u} \\
+    \hline long long & \texttt{\%lld} atau \texttt{\%I64d} \\
+    \hline unsigned long long & \texttt{\%llu} atau \texttt{\%I64u} \\
+    \hline float & \texttt{\%f} \\
+    \hline double & \texttt{\%lf} \\
+    \hline char &  \texttt{\%c} \\
+    \hline
+  \end{tabular}
+\end{table}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Simbol Variabel pada printf (lanj.)}
+\begin{itemize}
+  \item Khusus untuk \texttt{long long}, simbolnya bergantung pada sistem operasi yang digunakan.
+  \item Untuk sistem operasi berbasis UNIX (Linux dan Mac), gunakan \texttt{\%lld} dan \texttt{\%llu}.
+  \item Untuk sistem operasi Windows, gunakan \texttt{\%I64d} dan \texttt{\%I64u}.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Tipe Data Komposit: Struct}
+\begin{itemize}
+  \item Kadang-kadang, kita membutuhkan suatu tipe data yang sifatnya komposit; terdiri dari beberapa data lainnya.
+  \item Contoh kasusnya adalah ketika kita butuh suatu representasi dari titik. Setiap titik pada bidang memiliki dua komponen, yaitu \textbf{x} dan \textbf{y}.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Tipe Data Komposit: Struct (lanj.)}
+\begin{itemize}
+  \item Memang bisa saja kita mendeklarasi dua variabel, yaitu \texttt{x} dan \texttt{y}. Namun bagaimana jika kita hendak membuat beberapa titik? Apakah kita harus membuat \texttt{x1}, \texttt{y1}, \texttt{x2}, \texttt{y2}, ...? Sungguh melelahkan!
+  \item Karena itulah C++ menyajikan suatu tipe data komposit, yaitu \alert{\texttt{struct}}.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Tipe Data Komposit: Struct (lanj.)}
+\begin{itemize}
+  \item Struct dapat dideklarasikan di luar blok program utama.
+\begin{lstlisting}
+struct <nama_struct> {
+  <tipe_1> <variabel_1>;
+  <tipe_2> <variabel_2>;
+  ...
+};
+\end{lstlisting}
+  \item Setelah dideklarasikan, sebuah tipe data \texttt{$<$nama\_struct$>$} sudah bisa digunakan.
+  \item Untuk mengakses nilai dari \texttt{$<$variabel 1$>$} dari suatu variabel bertipe \texttt{struct}, gunakan tanda titik (.).
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Tipe Data Komposit: Struct (lanj.)}
+\begin{itemize}
+  \item Sebagai contoh, perhatikan contoh program titik.pas berikut:
+\begin{lstlisting}
+#include <cstdio>
+
+struct titik {
+  int x, y;
+};
+
+titik a, b;
+
+int main() {
+  a.x = 5;
+  a.y = 3;
+  
+  b.x = 1;
+  b.y = 2;
+  printf("%d %d\n", a.x, a.y);
+  printf("%d %d\n", b.x, b.y);
+}
+\end{lstlisting}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Konsumsi Memori Struct}
+\begin{itemize}
+  \item Memori yang dibutuhkan bagi sebuah tipe data \texttt{struct} bisa dianggap sama dengan jumlah memori variabel-variabel yang menyusunnya.
+  \item Artinya, \texttt{struct} bernama \texttt{titik} pada contoh titik.pas mengkonsumsi memori yang sama dengan dua buah longint, yaitu 8 byte.
+  \item Perhitungan ini hanya perkiraan saja, sebab konsumsi memori yang sesungguhnya sulit dilakukan.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Ordinalitas}
+\begin{itemize}
+  \item Menurut keberurutannya, tipe data dapat dibedakan menjadi tipe data \alert{ordinal} atau \alert{non-ordinal}.
+  \item Suatu tipe data memiliki sifat ordinal jika untuk suatu elemennya, kita bisa mengetahui secara pasti apa elemen sebelum atau selanjutnya. Contoh:
+  \begin{itemize}
+    \item Diberikan bilangan bulat 6, kita tahu pasti sebelumnya adalah angka 5 dan sesudahnya adalah angka 7.
+    \item Diberikan karakter 'y', kita tahu pasti sebelumnya adalah karakter 'x' dan sesudahnya adalah karakter 'z'.
+  \end{itemize}
+  \item Dengan demikian, seluruh tipe data bilangan bulat dan karakter adalah tipe data ordinal.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Ordinalitas (lanj.)}
+\begin{itemize}
+  \item Kebalikannya, suatu tipe data dinyatakan memiliki sifat non-ordinal jika kita tidak bisa menentukan elemen sebelum dan sesudahnya. Contohnya:
+  \begin{itemize}
+    \item Diberikan bilangan riil 6, apakah elemen sesudahnya 7, atau 6.1, atau 6.01, atau 6.001, atau 6.00000000001?
+  \end{itemize}
+  \item Bilangan \textit{floating point} termasuk dalam tipe data non-ordinal.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Yang Sudah Kita Pelajari...}
+\begin{itemize}
+  \item Mengenal konsep variabel.
+  \item Mempelajari berbagai tipe data.
+  \item Mempelajari cara deklarasi variabel.
+  \item Mengenal operasi assignment.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Selanjutnya...}
+\begin{itemize}
+  \item Mengenal tentang ekspresi.
+  \item Mengenal input dan output.
+\end{itemize}
+\end{frame}
+
+\end{document}
