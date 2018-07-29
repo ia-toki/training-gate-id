@@ -1,7 +1,9 @@
 #include <cstdio>
+#include <string>
+
+using namespace std;
 
 int main() {
-  short a = 32000;
-  unsigned short ua = 65355;
-  printf("%d %u\n", a, ua);
+  string s = "ini adalah string";
+  printf("%s\n", s.c_str());
 }
