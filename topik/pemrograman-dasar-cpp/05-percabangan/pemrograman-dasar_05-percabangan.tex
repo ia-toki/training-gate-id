@@ -1,0 +1,302 @@
+\input{../config.tex}
+
+\title{Percabangan}
+\author{Tim Olimpiade Komputer Indonesia}
+\date{}
+
+\begin{document}
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+\begin{frame}
+\frametitle{Pendahuluan}
+Melalui dokumen ini, kalian akan:
+\begin{itemize}
+  \item Mengenal percabangan.
+  \item Analisa kasus dan mengimplementasikannya pada C++.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Motivasi}
+\begin{itemize}
+  \item Bebek-bebek Pak Dengklek sedang belajar tentang membedakan bilangan positif, nol, atau negatif.
+  \item Karena bebek-bebek kebingungan, mereka memberikan kalian sebuah bilangan dan meminta kalian menentukan apakah bilangan itu positif atau bukan positif!
+  \item Jika positif, cetak "positif". Jika tidak, jangan cetak apa-apa.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Motivasi (lanj.)}
+\begin{itemize}
+  \item Sebuah bilangan dinyatakan positif apabila bilangan tersebut lebih dari nol.
+  \item Dengan begitu, kita memerlukan suatu struktur yang memungkinkan "\alert{jika} bilangan itu lebih dari 0, \alert{maka} cetak positif".
+  \item Pada C++, hal ini bisa diwujudkan dengan struktur kondisional \alert{\textbf{if}}.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Struktur "if ... then ..."}
+\begin{itemize}
+  \item Struktur dari penulisan "if ... then ..." adalah:
+\begin{lstlisting}
+if (<kondisi>) {
+  <perintah 1>;
+  <perintah 2>;
+  ...
+}
+\end{lstlisting}
+
+  \item Dengan $<$kondisi$>$ adalah suatu boolean.
+  \item Jika nilai $<$kondisi$>$ adalah \textbf{TRUE}, seluruh perintah yang ada di antara blok "\{" dan "\}" akan dilaksanakan.
+  \item Jika \textbf{FALSE}, seluruh perintah yang ada di antara blok "begin" dan "end" akan dilewati.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Blok "\{ ... \}"}
+\begin{itemize}
+  \item Struktur yang sebenarnya dari penulisan "if ... then ..." adalah:
+\begin{lstlisting}
+if (<kondisi>)
+  <perintah>;
+\end{lstlisting}
+  \item Jika nilai $<$kondisi$>$ adalah \textbf{TRUE}, $<$perintah$>$ akan dilaksanakan.
+  \item Jika nilai $<$kondisi$>$ adalah \textbf{FALSE}, $<$perintah$>$ tidak dilaksanakan.
+  \item Lalu di mana bedanya?
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Blok "\{ ... \}" (lanj.)}
+\begin{itemize}
+  \item Setelah kondisi dari if, sebenarnya hanya \emp{satu} perintah yang dapat dieksekusi jika $<$kondisi$>$ bernilai \textbf{TRUE}.
+  \item Perhatikan contoh berikut:
+\begin{lstlisting}
+if (nilai == 10)
+   printf("masuk\n");
+   printf("lagi\n");
+\end{lstlisting}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Blok "\{ ... \}" (lanj.)}
+\begin{itemize}
+  \item Meskipun perintah \texttt{printf("masuk$\backslash$n")} hanya dieksekusi ketika nilai sama dengan 10, \texttt{printf("lagi$\backslash$n")} akan selalu dilaksanakan tanpa peduli isi variabel nilai.
+  \item Blok "\{ ... \}", akan berperan sebagai "pembungkus" beberapa perintah menjadi "satu" perintah, sehingga berapapun perintah di dalam blok tersebut, akan dilihat oleh C++ sebagai "satu" perintah.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Blok "\{ ... \}" (lanj.)}
+\begin{itemize}
+  \item Menulis "\{ ... \}" setiap sesudah if merupakan kebiasaan yang bagus, meskipun isi dari if itu hanya satu perintah.
+  \item Dengan cara ini, ketika ada tambahan perintah yang perlu dimasukkan ke dalam if, kalian tidak perlu menuliskan lagi "\{ ... \}".
+  \item Konsisten dengan selalu menulis "\{ ... \}" juga menjaga program tetap rapi.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Contoh Program: kondisi.cpp}
+\begin{itemize}
+  \item Ketikkan dan jalankan program berikut:
+\begin{lstlisting}
+#include <cstdio>
+
+int main() {
+  int x;
+  scanf("%d", &x);
+
+  if (x > 0) {
+    printf("positif\n");
+  }
+}
+\end{lstlisting}
+  \item Perhatikan bahwa ekspresi "x $>$ 0" akan merupakan operasi relasional yang menghasilkan nilai boolean. Sehingga tepat untuk digunakan pada if.
+  \item Bagaimana jika ingin dibuat jika bilangan itu bukan positif, cetak "non-positif"?
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Struktur "if ... then ... else ..."}
+\begin{itemize}
+  \item Kita juga bisa membuat percabangan jika nilai pada $<$kondisi$>$ adalah \textbf{FALSE}, yaitu dengan kata kunci \textbf{else}.
+  \item Struktur dari penulisan "if ... then ... else ..." adalah:
+\begin{lstlisting}
+if (<kondisi>) {
+  <perintah 1>;
+  <perintah 2>;
+  ...
+} else {
+  <perintah a>;
+  <perintah b>;
+  ...
+}
+\end{lstlisting}
+
+  \item Jika nilai $<$kondisi$>$ adalah \textbf{TRUE}, $<$perintah 1$>$, $<$perintah 2$>$, ..., akan dilaksanakan.
+  \item Jika \textbf{FALSE}, $<$perintah a$>$, $<$perintah b$>$, ..., akan dilaksanakan.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Contoh Program: kondisi2.cpp}
+\begin{itemize}
+  \item Dengan "if ... then ... else ...", kita bisa memodifikasi kondisi.cpp menjadi kondisi2.cpp:
+\begin{lstlisting}
+#include <cstdio>
+
+int main() {
+  int x;
+  scanf("%d", &x);
+
+  if (x > 0) {
+    printf("positif\n");
+  } else {
+    printf("non-positif\n");
+  }
+}
+\end{lstlisting}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Persoalan Sebenarnya}
+Ketika bebek-bebek memberikan kalian sebuah bilangan, sebut saja \textbf{x}, mereka ingin tahu:
+\begin{itemize}
+  \item Jika \textbf{x} positif, cetak "positif".
+  \item Jika \textbf{x} sama dengan nol, cetak "nol".
+  \item Jika \textbf{x} negatif, cetak "negatif".
+\end{itemize}
+
+Pada kasus ini, diperlukan struktur if yang lebih dari dua cabang!
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Struktur "if ... then ... else if ..."}
+\begin{itemize}
+  \item C++ menyediakan struktur yang memungkinkan kita memilah-milah untuk cabang yang lebih dari dua, yaitu dengan struktur "if ... then ... else if ...".
+  \item Struktur dari penulisan "if ... then ... else if ..." adalah:
+\begin{lstlisting}
+if (<kondisi 1>) {
+  <perintah 1>;
+  <perintah 2>;
+  ...
+} else if (<kondisi 2>) {
+  <perintah a>;
+  <perintah b>;
+  ...
+} else if (<kondisi 3>) {
+  ...
+}
+\end{lstlisting}
+
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Struktur "if ... then ... else if ..." (lanj.)}
+\begin{itemize}
+  \item Jika nilai $<$kondisi 1$>$ \textbf{TRUE}, $<$perintah 1$>$, $<$perintah 2$>$, ..., akan dilaksanakan.
+  \item Jika nilai $<$kondisi 1$>$ \textbf{FALSE}, diperiksa apakah $<$kondisi 2$>$ bernilai \textbf{TRUE}. Jika ya, $<$perintah a$>$, $<$perintah b$>$, ..., akan dilaksanakan.
+  \item Jika nilai $<$kondisi 2$>$ \textbf{FALSE}, diperiksa apakah $<$kondisi 3$>$ bernilai \textbf{TRUE}. Hal ini akan terus diulang sampai seluruh percabangan habis.
+  \item Kalian juga bisa mengakhiri struktur ini dengan "else ...", yaitu ketika seluruh kondisi yang diberikan tidak terpenuhi, maka perintah-perintah di bawah \textbf{else} ini yang akan dilaksanakan.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Contoh Program: kondisi3.cpp}
+\begin{itemize}
+  \item Dengan "if ... then ... else if ...", kita bisa memodifikasi kondisi2.cpp menjadi kondisi3.cpp:
+\begin{lstlisting}
+#include <cstdio>
+
+int main() {
+  int x;
+  scanf("%d", &x);
+
+  if (x > 0) {
+    printf("positif\n");
+  } else if (x == 0) {
+    printf("nol\n");
+  } else if (x < 0) {
+    printf("negatif\n");
+  }
+}
+\end{lstlisting}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Contoh Program: kondisi4.cpp}
+\begin{itemize}
+  \item Pada kondisi3.cpp, sebenarnya "else if ..." yang terakhir tidak diperlukan.
+  \item Ketika suatu bilangan bukan positif dan bukan nol, sudah pasti bilangan itu negatif. Sehingga bisa didapatkan kondisi4.cpp:
+\begin{lstlisting}
+#include <cstdio>
+
+int main() {
+  int x;
+  scanf("%d", &x);
+
+  if (x > 0) {
+    printf("positif\n");
+  } else if (x == 0) {
+    printf("nol\n");
+  } else {
+    printf("negatif\n");
+  }
+}
+\end{lstlisting}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Kombinasi dengan Ekspresi Boolean}
+\begin{itemize}
+  \item Kalian juga bisa menggabungkan struktur if dengan ekspresi \textbf{boolean}:
+  \begin{lstlisting}
+    if ((x > 0) && (x % 2 == 1)) {
+      printf("positif dan ganjil\n");
+
+    } else if ((x > 0) && (x % 2 == 0)) {
+      printf("positif dan genap\n");
+
+    } else if ((x < 0) && (x % 2 == 1)) {
+      printf("negatif dan ganjil\n");
+
+    } else if ((x < 0) && (x % 2 == 0)) {
+      ...
+  \end{lstlisting}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{If Bersarang}
+\begin{itemize}
+  \item Solusi yang lebih rapi dicapai dengan menggunakan if secara bersarang:
+  \begin{lstlisting}
+    if (x > 0) {
+      if (x % 2 == 1) {
+        printf("positif dan ganjil\n");
+      } else {
+        printf("positif dan genap\n");
+      }
+    } else if (x < 0) {
+      ...
+  \end{lstlisting}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Selanjutnya...}
+\begin{itemize}
+  \item Ke bagian yang lebih menarik lagi, yaitu perulangan!
+  \item Pastikan kalian menguasai materi percabangan terlebih dahulu.
+\end{itemize}
+\end{frame}
+
+\end{document}
