@@ -103,6 +103,17 @@ int main() {
 \end{itemize}
 \end{frame}
 
+\begin{frame}
+\frametitle{Masa Hidup Variabel}
+\begin{itemize}
+  \item Variabel \identifier{i} hanya memiliki masa hidup di dalam lingkungan for.
+  \item Di luar for berikut \{ dan \}, variabel tersebut sudah tidak ada.
+  \item Anda boleh saja mendeklarasikan variabel \identifier{i} lagi, tanpa mendapatkan \foreignTerm{error} bahwa nama variabel telah terdefinisi.
+  \item Variabel yang hanya hidup dalam suatu cakupan \{ \} disebut dengan variabel lokal.
+\end{itemize}
+\end{frame}
+
+
 \begin{frame}[fragile]
 \frametitle{Contoh Program: fordownto.cpp}
 \begin{itemize}
