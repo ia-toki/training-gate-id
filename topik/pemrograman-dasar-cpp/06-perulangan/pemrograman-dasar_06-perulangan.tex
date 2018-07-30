@@ -1,0 +1,341 @@
+\input{../config.tex}
+
+\title{Perulangan}
+\author{Tim Olimpiade Komputer Indonesia}
+\date{}
+
+\begin{document}
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+\begin{frame}
+\frametitle{Pendahuluan}
+Melalui dokumen ini, kalian akan:
+\begin{itemize}
+  \item Memahami konsep perulangan.
+  \item Mempelajari struktur \textbf{for}, \textbf{while}, dan \textbf{repeat} pada Pascal.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Motivasi}
+\begin{itemize}
+  \item Hari ini, Pak Dengklek ingin menyambut N ekor bebeknya yang baru lahir dari telur.
+  \item Diberikan N, cetak tulisan "halo dunia!" sebanyak N kali!
+  \item Contoh untuk N = 3:
+  \begin{lstlisting}
+    halo dunia!
+    halo dunia!
+    halo dunia!
+  \end{lstlisting}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Motivasi (lanj.)}
+\begin{itemize}
+  \item Solusi "if (N = 1) $<$cetak satu kali$>$, else if (N = 2) $<$cetak dua kali$>$, ..." tidak mungkin digunakan, karena N bisa jadi sangat besar.
+  \item Kita membutuhkan suatu struktur yang memungkinkan untuk mengulangi serangkaian pekerjaan!
+  \item C++ menyediakan struktur perulangan berupa \emp{for} dan \emp{while}.
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]
+\frametitle{Perulangan: for}
+\begin{itemize}
+  \item Biasanya digunakan ketika kita tahu berapa kali perulangan perlu dilakukan.
+  \item Pada C++, strukturnya:
+\begin{lstlisting}
+for (<kondisi_awal>; <kondisi_ulang>; <perubahan>) {
+  <perintah 1>;
+  <perintah 2>;
+  ...
+}
+\end{lstlisting}
+  \item $<$kondisi\_awal$>$ dapat diisi dengan inisialisasi variabel untuk perulangan.
+  \item $<$kondisi\_ulang$>$ biasanya berupa ekspresi yang menghasilkan \texttt{boolean}, untuk menandakan apakah perulangan sudah patut diberhentikan.
+  \item $<$perubahan$>$ merupakan bagian yang dieksekusi pada akhir setiap siklus perulangan.
+  \item Penjelasan berikutnya dengan contoh akan meningkatkan pemahaman kalian.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Contoh Program: for.cpp}
+\begin{itemize}
+  \item Ketikkan program berikut dan coba jalankan:
+\begin{lstlisting}
+#include <cstdio>
+
+int main() {
+  int N;
+  scanf("%d", &N);
+
+  for (int i = 0; i < N; i++) {
+    printf("tulisan ini dicetak saat i = %d\n", i);
+  }
+  printf("akhir dari program\n");
+}
+\end{lstlisting}
+  \item Masukkan berbagai nilai N, misalnya 1, 2, 10, dan 0.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Penjelasan Program: for.cpp}
+\begin{itemize}
+  \item Misalnya kita memasukkan \identifier{N} = 5.
+  \item Pertama kali dijalankan, \identifier{i} dibuat dan diisi nilai 0.
+  \item Kedua, C++ memeriksa apakah kondisi ulang tercapai. Berhubung \identifier{i} kurang dari \identifier{N}, maka bagian dalam for dilaksanakan dan tulisan dicetak saat \identifier{i} = 0.
+  \item Setelah itu, akhir dari struktur for ditemukan. C++ akan mengeksekusi bagian perubahan, yakni menambah \identifier{i} dengan 1, lalu kembali ke awal dari for.
+  \item Jika \identifier{i} masih kurang dari \identifier{N}, maka perintah di dalamnya akan kembali dilaksanakan.
+  \item Dengan demikian, tercetaklah tulisan saat \identifier{i} = 1, 2, dan seterusnya hingga \identifier{N}-1.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Penjelasan Program: for.cpp (lanj.)}
+\begin{itemize}
+  \item Jika \identifier{i} sudah lebih dari \identifier{N}, perulangan akan berhenti dan C++ akan menjalankan perintah sesudah for tersebut.
+  \item Pada contoh ini, mencetak tulisan "akhir dari program".
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Contoh Program: fordownto.cpp}
+\begin{itemize}
+  \item Struktur for cukup luwes untuk kasus-kasus lainnya.
+  \item Berikut ini contoh dari penggunaan for yang bekerja secara terbalik:
+\begin{lstlisting}
+#include <cstdio>
+
+int main() {
+  int N;
+  scanf("%d", &N);
+
+  for (int i = N-1; i >= 0; i--) {
+    printf("tulisan ini dicetak saat i = %d\n", i);
+  }
+  printf("akhir dari program\n");
+}
+\end{lstlisting}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Contoh Program: forskip.cpp}
+\begin{itemize}
+  \item Sementara berikut contoh dari penggunaan for yang lompatannya 2:
+\begin{lstlisting}
+#include <cstdio>
+
+int main() {
+  int N;
+  scanf("%d", &N);
+
+  for (int i = 0; i < N; i += 2) {
+    printf("tulisan ini dicetak saat i = %d\n", i);
+  }
+  printf("akhir dari program\n");
+}
+\end{lstlisting}
+  \item Ekspresi \texttt{i += 2} setara dengan \texttt{i = i + 2}, yang mengisikan \identifier{i} dengan dirinya ditambah 2.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Contoh Program: forskip2.cpp}
+\begin{itemize}
+  \item Tidak terbatas pada penjumlahan, hal semacam ini pun bisa dilakukan:
+\begin{lstlisting}
+#include <cstdio>
+
+int main() {
+  int N;
+  scanf("%d", &N);
+
+  for (int i = 0; i < N; i *= 2) {
+    printf("tulisan ini dicetak saat i = %d\n", i);
+  }
+  printf("akhir dari program\n");
+}
+\end{lstlisting}
+  \item Ekspresi \texttt{i *= 2} setara dengan \texttt{i = i * 2}, yang mengisikan \identifier{i} dengan dirinya dikali 2.
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]
+\frametitle{Contoh Program: forsum.cpp}
+\begin{itemize}
+  \item Berikut contoh program untuk menjumlahkan seluruh bilangan di antara dua bilangan:
+\begin{lstlisting}
+#include <cstdio>
+
+int main() {
+  int awal, akhir;
+  scanf("%d %d", &awal, &akhir);
+
+  int jumlah = 0;
+  for (int i = awal; i <= akhir; i++) {
+    jumlah += i;
+  }
+  printf("jumlah bilangan bulat di antara %d dan %d (inklusif) adalah %d\n", awal, akhir, jumlah);
+}
+\end{lstlisting}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Perulangan: while}
+\begin{itemize}
+  \item Selain for, terdapat pula struktur while.
+  \item Biasa digunakan ketika tidak diketahui harus berapa kali serangkaian perintah dilaksanakan, tetapi diketahui perintah-perintah itu perlu dilaksanakan selama suatu kondisi terpenuhi.
+  \item Pada C++, strukturnya:
+\begin{lstlisting}
+while (<kondisi>) {
+  <perintah 1>;
+  <perintah 2>;
+  ...
+}
+\end{lstlisting}
+  \item Seperti pada if, $<$kondisi$>$ adalah suatu nilai boolean. Selama nilainya \textbf{TRUE}, seluruh $<$perintah x$>$ di dalamnya akan dieksekusi secara berurutan.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Contoh Program: while.cpp}
+\begin{itemize}
+  \item Berikut adalah contoh penggunaan \textbf{while} untuk kasus yang sama dengan for.cpp:
+\begin{lstlisting}
+#include <cstdio>
+
+int main() {
+  int N;
+  scanf("%d", &N);
+
+  int i = 0;
+  while (i < N) {
+    printf("tulisan ini dicetak saat i = %d\n", i);
+    i++;
+  }
+  printf("akhir dari program\n");
+}
+\end{lstlisting}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Penjelasan Program: while.cpp}
+\begin{itemize}
+  \item Alur programmnya sangat mirip dengan for.
+  \item Perbedaannya hanya pada gaya penulisan.
+\end{itemize}
+\begin{lstlisting}
+// Bentuk for
+for (<kondisi_awal>; <kondisi_ulang>; <perubahan>) {
+  <perintah 1>;
+  <perintah 2>;
+  ...
+
+// Bentuk while
+<kondisi_awal>;
+while (<kondisi_ulang>) {
+  <perintah 1>;
+  <perintah 2>;
+  ...
+  <perubahan>;
+}
+\end{lstlisting}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Perulangan: while (lanj.)}
+\begin{itemize}
+  \item Perhatikan bahwa perintah "\texttt{i++}" diperlukan, supaya suatu saat nanti $<$kondisi$>$ pada while akan tidak dipenuhi.
+  \item Sekarang coba hapus perintah "\texttt{i++}" pada while.cpp, dan jalankan kembali programnya.
+  \item Apa yang terjadi? Program akan terjebak dalam \alert{\textit{infinite loop}}, atau \alert{perulangan yang tidak akan pernah berhenti}! Gunakan tombol CTRL+C pada \textit{keyboard} untuk memberhentikan program secara paksa.
+  \item Dengan demikian, pastikan suatu saat "kondisi pada while" tidak dipenuhi, atau program tidak akan pernah berhenti $:)$
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Contoh Program: whilesum.cpp}
+\begin{itemize}
+  \item Berikut ini contoh program dengan while yang melakukan hal serupa dengan forsum.cpp:
+\begin{lstlisting}
+#include <cstdio>
+
+int main() {
+  int awal, akhir;
+  scanf("%d %d", &awal, &akhir);
+
+  int jumlah = 0;
+  int i = awal;
+  while (i <= akhir) {
+    jumlah += i;
+    i++;
+  }
+  printf("jumlah bilangan bulat di antara %d dan %d (inklusif) adalah %d\n", awal, akhir, jumlah);
+}
+\end{lstlisting}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Perulangan: while (lanj.)}
+\begin{itemize}
+  \item Terdapat variasi lain dari while, yang biasa disebut "do ... while".
+  \item Pada C++, strukturnya:
+\begin{lstlisting}
+do {
+  <perintah 1>;
+  <perintah 2>;
+  ...
+} while (<kondisi>);
+\end{lstlisting}
+  \item Perbedaannya adalah, seluruh perintah akan dilakukan dulu, baru diperiksa apakah kondisi masih terpenuhi. Bila ya, maka seluruh perintah akan diulang.
+  \item Hal ini menjamin seluruh perintah dijalankan paling sedikit satu kali.  
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Contoh Program: dowhile.cpp}
+\begin{itemize}
+  \item Berikut ini adalah contoh program dengan \textbf{repeat} yang menjalankan tugas serupa dengan for.cpp dan while.cpp.
+\begin{lstlisting}
+#include <cstdio>
+
+int main() {
+  int N;
+  scanf("%d", &N);
+
+  int i = 0;
+  do {
+    printf("tulisan ini dicetak saat i = %d\n", i);
+    i++;
+  } while (i < N);
+  printf("akhir dari program\n");
+}
+\end{lstlisting}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Sejauh ini...}
+Kalian sudah belajar tentang:
+\begin{itemize}
+  \item Konsep perulangan pada pemrograman.
+  \item Struktur for dan while, beserta kegunaan dan perbedaannya.
+\end{itemize}
+Selanjutnya kita akan memasuki tentang:
+\begin{itemize}
+  \item Penggunaan perulangan yang lebih kompleks, yaitu perulangan bersarang.
+  \item Membuat program dengan apa yang telah dipelajari sejauh ini.
+\end{itemize}
+\end{frame}
+
+\end{document}

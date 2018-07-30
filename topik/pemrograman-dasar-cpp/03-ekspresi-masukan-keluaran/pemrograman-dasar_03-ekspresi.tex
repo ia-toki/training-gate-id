@@ -146,6 +146,37 @@ int main() {
 \end{frame}
 
 \begin{frame}
+\frametitle{Operasi Unary}
+\begin{itemize}
+  \item Pada C++, terdapat pula operasi \foreignTerm{unary} numerik.
+  \item Operasi \foreignTerm{unary} berarti hanya melibatkan satu operand.
+  \item Misalnya terdapat variabel \texttt{x}, operasi \foreignTerm{unary} tersedia berupa:
+  \begin{itemize}
+    \item \texttt{x++}, artinya tambah \texttt{x} dengan 1.
+    \item \texttt{x--}, artinya kurangi \texttt{x} dengan 1.
+  \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Contoh Operasi Unary}
+Perhatikan dan coba eksekusi program berikut untuk memahami operasi \foreignTerm{unary}:
+\begin{lstlisting}
+#include <cstdio>
+
+int main() {
+  int x = 5;
+
+  x++;
+  printf("x: %d\n", x);
+
+  x--;
+  printf("x: %d\n", x);
+}
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}
 \frametitle{Fungsi Dasar Numerik}
 Untuk membantu perhitungan, C++ menyediakan fungsi-fungsi pada STL "cmath".
 \begin{itemize}
@@ -284,7 +315,7 @@ int main() {
 \begin{itemize}
   \item Operasi \textbf{boolean} merupakan operasi yang hanya melibatkan nilai-nilai kebenaran. Terdiri atas: \textbf{not} (!), \textbf{and} ($\&\&$), \textbf{or} ($||$), \textbf{xor} ( $\widehat{}$ ).
   \item Operasi-operasi ini sesuai dengan sebuah cabang ilmu matematika yang bernama "aljabar boolean".
-  \item Operasi \alert{not} merupakan operasi \textit{unary}, artinya hanya melibatkan satu operand. Gunanya untuk membalik nilai kebenaran.
+  \item Operasi \alert{not} merupakan operasi \textit{unary}. Gunanya untuk membalik nilai kebenaran.
   \item Tabel berikut menunjukkan efek dari penggunaan \textbf{not}, yang cara penulisannya dengan tanda seru (!) sebelum variabelnya.
   \begin{tabular}{|c|c|}
   \hline a & !a \\
