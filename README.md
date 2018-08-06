@@ -1,6 +1,7 @@
 # TLX Training Gate Berbahasa Indonesia
 
-[![Build Status](https://travis-ci.org/ia-toki/training-gate-id.svg?branch=master)](https://travis-ci.org/ia-toki/training-gate-id)
+[![Build Status](https://img.shields.io/travis/ia-toki/training-gate-id.svg)](https://travis-ci.org/ia-toki/training-gate-id)
+[![License](https://img.shields.io/github/license/ia-toki/training-gate-id.svg)](https://github.com/ia-toki/training-gate-id/blob/master/LICENSE.txt)
 
 ## Daftar Isi
 * [Silabus Pembelajaran](#silabus-pembelajaran)
