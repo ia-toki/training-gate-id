@@ -1,0 +1,194 @@
+\input{../config.tex}
+
+\title{Penunjang Pemrograman Dasar}
+\author{Tim Olimpiade Komputer Indonesia}
+\date{}
+
+\begin{document}
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+\begin{frame}
+\frametitle{Pendahuluan}
+Dokumen ini berisi tambahan pengetahuan yang dapat menunjang pemrograman dasar kalian.
+\vfill
+Melalui dokumen ini, kalian akan:
+\begin{itemize}
+  \item Mengenal komentar.
+  \item Memahami pesan kesalahan.
+  \item Memahami I/O \textit{redirection}.
+\end{itemize}
+\end{frame}
+
+\section{Komentar}
+\frame{\sectionpage}
+
+\begin{frame}
+\frametitle{Mengenal Komentar}
+\begin{itemize}
+  \item Program yang pendek seperti kuadrat.cpp atau jumlah.cpp yang sebelumnya telah kita jumpai memang sederhana dan mudah dipahami.
+  \item Ketika program sudah mulai panjang dan kompleks, memahami alur kerja suatu program menjadi lebih sulit.
+  \item Salah satu cara untuk membantu memahami alur kerja program adalah dengan menulis komentar.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Komentar}
+\begin{itemize}
+  \item Merupakan bagian dari program yang diabaikan oleh \textit{compiler}.
+  \item Kita bisa menuliskan apapun di dalam komentar. Misalnya: apa yang dilakukan oleh suatu bagian program atau catatan tertentu.
+  \item Pada C++, komentar dapat dituliskan dalam dua gaya:
+  \begin{itemize}
+    \item Satu baris, dituliskan dengan awalan dua \textit{slash}
+    \begin{lstlisting}
+      // ini adalah komentar, hanya bisa sebaris
+      // jika perlu baris baru, tambahkan // lagi
+    \end{lstlisting}
+    \item Beberapa baris, dituliskan dengan mengawali dan mengakhiri komentar dengan \textit{slash} bintang (/* */).
+    \begin{lstlisting}
+     /* ini adalah komentar, yang memungkinkan
+        ditulis dalam beberapa baris */
+    \end{lstlisting}
+  \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame} [fragile]
+\frametitle{Contoh Komentar}
+\begin{itemize}
+  \item Perhatikan program berikut:
+\begin{lstlisting}
+#include <cstdio>
+
+int main() {
+  int a, b, c, x, hasil;
+
+  // Inisialisasi
+  a = 1;
+  b = 3;
+  c = -2;
+
+  // Baca nilai x
+  scanf("%d", &x);
+
+  // Hitung hasil fungsi
+  hasil = a*x*x + b*x + c;
+
+  // Cetak
+  printf("ax^2 + bx + c = %d\n", hasil);
+}
+\end{lstlisting}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Penjelasan Komentar}
+\begin{itemize}
+  \item Program menjadi lebih deskriptif ketika kita menuliskan komentar.
+  \item Ketika program yang dibuat sudah mulai panjang, komentar menjadi efektif untuk membantu kalian "mengingat kembali" apa yang telah diketikkan sebelumnya.
+  \item Komentar juga berguna ketika program kalian akan dibaca oleh orang lain, sehingga orang lain bisa memahaminya dengan lebih mudah.
+  \item Gunakan komentar secukupnya, jangan terlalu berlebihan juga.
+\end{itemize}
+\end{frame}
+
+\section{Pesan Kesalahan (Error)}
+\frame{\sectionpage}
+
+\begin{frame}
+\frametitle{Dua Jenis Error}
+\begin{block}{Compilation Error}
+  Kesalahan yang terjadi ketika program dikompilasi.\newline
+  Contoh: terdapat kesalahan dalam pengetikan nama variabel, kurang tanda titik koma (;), atau salah penggunaan tipe data.
+\end{block}
+\begin{block}{Runtime Error}
+  Kesalahan yang terjadi ketika program dieksekusi.\newline
+  Contoh: saat program dieksekusi, tiba-tiba ada operasi pembagian dengan 0.
+\end{block}
+
+Mampu memahami pesan kesalahan yang disampaikan dapat membantu kita memperbaiki program secara lebih efisien.
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{\textit{Compilation Error}}
+\begin{itemize}
+  \item Pada kompilator g++, pesan kesalahan saat kompilasi biasanya disampaikan dengan format:
+  \begin{lstlisting}
+    <nama berkas>:<nomor baris>:<nomor kolom>: error: <jenis error>
+  \end{lstlisting}
+  Contoh:
+  \begin{lstlisting}
+    tes.cpp:18:34: error: ‘hasil’ was not declared in this scope
+  \end{lstlisting}
+  \item Artinya pada berkas tes.cpp, baris 4, kolom 13, terdapat kesalahan berupa: sebuah variabel bernama "nilai" tidak ditemukan. Untuk memperbaikinya, "nilai" harus dideklarasikan terlebih dahulu.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{\textit{Compilation Error} (lanj.)}
+\begin{itemize}
+  \item Ketika suatu program memiliki \textit{compilation error}, kompilasi akan dibatalkan.
+  \item Program tidak bisa dikompilasi sampai kesalahannya diperbaiki.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{\textit{Runtime Error}}
+\begin{itemize}
+  \item Ketika program sudah berhasil dikompilasi, belum tentu program luput dari \textit{error} ketika dieksekusi.
+  \item Program dapat mengalami \textit{error} ketika sedang dieksekusi karena berbagai hal:
+  \begin{itemize}
+    \item Melakukan pembagian dengan angka 0.
+    \item Mengakses memori di luar yang telah dialokasikan.
+    \item Mengalami \textit{stack overflow}.
+  \end{itemize}
+  \item Pesan \textit{error} akan langsung diberikan dalam bentuk kalimat, contohnya "Floating point exception".
+  \item Sebagian besar dari istilah dan masalah yang dijelaskan di atas mungkin kalian hadapi ketika sudah mempelajari tentang array dan rekursi.
+\end{itemize}
+\end{frame}
+
+\section{IO Redirection}
+\frame{\sectionpage}
+
+\begin{frame}[fragile]
+\frametitle{IO Redirection}
+\begin{itemize}
+  \item Penjelasan tentang saluran input dan output sempat dijelaskan pada bagian sebelumnya. Kali ini, kita akan memperdalamnya.
+  \item Pada contoh yang lalu, kita sempat melakukan hal ini:
+  \begin{lstlisting}
+    jumlah < input.txt > output.txt
+  \end{lstlisting}
+  \item Ada dua hal yang dilakukan di sini:
+  \begin{itemize}
+    \item Memberikan STDIN kepada program jumlah yang akan dieksekusi dengan input.txt. Hal ini dilakukan dengan operator $<$.
+    \item Memberikan STDOUT kepada program jumlah yang akan dieksekusi dengan output.txt. Hal ini dilakukan dengan operator $>$.
+  \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{IO Redirection (lanj.)}
+\begin{itemize}
+  \item Kita bisa melakukan hanya salah satu dari keduanya. Misalnya jika kita melakukan:
+  \begin{lstlisting}
+    jumlah < input.txt
+  \end{lstlisting}
+  \item Artinya program jumlah akan dijalankan dengan STDIN dari berkas input.txt, dan STDOUT ke layar.
+  \item Hal ini akan membantu dalam mengurangi pengetikan berkas masukan terus menerus secara manual.
+  \item Demikian pula dengan:
+  \begin{lstlisting}
+    jumlah > output.txt
+  \end{lstlisting}
+  \item Artinya program jumlah akan dijalankan dengan STDIN dari layar (kalian dapat mengetikkannya), dan STDOUT ke berkas output.txt.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Selanjutnya...}
+\begin{itemize}
+  \item Memasuki bagian yang menarik, yaitu struktur percabangan.
+\end{itemize}
+\end{frame}
+
+\end{document}

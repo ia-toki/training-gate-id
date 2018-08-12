@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="744.09448819"
+   height="1052.3622047"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.48.4 r9939"
+   sodipodi:docname="all-pic.svg">
+  <defs
+     id="defs4">
+    <marker
+       inkscape:stockid="Arrow1Mend"
+       orient="auto"
+       refY="0.0"
+       refX="0.0"
+       id="Arrow1Mend"
+       style="overflow:visible;">
+      <path
+         id="path3784"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1.0pt;"
+         transform="scale(0.4) rotate(180) translate(10,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Lend"
+       orient="auto"
+       refY="0.0"
+       refX="0.0"
+       id="Arrow1Lend"
+       style="overflow:visible;">
+      <path
+         id="path3778"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1.0pt;"
+         transform="scale(0.8) rotate(180) translate(12.5,0)" />
+    </marker>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.55104611"
+     inkscape:cx="471.39671"
+     inkscape:cy="367.35714"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1366"
+     inkscape:window-height="716"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <g
+       id="g3016">
+      <text
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/gyosh/coding/toki/ia_toki/training-gate/SESI2_variabel_dan_tipe_data/materi/asset/g1.png"
+         sodipodi:linespacing="125%"
+         id="text3755"
+         y="83.359879"
+         x="76.339203"
+         style="font-size:40px;font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Press Start;-inkscape-font-specification:Press Start"
+         xml:space="preserve"><tspan
+           y="83.359879"
+           x="76.339203"
+           id="tspan3757"
+           sodipodi:role="line">STDIN</tspan></text>
+      <text
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/gyosh/coding/toki/ia_toki/training-gate/SESI2_variabel_dan_tipe_data/materi/asset/g1.png"
+         sodipodi:linespacing="125%"
+         id="text3759"
+         y="237.94676"
+         x="184.16832"
+         style="font-size:40px;font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Press Start;-inkscape-font-specification:Press Start"
+         xml:space="preserve"><tspan
+           y="237.94676"
+           x="184.16832"
+           id="tspan3761"
+           sodipodi:role="line">program</tspan></text>
+      <text
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/gyosh/coding/toki/ia_toki/training-gate/SESI2_variabel_dan_tipe_data/materi/asset/g1.png"
+         sodipodi:linespacing="125%"
+         id="text3763"
+         y="83.359879"
+         x="312.99072"
+         style="font-size:40px;font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Press Start;-inkscape-font-specification:Press Start"
+         xml:space="preserve"><tspan
+           y="83.359879"
+           x="312.99072"
+           id="tspan3765"
+           sodipodi:role="line">STDOUT</tspan></text>
+      <path
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/gyosh/coding/toki/ia_toki/training-gate/SESI2_variabel_dan_tipe_data/materi/asset/g1.png"
+         sodipodi:nodetypes="cc"
+         inkscape:connector-curvature="0"
+         id="path3767"
+         d="m 146.95297,103.39892 70.61376,98.28672"
+         style="fill:none;stroke:#000000;stroke-width:3.9000001;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#Arrow1Mend)" />
+      <path
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/gyosh/coding/toki/ia_toki/training-gate/SESI2_variabel_dan_tipe_data/materi/asset/g1.png"
+         sodipodi:nodetypes="cc"
+         inkscape:connector-curvature="0"
+         id="path3769"
+         d="M 325.39585,207.41108 388.3757,97.673484"
+         style="fill:none;stroke:#000000;stroke-width:3.9000001;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#Arrow1Mend)" />
+    </g>
+    <g
+       id="g3003"
+       transform="translate(35.516306,183.83813)"
+       inkscape:export-filename="/home/gyosh/coding/toki/ia-toki/training-gate-id/pemrograman-dasar/2-variabel_tipe_data_IO/asset/ekspresi.png"
+       inkscape:export-xdpi="180.02654"
+       inkscape:export-ydpi="180.02654">
+      <text
+         sodipodi:linespacing="125%"
+         id="text2985"
+         y="163.42793"
+         x="74.255142"
+         style="font-size:60.61473846px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Serif;-inkscape-font-specification:Serif"
+         xml:space="preserve"><tspan
+           style="font-weight:bold;letter-spacing:29.45875931px;-inkscape-font-specification:Serif Bold"
+           y="163.42793"
+           x="74.255142"
+           id="tspan2987"
+           sodipodi:role="line">1+2</tspan></text>
+      <text
+         sodipodi:linespacing="125%"
+         id="text2989"
+         y="229.08786"
+         x="295.9747"
+         style="font-size:40px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Serif;-inkscape-font-specification:Serif"
+         xml:space="preserve"><tspan
+           id="tspan2995"
+           y="229.08786"
+           x="295.9747"
+           sodipodi:role="line">operand</tspan><tspan
+           y="279.08786"
+           x="295.9747"
+           sodipodi:role="line"
+           id="tspan3026">operator</tspan><tspan
+           y="329.08786"
+           x="295.9747"
+           sodipodi:role="line"
+           id="tspan3028">operand</tspan></text>
+      <path
+         inkscape:connector-curvature="0"
+         id="path2997"
+         d="m 246.47722,174.53962 0,44.44671 34.34519,0"
+         style="fill:none;stroke:#000000;stroke-width:0.99999994px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      <path
+         style="fill:none;stroke:#000000;stroke-width:0.99999988px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="m 172.73608,174.53962 0,91.92388 108.08633,0"
+         id="path2999"
+         inkscape:connector-curvature="0" />
+      <path
+         inkscape:connector-curvature="0"
+         id="path3001"
+         d="m 93.944178,179.59039 0,135.36044 186.878232,0"
+         style="fill:none;stroke:#000000;stroke-width:0.99999982px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+    </g>
+    <g
+       id="g3467"
+       transform="translate(47.217128,486.05696)"
+       inkscape:export-filename="/home/gyosh/coding/toki/ia-toki/training-gate-id/pemrograman-dasar/2-variabel_tipe_data_IO/asset/ekspresi-nested.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180">
+      <text
+         xml:space="preserve"
+         style="font-size:60.61473846px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Serif;-inkscape-font-specification:Serif"
+         x="74.255142"
+         y="151.65782"
+         id="text3469"
+         sodipodi:linespacing="125%"><tspan
+           sodipodi:role="line"
+           id="tspan3471"
+           x="74.255142"
+           y="151.65782"
+           style="font-weight:bold;letter-spacing:29.45875931px;-inkscape-font-specification:Serif Bold">1+<tspan
+   style="letter-spacing:4.45999622px"
+   id="tspan3487">(3-2)</tspan></tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-size:40px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Serif;-inkscape-font-specification:Serif"
+         x="395.9747"
+         y="229.08786"
+         id="text3473"
+         sodipodi:linespacing="125%"><tspan
+           sodipodi:role="line"
+           x="395.9747"
+           y="229.08786"
+           id="tspan3479">operand</tspan><tspan
+           sodipodi:role="line"
+           x="395.9747"
+           y="279.08786"
+           id="tspan3035">operator</tspan><tspan
+           sodipodi:role="line"
+           x="395.9747"
+           y="329.08786"
+           id="tspan3037">operand</tspan></text>
+      <path
+         style="fill:none;stroke:#000000;stroke-width:0.99999994px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="m 324.60077,185.65583 0,33.3305 51.93592,0"
+         id="path3481"
+         inkscape:connector-curvature="0" />
+      <path
+         inkscape:connector-curvature="0"
+         id="path3483"
+         d="m 167.37699,161.46172 0,100.48567 217.73111,0"
+         style="fill:none;stroke:#000000;stroke-width:0.99999988px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      <path
+         style="fill:none;stroke:#000000;stroke-width:0.99999988px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="m 93.944177,164.36735 0,150.58349 282.592513,0"
+         id="path3485"
+         inkscape:connector-curvature="0" />
+      <path
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="m 401.49149,582.21172 -12.424,14.38569 -136.99099,0 -12.09706,-15.69348"
+         id="path3489"
+         inkscape:connector-curvature="0"
+         transform="translate(0,-410.12193)"
+         sodipodi:nodetypes="cccc" />
+    </g>
+  </g>
+</svg>
