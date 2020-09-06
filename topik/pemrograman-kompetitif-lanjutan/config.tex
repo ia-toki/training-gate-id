@@ -1,0 +1,154 @@
+\documentclass{beamer}
+\usetheme{tokitex}
+
+\usepackage{tikz}
+\usepackage{graphics}
+\usepackage{multirow}
+\usepackage{tabto}
+\usepackage{xspace}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{wrapfig}
+
+\usepackage{tikz}
+\usepackage{clrscode3e}
+
+\usepackage[english,bahasa]{babel}
+\newtranslation[to=bahasa]{Section}{Bagian}
+\newtranslation[to=bahasa]{Subsection}{Subbagian}
+
+\usepackage{listings, lstautogobble}
+\usepackage{color}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+  language=c++,
+  aboveskip=0mm,
+  belowskip=0mm,
+  showstringspaces=false,
+  columns=fullflexible,
+  keepspaces=true,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  lineskip={-3pt}
+}
+
+\usepackage{caption}
+\captionsetup[figure]{labelformat=empty}
+
+\newcommand{\progTerm}[1]{\textbf{#1}}
+\newcommand{\foreignTerm}[1]{\textit{#1}}
+\newcommand{\newTerm}[1]{\alert{\textbf{#1}}}
+\newcommand{\emp}[1]{\alert{#1}}
+\newcommand{\statement}[1]{"#1"}
+
+% Getting tired of writing \foreignTerm all the time
+\newcommand{\farray}{\foreignTerm{array}\xspace}
+\newcommand{\fArray}{\foreignTerm{Array}\xspace}
+\newcommand{\foverhead}{\foreignTerm{overhead}\xspace}
+\newcommand{\fOverhead}{\foreignTerm{Overhead}\xspace}
+\newcommand{\fsubarray}{\foreignTerm{subarray}\xspace}
+\newcommand{\fSubarray}{\foreignTerm{Subarray}\xspace}
+\newcommand{\fbasecase}{\foreignTerm{base case}\xspace}
+\newcommand{\fBasecase}{\foreignTerm{Base case}\xspace}
+\newcommand{\ftopdown}{\foreignTerm{top-down}\xspace}
+\newcommand{\fTopdown}{\foreignTerm{Top-down}\xspace}
+\newcommand{\fbottomup}{\foreignTerm{bottom-up}\xspace}
+\newcommand{\fBottomup}{\foreignTerm{Bottom-up}\xspace}
+\newcommand{\fpruning}{\foreignTerm{pruning}\xspace}
+\newcommand{\fPruning}{\foreignTerm{Pruning}\xspace}
+
+\newcommand{\fgraph}{\foreignTerm{graph}\xspace}
+\newcommand{\fGraph}{\foreignTerm{Graph}\xspace}
+\newcommand{\froot}{\foreignTerm{root}\xspace}
+\newcommand{\fRoot}{\foreignTerm{Root}\xspace}
+\newcommand{\fnode}{\foreignTerm{node}\xspace}
+\newcommand{\fNode}{\foreignTerm{Node}\xspace}
+\newcommand{\fedge}{\foreignTerm{edge}\xspace}
+\newcommand{\fEdge}{\foreignTerm{Edge}\xspace}
+\newcommand{\fdegree}{\foreignTerm{degree}\xspace}
+\newcommand{\fDegree}{\foreignTerm{Degree}\xspace}
+\newcommand{\fadjacencylist}{\foreignTerm{adjacency list}\xspace}
+\newcommand{\fAdjacencylist}{\foreignTerm{Adjacency list}\xspace}
+\newcommand{\fadjacencymatrix}{\foreignTerm{adjacency matrix}\xspace}
+\newcommand{\fAdjacencymatrix}{\foreignTerm{Adjacency matrix}\xspace}
+\newcommand{\fedgelist}{\foreignTerm{edge list}\xspace}
+\newcommand{\fEdgelist}{\foreignTerm{Edge list}\xspace}
+\newcommand{\flist}{\foreignTerm{list}\xspace}
+\newcommand{\fList}{\foreignTerm{List}\xspace}
+\newcommand{\fgraphtraversal}{\foreignTerm{graph traversal}\xspace}
+\newcommand{\fGraphtraversal}{\foreignTerm{Graph traversal}\xspace}
+\newcommand{\ftree}{\foreignTerm{tree}\xspace}
+\newcommand{\fTree}{\foreignTerm{Tree}\xspace}
+\newcommand{\fsubtree}{\foreignTerm{subtree}\xspace}
+\newcommand{\fSubtree}{\foreignTerm{Subtree}\xspace}
+\newcommand{\fparent}{\foreignTerm{parent}\xspace}
+\newcommand{\fParent}{\foreignTerm{Parent}\xspace}
+\newcommand{\fsibling}{\foreignTerm{sibling}\xspace}
+\newcommand{\fSibling}{\foreignTerm{Sibling}\xspace}
+\newcommand{\fpath}{\foreignTerm{path}\xspace}
+\newcommand{\fPath}{\foreignTerm{Path}\xspace}
+
+\newcommand{\fDivideAndConquer}{\foreignTerm{Divide and conquer}\xspace}
+\newcommand{\fdivideAndConquer}{\foreignTerm{divide and conquer}\xspace}
+\newcommand{\fMergeSort}{\foreignTerm{Merge sort}\xspace}
+\newcommand{\fmergeSort}{\foreignTerm{merge sort}\xspace}
+\newcommand{\fQuickSort}{\foreignTerm{Quicksort}\xspace}
+\newcommand{\fquickSort}{\foreignTerm{quicksort}\xspace}
+\newcommand{\fpivot}{\foreignTerm{pivot}\xspace}
+\newcommand{\fPivot}{\foreignTerm{Pivot}\xspace}
+\newcommand{\fbruteForce}{\foreignTerm{brute force}\xspace}
+\newcommand{\fBruteForce}{\foreignTerm{Brute force}\xspace}
+\newcommand{\fCompleteSearch}{\foreignTerm{complete search}\xspace}
+\newcommand{\fExhaustiveSearch}{\foreignTerm{exhaustive search}\xspace}
+\newcommand{\fBinarySearch}{\foreignTerm{binary search}\xspace}
+\newcommand{\fGreedy}{\foreignTerm{Greedy}\xspace}
+\newcommand{\fgreedy}{\foreignTerm{greedy}\xspace}
+\newcommand{\fgreedyChoice}{\foreignTerm{greedy choice}\xspace}
+\newcommand{\fGreedyChoice}{\foreignTerm{Greedy choice}\xspace}
+
+\newcommand{\fdp}{\foreignTerm{dynamic programming}\xspace}
+\newcommand{\fDp}{\foreignTerm{Dynamic programming}\xspace}
+\newcommand{\fbitmask}{\foreignTerm{bitmask}\xspace}
+\newcommand{\fBitmask}{\foreignTerm{Bitmask}\xspace}
+\newcommand{\fstate}{\foreignTerm{state}\xspace}
+\newcommand{\fState}{\foreignTerm{State}\xspace}
+\newcommand{\fsubmask}{\foreignTerm{submask}\xspace}
+\newcommand{\fSubmask}{\foreignTerm{Submask}\xspace}
+
+\newcommand{\pheap}{\foreignTerm{heap}\xspace}
+\newcommand{\pHeap}{\foreignTerm{Heap}\xspace}
+\newcommand{\pBinaryHeap}{\foreignTerm{Binary Heap}\xspace}
+\newcommand{\pbinaryHeap}{\foreignTerm{binary heap}\xspace}
+\newcommand{\pHeapsort}{\foreignTerm{Heapsort}\xspace}
+\newcommand{\pheapsort}{\foreignTerm{heapsort}\xspace}
+\newcommand{\pdjs}{\foreignTerm{disjoint set}\xspace}
+\newcommand{\pDjs}{\foreignTerm{Disjoint set}\xspace}
+
+\newcommand{\fmaxflow}{\foreignTerm{maximum flow}\xspace}
+\newcommand{\fMaxflow}{\foreignTerm{Maximum flow}\xspace}
+\newcommand{\fmincut}{\foreignTerm{minimum cut}\xspace}
+\newcommand{\fMincut}{\foreignTerm{Minimum cut}\xspace}
+\newcommand{\fflow}{\foreignTerm{flow}\xspace}
+\newcommand{\fFlow}{\foreignTerm{Flow}\xspace}
+\newcommand{\fsource}{\foreignTerm{source}\xspace}
+\newcommand{\fSource}{\foreignTerm{Source}\xspace}
+\newcommand{\fsink}{\foreignTerm{sink}\xspace}
+\newcommand{\fSink}{\foreignTerm{Sink}\xspace}
+\newcommand{\fbackEdge}{\foreignTerm{back-edge}\xspace}
+\newcommand{\fBackEdge}{\foreignTerm{Back-edge}\xspace}
+\newcommand{\fresidualCapacity}{\foreignTerm{residual capacity}\xspace}
+\newcommand{\fResidualCapacity}{\foreignTerm{Residual capacity}\xspace}
+\newcommand{\fbottleneck}{\foreignTerm{bottleneck}\xspace}
+\newcommand{\fBottleneck}{\foreignTerm{Bottleneck}\xspace}
+\newcommand{\faugmentingPath}{\foreignTerm{augmenting path}\xspace}
+\newcommand{\fAugmentingPath}{\foreignTerm{Augmenting path}\xspace}
