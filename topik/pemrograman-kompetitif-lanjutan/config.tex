@@ -9,6 +9,7 @@
 \usepackage{amsmath}
 \usepackage{hyperref}
 \usepackage{wrapfig}
+\usepackage{mathtools}
 
 \usepackage{tikz}
 \usepackage{clrscode3e}
@@ -50,6 +51,11 @@
 \newcommand{\newTerm}[1]{\alert{\textbf{#1}}}
 \newcommand{\emp}[1]{\alert{#1}}
 \newcommand{\statement}[1]{"#1"}
+
+\newcommand{\floor}[1]{\lfloor #1 \rfloor}
+\newcommand{\ceil}[1]{\lceil #1 \rceil}
+\newcommand{\abs}[1]{\lvert#1\rvert}
+\newcommand{\norm}[1]{\lVert#1\rVert}
 
 % Getting tired of writing \foreignTerm all the time
 \newcommand{\farray}{\foreignTerm{array}\xspace}
@@ -110,7 +116,12 @@
 \newcommand{\fBruteForce}{\foreignTerm{Brute force}\xspace}
 \newcommand{\fCompleteSearch}{\foreignTerm{complete search}\xspace}
 \newcommand{\fExhaustiveSearch}{\foreignTerm{exhaustive search}\xspace}
-\newcommand{\fBinarySearch}{\foreignTerm{binary search}\xspace}
+\newcommand{\fbinarySearch}{\foreignTerm{binary search}\xspace}
+\newcommand{\fBinarySearch}{\foreignTerm{Binary search}\xspace}
+\newcommand{\fternarySearch}{\foreignTerm{ternary search}\xspace}
+\newcommand{\fTernarySearch}{\foreignTerm{Ternary search}\xspace}
+\newcommand{\funimodal}{\foreignTerm{unimodal}\xspace}
+\newcommand{\fUnimodal}{\foreignTerm{Unimodal}\xspace}
 \newcommand{\fGreedy}{\foreignTerm{Greedy}\xspace}
 \newcommand{\fgreedy}{\foreignTerm{greedy}\xspace}
 \newcommand{\fgreedyChoice}{\foreignTerm{greedy choice}\xspace}
@@ -133,6 +144,11 @@
 \newcommand{\pheapsort}{\foreignTerm{heapsort}\xspace}
 \newcommand{\pdjs}{\foreignTerm{disjoint set}\xspace}
 \newcommand{\pDjs}{\foreignTerm{Disjoint set}\xspace}
+
+\newcommand{\fdotProduct}{\foreignTerm{dot product}\xspace}
+\newcommand{\fDotProduct}{\foreignTerm{Dot product}\xspace}
+\newcommand{\fcrossProduct}{\foreignTerm{cross product}\xspace}
+\newcommand{\fCrossProduct}{\foreignTerm{Cross product}\xspace}
 
 \newcommand{\fmaxflow}{\foreignTerm{maximum flow}\xspace}
 \newcommand{\fMaxflow}{\foreignTerm{Maximum flow}\xspace}

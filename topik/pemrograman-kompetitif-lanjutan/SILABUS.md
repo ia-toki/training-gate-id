@@ -1,11 +1,11 @@
 # Silabus Pemrograman Kompetitif Lanjutan
 
-## 1. Divide and Conquer Lanjutan
+## 1. Divide and Conquer Lanjut
 
   * Binary Search the Answer
   * Ternary Search
   * Meet in the Middle
-  * Matrix exponentiation
+  * Perpangkatan Matriks
 
 ## 2. Komputasi Geometri
 
@@ -13,8 +13,8 @@
   * Segmen Garis
   * Poligon
   * Convex Hull
-  * Line sweep
-  * Compression
+  * Line Sweep
+  * Kompresi
 
 ## 3. Struktur Data Lanjutan
 
@@ -40,7 +40,7 @@
 ## 6. Maximum Flow
 
   * Ford Fulkerson
-  * Edmonds Karp
+  * Edmonds-Karp
   * Minimum Cut
 
 ## 7. Bipartite Matching
@@ -66,8 +66,8 @@
 
 ## 10. Optimisasi Dynamic Programming
 
-  * Convex Hull trick
-  * Divide and Conquer trick
+  * Convex Hull Trick
+  * Divide and Conquer Trick
   * Knuth Optimization
 
 ## 11. Optimisasi Dynamic Programming Lanjutan
@@ -81,7 +81,7 @@
   * Parallel Binary Search
   * Golden Section Search
 
-## 13. Struktur Data Sulit
+## 13. Struktur Data Ahli
 
   * Struktur Data 2D
   * Range Tree

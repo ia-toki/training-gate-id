@@ -1,0 +1,268 @@
+\input{../config.tex}
+
+\title{Divide and Conquer Lanjutan}
+\author{Tim Olimpiade Komputer Indonesia}
+\date{}
+
+\begin{document}
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+\begin{frame}
+\frametitle{Pendahuluan}
+Melalui dokumen ini, kalian akan:
+\begin{itemize}
+  \item Memahami konsep binary search the answer
+  \item Memahami konsep ternary search
+  \item Memahami konsep meet in the middle
+  \item Memahami konsep perpangkatan matriks
+\end{itemize}
+~\newline
+Mulai dari bab ini, seluruh kode program akan dituliskan dalam bahasa pseudo-C++.
+\end{frame}
+
+\begin{frame}
+\frametitle{Binary Search the Answer}
+\begin{itemize}
+  \item Pada dasarnya, teknik ini menggunakan konsep binary search dalam menebak suatu jawaban, kemudian membuat decision untuk memperkecil search space kita dalam mencari jawaban yang optimal.
+  \item Teknik ini sebenarnya tidak sulit untuk diaplikasikan jika kita sudah memahami teknik dasar binary search. Bahkan, beberapa orang ada yang dapat mengaplikasikan teknik ini secara tidak sadar sebelum mempelajarinya.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Binary Search}
+\begin{itemize}
+  \item Mari kita lihat kembali bagaimana konsep dasar dari binary search itu sendiri.
+  \item Contoh soal: Diberikan suatu \farray $A$ sepanjang $N$ yang elemennya terurut dari kecil ke besar. Tentukan index dengan value terkecil pada \farray tersebut yang nilainya $ \ge X$ dalam waktu $O(log N)$.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Binary Search (lanj.)}
+\begin{itemize}
+  \item Soal ini dapat diselesaikan menggunakan binary search:
+  \begin{itemize}
+    \item Misalkan diberikan $N = 8$, $A = [1, 2, 3, 5, 8, 13, 21, 34]$, dan $X = 7$.
+    \item Mari kita definisikan $B$ sebagai \farray sepanjang $N$ dengan $B[i]$ bernilai:
+    \begin{itemize}
+      \item $0$ jika $A[i] < X$, atau
+      \item $1$ jika $A[i] \ge X$.
+    \end{itemize}
+    \item Dengan menggunakan \farray $B$, kita dapat mengubah soal yang diberikan menjadi sebagai berikut:
+    \begin{itemize}
+      \item Tentukan indeks pertama yang bernilai $1$ pada \farray yang hanya berisikan angka $0$ dan $1$, serta nilainya terurut dari kecil ke besar.
+    \end{itemize}
+  \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Binary Search (lanj.)}
+\begin{itemize}
+  \item Soal sebelumnya dapat diselesaikan menggunakan kode berikut.
+\end{itemize}
+\begin{lstlisting}
+void check(int v, int X) {
+  return v >= x;
+}
+
+int solve(int N, vector<int> A, int X) {
+  int l = 0, r = N - 1;
+  while (l < r) {
+    int mid = (l + r) >> 1;
+    if (check(A[i], X)) r = mid;
+    else l = mid + 1;
+  }
+  return l;
+}
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}
+\frametitle{Binary Search the Answer}
+\begin{itemize}
+  \item Secara tidak langsung, dalam menyelesaikan soal tersebut, kita sudah mengaplikasikan teknik ini.
+  \item Kita melakukan \fbinarySearch pada index \farray $B$, dengan index tersebut akan menjadi jawaban.
+  \item Untuk memperkecil kemungkinan jawaban, kita memeriksa suatu tebakan dengan menggunakan fungsi \lstinline{check} yang membantu kita dalam membuat keputusan apakah harus memeriksa index di kiri atau kanan dari tebakan pada saat tersebut.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Contoh Soal}
+\begin{itemize}
+  \item Terdapat $N$ barang dengan harga yang berbeda-beda dinomori $1$ sampai $N$.
+  \item Kita diminta untuk membagi $N$ barang ini menjadi $K (2 \le K \le N)$ kelompok, sedemikian sehingga setiap barang berada dalam tepat satu kelompok, dan setiap kelompok berisi setidaknya satu barang yang memiliki nomor yang berurutan.
+  \item Kemudian, $K - 1$ teman kita secara satu per satu akan memilih satu kelompok yang belum dipilih sebelumnya, dan mengambil seluruh barang yang berada di dalam kelompok tersebut.
+  \item Kita akan mengambil seluruh barang di satu kelompok yang tersisa. Karena teman kita rakus, kita akan mendapatkan kelompok dengan total harga barang yang paling kecil.
+  \item Tentukan total harga barang maksimum yang dapat kita peroleh dengan mengatur pembagian kelompok barang seoptimal mungkin.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Solusi}
+\begin{itemize}
+  \item Kita dapat menggunakan fungsi $f$ sedemikian sehingga $f(x) = 1$ jika kita dapat mendapatkan kelompok dengan total harga barang setidaknya $x$, atau $f(x) = 0$ jika tidak.
+  \item Perhatikan bahwa fungsi ini terurut dari besar ke kecil.
+  \begin{itemize}
+    \item Jika kita dapat mendapatkan kelompok dengan total harga barang setidaknya $x$, maka kita juga dapat mendapatkan kelompok dengan total harga barang setidaknya $x - 1$.
+    \item Sebaliknya, jika kita tidak dapat mendapatkan kelompok dengan total harga barang setidaknya $x$, maka kita juga tidak dapat mendapatkan kelompok dengan total harga barang setidaknya $x + 1$.
+  \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Solusi (lanj.)}
+\begin{itemize}
+  \item Jika kita ingin mendapatkan kelompok dengan total harga barang setidaknya $x$, maka kita harus membagi kelompok barang sedemikian sehingga seluruh kelompok memiliki total harga barang setidaknya $x$.
+  \begin{itemize}
+    \item Sehingga, fungsi ini dapat diimplementasikan dengan memeriksa apakah kita dapat membagi kelompok barang yang memenuhi kondisi tersebut.
+    \item Kita dapat menggunakan algoritme \fgreedy.
+  \end{itemize}
+  \item Kompleksitas solusi ini adalah $O(N \times \log(\sum H))$ dengan $\sum H$ adalah total harga barang.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Solusi (lanj.)}
+\begin{lstlisting}
+bool f(int N, int K, const vector<int>& H, int X) {
+  int current_sum = 0;
+  for (int i = 0; i < N; ++i) {
+    if (current_sum + H[i] >= X) {
+      // Dibentuk kelompok dengan total harga barang >= X.
+      --K; current_sum = 0;
+    } else {
+      current_sum += H[i];
+    }
+  }
+  return (K <= 0 ? 1 : 0);
+}
+
+int solve(int N, int K, vector<int> H) {
+  int l = 0, r = accumulate(H.begin(), H.end(), 0);
+  while (l < r) {
+    int mid = (l + r) >> 1;
+    if (f(N, K, H, mid)) l = mid;
+    else r = mid - 1;
+  }
+  return l;
+}
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}
+\frametitle{Ternary Search}
+\begin{itemize}
+  \item Jika \farray yang dimiliki tidak terurut namun \funimodal, kita dapat menggunakan \fternarySearch untuk mencari sebuah elemen pada \farray tersebut dalam $O(\log(N))$.
+  \item \fArray \newTerm{unimodal} adalah \farray yang memiliki hanya satu puncak. Lebih resminya, \fArray $A$ adalah \funimodal jika terdapat suatu indeks $x$ yang memenuhi:
+  \begin{itemize}
+    \item Untuk seluruh $a, b$ yang memenuhi $a < b \le x$, $A[a] < A[b]$.
+    \item Untuk seluruh $a, b$ yang memenuhi $x \le a < b$, $A[a] > A[b]$.
+  \end{itemize}
+  \item Teknik serupa juga dapat digunakan bila \farray memiliki hanya satu lembah.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Ternary Search (lanj.)}
+\begin{itemize}
+  \item Jika kita tahu bahwa puncak \farray berada di antara indeks $L$ dan $R$, maka jika kita memiliki dua indeks $M_1$ dan $M_2$ $(L < M_1 < M_2 < R)$
+  \begin{itemize}
+    \item Jika $A[M_1] < A[M_2]$, maka puncak \farray tidak mungkin berada di sisi kiri (antara indeks $L$ dan $M_1$). Maka kita dapat fokus melakukan pencarian di antara indeks $M_1 + 1$ dan $R$.
+    \item Jika $A[M_1] > A[M_2]$, maka puncak \farray tidak mungkin berada di sisi kanan (antara indeks $M_2$ dan $R$). Maka kita dapat fokus melakukan pencarian di antara indeks $L$ dan $M_2 - 1$.
+    \item Jika $A[M_1] = A[M_2]$, maka puncak \farray tidak mungkin berada di kedua sisi. Maka kita dapat fokus melakukan pencarian di antara indeks $M_1 + 1$ dan $M_2 - 1$.
+  \end{itemize}
+  \item Agar ukuran rentang pencarian berkurang menjadi paling banyak $\frac{2}{3}$ kali ukuran rentang pencarian sebelumnya pada seluruh kasus, kita dapat menggunakan $M_1 = L + \frac{1}{3}(R - L)$ dan $M_2 = R - \frac{1}{3}(R - L)$.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Meet in the Middle}
+\begin{itemize}
+  \item Teknik \newTerm{Meet in the Middle} digunakan dengan membagi masalah menjadi dua submasalah.
+  \item Pencarian lengkap akan dilakukan untuk setiap submasalah dan memeriksa apakah terdapat irisan pada kedua pencarian lengkap tersebut.
+  \item Contoh soal: Diberikan suatu himpunan $S$ berisi $N$ bilangan. Tentukan apakah terdapat subhimpunan dari $S$ yang berjumlah $0$.
+  \item Tentunya terdapat solusi menggunakan pencarian penuh dalam waktu $O(2^N)$, namun kita akan menggunakan solusi yang lebih cepat.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Meet in the Middle (lanj.)}
+\begin{itemize}
+  \item Soal ini dapat diselesaikan dengan membagi himpunan $S$ menjadi dua subhimpunan $A$ dan $B$ sedemikian sehingga $|A| = \floor{\frac{N}{2}}$ dan $|B| = \ceil{\frac{N}{2}}$.
+  \item Terdapat subhimpunan dari $S$ yang berjumlah $0$ jika dan hanya jika terdapat subhimpunan $A' \subseteq A$ dan subhimpunan $B' \subseteq B$ sedemikian sehingga jumlah seluruh bilangan pada $A'$ adalah negasi dari jumlah seluruh bilangan pada $B'$.
+  \item Untuk setiap subhimpunan $B' \subseteq B$, kita dapat menyimpan jumlah seluruh bilangannya dalam \farray $P(B)$ dan mengurutkannya.
+  \item Untuk setiap subhimpunan $A' \subseteq A$, kita dapat memeriksa apakah negasi dari jumlah seluruh bilangannnya terdapat pada \farray$P(B)$ menggunakan binary search.
+  \item Kompleksitas dari solusi ini adalah $O(2^{\floor{\frac{N}{2}}} \times \log(2^{\ceil{\frac{N}{2}}}))$.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Perpangkatan Matriks}
+\begin{itemize}
+  \item Teknik perpangkatan matriks dapat menghitung nilai dari matriks $M^K$ untuk sebuah matriks$M$ berukuran $N \times N$ dalam waktu $O(N^3 \times \log(K))$.
+  \item Teknik ini sebenarnya serupa dengan perpangkatan bilangan bulat.
+\end{itemize}
+\[
+    M^x= 
+\begin{dcases}
+    M,                                    & \text{jika } x = 1\\
+    (M^{\frac{x}{2}})^2,                  & \text{jika } x \text{ bernilai genap}\\
+    (M^{\floor{\frac{x}{2}}})^2 \times M, & \text{jika tidak}
+\end{dcases}
+\]
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Perpangkatan Matriks}
+\begin{lstlisting}
+template<typename T>
+T exp(T M, int K) {
+  if (K == 1) {
+    return M;
+  }
+  T res = exp(M, K >> 1);
+  res = res * res;
+  if (K & 1) {
+    res = res * M;
+  }
+  return res;
+}
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}
+\frametitle{Perpangkatan Matriks: Fibonaci}
+\begin{itemize}
+  \item Salah satu penggunaan perpangkatan matriks adalah untuk menghitung $f_N$ (bilangan fibonaci ke-$N$) dalam $O(\log(N))$.
+  \item Untuk seluruh bilangan bulat positif $n$, perhatikan bahwa $f_{n+2} = f_n + f_{n+1}$, sehingga
+\[
+  \begin{bmatrix} f_n & f_{n+1} \end{bmatrix} \times
+  \begin{bmatrix} 0 & 1 \\ 1 & 1  \end{bmatrix} =
+  \begin{bmatrix} f_{n+1} & f_{n+2} \end{bmatrix}
+\]
+  \item Sehingga, untuk setiap bilangan bulat positif $k$
+\[
+  \begin{bmatrix} f_n & f_{n+1} \end{bmatrix} \times
+  \begin{bmatrix} 0 & 1 \\ 1 & 1  \end{bmatrix}^k =
+  \begin{bmatrix} f_{n+k} & f_{n+k} \end{bmatrix}
+\]
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Perpangkatan Matriks: Fibonaci (lanj.)}
+\begin{itemize}
+  \item, Sehingga, nilai $f_N$ dapat diperoleh dengan menghitung nilai
+  \[
+    \begin{bmatrix} f_1 & f_2 \end{bmatrix} \times
+    \begin{bmatrix} 0 & 1 \\ 1 & 1  \end{bmatrix}^{N - 1} =
+    \begin{bmatrix} f_N & f_{N+1} \end{bmatrix}
+  \]
+  \item Nilai $\begin{bmatrix} 0 & 1 \\ 1 & 1  \end{bmatrix}^{N - 1}$ dapat dihitung menggunakan perpangkatan matriks dalam $O(\log N)$.
+\end{itemize}
+\end{frame}
+
+\end{document}
