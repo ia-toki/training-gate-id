@@ -63,17 +63,16 @@
   * Suffix Array
   * Aho-Corasick
 
-## 10. Optimisasi Dynamic Programming
+## 10. Teknik Optimisasi
 
-  * Convex Hull Trick
-  * Divide and Conquer Trick
-  * Knuth Optimization
+  * Optimisasi Convex Hull
+  * Optimisasi Knuth
+  * Optimisasi Divide and Conquer
 
-## 11. Optimisasi Dynamic Programming Lanjutan
+## 11. Teknik Optimisasi Lanjutan
 
-  * Properti Monge
   * Slope Trick
-  * Deque
+  * Properti Monge
 
 ## 12. Divide and Conquer Sulit
 
