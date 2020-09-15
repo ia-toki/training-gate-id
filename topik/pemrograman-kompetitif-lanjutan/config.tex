@@ -13,6 +13,7 @@
 
 \usepackage{tikz}
 \usepackage{clrscode3e}
+\usepackage{gensymb}
 
 \usepackage[english,bahasa]{babel}
 \newtranslation[to=bahasa]{Section}{Bagian}
@@ -54,8 +55,8 @@
 
 \newcommand{\floor}[1]{\lfloor #1 \rfloor}
 \newcommand{\ceil}[1]{\lceil #1 \rceil}
-\newcommand{\abs}[1]{\lvert#1\rvert}
-\newcommand{\norm}[1]{\lVert#1\rVert}
+\newcommand{\abs}[1]{\left\lvert#1\right\rvert}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
 
 % Getting tired of writing \foreignTerm all the time
 \newcommand{\farray}{\foreignTerm{array}\xspace}
@@ -149,6 +150,12 @@
 \newcommand{\fDotProduct}{\foreignTerm{Dot product}\xspace}
 \newcommand{\fcrossProduct}{\foreignTerm{cross product}\xspace}
 \newcommand{\fCrossProduct}{\foreignTerm{Cross product}\xspace}
+\newcommand{\fconvexHull}{\foreignTerm{convex hull}\xspace}
+\newcommand{\fConvexHull}{\foreignTerm{Convex hull}\xspace}
+\newcommand{\fgrahamScan}{\foreignTerm{graham scan}\xspace}
+\newcommand{\fGrahamScan}{\foreignTerm{Graham scan}\xspace}
+\newcommand{\flineSweep}{\foreignTerm{line sweep}\xspace}
+\newcommand{\fLineSweep}{\foreignTerm{Line sweep}\xspace}
 
 \newcommand{\fmaxflow}{\foreignTerm{maximum flow}\xspace}
 \newcommand{\fMaxflow}{\foreignTerm{Maximum flow}\xspace}

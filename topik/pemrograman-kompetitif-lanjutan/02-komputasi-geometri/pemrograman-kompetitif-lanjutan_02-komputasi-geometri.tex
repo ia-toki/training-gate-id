@@ -1,0 +1,249 @@
+\input{../config.tex}
+
+\title{Komputasi Geometri}
+\author{Tim Olimpiade Komputer Indonesia}
+\date{}
+
+\begin{document}
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+\begin{frame}
+\frametitle{Pendahuluan}
+Melalui dokumen ini, kalian akan:
+\begin{itemize}
+  \item Memahami vektor
+  \item Memahami segmen garis
+  \item Memahami konsep poligon
+  \item Memahami konsep convex hull
+  \item Memahami konsep line sweep
+  \item Memahami konsep kompresi
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Vektor}
+\begin{itemize}
+  \item \newTerm{Vektor} adalah objek matematika yang memiliki besaran dan arah.
+  \begin{itemize}
+    \item Sebagai contoh, "10 langkah ke utara" pada instruksi "berjalan 10 langkah ke utara" adalah sebuah vektor, karena "10 langkah" merupakan besaran dan "ke utara" merupakan arah. 
+  \end{itemize}
+  \item Dua vektor dibandingkan dengan besaran dan arahnya.
+  \begin{itemize}
+    \item Sebagai contoh, "10 langkah ke utara" pada instruksi "berjalan 10 langkah ke utara dari titik A" dan "berjalan 10 langkah ke utara dari titik B" adalah dua vektor yang sama.
+    \item Namun, "10 langkah ke utara" dan "10 langkah ke selatan" adalah dua vektor yang berbeda.
+  \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Notasi Vektor}
+\begin{itemize}
+  \item Sebuah vektor biasanya dinotasikan dengan tanda panah di atas variabelnya (contoh: $\overrightarrow{v}$).
+  \item Besaran vektor $\overrightarrow{v}$ dinotasikan dengan $\norm{\overrightarrow{v}}$.
+  \item Pada ruang Euclidean $n$ dimensi, sebuah vektor $\overrightarrow{v}$ biasanya direpresentasikan dalam $n$ bilangan: $(v_1, v_2, \dots, v_n)$, dengan $v_i$ adalah besaran vektor pada arah dimensi ke-$i$.
+  \begin{itemize}
+    \item Menggunakan teorema Pythagoras, $\norm{\overrightarrow{v}} = \sqrt{\sum_{i=1}^{n} v_i}$.
+    \item Pada dokumen ini, kita akan mengasumsikan seluruh vektor berada pada ruang Euclidean $n$ dimensi.
+  \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Operasi Vektor}
+\begin{itemize}
+  \item Penjumlahan dua vektor dinotasikan dengan $\overrightarrow{v} + \overrightarrow{w}$ dan dapat dihitung dengan menjumlahkan besaran pada setiap dimensinya.
+  \item Negasi vektor dinotasikan dengan $-\overrightarrow{v}$ dan dapat dihitung dengan mengnegasikan besaran pada setiap dimensinya.
+  \item Perkalian vektor dan skalar dinotasikan dengan $k\overrightarrow{v}$ dan dapat dihitung dengan mengkalikan besaran pada setiap dimensinya dengan $k$.
+  \item \newTerm{Dot product} dua vektor adalah sebuah skalar yang dinotasikan dengan $\overrightarrow{v} \cdot \overrightarrow{w}$ dan dapat dihitung dengan menjumlahkan perkalian besaran pada setiap dimensinya.
+  \item \newTerm{Cross product} dua vektor 3 dimensi adalah sebuah vektor 3 dimensi yang dinotasikan dengan $\overrightarrow{v} \times \overrightarrow{w} = (v_2w_3 - v_3w_2, v_3w_1 - v_1w_3, v_1w_2 - v_2w_1)$.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Operasi Vektor: Contoh}
+Sebagai contoh, jika $\overrightarrow{AB} = (1, 1), \overrightarrow{AC} = (2, 0)$.
+\begin{itemize}
+  \item $\overrightarrow{AC} + \overrightarrow{AB} = (2 + 1, 0 + 1) = (3, 1)$
+  \item $-\overrightarrow{AB} = (-1, -1)$
+  \item $\overrightarrow{AC} - \overrightarrow{AB} = (2 - 1, 0 - 1) = (1, -1)$
+  \item $4\overrightarrow{AB} = (4 \times 1, 4 \times 1) = (4, 4)$
+  \item $\overrightarrow{AB} \cdot \overrightarrow{AC} = 1 \times 2 + 1 \times 0 = 2$
+\end{itemize}
+\begin{center}
+  \includegraphics[width=6cm]{asset/vector-operations.png}
+\end{center}
+\end{frame}
+
+\begin{frame}
+\frametitle{Penggunaan Cross Product}
+\begin{itemize}
+  \item Pada bidang 2 dimensi, jika kita memiliki tiga titik $O = (x_O, y_O), A = (x_A, y_A), B = (x_B, y_B)$, kita dapat menghitung apakah sudut yang dibentuk oleh ketiga titik tersebut positif menggunakan cross product.
+  \begin{itemize}
+    \item Hitung besaran pada arah dimensi ketiga dari vektor $\overrightarrow{OA}$ dan $\overrightarrow{OB}$. Untuk lebih mudahnya, anggap nilai $P$ adalah $(x_A - x_O)(y_B - y_O) - (y_A - y_O)(x_B - x_O)$.
+    \item Jika $P > 0$, maka sudut $OAB$ berlawanan arah jarum jam. Dengan kata lain, $B$ berada di kiri garis $OA$.
+    \item Jika $P < 0$, maka sudut $OAB$ searah jarum jam. Dengan kata lain, $B$ berada di kanan garis $OA$.
+    \item Jika $P = 0$, maka titik $O$, $A$, dan $B$ berada pada garis yang sama. 
+  \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Perpotongan Segmen Garis}
+\begin{itemize}
+  \item TBA  % TODO: Fill this
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Poligon}
+\begin{itemize}
+  \item \newTerm{Poligon} adalah bentuk datar yang terdiri dari titik (disebut titik sudut) serta garis yang menghubungkan titik sudut dan membentuk lintasan tertutup.
+  \item \newTerm{Poligon cembung} (\foreignTerm{convex polygon}\xspace) adalah poligon dengan besar seluruh sudut dalam kurang dari $180\degree$.
+  \begin{itemize}
+
+    \item Dengan kata lain, tidak terdapat segmen garis di antara dua titik pada batas poligon yang keluar dari poligon.
+  \end{itemize}
+  \item \newTerm{Poligon cekung} (\foreignTerm{concave polygon}\xspace) adalah poligon dengan besar setidaknya satu sudut dalam tidak kurang dari $180\degree$.
+\end{itemize}
+\begin{center}
+  \includegraphics[width=6cm]{asset/polygon-convex-concave.png}
+\end{center}
+\end{frame}
+
+\begin{frame}
+\frametitle{Luas Poligon}
+\begin{itemize}
+  \item \newTerm{Shoelace formula} adalah rumus yang dapat digunakan untuk menghitung luas poligon.
+  \item Poligon dengan titik sudut $(x_1, y_1), (x_2, y_2), \dots, (x_n, y_n)$ memiliki luas
+  \[\frac{1}{2}\abs{\sum_{i=1}^n x_iy_{i+1} - \sum_{i=1}^n x_{i+1}y_i}\]
+  \[= \frac{1}{2}\abs{x_1y_2 + x2y_3 + \dots + x_ny_{n+1} - x_2y_1 - x_3y_2 - \dots - x_{n+1}y_n}\]
+  dengan $(x_{n+1}, y_{n+1}) = (x_1, y_1)$.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Lokasi Titik pada Poligon}
+\begin{itemize}
+  \item TBA  % TODO: Fill this
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Convex Hull}
+\begin{itemize}
+  \item Pada 2 dimensi, \newTerm{convex hull} dari himpunan titik adalah poligon cembung terkecil yang mencakup seluruh titik tersebut.
+  \item \fConvexHull dapat dibayangkan seperti karet yang cukup besar dan terdapat paku pada setiap titik, kemudian karet tersebut dilepaskan. Bentuk akhir dari karet membentuk \fconvexHull.
+  \item Pada pembahasan ini, kita ingin mencari titik-titik yang membentuk \fconvexHull (himpunan titik-titik yang disentuh oleh karet).
+\end{itemize}
+\begin{center}
+  \includegraphics[width=4cm]{asset/convex-hull.png}
+\end{center}
+\end{frame}
+
+\begin{frame}
+\frametitle{Graham Scan}
+\begin{itemize}
+  \item Salah satu metode untuk mencari \fconvexHull adalah menggunakan algoritme \newTerm{Graham scan}.
+  \item Algoritme ini mengambil titik yang berada di paling bawah (koordinat y terkecil) sebagai \fpivot dan bagian dari \fconvexHull.
+  \item Lakukan pengurutan titik-titik lainnya berdasarkan sudut polar terhadap \fpivot. Dengan kata lain, titik $A$ lebih kecil dari titik $B$ jika titik $B$ berada di kiri garis $OA$ dengan titik $O$ adalah \fpivot.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Graham Scan (lanj.)}
+\begin{itemize}
+  \item Kemudian, algoritme ini mencoba untuk memasukan titik-titik lainnya satu per satu ke dalam \fconvexHull, diurutkan dari yang paling kecil.
+  \begin{itemize}
+    \item Misalkan titik $R$ adalah titik yang sekarang sedang diperhatikan, $Q$ adalah titik terakhir pada \fconvexHull sementara, dan titik $P$ adalah titik sebelum titik $Q$ pada \fconvexHull sementara.
+    \item Jika titik $R$ berada di kanan garis $PQ$, maka dapat dipastikan titik $Q$ tidak berada di dalam \fconvexHull. Karenanya, kita dapat mengeluarkan titik $Q$ pada \fconvexHull sementara.
+    \item Perbaharui titik $P$ dan titik $Q$ menggunakan definisi di atas.
+    \item Kita dapat melakukan hal yang sama sampai titik $R$ berada di kiri garis $PQ$, atau terdapat hanya satu titik pada \fconvexHull.
+  \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Graham Scan (lanj.)}
+\begin{lstlisting}
+typedef pair<int, int> Point;
+#define x first
+#define y second
+
+bool turn_right(Point o, Point p, Point q) {
+  return (p.x - o.x) * (q.y - o.y) < (p.y - o.y) * (q.x - o.x);
+}
+
+vector<Point> convex_hull(vector<Point> P) {
+  // Letakan pivot di P[0].
+  for (int i = 1; i < P.size(); ++i) {
+    if (P[i].y < P[0].y) {
+      swap(P[0], P[i]);
+    }
+  }
+
+  sort(P.begin() + 1, P.end(), [&] (Point p, Point q) {
+    return turn_right(P[0], q, p);
+  });
+
+...
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Graham Scan (lanj.)}
+\begin{lstlisting}
+  vector<Point> convex_hull = {P[0]};
+
+  for (int i = 1; i < P.size(); ++i) {
+    while (convex_hull.size() > 1) {
+      Point p = convex_hull[convex_hull.size() - 2];
+      Point q = convex_hull[convex_hull.size() - 1];
+      if (turn_right(p, q, P[i])) {
+        break;
+      }
+    }
+    convex_hull.push_back(P[i]);
+  }
+
+  return convex_hull;
+}
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Line Sweep}
+\begin{itemize}
+  \item Algoritme \newTerm{line sweep} menyapu (\foreignTerm{sweep}\xspace) garis untuk menyelesaikan beberapa soal pada bidang 2 dimensi.
+  \item Contoh soal: diberikan himpunan $A$ yang berisi $N$ segmen garis yang sejajar dengan sumbu x dan himpunan $B$ yang berisi $N$ segmen garis yang sejajar dengan sumbu y. Tentukan apakah terdapat segmen garis pada himpunan $A$ yang berpotongan dengan segmen garis pada himpuan $B$.
+  \item Soal ini dapat diselesaikan dengan menyimpan koordinat x dari setiap \newTerm{peristiwa}, yang merupakan salah satu dari:
+  \begin{itemize}
+    \item ujung kiri dari segmen garis pada himpunan $A$,
+    \item ujung kanan dari segmen garis pada himpuan $A$,
+    \item segmen garis pada himpunan $B$.
+  \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Line Sweep (lanj.)}
+\begin{itemize}
+  \item Peristiwa diproses satu per satu dengan urutan koordinat x menaik, sehingga seperti penyapuan garis. Kita juga membutuhkan sebuah struktur data $D$.
+  \begin{itemize}
+    \item Jika peristiwa merupakan ujung kiri dari segmen garis pada himpunan $A$, maka tambahkan koordinat y garis tersebut pada $D$.
+    \item Jika peristiwa merupakan ujung kanan dari segmen garis pada himpunan $A$, maka hapus koordinat y garis tersebut pada $D$.
+    \item Jika peristiwa merupakan segmen garis pada himpunan $B$, maka periksa apakah terdapat bilangan pada $D$ yang berada di antara $y_{\min}$ dan $y_{\max}$.
+    \begin{itemize}
+      \item Jika ada, maka segmen garis ini berpotongan dengan segmen garis pada himpunan $A$.
+    \end{itemize}
+  \end{itemize}
+  \item Kita dapat menggunakan struktur data C++ set (akan dibahas pada materi berikutnya) agar seluruh penambahan dan pengecekan pada $D$ membutuhkan waktu $O(\log N)$.
+  \begin{itemize}
+    \item Sehingga, total kompleksitas waktu solusi ini adalah $O(N \log N)$.
+  \end{itemize}
+\end{itemize}
+\end{frame}
+
+\end{document}

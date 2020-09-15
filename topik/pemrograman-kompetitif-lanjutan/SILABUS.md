@@ -14,7 +14,6 @@
   * Poligon
   * Convex Hull
   * Line Sweep
-  * Kompresi
 
 ## 3. Struktur Data Lanjutan
 
