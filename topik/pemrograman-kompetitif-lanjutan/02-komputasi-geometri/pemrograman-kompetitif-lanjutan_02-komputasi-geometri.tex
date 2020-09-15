@@ -14,12 +14,11 @@
 \frametitle{Pendahuluan}
 Melalui dokumen ini, kalian akan:
 \begin{itemize}
-  \item Memahami vektor
-  \item Memahami segmen garis
+  \item Memahami konsep vektor
+  \item Memahami konsep segmen garis
   \item Memahami konsep poligon
   \item Memahami konsep convex hull
   \item Memahami konsep line sweep
-  \item Memahami konsep kompresi
 \end{itemize}
 \end{frame}
 
@@ -162,6 +161,7 @@ Sebagai contoh, jika $\overrightarrow{AB} = (1, 1), \overrightarrow{AC} = (2, 0)
     \item Perbaharui titik $P$ dan titik $Q$ menggunakan definisi di atas.
     \item Kita dapat melakukan hal yang sama sampai titik $R$ berada di kiri garis $PQ$, atau terdapat hanya satu titik pada \fconvexHull.
   \end{itemize}
+  \item Kompleksitas algoritme ini adalah $O(N \log N)$, dengan $N$ adalah banyaknya titik.
 \end{itemize}
 \end{frame}
 
@@ -211,6 +211,18 @@ vector<Point> convex_hull(vector<Point> P) {
   return convex_hull;
 }
 \end{lstlisting}
+\end{frame}
+
+\begin{frame}
+\frametitle{Algoritme Convex Hull lain}
+\begin{itemize}
+  \item Sebagai tambahan informasi, selain algoritme \fGrahamScan terdapat beberapa algoritme lain yang cukup umum:
+  \begin{itemize}
+    \item Algoritme \newTerm{Gift wrapping} (sering juga disebut \newTerm{Jarvis march}) mencari \fconvexHull dalam waktu $O(NH)$, dengan $H$ adalah banyaknya titik pada $fconvexHull$.
+    \item Algoritme \newTerm{Monotone chain} (sering juga disebut \newTerm{Andrew's algorithm}) mencari \fconvexHull dalam waktu $O(N \log N)$.
+  \end{itemize}
+  \item Kita tidak akan membahas algoritme tersebut pada diskusi ini.
+\end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]
