@@ -26,23 +26,23 @@ Mulai dari bab ini, seluruh kode program akan dituliskan dalam bahasa pseudo-C++
 \begin{frame}
 \frametitle{Binary Search the Answer}
 \begin{itemize}
-  \item Pada dasarnya, teknik ini menggunakan konsep binary search dalam menebak suatu jawaban, kemudian membuat decision untuk memperkecil search space kita dalam mencari jawaban yang optimal.
-  \item Teknik ini sebenarnya tidak sulit untuk diaplikasikan jika kita sudah memahami teknik dasar binary search. Bahkan, beberapa orang ada yang dapat mengaplikasikan teknik ini secara tidak sadar sebelum mempelajarinya.
+  \item Pada dasarnya, teknik ini menggunakan konsep \fbinarySearch dalam menebak suatu jawaban, kemudian membuat keputusan untuk memperkecil ruang pencarian kita dalam mencari jawaban yang optimal.
+  \item Teknik ini sebenarnya tidak sulit untuk diaplikasikan jika kita sudah memahami teknik dasar \fbinarySearch. Bahkan, beberapa orang ada yang dapat mengaplikasikan teknik ini secara tidak sadar sebelum mempelajarinya.
 \end{itemize}
 \end{frame}
 
 \begin{frame}
 \frametitle{Binary Search}
 \begin{itemize}
-  \item Mari kita lihat kembali bagaimana konsep dasar dari binary search itu sendiri.
-  \item Contoh soal: Diberikan suatu \farray $A$ sepanjang $N$ yang elemennya terurut dari kecil ke besar. Tentukan index dengan value terkecil pada \farray tersebut yang nilainya $ \ge X$ dalam waktu $O(log N)$.
+  \item Mari kita lihat kembali bagaimana konsep dasar dari \fbinarySearch itu sendiri.
+  \item Contoh soal: Diberikan suatu \farray $A$ sepanjang $N$ yang elemennya terurut dari kecil ke besar. Tentukan indeks dengan nilai terkecil pada \farray tersebut yang nilainya $ \ge X$ dalam waktu $O(log N)$.
 \end{itemize}
 \end{frame}
 
 \begin{frame}
 \frametitle{Binary Search (lanj.)}
 \begin{itemize}
-  \item Soal ini dapat diselesaikan menggunakan binary search:
+  \item Soal ini dapat diselesaikan menggunakan \fbinarySearch:
   \begin{itemize}
     \item Misalkan diberikan $N = 8$, $A = [1, 2, 3, 5, 8, 13, 21, 34]$, dan $X = 7$.
     \item Mari kita definisikan $B$ sebagai \farray sepanjang $N$ dengan $B[i]$ bernilai:
@@ -65,7 +65,7 @@ Mulai dari bab ini, seluruh kode program akan dituliskan dalam bahasa pseudo-C++
 \end{itemize}
 \begin{lstlisting}
 void check(int v, int X) {
-  return v >= x;
+  return v >= X;
 }
 
 int solve(int N, vector<int> A, int X) {
@@ -84,8 +84,8 @@ int solve(int N, vector<int> A, int X) {
 \frametitle{Binary Search the Answer}
 \begin{itemize}
   \item Secara tidak langsung, dalam menyelesaikan soal tersebut, kita sudah mengaplikasikan teknik ini.
-  \item Kita melakukan \fbinarySearch pada index \farray $B$, dengan index tersebut akan menjadi jawaban.
-  \item Untuk memperkecil kemungkinan jawaban, kita memeriksa suatu tebakan dengan menggunakan fungsi \lstinline{check} yang membantu kita dalam membuat keputusan apakah harus memeriksa index di kiri atau kanan dari tebakan pada saat tersebut.
+  \item Kita melakukan \fbinarySearch pada indeks \farray $B$, dengan indeks tersebut akan menjadi jawaban.
+  \item Untuk memperkecil kemungkinan jawaban, kita memeriksa suatu tebakan dengan menggunakan fungsi \lstinline{check} yang membantu kita dalam membuat keputusan apakah harus memeriksa indeks di kiri atau kanan dari tebakan pada saat tersebut.
 \end{itemize}
 \end{frame}
 
@@ -194,7 +194,7 @@ int solve(int N, int K, vector<int> H) {
   \item Soal ini dapat diselesaikan dengan membagi himpunan $S$ menjadi dua subhimpunan $A$ dan $B$ sedemikian sehingga $|A| = \floor{\frac{N}{2}}$ dan $|B| = \ceil{\frac{N}{2}}$.
   \item Terdapat subhimpunan dari $S$ yang berjumlah $0$ jika dan hanya jika terdapat subhimpunan $A' \subseteq A$ dan subhimpunan $B' \subseteq B$ sedemikian sehingga jumlah seluruh bilangan pada $A'$ adalah negasi dari jumlah seluruh bilangan pada $B'$.
   \item Untuk setiap subhimpunan $B' \subseteq B$, kita dapat menyimpan jumlah seluruh bilangannya dalam \farray $P(B)$ dan mengurutkannya.
-  \item Untuk setiap subhimpunan $A' \subseteq A$, kita dapat memeriksa apakah negasi dari jumlah seluruh bilangannnya terdapat pada \farray$P(B)$ menggunakan binary search.
+  \item Untuk setiap subhimpunan $A' \subseteq A$, kita dapat memeriksa apakah negasi dari jumlah seluruh bilangannnya terdapat pada \farray$P(B)$ menggunakan \fbinarySearch.
   \item Kompleksitas dari solusi ini adalah $O(2^{\floor{\frac{N}{2}}} \times \log(2^{\ceil{\frac{N}{2}}}))$.
 \end{itemize}
 \end{frame}
@@ -216,7 +216,9 @@ int solve(int N, int K, vector<int> H) {
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{Perpangkatan Matriks}
+\frametitle{Perpangkatan Matriks (lanj.)}
+Kode di bawah ini dapat digunakan untuk menghitung perpangkatan tipe data apapun.
+\newline
 \begin{lstlisting}
 template<typename T>
 T exp(T M, int K) {
@@ -230,6 +232,31 @@ T exp(T M, int K) {
   }
   return res;
 }
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Perpangkatan Matriks (lanj.)}
+Untuk menghitung perpangkatan matriks menggunakan kode pada halaman sebelumnya, maka kita dapat mendefinisikan tipe data matriks dan fungsi perkalian.
+\begin{lstlisting}
+template<typename T> struct Matrix {
+  vector<vector<T>> M;
+
+  Matrix operator*(const Matrix& other) {
+    Matrix res = (Matrix){vector<vector<T>>(
+        M.size(), vector<T>(other.M[0].size(), 0))};
+
+    for (int i = 0; i < M.size(); ++i) {
+      for (int j = 0; j < other.M[0].size(); ++j) {
+        for (int k = 0; k < M[0].size(); ++k) {
+          res.M[i][j] += M[i][k] * other.M[k][j];
+        }
+      }
+    }
+
+    return res;
+  }
+};
 \end{lstlisting}
 \end{frame}
 
