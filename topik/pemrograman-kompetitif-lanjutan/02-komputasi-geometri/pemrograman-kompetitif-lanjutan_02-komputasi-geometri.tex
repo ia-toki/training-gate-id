@@ -42,10 +42,10 @@ Melalui dokumen ini, kalian akan:
 \begin{itemize}
   \item Sebuah vektor biasanya dinotasikan dengan tanda panah di atas variabelnya (contoh: $\overrightarrow{v}$).
   \item Besaran vektor $\overrightarrow{v}$ dinotasikan dengan $\norm{\overrightarrow{v}}$.
-  \item Pada ruang Euclidean $n$ dimensi, sebuah vektor $\overrightarrow{v}$ biasanya direpresentasikan dalam $n$ bilangan: $(v_1, v_2, \dots, v_n)$, dengan $v_i$ adalah besaran vektor pada arah dimensi ke-$i$.
+  \item Pada ruang Euklides $n$ dimensi, sebuah vektor $\overrightarrow{v}$ biasanya direpresentasikan dalam $n$ bilangan: $(v_1, v_2, \dots, v_n)$, dengan $v_i$ adalah besaran vektor pada arah dimensi ke-$i$.
   \begin{itemize}
     \item Menggunakan teorema Pythagoras, $\norm{\overrightarrow{v}} = \sqrt{\sum_{i=1}^{n} v_i}$.
-    \item Pada dokumen ini, kita akan mengasumsikan seluruh vektor berada pada ruang Euclidean $n$ dimensi.
+    \item Pada dokumen ini, kita akan mengasumsikan seluruh vektor berada pada ruang Euklides $n$ dimensi.
   \end{itemize}
 \end{itemize}
 \end{frame}
@@ -54,10 +54,10 @@ Melalui dokumen ini, kalian akan:
 \frametitle{Operasi Vektor}
 \begin{itemize}
   \item Penjumlahan dua vektor dinotasikan dengan $\overrightarrow{v} + \overrightarrow{w}$ dan dapat dihitung dengan menjumlahkan besaran pada setiap dimensinya.
-  \item Negasi vektor dinotasikan dengan $-\overrightarrow{v}$ dan dapat dihitung dengan mengnegasikan besaran pada setiap dimensinya.
+  \item Negasi vektor dinotasikan dengan $-\overrightarrow{v}$ dan dapat dihitung dengan menegasikan besaran pada setiap dimensinya.
   \item Perkalian vektor dan skalar dinotasikan dengan $k\overrightarrow{v}$ dan dapat dihitung dengan mengkalikan besaran pada setiap dimensinya dengan $k$.
   \item \newTerm{Dot product} dua vektor adalah sebuah skalar yang dinotasikan dengan $\overrightarrow{v} \cdot \overrightarrow{w}$ dan dapat dihitung dengan menjumlahkan perkalian besaran pada setiap dimensinya.
-  \item \newTerm{Cross product} dua vektor 3 dimensi adalah sebuah vektor 3 dimensi yang dinotasikan dengan $\overrightarrow{v} \times \overrightarrow{w} = (v_2w_3 - v_3w_2, v_3w_1 - v_1w_3, v_1w_2 - v_2w_1)$.
+  \item \newTerm{Cross product} dua vektor $3$ dimensi adalah sebuah vektor $3$ dimensi yang dinotasikan dengan $\overrightarrow{v} \times \overrightarrow{w} = (v_2w_3 - v_3w_2, v_3w_1 - v_1w_3, v_1w_2 - v_2w_1)$.
 \end{itemize}
 \end{frame}
 
@@ -79,7 +79,7 @@ Sebagai contoh, jika $\overrightarrow{AB} = (1, 1), \overrightarrow{AC} = (2, 0)
 \begin{frame}
 \frametitle{Penggunaan Cross Product}
 \begin{itemize}
-  \item Pada bidang 2 dimensi, jika kita memiliki tiga titik $O = (x_O, y_O), A = (x_A, y_A), B = (x_B, y_B)$, kita dapat menghitung apakah sudut yang dibentuk oleh ketiga titik tersebut positif menggunakan cross product.
+  \item Pada bidang 2 dimensi, jika kita memiliki tiga titik $O = (x_O, y_O), A = (x_A, y_A), B = (x_B, y_B)$, kita dapat menghitung apakah sudut yang dibentuk oleh ketiga titik tersebut positif menggunakan \fcrossProduct.
   \begin{itemize}
     \item Hitung besaran pada arah dimensi ketiga dari vektor $\overrightarrow{OA}$ dan $\overrightarrow{OB}$. Untuk lebih mudahnya, anggap nilai $P$ adalah $(x_A - x_O)(y_B - y_O) - (y_A - y_O)(x_B - x_O)$.
     \item Jika $P > 0$, maka sudut $OAB$ berlawanan arah jarum jam. Dengan kata lain, $B$ berada di kiri garis $OA$.
@@ -126,14 +126,20 @@ Sebagai contoh, jika $\overrightarrow{AB} = (1, 1), \overrightarrow{AC} = (2, 0)
 \begin{frame}
 \frametitle{Lokasi Titik pada Poligon}
 \begin{itemize}
-  \item TBA  % TODO: Fill this
+  \item Untuk poligon cembung, jika terdapat titik $P = (x, y)$, maka kita dapat menentukan lokasi titik berada pada di dalam atau di luar poligon menggunakan \fcrossProduct.
+  \begin{itemize}
+    \item Untuk semua titik bersebelahan $A$ dan $B$ pada poligon, hitung arah dari sudut $PAB$.
+    \item Jika semua sudut $PAB$ berlawanan arah jarum jam atau berada pada garis yang sama, maka titik berada di dalam poligon.
+    \item Jika semua sudut $PAB$ searah arah jarum jam atau berada pada garis yang sama, maka titik berada di dalam poligon.
+    \item Jika terdapat sudut $PAB$ yang searah dan berlawanan arah jarum jam, maka titik berada di luar poligon.
+  \end{itemize}
 \end{itemize}
 \end{frame}
 
 \begin{frame}
 \frametitle{Convex Hull}
 \begin{itemize}
-  \item Pada 2 dimensi, \newTerm{convex hull} dari himpunan titik adalah poligon cembung terkecil yang mencakup seluruh titik tersebut.
+  \item Pada $2$ dimensi, \newTerm{convex hull} dari himpunan titik adalah poligon cembung terkecil yang mencakup seluruh titik tersebut.
   \item \fConvexHull dapat dibayangkan seperti karet yang cukup besar dan terdapat paku pada setiap titik, kemudian karet tersebut dilepaskan. Bentuk akhir dari karet membentuk \fconvexHull.
   \item Pada pembahasan ini, kita ingin mencari titik-titik yang membentuk \fconvexHull (himpunan titik-titik yang disentuh oleh karet).
 \end{itemize}
@@ -154,7 +160,7 @@ Sebagai contoh, jika $\overrightarrow{AB} = (1, 1), \overrightarrow{AC} = (2, 0)
 \begin{frame}
 \frametitle{Graham Scan (lanj.)}
 \begin{itemize}
-  \item Kemudian, algoritme ini mencoba untuk memasukan titik-titik lainnya satu per satu ke dalam \fconvexHull, diurutkan dari yang paling kecil.
+  \item Kemudian, algoritme ini mencoba untuk memasukkan titik-titik lainnya satu per satu ke dalam \fconvexHull, diurutkan dari yang paling kecil.
   \begin{itemize}
     \item Misalkan titik $R$ adalah titik yang sekarang sedang diperhatikan, $Q$ adalah titik terakhir pada \fconvexHull sementara, dan titik $P$ adalah titik sebelum titik $Q$ pada \fconvexHull sementara.
     \item Jika titik $R$ berada di kanan garis $PQ$, maka dapat dipastikan titik $Q$ tidak berada di dalam \fconvexHull. Karenanya, kita dapat mengeluarkan titik $Q$ pada \fconvexHull sementara.
@@ -228,8 +234,8 @@ vector<Point> convex_hull(vector<Point> P) {
 \begin{frame}[fragile]
 \frametitle{Line Sweep}
 \begin{itemize}
-  \item Algoritme \newTerm{line sweep} menyapu (\foreignTerm{sweep}\xspace) garis untuk menyelesaikan beberapa soal pada bidang 2 dimensi.
-  \item Contoh soal: diberikan himpunan $A$ yang berisi $N$ segmen garis yang sejajar dengan sumbu x dan himpunan $B$ yang berisi $N$ segmen garis yang sejajar dengan sumbu y. Tentukan apakah terdapat segmen garis pada himpunan $A$ yang berpotongan dengan segmen garis pada himpuan $B$.
+  \item Algoritme \newTerm{line sweep} menyapu (\foreignTerm{sweep}\xspace) garis untuk menyelesaikan beberapa soal pada bidang $2$ dimensi.
+  \item Contoh soal: diberikan himpunan $A$ yang berisi $N$ segmen garis yang sejajar dengan sumbu $x$ dan himpunan $B$ yang berisi $N$ segmen garis yang sejajar dengan sumbu $y$. Tentukan apakah terdapat segmen garis pada himpunan $A$ yang berpotongan dengan segmen garis pada himpuan $B$.
   \item Soal ini dapat diselesaikan dengan menyimpan koordinat x dari setiap \newTerm{peristiwa}, yang merupakan salah satu dari:
   \begin{itemize}
     \item ujung kiri dari segmen garis pada himpunan $A$,
@@ -242,7 +248,7 @@ vector<Point> convex_hull(vector<Point> P) {
 \begin{frame}[fragile]
 \frametitle{Line Sweep (lanj.)}
 \begin{itemize}
-  \item Peristiwa diproses satu per satu dengan urutan koordinat x menaik, sehingga seperti penyapuan garis. Kita juga membutuhkan sebuah struktur data $D$.
+  \item Peristiwa diproses satu per satu dengan urutan koordinat $x$ menaik, sehingga seperti penyapuan garis. Kita juga membutuhkan sebuah struktur data $D$.
   \begin{itemize}
     \item Jika peristiwa merupakan ujung kiri dari segmen garis pada himpunan $A$, maka tambahkan koordinat y garis tersebut pada $D$.
     \item Jika peristiwa merupakan ujung kanan dari segmen garis pada himpunan $A$, maka hapus koordinat y garis tersebut pada $D$.
@@ -251,7 +257,7 @@ vector<Point> convex_hull(vector<Point> P) {
       \item Jika ada, maka segmen garis ini berpotongan dengan segmen garis pada himpunan $A$.
     \end{itemize}
   \end{itemize}
-  \item Kita dapat menggunakan struktur data C++ set (akan dibahas pada materi berikutnya) agar seluruh penambahan dan pengecekan pada $D$ membutuhkan waktu $O(\log N)$.
+  \item Kita dapat menggunakan struktur data C++ \textbf{set} (akan dibahas pada materi berikutnya) agar seluruh penambahan dan pengecekan pada $D$ membutuhkan waktu $O(\log N)$.
   \begin{itemize}
     \item Sehingga, total kompleksitas waktu solusi ini adalah $O(N \log N)$.
   \end{itemize}
