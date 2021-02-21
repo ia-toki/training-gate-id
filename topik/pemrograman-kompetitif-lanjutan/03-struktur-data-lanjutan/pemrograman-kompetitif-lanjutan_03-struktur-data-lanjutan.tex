@@ -1,0 +1,197 @@
+\input{../config.tex}
+
+\title{Struktur Data Lanjutan}
+\author{Tim Olimpiade Komputer Indonesia}
+\date{}
+
+\begin{document}
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+\begin{frame}
+\frametitle{Pendahuluan}
+Melalui dokumen ini, kalian akan:
+\begin{itemize}
+  \item Memahami penggunaan C++ set/map
+  \item Memahami konsep Fenwick Tree
+  \item Memahami konsep Segment Tree
+  \item Memahami konsep Sparse Table
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{C++ set}
+\begin{itemize}
+  \item Pada C++ STL (Standard Template Library), terdapat tipe data \lstinline{std::set<T>} yang dapat digunakan untuk menyimpan sebuah himpunan (\fset) \lstinline{T}.
+  \begin{itemize}
+    \item Sebagai contoh, \lstinline{set<int>} merupakan himpunan \lstinline{int}.
+  \end{itemize}
+  \item Untuk menggunakan tipe data ini, kita harus menambahkan \lstinline{include <set>}.
+  \item Pada umumnya, \lstinline{set} akan menyimpan objek secara terurut menaik.
+  \begin{itemize}
+    \item Perilaku ini dapat diubah menggunakan \foreignTerm{custom comparator}. Sebagai contoh, pada C++11:
+\begin{lstlisting}
+auto cmp = [](int a, int b) { ... };
+set<int, decltype(cmp)> s(cmp);
+\end{lstlisting}
+  \end{itemize}
+  \item \lstinline{set} diimplementasikan menggunakan \foreignTerm{self balancing binary tree}\xspace, yang akan dibahas pada beberapa materi selanjutnya.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Operasi C++ set}
+\begin{itemize}
+  \item Beberapa fungsi/operasi umum yang sering digunakan pada C++ \lstinline{set}.
+  \begin{itemize}
+    \item \lstinline{set::insert(x)} menambahkan elemen \lstinline{x} pada \lstinline{set} dalam waktu $O(\log N)$.
+    \item \lstinline{set::erase(x)} menghapus elemen \lstinline{x} pada \lstinline{set} dalam waktu $O(\log N)$.
+    \item \lstinline{set::size()} mengembalikan banyaknya elemen pada \lstinline{set} dalam waktu $O(1)$.
+    \item \lstinline{set::count(x)} mengembalikan banyaknya elemen $x$ pada \lstinline{set} dalam waktu $O(\log N)$ (antara $0$ atau $1$).
+    \item \lstinline{set::clear()} menghapus seluruh elemen \lstinline{set} dalam waktu $O(N)$.
+  \end{itemize}
+  dengan $N$ adalah banyaknya elemen pada \lstinline{set}.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Set Iterator}
+\begin{itemize}
+  \item \lstinline{set<int>::iterator} adalah tipe data penunjuk sebuah elemen pada \lstinline{set}.
+  \begin{itemize}
+    \item Sebagai contoh, operasi \lstinline{set<int>::iterator it = s.begin();} akan membuat iterator \lstinline{it} menunjuk pada elemen pertama pada himpunan \lstinline{s} (jika \lstinline{s} tidak kosong).
+    \item Kemudian operasi \lstinline{it++} akan membuat iterator \lstinline{it} menunjuk pada elemen kedua pada himpunan \lstinline{s} (jika \lstinline{s} berisi setidaknya dua bilangan).
+    \item Untuk mendapatkan elemen yang ditunjuk, kita dapat menggunakan \lstinline{*it}.
+  \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Set Iterator (lanj.)}
+\begin{itemize}
+  \item Beberapa fungsi/operasi umum yang sering digunakan pada C++ \lstinline{set} yang mengembalikan \lstinline{set<int>::iterator} dalam waktu $O(\log N)$.
+  \begin{itemize}
+    \item \lstinline{set::lower_bound(x)} mengembalikan penunjuk elemen terkecil yang tidak lebih kecil dari \lstinline{x} dalam waktu $O(\log N)$. Jika tidak ada elemen yang memenuhi, maka \lstinline{set::lower_bound(x)} akan mengembalikan \lstinline{set::end()}.
+    \item \lstinline{set::upper_bound(x)} mengembalikan penunjuk elemen terkecil yang lebih besar dari \lstinline{x} dalam waktu $O(\log N)$. Jika tidak ada elemen yang memenuhi, maka \lstinline{set::upper_bound(x)} akan mengembalikan \lstinline{set::end()}.
+    \item \lstinline{set::find(x)} mengembalikan penunjuk elemen yang bernilai \lstinline{x} dalam waktu $O(\log N)$. Jika tidak ada elemen yang memenuhi, maka \lstinline{set::find(x)} akan mengembalikan \lstinline{set::end()}.
+  \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Operasi C++ multiset}
+\begin{itemize}
+  \item C++ \lstinline{std::multiset<T>} merupakan tipe data yang mirip dengan \lstinline{set} namun dapat menyimpan beberapa elemen yang sama.
+  \item Beberapa perbedaan antara C++ \lstinline{multiset} dan \lstinline{set}
+  \begin{itemize}
+    \item \lstinline{multiset::count(x)} dapat mengembalikan bilangan bulat lebih besar dari $1$.
+    \item \lstinline{multiset::erase(x)} menghapus seluruh elemen \lstinline{x} pada \lstinline{multiset}. Jika kita ingin menghapus hanya satu elemen \lstinline{x}, gunakan \lstinline{multiset::erase(multiset::find(x))}.
+  \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{C++ map}
+\begin{itemize}
+  \item C++ \lstinline{std::map<K, V>} merupakan tipe data yang digunakan untuk menyimpan pemetaan dari tipe data \lstinline{K} ke tipe data \lstinline{V}.
+  \begin{itemize}
+    \item Sebagai contoh, \lstinline{map<string, int>} merupakan pemetaan dari \lstinline{string} ke \lstinline{int}.
+    \item Contoh penggunaan tipe data ini adalah untuk menyimpan pemetaan dari nama murid ke nilai ujian, dan mengakses nilai ujian seorang murid dalam waktu cepat.
+  \end{itemize}
+  \item Untuk menggunakan tipe data ini, kita harus menambahkan \lstinline{include <map>}.
+  \item \lstinline{map} juga diimplementasikan menggunakan \foreignTerm{self balancing binary tree}\xspace.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Operasi C++ map}
+\begin{itemize}
+  \item Misalkan kita memiliki \lstinline{map<K, V> myMap;}.
+  \item Beberapa fungsi/operasi umum yang sering digunakan pada C++ \lstinline{map}.
+  \begin{itemize}
+    \item \lstinline{myMap[k]} mengakses nilai pemetaan \lstinline{k} dalam waktu $O(\log N)$.
+    \item \lstinline{myMap[k] = v} menentukan atau mengganti pemetaan dari \lstinline{k} menjadi ke \lstinline{v} dalam waktu $O(\log N)$.
+    \item \lstinline{myMap.erase(k)} menghapus nilai pemetaan $k$ dalam waktu $O(\log N)$.
+    \item \lstinline{myMap.count(k)} mengembalikan $1$ jika terdapat nilai pemetaan $k$, atau $0$ jika tidak, dalam waktu $O(\log N)$.
+    \item \lstinline{myMap.clear()} menghapus seluruh pemetaan dalam waktu $O(N)$.
+  \end{itemize}
+  dengan $N$ adalah banyaknya elemen pada \lstinline{myMap}.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Persoalan Range Sum Query}
+\begin{itemize}
+  \item Persoalan Range Sum Query adalah persoalan menghitung jumlah elemen berurutan pada sebuah \farray $A$ berukuran $N$.
+  \begin{itemize}
+    \item Pada umumnya, diberikan $Q$ pertanyaan yang merepresentasikan sebuah \fsubarray.
+  \end{itemize}
+  \item Jika \farray yang diberikan tidak dapat berubah, persoalan ini dapat diselesaikan menggunakan \fprefixSum yang menjawab satu pertanyaan dalam waktu $O(1)$.
+  \item Jika \farray yang diberikan dapat berubah, persoalan ini dapat diselesaikan menggunakan \ffenwickTree yang menjawab satu pertanyaan dalam waktu $O(\log N)$ dan mengganti satu elemen \farray dalam waktu $O(\log N)$.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Fenwick Tree}
+\begin{itemize}
+  \item \newTerm{Fenwick Tree} (sering disebut juga \newTerm{Binary Indexed Tree}) adalah data struktur yang menyimpan sebuah \farray berukuran $N$ dengan indeks $1$ sampai $N$ dengan setiap elemennya menyimpan jumlah elemen berurutan pada \farray $A$.
+  \begin{itemize}
+    \item $BIT[j]$ menyimpan jumlah elemen $\sum_{i=j - LSBIT(j) + 1}^{j} A[i]$, dengan $LSBIT(j)$ adalah nilai dari \lstinline{j & (-j)} pada C++. Sebagai contoh,
+    \begin{itemize}
+      \item $LSBIT(1) = 1, BIT[1] = A[1]$,
+      \item $LSBIT(2) = 2, BIT[2] = A[1] + A[2]$,
+      \item $LSBIT(3) = 1, BIT[3] = A[3]$,
+      \item $LSBIT(4) = 4, BIT[4] = A[1] + A[2] + A[3] + A[4]$, dan
+      \item $LSBIT(6) = 2, BIT[6] = A[5] + A[6]$.
+    \end{itemize}
+  \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Fenwick Tree (lanj.)}
+\begin{itemize}
+  \item Dengan \ffenwickTree, kita dapat menghitung nilai $\sum_{i=1}^{x} A[i]$ dalam $O(\log N)$.
+  \begin{itemize}
+    \item Sebagai contoh, menghitung nilai $A[1] + A[2] + A[3] + A[4] + A[5] + A[6]$ dapat disederhanakan menjadi $(A[1] + A[2] + A[3] + A[4]) + (A[5] + A[6]) = BIT[4] + BIT[6]$.
+  \end{itemize}
+  \item Secara umum, $\sum_{i=1}^{x}$ dapat dihitung menggunakan rumus berikut:
+  \begin{itemize}
+    \item $0$, jika $x = 0$,
+    \item $BIT[x] + \sum_{i=1}^{x - LSBIT(x)}$, jika $x > 0$.
+  \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Fenwick Tree (lanj.)}
+\begin{itemize}
+  \item Jika nilai $A[i]$ berubah, maka kita harus memperbaharui semua nilai $BIT[j]$ yang memenuhi $j - LSBIT(j) < i \leq j$. Terdapat $O(\log N)$ nilai yang harus diperbaharui.
+  \begin{itemize}
+    \item Sebagai contoh, jika nilai $A[5]$ berubah, maka kita harus memperbaharui nilai $BIT[5], BIT[6], BIT[8], BIT[16], \cdots$.
+  \end{itemize}
+  \item Secara umum, jika nilai $A[i]$ berubah menjadi $A[i] + \delta$, kita dapat memanggil fungsi \lstinline{update(i)} yang melakukan hal berikut jika $i \leq N$:
+  \begin{itemize}
+    \item Perbaharui nilai $BIT[i]$ menjadi $BIT[i] + \delta$.
+    \item Panggil fungsi \lstinline{update(i + LSBIT(i)}.
+  \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Segment Tree}
+\begin{itemize}
+  \item TBA
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Sparse Tree}
+\begin{itemize}
+  \item TBA
+\end{itemize}
+\end{frame}
+
+\end{document}
