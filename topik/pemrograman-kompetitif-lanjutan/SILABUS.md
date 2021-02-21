@@ -9,8 +9,7 @@
 
 ## 2. Komputasi Geometri
 
-  * Vector
-  * Segmen Garis
+  * Vektor
   * Poligon
   * Convex Hull
   * Line Sweep
