@@ -214,6 +214,7 @@ set<int, decltype(cmp)> s(cmp);
 \begin{itemize}
   \item Berikut adalah contoh kode untuk menginisiasi \fsegmentTree untuk menghitung \frangeSumQuery.
   \item $MAXA$ dihitung dengan $2^{\lceil \log_{2}N \rceil + 1}$.
+\end{itemize}
 \begin{lstlisting}
 int st[MAXA];         // informasi jumlah segmen
 
@@ -233,7 +234,6 @@ void build(int idx, int l, int r) {
 ...
 bulid(1, 1, N); // pemanggilan awal
 \end{lstlisting}
-\end{itemize}
 \end{frame}
 
 \begin{frame}
@@ -251,7 +251,8 @@ bulid(1, 1, N); // pemanggilan awal
 \frametitle{Kode Query pada Segment Tree}
 \begin{itemize}
   \item \fQuery dapat dicapai dengan melakukan penjelajahan \fsegmentTree dari segmen terbesar, dan berhenti ketika kita berada di segmen yang sepenuhnya di dalam segmen yang ingin dijumlahkan.
-  \begin{lstlisting}
+\end{itemize}
+\begin{lstlisting}
 int query(int idx, int l, int r, int x, int y) {
   if (x > r || y < l)
     // node ini berada di luar segmen query
@@ -266,7 +267,6 @@ int query(int idx, int l, int r, int x, int y) {
          query(idx * 2 + 1, mid + 1, r, x, y);
 }
 \end{lstlisting}
-\end{itemize}
 \end{frame}
 
 \begin{frame}
@@ -284,8 +284,9 @@ int query(int idx, int l, int r, int x, int y) {
 \begin{frame}[fragile]
 \frametitle{Kode Single Point Update}
 \begin{itemize}
-  \item Berikut adalah contoh kode jika Anda ingin menambahkan nilai $v$ pada suatu indeks $x$.
-  \begin{lstlisting}
+  \item Berikut adalah contoh kode jika kita ingin menambahkan nilai $v$ pada suatu indeks $x$.
+\end{itemize}
+\begin{lstlisting}
 void update(int idx, int l, int r, int x, int v) {
   // perbaharui jumlah nilai pada segmen ini
   st[idx] += v;     
@@ -302,7 +303,6 @@ void update(int idx, int l, int r, int x, int v) {
     update(idx * 2 + 1, mid + 1, r, x, v);
 }
 \end{lstlisting}
-\end{itemize}
 \end{frame}
 
 \begin{frame}
@@ -340,7 +340,7 @@ void update(int idx, int l, int r, int x, int v) {
 \begin{itemize}
   \item Berikut adalah kode untuk melakukan \flazyPropagation.
 \end{itemize}
-  \begin{lstlisting}
+\begin{lstlisting}
 void update(int idx, int l, int r, int x, int y, int v) {
   if (x < r || l > y) return; // berhenti jika di luar
                               // segmen
@@ -368,7 +368,7 @@ void update(int idx, int l, int r, int x, int y, int v) {
 \begin{itemize}
   \item Fungsi tambahan \lstinline{propagate} adalah untuk meneruskan perbaharuan yang belum dieksekusi ke anak segmen.
 \end{itemize}
-  \begin{lstlisting}
+\begin{lstlisting}
 void propagate(int idx, int l, int r) {
   // hanya perlu dilakukan jika nilai "lazy" tidak 0
   if (lazy[idx]) { 
@@ -390,7 +390,8 @@ void propagate(int idx, int l, int r) {
 \frametitle{Query dengan Lazy Propagation}
 \begin{itemize}
   \item \fQuery pada \fsegmentTree yang menggunakan \flazyPropagation persis pada \fquery biasa, hanya saja cukup ditambahkan fungsi propagasi sebagai berikut.
-  \begin{lstlisting}
+\end{itemize}
+\begin{lstlisting}
 int query(int idx, int l, int r, int x, int y) {
   if (x > r || y < l)
     // node ini berada di luar segmen query
@@ -407,14 +408,48 @@ int query(int idx, int l, int r, int x, int y) {
          query(idx * 2 + 1, mid + 1, r, x, y);
 }
 \end{lstlisting}
-\end{itemize}
 \end{frame}
 
 \begin{frame}
 \frametitle{Sparse Table}
 \begin{itemize}
-  \item TBA
+  \item \newTerm{Sparse Table} merupakan struktur data alternatif untuk menyelesaikan persoalan \frangeSumQuery
+  \item Seluruh bilangan bulat $Z$ dapat direpresentasikan dalam bentuk $\sum_{i=1} 2^{z_i}$ dengan $z_{i} > z_{i + 1}$. Sebagai contoh, $11 = 2^3 + 2^1 + 2^0$.
+  \item Sehingga, seluruh segmen $[L, R)$ dapat dipartisi menjadi paling banyak $O(\log (R - L))$ segmen $[L, L + 2^{z_1}), [L + 2^{z_1}, L + 2^{z_1} + 2^{z_2}), \cdots$. Sebagai contoh, segmen $[2, 13)$ dapat dipartisi menjadi segmen-segmen $[2, 10), [10, 12), [12, 13)$.
 \end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Sparse Table (lanj.)}
+\begin{itemize}
+  \item Pada sebuah \farray $A$ berukuran $N$, \fSparseTable menyimpan jumlah elemen pada segmen $[i, i + 2^j)$ untuk setiap $0 \le j \le \lfloor \log_{2}N \rfloor, 1 \le i < N - 2^j$ ke dalam $S[i][j]$.
+  \item Mengisi seluruh nilai $S[i][j]$ dapat dilakukan dalam waktu $O(N \log N)$ dengan mengiterasikan nilai $j$ dari $0$ sampai $\lfloor \log_{2}N \rfloor$:
+  \begin{itemize}
+    \item Jika $j = 0$, maka $S[i][j] = A[i]$.
+    \item Jika $j > 0$, maka $S[i][j] = S[i][j - 1] + S[i + 2^{j-1}][j - 1]$.
+  \end{itemize}
+  \item Perhatikan bahwa jika suatu elemen di \farray $A$ diperbaharui, maka terdapat $O(N)$ elemen pada $S$ yang harus diperbaharui, sehingga struktur data ini biasanya tidak digunakan jika elemen pada \farray dapat diperbaharui.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Range Sum Query}
+\begin{itemize}
+  \item Berikut adalah kode untuk menghitung jumlah elemen indeks $[L, R)$.
+  \item Perhatikan bahwa \lstinline{1 << j} pada C++ menghitung nilai $2^j$. Hal ini akan dibahas lebih lanjut pada bab berikutnya.
+\end{itemize}
+\begin{lstlisting}
+int query(int l, int r) {
+  int res = 0;
+  for (int j = floor(log(N)); j >= 0; --j) {
+    if (l + (1 << j) <= r) {
+      res += S[l][j];
+      l += (1 << j);
+    }
+  }
+  return res;
+}
+\end{lstlisting}
 \end{frame}
 
 \end{document}
