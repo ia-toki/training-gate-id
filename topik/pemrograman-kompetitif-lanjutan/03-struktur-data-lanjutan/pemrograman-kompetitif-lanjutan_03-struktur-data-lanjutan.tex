@@ -3,6 +3,7 @@
 \title{Struktur Data Lanjutan}
 \author{Tim Olimpiade Komputer Indonesia}
 \date{}
+\lstset{escapeinside={<@}{@>}}
 
 \begin{document}
 
@@ -124,7 +125,7 @@ set<int, decltype(cmp)> s(cmp);
 \begin{frame}
 \frametitle{Persoalan Range Sum Query}
 \begin{itemize}
-  \item Persoalan Range Sum Query adalah persoalan menghitung jumlah elemen berurutan pada sebuah \farray $A$ berukuran $N$.
+  \item Persoalan \newTerm{Range Sum Query} adalah persoalan menghitung jumlah elemen berurutan pada sebuah \farray $A$ berukuran $N$.
   \begin{itemize}
     \item Pada umumnya, diberikan $Q$ pertanyaan yang merepresentasikan sebuah \fsubarray.
   \end{itemize}
@@ -183,12 +184,234 @@ set<int, decltype(cmp)> s(cmp);
 \begin{frame}
 \frametitle{Segment Tree}
 \begin{itemize}
-  \item TBA
+  \item \newTerm{Segment Tree} merupakan struktur data alternatif untuk menyelesaikan persoalan \frangeSumQuery.
+  \item \fSegmentTree merupakan \fbinaryTree. Tiap \fnode memiliki informasi nilai dari suatu rentang atau segmen. Ukuran segmen dari suatu \fnode pada \fsegmentTree merupakan gabungan segmen dari anak-anaknya.
 \end{itemize}
 \end{frame}
 
 \begin{frame}
-\frametitle{Sparse Tree}
+\frametitle{Ilustrasi Segment Tree}
+\begin{itemize}
+  \item Misalkan kita memiliki \farray berukuran $N$. \fSegmentTree dari \farray tersebut memiliki $O(\log N)$ tingkat.
+  \item Secara keseluruhan, terdapat maksimal $2N$ segmen. Kompleksitas memori dari \fsegmentTree adalah $O(N)$.
+  \item Untuk memudahkan implementasi, kita nomori setiap \fnode pada \fsegmentTree. \fRoot dari \ftree ini dinomori $1$, dengan anak kiri dan kanan dari \fnode $x$ dinomori $2x$ dan $2x + 1$ secara berurutan.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Ilustrasi Segment Tree (lanj.)}
+\begin{itemize}
+  \item Sebagai contoh, berikut merupakan bentuk \fsegmentTree untuk menghitung \frangeSumQuery dari \farray $[5, -3, 2, 1, 4, 4, -1, 6]$.
+  \item Tiap \fnode memiliki informasi jumlah dari segmen yang dilingkupinya.
+\end{itemize}
+\begin{center}
+  \includegraphics[width=10cm]{asset/segtree-init.png}
+\end{center}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Inisiasi Segment Tree}
+\begin{itemize}
+  \item Berikut adalah contoh kode untuk menginisiasi \fsegmentTree untuk menghitung \frangeSumQuery.
+  \item $MAXA$ dihitung dengan $2^{\lceil \log_{2}N \rceil + 1}$.
+\begin{lstlisting}
+int st[MAXA];         // informasi jumlah segmen
+
+void build(int idx, int l, int r) {
+  if (l == r) {
+    st[idx] = val[l];
+    return;
+  }
+
+  int mid = (l + r) / 2;
+  build(idx * 2    , l, mid); // rekursif ke kiri
+  build(idx * 2 + 1, mid + 1, r); // rekursif ke kanan
+  
+  st[idx] = st[idx * 2] + st[idx * 2 + 1];
+}
+
+...
+bulid(1, 1, N); // pemanggilan awal
+\end{lstlisting}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Query pada Segment Tree}
+\begin{itemize}
+  \item Untuk mendapatkan jumlah dari interval $L$ sampai $R$, kita cukup menjumlahkan segmen-segmen yang membentuk interval $L$ sampai $R$. Terdapat paling banyak $O(\log N)$ segmen yang harus dijumlahkan.
+  \item Berikut adalah ilustrasi untuk menjumlahkan elemen dari indeks $2$ sampai $6$.
+\end{itemize}
+\begin{center}
+  \includegraphics[width=10cm]{asset/segtree-sum.png}
+\end{center}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Kode Query pada Segment Tree}
+\begin{itemize}
+  \item \fQuery dapat dicapai dengan melakukan penjelajahan \fsegmentTree dari segmen terbesar, dan berhenti ketika kita berada di segmen yang sepenuhnya di dalam segmen yang ingin dijumlahkan.
+  \begin{lstlisting}
+int query(int idx, int l, int r, int x, int y) {
+  if (x > r || y < l)
+    // node ini berada di luar segmen query
+    return 0;
+
+  if (x <= l && r <= y)
+    // node ini berada di dalam segmen query
+    return st[idx];
+  
+  int mid = (l + r) / 2;
+  return query(idx * 2    , l, mid, x, y) +
+         query(idx * 2 + 1, mid + 1, r, x, y);
+}
+\end{lstlisting}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Single Point Update pada Segment Tree}
+\begin{itemize}
+  \item Untuk memperbaharui nilai elemen di suatu indeks, kita cukup memperbaharui nilai seluruh segmen yang melingkupi indeks tersebut.
+  \item Kompleksitas untuk tiap perbaharuan adalah $O(\log N)$.
+  \item Berikut adalah ilustrasi menambahkan nilai $2$ pada indeks $4$.
+\end{itemize}
+\begin{center}
+  \includegraphics[width=10cm]{asset/segtree-update.png}
+\end{center}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Kode Single Point Update}
+\begin{itemize}
+  \item Berikut adalah contoh kode jika Anda ingin menambahkan nilai $v$ pada suatu indeks $x$.
+  \begin{lstlisting}
+void update(int idx, int l, int r, int x, int v) {
+  // perbaharui jumlah nilai pada segmen ini
+  st[idx] += v;     
+
+  if (l == r) 
+    // node tanpa anak
+    return;
+
+  // kunjungi anak yang benar
+  int mid = (l + r) / 2;
+  if (x <= mid) 
+    update(idx * 2    , l, mid, x, v);
+  else 
+    update(idx * 2 + 1, mid + 1, r, x, v);
+}
+\end{lstlisting}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Range Update pada Segment Tree}
+\begin{itemize}
+  \item Bagaimana jika kita harus memperbaharui beberapa elemen sekaligus dalam suatu segmen?
+  \item Misalnya, untuk suatu segmen $[A,B]$, tambahkan nilainya dengan $v$.
+  \item Kita bisa melakukan penjelajahan pada \fsegmentTree, dan berhenti di daun yang termasuk dari segmen.
+  \item Namun, kasus terburuknya adalah jika kita harus memperbaharui keseluruhan range, sehingga kita harus memperbaharui keseluruhan $O(N)$ \fnode pada \fsegmentTree.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Lazy Propagation}
+\begin{itemize}
+  \item Agar dapat memperbaharui segmen dengan lebih efisien, kita cukup berhenti pada segmen yang sudah sepenuhnya di dalam segmen yang ingin diperbaharui.
+  \item Karena kita berhenti di segmen $X$, kita sebenarnya belum memperbaharui informasi pada segmen-segmen yang merupakan anak dari $X$.
+  \item Karena itu, kita perlu menyiapkan informasi tambahan yang menyatakan perbaharuan yang belum diselesaikan. Informasi ini akan dipropagasi nanti ketika kita melakukan penjelajahan di segmen tersebut.
+  \item Teknik ini disebut dengan \newTerm{Lazy Propagation}.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Ilustrasi Lazy Propagation}
+\begin{itemize}
+  \item Berikut adalah ilustrasi dari \flazyPropagation untuk menambahkan nilai $2$ ke indeks $3$ sampai $5$.
+\end{itemize}
+\begin{center}
+  \includegraphics[width=10cm]{asset/segtree-update-lazy.png}
+\end{center}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Kode Lazy Propagation}
+\begin{itemize}
+  \item Berikut adalah kode untuk melakukan \flazyPropagation.
+\end{itemize}
+  \begin{lstlisting}
+void update(int idx, int l, int r, int x, int y, int v) {
+  if (x < r || l > y) return; // berhenti jika di luar
+                              // segmen
+  if (x <= l && r <= y) {
+    // perbaharui jumlah segmen ini
+    st[idx] += (r - l + 1) * v;     
+    // perbaharui nilai "lazy" segmen ini
+    lazy[idx] += v;                 
+    return;
+  }
+  
+  int mid = (l + r) / 2;
+
+  propagate(idx, l, r);
+  update(idx * 2    , l, mid, x, y, v);
+  update(idx * 2 + 1, mid + 1, r, x, y, v);
+  
+  st[idx] = st[idx * 2] + st[idx * 2 + 1];
+}
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Kode Propagasi}
+\begin{itemize}
+  \item Fungsi tambahan \lstinline{propagate} adalah untuk meneruskan perbaharuan yang belum dieksekusi ke anak segmen.
+\end{itemize}
+  \begin{lstlisting}
+void propagate(int idx, int l, int r) {
+  // hanya perlu dilakukan jika nilai "lazy" tidak 0
+  if (lazy[idx]) { 
+    int mid = (l + r)/2, lc = idx * 2, rc = idx * 2 + 1;
+    // propagasi ke anak kiri
+    lazy[lc] += lazy[idx];
+    st[lc] += (mid - l + 1) * lazy[idx]; 
+    // propagasi ke anak kanan
+    lazy[rc] += lazy[idx];
+    st[rc] += (r - mid) * lazy[idx];
+
+    lazy[idx] = 0; // bersihkan nilai "lazy"
+  }
+}
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Query dengan Lazy Propagation}
+\begin{itemize}
+  \item \fQuery pada \fsegmentTree yang menggunakan \flazyPropagation persis pada \fquery biasa, hanya saja cukup ditambahkan fungsi propagasi sebagai berikut.
+  \begin{lstlisting}
+int query(int idx, int l, int r, int x, int y) {
+  if (x > r || y < l)
+    // node ini berada di luar segmen query
+    return 0;
+
+  if (x <= l && r <= y)
+    // node ini berada di dalam segmen query
+    return st[idx];
+
+  <@\textcolor{red}{propagate(idx, l, r);}@>
+  
+  int mid = (l + r) / 2;
+  return query(idx * 2    , l, mid, x, y) + 
+         query(idx * 2 + 1, mid + 1, r, x, y);
+}
+\end{lstlisting}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Sparse Table}
 \begin{itemize}
   \item TBA
 \end{itemize}
