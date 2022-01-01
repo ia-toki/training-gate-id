@@ -17,9 +17,8 @@
 
 Saat ini, Training Gate telah berisi dua topik (*course*):
 
-1.  [**Pemrograman Dasar Pascal**](https://github.com/ia-toki/training-gate-id/blob/master/topik/pemrograman-dasar/SILABUS.md)
-2.  [**Pemrograman Dasar C++** (versi alpha)](https://github.com/ia-toki/training-gate-id/blob/master/topik/pemrograman-dasar-cpp/SILABUS.md)
-3.  **Pemrograman Kompetitif Dasar** (pengembangan dilanjutkan dalam [versi buku](https://osn.toki.id/arsip/download-pkd))
+1.  [**Pemrograman Dasar C++**](https://github.com/ia-toki/training-gate-id/blob/master/topik/pemrograman-dasar-cpp/SILABUS.md)
+2.  **Pemrograman Kompetitif Dasar** (pengembangan dilanjutkan dalam [versi buku](https://osn.toki.id/arsip/download-pkd))
 
 Topik Pemrograman Dasar ini terdiri dari beberapa bab. Setiap bab terdiri atas materi-materi yang diwujudkan dalam sebuah slide presentasi.
 
