@@ -1,0 +1,33 @@
+name: ci
+
+on:
+  push:
+    branches:
+      - test
+
+jobs:
+  publish_pdf:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 50
+
+      - name: Install texlive
+        run: sudo apt-get install texlive-latex-recommended texlive-latex-extra texlive-fonts-recommended texlive-lang-other
+
+      - name: Install latexmk
+        run: |
+          wget launchpadlibrarian.net/128239195/latexmk_4.35-0ubuntu1_all.deb
+          sudo dpkg -i latexmk_4.35-0ubuntu1_all.deb
+
+      - name: Set up tex packages
+        run: sudo ./setup.sh
+
+      - name: Build pdf
+        run: make
+
+      - name: Publish pdf
+        run: ./publish_pdf.sh
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
