@@ -3,7 +3,7 @@
 ## 1. Perkenalan
 
   * Perkenalan konsep pemrograman (memprogram, kompilasi, eksekusi)
-  * Perkenalan dan instalasi Pascal
+  * Perkenalan dan instalasi C++
   * Perkenalan IDE dan instalasi
   * Program Hello World
 
@@ -70,7 +70,7 @@
 
 ## 11. Pendalaman String
 
-  * Penjelasan bahwa string pada Pascal merupakan array of char
+  * Penjelasan bahwa string pada C++ merupakan array of char
   * Fungsi-fungsi dasar pada string (length, copy, delete, insert, pos, str, val)
 
 ## 12. Rekursi
