@@ -3,7 +3,7 @@
 ## 1. Perkenalan
 
   * Perkenalan konsep pemrograman (memprogram, kompilasi, eksekusi)
-  * Perkenalan dan instalasi Pascal
+  * Perkenalan dan instalasi C++
   * Perkenalan IDE dan instalasi
   * Program Hello World
 
@@ -20,7 +20,7 @@
   * Ekspresi boolean (predikat)
   * Ekspresi relasional
   * Prioritas pengerjaan
-  * Input output (read, readln, write, writeln)
+  * Input output (scanf, printf)
   * Penjelasan tentang STDIO
 
 ## 4. Penunjang Pemrograman Dasar
@@ -33,15 +33,14 @@
 
   * If ...
   * If ... else ...
-  * If ... elseif ... else ...
-  * case ... of ...
-  * Pengenalan tentang blok "begin ... end"
+  * If ... else if ... else ...
+  * Pengenalan tentang blok "{ ... }"
 
 ## 6. Perulangan
 
   * Pengulangan dengan pencacah (for)
   * Pengulangan dengan kondisi awal (while)
-  * Pengulangan dengan kondisi akhir (repeat until)
+  * Pengulangan dengan kondisi akhir (do while)
 
 ## 7. Perulangan Lanjut
 
@@ -70,8 +69,9 @@
 
 ## 11. Pendalaman String
 
-  * Penjelasan bahwa string pada Pascal merupakan array of char
-  * Fungsi-fungsi dasar pada string (length, copy, delete, insert, pos, str, val)
+  * Penjelasan bahwa terdapat dua jenis string pada C++ (cstring dan std string)
+  * Fungsi-fungsi dasar pada cstring (strlen, strcmp, memset)
+  * Fungsi-fungsi dasar pada std string (length, find, substr, erase, insert)
 
 ## 12. Rekursi
 
