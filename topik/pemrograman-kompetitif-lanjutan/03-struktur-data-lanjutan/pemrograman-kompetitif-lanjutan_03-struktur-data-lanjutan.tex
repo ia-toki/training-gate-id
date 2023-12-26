@@ -176,7 +176,7 @@ set<int, decltype(cmp)> s(cmp);
   \item Secara umum, jika nilai $A[i]$ berubah menjadi $A[i] + \delta$, kita dapat memanggil fungsi \lstinline{update(i)} yang melakukan hal berikut jika $i \leq N$:
   \begin{itemize}
     \item Perbaharui nilai $BIT[i]$ menjadi $BIT[i] + \delta$.
-    \item Panggil fungsi \lstinline{update(i + LSBIT(i)}.
+    \item Panggil fungsi \lstinline{update(i + LSBIT(i))}.
   \end{itemize}
 \end{itemize}
 \end{frame}
