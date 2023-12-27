@@ -27,13 +27,11 @@
   * DP Sum over Subset
   * DP on Tree
 
-## 5. Graph
+## 5. Graf
 
+  * Euler Tour Tree
   * Bridge, Articulation Point, Strongly Connected Component
-  * Bridge Tree, Biconnected Component
   * Centroid Decomposition
-  * Eulerian Path on Tree
-  * Disjoint Set on Tree
 
 ## 6. Maximum Flow
 
