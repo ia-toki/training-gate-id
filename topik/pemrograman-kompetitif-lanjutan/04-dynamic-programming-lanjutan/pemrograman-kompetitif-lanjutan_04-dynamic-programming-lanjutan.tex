@@ -1,0 +1,370 @@
+\input{../config.tex}
+
+\title{Dynamic Programming Lanjutan}
+\author{Tim Olimpiade Komputer Indonesia}
+\date{}
+
+\begin{document}
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+\begin{frame}
+\frametitle{Pendahuluan}
+Melalui dokumen ini, kalian akan:
+\begin{itemize}
+  \item Memahami konsep \fbitmask
+  \item Memahami penggunaan DP menggunakan \fbitmask
+  \item Memahami penggunaan DP pada \ftree
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Motivasi}
+\begin{itemize}
+  \item Diberikan sebuah struktur kota dan jalan.
+  \item Terdapat $V$ kota, dan $E$ ruas jalan.
+  \item Setiap ruas jalan memiliki panjang yang berbeda-beda dan menghubungkan dua kota.
+  \item Tentukan berapa jarak terpendek untuk mengunjungi seluruh kota tepat sekali.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Mengenal Bitmask}
+\begin{itemize}
+  \item \newTerm{Bitmask} adalah salah satu cara merepresentasikan subhimpunan dari himpunan $\{0, 1, 2, ..., N - 1\}$ dengan menggunakan bilangan bulat dari $0$ sampai $2^N - 1$.
+  \item Bilangan $i$ berada pada subhimpunan jika dan hanya jika bit ke-$i$ pada representasi biner pada bilangan representasi subhimpunannya adalah $1$.
+  \begin{itemize}
+    \item Dengan kata lain, jika bilangan $i$ berada pada subhimpunan, maka tambahkan $2^i$ pada bilangan representasinya.
+  \end{itemize}
+  \item Sebagai contoh, subhimpunan $\{0, 3, 4\}$ dapat direpresentasikan dengan 25 dan subhimpunan $\{\}$ dapat direpresentasikan dengan $0$.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Operasi Bitmask}
+\begin{itemize}
+  \item Terdapat beberapa operasi dua \fbitmask. Jika $x$ dan $y$ adalah dua \fbitmask.
+  \begin{itemize}
+    \item $x \text{ or } y$ akan mengembalikan \fbitmask yang merupakan \fbitmask yang merepresentasikan gabungan dari himpunan yang direpresentasikan oleh $x$ dan $y$.
+    \begin{itemize}
+      \item Sebagai contoh, $25 \text{ or } 3 = 27$ karena gabungan dari $\{0, 3, 4\}$ dan $\{0, 1\}$ adalah $\{0, 1, 3, 4\}$.
+      \item Pada C++, operasi ini dihitung dengan \lstinline{x | y}.
+    \end{itemize}
+    \item $x \text{ and } y$ akan mengembalikan \fbitmask yang merupakan \fbitmask yang merepresentasikan irisan dari himpunan yang direpresentasikan oleh $x$ dan $y$.
+    \begin{itemize}
+      \item Sebagai contoh, $25 \text{ and } 3 = 1$ karena irisan dari $\{0, 3, 4\}$ dan $\{0, 1\}$ adalah $\{0\}$.
+      \item Pada C++, operasi ini dihitung dengan \lstinline{x & y}.
+    \end{itemize}
+  \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Operasi Bitmask (lanj.)}
+\begin{itemize}
+  \item Dengan operasi tersebut, kita dapat memeriksa beberapa properti sebuah \fbitmask dengan mudah.
+  \begin{itemize}
+    \item Memeriksa apakah subhimpunan yang direpresentasikan oleh \fbitmask $x$ berisi bilangan $i$ dapat dilakukan dengan memeriksa apakah irisan subhimpunan tersebut dan $\{i\}$ merupakan himpunan kosong.
+    \begin{itemize}
+      \item \lstinline{(x & (1 << i)) > 0  // `true' jika subhimpunan berisi i.}
+    \end{itemize}
+    \item Memeriksa apakah subhimpunan berisi seluruh bilangan dari $0$ sampai $N - 1$.
+    \begin{itemize}
+      \item \lstinline{x == ((1 << N) - 1)  // `true' jika subhimpunan berisi seluruh bilangan dari 0 sampai N - 1.}
+    \end{itemize}
+  \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{DP bitmask: Travelling Salesman Problem}
+\begin{itemize}
+  \item Tentukan berapa jarak terpendek untuk mengunjungi seluruh kota tepat sekali pada sebuah \fgraph. Soal ini merupakan soal klasik yang disebut \newTerm{Travelling Salesman Problem} (TSP).
+  \item Hal ini dapat dihitung dengan menggunakan \fdp dengan menyimpan subhimpunan kota yang sudah pernah dikunjungi dan kota yang sekarang sedang dikunjungi sebagai parameter fungsi.
+  \item Fungsi dapat dihitung dengan mencoba seluruh kemungkinan kota yang berikutnya ingin dikunjungi.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]  
+\frametitle{Solusi TSP menggunakan DP Top-Down}
+\begin{lstlisting}
+int solve(int mask, int u) {
+  if (mask == (1 << N) - 1) {
+    return 0;  // seluruh kota sudah dikunjungi
+  }
+  if (computed[mask][u]) {
+    return memo[mask][u];
+  }
+  computed[mask][u] = true;
+  int res = INT_MAX;
+  for (int v : adj[u]) {
+    if ((mask & (1 << v)) == 0) {  // kota v belum dikunjungi
+      res = min(res, solve(mask | (1 << v), mask) + length[u][v]);
+    }
+  }
+  return memo[mask][u] = res;
+}
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}
+\frametitle{Kompleksitas Solusi TSP}
+\begin{itemize}
+  \item Jawaban TSP yang diinginkan adalah minimum dari \lstinline{solve(1 << u, u)} untuk seluruh \lstinline{u}.
+  \item Banyaknya kemungkinan parameter pada fungsi \lstinline{solve} di slide sebelumnya adalah $O(2^N \times N)$.
+  \item Setiap fungsi \lstinline{solve} mencoba seluruh kemungkinan kota yang berikutnya dikunjungi, sehingga membutuhkan waktu $O(N)$.
+  \item Sehingga, total kompleksitas dari solusi \fdp ini adalah $O(2^N \times N^2)$.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{DP Broken Profile: Contoh Soal}
+Diberikan grid yang berisi $R \times C$ sel. Setiap sel berisi sebuah bilangan bulat. Anda ingin mengambil beberapa sel sedemikian sehingga total bilangan bulat pada sel yang Anda ambil semaksimum mungkin dan tidak terdapat tiga sel yang diambil bersebelahan dengan bentuk
+\newline
+\begin{center}
+\includegraphics[width=3cm]{asset/shape.png}
+\end{center}
+\end{frame}
+
+\begin{frame}
+\frametitle{DP Broken Profile}
+\begin{itemize}
+  \item Kita dapat mencoba apakah setiap sel akan diambil atau tidak dengan urutan sel
+  \newline
+  $(1, 1), (1, 2), \dots, (1, C),$
+  \newline
+  $(2, 1), (2, 2), \dots, (2, C),$
+  \newline
+  $\dots$
+  \newline
+  $(R, 1), (R, 2), \dots, (R, C)$.
+  \item Dengan menyimpan apakah $C$ sel terakhir diambil atau tidak dan lokasi sel sekarang, kita dapat mengetahui apakah sel sekarang dapat diambil atau tidak.
+  \begin{itemize}
+    \item Selain sel pada kolom pertama, jika satu sel sebelumnya (sel di kirinya) dan $C$ sel sebelumnya (sel di atasnya) sudah diambil, maka sel sekarang tidak dapat diambil.
+    \item \fState $C$ sel terakhir dapat direpresentasikan menggunakan \fbitmask. Bit ke-$i$ pada \fbitmask merupakan bit $1$ jika dan hanya jika $i$ sel sebelumnya diambil.
+  \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Solusi menggunakan DP Top-Down}
+\begin{lstlisting}
+int dp(int mask, int now) {
+  if (now.r == R + 1) {
+    return 0;  // seluruh sel telah diiterasi.
+  }
+  if (computed[mask][now]) {
+    return memo[mask][now];
+  }
+  computed[mask][now] = true;
+  int next_mask = (mask << 1) % (1 << C);
+  int res = dp(next(now), next_mask);  // sel sekarang tidak diambil.
+  if (now.c == 1 || !(mask & 1) || !(mask & (1 << (C - 1))) {
+    // antara sel di kirinya atau sel di atasnya tidak diambil.
+    res = max(res, dp(next(now), next_mask + 1) + value[now]);
+  }
+  return memo[mask][now] = res;
+}
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}
+\frametitle{Kompleksitas Solusi}
+\begin{itemize}
+  \item Jawaban yang diinginkan adalah \lstinline{dp(0, (1, 1))}.
+  \item Banyaknya kemungkinan parameter pada fungsi \lstinline{dp} di slide sebelumnya adalah $O(2^C \times R \times C)$.
+  \item Setiap fungsi \lstinline{dp} mencoba hanya dua kemungkinan, sehingga membutuhkan waktu $O(1)$.
+  \item Sehingga, total kompleksitas dari solusi \fdp ini adalah $O(2^C \times R \times C)$.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{DP Sum over Subset}
+\begin{itemize}
+  \item Misalkan ada 2 \fbitmask $x$ dan $y$. $x$ dikatakan \newTerm{submask} dari $y$ jika dan hanya jika $x \text{ and } y = x$. Dengan kata lain, subhimpunan yang direpresentasikan oleh \fbitmask $x$ merupakan subhimpunan dari subhimpunan yang direpresentasikan oleh \fbitmask $y$.
+  \item Diberikan sebuah array $F$ berisi $N$ bilangan bulat. Untuk setiap \fbitmask $M (0 \le M < 2^N)$, Anda diminta mencari jumlah $F[X]$ untuk semua $X$ \fsubmask dari $M$.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{DP Sum over Subset (lanj.)}
+\begin{itemize}
+  \item Persoalan ini dapat diselesaikan menggunakan DP.
+  \item Untuk \fbitmask $M$ dan bilangan bulat $i$, didefinisikan $S(M, i)$ sebagai himpunan \fbitmask $m$ yang merupakan submask $M$ dan hanya $i$ bit pertamanya yang boleh berbeda.
+  \begin{itemize}
+    \item Bit pertama adalah bit dengan bobot $2^0$, yang ditulis paling kanan pada representasi biner.
+    \item Dengan kata lain, $m$ berada pada himpunan $S(M, i)$ jika dan hanya $m$ merupakan submask $M$ dan $M - m < 2^i$.
+  \end{itemize}
+  \item Sebagai contoh, $S(\textbf{101}01, 2) = \{\textbf{101}00, \textbf{101}11\}$ dan $S(\textbf{10}101, 3) = \{\textbf{10}000, \textbf{10}001, \textbf{10}100, \textbf{10}111\}$.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{DP Sum over Subset (lanj.)}
+\begin{itemize}
+  \item Perhatikan bahwa S(M, i) dapat dihitung secara rekursif sebagai berikut:
+  \begin{itemize}
+    \item $S(M, 0) = \{M\}$
+    \item $S(M, i) = S(M, i - 1)$ jika bit ke-$(i - 1)$ pada $M$ adalah $0$.
+    \item $S(M, i) = S(M, i - 1) \cup S(M - 2^i - 1, i - 1)$ jika bit ke-$(i - 1)$ pada $M$ adalah $1$. Perhatikan bahwa $S(M, i - 1) \cap S(M - 2^i - 1, i - 1) = \emptyset$
+  \end{itemize}
+  \item Kita dapat definisikan $DP(M, i)$ sebagai jumlah $F[x]$ untuk setiap $x$ yang merupakan anggota dari $S(M, i)$. Sehingga, $DP(M, i)$ dapat dihitung sebagai beriukt:
+  \begin{itemize}
+    \item $DP(M, 0) = F[M]$
+    \item $DP(M, i) = DP(M, i - 1)$ jika bit ke-$(i - 1)$ pada $M$ adalah $0$.
+    \item $DP(M, i) = DP(M, i - 1) + DP(M - 2i - 1, i - 1)$ jika bit ke-$(i - 1)$ pada $M$ adalah $1$.
+  \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Kompleksitas Solusi}
+\begin{itemize}
+  \item Jawaban yang diinginkan untuk \fbitmask $F[M]$ adalah $DP(M, N)$.
+  \item Banyaknya kemungkinan parameter pada fungsi $DP$ di slide sebelumnya adalah $O(2^N \times N)$.
+  \item Setiap fungsi $DP$ mencoba hanya dua kemungkinan, sehingga membutuhkan waktu $O(1)$.
+  \item Sehingga, total kompleksitas dari solusi \fdp ini adalah $O(2^N \times N)$.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{DP pada complete binary tree: Contoh Soal}
+\begin{itemize}
+  \item Diberikan sebuah \foreignTerm{complete binary tree}\xspace dengan setiap \fnode memiliki bobot.
+  \item Anda ingin mengambil $K$ \fnode sedemikian sehingga total bobot dari \fnode yang diambil semaksimum mungkin dan jika sebuah \fnode diambil, maka \fparent dari \fnode tersebut tidak boleh diambil.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{DP pada complete binary tree}
+\begin{itemize}
+  \item Persoalan ini dapat diselesaikan dengan mendefinisikan $f(u, root, take)$, dengan $u$ adalah \fnode pada tree, $root$ adalah sebuah boolean, dan $take$ adalah sebuah bilangan bulat, sebagai berikut:
+  \begin{itemize}
+    \item Kita ingin mengambil $take$ \fnode yang merupakan \fsubtree dari $u$.
+    \item \fNode $u$ dapat diambil jika dan hanya jika $root = true$.
+    \item Fungsi ini mengembalikan maksimum total bobot \fnode yang dapat diambil.
+  \end{itemize}
+  \item Fungsi ini dapat dihitung dengan mencoba:
+  \begin{itemize}
+    \item apakah \fnode $u$ akan diambil,
+    \item ada berapa \fnode yang ingin diambil yang merupakan \fsubtree dari anak $u$ pertama, dan
+    \item ada berapa \fnode yang ingin diambil yang merupakan \fsubtree dari anak $u$ kedua.
+  \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{DP pada complete binary tree (lanj.)}
+\begin{lstlisting}
+int f(int u, bool root, int take) {
+  if (take == 0 || u == NULL) {
+    return 0;
+  }
+  if (computed[u][root][take]) {
+    return memo[u][root][take];
+  }
+  memo[u][root][take] = true;
+  res = INT_MIN;
+  for (int i = 0; i <= take; ++i) {
+    res = max(res, f(child_l(u), true, i) + f(child_r(u), true, take - i));
+    if (i < take) {
+      // Mengambil node u, sehingga node child_l(u) dan node child_r(u) tidak dapat diambil.
+      res = max(res, w[u]
+                   + f(child_l(u), false, i)
+                   + f(child_r(u), false, take - i - 1));
+    }
+  }
+  return memo[u][root][take] = res;
+}
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}
+\frametitle{Kompleksitas Solusi}
+\begin{itemize}
+  \item Jawaban yang diinginkan adalah $f(R, false, K)$ dengan $R$ adalah \froot \ftree.
+  \item Banyaknya kemungkinan parameter pada fungsi $f$ di slide sebelumnya adalah $O(N \times K)$ dengan $N$ adalah banyaknya \fnode.
+  \item Setiap fungsi $f$ mencoba seluruh pembagian $take$ ke dua subtree, sehingga membutuhkan waktu $O(K)$.
+  \item Sehingga, total kompleksitas dari solusi \fdp ini adalah $O(N \times K^2)$.
+  \item Bagaimana jika tree yang diberikan bukan merupakan complete binary tree?
+  \begin{itemize}
+    \item Pembagian $take$ tidak dapat dibagikan hanya ke \fsubtree kiri dan \fsubtree kanan.
+  \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{DP pada Tree: Left-Child Right-Sibling}
+\begin{itemize}
+  \item Ubah \ftree agar setiap \fnode hanya memiliki satu anak. Sisa anak-anak lainnya akan menjadi saudara (\fsibling) dari anak tersebut.
+  \item Setiap \fnode hanya akan memiliki paling banyak dua \fnode lainnya yang terhubung (selain \fparent).
+  \item Untuk transisi ke \fsibling, state $root$ tidak berubah karena \fsibling dari \fnode $u$ sebenarnya memiliki \fparent yang sama dengan $node$.
+\end{itemize}
+\begin{center}
+\includegraphics[width=7cm]{asset/lcrs.png}
+\end{center}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{DP pada Tree: Left-Child Right-Sibling (lanj.)}
+\begin{lstlisting}
+int g(int u, bool root, int take) {
+  if (take == 0 || u == NULL) {
+    return 0;
+  }
+  if (computed[u][root][take]) {
+    return memo[u][root][take];
+  }
+  memo[u][root][take] = true;
+  res = INT_MIN;
+  for (int i = 0; i <= take; ++i) {
+    res = max(res, g(child(u), true, i) + g(sibling(u), root, take - i));
+    if (i < take) {
+      // Mengambil node u, sehingga node child(u) tidak dapat diambil.
+      res = max(res, w[u]
+                   + g(child(u), false, i)
+                   + g(sibling(u), root, take - i - 1));
+    }
+  }
+  return memo[u][root][take] = res;
+}
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{DP pada Tree: Mengubah menjadi Left-Child Right-Sibling}
+\begin{lstlisting}
+void dfs(int u, int parent) {
+  child[u] = NULL;
+  sibling[u] = NULL;
+  int last_child = NULL;
+  for (int x : adj[u]) { 
+    if (x == parent) {
+      continue;
+    }
+    if (child[u] == NULL) {
+      child[u] = x;
+    }
+    if (last_child != NULL) {
+      sibling[last_child] = x;
+    }
+    dfs(x, u);
+    last_child = x;
+  }
+}
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}
+\frametitle{Kompleksitas Solusi}
+\begin{itemize}
+  \item Jawaban yang diinginkan adalah $g(R, false, K)$ dengan $R$ adalah \froot \ftree.
+  \item Banyaknya kemungkinan parameter pada fungsi $g$ di slide sebelumnya adalah $O(N \times K)$ dengan $N$ adalah banyaknya \fnode.
+  \item Setiap fungsi $g$ mencoba seluruh pembagian $take$ ke dua \fnode, sehingga membutuhkan waktu $O(K)$.
+  \item Sehingga, total kompleksitas dari solusi \fdp ini adalah $O(N \times K^2)$.
+\end{itemize}
+\end{frame}
+
+\end{document}
