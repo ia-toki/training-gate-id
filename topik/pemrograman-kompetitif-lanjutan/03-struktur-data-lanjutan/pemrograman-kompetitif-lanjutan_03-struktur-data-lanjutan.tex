@@ -1,0 +1,455 @@
+\input{../config.tex}
+
+\title{Struktur Data Lanjutan}
+\author{Tim Olimpiade Komputer Indonesia}
+\date{}
+\lstset{escapeinside={<@}{@>}}
+
+\begin{document}
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+\begin{frame}
+\frametitle{Pendahuluan}
+Melalui dokumen ini, kalian akan:
+\begin{itemize}
+  \item Memahami penggunaan C++ set/map
+  \item Memahami konsep Fenwick Tree
+  \item Memahami konsep Segment Tree
+  \item Memahami konsep Sparse Table
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{C++ set}
+\begin{itemize}
+  \item Pada C++ STL (Standard Template Library), terdapat tipe data \lstinline{std::set<T>} yang dapat digunakan untuk menyimpan sebuah himpunan (\fset) \lstinline{T}.
+  \begin{itemize}
+    \item Sebagai contoh, \lstinline{set<int>} merupakan himpunan \lstinline{int}.
+  \end{itemize}
+  \item Untuk menggunakan tipe data ini, kita harus menambahkan \lstinline{include <set>}.
+  \item Pada umumnya, \lstinline{set} akan menyimpan objek secara terurut menaik.
+  \begin{itemize}
+    \item Perilaku ini dapat diubah menggunakan \foreignTerm{custom comparator}. Sebagai contoh, pada C++11:
+\begin{lstlisting}
+auto cmp = [](int a, int b) { ... };
+set<int, decltype(cmp)> s(cmp);
+\end{lstlisting}
+  \end{itemize}
+  \item \lstinline{set} diimplementasikan menggunakan \foreignTerm{self balancing binary tree}\xspace, yang akan dibahas pada beberapa materi selanjutnya.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Operasi C++ set}
+\begin{itemize}
+  \item Beberapa fungsi/operasi umum yang sering digunakan pada C++ \lstinline{set}.
+  \begin{itemize}
+    \item \lstinline{set::insert(x)} menambahkan elemen \lstinline{x} pada \lstinline{set} dalam waktu $O(\log N)$.
+    \item \lstinline{set::erase(x)} menghapus elemen \lstinline{x} pada \lstinline{set} dalam waktu $O(\log N)$.
+    \item \lstinline{set::size()} mengembalikan banyaknya elemen pada \lstinline{set} dalam waktu $O(1)$.
+    \item \lstinline{set::count(x)} mengembalikan banyaknya elemen $x$ pada \lstinline{set} dalam waktu $O(\log N)$ (antara $0$ atau $1$).
+    \item \lstinline{set::clear()} menghapus seluruh elemen \lstinline{set} dalam waktu $O(N)$.
+  \end{itemize}
+  dengan $N$ adalah banyaknya elemen pada \lstinline{set}.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Set Iterator}
+\begin{itemize}
+  \item \lstinline{set<int>::iterator} adalah tipe data penunjuk sebuah elemen pada \lstinline{set}.
+  \begin{itemize}
+    \item Sebagai contoh, operasi \lstinline{set<int>::iterator it = s.begin();} akan membuat iterator \lstinline{it} menunjuk pada elemen pertama pada himpunan \lstinline{s} (jika \lstinline{s} tidak kosong).
+    \item Kemudian operasi \lstinline{it++} akan membuat iterator \lstinline{it} menunjuk pada elemen kedua pada himpunan \lstinline{s} (jika \lstinline{s} berisi setidaknya dua bilangan).
+    \item Untuk mendapatkan elemen yang ditunjuk, kita dapat menggunakan \lstinline{*it}.
+  \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Set Iterator (lanj.)}
+\begin{itemize}
+  \item Beberapa fungsi/operasi umum yang sering digunakan pada C++ \lstinline{set} yang mengembalikan \lstinline{set<int>::iterator} dalam waktu $O(\log N)$.
+  \begin{itemize}
+    \item \lstinline{set::lower_bound(x)} mengembalikan penunjuk elemen terkecil yang tidak lebih kecil dari \lstinline{x} dalam waktu $O(\log N)$. Jika tidak ada elemen yang memenuhi, maka \lstinline{set::lower_bound(x)} akan mengembalikan \lstinline{set::end()}.
+    \item \lstinline{set::upper_bound(x)} mengembalikan penunjuk elemen terkecil yang lebih besar dari \lstinline{x} dalam waktu $O(\log N)$. Jika tidak ada elemen yang memenuhi, maka \lstinline{set::upper_bound(x)} akan mengembalikan \lstinline{set::end()}.
+    \item \lstinline{set::find(x)} mengembalikan penunjuk elemen yang bernilai \lstinline{x} dalam waktu $O(\log N)$. Jika tidak ada elemen yang memenuhi, maka \lstinline{set::find(x)} akan mengembalikan \lstinline{set::end()}.
+  \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Operasi C++ multiset}
+\begin{itemize}
+  \item C++ \lstinline{std::multiset<T>} merupakan tipe data yang mirip dengan \lstinline{set} namun dapat menyimpan beberapa elemen yang sama.
+  \item Beberapa perbedaan antara C++ \lstinline{multiset} dan \lstinline{set}
+  \begin{itemize}
+    \item \lstinline{multiset::count(x)} dapat mengembalikan bilangan bulat lebih besar dari $1$.
+    \item \lstinline{multiset::erase(x)} menghapus seluruh elemen \lstinline{x} pada \lstinline{multiset}. Jika kita ingin menghapus hanya satu elemen \lstinline{x}, gunakan \lstinline{multiset::erase(multiset::find(x))}.
+  \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{C++ map}
+\begin{itemize}
+  \item C++ \lstinline{std::map<K, V>} merupakan tipe data yang digunakan untuk menyimpan pemetaan dari tipe data \lstinline{K} ke tipe data \lstinline{V}.
+  \begin{itemize}
+    \item Sebagai contoh, \lstinline{map<string, int>} merupakan pemetaan dari \lstinline{string} ke \lstinline{int}.
+    \item Contoh penggunaan tipe data ini adalah untuk menyimpan pemetaan dari nama murid ke nilai ujian, dan mengakses nilai ujian seorang murid dalam waktu cepat.
+  \end{itemize}
+  \item Untuk menggunakan tipe data ini, kita harus menambahkan \lstinline{include <map>}.
+  \item \lstinline{map} juga diimplementasikan menggunakan \foreignTerm{self balancing binary tree}\xspace.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Operasi C++ map}
+\begin{itemize}
+  \item Misalkan kita memiliki \lstinline{map<K, V> myMap;}.
+  \item Beberapa fungsi/operasi umum yang sering digunakan pada C++ \lstinline{map}.
+  \begin{itemize}
+    \item \lstinline{myMap[k]} mengakses nilai pemetaan \lstinline{k} dalam waktu $O(\log N)$.
+    \item \lstinline{myMap[k] = v} menentukan atau mengganti pemetaan dari \lstinline{k} menjadi ke \lstinline{v} dalam waktu $O(\log N)$.
+    \item \lstinline{myMap.erase(k)} menghapus nilai pemetaan $k$ dalam waktu $O(\log N)$.
+    \item \lstinline{myMap.count(k)} mengembalikan $1$ jika terdapat nilai pemetaan $k$, atau $0$ jika tidak, dalam waktu $O(\log N)$.
+    \item \lstinline{myMap.clear()} menghapus seluruh pemetaan dalam waktu $O(N)$.
+  \end{itemize}
+  dengan $N$ adalah banyaknya elemen pada \lstinline{myMap}.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Persoalan Range Sum Query}
+\begin{itemize}
+  \item Persoalan \newTerm{Range Sum Query} adalah persoalan menghitung jumlah elemen berurutan pada sebuah \farray $A$ berukuran $N$.
+  \begin{itemize}
+    \item Pada umumnya, diberikan $Q$ pertanyaan yang merepresentasikan sebuah \fsubarray.
+  \end{itemize}
+  \item Jika \farray yang diberikan tidak dapat berubah, persoalan ini dapat diselesaikan menggunakan \fprefixSum yang menjawab satu pertanyaan dalam waktu $O(1)$.
+  \item Jika \farray yang diberikan dapat berubah, persoalan ini dapat diselesaikan menggunakan \ffenwickTree yang menjawab satu pertanyaan dalam waktu $O(\log N)$ dan mengganti satu elemen \farray dalam waktu $O(\log N)$.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Fenwick Tree}
+\begin{itemize}
+  \item \newTerm{Fenwick Tree} (sering disebut juga \newTerm{Binary Indexed Tree}) adalah data struktur yang menyimpan sebuah \farray berukuran $N$ dengan indeks $1$ sampai $N$ dengan setiap elemennya menyimpan jumlah elemen berurutan pada \farray $A$.
+  \begin{itemize}
+    \item $BIT[j]$ menyimpan jumlah elemen $\sum_{i=j - LSBIT(j) + 1}^{j} A[i]$, dengan $LSBIT(j)$ adalah nilai dari \lstinline{j & (-j)} pada C++. Sebagai contoh,
+    \begin{itemize}
+      \item $LSBIT(1) = 1, BIT[1] = A[1]$,
+      \item $LSBIT(2) = 2, BIT[2] = A[1] + A[2]$,
+      \item $LSBIT(3) = 1, BIT[3] = A[3]$,
+      \item $LSBIT(4) = 4, BIT[4] = A[1] + A[2] + A[3] + A[4]$, dan
+      \item $LSBIT(6) = 2, BIT[6] = A[5] + A[6]$.
+    \end{itemize}
+  \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Fenwick Tree (lanj.)}
+\begin{itemize}
+  \item Dengan \ffenwickTree, kita dapat menghitung nilai $\sum_{i=1}^{x} A[i]$ dalam $O(\log N)$.
+  \begin{itemize}
+    \item Sebagai contoh, menghitung nilai $A[1] + A[2] + A[3] + A[4] + A[5] + A[6]$ dapat disederhanakan menjadi $(A[1] + A[2] + A[3] + A[4]) + (A[5] + A[6]) = BIT[4] + BIT[6]$.
+  \end{itemize}
+  \item Secara umum, $\sum_{i=1}^{x}$ dapat dihitung menggunakan rumus berikut:
+  \begin{itemize}
+    \item $0$, jika $x = 0$,
+    \item $BIT[x] + \sum_{i=1}^{x - LSBIT(x)}$, jika $x > 0$.
+  \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Fenwick Tree (lanj.)}
+\begin{itemize}
+  \item Jika nilai $A[i]$ berubah, maka kita harus memperbaharui semua nilai $BIT[j]$ yang memenuhi $j - LSBIT(j) < i \leq j$. Terdapat $O(\log N)$ nilai yang harus diperbaharui.
+  \begin{itemize}
+    \item Sebagai contoh, jika nilai $A[5]$ berubah, maka kita harus memperbaharui nilai $BIT[5], BIT[6], BIT[8], BIT[16], \cdots$.
+  \end{itemize}
+  \item Secara umum, jika nilai $A[i]$ berubah menjadi $A[i] + \delta$, kita dapat memanggil fungsi \lstinline{update(i)} yang melakukan hal berikut jika $i \leq N$:
+  \begin{itemize}
+    \item Perbaharui nilai $BIT[i]$ menjadi $BIT[i] + \delta$.
+    \item Panggil fungsi \lstinline{update(i + LSBIT(i))}.
+  \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Segment Tree}
+\begin{itemize}
+  \item \newTerm{Segment Tree} merupakan struktur data alternatif untuk menyelesaikan persoalan \frangeSumQuery.
+  \item \fSegmentTree merupakan \fbinaryTree. Tiap \fnode memiliki informasi nilai dari suatu rentang atau segmen. Ukuran segmen dari suatu \fnode pada \fsegmentTree merupakan gabungan segmen dari anak-anaknya.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Ilustrasi Segment Tree}
+\begin{itemize}
+  \item Misalkan kita memiliki \farray berukuran $N$. \fSegmentTree dari \farray tersebut memiliki $O(\log N)$ tingkat.
+  \item Secara keseluruhan, terdapat maksimal $2N$ segmen. Kompleksitas memori dari \fsegmentTree adalah $O(N)$.
+  \item Untuk memudahkan implementasi, kita nomori setiap \fnode pada \fsegmentTree. \fRoot dari \ftree ini dinomori $1$, dengan anak kiri dan kanan dari \fnode $x$ dinomori $2x$ dan $2x + 1$ secara berurutan.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Ilustrasi Segment Tree (lanj.)}
+\begin{itemize}
+  \item Sebagai contoh, berikut merupakan bentuk \fsegmentTree untuk menghitung \frangeSumQuery dari \farray $[5, -3, 2, 1, 4, 4, -1, 6]$.
+  \item Tiap \fnode memiliki informasi jumlah dari segmen yang dilingkupinya.
+\end{itemize}
+\begin{center}
+  \includegraphics[width=10cm]{asset/segtree-init.png}
+\end{center}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Inisiasi Segment Tree}
+\begin{itemize}
+  \item Berikut adalah contoh kode untuk menginisiasi \fsegmentTree untuk menghitung \frangeSumQuery.
+  \item $MAXA$ dihitung dengan $2^{\lceil \log_{2}N \rceil + 1}$.
+\end{itemize}
+\begin{lstlisting}
+int st[MAXA];         // informasi jumlah segmen
+
+void build(int idx, int l, int r) {
+  if (l == r) {
+    st[idx] = val[l];
+    return;
+  }
+
+  int mid = (l + r) / 2;
+  build(idx * 2    , l, mid); // rekursif ke kiri
+  build(idx * 2 + 1, mid + 1, r); // rekursif ke kanan
+  
+  st[idx] = st[idx * 2] + st[idx * 2 + 1];
+}
+
+...
+bulid(1, 1, N); // pemanggilan awal
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}
+\frametitle{Query pada Segment Tree}
+\begin{itemize}
+  \item Untuk mendapatkan jumlah dari interval $L$ sampai $R$, kita cukup menjumlahkan segmen-segmen yang membentuk interval $L$ sampai $R$. Terdapat paling banyak $O(\log N)$ segmen yang harus dijumlahkan.
+  \item Berikut adalah ilustrasi untuk menjumlahkan elemen dari indeks $2$ sampai $6$.
+\end{itemize}
+\begin{center}
+  \includegraphics[width=10cm]{asset/segtree-sum.png}
+\end{center}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Kode Query pada Segment Tree}
+\begin{itemize}
+  \item \fQuery dapat dicapai dengan melakukan penjelajahan \fsegmentTree dari segmen terbesar, dan berhenti ketika kita berada di segmen yang sepenuhnya di dalam segmen yang ingin dijumlahkan.
+\end{itemize}
+\begin{lstlisting}
+int query(int idx, int l, int r, int x, int y) {
+  if (x > r || y < l)
+    // node ini berada di luar segmen query
+    return 0;
+
+  if (x <= l && r <= y)
+    // node ini berada di dalam segmen query
+    return st[idx];
+  
+  int mid = (l + r) / 2;
+  return query(idx * 2    , l, mid, x, y) +
+         query(idx * 2 + 1, mid + 1, r, x, y);
+}
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}
+\frametitle{Single Point Update pada Segment Tree}
+\begin{itemize}
+  \item Untuk memperbaharui nilai elemen di suatu indeks, kita cukup memperbaharui nilai seluruh segmen yang melingkupi indeks tersebut.
+  \item Kompleksitas untuk tiap perbaharuan adalah $O(\log N)$.
+  \item Berikut adalah ilustrasi menambahkan nilai $2$ pada indeks $4$.
+\end{itemize}
+\begin{center}
+  \includegraphics[width=10cm]{asset/segtree-update.png}
+\end{center}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Kode Single Point Update}
+\begin{itemize}
+  \item Berikut adalah contoh kode jika kita ingin menambahkan nilai $v$ pada suatu indeks $x$.
+\end{itemize}
+\begin{lstlisting}
+void update(int idx, int l, int r, int x, int v) {
+  // perbaharui jumlah nilai pada segmen ini
+  st[idx] += v;     
+
+  if (l == r) 
+    // node tanpa anak
+    return;
+
+  // kunjungi anak yang benar
+  int mid = (l + r) / 2;
+  if (x <= mid) 
+    update(idx * 2    , l, mid, x, v);
+  else 
+    update(idx * 2 + 1, mid + 1, r, x, v);
+}
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}
+\frametitle{Range Update pada Segment Tree}
+\begin{itemize}
+  \item Bagaimana jika kita harus memperbaharui beberapa elemen sekaligus dalam suatu segmen?
+  \item Misalnya, untuk suatu segmen $[A,B]$, tambahkan nilainya dengan $v$.
+  \item Kita bisa melakukan penjelajahan pada \fsegmentTree, dan berhenti di daun yang termasuk dari segmen.
+  \item Namun, kasus terburuknya adalah jika kita harus memperbaharui keseluruhan range, sehingga kita harus memperbaharui keseluruhan $O(N)$ \fnode pada \fsegmentTree.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Lazy Propagation}
+\begin{itemize}
+  \item Agar dapat memperbaharui segmen dengan lebih efisien, kita cukup berhenti pada segmen yang sudah sepenuhnya di dalam segmen yang ingin diperbaharui.
+  \item Karena kita berhenti di segmen $X$, kita sebenarnya belum memperbaharui informasi pada segmen-segmen yang merupakan anak dari $X$.
+  \item Karena itu, kita perlu menyiapkan informasi tambahan yang menyatakan perbaharuan yang belum diselesaikan. Informasi ini akan dipropagasi nanti ketika kita melakukan penjelajahan di segmen tersebut.
+  \item Teknik ini disebut dengan \newTerm{Lazy Propagation}.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Ilustrasi Lazy Propagation}
+\begin{itemize}
+  \item Berikut adalah ilustrasi dari \flazyPropagation untuk menambahkan nilai $2$ ke indeks $3$ sampai $5$.
+\end{itemize}
+\begin{center}
+  \includegraphics[width=10cm]{asset/segtree-update-lazy.png}
+\end{center}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Kode Lazy Propagation}
+\begin{itemize}
+  \item Berikut adalah kode untuk melakukan \flazyPropagation.
+\end{itemize}
+\begin{lstlisting}
+void update(int idx, int l, int r, int x, int y, int v) {
+  if (x < r || l > y) return; // berhenti jika di luar
+                              // segmen
+  if (x <= l && r <= y) {
+    // perbaharui jumlah segmen ini
+    st[idx] += (r - l + 1) * v;     
+    // perbaharui nilai "lazy" segmen ini
+    lazy[idx] += v;                 
+    return;
+  }
+  
+  int mid = (l + r) / 2;
+
+  propagate(idx, l, r);
+  update(idx * 2    , l, mid, x, y, v);
+  update(idx * 2 + 1, mid + 1, r, x, y, v);
+  
+  st[idx] = st[idx * 2] + st[idx * 2 + 1];
+}
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Kode Propagasi}
+\begin{itemize}
+  \item Fungsi tambahan \lstinline{propagate} adalah untuk meneruskan perbaharuan yang belum dieksekusi ke anak segmen.
+\end{itemize}
+\begin{lstlisting}
+void propagate(int idx, int l, int r) {
+  // hanya perlu dilakukan jika nilai "lazy" tidak 0
+  if (lazy[idx]) { 
+    int mid = (l + r)/2, lc = idx * 2, rc = idx * 2 + 1;
+    // propagasi ke anak kiri
+    lazy[lc] += lazy[idx];
+    st[lc] += (mid - l + 1) * lazy[idx]; 
+    // propagasi ke anak kanan
+    lazy[rc] += lazy[idx];
+    st[rc] += (r - mid) * lazy[idx];
+
+    lazy[idx] = 0; // bersihkan nilai "lazy"
+  }
+}
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Query dengan Lazy Propagation}
+\begin{itemize}
+  \item \fQuery pada \fsegmentTree yang menggunakan \flazyPropagation persis pada \fquery biasa, hanya saja cukup ditambahkan fungsi propagasi sebagai berikut.
+\end{itemize}
+\begin{lstlisting}
+int query(int idx, int l, int r, int x, int y) {
+  if (x > r || y < l)
+    // node ini berada di luar segmen query
+    return 0;
+
+  if (x <= l && r <= y)
+    // node ini berada di dalam segmen query
+    return st[idx];
+
+  <@\textcolor{red}{propagate(idx, l, r);}@>
+  
+  int mid = (l + r) / 2;
+  return query(idx * 2    , l, mid, x, y) + 
+         query(idx * 2 + 1, mid + 1, r, x, y);
+}
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}
+\frametitle{Sparse Table}
+\begin{itemize}
+  \item \newTerm{Sparse Table} merupakan struktur data alternatif untuk menyelesaikan persoalan \frangeSumQuery
+  \item Seluruh bilangan bulat $Z$ dapat direpresentasikan dalam bentuk $\sum_{i=1} 2^{z_i}$ dengan $z_{i} > z_{i + 1}$. Sebagai contoh, $11 = 2^3 + 2^1 + 2^0$.
+  \item Sehingga, seluruh segmen $[L, R)$ dapat dipartisi menjadi paling banyak $O(\log (R - L))$ segmen $[L, L + 2^{z_1}), [L + 2^{z_1}, L + 2^{z_1} + 2^{z_2}), \cdots$. Sebagai contoh, segmen $[2, 13)$ dapat dipartisi menjadi segmen-segmen $[2, 10), [10, 12), [12, 13)$.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Sparse Table (lanj.)}
+\begin{itemize}
+  \item Pada sebuah \farray $A$ berukuran $N$, \fSparseTable menyimpan jumlah elemen pada segmen $[i, i + 2^j)$ untuk setiap $0 \le j \le \lfloor \log_{2}N \rfloor, 1 \le i < N - 2^j$ ke dalam $S[i][j]$.
+  \item Mengisi seluruh nilai $S[i][j]$ dapat dilakukan dalam waktu $O(N \log N)$ dengan mengiterasikan nilai $j$ dari $0$ sampai $\lfloor \log_{2}N \rfloor$:
+  \begin{itemize}
+    \item Jika $j = 0$, maka $S[i][j] = A[i]$.
+    \item Jika $j > 0$, maka $S[i][j] = S[i][j - 1] + S[i + 2^{j-1}][j - 1]$.
+  \end{itemize}
+  \item Perhatikan bahwa jika suatu elemen di \farray $A$ diperbaharui, maka terdapat $O(N)$ elemen pada $S$ yang harus diperbaharui, sehingga struktur data ini biasanya tidak digunakan jika elemen pada \farray dapat diperbaharui.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Range Sum Query}
+\begin{itemize}
+  \item Berikut adalah kode untuk menghitung jumlah elemen indeks $[L, R)$.
+  \item Perhatikan bahwa \lstinline{1 << j} pada C++ menghitung nilai $2^j$. Hal ini akan dibahas lebih lanjut pada bab berikutnya.
+\end{itemize}
+\begin{lstlisting}
+int query(int l, int r) {
+  int res = 0;
+  for (int j = floor(log(N)); j >= 0; --j) {
+    if (l + (1 << j) <= r) {
+      res += S[l][j];
+      l += (1 << j);
+    }
+  }
+  return res;
+}
+\end{lstlisting}
+\end{frame}
+
+\end{document}

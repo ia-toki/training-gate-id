@@ -1,0 +1,241 @@
+\input{../config.tex}
+
+\title{Maximum Flow}
+\author{Tim Olimpiade Komputer Indonesia}
+\date{}
+
+\begin{document}
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+\begin{frame}
+\frametitle{Pendahuluan}
+Melalui dokumen ini, kalian akan:
+\begin{itemize}
+  \item Memahami persoalan \fmaxflow
+  \item Memahami metode untuk menyelesaikan \fmaxflow
+  \item Memahami aplikasi persoalan \fmaxflow
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Persoalan Maximum Flow}
+\begin{itemize}
+  \item Diberikan sebuah directed \fgraph. Setiap \fedge memiliki kapasitas.
+  \item Salah satu \fnode merupakan \newTerm{source} (sumber, biasanya dinotasikan \fnode $s$), dan salah satu \fnode lainnya merupakan \newTerm{sink} (pembuangan, biasanya dinotasikan \fnode $t$).
+  \item Sebuah \newTerm{flow} (aliran) adalah pemetaan dari setiap \fedge ke sebuah bilangan bulat (banyaknya aliran) tidak lebih dari kapasitasnya sehingga untuk seluruh \fnode selain \fsource dan \fsink, banyaknya aliran yang masuk ke \fnode tersebut sama dengan banyaknya aliran yang keluar dari \fnode tersebut.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Persoalan Maximum Flow (lanj.)}
+\begin{itemize}
+  \item Lebih resminya, sebuah \fflow adalah pemetaan $f : V \times V \rightarrow \mathbb{Z}$ sedemikian sehingga $0 \le f(u, v) \le c(u, v)$ dan untuk setiap \fnode $u$ selain \fsource dan \fsink, $\sum_{v \in V} f(u, v) = \sum_{v \in V} f(v, u)$.
+  \item Nilai dari sebuah \fflow adalah banyaknya aliran yang keluar dari \fsource dikurangi dengan banyaknya aliran yang masuk ke \fsource (dengan kata lain, $\sum_{v \in V} f(s, v) - \sum_{v \in V} f(v, s)$).
+  \item Persoalan \newTerm{maximum flow} adalah mencari \fflow dengan nilai maksimum.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Contoh Maximum Flow}
+Ilustrasi berikut adalah contoh maximum flow.
+\newline
+Angka pada setiap edge menyatakan banyaknya aliran pada maximum flow dan kapasitas pada edge tersebut. Pada contoh ini, maximum flow memiliki nilai 5.
+\newline
+\begin{center}
+\includegraphics[width=7cm]{asset/example.png}
+\end{center}
+\end{frame}
+
+\begin{frame}
+\frametitle{Residual capacity}
+\begin{itemize}
+  \item \newTerm{Residual capacity} (kapasitas tersisa) dari setiap \fedge adalah sisa kapasitas \fedge tersebut, yaitu kapasitas awal dikurangi banyaknya aliran.
+  \item Selain \fedge yang terdapat pada \fgraph awal, kita juga menambahkan \fbackEdge dengan arah kebalikan, dengan kapasitas sama dengan banyaknya aliran \fedge tersebut.
+  \item \fBackEdge untuk mengembalikan aliran yang sudah dikirim sebelumnya (mengurangi banyaknya aliran pada \fedge). Bagian ini akan lebih jelas pada contoh metode Ford Fulkerson di bawah.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Contoh residual capacity}
+Sebagai contoh, \fgraph di gambar kiri merupakan banyaknya aliran dan kapasitas setiap \fedge, sedangkan graph di gambar kanan merupakan \fresidualCapacity setiap \fedge.
+\newline
+\begin{center}
+\includegraphics[width=5cm]{asset/example.png}
+\includegraphics[width=5cm]{asset/residual-capacity.png}
+\end{center}
+\end{frame}
+
+\begin{frame}
+\frametitle{Metode Ford Fulkerson}
+\begin{itemize}
+  \item Metode \newTerm{Ford Fulkerson} mencari \newTerm{augmenting path} (sebuah \fpath yang melewati \fedge dengan \fresidualCapacity positif) secara terus menerus, dan menambahkan aliran melalui \fpath tersebut.
+  \item Kita dapat menambahkan aliran sebanyak \newTerm{bottleneck} (\fresidualCapacity terkecil dari seluruh \fedge yang dikunjungi) dari \fpath tersebut, sehingga nilai \fmaxflow dapat ditambahkan dengan banyaknya aliran.
+  \item Untuk seluruh \fedge $(u, v)$ yang dikunjungi oleh \fpath, kita harus mengurangi \fresidualCapacity \fedge $(u, v)$ dengan banyaknya aliran dan menambahkan \fresidualCapacity \fedge $(v, u)$ (\fbackEdge) dengan banyaknya aliran.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Contoh Ford Fulkerson}
+Sebagai contoh, diberikan \fgraph berikut, dengan \fnode $A$ sebagai \fsource dan \fnode $G$ sebagai \fsink.
+\newline
+\begin{center}
+\includegraphics[width=7cm]{asset/ford-example-0.png}
+\end{center}
+\end{frame}
+
+\begin{frame}
+\frametitle{Contoh Ford Fulkerson (lanj.)}
+Berikut adalah salah satu \faugmentingPath, melewati \fnode $A$, $D$, $E$, dan $G$. \fBottleneck dari \fpath ini adalah $1$ (\fedge $(E, G)$), sehingga nilai \fmaxflow kita tambahkan dengan $1$ dan memperbaharui \fresidualCapacity setiap \fedge yang dilewati.
+\newline
+\begin{center}
+\includegraphics[width=7cm]{asset/ford-example-1.png}
+\end{center}
+\end{frame}
+
+\begin{frame}
+\frametitle{Contoh Ford Fulkerson (lanj.)}
+Masih terdapat \faugmentingPath, salah satunya yang melewati \fnode $A$, $D$, $F$, dan $G$. \fBottleneck dari \fpath ini adalah $2$ (edge $(A, D)$), sehingga kita menambahkan nilai \fmaxflow dengan $2$. \fMaxflow sekarang adalah $3$.
+\newline
+\begin{center}
+\includegraphics[width=7cm]{asset/ford-example-2.png}
+\end{center}
+\end{frame}
+
+\begin{frame}
+\frametitle{Contoh Ford Fulkerson (lanj.)}
+Masih terdapat \faugmentingPath lagi, salah satunya yang melewati \fnode $A$, $B$, $C$, $D$, $F$, dan $G$. \fBottleneck dari \fpath ini adalah $1$ (\fedge $(C, D)$), sehingga kita menambahkan nilai \fmaxflow dengan $1$. \fMaxflow sekarang adalah $4$.
+\newline
+\begin{center}
+\includegraphics[width=7cm]{asset/ford-example-3.png}
+\end{center}
+\end{frame}
+
+\begin{frame}
+\frametitle{Contoh Ford Fulkerson (lanj.)}
+Masih terdapat \faugmentingPath lagi. \fAugmentingPath ini memanfaatkan \fbackEdge $(D, E)$ dengan \fresidualCapacity $1$. \fAugmentingPath ini mengembalikan aliran yang melewati \fedge $(D, E)$ (aliran pertama) dan menggantinya untuk melewati \fedge $(D, F)$.
+\newline
+\begin{center}
+\includegraphics[width=7cm]{asset/ford-example-4.png}
+\end{center}
+\end{frame}
+
+\begin{frame}
+\frametitle{Contoh Ford Fulkerson (lanj.)}
+\fBottleneck dari \faugmentingPath terakhir adalah $1$ (\fbackEdge $(D, E)$), sehingga kita menambahkan nilai \fmaxflow dengan $1$. \fMaxflow sekarang adalah $5$.
+\newline
+Tidak terdapat lagi \faugmentingPath, sehingga nilai \fmaxflow adalah $5$.
+\newline
+\begin{center}
+\includegraphics[width=7cm]{asset/ford-example-4.png}
+\end{center}
+\end{frame}
+
+\begin{frame}
+\frametitle{Mencari Augmenting Path}
+\begin{itemize}
+  \item Jika pencarian \faugmentingPath dilakukan dengan DFS, maka kompleksitas solusinya adalah $O(E * |f|)$, dengan $|f|$ adalah nilai \fmaxflow.
+  \item Ini disebabkan karena sekali pencarian \faugmentingPath membutuhkan waktu $O(E)$ dan dapat menambahkkan $1$ pada nilai \fmaxflow.
+  \item Berikut contoh \fgraph yang memerlukan $|f|$ pencarian \faugmentingPath.
+\end{itemize}
+\begin{center}
+\includegraphics[width=5cm]{asset/ford-blowup-1.png}
+\includegraphics[width=5cm]{asset/ford-blowup-2.png}
+\end{center}
+\end{frame}
+
+\begin{frame}
+\frametitle{Algoritme Edmonds-Karp}
+\begin{itemize}
+  \item Algoritme \newTerm{Edmonds-Karp} adalah implementasi metode Ford Fulkerson dengan menggunakan BFS untuk mencari \faugmentingPath.
+  \item Jika kita menggunakan BFS untuk mencari \faugmentingPath (yang akan mengembalikan \faugmentingPath dengan menggunakan paling sedikit \fedge), maka kita hanya akan mencari paling banyak $min(O(VE), |f|)$ \faugmentingPath.
+  \item Sehingga kompleksitas waktu dari algoritme ini adalah $O(min(|V||E|^2, |E| \times |f|))$.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Variasi Maximum Flow: Minimum Cut}
+\begin{itemize}
+  \item Diberikan sebuah \foreignTerm{weighted directed graph}\xspace dengan salah satu \fnode diberi label $s$ dan salah satu \fnode lainnya diberi label $t$.
+  \item Persoalan \newTerm{minimum cut} adalah persoalan membagi himpunan \fnode menjadi dua buah subhimpunan \fnode $S$ dan $T$ (dengan $s \in S$ dan $t \in T$) yang meminimumkan total bobot perpotongan, yaitu $\sum_{u \in S} \sum_{v \in T} w(u, v)$.
+  \item Teorema \newTerm{max-flow min-cut} menyatakan bahwa nilai \fmincut ini sama dengan nilai \fmaxflow dengan \fsource $s$ dan \fsink $t$.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Variasi Maximum Flow: Lebih dari satu source/sink}
+\begin{minipage}[\textheight]{\textwidth}
+\begin{columns}[T]
+\begin{column}{0.55\textwidth}
+\begin{itemize}[]
+  \item Jika terdapat lebih dari satu \fsource/\fsink, maka kita dapat menambahkan dua \fnode baru, super \fsource dan super \fsink, lalu menghubungkan super \fsource ke seluruh \fsource dan seluruh \fsink ke super \fsink (dengan kapasitas tak terhingga).
+  \item Jalankan algoritme \fmaxflow dengan memilih super \fsource sebagai \fsource dan super \fsink sebagai \fsink.
+\end{itemize}
+\end{column}
+\begin{column}{0.45\textwidth}
+\includegraphics[width=5cm]{asset/multiple-source-sink.png}
+\end{column}
+\end{columns}
+\end{minipage}
+\end{frame}
+
+\begin{frame}
+\frametitle{Variasi Maximum Flow: Kapasitas Node}
+\begin{minipage}[\textheight]{\textwidth}
+\begin{columns}[T]
+\begin{column}{0.6\textwidth}
+\begin{itemize}[]
+  \item Jika setiap \fnode juga memiliki kapasitas banyaknya aliran yang dapat melewati \fnode tersebut, maka kita dapat memisahkan \fnode tersebut menjadi dua \fnode dan menambahkan \fedge yang menghubungkan keduanya dengan kapasitas \fnode tersebut.
+  \item Sebagai contoh, jika \fnode $v$ pada gambar di samping (atas) memiliki kapasitas $2$, maka kita dapat memisahnya seperti gambar di samping (bawah)
+\end{itemize}
+\end{column}
+\begin{column}{0.4\textwidth}
+\includegraphics[width=4.5cm]{asset/node-capacity.png}
+\end{column}
+\end{columns}
+\end{minipage}
+\end{frame}
+
+\begin{frame}
+\frametitle{Contoh Aplikasi: COCI 2017/2018 Round \#7 (PRIGLAVCI)}
+\begin{itemize}
+  \item Terdapat $N$ murid dan $M$ halte pada koordinat 2 dimensi.
+  \item Terdapat $K$ rute bus yang melewati beberapa halte. Hanya terdapat 1 bus pada setiap rute.
+  \item Setiap bus dapat berisi maksimal $C$ murid.
+  \item Setiap murid dapat naik bus dari halte manapun di suatu rute, namun hanya dapat turun dari bus di halte terakhir rute tersebut.
+  \item Kita ingin mengatur setiap murid harus naik bus dari halte mana, sehingga kapasitas bus mencukupi untuk semua murid dan ``kelemahan''-nya minimum.
+  \item ``Kelemahan'' suatu pengaturan didefinisikan sebagai jarak Euclidean yang paling maksimum antara seorang murid ke halte yang harus dikunjunginya.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Solusi: COCI 2017/2018 Round \#7 (PRIGLAVCI)}
+\begin{itemize}
+  \item Kita dapat menyelesaikan soal ini menggunakan Binary Search the Answer
+  \item Untuk setiap $x$, kita dapat memeriksa apakah terdapat solusi dengan “kelemahan” tidak lebih dari $x$ dengan cara mengkonstruksi \fgraph berikut:
+  \begin{itemize}
+    \item Tambahkan satu node untuk setiap murid, rute, dan halte.
+    \item Tambahkan \fnode \fsource dan \fsink.
+    \item Tambahkan \fedge dari \fsource ke setiap murid dengan kapasitas $1$.
+    \item Tambahkan \fedge dari setiap rute ke \fsink dengan kapasitas $C$.
+    \item Untuk setiap murid $m$ dan rute $r$, jika terdapat halte $h$ pada rute $r$ dengan jarak Euclidean dari murid $m$ ke halte $h$ tidak lebih dari $x$, maka tambahkan \fedge dari murid $m$ ke rute $r$ dengan kapasitas $1$.
+  \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Solusi: COCI 2017/2018 Round \#7 (PRIGLAVCI) (lanj.)}
+\begin{itemize}
+  \item Jika nilai \fmaxflow dari \fgraph yang dikonstruksi adalah $N$, maka terdapat pemetaan untuk setiap siswa ke rute bis, dengan jarak Euclidean murid dan halte tempat murid tersebut naik bis tidak lebih dari $x$, dan seluruh bis tidak melebihi kapasitasnya.
+  \begin{itemize}
+    \item Dalam kasus ini, kita dapat mencoba untuk menurunkan nilai $x$ pada binary search.
+  \end{itemize}
+  \item Kita dapat menginterpretasikan sebuah aliran dari \fsource $\rightarrow$ murid $m$ $\rightarrow$ rute $r$ $\rightarrow$ \fsink sebagai murid $m$ mengambil rute $r$.
+\end{itemize}
+\end{frame}
+
+
+
+\end{document}

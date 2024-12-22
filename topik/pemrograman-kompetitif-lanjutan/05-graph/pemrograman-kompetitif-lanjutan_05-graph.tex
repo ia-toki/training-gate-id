@@ -1,0 +1,404 @@
+\input{../config.tex}
+
+\title{Graf}
+\author{Tim Olimpiade Komputer Indonesia}
+\date{}
+
+\usepackage{tikz} 
+
+\begin{document}
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+\begin{frame}
+\frametitle{Pendahuluan}
+Melalui dokumen ini, kalian akan:
+\begin{itemize}
+  \item Memahami Euler Tour Tree dan penggunaannya
+  \item Memahami konsep Bridge, Articulation Point, dan Strongly Connected Component
+  \item Memahami konsep Centroid Decomposition
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Euler Tour Tree}
+\begin{itemize}
+  \item \newTerm{Euler Tour} pada sebuah graf adalah sebuah \ftrail yang berawal di sebuah \fnode dan berakhir di \fnode yang sama dengan melalui setiap \fedge tepat satu kali.
+  \item \newTerm{Euler Tour Tree} adalah salah satu cara mepresentasikan sebuah \ftree dengan mengasumsikan sebuah jalan yang awalnya tidak berarah menjadi dua buah jalan berarah bolak balik, dan mencari \feulerTour yang dimulai dari \froot.
+\end{itemize}
+\begin{figure}[!h]
+\centering
+  \begin{tikzpicture}[main/.style = {draw, circle}] 
+  \node[main] (1) {};
+  \node[main] (2) [below left of=1] {};
+  \node[main] (3) [below left of=2] {};
+  \node[main] (4) [below right of=2] {};
+  \node[main] (5) [below of=4] {};
+  \node[main] (6) [below right of=1] {};
+  \draw[->] (1) -- (2);
+  \draw[->] (2) -- (1);
+  \draw[->] (2) -- (3);
+  \draw[->] (3) -- (2);
+  \draw[->] (2) -- (4);
+  \draw[->] (4) -- (2);
+  \draw[->] (4) -- (5);
+  \draw[->] (5) -- (4);
+  \draw[->] (1) -- (6);
+  \draw[->] (6) -- (1);
+  \end{tikzpicture}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+\frametitle{Euler Tour Tree (lanj.)}
+\begin{itemize}
+  \item Jika kita menomori seluruh node sesuai dengan urutan \fnode yang dikunjungi pada \feulerTourTree, maka untuk setiap \fnode $u$, nomor-nomor seluruh \fnode yang berada pada \fsubtree \fnode $u$ berurutan.
+  \item Sebagai contoh, nomor-nomor seluruh \fnode yang berada pada \fsubtree \fnode $2$ pada ilustrasi berikut adalah $\{2, 3, 4, 5\}$.
+\end{itemize}
+\begin{figure}[!h]
+\centering
+  \begin{tikzpicture}[main/.style = {draw, circle}] 
+  \node[main] (1) {$1$}; 
+  \node[main] (2) [below left of=1] {$2$};
+  \node[main] (3) [below left of=2] {$3$}; 
+  \node[main] (4) [below right of=2] {$4$};
+  \node[main] (5) [below of=4] {$5$};
+  \node[main] (6) [below right of=1] {$6$};
+  \draw (1) -- (2);
+  \draw (2) -- (3);
+  \draw (2) -- (4);
+  \draw (4) -- (5);
+  \draw (1) -- (6);
+  \end{tikzpicture}
+\end{figure}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Euler Tour Tree (lanj.)}
+\begin{itemize}
+  \item Karena itu, jika setiap \fnode memiliki sebuah nilai, maka kita dapat menjumlahkan nilai seluruh \fnode yang berada pada \fsubtree sebuah \fnode menggunakan data struktur yang menyelesaikan persoalan \frangeSumQuery.
+  \item Karena tidak terdapat \fcycle, menentukan urutan \fnode yang dikunjungi pada \feulerTourTree dapat diperoleh dengan DFS sederhana.
+\end{itemize}
+\begin{lstlisting}
+// berisi pemetaan node ke urutan kunjungan
+// pada euler tour tree.
+map<Node, int> nomor;
+
+void dfs(Node u, Node parent) {
+  nomor[u] = nomor.size();
+  for (Node v : u.neighbours()) {
+    if (v != parent) {
+      dfs(v, u);
+    }
+  }
+}
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}
+\frametitle{Graph Connectivity dalam graf tidak berarah}
+\begin{itemize}
+  \item Beberapa definisi dalam graf tidak berarah
+  \begin{itemize}
+    \item \newTerm{Connected component} adalah subgraf maksimal yang mana tiap dua vertexnya bisa dicapai satu sama lain melalui sebuah \fpath.
+    \item Sebuah \fedge merupakan \newTerm{bridge} apabila jika edge tersebut dihapus maka banyaknya \fconnectedcomponent dari graf tersebut bertambah.
+    \begin{itemize}
+      \item Dengan kata lain, tidak terdapat \fpath lain yang menghubungkn dua \fnode yang merupakan ujung dari \fedge tersebut.
+    \end{itemize}
+    \item Sebuah \fnode merupakan \newTerm{articulation point} apabila jika \fnode tersebut dihapus maka banyaknya \fconnectedcomponent dari graf tersebut bertambah.
+  \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Graph Connectivity dalam graf tidak berarah (lanj.)}
+\begin{itemize}
+  \item Sebagai contoh, pada graf berikut, \fedge yang dicetak tebal merupakan \fbridge, sedangkan \fnode yang dicetak tebal merupakan \farticulationpoint.
+\end{itemize}
+\begin{figure}[!h]
+\centering
+  \begin{tikzpicture}[node distance=2cm, main/.style = {draw, circle}]
+  \node[main, ultra thick] (2) {$2$};
+  \node[main] (1) [above left of=2] {$1$};
+  \node[main] (3) [below left of=2] {$3$};
+  \node[main, ultra thick] (4) [below right of=2] {$4$};
+  \node[main] (5) [above right of=4] {$5$};
+  \node[main] (6) [above right of=2] {$6$};
+  \node[main] (7) [right of=4] {$7$};
+  \draw (1) -- (2);
+  \draw (1) -- (3);
+  \draw (2) -- (3);
+  \draw (2) -- (4);
+  \draw (4) -- (5);
+  \draw (2) -- (6);
+  \draw (5) -- (6);
+  \draw[ultra thick] (4) -- (7);
+  \end{tikzpicture}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+\frametitle{Graph Connectivity dalam graf tidak berarah (lanj.)}
+\begin{itemize}
+  \item Pada sebuah graf tidak berarah:
+  \begin{itemize}
+    \item \newTerm{DFS Tree} dari graf tersebut adalah tree yang dihasilkan dari menjalankan algoritma DFS pada graf tersebut.
+    \item Sebuah \fedge merupakan \newTerm{tree edge} jika \fedge tersebut berada pada DFS \ftree.
+    \item Sebuah \fedge merupakan \newTerm{back edge} jika \fedge tersebut menghubungkan sebuah \fnode dengan leluhurnya.
+    \begin{itemize}
+      \item Perhatikan bahwa seluruh \fedge yang bukan merupakan \ftreeedge adalah \fbackedge.
+    \end{itemize}
+    \item \newTerm{Discovery time} dari sebuah \fnode adalah urutan node tersebut dikunjungi pada DFS.
+    \item \newTerm{Low link} dari sebuah \fnode adalah \fdiscoverytime terkecil yang bisa dicapai oleh sebuah \fnode dengan \ftreeedge ke anak-anaknya dan \fbackedge paling banyak sekali.
+  \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Graph Connectivity dalam graf tidak berarah (lanj.)}
+\begin{itemize}
+  \item Sebagai contoh, ilustrasi berikut menunjukan DFS \ftree yang mungkin dihasilkan jika menjalankan algoritma DFS pada graf sebelumnya dimulai dengan \fnode $1$.
+  \begin{itemize}
+    \item \fedge yang dicetak tebal merupakan \ftreeedge, sedangkan yang tidak dicetak tebal merupakan \fbackedge
+    \item Angka di dalam dan di luar \fnode menyatakan \fdiscoverytime dan \flowlink dari node tersebut secara berurutan.
+  \end{itemize}
+\end{itemize}
+\begin{figure}[!h]
+\centering
+  \begin{tikzpicture}[node distance=1cm, main/.style = {draw, circle}]
+  \node[main] (1) [label=right:1] {$1$};
+  \node[main] (2) [label=right:1, below of=1] {$2$};
+  \node[main] (3) [label=right:1, below left of=2] {$3$};
+  \node[main] (4) [label=right:2, below right of=2] {$4$};
+  \node[main] (5) [label=right:2, below left of=4] {$5$};
+  \node[main] (6) [label=right:2, below left of=5] {$6$};
+  \node[main] (7) [label=right:7, below right of=4] {$7$};
+  \draw[ultra thick] (1) -- (2);
+  \draw[ultra thick] (2) -- (3);
+  \draw[ultra thick] (2) -- (4);
+  \draw[ultra thick] (4) -- (5);
+  \draw[ultra thick] (5) -- (6);
+  \draw[ultra thick] (4) -- (7);
+  \draw (1) -- (3);
+  \draw (2) -- (6);
+  \end{tikzpicture}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+\frametitle{Bridge}
+\begin{itemize}
+  \item Mari kita notasikan \fdiscoverytime dan \flowlink dari \fnode $u$ sebagai $low(u)$ dan $num(u)$ secara berurutan.
+  \item Sebuah \fbackedge tidak mungkin merupakan \fbridge, karena kedua \fnode yang merupakan ujung dari \fedge tersebut masih terhubung menggunakan \ftreeedge.
+  \item Sebuah \ftreeedge yang menghubungkan \fnode $u$ dan $v$ (dengan \fnode $u$ merupakan \fparent dari \fnode $v$ pada DFS \ftree) merupakan \fbridge jika $low(v) > num(u)$.
+  \begin{itemize}
+    \item Jika $low(v) \le num(u)$, maka terdapat \fpath dari \fnode $v$ ke \fnode $u$ melalui \fbackedge tanpa melalui \fedge yang menghubungkan kedua \fnode tersebut.
+  \end{itemize}
+  \item Algoritma ini memiliki kompleksitas $O(V + E)$.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Articulation point}
+\begin{itemize}
+  \item Jika sebuah edge menghubungkan \fnode $u$ dan $v$ (dengan \fnode $u$ merupakan \fparent dari \fnode $v$ pada DFS \ftree), $u$ bukan merupakan \froot dari DFS \ftree, dan $low(v) \ge num(u)$, maka \fnode $u$ merupakan \farticulationpoint.
+  \begin{itemize}
+    \item $low(v) \ge num(u)$ berarti menghapus \fnode $u$ menyebabkan \fnode $v$ tidak terhubung dengan \fparent dari \fnode $u$.
+  \end{itemize}
+  \item Untuk setiap \fnode $u$ yang bukan merupakan \froot, jika $low(v) < num(u)$ untuk semua \fnode $v$ yang merupakan anak dari \fnode $u$, maka \fnode $u$ bukan merupakan \farticulationpoint.
+  \item \fRoot dari DFS \ftree merupakan \farticulationpoint jika dan hanya jika ia memiliki lebih dari satu anak.
+  \item Algoritma ini memiliki kompleksitas $O(V + E)$.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Contoh kode}
+\begin{itemize}
+  \item Berikut ini adalah contoh kode untuk mencari seluruh \fbridge dan \farticulationpoint pada sebuah graf.
+\end{itemize}
+\begin{lstlisting}
+void dfs(Node u, Node parent) {
+  num[u] = low[u] = time++;
+  for (Node v : adj[u]) {
+    if (num[v] != UNDEFINED) {
+      ++num_children[u];
+      dfs(v, u);
+      if (low[v] > num[u]) bridges.insert((u, v));
+      if (low[v] >= num[u] && parent != UNDEFINED_NODE) {
+        articulation_point.insert(u);
+      }
+      low[u] = min(low[u], low[v]);
+    } else if (v != parent) {
+      low[u] = min(low[u], num[v]);
+    }
+  }
+}
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Contoh kode (lanj.)}
+\begin{itemize}
+  \item Berikut ini adalah contoh kode untuk mencari seluruh \fbridge dan \farticulationpoint pada sebuah graf (lanj.).
+\end{itemize}
+\begin{lstlisting}
+for (Node u : nodes) {
+  if (num[u] == UNDEFINED) {
+    dfs(u, UNDEFINED_NODE);
+    if (num_children[u] > 1) {
+      articulation_point.insert(root);
+    }
+  }
+}
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}
+\frametitle{Graph Connectivity dalam graf berarah}
+\begin{itemize}
+  \item Dalam graf berarah, \newTerm{strongly connected component} (SCC) adalah subgraf maksimal yang mana tiap dua vertexnya bisa dicapai satu sama lain melalui sebuah \fpath.
+  \item Sebagai contoh, pada graf di bawah, kumpulan \fnode yang berada dalam satu daerah warna abu-abu merupakan SCC.
+  \item Jika kita membuat graf berarah baru dengan membuat satu \fnode untuk setiap SCC dan menambahkan \fedge dari \fnode $u$ ke \fnode $v$ jika terdapat \fedge dari salah satu \fnode di SCC $u$ ke salah satu \fnode di SCC $v$, maka graf baru ini adalah sebuah DAG.
+\end{itemize}
+\begin{center}
+\includegraphics[width=3cm]{asset/scc.png}
+\end{center}
+\end{frame}
+
+\begin{frame}
+\frametitle{Algoritma Tarjan}
+\begin{itemize}
+  \item Untuk mencari seluruh SCC, kita dapat menggunakan algoritma Tarjan. Dapatkan DFS \ftree dari graf yang diberikan. Pada graf terarah, mungkin saja terdapat \fedge yang bukan merupakan \ftreeedge ataupun \fbackedge.
+  \begin{itemize}
+    \item Sebuah \fedge bisa saja merupakan \newTerm{forward edge}, yaitu \fedge yang berarah dari sebuah \fnode ke salah satu keturunannya. Untuk mencari SCC, \fedge ini dapat kita abaikan karena tidak mempengaruhi hasil SCC.
+    \item Jika sebuah \fedge bukan merupakan \ftreeedge, \fbackedge, atau \fforwardedge, maka \fedge ini merupakan \newTerm{cross edge}. \fCrossedge pasti berarah dari sebuah \fnode yang memiliki \fdiscoverytime lebih tinggi ke sebuah \fnode yang memiliki \fdiscoverytime lebih rendah.
+  \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Algoritma Tarjan (lanj.)}
+\begin{itemize}
+  \item Apabila \fnode $u$ memiliki \fbackedge ke \fnode $v$, maka seluruh \fnode pada \fpath yang menghubungkan \fnode $u$ dan \fnode $v$ pada DFS \ftree pasti berada dalam satu SCC.
+  \item Apabila \fnode $u$ memiliki \fcrossedge ke \fnode $v$, maka kita harus memeriksa apakah terdapat \fpath dari \fnode $v$ ke \fnode $u$ juga.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Algoritma Tarjan (lanj.)}
+\begin{itemize}
+  \item Jalankan algoritma DFS. Pada akhir dari DFS di \fnode $u$, jika semua \fnode pada SCC yang berisi \fnode $u$ merupakan keturunan dari \fnode $u$, maka kita ingin membuat SCC tersebut.
+  \begin{itemize}
+    \item Untuk melakukan hal ini, sambil menjalankan algoritma DFS, kita ingin menjaga sebuah \fstack global $S$. Pada saat algoritma menjalakan DFS di \fnode $u$, $S$ berisi seluruh \fnode yang dapat mengunjungi \fnode $u$.
+    \item Pada DFS di \fnode $u$, untuk setiap \fcrossedge dari \fnode $u$ ke \fnode $v$, jika \fnode $v$ berada pada stack $S$, maka kita dapat menganggap \fedge ini sebagai \fbackedge, sehingga kita dapat memperbaharui nilai $low(u)$ dengan $\min(low(u), num(v))$.
+  \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Algoritma Tarjan (lanj.)}
+\begin{itemize}
+  \item Jalankan algoritma DFS. Pada akhir dari DFS di \fnode $u$, jika semua \fnode pada SCC yang berisi \fnode $u$ merupakan keturunan dari \fnode $u$, maka kita ingin membuat SCC tersebut. (lanj.)
+  \begin{itemize}
+    \item Pada akhir DFS di \fnode $u$, jika $low(u) = num(u)$, ini berarti SCC yang berisi \fnode $u$ tidak berisi \fnode lain yang bukan merupakan keturunan \fnode $u$, sehingga kita dapat membuat sebuah SCC baru.
+    \item Masukkan \fnode $u$ dan seluruh \fnode yang berada di atas \fnode $u$ pada stack $S$ ke dalam satu SCC baru, dan keluarkan seluruh \fnode tersebut dari $S$. Kumpulan \fnode ini adalah seluruh \fnode pada keturunan \fnode $u$ yang belum terdapat pada SCC manapun.
+  \end{itemize}
+  \item Algoritma ini memiliki kompleksitas $O(V + E)$.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Contoh kode}
+\begin{itemize}
+  \item Berikut ini adalah contoh kode untuk mencari seluruh SCC.
+\end{itemize}
+\begin{lstlisting}
+void dfs(Node u) {
+  num[u] = low[u] = time++;
+  S.push(u); isInStack[u] = true;
+  for (Node v : adj[u]) {
+    if (num[v] != UNDEFINED) {
+      dfs(v, u);
+      low[u] = min(low[u], low[v]);
+    } else if (isInStack[v]) {
+      low[u] = min(low[u], num[v]);
+    }
+  }
+
+  if (low[u] == num[u]) {
+    set<Node> newScc;
+    do {
+      int s = stack.top(); scc.insert(s);
+      stack.pop(); isInStack[s] = false;
+    } while (s != u);
+    sccs.insert(newScc);
+  }
+}
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}
+\frametitle{Algoritma Kosaraju}
+\begin{itemize}
+  \item Selain algoritma Tarjan, kita juga dapat menggunakan algoritma Kosaraju untuk mendapatkan seluruh SCC.
+  \item Algoritma Kosaraju juga memiliki kompleksitas $O(V + E)$.
+  \item Kita tidak akan membahas algoritma Kosaraju pada pembelajaran ini.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Contoh aplikasi: 2-SAT}
+\begin{itemize}
+  \item Persoalan 2-SAT adalah menentukan apakah ekspresi dalam bentuk konjungsi (\fand) dari beberapa klausa, dengan setiap klausa merupakan disjungsi (\for) dari dua literal, dapat bernilai benar. Setiap literal bisa saja merupakan suatu variabel atau negasi dari suatu variabel.
+  \begin{itemize}
+    \item Sebagai contoh, ekspresi $(x_2 \lor \neg x_1) \land (\neg x_2 \lor \neg x_1) \land (x_1 \lor x_3) \land (\neg x_2 \lor \neg x_3) \land (x_1 \lor x_4)$ dapat bernilai benar. Salah satu caranya dengan memberikan $x_1$ dan $x_2$ nilai salah dan memberikan $x_3$ dan $x_4$ nilai benar.
+    \item Sebagai contoh lainnya, ekspresi $(x_1 \lor x_2) \land (x_1 \lor \neg x_2) \land (\neg x_1 \lor x_3) \land (\neg x_1 \lor \neg x_3)$ tidak dapat bernilai benar untuk seluruh kemungkinan pemberian nilai $x_1$, $x_2$, dan $x_3$.
+  \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Contoh aplikasi: Solusi 2-SAT}
+\begin{itemize}
+  \item Persoalan 2-SAT dapat diselesaikan dengan algoritma berikut:
+  \begin{itemize}
+    \item Buatlah sebuah graf baru $G$. Untuk setiap variabel $x$ pada ekspresi yang diberikan, tambahkan \fnode $x$ dan $\neg x$ pada $G$.
+    \item Untuk setiap klausa $(a \lor b)$ (ekuivalen dengan $\neg a \Rightarrow b$ dan $\neg b \Rightarrow a$), tambahkan \fedge berarah dari \fnode $\neg a$ ke \fnode $b$ dan dari \fnode $\neg b$ ke \fnode $a$ pada $G$.
+    \item Ekspresi yang diberikan dapat bernilai benar jika dan hanya jika kita dapat memberikan nilai salah/benar kepada setiap \fnode pada $G$ dengan syarat:
+    \begin{itemize}
+      \item \fnode $x$ dan \fnode $\neg x$ harus bernilai berbeda, dan
+      \item untuk setiap \fedge dari \fnode $a$ ke \fnode $b$, jika \fnode $a$ bernilai benar, maka \fnode $b$ juga harus bernilai benar.
+    \end{itemize}
+    \item Jika terdapat sebuah SCC yang berisi \fnode $a$ dan \fnode $b$, maka kedua node ini harus bernilai sama. Karenanya, jika terdapat sebuah SCC yang berisi \fnode $x$ dan \fnode $\neg x$, maka ekspresi yang diberikan tidak dapat bernilai benar. Jika tidak, maka ekspresi yang diberikan dapat bernilai benar.
+  \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Centroid Decomposition}
+\begin{itemize}
+  \item Pada sebuah \ftree berisi $N$ \fnode, \newTerm{centroid} dari \ftree tersebut adalah sebuah \fnode yang jika \fnode tersebut dihapus, seluruh \ftree sisanya memiliki paling banyak $\frac{N}{2}$ \fnode. Mencari \fcentroid dapat dilakukan dalam kompleksitas $O(N)$.
+  \item \newTerm{Centroid decomposition} (penguraian \fcentroid) adalah proses mencari \fcentroid pada sebuah tree, menghapus \fcentroid tersebut dari \ftree, lalu melakukan proses yang sama pada seluruh \ftree yang dihasilkan secara rekursif.
+  \begin{itemize}
+    \item Karena setiap penghapusan \fcentroid dari \ftree menyisakan \ftree yang memiliki \fnode paling banyak setengah dari banyak \fnode awal, proses rekursif ini memiliki kedalaman paling banyak $\lceil \log_2 N \rceil$.
+    \item Untuk setiap tingkat kedalaman, jumlah banyaknya \fnode pada \ftree yang tersisa tidak lebih dari $N$. Sehingga, proses penguraian \fcentroid dapat dilakukan dalam kompleksitas $O(N \log N)$.
+  \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Centroid Decomposition: Contoh penggunaan}
+\begin{itemize}
+  \item Diberikan sebuah \ftree berbobot dan bilangan bulat $K$. Kita ingin menghitung berapa pasang \fnode yang dihubungkan oleh \fpath yang memiliki jarak (total bobot) tepat $K$.
+  \item Persoalan ini dapat diselesaikan menggunakan penguraian \fcentroid:
+  \begin{itemize}
+    \item Misalkan \fnode $c$ adalah \fcentroid dari \ftree tersebut. Kita akan menghitung berapa pasang \fnode yang dihubungkan oleh \fpath yang melewati \fnode $c$ dan memiliki jarak $K$. Asumsikan menghapus \fnode $C$ menghasilkan dua \ftree terpisah $T_1$ dan $T_2$. Kita ingin menghitung berapa pasang \fnode $(a, b)$ sedemikian sehingga $a \in T_1$, $b \in T_2$, dan jumlah jarak \fnode $c$ dan \fnode $a$ dan jarak \fnode $c$ dan \fnode $b$ adalah $K$. Hal ini dapat dihitung dalam kompleksitas $O(N)$.
+    \item Berikutnya, hapus \fnode $c$ dan lakukan algoritma ini secara rekursif pada seluruh \ftree yang tersisa untuk juga menghitung banyaknya pasang \fnode yang dihubungkan oleh \fpath yang tidak melewati \fnode $c$.
+    \item Kompleksitas algoritma ini adalah $O(N \log N)$.
+  \end{itemize}
+\end{itemize}
+\end{frame}
+
+\end{document}
