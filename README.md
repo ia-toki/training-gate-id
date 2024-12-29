@@ -12,16 +12,21 @@
 
 ## Silabus Pembelajaran
 
-Saat ini, Training Gate telah berisi dua topik (*course*):
+Training Gate terdiri atas dua topik yang sudah tidak 
 
-1.  [**Pemrograman Dasar Pascal**](https://github.com/ia-toki/training-gate-id/blob/master/topik/pemrograman-dasar/SILABUS.md)
-2.  [**Pemrograman Dasar C++** (versi alpha)](https://github.com/ia-toki/training-gate-id/blob/master/topik/pemrograman-dasar-cpp/SILABUS.md)
-3.  **Pemrograman Kompetitif Dasar** (pengembangan dilanjutkan dalam [versi buku](https://osn.toki.id/arsip/download-pkd))
+Saat ini, Training Gate berisi tiga topik (*course*):
 
-Topik Pemrograman Dasar ini terdiri dari beberapa bab. Setiap bab terdiri atas materi-materi yang diwujudkan dalam sebuah slide presentasi.
+1. [**Pemrograman Dasar dengan C++**](https://github.com/ia-toki/training-gate-id/tree/master/topik/pemrograman-dasar-dengan-cpp)
+2. [**Pemrograman Kompetitif Dasar**](https://github.com/ia-toki/training-gate-id/tree/master/topik/pemrograman-kompetitif-dasar) (pengembangan dilanjutkan dalam [versi buku](https://osn.toki.id/arsip/download-pkd))
+3. [**Pemrograman Kompetitif Lanjutan**](https://github.com/ia-toki/training-gate-id/tree/master/topik/pemrograman-kompetitif-lanjutan)
+
+Selain itu, terdapat pula topik-topik berikut yang sudah tidak dikembangkan lagi:
+
+- [**Pemrograman Dasar Pascal**](https://github.com/ia-toki/training-gate-id/tree/master/topik/pemrograman-dasar)
+- [**Pemrograman Dasar C++**](https://github.com/ia-toki/training-gate-id/tree/master/topik/pemrograman-dasar-cpp)
 
 ## Link Unduh
-Materi dalam bentuk PDF yang sejauh ini sudah dibuat bisa diakses [di sini](https://github.com/ia-toki/training-gate-id-pdf/archive/master.zip).
+Materi dalam bentuk PDF yang sejauh ini sudah dibuat bisa diakses [di sini](https://github.com/ia-toki/training-gate-id-pdf).
 
 ## Tentang TLX Training Gate
 Diinisiasi oleh Ikatan Alumni Tim Olimpiade Komputer Indonesia (IA TOKI), TLX Training Gate merupakan proyek e-learning untuk belajar pemrograman kompetitif yang ditujukan bagi pelajar Indonesia.
