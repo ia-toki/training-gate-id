@@ -24,7 +24,6 @@ target/
 *.nav
 *.snm
 *.synctex.gz
-*.pdf
 *.bak
 *.fls
 *.fdb_latexmk
