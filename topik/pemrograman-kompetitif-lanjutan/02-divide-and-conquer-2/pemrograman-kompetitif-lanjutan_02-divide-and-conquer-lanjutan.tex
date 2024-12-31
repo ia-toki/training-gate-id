@@ -1,0 +1,138 @@
+\input{../config.tex}
+
+\title{Divide and Conquer Lanjutan}
+\author{Tim Olimpiade Komputer Indonesia}
+\date{}
+
+\begin{document}
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+\begin{frame}
+\frametitle{Pendahuluan}
+Melalui dokumen ini, kalian akan:
+\begin{itemize}
+  \item Memahami konsep meet in the middle
+  \item Memahami konsep perpangkatan matriks
+\end{itemize}
+~\newline
+Mulai dari bab ini, seluruh kode program akan dituliskan dalam bahasa pseudo-C++.
+\end{frame}
+
+\begin{frame}
+\frametitle{Meet in the Middle}
+\begin{itemize}
+  \item Teknik \newTerm{Meet in the Middle} digunakan dengan membagi masalah menjadi dua submasalah.
+  \item Pencarian lengkap akan dilakukan untuk setiap submasalah dan memeriksa apakah terdapat irisan pada kedua pencarian lengkap tersebut.
+  \item Contoh soal: Diberikan suatu himpunan $S$ berisi $N$ bilangan. Tentukan apakah terdapat subhimpunan dari $S$ yang berjumlah $0$.
+  \item Tentunya terdapat solusi menggunakan pencarian penuh dalam waktu $O(2^N)$, namun kita akan menggunakan solusi yang lebih cepat.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Meet in the Middle (lanj.)}
+\begin{itemize}
+  \item Soal ini dapat diselesaikan dengan membagi himpunan $S$ menjadi dua subhimpunan $A$ dan $B$ sedemikian sehingga $|A| = \floor{\frac{N}{2}}$ dan $|B| = \ceil{\frac{N}{2}}$.
+  \item Terdapat subhimpunan dari $S$ yang berjumlah $0$ jika dan hanya jika terdapat subhimpunan $A' \subseteq A$ dan subhimpunan $B' \subseteq B$ sedemikian sehingga jumlah seluruh bilangan pada $A'$ adalah negasi dari jumlah seluruh bilangan pada $B'$.
+  \item Untuk setiap subhimpunan $B' \subseteq B$, kita dapat menyimpan jumlah seluruh bilangannya dalam \farray $P(B)$ dan mengurutkannya.
+  \item Untuk setiap subhimpunan $A' \subseteq A$, kita dapat memeriksa apakah negasi dari jumlah seluruh bilangannnya terdapat pada \farray$P(B)$ menggunakan \fbinarySearch.
+  \item Kompleksitas dari solusi ini adalah $O(2^{\floor{\frac{N}{2}}} \times \log(2^{\ceil{\frac{N}{2}}}))$.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Perpangkatan Matriks}
+\begin{itemize}
+  \item Teknik perpangkatan matriks dapat menghitung nilai dari matriks $M^K$ untuk sebuah matriks $M$ berukuran $N \times N$ dalam waktu $O(N^3 \times \log(K))$.
+  \item Teknik ini sebenarnya serupa dengan perpangkatan bilangan bulat.
+\end{itemize}
+\[
+    M^x= 
+\begin{dcases}
+    M,                                    & \text{jika } x = 1\\
+    (M^{\frac{x}{2}})^2,                  & \text{jika } x \text{ bernilai genap}\\
+    (M^{\floor{\frac{x}{2}}})^2 \times M, & \text{jika tidak}
+\end{dcases}
+\]
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Perpangkatan Matriks (lanj.)}
+Kode di bawah ini dapat digunakan untuk menghitung perpangkatan tipe data apapun.
+\newline
+\begin{lstlisting}
+template<typename T>
+T exp(T M, int K) {
+  if (K == 1) {
+    return M;
+  }
+  T res = exp(M, K >> 1);
+  res = res * res;
+  if (K & 1) {
+    res = res * M;
+  }
+  return res;
+}
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Perpangkatan Matriks (lanj.)}
+Untuk menghitung perpangkatan matriks menggunakan kode pada halaman sebelumnya, maka kita dapat mendefinisikan tipe data matriks dan fungsi perkalian.
+\begin{lstlisting}
+template<typename T> struct Matrix {
+  vector<vector<T>> M;
+
+  Matrix operator*(const Matrix& other) {
+    Matrix res = (Matrix){vector<vector<T>>(
+        M.size(), vector<T>(other.M[0].size(), 0))};
+
+    for (int i = 0; i < M.size(); ++i) {
+      for (int j = 0; j < other.M[0].size(); ++j) {
+        for (int k = 0; k < M[0].size(); ++k) {
+          res.M[i][j] += M[i][k] * other.M[k][j];
+        }
+      }
+    }
+
+    return res;
+  }
+};
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}
+\frametitle{Perpangkatan Matriks: Fibonaci}
+\begin{itemize}
+  \item Salah satu penggunaan perpangkatan matriks adalah untuk menghitung $f_N$ (bilangan fibonaci ke-$N$) dalam $O(\log(N))$.
+  \item Untuk seluruh bilangan bulat positif $n$, perhatikan bahwa $f_{n+2} = f_n + f_{n+1}$, sehingga
+\[
+  \begin{bmatrix} f_n & f_{n+1} \end{bmatrix} \times
+  \begin{bmatrix} 0 & 1 \\ 1 & 1  \end{bmatrix} =
+  \begin{bmatrix} f_{n+1} & f_{n+2} \end{bmatrix}
+\]
+  \item Sehingga, untuk setiap bilangan bulat positif $k$
+\[
+  \begin{bmatrix} f_n & f_{n+1} \end{bmatrix} \times
+  \begin{bmatrix} 0 & 1 \\ 1 & 1  \end{bmatrix}^k =
+  \begin{bmatrix} f_{n+k} & f_{n+k} \end{bmatrix}
+\]
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Perpangkatan Matriks: Fibonaci (lanj.)}
+\begin{itemize}
+  \item, Sehingga, nilai $f_N$ dapat diperoleh dengan menghitung nilai
+  \[
+    \begin{bmatrix} f_1 & f_2 \end{bmatrix} \times
+    \begin{bmatrix} 0 & 1 \\ 1 & 1  \end{bmatrix}^{N - 1} =
+    \begin{bmatrix} f_N & f_{N+1} \end{bmatrix}
+  \]
+  \item Nilai $\begin{bmatrix} 0 & 1 \\ 1 & 1  \end{bmatrix}^{N - 1}$ dapat dihitung menggunakan perpangkatan matriks dalam $O(\log N)$.
+\end{itemize}
+\end{frame}
+
+\end{document}
