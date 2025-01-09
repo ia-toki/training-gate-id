@@ -216,7 +216,7 @@ vector<Point> convex_hull(vector<Point> P) {
 \begin{itemize}
   \item Sebagai tambahan informasi, selain algoritme \fGrahamScan terdapat beberapa algoritme lain yang cukup umum:
   \begin{itemize}
-    \item Algoritme \newTerm{Gift wrapping} (sering juga disebut \newTerm{Jarvis march}) mencari \fconvexHull dalam waktu $O(NH)$, dengan $H$ adalah banyaknya titik pada $fconvexHull$.
+    \item Algoritme \newTerm{Gift wrapping} (sering juga disebut \newTerm{Jarvis march}) mencari \fconvexHull dalam waktu $O(NH)$, dengan $H$ adalah banyaknya titik pada \fconvexHull.
     \item Algoritme \newTerm{Monotone chain} (sering juga disebut \newTerm{Andrew's algorithm}) mencari \fconvexHull dalam waktu $O(N \log N)$.
   \end{itemize}
   \item Kita tidak akan membahas algoritme tersebut pada diskusi ini.
@@ -249,7 +249,7 @@ vector<Point> convex_hull(vector<Point> P) {
       \item Jika ada, maka segmen garis ini berpotongan dengan segmen garis pada himpunan $A$.
     \end{itemize}
   \end{itemize}
-  \item Kita dapat menggunakan struktur data C++ \textbf{set} (akan dibahas pada materi berikutnya) agar seluruh penambahan dan pengecekan pada $D$ membutuhkan waktu $O(\log N)$.
+  \item Kita dapat menggunakan struktur data C++ \textbf{set} agar seluruh penambahan dan pengecekan pada $D$ membutuhkan waktu $O(\log N)$.
   \begin{itemize}
     \item Sehingga, total kompleksitas waktu solusi ini adalah $O(N \log N)$.
   \end{itemize}
